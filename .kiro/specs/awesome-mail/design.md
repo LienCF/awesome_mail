@@ -1158,7 +1158,7 @@ dev_dependencies:
   mockito: ^5.4.0
   bloc_test: ^9.1.0
   integration_test: ^1.0.0
-  golden_toolkit: ^0.15.0
+  alchemist: ^0.12.1
   patrol: ^2.0.0  # 進階 E2E 測試
   
   # 後端測試工具
