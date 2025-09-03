@@ -242,7 +242,7 @@
 
 ## Flutter 資料層和狀態管理
 
-- [ ] 10. 修復 Flutter 核心服務和 HTTP 客戶端測試 (TDD)
+- [x] 10. 修復 Flutter 核心服務和 HTTP 客戶端測試 (TDD)
   - **修復測試**: 修復現有的 HTTP 客戶端和 API 客戶端測試中的 Mock 問題
   - 修復 AI 模型中缺失的 Entity、ActionType、ThreatLevel 等類型定義
   - 修復 SecurityAnalysis 模型中缺失的 overallRisk 屬性
@@ -255,7 +255,7 @@
   - **測試覆蓋**: 確保所有核心服務和網路層測試通過
   - _Requirements: 12.1, 12.5, 13.1, 4.1, 4.2, 4.3, 4.4, 4.5_
 
-- [ ] 11. 建立 Flutter 狀態管理系統 (TDD)
+- [x] 11. 建立 Flutter 狀態管理系統 (TDD)
   - **先寫測試**: 建立 BLoC 狀態管理的單元測試
   - 建立核心 BLoC 類別：AuthBloc, AppBloc, SettingsBloc
   - 實作 BLoC 事件和狀態的型別定義 (`lib/presentation/blocs/`)
