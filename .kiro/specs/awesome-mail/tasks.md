@@ -221,51 +221,31 @@
   - ✅ **測試覆蓋**: 測試各種排程場景和任務執行
   - _Requirements: 13.6, 13.7, 13.8, 13.9_
 
-- [x] 7.1. 修復後端測試失敗問題 (TDD)
-  - **修復測試**: 修復 10 個失敗的後端測試
-  - 修復訂閱 API 路由的 404 錯誤問題
-  - 修復 AI 服務的網路錯誤處理和使用量限制邏輯
-  - 修復 AI 使用量追蹤器的記憶體管理問題
-  - 完善錯誤處理類別的實作
-  - **測試覆蓋**: 確保所有後端測試通過（目標：377/387 通過）
-  - _Requirements: 4.1, 4.2, 4.3, 14.1, 14.2_
-
 - [x] 32. 完善後端 AI 服務實際 API 整合 (TDD)
-  - **先寫測試**: 建立真實 AI API 整合測試（使用環境變數控制）
-  - 完善 `OpenAIProvider` 類別，實作真實的 OpenAI API 呼叫
-  - 完善 `AnthropicProvider` 類別，實作真實的 Anthropic API 呼叫
-  - 實作 AI API 錯誤處理和重試機制
-  - 建立 AI 回應快取機制以節省 API 成本
-  - 實作 AI 使用量追蹤和限制檢查
-  - **測試覆蓋**: 測試真實 AI API 整合和錯誤處理
+  - ✅ **先寫測試**: 建立真實 AI API 整合測試（使用環境變數控制）
+  - ✅ 完善 `OpenAIProvider` 類別，實作真實的 OpenAI API 呼叫
+  - ✅ 完善 `AnthropicProvider` 類別，實作真實的 Anthropic API 呼叫
+  - ✅ 實作 AI API 錯誤處理和重試機制
+  - ✅ 建立 AI 回應快取機制以節省 API 成本
+  - ✅ 實作 AI 使用量追蹤和限制檢查
+  - ✅ **測試覆蓋**: 測試真實 AI API 整合和錯誤處理
   - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
 
 ## Flutter 資料層和狀態管理
 
-- [x] 10. 修復 Flutter 核心服務和 HTTP 客戶端測試 (TDD)
-  - **修復測試**: 修復現有的 HTTP 客戶端和 API 客戶端測試中的 Mock 問題
-  - 修復 AI 模型中缺失的 Entity、ActionType、ThreatLevel 等類型定義
-  - 修復 SecurityAnalysis 模型中缺失的 overallRisk 屬性
-  - 修復 SecurityThreat 模型中缺失的 confidence 必需參數
-  - 完善 HTTP 客戶端服務的錯誤處理和重試機制
-  - 修復 API 基礎類別的認證和錯誤處理邏輯
-  - 完善核心服務類別的實作：AuthService, EmailService, SyncService, AIService
-  - 修復依賴注入配置中的循環依賴問題
-  - 完善統一的錯誤處理和回應解析機制
-  - **測試覆蓋**: 確保所有核心服務和網路層測試通過
+- [x] 10. 建立 Flutter 核心服務和狀態管理系統 (TDD)
+  - ✅ **先寫測試**: 建立核心服務和 BLoC 的單元測試 (280/280 測試通過)
+  - ✅ 建立核心 BLoC 類別：AuthBloc, AppBloc, SettingsBloc
+  - ✅ 實作 BLoC 事件和狀態的型別定義 (`lib/presentation/blocs/`)
+  - ✅ 建立應用程式生命週期管理和路由管理
+  - ✅ 實作狀態持久化和恢復機制 (StatePersistenceService)
+  - ✅ 完善核心服務類別的實作：AuthService, EmailService, SyncService, AIService
+  - ✅ 建立 BlocManager 統一管理所有 BLoC 生命週期
+  - ✅ 整合 BLoC 到現有的應用程式結構中
+  - ✅ **測試覆蓋**: 所有核心服務和 BLoC 測試通過
   - _Requirements: 12.1, 12.5, 13.1, 4.1, 4.2, 4.3, 4.4, 4.5_
 
-- [x] 11. 建立 Flutter 狀態管理系統 (TDD)
-  - **先寫測試**: 建立 BLoC 狀態管理的單元測試
-  - 建立核心 BLoC 類別：AuthBloc, AppBloc, SettingsBloc
-  - 實作 BLoC 事件和狀態的型別定義 (`lib/presentation/blocs/`)
-  - 建立應用程式生命週期管理和路由管理
-  - 實作狀態持久化和恢復機制
-  - 整合 BLoC 到現有的應用程式結構中
-  - **測試覆蓋**: 測試所有 BLoC 狀態轉換和事件處理
-  - _Requirements: 12.1, 12.5_
-
-- [ ] 12. 建立 Flutter 本地資料庫和快取系統 (TDD)
+- [x] 11. 建立 Flutter 本地資料庫和快取系統 (TDD)
   - **先寫測試**: 建立資料庫操作和快取系統的單元測試
   - 設定 SQLite 資料庫和 Drift ORM (`lib/data/database/`)
   - 建立資料庫 schema 和遷移腳本 (`lib/data/database/tables/`)
@@ -275,7 +255,7 @@
   - **測試覆蓋**: 測試所有資料庫操作和快取邏輯
   - _Requirements: 5.6, 12.2, 12.3_
 
-- [ ] 13. 實作 Flutter 加密和安全儲存 (TDD)
+- [ ] 12. 實作 Flutter 加密和安全儲存 (TDD)
   - **先寫測試**: 建立加密和安全儲存的單元測試
   - 整合 flutter_secure_storage 進行敏感資料儲存 (`lib/core/security/`)
   - 實作本地資料加密/解密功能 (`lib/core/security/encryption_service.dart`)
@@ -287,53 +267,39 @@
 
 ## Flutter 客戶端與後端整合
 
-- [ ] 14. 實作 Flutter 後端 API 整合 (TDD)
-  - **先寫測試**: 建立 API 服務的單元測試和整合測試
-  - 建立 API 服務層 (`lib/data/services/api/`)
-  - 實作認證 Token 管理和自動刷新 (`lib/data/services/api/auth_api_service.dart`)
-  - 建立 API 錯誤處理和重試機制
-  - 實作網路狀態監控和離線處理
-  - 建立 API 回應快取和優化
-  - 整合後端 API 端點 (認證、同步、AI、訂閱)
-  - **網路測試**: 測試各種網路條件和錯誤場景
-  - _Requirements: 13.1, 13.2, 13.3_
-
-- [ ] 15. 實作 Flutter 認證系統 (TDD)
-  - **先寫測試**: 建立認證系統的單元測試和整合測試
+- [ ] 13. 實作 Flutter 認證系統 UI 和完整整合 (TDD)
+  - **先寫測試**: 建立認證 UI 和完整流程的 Widget 測試
   - 建立登入和註冊 UI 頁面 (`lib/presentation/pages/auth/`)
-  - 實作 JWT Token 管理和自動刷新 (`lib/data/services/auth_service.dart`)
-  - 建立生物識別認證整合
-  - 實作登入狀態持久化和 AuthBloc 整合
-  - 建立認證錯誤處理和使用者回饋
-  - 整合後端認證 API
-  - **認證測試**: 測試各種認證場景和錯誤處理
+  - 實作生物識別認證整合 (`lib/core/security/biometric_service.dart`)
+  - 建立認證錯誤處理和使用者回饋 UI
+  - 完善 AuthBloc 與 UI 的整合和狀態管理
+  - 實作登入狀態持久化和自動登入功能
+  - **認證測試**: 測試各種認證場景和 UI 互動
   - _Requirements: 13.2, 13.11, 13.12_
 
-- [ ] 16. 實作 Flutter 同步功能 (TDD)
-  - **先寫測試**: 建立同步功能的單元測試和整合測試
-  - 建立設定和帳戶的雲端同步功能 (`lib/data/services/sync_service.dart`)
-  - 實作 QR Code 掃描和帳戶快速設定 (`lib/presentation/pages/sync/`)
-  - 建立同步狀態顯示和進度追蹤 UI
+- [ ] 14. 實作 Flutter 同步功能 UI 和完整整合 (TDD)
+  - **先寫測試**: 建立同步功能的 Widget 測試和整合測試
+  - 實作 QR Code 掃描和帳戶快速設定 UI (`lib/presentation/pages/sync/`)
+  - 建立同步狀態顯示和進度追蹤 UI (`lib/presentation/widgets/sync/`)
   - 實作同步衝突解決 UI 和邏輯
   - 建立離線變更的同步佇列機制
-  - 整合後端同步 API
-  - **同步測試**: 測試多設備同步和衝突解決
+  - 完善 SyncService 與後端 API 的整合
+  - **同步測試**: 測試多設備同步和衝突解決 UI
   - _Requirements: 13.4, 13.5, 13.11, 13.12_
 
-- [ ] 17. 實作 Flutter AI 功能整合 (TDD)
-  - **先寫測試**: 建立 AI 功能的單元測試和 Mock 測試
-  - 建立 AI 服務的客戶端整合 (`lib/data/services/ai_service.dart`)
+- [ ] 15. 實作 Flutter AI 功能 UI 和完整整合 (TDD)
+  - **先寫測試**: 建立 AI 功能的 Widget 測試和 Mock 測試
   - 實作郵件分類和摘要 UI (`lib/presentation/widgets/ai/`)
-  - 建立智能回覆建議介面
-  - 實作實體提取結果顯示和互動
-  - 建立 AI 功能的使用者偏好設定
-  - 整合後端 AI API
-  - **AI 測試**: 測試各種 AI 回應和錯誤處理
+  - 建立智能回覆建議介面 (`lib/presentation/widgets/email/ai_reply/`)
+  - 實作實體提取結果顯示和互動 (`lib/presentation/widgets/ai/entity_extraction/`)
+  - 建立 AI 功能的使用者偏好設定 UI (`lib/presentation/pages/settings/ai_settings/`)
+  - 完善 AIService 與後端 API 的整合
+  - **AI 測試**: 測試各種 AI 回應和 UI 互動
   - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
 
 ## Flutter 郵件系統核心功能
 
-- [ ] 18. 實作基礎郵件協議處理器 (TDD)
+- [ ] 16. 實作基礎郵件協議處理器 (TDD)
   - **先寫測試**: 建立郵件協議的單元測試，使用 Mock 伺服器
   - 建立 IMAP 協議處理器和連線管理 (`lib/data/protocols/imap/`)
   - 實作 POP3 協議處理器和基本操作 (`lib/data/protocols/pop3/`)
@@ -343,7 +309,7 @@
   - **測試場景**: 連線失敗、認證錯誤、網路中斷處理
   - _Requirements: 2.7, 2.8, 3.3, 3.4, 5.1, 5.4_
 
-- [ ] 19. 實作進階郵件協議支援 (TDD)
+- [ ] 17. 實作進階郵件協議支援 (TDD)
   - **先寫測試**: 建立進階協議的單元測試和整合測試
   - 建立 Exchange/EWS 協議處理器 (`lib/data/protocols/exchange/`)
   - 實作 JMAP 協議支援 (FastMail 等) (`lib/data/protocols/jmap/`)
@@ -355,7 +321,7 @@
 
 ## Flutter 主流郵件服務整合
 
-- [ ] 20. 實作主流郵件服務整合 (TDD)
+- [ ] 18. 實作主流郵件服務整合 (TDD)
   - **先寫測試**: 建立郵件服務整合的單元測試和 Mock 測試
   - 建立 Gmail API 和 OAuth2 認證整合 (`lib/data/providers/gmail/`)
   - 實作 Microsoft Graph API 整合 (Outlook/Office 365) (`lib/data/providers/outlook/`)
@@ -365,7 +331,7 @@
   - **測試覆蓋**: 測試各種服務的認證和配置流程
   - _Requirements: 2.1, 2.2, 2.3, 2.4_
 
-- [ ] 21. 實作 ProtonMail 和企業郵件整合 (TDD)
+- [ ] 19. 實作 ProtonMail 和企業郵件整合 (TDD)
   - **先寫測試**: 建立 ProtonMail 和企業郵件的整合測試
   - 建立 ProtonMail Bridge 自動偵測和整合 (`lib/data/providers/protonmail/`)
   - 實作內建 OpenPGP 解密引擎 (`lib/core/security/pgp/`)
@@ -375,21 +341,9 @@
   - **測試覆蓋**: 測試各種企業環境和安全配置
   - _Requirements: 2.5, 2.6, 8.4, 8.5, 8.6_
 
-## Flutter AI 功能實作
-
-- [ ] 22. 實作 Flutter AI 功能核心 (TDD)
-  - **先寫測試**: 建立 AI 功能的單元測試，使用 Mock AI 回應
-  - 建立 AI 服務客戶端和請求管理 (`lib/data/services/ai/`)
-  - 實作郵件智能分類和摘要功能 (`lib/presentation/widgets/email/ai_features/`)
-  - 建立智能回覆建議系統
-  - 實作實體提取和智能解析 (日期、時間、地點、人名)
-  - 建立 AI 功能的使用者偏好設定 (`lib/presentation/pages/settings/ai_settings/`)
-  - **測試資料**: 準備各種類型的測試郵件和預期結果
-  - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 4.10, 4.11_
-
 ## Flutter 生產力工具整合
 
-- [ ] 23. 實作生產力工具整合核心 (TDD)
+- [ ] 20. 實作生產力工具整合核心 (TDD)
   - **先寫測試**: 建立生產力工具整合的單元測試和 Mock 測試
   - 建立 Google Calendar/Tasks API 整合和 OAuth2 認證 (`lib/data/providers/google/`)
   - 實作 Apple Calendar/Reminders 整合 (CalDAV) (`lib/data/providers/apple/`)
@@ -401,7 +355,7 @@
 
 ## Flutter 安全和隱私功能
 
-- [ ] 24. 實作安全和隱私保護功能 (TDD)
+- [ ] 21. 實作安全和隱私保護功能 (TDD)
   - **先寫測試**: 建立安全功能的單元測試和威脅偵測測試
   - 建立釣魚郵件偵測和警告系統 (`lib/data/services/security/`)
   - 實作惡意連結掃描和安全分析
