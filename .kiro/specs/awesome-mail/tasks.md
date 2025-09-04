@@ -255,7 +255,7 @@
   - **測試覆蓋**: 測試所有資料庫操作和快取邏輯
   - _Requirements: 5.6, 12.2, 12.3_
 
-- [ ] 12. 實作 Flutter 加密和安全儲存 (TDD)
+- [x] 12. 實作 Flutter 加密和安全儲存 (TDD)
   - **先寫測試**: 建立加密和安全儲存的單元測試
   - 整合 flutter_secure_storage 進行敏感資料儲存 (`lib/core/security/`)
   - 實作本地資料加密/解密功能 (`lib/core/security/encryption_service.dart`)
