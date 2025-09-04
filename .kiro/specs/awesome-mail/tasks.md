@@ -287,7 +287,7 @@
   - **同步測試**: 測試多設備同步和衝突解決 UI
   - _Requirements: 13.4, 13.5, 13.11, 13.12_
 
-- [ ] 15. 實作 Flutter AI 功能 UI 和完整整合 (TDD)
+- [x] 15. 實作 Flutter AI 功能 UI 和完整整合 (TDD)
   - **先寫測試**: 建立 AI 功能的 Widget 測試和 Mock 測試
   - 實作郵件分類和摘要 UI (`lib/presentation/widgets/ai/`)
   - 建立智能回覆建議介面 (`lib/presentation/widgets/email/ai_reply/`)
