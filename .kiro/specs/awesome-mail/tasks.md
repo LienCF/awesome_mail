@@ -267,7 +267,7 @@
 
 ## Flutter 客戶端與後端整合
 
-- [ ] 13. 實作 Flutter 認證系統 UI 和完整整合 (TDD)
+- [x] 13. 實作 Flutter 認證系統 UI 和完整整合 (TDD)
   - **先寫測試**: 建立認證 UI 和完整流程的 Widget 測試
   - 建立登入和註冊 UI 頁面 (`lib/presentation/pages/auth/`)
   - 實作生物識別認證整合 (`lib/core/security/biometric_service.dart`)
@@ -277,7 +277,7 @@
   - **認證測試**: 測試各種認證場景和 UI 互動
   - _Requirements: 13.2, 13.11, 13.12_
 
-- [ ] 14. 實作 Flutter 同步功能 UI 和完整整合 (TDD)
+- [x] 14. 實作 Flutter 同步功能 UI 和完整整合 (TDD)
   - **先寫測試**: 建立同步功能的 Widget 測試和整合測試
   - 實作 QR Code 掃描和帳戶快速設定 UI (`lib/presentation/pages/sync/`)
   - 建立同步狀態顯示和進度追蹤 UI (`lib/presentation/widgets/sync/`)
