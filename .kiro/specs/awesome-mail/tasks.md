@@ -343,7 +343,7 @@
 
 ## Flutter 生產力工具整合
 
-- [-] 20. 實作生產力工具整合核心 (TDD)
+- [x] 20. 實作生產力工具整合核心 (TDD)
   - **先寫測試**: 建立生產力工具整合的單元測試和 Mock 測試
   - 建立 Google Calendar/Tasks API 整合和 OAuth2 認證 (`lib/data/providers/google/`)
   - 實作 Apple Calendar/Reminders 整合 (CalDAV) (`lib/data/providers/apple/`)
