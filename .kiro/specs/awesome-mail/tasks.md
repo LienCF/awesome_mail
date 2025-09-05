@@ -299,7 +299,7 @@
 
 ## Flutter 郵件系統核心功能
 
-- [ ] 16. 實作基礎郵件協議處理器 (TDD)
+- [x] 16. 實作基礎郵件協議處理器 (TDD)
   - **先寫測試**: 建立郵件協議的單元測試，使用 Mock 伺服器
   - 建立 IMAP 協議處理器和連線管理 (`lib/data/protocols/imap/`)
   - 實作 POP3 協議處理器和基本操作 (`lib/data/protocols/pop3/`)
@@ -309,7 +309,7 @@
   - **測試場景**: 連線失敗、認證錯誤、網路中斷處理
   - _Requirements: 2.7, 2.8, 3.3, 3.4, 5.1, 5.4_
 
-- [ ] 17. 實作進階郵件協議支援 (TDD)
+- [x] 17. 實作進階郵件協議支援 (TDD)
   - **先寫測試**: 建立進階協議的單元測試和整合測試
   - 建立 Exchange/EWS 協議處理器 (`lib/data/protocols/exchange/`)
   - 實作 JMAP 協議支援 (FastMail 等) (`lib/data/protocols/jmap/`)
@@ -321,7 +321,7 @@
 
 ## Flutter 主流郵件服務整合
 
-- [ ] 18. 實作主流郵件服務整合 (TDD)
+- [x] 18. 實作主流郵件服務整合 (TDD)
   - **先寫測試**: 建立郵件服務整合的單元測試和 Mock 測試
   - 建立 Gmail API 和 OAuth2 認證整合 (`lib/data/providers/gmail/`)
   - 實作 Microsoft Graph API 整合 (Outlook/Office 365) (`lib/data/providers/outlook/`)
@@ -331,7 +331,7 @@
   - **測試覆蓋**: 測試各種服務的認證和配置流程
   - _Requirements: 2.1, 2.2, 2.3, 2.4_
 
-- [ ] 19. 實作 ProtonMail 和企業郵件整合 (TDD)
+- [x] 19. 實作 ProtonMail 和企業郵件整合 (TDD)
   - **先寫測試**: 建立 ProtonMail 和企業郵件的整合測試
   - 建立 ProtonMail Bridge 自動偵測和整合 (`lib/data/providers/protonmail/`)
   - 實作內建 OpenPGP 解密引擎 (`lib/core/security/pgp/`)
