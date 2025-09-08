@@ -355,7 +355,7 @@
 
 ## Flutter 安全和隱私功能
 
-- [ ] 21. 實作安全和隱私保護功能 (TDD)
+- [x] 21. 實作安全和隱私保護功能 (TDD)
   - **先寫測試**: 建立安全功能的單元測試和威脅偵測測試
   - 建立釣魚郵件偵測和警告系統 (`lib/data/services/security/`)
   - 實作惡意連結掃描和安全分析
@@ -367,7 +367,7 @@
 
 ## Flutter 使用者介面和體驗
 
-- [ ] 25. 實作核心 UI 組件和主題系統 (TDD)
+- [x] 25. 實作核心 UI 組件和主題系統 (TDD)
   - **先寫測試**: 建立 UI 組件的 Widget 測試
   - 擴展現有的主題系統 (`lib/shared/themes/app_theme.dart`)
   - 建立跨平台一致的 UI 組件庫 (`lib/presentation/widgets/common/`)
@@ -378,7 +378,7 @@
   - **測試覆蓋**: 測試所有 UI 組件的行為和外觀
   - _Requirements: 1.1, 1.2, 1.3, 1.4, 11.1, 5.1, 12.2_
 
-- [ ] 26. 實作郵件撰寫和管理功能 (TDD)
+- [x] 26. 實作郵件撰寫和管理功能 (TDD)
   - **先寫測試**: 建立郵件功能的 Widget 測試和整合測試
   - 建立富文本郵件編輯器 (`lib/presentation/pages/compose/`)
   - 實作附件管理和預覽功能 (`lib/presentation/widgets/email/attachments/`)
@@ -390,7 +390,7 @@
 
 ## Flutter 自動化和效率功能
 
-- [ ] 27. 實作自動化和效率功能 (TDD)
+- [x] 27. 實作自動化和效率功能 (TDD)
   - **先寫測試**: 建立自動化功能的單元測試和整合測試
   - 建立智能郵件規則引擎和條件觸發系統 (`lib/data/services/automation/`)
   - 實作批量操作和撤銷/恢復機制 (`lib/data/services/batch_operations/`)
@@ -402,7 +402,7 @@
 
 ## Flutter 設定和個人化
 
-- [ ] 28. 實作設定和個人化功能 (TDD)
+- [x] 28. 實作設定和個人化功能 (TDD)
   - **先寫測試**: 建立設定功能的 Widget 測試和單元測試
   - 建立帳戶管理和設定介面 (`lib/presentation/pages/settings/`)
   - 實作個人化偏好設定和主題選擇
@@ -414,7 +414,7 @@
 
 ## Flutter 無障礙和擴展功能
 
-- [ ] 29. 實作無障礙和擴展功能 (TDD)
+- [x] 29. 實作無障礙和擴展功能 (TDD)
   - **先寫測試**: 建立無障礙功能的測試和驗證
   - 建立螢幕閱讀器支援和語義標籤 (`lib/core/accessibility/`)
   - 實作鍵盤導航和快捷鍵系統 (`lib/core/input/keyboard_manager.dart`)
