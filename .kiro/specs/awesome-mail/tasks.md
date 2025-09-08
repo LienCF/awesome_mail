@@ -426,7 +426,7 @@
 
 ## Flutter 效能優化和監控
 
-- [ ] 30. 實作效能優化和監控 (TDD)
+- [x] 30. 實作效能優化和監控 (TDD)
   - **先寫測試**: 建立效能測試和監控測試
   - 建立應用程式效能監控系統 (`lib/core/monitoring/`)
   - 實作記憶體使用和洩漏偵測 (`lib/core/monitoring/memory_monitor.dart`)
