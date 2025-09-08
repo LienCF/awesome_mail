@@ -438,7 +438,7 @@
 
 ## 付費方案和商業化功能
 
-- [ ] 31. 實作 Flutter 訂閱管理系統 (TDD)
+- [x] 31. 實作 Flutter 訂閱管理系統 (TDD)
   - **先寫測試**: 建立訂閱狀態、付費流程、功能限制的單元測試
   - 建立訂閱計劃管理和狀態顯示 (`lib/presentation/pages/subscription/`)
   - 實作付費處理和訂閱續費 UI
