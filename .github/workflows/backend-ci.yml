@@ -1,0 +1,138 @@
+name: Backend CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'awesome-mail/**'
+      - '.github/workflows/backend-ci.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'awesome-mail/**'
+      - '.github/workflows/backend-ci.yml'
+
+jobs:
+  test:
+    name: Test Backend
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: awesome-mail/package-lock.json
+        
+    - name: Install dependencies
+      working-directory: awesome-mail
+      run: npm ci
+      
+    - name: Run linting
+      working-directory: awesome-mail
+      run: npm run lint
+      
+    - name: Run type checking
+      working-directory: awesome-mail
+      run: npm run build
+      
+    - name: Run unit tests
+      working-directory: awesome-mail
+      run: npm run test:mock-only
+      
+    - name: Run tests with coverage
+      working-directory: awesome-mail
+      run: npm run test:coverage
+      
+    - name: Upload coverage reports
+      uses: codecov/codecov-action@v4
+      with:
+        file: awesome-mail/coverage/coverage-final.json
+        flags: backend
+        name: backend-coverage
+        
+    - name: Check coverage threshold
+      working-directory: awesome-mail
+      run: |
+        COVERAGE=$(node -e "
+          const fs = require('fs');
+          const coverage = JSON.parse(fs.readFileSync('coverage/coverage-final.json', 'utf8'));
+          const total = coverage.total;
+          const lines = total.lines.pct;
+          const functions = total.functions.pct;
+          const branches = total.branches.pct;
+          const statements = total.statements.pct;
+          const average = (lines + functions + branches + statements) / 4;
+          console.log(average.toFixed(2));
+        ")
+        echo "Coverage: $COVERAGE%"
+        if (( $(echo "$COVERAGE < 90" | bc -l) )); then
+          echo "❌ Coverage $COVERAGE% is below 90% threshold"
+          exit 1
+        else
+          echo "✅ Coverage $COVERAGE% meets 90% threshold"
+        fi
+
+  ai-integration-test:
+    name: AI Integration Test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: test
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: awesome-mail/package-lock.json
+        
+    - name: Install dependencies
+      working-directory: awesome-mail
+      run: npm ci
+      
+    - name: Run AI integration tests
+      working-directory: awesome-mail
+      env:
+        ENABLE_REAL_AI_API_TESTS: true
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      run: npm run test:ai
+
+  deploy:
+    name: Deploy to Cloudflare Workers
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [test, ai-integration-test]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: awesome-mail/package-lock.json
+        
+    - name: Install dependencies
+      working-directory: awesome-mail
+      run: npm ci
+      
+    - name: Build project
+      working-directory: awesome-mail
+      run: npm run build
+      
+    - name: Deploy to Cloudflare Workers
+      working-directory: awesome-mail
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      run: npm run deploy

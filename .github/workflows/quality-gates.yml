@@ -1,0 +1,225 @@
+name: Quality Gates
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+  dependency-check:
+    name: Dependency Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.35.0'
+        channel: 'stable'
+        
+    - name: Check Backend Dependencies
+      working-directory: awesome-mail
+      run: |
+        npm audit --audit-level moderate
+        npm outdated || true
+        
+    - name: Check Flutter Dependencies
+      working-directory: awesome_mail_flutter
+      run: |
+        flutter pub deps --style=compact
+        flutter pub outdated || true
+
+  code-quality:
+    name: Code Quality Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: awesome-mail/package-lock.json
+        
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.35.0'
+        channel: 'stable'
+        cache: true
+        
+    - name: Install Backend Dependencies
+      working-directory: awesome-mail
+      run: npm ci
+      
+    - name: Get Flutter Dependencies
+      working-directory: awesome_mail_flutter
+      run: flutter pub get
+      
+    - name: Run Backend Linting
+      working-directory: awesome-mail
+      run: npm run lint
+      
+    - name: Run Flutter Analysis
+      working-directory: awesome_mail_flutter
+      run: flutter analyze --fatal-infos
+      
+    - name: Check Backend Code Formatting
+      working-directory: awesome-mail
+      run: npx prettier --check "src/**/*.ts"
+      
+    - name: Check Flutter Code Formatting
+      working-directory: awesome_mail_flutter
+      run: dart format --set-exit-if-changed .
+
+  test-coverage-report:
+    name: Test Coverage Report
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: awesome-mail/package-lock.json
+        
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.35.0'
+        channel: 'stable'
+        cache: true
+        
+    - name: Install Backend Dependencies
+      working-directory: awesome-mail
+      run: npm ci
+      
+    - name: Get Flutter Dependencies
+      working-directory: awesome_mail_flutter
+      run: flutter pub get
+      
+    - name: Run Backend Tests with Coverage
+      working-directory: awesome-mail
+      run: npm run test:coverage
+      
+    - name: Run Flutter Tests with Coverage
+      working-directory: awesome_mail_flutter
+      run: |
+        flutter packages pub run build_runner build --delete-conflicting-outputs
+        flutter test --coverage
+        
+    - name: Generate Combined Coverage Report
+      run: |
+        echo "# Test Coverage Report" > coverage-report.md
+        echo "" >> coverage-report.md
+        echo "## Backend Coverage" >> coverage-report.md
+        
+        # Backend coverage
+        if [ -f "awesome-mail/coverage/coverage-final.json" ]; then
+          BACKEND_COVERAGE=$(node -e "
+            const fs = require('fs');
+            const coverage = JSON.parse(fs.readFileSync('awesome-mail/coverage/coverage-final.json', 'utf8'));
+            const total = coverage.total;
+            console.log('Lines: ' + total.lines.pct + '%');
+            console.log('Functions: ' + total.functions.pct + '%');
+            console.log('Branches: ' + total.branches.pct + '%');
+            console.log('Statements: ' + total.statements.pct + '%');
+          ")
+          echo "$BACKEND_COVERAGE" >> coverage-report.md
+        fi
+        
+        echo "" >> coverage-report.md
+        echo "## Flutter Coverage" >> coverage-report.md
+        
+        # Flutter coverage
+        if [ -f "awesome_mail_flutter/coverage/lcov.info" ]; then
+          sudo apt-get update && sudo apt-get install -y lcov
+          FLUTTER_COVERAGE=$(lcov --summary awesome_mail_flutter/coverage/lcov.info)
+          echo "$FLUTTER_COVERAGE" >> coverage-report.md
+        fi
+        
+    - name: Comment Coverage Report on PR
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          if (fs.existsSync('coverage-report.md')) {
+            const report = fs.readFileSync('coverage-report.md', 'utf8');
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: report
+            });
+          }
+
+  performance-test:
+    name: Performance Test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: awesome-mail/package-lock.json
+        
+    - name: Install Backend Dependencies
+      working-directory: awesome-mail
+      run: npm ci
+      
+    - name: Run Performance Tests
+      working-directory: awesome-mail
+      run: |
+        # Add performance test script here
+        echo "Running performance tests..."
+        # npm run test:performance
+        
+    - name: Generate Performance Report
+      run: |
+        echo "Performance test results would be generated here"
+        # Generate and upload performance metrics

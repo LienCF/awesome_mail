@@ -1,0 +1,308 @@
+name: Flutter CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'awesome_mail_flutter/**'
+      - '.github/workflows/flutter-ci.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'awesome_mail_flutter/**'
+      - '.github/workflows/flutter-ci.yml'
+
+jobs:
+  test:
+    name: Test Flutter App
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.35.0'
+        channel: 'stable'
+        cache: true
+        
+    - name: Get dependencies
+      working-directory: awesome_mail_flutter
+      run: flutter pub get
+      
+    - name: Verify dependencies
+      working-directory: awesome_mail_flutter
+      run: flutter pub deps
+      
+    - name: Run code generation
+      working-directory: awesome_mail_flutter
+      run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      
+    - name: Analyze code
+      working-directory: awesome_mail_flutter
+      run: flutter analyze --fatal-infos
+      
+    - name: Check formatting
+      working-directory: awesome_mail_flutter
+      run: dart format --set-exit-if-changed .
+      
+    - name: Run unit tests
+      working-directory: awesome_mail_flutter
+      run: flutter test --coverage --test-randomize-ordering-seed random
+      
+    - name: Check test coverage
+      working-directory: awesome_mail_flutter
+      run: |
+        # Install lcov for coverage processing
+        sudo apt-get update
+        sudo apt-get install -y lcov
+        
+        # Generate coverage report
+        genhtml coverage/lcov.info -o coverage/html
+        
+        # Check coverage threshold
+        COVERAGE=$(lcov --summary coverage/lcov.info | grep -E "lines\.*:" | grep -oE "[0-9]+\.[0-9]+%" | head -1 | sed 's/%//')
+        echo "Coverage: $COVERAGE%"
+        
+        if (( $(echo "$COVERAGE < 90" | bc -l) )); then
+          echo "❌ Coverage $COVERAGE% is below 90% threshold"
+          exit 1
+        else
+          echo "✅ Coverage $COVERAGE% meets 90% threshold"
+        fi
+        
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        file: awesome_mail_flutter/coverage/lcov.info
+        flags: flutter
+        name: flutter-coverage
+
+  widget-test:
+    name: Widget Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.35.0'
+        channel: 'stable'
+        cache: true
+        
+    - name: Get dependencies
+      working-directory: awesome_mail_flutter
+      run: flutter pub get
+      
+    - name: Run code generation
+      working-directory: awesome_mail_flutter
+      run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      
+    - name: Run widget tests
+      working-directory: awesome_mail_flutter
+      run: flutter test test/widget/ --coverage
+      
+    - name: Generate golden files (if needed)
+      working-directory: awesome_mail_flutter
+      run: flutter test --update-goldens test/widget/
+
+  integration-test:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.35.0'
+        channel: 'stable'
+        cache: true
+        
+    - name: Get dependencies
+      working-directory: awesome_mail_flutter
+      run: flutter pub get
+      
+    - name: Run code generation
+      working-directory: awesome_mail_flutter
+      run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      
+    - name: Run integration tests
+      working-directory: awesome_mail_flutter
+      run: flutter test integration_test/
+
+  build-android:
+    name: Build Android
+    runs-on: ubuntu-latest
+    needs: [test, widget-test]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu'
+        java-version: '17'
+        
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.35.0'
+        channel: 'stable'
+        cache: true
+        
+    - name: Get dependencies
+      working-directory: awesome_mail_flutter
+      run: flutter pub get
+      
+    - name: Run code generation
+      working-directory: awesome_mail_flutter
+      run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      
+    - name: Build Android APK
+      working-directory: awesome_mail_flutter
+      run: flutter build apk --release
+      
+    - name: Build Android App Bundle
+      working-directory: awesome_mail_flutter
+      run: flutter build appbundle --release
+      
+    - name: Upload APK artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: android-apk
+        path: awesome_mail_flutter/build/app/outputs/flutter-apk/app-release.apk
+        
+    - name: Upload AAB artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: android-aab
+        path: awesome_mail_flutter/build/app/outputs/bundle/release/app-release.aab
+
+  build-ios:
+    name: Build iOS
+    runs-on: macos-latest
+    needs: [test, widget-test]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.35.0'
+        channel: 'stable'
+        cache: true
+        
+    - name: Get dependencies
+      working-directory: awesome_mail_flutter
+      run: flutter pub get
+      
+    - name: Run code generation
+      working-directory: awesome_mail_flutter
+      run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      
+    - name: Build iOS (no codesign)
+      working-directory: awesome_mail_flutter
+      run: flutter build ios --release --no-codesign
+      
+    - name: Upload iOS build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ios-build
+        path: awesome_mail_flutter/build/ios/iphoneos/Runner.app
+
+  build-web:
+    name: Build Web
+    runs-on: ubuntu-latest
+    needs: [test, widget-test]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.35.0'
+        channel: 'stable'
+        cache: true
+        
+    - name: Get dependencies
+      working-directory: awesome_mail_flutter
+      run: flutter pub get
+      
+    - name: Run code generation
+      working-directory: awesome_mail_flutter
+      run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      
+    - name: Build Web
+      working-directory: awesome_mail_flutter
+      run: flutter build web --release
+      
+    - name: Upload Web build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: web-build
+        path: awesome_mail_flutter/build/web/
+
+  build-desktop:
+    name: Build Desktop
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            platform: linux
+          - os: windows-latest
+            platform: windows
+          - os: macos-latest
+            platform: macos
+    runs-on: ${{ matrix.os }}
+    needs: [test, widget-test]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.35.0'
+        channel: 'stable'
+        cache: true
+        
+    - name: Enable desktop support
+      working-directory: awesome_mail_flutter
+      run: |
+        flutter config --enable-linux-desktop
+        flutter config --enable-windows-desktop
+        flutter config --enable-macos-desktop
+        
+    - name: Get dependencies
+      working-directory: awesome_mail_flutter
+      run: flutter pub get
+      
+    - name: Run code generation
+      working-directory: awesome_mail_flutter
+      run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      
+    - name: Build Desktop App
+      working-directory: awesome_mail_flutter
+      run: flutter build ${{ matrix.platform }} --release
+      
+    - name: Upload Desktop build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.platform }}-build
+        path: awesome_mail_flutter/build/${{ matrix.platform }}/
