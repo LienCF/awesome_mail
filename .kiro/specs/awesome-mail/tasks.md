@@ -462,7 +462,7 @@
 
 ## 部署和發布
 
-- [ ] 34. 準備多平台應用程式發布和維護
+- [x] 34. 準備多平台應用程式發布和維護
   - 建立 iOS App Store 發布配置 (`ios/Runner/Info.plist`, `ios/fastlane/`)
   - 準備 Google Play Store 發布 (`android/app/build.gradle`, `android/fastlane/`)
   - 配置 macOS App Store 和直接下載 (`macos/Runner/Info.plist`)
