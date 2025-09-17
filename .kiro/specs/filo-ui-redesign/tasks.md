@@ -87,7 +87,7 @@
   - 撰寫測試驗證動作執行和快捷鍵響應
   - _需求: 3.3, 6.2_
 
-- [ ] 10. 建立安全指示和警示系統
+- [x] 10. 建立安全指示和警示系統
   - 實作 SecurityBadge 組件顯示 DKIM/SPF/DMARC 狀態
   - 建立 MessageBanner 組件支援 info/warning/danger/security 變體
   - 實作外部圖片載入控制和隱私提示
@@ -95,7 +95,7 @@
   - 撰寫測試驗證安全指示的正確顯示
   - _需求: 3.4, 3.5, 4.6_
 
-- [ ] 11. 實作 AI 抽屜基礎架構
+- [x] 11. 實作 AI 抽屜基礎架構
   - 建立 FiloAIDrawer widget 支援滑入/滑出動畫
   - 實作 AIDrawerController 管理抽屜狀態和持久化
   - 建立 AIDrawerHeader 組件包含標題和關閉按鈕
@@ -103,7 +103,7 @@
   - 撰寫測試驗證抽屜開關和狀態持久化
   - _需求: 1.2, 4.5_
 
-- [ ] 12. 建立 AI 建議 Chips 組件
+- [x] 12. 建立 AI 建議 Chips 組件
   - 實作 AISuggestionChips 組件顯示預設建議
   - 建立 AISuggestionChip 組件支援點擊觸發
   - 實作建議 chips 的動態載入和個人化
@@ -111,7 +111,7 @@
   - 撰寫測試驗證 AI 建議的觸發和回應
   - _需求: 4.1, 4.2_
 
-- [ ] 13. 實作 AI 對話和輸入介面
+- [x] 13. 實作 AI 對話和輸入介面
   - 建立 AIConversation 組件顯示 AI 對話歷史
   - 實作 AIInputField 組件支援 ⌘Enter 送出
   - 建立 AIMessage 組件區分使用者和 AI 訊息
@@ -119,7 +119,7 @@
   - 撰寫測試驗證 AI 對話流程和輸入處理
   - _需求: 4.3, 4.4_
 
-- [ ] 14. 更新撰寫頁面實現 Filo 風格底部抽屜
+- [x] 14. 更新撰寫頁面實現 Filo 風格底部抽屜
   - **更新** `lib/presentation/pages/compose/compose_page.dart` 實現底部抽屜式設計
   - **擴展** 現有的 ComposerController 管理撰寫狀態和草稿儲存
   - **修改** 現有的開啟/關閉動畫和鍵盤響應以符合 Filo 風格
@@ -127,7 +127,7 @@
   - 撰寫測試驗證撰寫抽屜的開關和狀態管理
   - _需求: 5.1, 5.3, 5.4_
 
-- [ ] 15. 實作撰寫表單組件
+- [x] 15. 實作撰寫表單組件
   - 建立 ComposerFields 組件包含 To/Cc/Bcc/Subject 欄位
   - 實作 RecipientField 組件支援自動完成
   - 建立 ComposerEditor 組件支援富文本編輯
@@ -135,7 +135,7 @@
   - 撰寫測試驗證表單驗證和自動完成
   - _需求: 5.2, 5.5_
 
-- [ ] 16. 建立 AI 協助撰寫功能
+- [x] 16. 建立 AI 協助撰寫功能
   - 實作 ComposerToolbar 組件包含 "Write with AI..." 按鈕
   - 建立 AIWritingAssistant 組件提供撰寫建議
   - 實作 AI 建議插入和格式保持
@@ -143,7 +143,7 @@
   - 撰寫測試驗證 AI 協助撰寫的功能
   - _需求: 5.7, 5.8_
 
-- [ ] 17. 實作 To-Do 管理功能
+- [x] 17. 實作 To-Do 管理功能
   - 建立 FiloTodoList 組件支援 Active/Done 切換
   - 實作 TodoItem 組件包含到期 chips 和郵件關聯
   - 建立 DueChip 組件顯示到期狀態和排序
@@ -151,7 +151,7 @@
   - 撰寫測試驗證 To-Do 功能和郵件關聯
   - _需求: 5.9, 5.10_
 
-- [ ] 18. 建立帳號管理介面
+- [x] 18. 建立帳號管理介面
   - 實作 FiloAccountSelector 組件顯示帳號選擇器
   - 建立 AccountCard 組件包含頭像、名稱、郵件地址
   - 實作帳號切換功能和平滑過渡動畫
@@ -159,7 +159,7 @@
   - 撰寫測試驗證帳號切換和狀態更新
   - _需求: 7.1, 7.2, 7.3, 7.4_
 
-- [ ] 19. 實作 Smart Label 創建功能
+- [x] 19. 實作 Smart Label 創建功能
   - 建立 SmartLabelDialog 組件包含表單和色彩選擇器
   - 實作 ColorPicker 組件支援多種顏色選項
   - 建立 LabelFormValidator 驗證標籤名稱和描述
@@ -167,7 +167,7 @@
   - 撰寫測試驗證 Smart Label 創建流程
   - _需求: 7.5, 7.6, 7.7, 7.8, 7.9, 7.10_
 
-- [ ] 20. 建立批次操作功能
+- [x] 20. 建立批次操作功能
   - 實作 BatchSelectionMode 支援多選郵件
   - 建立 BatchToolbar 組件顯示批次動作
   - 實作批次動作執行（封存/刪除/標記/加星）
@@ -175,7 +175,7 @@
   - 撰寫測試驗證批次操作的正確執行
   - _需求: 6.1_
 
-- [ ] 21. 實作拖放功能
+- [x] 21. 實作拖放功能
   - 建立 DragDropHandler 支援郵件拖放到資料夾
   - 實作 AttachmentDragDrop 支援附件拖入/拖出
   - 建立拖放視覺回饋和目標高亮
@@ -183,7 +183,7 @@
   - 撰寫測試驗證拖放操作的正確性
   - _需求: 6.3, 6.4_
 
-- [ ] 22. 建立對話串視圖
+- [x] 22. 建立對話串視圖
   - 實作 ConversationView 組件支援郵件串聯
   - 建立 ConversationNode 組件支援折疊/展開
   - 實作快速跳至最新郵件功能
@@ -191,7 +191,7 @@
   - 撰寫測試驗證對話串的渲染和互動
   - _需求: 6.5_
 
-- [ ] 23. 實作 Command Palette
+- [x] 23. 實作 Command Palette
   - 建立 FiloCommandPalette 組件支援 ⌘K 開啟
   - 實作 CommandSearch 組件支援模糊搜尋
   - 建立 CommandItem 組件顯示動作和快捷鍵
@@ -199,7 +199,7 @@
   - 撰寫測試驗證命令搜尋和執行
   - _需求: 6.6_
 
-- [ ] 24. 更新設定介面以符合 Filo 風格
+- [x] 24. 更新設定介面以符合 Filo 風格
   - **更新** `lib/presentation/pages/settings/enhanced_settings_page.dart` 實現 Filo 風格的側邊欄和內容區域
   - **修改** 現有的 SettingsSidebar 組件包含所有設定分類並符合 Filo 設計
   - **擴展** 現有的 SettingsPage 基礎類別支援 Filo 統一樣式
@@ -207,7 +207,7 @@
   - 撰寫測試驗證設定介面的導航和狀態
   - _需求: 10.1, 10.2, 10.7, 10.8_
 
-- [ ] 25. 實作帳號設定頁面
+- [x] 25. 實作帳號設定頁面
   - 建立 AccountSettingsPage 組件顯示帳號資訊
   - 實作 ConnectedAccountsList 組件管理已連接帳號
   - 建立 AccountActionButtons 組件（Sign Out/Delete Account）
@@ -215,7 +215,7 @@
   - 撰寫測試驗證帳號設定的功能
   - _需求: 10.3, 10.4, 10.5_
 
-- [ ] 26. 建立功能門檻和升級提示
+- [x] 26. 建立功能門檻和升級提示
   - 實作 FeatureGate 組件攔截付費功能
   - 建立 UpgradePromptDialog 組件顯示方案比較
   - 實作使用量追蹤和限制檢查
