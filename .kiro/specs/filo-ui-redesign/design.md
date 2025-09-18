@@ -1,8 +1,8 @@
-# Filo 風格 UI/UX 重構設計文件
+# Awesome 風格 UI/UX 重構設計文件
 
 ## 概述
 
-本設計文件基於 Filo Mail for Mac 的設計哲學，為 Awesome Mail Flutter 應用程式定義了完整的 UI/UX 重構方案。設計重點在於**更新現有組件**以創建一個現代化、優雅且高效能的郵件客戶端，完全符合 Filo Mail 的視覺風格和互動體驗。
+本設計文件基於 Awesome Mail for Mac 的設計哲學，為 Awesome Mail Flutter 應用程式定義了完整的 UI/UX 重構方案。設計重點在於**更新現有組件**以創建一個現代化、優雅且高效能的郵件客戶端，完全符合 Awesome Mail 的視覺風格和互動體驗。
 
 ## 重構策略
 
@@ -12,12 +12,12 @@
 
 1. **現有頁面更新**：
    - 更新 `enhanced_macos_home_page.dart` 以實現三欄佈局
-   - 擴展 `enhanced_settings_page.dart` 以符合 Filo 設定介面風格
+   - 擴展 `enhanced_settings_page.dart` 以符合 Awesome 設定介面風格
    - 修改 `compose_page.dart` 實現底部抽屜式撰寫介面
 
 2. **現有組件擴展**：
-   - 擴展 `MacOSDesignSystem` 添加 Filo 特有的設計 tokens
-   - 更新 `email_list_widget.dart` 實現 Filo 風格的郵件清單
+   - 擴展 `MacOSDesignSystem` 添加 Awesome 特有的設計 tokens
+   - 更新 `email_list_widget.dart` 實現 Awesome 風格的郵件清單
    - 修改 `app_button.dart`、`app_card.dart` 等共用組件
 
 3. **漸進式改進**：
@@ -87,8 +87,8 @@
 ```dart
 // 更新 lib/presentation/widgets/macos/macos_enhanced_components.dart
 class MacOSSidebar extends StatelessWidget {
-  // 添加 Filo 風格支援
-  final bool useFiloStyle;
+  // 添加 Awesome 風格支援
+  final bool useAwesomeStyle;
   
   // 擴展現有的側邊欄項目配置
   final List<SidebarItem> items = [
@@ -124,13 +124,13 @@ class MacOSSidebar extends StatelessWidget {
 ```dart
 // 更新 lib/presentation/widgets/email_list/email_list_widget.dart
 class EmailListWidget extends StatelessWidget {
-  // 添加 Filo 風格支援
-  final bool useFiloStyle;
+  // 添加 Awesome 風格支援
+  final bool useAwesomeStyle;
   
   // 更新現有的 buildItem 方法
   Widget buildMessageItem(EmailMessage message) {
     return Container(
-      height: useFiloStyle ? 60 : 56, // Filo 風格使用較高的列
+      height: useAwesomeStyle ? 60 : 56, // Awesome 風格使用較高的列
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         children: [
@@ -142,7 +142,7 @@ class EmailListWidget extends StatelessWidget {
               children: [
                 Text(
                   message.subject, 
-                  style: useFiloStyle 
+                  style: useAwesomeStyle 
                     ? MacOSTypography.titleMedium.copyWith(fontWeight: FontWeight.w600)
                     : MacOSTypography.titleMedium
                 ),
@@ -173,7 +173,7 @@ class EmailListWidget extends StatelessWidget {
 
 #### 設計規格
 ```dart
-class FiloMailboxChips extends StatelessWidget {
+class AwesomeMailboxChips extends StatelessWidget {
   final List<ChipData> chips = [
     ChipData(label: 'Important', count: 1, color: Colors.red),
     ChipData(label: 'Updates', count: 127, color: Colors.blue),

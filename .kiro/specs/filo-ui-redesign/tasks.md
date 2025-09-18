@@ -1,8 +1,8 @@
-# Filo 風格 UI/UX 重構實作任務清單
+# Awesome 風格 UI/UX 重構實作任務清單
 
 ## 任務概述
 
-本任務清單將 Filo 風格 UI/UX 重構設計轉換為具體的程式碼實作步驟。**每個任務都專注於更新現有的程式碼組件**，採用測試驅動開發（TDD）方法，確保每個步驟都能建立在前一步的基礎上。
+本任務清單將 Awesome 風格 UI/UX 重構設計轉換為具體的程式碼實作步驟。**每個任務都專注於更新現有的程式碼組件**，採用測試驅動開發（TDD）方法，確保每個步驟都能建立在前一步的基礎上。
 
 ## 核心實作原則
 
@@ -15,15 +15,15 @@
 
 ## 實作任務
 
-- [x] 1. 擴展現有設計系統以支援 Filo 風格
-  - **更新** `lib/shared/themes/macos_design_system.dart` 添加 Filo 風格 tokens
-  - **擴展** `MacOSDesignSystem` 類別，添加 Filo 特有的色彩、字體、間距常數
-  - **更新** `EnhancedThemeManager` 支援 Filo 主題切換
-  - **擴展** 現有的動畫常數以符合 Filo 風格（120-160ms 過渡時間）
+- [x] 1. 擴展現有設計系統以支援 Awesome 風格
+  - **更新** `lib/shared/themes/macos_design_system.dart` 添加 Awesome 風格 tokens
+  - **擴展** `MacOSDesignSystem` 類別，添加 Awesome 特有的色彩、字體、間距常數
+  - **更新** `EnhancedThemeManager` 支援 Awesome 主題切換
+  - **擴展** 現有的動畫常數以符合 Awesome 風格（120-160ms 過渡時間）
   - 建立單元測試驗證設計 tokens 的正確性
   - _需求: 1.4, 1.6, 1.7, 1.10_
 
-- [x] 2. 更新主頁面實現三欄 Filo 風格佈局
+- [x] 2. 更新主頁面實現三欄 Awesome 風格佈局
   - **更新** `lib/presentation/pages/home/enhanced_macos_home_page.dart` 實現三欄佈局
   - **修改** 現有的佈局邏輯支援可調整的側邊欄寬度（240-264px，支援拖拽調整）
   - **擴展** 現有的 `ResponsiveLayout` 處理視窗大小變化
@@ -31,32 +31,32 @@
   - 撰寫 widget 測試驗證佈局響應式行為
   - _需求: 1.1, 1.3, 1.5_
 
-- [x] 3. 更新側邊欄組件以符合 Filo 風格
+- [x] 3. 更新側邊欄組件以符合 Awesome 風格
   - **更新** `lib/presentation/widgets/macos/macos_enhanced_components.dart` 中的 `MacOSSidebar`
-  - **擴展** 現有的 SidebarItem 組件支援 Filo 風格的圖示、文字、計數徽章
+  - **擴展** 現有的 SidebarItem 組件支援 Awesome 風格的圖示、文字、計數徽章
   - **修改** 選中狀態視覺效果（藍色背景、圓角）
   - **更新** 現有的 SidebarController 管理選中狀態和導航
   - 撰寫測試驗證側邊欄項目點擊和狀態更新
   - _需求: 1.2, 1.10_
 
-- [x] 4. 更新郵件清單組件以符合 Filo 風格
-  - **更新** `lib/presentation/widgets/email_list/email_list_widget.dart` 支援 Filo 風格渲染
-  - **修改** `lib/presentation/widgets/email_list/email_list_item.dart` 實現 Filo 風格的頭像、主旨、摘要、時間佈局
+- [x] 4. 更新郵件清單組件以符合 Awesome 風格
+  - **更新** `lib/presentation/widgets/email_list/email_list_widget.dart` 支援 Awesome 風格渲染
+  - **修改** `lib/presentation/widgets/email_list/email_list_item.dart` 實現 Awesome 風格的頭像、主旨、摘要、時間佈局
   - **擴展** 現有的頭像組件支援圓形頭像和字母圈
   - **更新** 未讀/已讀狀態的字體和對比度差異（SF Pro Semi-Bold vs Regular）
   - 撰寫測試驗證郵件列表項目的正確渲染
   - _需求: 2.1, 2.2, 2.8_
 
 - [x] 5. 擴展郵件清單互動功能
-  - **更新** `email_list_item.dart` 添加 Filo 風格的 hover 效果和快速動作浮層
+  - **更新** `email_list_item.dart` 添加 Awesome 風格的 hover 效果和快速動作浮層
   - **擴展** 現有的滑動手勢支援（左滑封存、右滑刪除）
-  - **修改** 現有的快速動作組件（封存/刪除/標記/加星/釘選）以符合 Filo 風格
+  - **修改** 現有的快速動作組件（封存/刪除/標記/加星/釘選）以符合 Awesome 風格
   - **更新** hover 效果使用 150ms 平滑過渡動畫
   - 撰寫互動測試驗證手勢和快速動作
   - _需求: 2.3, 2.6, 1.7_
 
 - [x] 6. 建立分類 Chips 組件
-  - 實作 FiloMailboxChips widget 支援水平滾動
+  - 實作 AwesomeMailboxChips widget 支援水平滾動
   - 建立 MailboxChip 組件（圓角膠囊設計、計數徽章）
   - 實作 chips 選中狀態和過濾功能
   - 建立 ChipController 管理 chips 狀態和郵件過濾
@@ -64,7 +64,7 @@
   - _需求: 2.4, 2.5_
 
 - [x] 7. 實作搜尋功能和運算子解析
-  - 建立 FiloSearchBar 組件支援運算子輸入
+  - 建立 AwesomeSearchBar 組件支援運算子輸入
   - 實作 SearchQueryParser 解析 from:/subject:/has:attachment
   - 建立 SearchChips 組件顯示解析後的搜尋條件
   - 實作搜尋防抖機制和即時結果更新
@@ -72,7 +72,7 @@
   - _需求: 2.5, 11.2_
 
 - [x] 8. 建立閱讀窗格基礎結構
-  - 實作 FiloReadingPane widget 作為郵件閱讀容器
+  - 實作 AwesomeReadingPane widget 作為郵件閱讀容器
   - 建立 MessageHeader 組件（主旨 22-24px semi-bold）
   - 實作 MessageMeta 組件支援展開 To/Cc/Bcc 資訊
   - 建立 MessageContent 組件處理 HTML 內容正規化
@@ -96,7 +96,7 @@
   - _需求: 3.4, 3.5, 4.6_
 
 - [x] 11. 實作 AI 抽屜基礎架構
-  - 建立 FiloAIDrawer widget 支援滑入/滑出動畫
+  - 建立 AwesomeAIDrawer widget 支援滑入/滑出動畫
   - 實作 AIDrawerController 管理抽屜狀態和持久化
   - 建立 AIDrawerHeader 組件包含標題和關閉按鈕
   - 實作抽屜寬度（360-380px）和響應式調整
@@ -255,7 +255,7 @@
   - 撰寫測試驗證動畫時間和流暢度
   - _需求: 11.4, 1.7_
 
-- [ ] 31. 實作日誌系統
+- [x] 31. 實作日誌系統
   - 建立 FiloLogger 類別支援繁體中文日誌
   - 實作不同日誌等級和格式化
   - 建立日誌過濾和搜尋功能
@@ -263,7 +263,7 @@
   - 撰寫測試驗證日誌記錄和格式
   - _需求: 11.5_
 
-- [ ] 32. 整合測試和品質保證
+- [x] 32. 整合測試和品質保證
   - 建立端到端測試涵蓋主要使用者流程
   - 實作視覺回歸測試確保 UI 一致性
   - 建立效能基準測試和監控

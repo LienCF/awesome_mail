@@ -1,10 +1,10 @@
-# Filo 風格 UI/UX 重構需求文件
+# Awesome 風格 UI/UX 重構需求文件
 
 ## 簡介
 
-本文件定義了 Awesome Mail Flutter 應用程式的 Filo 風格 UI/UX 重構需求。此重構旨在模仿 Filo Mail for Mac 的設計哲學，整合現有的 `.kiro/specs` 規格與既有 Flutter 元件，建立一個現代化、無障礙且高效能的郵件客戶端介面。
+本文件定義了 Awesome Mail Flutter 應用程式的 Awesome 風格 UI/UX 重構需求。此重構旨在模仿 Awesome Mail for Mac 的設計哲學，整合現有的 `.kiro/specs` 規格與既有 Flutter 元件，建立一個現代化、無障礙且高效能的郵件客戶端介面。
 
-Filo Mail 以其簡潔、優雅的設計和卓越的 macOS 原生體驗而聞名，特色包括：
+Awesome Mail 以其簡潔、優雅的設計和卓越的 macOS 原生體驗而聞名，特色包括：
 - 清晰的視覺層次和充足的留白空間
 - 精緻的動畫和過渡效果
 - 直觀的三欄式佈局
@@ -14,7 +14,7 @@ Filo Mail 以其簡潔、優雅的設計和卓越的 macOS 原生體驗而聞名
 重構將採用 TDD 與小步前進原則，**優先更新和擴展現有的 Flutter 組件**，而非創建全新的實現。重構策略包括：
 
 **核心原則：**
-- **更新優於新建**：優先修改現有組件以符合 Filo 風格，避免創建重複功能的新文件
+- **更新優於新建**：優先修改現有組件以符合 Awesome 風格，避免創建重複功能的新文件
 - **擴展現有系統**：基於現有的 MacOSDesignSystem 與 EnhancedThemeManager 進行擴展
 - **保持向後相容**：確保現有功能在更新過程中不會中斷
 - **漸進式改進**：採用小步驟更新，每次專注於特定組件的改進
@@ -42,34 +42,34 @@ Filo Mail 以其簡潔、優雅的設計和卓越的 macOS 原生體驗而聞名
 
 ## 需求
 
-### 需求 1：Filo 風格核心版面架構與側邊欄導航
+### 需求 1：Awesome 風格核心版面架構與側邊欄導航
 
-**使用者故事：** 作為使用者，我希望有一個如 Filo Mail 般清晰優雅的三欄式版面，包含完整的側邊欄導航，讓我能夠高效地瀏覽郵件、閱讀內容並使用 AI 功能。
+**使用者故事：** 作為使用者，我希望有一個如 Awesome Mail 般清晰優雅的三欄式版面，包含完整的側邊欄導航，讓我能夠高效地瀏覽郵件、閱讀內容並使用 AI 功能。
 
 #### 驗收標準
 
-1. WHEN 應用程式啟動 THEN 系統 SHALL 顯示 Filo 風格三欄版面（Sidebar / MessageList / ReadingPane）並使用 8pt 網格系統
+1. WHEN 應用程式啟動 THEN 系統 SHALL 顯示 Awesome 風格三欄版面（Sidebar / MessageList / ReadingPane）並使用 8pt 網格系統
 2. WHEN 側邊欄顯示 THEN 系統 SHALL 包含完整的郵箱分類：Inbox、To-Do、Important、Updates、Promotions、Starred、Draft、Sent、Archive、Spam、Trash
 3. WHEN 使用者點擊側邊欄項目 THEN 系統 SHALL 使用選中狀態（藍色背景）並更新郵件清單內容
 4. WHEN 使用者點擊 AI 功能 THEN 系統 SHALL 顯示可開關的 AIDrawer（360-380px 寬度）並使用流暢的滑入動畫
 5. WHEN 使用者調整視窗大小 THEN 系統 SHALL 保持 Sidebar 240-264px 可收合、內容欄 680-740px 的比例，並支援拖拽調整
 6. WHEN 使用者切換深淺色主題 THEN 系統 SHALL 使用 EnhancedThemeManager 與 MacOSDesignSystem 保持視覺一致性
 7. WHEN 使用者使用快捷鍵 ⌘K/⌘F/⌘N/⌘, THEN 系統 SHALL 正確響應對應功能並提供視覺回饋
-8. WHEN 介面元素載入 THEN 系統 SHALL 使用 Filo 風格的微妙陰影和圓角（12-14px）
+8. WHEN 介面元素載入 THEN 系統 SHALL 使用 Awesome 風格的微妙陰影和圓角（12-14px）
 9. WHEN 使用者 hover 互動元素 THEN 系統 SHALL 提供 150ms 的平滑過渡效果
 10. WHEN 側邊欄項目顯示 THEN 系統 SHALL 使用適當的圖示（信封、星號、草稿等）和清晰的文字標籤
 
-### 需求 2：Filo 風格郵件清單與智慧分類
+### 需求 2：Awesome 風格郵件清單與智慧分類
 
-**使用者故事：** 作為使用者，我希望能夠透過 Filo 風格的智慧分類和優雅的清單設計快速找到重要郵件，並使用進階搜尋功能精確定位內容。
+**使用者故事：** 作為使用者，我希望能夠透過 Awesome 風格的智慧分類和優雅的清單設計快速找到重要郵件，並使用進階搜尋功能精確定位內容。
 
 #### 驗收標準
 
-1. WHEN 使用者查看郵件清單 THEN 系統 SHALL 顯示 Filo 風格的頭像/字母圈（32px 圓形）、主旨、摘要、徽章、附件圖示、時間，並使用適當的字體層次
+1. WHEN 使用者查看郵件清單 THEN 系統 SHALL 顯示 Awesome 風格的頭像/字母圈（32px 圓形）、主旨、摘要、徽章、附件圖示、時間，並使用適當的字體層次
 2. WHEN 郵件未讀 THEN 系統 SHALL 以 SF Pro Semi-Bold 顯示主旨，已讀郵件使用 Regular 並降低 40% 對比度
-3. WHEN 使用者 hover 郵件列 THEN 系統 SHALL 顯示 Filo 風格的快速動作浮層（封存/刪除/標未讀/加星/釘選）並使用微妙的背景色變化
+3. WHEN 使用者 hover 郵件列 THEN 系統 SHALL 顯示 Awesome 風格的快速動作浮層（封存/刪除/標未讀/加星/釘選）並使用微妙的背景色變化
 4. WHEN 使用者點擊分類 chips（Important/Updates/Promotions/All）THEN 系統 SHALL 正確過濾郵件清單並使用流暢的淡入淡出動畫
-5. WHEN 使用者使用搜尋運算子（from:/subject:/has:attachment）THEN 系統 SHALL 解析並顯示 Filo 風格的 chips 化條件（圓角膠囊設計）
+5. WHEN 使用者使用搜尋運算子（from:/subject:/has:attachment）THEN 系統 SHALL 解析並顯示 Awesome 風格的 chips 化條件（圓角膠囊設計）
 6. WHEN 使用者在 trackpad 上左/右滑動 THEN 系統 SHALL 執行封存/刪除動作並提供視覺回饋和觸覺反饋
 7. WHEN 清單超過 1,000 列 THEN 系統 SHALL 使用虛擬化渲染保持 60fps 順暢滾動
 8. WHEN 郵件列高度 THEN 系統 SHALL 使用 56-64px 高度並保持 8pt 網格對齊
@@ -101,13 +101,13 @@ Filo Mail 以其簡潔、優雅的設計和卓越的 macOS 原生體驗而聞名
 5. WHEN 使用者關閉 AIDrawer THEN 系統 SHALL 記住狀態偏好設定
 6. WHEN 郵件需要安全警示 THEN 系統 SHALL 顯示 MessageBanner（info/warning/danger/security）
 
-### 需求 5：Filo 風格撰寫與生產力功能
+### 需求 5：Awesome 風格撰寫與生產力功能
 
-**使用者故事：** 作為使用者，我希望能夠透過 Filo 風格的優雅撰寫介面高效地撰寫郵件、管理待辦事項，並獲得 AI 協助。
+**使用者故事：** 作為使用者，我希望能夠透過 Awesome 風格的優雅撰寫介面高效地撰寫郵件、管理待辦事項，並獲得 AI 協助。
 
 #### 驗收標準
 
-1. WHEN 使用者按 ⌘N THEN 系統 SHALL 開啟 Filo 風格的底部抽屜式 Composer，使用深色背景和圓角設計
+1. WHEN 使用者按 ⌘N THEN 系統 SHALL 開啟 Awesome 風格的底部抽屜式 Composer，使用深色背景和圓角設計
 2. WHEN Composer 開啟 THEN 系統 SHALL 顯示 To、Cc Bcc、Subject 欄位，並在內容區域顯示 "Start typing or write with AI" 提示文字
 3. WHEN 使用者在 Composer 輸入收件人 THEN 系統 SHALL 提供自動完成建議（依通訊錄/歷史寄件）
 4. WHEN 使用者在 Composer 中按 Esc THEN 系統 SHALL 關閉 Composer 並保持背景郵件清單可見
@@ -131,13 +131,13 @@ Filo Mail 以其簡潔、優雅的設計和卓越的 macOS 原生體驗而聞名
 5. WHEN 使用者查看對話串 THEN 系統 SHALL 支援折疊/展開與快速跳至最新
 6. WHEN 使用者按 ⌘K THEN 系統 SHALL 開啟 Command Palette 進行動作搜尋
 
-### 需求 7：Filo 風格帳號管理與個人化
+### 需求 7：Awesome 風格帳號管理與個人化
 
-**使用者故事：** 作為使用者，我希望能夠透過 Filo 風格的優雅介面管理多個郵件帳號，並個人化我的使用體驗。
+**使用者故事：** 作為使用者，我希望能夠透過 Awesome 風格的優雅介面管理多個郵件帳號，並個人化我的使用體驗。
 
 #### 驗收標準
 
-1. WHEN 使用者點擊帳號選單 THEN 系統 SHALL 顯示 Filo 風格的帳號選擇器，包含圓形頭像、使用者名稱、郵件地址和勾選標記
+1. WHEN 使用者點擊帳號選單 THEN 系統 SHALL 顯示 Awesome 風格的帳號選擇器，包含圓形頭像、使用者名稱、郵件地址和勾選標記
 2. WHEN 帳號選擇器顯示 THEN 系統 SHALL 使用深色背景（#2C2C2E）、圓角卡片設計和微妙的邊框
 3. WHEN 使用者切換帳號 THEN 系統 SHALL 更新郵件清單來源範圍並使用平滑的過渡動畫
 4. WHEN 顯示 "All" 選項 THEN 系統 SHALL 顯示藍色使用者圖示和 "1 Email Accounts" 描述文字
@@ -173,18 +173,18 @@ Filo Mail 以其簡潔、優雅的設計和卓越的 macOS 原生體驗而聞名
 4. WHEN 系統顯示文字 THEN 系統 SHALL 使用現有 l10n 管線（繁中為基準，英/日為第二優先）
 5. WHEN 使用者切換語言 THEN 系統 SHALL 正確顯示所有介面元素的翻譯
 
-### 需求 10：Filo 風格設定介面
+### 需求 10：Awesome 風格設定介面
 
 **使用者故事：** 作為使用者，我希望有一個清晰易用的設定介面，讓我能夠管理帳號、自訂功能和調整應用程式偏好。
 
 #### 驗收標準
 
-1. WHEN 使用者開啟設定 THEN 系統 SHALL 顯示 Filo 風格的設定視窗，包含左側導航欄和右側內容區域
-2. WHEN 設定側邊欄顯示 THEN 系統 SHALL 包含：Account、Filo Plus、Customize AI、Smart Filter、Notification、Inbox、Language、Appearance、Shortcut、Legal 等選項
-3. WHEN 使用者點擊 Account 設定 THEN 系統 SHALL 顯示 Filo Account 資訊（使用者名稱、郵件地址）和 Connected Email Accounts 列表
+1. WHEN 使用者開啟設定 THEN 系統 SHALL 顯示 Awesome 風格的設定視窗，包含左側導航欄和右側內容區域
+2. WHEN 設定側邊欄顯示 THEN 系統 SHALL 包含：Account、Awesome Plus、Customize AI、Smart Filter、Notification、Inbox、Language、Appearance、Shortcut、Legal 等選項
+3. WHEN 使用者點擊 Account 設定 THEN 系統 SHALL 顯示 Awesome Account 資訊（使用者名稱、郵件地址）和 Connected Email Accounts 列表
 4. WHEN 帳號資訊顯示 THEN 系統 SHALL 提供 Sign Out 和 Delete Account 按鈕，使用適當的色彩區分（藍色/紅色）
 5. WHEN Connected Email Accounts 顯示 THEN 系統 SHALL 列出所有已連接的郵件帳號，並提供管理功能
-6. WHEN 設定項目包含切換開關 THEN 系統 SHALL 使用 Filo 風格的 toggle 設計（如 Auto-Download Updates）
+6. WHEN 設定項目包含切換開關 THEN 系統 SHALL 使用 Awesome 風格的 toggle 設計（如 Auto-Download Updates）
 7. WHEN 使用者在設定間導航 THEN 系統 SHALL 使用平滑的過渡動畫
 8. WHEN 設定視窗顯示 THEN 系統 SHALL 使用深色背景、圓角設計和適當的間距
 
