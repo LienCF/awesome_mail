@@ -44,3 +44,7 @@ git submodule update --remote
 
 ### awesome_mail_flutter (前端)
 使用 Flutter 開發的跨平台電子郵件客戶端應用程式
+## 貢獻指南
+
+查閱 `AGENTS.md` 了解完整的開發規範與貢獻流程。
+
