@@ -58,8 +58,23 @@ flutter pub get          # 安裝依賴
 dart run build_runner build --delete-conflicting-outputs  # 程式碼生成
 flutter gen-l10n         # 產生國際化檔案
 flutter run              # 執行應用
-flutter test --coverage  # 測試覆蓋率
+flutter test             # 執行測試（不使用 --coverage，避免 segmentation fault）
 ```
+
+**重要**：
+- ⚠️ **不要使用 `flutter test --coverage`**
+- Flutter 測試框架在大型專案（500+ 測試）使用 `--coverage` 時有已知的 segmentation fault bug
+- 相關 issue：[#124145](https://github.com/flutter/flutter/issues/124145), [#128953](https://github.com/flutter/flutter/issues/128953)
+- 如果需要 coverage，請使用以下替代方案：
+  ```bash
+  # 方案 1: 單執行緒執行（慢但較穩定）
+  flutter test --coverage --concurrency=1
+
+  # 方案 2: 分批執行測試
+  flutter test test/unit/data --coverage
+  flutter test test/unit/core --coverage
+  flutter test test/unit/presentation --coverage
+  ```
 
 ### **跨專案回歸測試**
 ```bash
@@ -96,8 +111,9 @@ scripts/test-runner.sh   # 執行完整回歸測試（要求覆蓋率 ≥90%）
 - 單元/Widget 測試：`test/`
 - 端對端測試：`integration_test/`
 - 測試檔案命名：`feature_action_test.dart`
-- 目標覆蓋率 ≥90%
+- 目標覆蓋率 ≥90%（注意：coverage 收集有已知 bug，見上方說明）
 - 修復 bug 時新增回歸測試案例
+- **執行測試時不使用 `--coverage` 參數**（避免 segmentation fault）
 
 ## 📦 **提交與 Pull Request 規範**
 
