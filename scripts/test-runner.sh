@@ -97,9 +97,11 @@ run_backend_tests() {
     print_info "Checking coverage threshold..."
     COVERAGE=$(node -e "
         const fs = require('fs');
+        const { createCoverageMap } = require('istanbul-lib-coverage');
         const coverage = JSON.parse(fs.readFileSync('coverage/coverage-final.json', 'utf8'));
-        const total = coverage.total;
-        const average = (total.lines.pct + total.functions.pct + total.branches.pct + total.statements.pct) / 4;
+        const map = createCoverageMap(coverage);
+        const summary = map.getCoverageSummary().data;
+        const average = (summary.lines.pct + summary.functions.pct + summary.branches.pct + summary.statements.pct) / 4;
         console.log(average.toFixed(2));
     ")
     
