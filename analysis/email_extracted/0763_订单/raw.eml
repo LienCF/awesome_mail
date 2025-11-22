@@ -1,0 +1,173 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:d209:b0:4d4:9739:2b92 with SMTP id ji9csp988658mdb;
+        Sun, 26 Oct 2025 14:50:47 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG1c9p261M5Oorpflob08Yj4R+Zold8LxNxQSD9evSoQPbx8JPAgHsZsI2suJedbHF6EqYz
+X-Received: by 2002:a05:620a:258b:b0:88e:7c7c:618b with SMTP id af79cd13be357-89070fc8865mr4733241285a.73.1761515447445;
+        Sun, 26 Oct 2025 14:50:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761515447; cv=none;
+        d=google.com; s=arc-20240605;
+        b=SIjkFlirrA7/nr17xebnGi/xCd20YOCvQYV50am+6OhcMk9E5qP/0B72K1oHgvC3mK
+         Z0IfG0yBnLY2od4tVAopBmhlSrS93SVHsULxiYwznOAM0xSDsUIOmWx4LfNJMk5VO9gW
+         6vhWcsjvzYfuCAreDF3LFxBR4+bRG2mkZg375f+/45figPq+GzjsRgKmJ/1ZKb6bYdhs
+         yP5BP3vmJFCFUGF8Ij/iOAwS2cuv0+rzsQjREu2RzPJD7JukbC/C/fHDzSKqDmvEYQNa
+         k1vu9l0m+nF/qNGME64Qra7CmQyaJdVeWYUuaQ307BHxdNA2oSnKMyy5B+uN6sqZo7Nf
+         eE0w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:to:reply-to:mime-version:subject
+         :message-id:from:date:dkim-signature:dkim-signature;
+        bh=uz/DjJDcy/77SI4HxhQzeSvz/noT6GhRVzMhObeyYfg=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=OVu+YN25gDEsHHZxJMI0PcSrKZx/sc2PXisJhpLyVxVlqvZYjExCobumzZJ8myFaMu
+         yXZeVHmsnCUH4+epITd1wTAw2LFlfVAoz5KaCMRY34i//75Zsnjlgkf1exloRaqaJSvV
+         lh0pQ/f4xGax5+ga510Gh11HPRX9NMqEVf4dBd/KP/R8NSb2QEW1AMFUgCKg9X9lAMtL
+         2O+BljtOWCT8yC52yLRR+QOdGQANq21sArlX1YJYoI+ejLtmO4qOhxRd30B8QRHXR3O/
+         Q0ZRgm5IF5TErlha4VbuqXRprer1quAVlRrQ5hyNWZKeL9ivVg9d6l0FxvDJSX3rw23M
+         WBcA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@mail.pipefy.com header.s=s1 header.b=n2UzFT4x;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=KzQpmmzG;
+       spf=pass (google.com: domain of bounces+56601068-5fe7-liencf=gmail.com@em7077.mail.pipefy.com designates 168.245.127.134 as permitted sender) smtp.mailfrom="bounces+56601068-5fe7-liencf=gmail.com@em7077.mail.pipefy.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=mail.pipefy.com
+Return-Path: <bounces+56601068-5fe7-liencf=gmail.com@em7077.mail.pipefy.com>
+Received: from xvfrtfvs.outbound-mail.sendgrid.net (xvfrtfvs.outbound-mail.sendgrid.net. [168.245.127.134])
+        by mx.google.com with ESMTPS id af79cd13be357-89f46617c67si157737585a.629.2025.10.26.14.50.47
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 26 Oct 2025 14:50:47 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+56601068-5fe7-liencf=gmail.com@em7077.mail.pipefy.com designates 168.245.127.134 as permitted sender) client-ip=168.245.127.134;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@mail.pipefy.com header.s=s1 header.b=n2UzFT4x;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=KzQpmmzG;
+       spf=pass (google.com: domain of bounces+56601068-5fe7-liencf=gmail.com@em7077.mail.pipefy.com designates 168.245.127.134 as permitted sender) smtp.mailfrom="bounces+56601068-5fe7-liencf=gmail.com@em7077.mail.pipefy.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=mail.pipefy.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mail.pipefy.com;
+	h=date:from:subject:mime-version:reply-to:to:content-type:
+	content-transfer-encoding:cc:content-type:date:feedback-id:from:subject:to;
+	s=s1; bh=uz/DjJDcy/77SI4HxhQzeSvz/noT6GhRVzMhObeyYfg=;
+	b=n2UzFT4xLm7rTqI1tE4l+wVSDWZDqDXMMt/1ZvCMGK85UstcfmmvHFvXxB8OUGgkFXTm
+	J1I48QK0IffXuTbQbK0fvRb790J3N+clzqkYdoKk2BByNf4seKebfuu5tsVbW8QaUPtUtZ
+	P3yLSRjXN4JQSoPWHWXn4k3RjFKeoOVCWZfOfLUeXUGIKZfDJqYXfrVX5STRKg8aApC73Y
+	mFp3o/QwJTGP/mcoBTnfg7BnJ3TT0d+SKJub7QatmyZ+j2wah149bQIgZ5qxdq0ZA1zvir
+	hREG8IFVirN3C4+A2gZfOzkaUEOObJVIOmO7BKHVWGp4XFmUYKXDJKzTWCfLs7NQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=date:from:subject:mime-version:reply-to:to:content-type:
+	content-transfer-encoding:cc:content-type:date:feedback-id:from:subject:to;
+	s=smtpapi; bh=uz/DjJDcy/77SI4HxhQzeSvz/noT6GhRVzMhObeyYfg=;
+	b=KzQpmmzGtv3FFNFE8r4hsOrctJhgzYraKd3nA4St4cOCxEjCLyS3yr2rUl9RWZhKvHna
+	nYWWV+tDNyR4L9p64M9OCDkT9xoqeKOi/2hP1EkjtqDNO8/9+nfyRnMHe6CyWrjWnuXGZ7
+	aaIPn/48cFHP319C5jBIV7vDgFzJVaWys=
+Received: by recvd-59c5cbbc7-nvvkg with SMTP id recvd-59c5cbbc7-nvvkg-1-68FE97B7-7
+	2025-10-26 21:50:47.04748659 +0000 UTC m=+4590356.209075480
+Received: from notifications.pipefy.com (unknown)
+	by geopod-ismtpd-17 (SG)
+	with ESMTP id Gc6qPHrfQTmXQq3VGuiH6Q
+	for <liencf@gmail.com>;
+	Sun, 26 Oct 2025 21:50:47.003 +0000 (UTC)
+Date: Sun, 26 Oct 2025 21:50:47 +0000 (UTC)
+From: =?UTF-8?b?RXhwcmVzc+WMheijuQ==?=
+	<pipe305694205+BSt5rinL@mail.pipefy.com>
+Message-ID: <68fe97b6ec065_8bccb1815471c4@app-core-worker-email-template-mailer-7d9f676675-dhsr6.mail>
+Subject: =?UTF-8?B?6K6i5Y2V?=
+Mime-Version: 1.0
+Reply-To: pipe305694205+BSt5rinL@mail.pipefy.com, info@browningltd.co
+X-SG-EID: 
+ =?us-ascii?Q?u001=2ENkfkUmMl2R2TZSQE4gqGx5f5yutmEybOQX3bZXM4n7hHPvnEy2Moq7UOl?=
+ =?us-ascii?Q?drIum24yR5jjZCB4fvKYfTcKSzSZStt3sUNcV0P?=
+ =?us-ascii?Q?2j2cqw6tY1=2FsbzhZIwPBH5Ghw6q1y5qtcuAWJys?=
+ =?us-ascii?Q?tioarVqZ3Z0ic6JbVEA8=2Fq8VandDKhIRZ+uQoD=2F?=
+ =?us-ascii?Q?0Q7kOvlZw0Svkgg7sS70GSt4lg1Umt2wgptMNqo?=
+ =?us-ascii?Q?W529taNcepnlMDOR9bllR7zVLS3QaC2FsrJjVXn?=
+ =?us-ascii?Q?yFbGmObi5NWTlbFEpZFg7TbgnQ=3D=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BpTL9BgbK5wfSJMJGMsmprAIgwlwiDy5d=2FADn?=
+ =?us-ascii?Q?n8sseKhedVKs9FTAzfZp0dOyRcEUIZg+oWj+HBn?=
+ =?us-ascii?Q?Vc37sa2MJ9Q=3D?=
+To: liencf@gmail.com
+X-Entity-ID: u001.x2LqjuYvHW8zc04UWgYYgw==
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html lang=3D"en">
+  <head>
+    <title>
+       =E8=AE=A2=E5=8D=95
+    </title>
+
+    <style type=3D"text/css">
+      /* Global */
+      * {
+        font-family: helvetica, arial, sans-serif;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      /* Container */
+      .content {
+        color: #293e52;
+        font-size: 14px;
+
+        overflow-y: hidden;
+        margin-bottom: 40px;
+      }
+
+      /* Footer */
+      .footer > span {
+        display: block;
+      }
+
+      .footer > a,
+      span {
+        text-align: center;
+
+        font-weight: 400;
+        letter-spacing: -0.03em;
+      }
+
+      .footer-title,
+      .footer-title > a {
+        color: #4b5863;
+
+        font-size: 13px;
+        line-height: 15px;
+      }
+
+      .footer-sub-title {
+        color: #919ea8;
+        margin-top: 8px;
+
+        font-size: 12px;
+        line-height: 14px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <article class=3D"content"><div style=3D"height:1994px;"><a href=3D"htt=
+ps://cordell33765.softr.app/login"><img style=3D"display:block;margin-left:=
+auto;margin-right:auto;" src=3D"https://app.pipefy.com/storage/v1/signed/or=
+gs/4aad9d6d-0253-474a-8260-3fc634015f09/uploads/fda5cf93-1ddd-4334-9b30-1dd=
+5940fc406/loggll.jpg?expires_on=3D1762120246&amp;signature=3DM1ZYbl5iDBY1my=
+k3wPpc1Cs3JD5V3pCNt3fZtNkWaNU%3D" data-pfy-path-url=3D"orgs/4aad9d6d-0253-4=
+74a-8260-3fc634015f09/uploads/fda5cf93-1ddd-4334-9b30-1dd5940fc406/loggll.j=
+pg"></a></div>
+<p>Tbeemyna Acvwrav</p>
+<p>From: Daniel Delacruz &lt;jose.liu@mailservice.io&gt;<br>To: Browning Lt=
+d &lt;info@browningltd.co&gt;<br>Subject: Determine agreement answer enough=
+<br>Sent: 2025-08-14 20:14:28 (UTC+02:00) Kevinhaven, Grahamport, Jacksonbo=
+rough<br>Read: 2025-08-14 22:50:12 (UTC+03:00) Foxport, Ramseybury, Port Je=
+ssica</p>
+<p>[Message clipped] =C2=A0View entire message</p>
+</article>
+
+    <section class=3D"footer">
+
+      <span class=3D"footer-sub-title">
+        This email is from Nivatoeom powered by Pipefy.
+      </span>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,882 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:df93:b0:4ca:2b22:f54c with SMTP id ok19csp6754193mdb;
+        Fri, 17 Oct 2025 11:32:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFZJ951XYmTMcZ2JoQphOxnbNcTeVq81+LONt1Ws6B+Ca3mi8K1JmvIK2HlWpxAp7lcDPDJ
+X-Received: by 2002:a05:622a:8d:b0:4e8:a8dd:9ece with SMTP id d75a77b69052e-4e8a8dda588mr27441021cf.73.1760725956551;
+        Fri, 17 Oct 2025 11:32:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1760725956; cv=none;
+        d=google.com; s=arc-20240605;
+        b=LiK81uCL31hU2y8te3US6stsGULSpCNG5XXO3DyIeO2XJZQBKgV6FEdxHTLYgdHF3g
+         7CJLyOSEB8DUvxx8LYLD+6mZ8xe3eEUvAOpLJgchvHIWH0ISfzIxS6jqfam3finYhB8n
+         l1cri+/HiqJx5qLvUKYMgASeSVAfhlpsUlnUVjxm/8YziSDIj6AeQa6SZc9PdBDSstXs
+         YSMbVxzhHcyROqm5Q/eUQWJyjU4/sQOqp/wE+tjbYvEADFgHMkShw1lymkut1g9L3XnM
+         JGCMQoRDsTk7wFYcOdh8sLFR7//MBP0erK+ZeuazZ2q0dw7WvCMXKI8JYjVJWHQWuEL+
+         tLbA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:message-id:reply-to:mime-version:list-help:date:subject
+         :to:from:dkim-signature:dkim-signature;
+        bh=OvBaKp63akgx7UkqKTVUN7U4VpHvPhFwU0eYjATXp+Q=;
+        fh=vJ4NSVUPajgSi0/CEKHf5eaby7wPvKNevbuC/lPebKM=;
+        b=ZLuJpo+WimybAf5bFmq/ziFFR+GhqosOPunta3WU3IUxBnsNOWVWwjB68RsBiuskmC
+         lb1kh2a0ZjpXKf2Xj0J4yatT6Zw9nRQlU4i6//yGljFI6PuS+JNso2Wg6FcomX2MR6xS
+         VUMfrM0uWQM9WDXocXHcctd+VFIiGCMMg5d2y7stmxP6DF44Aq1UJMn/chWNv3P+gK6g
+         w7DssghrnTdUzVWovu8Npf+aMs/vvloEAzyHBUEYeslB3UrOzx/zZ1OWxwJjvpPr28nY
+         Pd9oioXPFWyNUkPCdczxay1UZa1jj3UtQ/SbjIx0GFYDhs+rsxt2whaVhTNHNFux975H
+         dqlw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@email.schwab.com header.s=200608 header.b=FmpOE9mC;
+       dkim=pass header.i=@s7.y.mc.salesforce.com header.s=fbldkim7 header.b="n/9vL0kR";
+       spf=pass (google.com: domain of bounce-33_html-68802042-673616-7231213-146318@bounce.email.schwab.com designates 128.17.192.3 as permitted sender) smtp.mailfrom=bounce-33_HTML-68802042-673616-7231213-146318@bounce.email.schwab.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=email.schwab.com
+Return-Path: <bounce-33_HTML-68802042-673616-7231213-146318@bounce.email.schwab.com>
+Received: from mta7.email.schwab.com (mta7.email.schwab.com. [128.17.192.3])
+        by mx.google.com with ESMTPS id af79cd13be357-891d0241207si14359585a.1974.2025.10.17.11.32.36
+        for <LIENCF@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 17 Oct 2025 11:32:36 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce-33_html-68802042-673616-7231213-146318@bounce.email.schwab.com designates 128.17.192.3 as permitted sender) client-ip=128.17.192.3;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@email.schwab.com header.s=200608 header.b=FmpOE9mC;
+       dkim=pass header.i=@s7.y.mc.salesforce.com header.s=fbldkim7 header.b="n/9vL0kR";
+       spf=pass (google.com: domain of bounce-33_html-68802042-673616-7231213-146318@bounce.email.schwab.com designates 128.17.192.3 as permitted sender) smtp.mailfrom=bounce-33_HTML-68802042-673616-7231213-146318@bounce.email.schwab.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=email.schwab.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=200608; d=email.schwab.com;
+ h=From:To:Subject:Date:List-Help:MIME-Version:Reply-To:Message-ID:Content-Type;
+ i=donotreply@email.schwab.com;
+ bh=OvBaKp63akgx7UkqKTVUN7U4VpHvPhFwU0eYjATXp+Q=;
+ b=FmpOE9mCQScsZls0E4wdvh7Xqo7dfB0zN63Syo5/gC41LYQ6yH5bmVCWU0db22ZfMak3e9qp4WDT
+   iSkKhk2LQX7/rSk7eodU66TIYCYxjJJar7CWd3dLVSaDezPWylnGnsAOL+Aox/eZma7cin4bvHKu
+   XNOdbQvM8p4bp8UGxoM=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=fbldkim7; d=s7.y.mc.salesforce.com;
+ h=From:To:Subject:Date:List-Help:MIME-Version:Reply-To:Message-ID:Content-Type;
+ bh=OvBaKp63akgx7UkqKTVUN7U4VpHvPhFwU0eYjATXp+Q=;
+ b=n/9vL0kRyk8HX8HOOLXsFvD8X1KYtC2LVgqOZ9gUovsgtVzm/8+qcvaAkNqcSdP5fNAAipQTrjQg
+   BdbGTprM8dxUb7BAbPSy6dzi5UPoICU6xB14rrby1Wb/Gfa4oaNb8mnq1Y1tLkzuPhfsJ7OjXj1A
+   sEpQHBUqgONCJQBTZpA7P77YXYRtSkASL+M+Hs/Z70P04TRyJPekUdV9iXPxDbBAQUWD8oVGs85i
+   q+psh8CMOVqYQWlCY2bOIozvzujG4JexwhlJLy83YZC/CF7qADQ/qXGTt3695yeNDr8PTV7iJzKS
+   /hg957xhqaVRpPdv1hQ8ERAPlVmCflE+VFYXGA==
+Received: by mta7.email.schwab.com id hua5s82fmd46 for <LIENCF@GMAIL.COM>; Fri, 17 Oct 2025 18:32:35 +0000 (envelope-from <bounce-33_HTML-68802042-673616-7231213-146318@bounce.email.schwab.com>)
+From: "Charles Schwab & Co., Inc." <donotreply@email.schwab.com>
+To: <LIENCF@GMAIL.COM>
+Subject: Seasons change, so should your passwords
+Date: Fri, 17 Oct 2025 12:32:34 -0600
+List-Help: <https://click.email.schwab.com/subscription_center.aspx?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtaWQiOiI3MjMxMjEzIiwicyI6IjY4ODAyMDQyIiwibGlkIjoiMzMiLCJqIjoiNjczNjE2IiwiamIiOiIxNDYzMTgiLCJkIjoiNzAyNTEifQ._yqjA6gd4xI68gLdArYqXyS0u08P-HC6hROb7Mzfc5M>
+MIME-Version: 1.0
+Reply-To: "Charles Schwab & Co., Inc." <reply-fec212777662057b-33_HTML-68802042-7231213-146318@email.schwab.com>
+X-SFMC-Stack: 7
+x-job: 7231213_673616
+Message-ID: <0e17d61b-0d0d-403f-a7dc-63c3e8271cda@atl1s07mta3146.xt.local>
+Feedback-ID: 7231213:673616:128.17.192.3:sfmktgcld
+Content-Type: multipart/alternative;
+	boundary="HTwtPn0eXACw=_?:"
+
+This is a multi-part message in MIME format.
+
+--HTwtPn0eXACw=_?:
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Charles Schwab & Co., Inc.
+ 
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+  ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿ ﻿
+
+https://view.email.schwab.com/?qs=6028c1b43d4e0dbe3d505c6dd3a870269ed2712904e7c39778bb231b78fcd7d8adb22a09ab1b9fe0bec23d936435ec33c85955bc9bb54f4d694f7ab168a36d4ea6fdc653b0bd1a92e657dc4be3b11583 
+view on web
+
+
+ 
+ 
+
+ 
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+ Boost your account security with these password best practices.
+
+Smart password management can be crucial to keeping your accounts and personal information safe from hackers. This Cybersecurity Awareness Month, take charge of your online security with these password do’s and don’ts.
+Do:
+
+
+
+  
+  
+
+
+ -
+
+Focus on length, not complexity, by creating a passphrase that is at least 15 characters long. They’re easier to remember and harder for hackers to crack.
+
+
+  
+
+
+ -
+
+Create a unique passphrase that is only used for your Schwab accounts.
+
+
+  
+
+
+ -
+
+Enable 2-step verification. Log in at 
+https://click.email.schwab.com/?qs=caff29aaee6ba3427689a7b2c5a2da47cf3f61f78786e4415ac5a3bbdbeaf3ae756613a38a4176f170cf1cfc6096fd8cb8a3daf8f03a0255 
+schwab.com/securitycenter  and select 2-Step Verification to get started.
+
+
+  
+
+
+ -
+
+Consider using a trusted password manager to strengthen your online security. 
+
+Don't:
+
+
+
+  
+  
+
+
+ -
+
+Share your passphrase or verification codes. When in doubt, only use a trusted phone number when calling a company.
+
+
+  
+
+
+ -
+
+Use personal details, like your name or birthdate, in a passphrase.
+
+
+  
+
+
+ -
+
+Ignore suspicious activity. Change your passphrase the moment you suspect that your account or login credentials have been compromised.
+
+
+  
+
+
+ -
+
+Provide your login ID or passphrase on unverified websites, mobile applications, or text.
+
+
+ Keep your information SchwabSafe(R).
+
+ We're dedicated to protecting your account and working with you to make it even more secure. Learn more at 
+https://click.email.schwab.com/?qs=caff29aaee6ba34218551cd71ebf04f963ac1f6e97d71e0144676334945e99eeedf58a758ddaae05c3d6cd1afcb9c83a825bfdddfc650ce4 
+schwab.com/schwabsafe . 
+
+
+
+We’re here to help.
+
+ If you suspect suspicious account activity, call us at 
+tel:+18004354000 
+800-435-4000. We’re available 24 hours a day, 7 days a week. For clients outside of the U.S., you can reach us at 
+tel:+14156678400 
++1-415-667-8400 or by calling one of our 
+https://click.email.schwab.com/?qs=59bd829079f41559990267590174d0120d6e1e4c27db8433ef4a54a6fbf70fc50e245b335bc92f16bacddf92f45bd707a4fb2ae1c45693bf 
+international toll-free numbers .
+
+
+ 
+ 
+ 
+ 
+https://click.email.schwab.com/?qs=caff29aaee6ba34218551cd71ebf04f963ac1f6e97d71e0144676334945e99eeedf58a758ddaae05c3d6cd1afcb9c83a825bfdddfc650ce4 
+SchwabSafe (R)
+https://click.email.schwab.com/?qs=59bd829079f41559c320dbf461e86acb00ed66b5725e5a02a2f7d999eb953ebc278d273475bf9c5bc9d5106b8390e6b98dff0c07b9b33d2f 
+Security Knowledge Center 
+https://click.email.schwab.com/?qs=59bd829079f415593f32ab081e43bca0de29ddddbcbf62882f3d179b02e5f77824ac46f89ac21eb391b676a490392938f4a88e2c1ea64425 
+Contact Us 
+
+
+ 
+ 
+
+ 
+
+ 
+ 
+
+ 
+Securities, products, and services are not available in all countries and are subject to country-specific restrictions.
+
+For clients of Charles Schwab SG Pte., Ltd.:
+Charles Schwab SG Pte. Ltd., 8 Marina View, #12-01 Asia Square Tower 1, Singapore 018960 (Singapore Company Registration No. 200902152D). Telephone: 
+tel:+6560218070 
++65 60218070 
+
+For Accredited Investor clients: This email was sent by Charles Schwab SG Pte. Ltd. on behalf of Charles Schwab & Co., Inc.
+
+Securities, products, and services are not available in all countries and are subject to country-specific restrictions. Charles Schwab SG Pte. Ltd. (holding a capital markets services license issued by the Monetary Authority of Singapore and an Exempt Financial Adviser as defined in the Financial Advisers Act) and Charles Schwab & Co., Inc. (Member SIPC) are separate but affiliated companies and subsidiaries of The Charles Schwab Corporation. Nothing here is an offer or solicitation of securities, products and services by Charles Schwab & Co., Inc. in any jurisdiction where their offer or sale is not qualified or exempt from registration.
+
+For clients of Charles Schwab, U.K., Limited:
+Charles Schwab, U.K., Limited is authorized and regulated by the Financial Conduct Authority ("FCA") to arrange deals in investments and make arrangements with a view to transactions in investments under registration number 225116. Charles Schwab, U.K., Limited is designated under U.S. regulations as a foreign branch office of Charles Schwab & Co., Inc. Charles Schwab, U.K., Limited is a private limited company registered in England and Wales No. 4709153 and a wholly owned subsidiary of Charles Schwab & Co., Inc. Registered office: 33 Ludgate Hill, London EC4M 7JN.
+
+
+ 
+ 
+
+ 
+ 
+
+
+
+ 
+  
+
+ If you have any questions or concerns, PLEASE DO NOT REPLY TO THIS EMAIL. Instead, visit 
+https://click.email.schwab.com/?qs=59bd829079f41559b55a1f16bc3634f7e910ef9e23587fc7477d3eb7fb508cb93f361e7eef9eeb2f296453e58b558af22f02ae048048c634 
+Schwab.com/contactus  to identify a fast and simple way to get in touch.
+
+ 
+
+
+ For your protection, we are unable to accept instructions to change your email address sent in reply to this message. To update your address using a secure channel, please 
+https://click.email.schwab.com/?qs=59bd829079f415597b5d8db1550bdf6821393dceddb978ff5a11c7f3ad42da309133cdca1254e42779596568a3d42536c9bb569e610b4499 
+log in  to your account.
+
+ 
+
+
+ For your security, Charles Schwab will never request personal information through email.
+
+ 
+
+
+ Review 
+https://click.email.schwab.com/?qs=caff29aaee6ba34218551cd71ebf04f963ac1f6e97d71e0144676334945e99eeedf58a758ddaae05c3d6cd1afcb9c83a825bfdddfc650ce4 
+SchwabSafe (R) and the 
+https://click.email.schwab.com/?qs=59bd829079f415592a46b536195e5e39a508a4fa090a326f1c641c22290d673068b87339047baa3ab878afafe49641fdb956d3c2680067e9 
+Schwab Security Guarantee .
+
+ 
+ 
+Notice: All email sent to or from the Charles Schwab corporate email system is subject to archival, monitoring, and/or review by Schwab personnel.
+
+ 
+ 
+
+ Charles Schwab & Co., Inc., 3000 Schwab Way, Westlake, TX 76262-8104
+
+ 
+ 
+
+ (c)2025 Charles Schwab & Co., Inc. ("Schwab"). All rights reserved. Member 
+https://click.email.schwab.com/?qs=59bd829079f415591586698d6a49a66e8cadc8dabc3b2b25e7e47944fabad77349591ccbe097ee9a0852d903e4d8ee994ffbae8786941921 
+SIPC .
+
+ 
+ 
+
+ 
+
+ 
+
+
+ 
+(1025-RTB2) EML129031-00
+
+
+ 
+ 
+
+
+ 
+ 
+
+
+--HTwtPn0eXACw=_?:
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--[if !mso]><!-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charles Schwab &amp; Co., Inc.
+    </title>
+    <!--[if gte mso 9]> <style> .drop { display:none;} </style> <![endif]-->
+    <style type="text/css">
+      sup {
+        *vertical-align: baseline;
+        *position: relative;
+        *bottom: .75em;
+        font-size: 0.65em;
+        line-height: 0;
+      }
+      .white-link a {
+        color: #ffffff !important;
+        text-decoration: none !important;
+      }
+      .black-link a {
+        color: #333333 !important;
+        text-decoration: none !important;
+      }
+      p {
+        margin-top: 0px;
+        margin-bottom: 14px;
+        /* This helps with paragraph spacing in Yahoo! */
+      }
+      @media only print and (max-width: 480px) {
+        body {
+          max-width: 320px;
+        }
+      }
+      @media all and (max-width: 480px) {
+        .outerContainer {
+          width: 100% !important;
+        }
+        .innerContainer {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+        .fullWidth {
+          width: 100% !important;
+          display: block !important;
+        }
+        .fontSizeControl {
+          font-size: 14px !important;
+          line-height: 130% !important;
+          -webkit-text-size-adjust: none !important;
+        }
+        .headline {
+          font-size: 24px !important;
+          line-height: 120% !important;
+          -webkit-text-size-adjust: none !important;
+        }
+        .snippet {
+          -webkit-text-size-adjust: none !important;
+        }
+        .snippetPadding {
+          padding-top: 5px !important;
+        }
+        .subhead {
+          font-size: 18px !important;
+          line-height: 120% !important;
+          font-weight: normal !important;
+          -webkit-text-size-adjust: none !important;
+        }
+        .sideFix {
+          padding-left: 10px !important;
+          padding-right: 10px !important;
+        }
+        .oneSidedMobilePadding {
+          padding-left: 10px !important;
+        }
+        .legalResize {
+          font-size: 10px !important;
+          line-height: 130% !important;
+          -webkit-text-size-adjust: none !important;
+        }
+        .minimizeHeight {
+          height: 15px !important;
+        }
+        .mobilewidth {
+          width: 10px !important;
+        }
+        .railPaddingTop {
+          padding-left: 0 !important;
+          padding-top: 20px !important;
+        }
+        .railPaddingBottom {
+          padding-right: 0 !important;
+          padding-bottom: 20px !important;
+        }
+        .mobilePaddingRight {
+          padding-right: 20px !important;
+        }
+        .logoFix {
+          width: 90% !important;
+          height: auto !important;
+        }
+        .smallImg {
+          width: 90px !important;
+          height: auto !important;
+        }
+        .smallRailImg {
+          width: 90px !important;
+          height: auto !important;
+        }
+        .noTableBorder {
+          border-left: none !important;
+          border-right: none !important;
+        }
+        .imgFix {
+          width: 100% !important;
+          height: auto !important;
+        }
+        .padding {
+          display: block !important;
+          padding-top: 18px !important;
+        }
+        .paddingBottom {
+          padding-right: 0 !important;
+          padding-bottom: 20px !important;
+        }
+        .paddingTop {
+          padding-left: 0 !important;
+          padding-top: 20px !important;
+        }
+        .resize {
+          font-size: 12px !important;
+          line-height: 130% !important;
+          -webkit-text-size-adjust: none !important;
+        }
+        .jobNumberInfo {
+          display: block;
+        }
+        .hide {
+          display: none !important;
+        }
+        .fullSizeImg {
+          width: 100% !important;
+          height: 100% !important;
+        }
+        .navWidth {
+          padding: 0 !important;
+        }
+        .navItemWidth {
+          width: 100% !important;
+          border-bottom: #efefef 1px solid !important;
+          display: block !important;
+          padding: 12px 0 !important;
+        }
+        .imageAlign {
+          Margin: 0 auto !important;
+        }
+        .iconResize {
+          width: 97% !important;
+          height: auto !important;
+        }
+        .paddingAdjust {
+          box-sizing: border-box !important;
+        }
+        .noPaddingTop {
+          padding-top: 0 !important;
+        }
+        .paddingLeft {
+          padding-left: 20px !important;
+        }
+        .triadBorder {
+          border-right: 0 !important;
+          border-bottom: 2px solid #ececec !important;
+          padding-bottom: 20px !important;
+        }
+      }
+    </style>
+    <!--[if gte mso 9]> <xml> <o:OfficeDocumentSettings> <o:AllowPNG/> <o:PixelsPerInch>96</o:PixelsPerInch> </o:OfficeDocumentSettings> </xml> <![endif]-->
+  </head>
+
+  <body text="#333333" style="margin:0;padding:0;" bgcolor="#ececec" ><style type="text/css">
+div.preheader 
+{ display: none !important; } 
+</style>
+<div class="preheader" style="font-size: 1px; display: none !important;">Don’t “leaf” your data exposed this fall</div>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#ececec" style="min-width:100%" role="presentation">
+      <tr>
+        <td align="center" valign="top" style="border-bottom: 1px #000000 solid">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="min-width:100%" role="presentation">
+            <tr>
+              <td align="center" valign="top">
+                <table width="560" style="width:560px;max-width:560px;" border="0" cellpadding="0" cellspacing="0" class="outerContainer" role="presentation">
+                  <tr>
+                    <td align="center" style="padding:0 10px" class="innerContainer" role="presentation">
+                      <table width="100%" border="0" cellpadding="0" cellspacing="0" style="min-width: 100%" role="presentation">
+                        <tr>
+                          <td align="right" valign="top" style="padding-bottom:15px">
+                            
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+ 
+ 
+
+<style type="text/css">
+@media all and (max-width: 480px) {
+    .otherLogoFix1 {
+      width: px !important;
+      height: auto !important;
+    }
+  }</style><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="padding-bottom: 0px" width="100%">
+ <!-- SNIPPET -->
+  <tr>
+   <td class="sideFix" style="padding: 0 20px">
+    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%" width="100%">
+     <!-- Snippet -->
+      <tr>
+       <td align="right" class="snippetPadding" valign="top">
+        <!--creating white space after your desired snippet/preheader text so that email clients don't pull other distracting text --><p style=" margin: 0; padding: 0; display: none; max-height: 0px; overflow: hidden; ">
+         &nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿&nbsp;﻿</p>
+<!--/creating white space after your desired snippet/preheader text so that email clients don't pull other distracting text --><p class="snippet" style=" font-family: Arial, Helvetica, sans-serif; font-size: 10px; line-height: 130%; font-weight: bold; padding: 10px 0 10px; margin: 0; ">
+         <a href="https://view.email.schwab.com/?qs=6028c1b43d4e0dbe3d505c6dd3a870269ed2712904e7c39778bb231b78fcd7d8adb22a09ab1b9fe0bec23d936435ec33c85955bc9bb54f4d694f7ab168a36d4ea6fdc653b0bd1a92e657dc4be3b11583" style="color: ; text-decoration: underline"><span style="text-decoration: underline">view on web</span></a></p></td></tr><!-- /Snippet --></table></td></tr><!-- /SNIPPET --><!-- BRANDING --><tr>
+   <td class="sideFix" style="padding: 0 20px">
+    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%; margin-bottom: 20px" width="100%">
+     
+      <tr>
+       <!-- Schwab Logo --><td align="left" style="padding-right: 10px" valign="bottom" width="18%">
+        <img alt="Charles Schwab" border="0" class="logoFix" height="80" src="https://bynder.schwab.com/m/5482a48c177bb9be/original/logo-schwab-2x.png" style="display: block" width="80"></td><!-- /Schwab Logo --><!-- Client Logo --><!--[if mso]> 
+<td align="right" valign="bottom" style=""> 
+<p style=" font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size: 14px; line-height: 130%; margin: 0; "></p> 
+ 
+</td> 
+<![endif]--><!--[if !mso]>--><td align="right" style="" valign="bottom">
+        <p style=" font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size: 14px; line-height: 130%; margin: 0; ">
+         </p> </td><!--<![endif]--><!-- /Client Logo --></tr></table></td></tr><!-- /BRANDING --></table> 
+
+
+
+
+
+
+
+<style type="text/css"> @media all and (max-width: 480px) {.pad-left-0 {padding-left: 0px !important;}.pad-left-5 {padding-left: 5px !important;}}</style>
+                            
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td align="center" valign="top">
+          <table width="560" style="width:560px;max-width:560px;" border="0" cellpadding="0" cellspacing="0" class="outerContainer" role="presentation">
+            <tr>
+              <td align="center" style="padding: 0 10px" class="innerContainer" role="presentation">
+                <!-- START Email Body -->
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff" role="presentation">
+                  <tr>
+                    <td align="left" valign="top">
+                      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%;" width="100%">
+ 
+  <tr>
+   <td align="center">
+    <img alt="Financial Crimes Awareness" class="imgFix" data-assetid="53355" height="320" src="https://image.email.schwab.com/lib/fe9c13727665067c76/m/1/0a8e5fe7-6eb3-4ef3-ba02-0ba53fd70843.png" style="display: block; text-align: center; padding: 0px; height: 320px; width: 540px;" width="540"></td></tr></table><table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%;" width="100%">
+ 
+  <tr>
+   <td align="left" class="sideFix" style="padding: 20px; border-bottom: 7px solid #037dae;" valign="top">
+    <h1 class="headline" style="font-family: Arial, Helvetica, sans-serif; font-size: 29px; line-height: 120%; color: #333333; margin: 0px; padding: 0px; font-weight: normal;">Boost your account security with these password best practices.</h1></td></tr></table><table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%;" width="100%">
+ 
+  <tr>
+   <td class="sideFix" style="padding: 20px 20px 5px 20px;" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%;" width="100%">
+     
+      <tr>
+       <td align="left" valign="top">
+        <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;">Smart password management can be crucial to keeping your accounts and personal information safe from hackers. This Cybersecurity Awareness Month, take charge of your online security with these password do’s and don’ts.</p><h2 class="subhead" style="font-family: Arial, Helvetica, sans-serif; font-size: 20px; line-height: 130%; padding: 0px; font-weight: normal; color: #037dae;margin:30px 0 10px">Do:</h2></td></tr></table></td></tr></table><table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%" width="100%"  bgcolor="#e5ebf1">
+ 
+  <tr>
+   <td align="left" class="sideFix pad-left-5" style="padding: 0 0;margin:0" valign="top">
+    <table align="left" bgcolor="#e5ebf1" border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%" width="100%">
+     
+      <tr>
+       <td align="left" class="pad-left-0" style="padding:2px 0 0 13px; vertical-align: top;" valign="top" width="12%">
+        <table border="0" cellpadding="0" cellspacing="0">
+         
+          <tr>
+           <td style="padding: 0 0 0 0px">
+            <img alt="" data-assetid="62630" height="60" src="https://image.email.schwab.com/lib/fe9c13727665067c76/m/1/a26a947f-f2ce-4a5c-9cec-52054591047d.png" style="height: 60px; width: 60px;" width="60"></td></tr></table></td><td align="left" class="pad-left-10" style="vertical-align: top;padding:10px 20px 10px 20px" valign="top" width="89%"><table bgcolor="" border="0" cellpadding="0" cellspacing="0" style="min-width:100%" width="100%">
+         
+          <tr style="mso-line-height-rule:exactly;line-height:0;font-size:0;">
+           <td style="padding-top: 1px;" width="4%">
+            &nbsp;</td><td style="padding-top: 1px;" width="96%">
+            &nbsp;</td></tr><tr style="mso-line-height-rule:exactly;line-height:130%;font-size:14px;">
+           <td align="left" valign="top">
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;margin:0;">
+             &bull;</p></td><td align="left" valign="top">
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;margin:0;">Focus on length, not complexity, by creating a passphrase that is at least 15 characters long. They’re easier to remember and harder for hackers to crack.</p></td></tr><tr style="mso-line-height-rule:exactly;line-height:8px;font-size:8px;">
+           <td colspan="2" height="18">
+            &nbsp;</td></tr><tr style="mso-line-height-rule:exactly;line-height:130%;font-size:14px;">
+           <td align="left" valign="top">
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;margin:0;">
+             &bull;</p></td><td align="left" valign="top">
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;margin:0;">Create a unique passphrase that is only used for your Schwab accounts.</p></td></tr><tr style="mso-line-height-rule:exactly;line-height:8px;font-size:8px;">
+           <td colspan="2" height="18">
+            &nbsp;</td></tr><tr style="mso-line-height-rule:exactly;line-height:130%;font-size:14px;">
+           <td align="left" valign="top">
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;margin:0;">
+             &bull;</p></td><td align="left" valign="top">
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;margin:0;">Enable 2-step verification. Log in at <a  href="https://click.email.schwab.com/?qs=caff29aaee6ba342883cfc04f8aacb1fd6580299f6dd2bcd600183b1731a0a2ffe97220642a865c3b49334e6ba6761dbae15421c17a0cbea" target="_blank" style="color: #006E99;text-decoration:underline;" title="">schwab.com/securitycenter</a> and select <strong>2-Step Verification</strong> to get started.</p></td></tr><tr style="mso-line-height-rule:exactly;line-height:8px;font-size:8px;">
+           <td colspan="2" height="18">
+            &nbsp;</td></tr><tr style="mso-line-height-rule:exactly;line-height:130%;font-size:14px;">
+           <td align="left" valign="top">
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;margin:0;">
+             &bull;</p></td><td align="left" valign="top">
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;margin:0">Consider using a trusted password manager to strengthen your online security. </p></td></tr></table></td></tr></table></td></tr></table><table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%;" width="100%">
+ 
+  <tr>
+   <td class="sideFix" style="padding: 0px 20px 0px 20px;" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%;" width="100%">
+     
+      <tr>
+       <td align="left" valign="top" style="padding:0px 0px">
+     <h2 class="subhead" style="font-family: Arial, Helvetica, sans-serif; font-size: 20px; line-height: 130%; margin:30px 0 10px; font-weight: normal; color: #037dae;">Don't:</h2></td></tr></table></td></tr></table><table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%" width="100%"  bgcolor="#e5ebf1">
+ 
+  <tr>
+   <td align="left" class="sideFix pad-left-5" style="padding: 0 0;margin:0" valign="top">
+    <table align="left" bgcolor="#e5ebf1" border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%" width="100%">
+     
+      <tr>
+       <td align="left" class="pad-left-0" style="padding:2px 0 0 13px; vertical-align: top;" valign="top" width="12%">
+        <table border="0" cellpadding="0" cellspacing="0">
+         
+          <tr>
+           <td style="padding: 0 0 0 0px; width:65px" width="60">
+            <img alt="" data-assetid="62630" height="60" src="https://image.email.schwab.com/lib/fe9c13727665067c76/m/1/d7f8c835-0f61-4d9e-95b0-c71ce279eb9d.png" style="height: 60px; width: 60px;" width="60"></td></tr></table></td><td align="left" class="pad-left-10" style="vertical-align: top;padding:10px 20px 10px 20px" valign="top" width="88%"><table bgcolor="" border="0" cellpadding="0" cellspacing="0" style="min-width:100%" width="100%">
+         
+          <tr style="mso-line-height-rule:exactly;line-height:0;font-size:0;">
+           <td style="padding-top: 1px;" width="4%">
+            &nbsp;</td><td style="padding-top: 1px;" width="96%">
+            &nbsp;</td></tr><tr style="mso-line-height-rule:exactly;line-height:130%;font-size:14px;">
+           <td align="left" valign="top">
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;margin:0;">
+             &bull;</p></td><td align="left" valign="top">
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;margin:0;">Share your passphrase or verification codes. When in doubt, only use a trusted phone number when calling a company.</p></td></tr><tr style="mso-line-height-rule:exactly;line-height:8px;font-size:8px;">
+           <td colspan="2" height="18">
+            &nbsp;</td></tr><tr style="mso-line-height-rule:exactly;line-height:130%;font-size:14px;">
+           <td align="left" valign="top">
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;margin:0;">
+             &bull;</p></td><td align="left" valign="top">
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;margin:0;">Use personal details, like your name or birthdate, in a passphrase.</p></td></tr><tr style="mso-line-height-rule:exactly;line-height:8px;font-size:8px;">
+           <td colspan="2" height="18">
+            &nbsp;</td></tr><tr style="mso-line-height-rule:exactly;line-height:130%;font-size:14px;">
+           <td align="left" valign="top">
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;margin:0;">
+             &bull;</p></td><td align="left" valign="top">
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;margin:0;">Ignore suspicious activity. Change your passphrase the moment you suspect that your account or login credentials have been compromised.</p></td></tr><tr style="mso-line-height-rule:exactly;line-height:8px;font-size:8px;">
+           <td colspan="2" height="18">
+            &nbsp;</td></tr><tr style="mso-line-height-rule:exactly;line-height:130%;font-size:14px;">
+           <td align="left" valign="top">
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;margin:0;">
+             &bull;</p></td><td align="left" valign="top">
+            <p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;margin:0">Provide your login ID or passphrase on unverified websites, mobile applications, or text.</p></td></tr></table></td></tr></table></td></tr></table><table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%;" width="100%">
+ 
+  <tr>
+   <td class="sideFix" style="padding: 30px 20px 0px 20px;" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%;" width="100%">
+     
+      <tr>
+       <td align="left" valign="top">
+        <h2 class="subhead" style="font-family: Arial, Helvetica, sans-serif; font-size: 20px; line-height: 130%; padding: 0px; font-weight: normal; color: #037dae;margin-top:0px;">
+       Keep your information SchwabSafe<sup style="line-height: 1; font-size: 75%; vertical-align: super; mso-text-raise:30%;">&reg;</sup>.</h2><p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;">
+        We're dedicated to protecting your account and working with you to make it even more secure. Learn more at <a  href="https://click.email.schwab.com/?qs=caff29aaee6ba3421bf9a7ea57b56af34a54d9bb5f4c1e0b0f75f0b544f449fb82ac34fdbe7c781bbe8d8f18d538a074054d0fa32811ba9c" target="_blank" style="color: #006E99;text-decoration:underline;" title="">schwab.com/schwabsafe</a>.  
+
+</p></td></tr></table></td></tr></table><table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%;" width="100%">
+ 
+  <tr>
+   <td class="sideFix" style="padding: 20px 20px 0px 20px;" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%;" width="100%">
+     
+      <tr>
+       <td align="left" valign="top">
+        <h2 class="subhead" style="font-family: Arial, Helvetica, sans-serif; font-size: 20px; line-height: 130%; padding: 0px; font-weight: normal; color: #037dae;margin-top:0px;">We’re here to help.</h2><p style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:14px; line-height:130%;">
+        If you suspect suspicious account activity, call us at <a alias="800-435-4000" href="tel:+18004354000" style="color: #333333;text-decoration:none;" target="_blank" ><strong>800-435-4000</strong></a>. We’re available 24 hours a day, 7 days a week. For clients outside of the U.S., you can reach us at <a alias="+1-415-667-8400" href="tel:+14156678400" style="color: #333333;text-decoration:none;" target="_blank" ><strong>+1-415-667-8400</strong></a> or by calling one of our <a  href="https://click.email.schwab.com/?qs=caff29aaee6ba3423fdf436023387cb5732a2a613cf191de2508469111202eaa3977dbb0bcfc465f1d8f7b6804a77b0e8ba39836c25eef33" target="_blank" style="color: #006E99;text-decoration:underline;" title="">international toll-free numbers</a>.</p></td></tr></table></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr>
+<td class="stylingblock-content-wrapper camarker-inner"><table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%;" width="100%">
+	
+		<tr>
+			<td style="line-height:10px; font-size:10px;">
+				&nbsp;</td></tr></table></td></tr></table>
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left" valign="top">                 
+                      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%;" width="100%">
+ 
+  <tr>
+   <td align="left" bgcolor="#425563" class="navWidth" style="padding: 10px 20px;" valign="top">
+    <table bgcolor="#425563" cellpadding="0" cellspacing="0" style="min-width: 100%;" width="100%">
+     
+      <tr>
+       <th align="center" class="navItemWidth" width="30%">
+        <font color="#ffffff" face="Arial, Helvetica, sans-serif" style="font-size: 12px; line-height: 15px; text-transform: uppercase;"><a   data-linkto="other" href="https://click.email.schwab.com/?qs=caff29aaee6ba342e2361e16374bbf70f5076483b858006190f44ac09cc06c44abace568c98bc2f9b927b378c6c503b2fcf791c012bd2da5" style="color:#ffffff;text-decoration:none; text-transform: uppercase;" target="_blank" title="schwabsafe">SchwabSafe<sup style="font-size:11px;line-height:0;mso-text-raise:30%;">&reg;</sup></a> </font></th><th align="center" class="navItemWidth" width="40%">
+        <font color="#ffffff" face="Arial, Helvetica, sans-serif" style="font-size: 12px; line-height: 15px; text-transform: uppercase;"><a   data-linkto="https://" href="https://click.email.schwab.com/?qs=caff29aaee6ba342be501298147847ca08108d2f7d5b01fa7a3fb10dc3d48e724273d1e0007813f0875099b374453a8eb753dcbb070b1ff4" style="color:#ffffff;text-decoration:none;" target="_blank" title="Security Knowledge Center">Security Knowledge Center</a> </font></th><th align="center" class="navItemWidth" width="30%">
+        <font color="#ffffff" face="Arial, Helvetica, sans-serif" style="font-size: 12px; line-height: 15px; text-transform: uppercase;"><a   data-linkto="https://" href="https://click.email.schwab.com/?qs=caff29aaee6ba342e9dbb6df87963f8ed2c6272fd38b2700c649aaf08bdee2714a087db9088ac4b42a2e4dd905207cd2be33bf6738319bc9" style="color:#ffffff;text-decoration:none;" target="_blank" title="contact us">Contact Us</a> </font></th></tr></table></td></tr></table>
+                      
+                      
+
+ 
+
+                    </td>
+                  </tr>
+                </table>
+                <!--END Email Body -->
+                <!-- START Disclaimers and Legal-->
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="min-width: 100%;" role="presentation">
+                  <tr>
+                    <td height="20">&nbsp;</td>
+                  </tr>
+               
+                  <tr>
+                    <td align="left" valign="top">
+                      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%" width="100%">
+ 
+  <tr>
+   <td align="left" style="padding:0 15px" valign="top">
+  <p class="legalResize" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:12px; line-height:15px;">Securities, products, and services are not available in all countries and are subject to country-specific restrictions.</p><p class="legalResize" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:12px; line-height:15px;"> <strong>For clients of Charles Schwab SG Pte., Ltd.:</strong><br>Charles Schwab SG Pte. Ltd., 8 Marina View, #12-01 Asia Square Tower 1, Singapore 018960 (Singapore Company Registration No. 200902152D). Telephone: <a href="tel:+6560218070" alias="6560218070" target="_blank" style="color: #333333;text-decoration:none;font-weight:bold;">+65 60218070</a></p>
+<p class="legalResize" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:12px; line-height:15px;">For Accredited Investor clients: This email was sent by Charles Schwab SG Pte. Ltd. on behalf of Charles Schwab &amp; Co., Inc.</p>
+<p class="legalResize" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:12px; line-height:15px;">Securities, products, and services are not available in all countries and are subject to country-specific restrictions. Charles Schwab SG Pte. Ltd. (holding a capital markets services license issued by the Monetary Authority of Singapore and an Exempt Financial Adviser as defined in the Financial Advisers Act) and Charles Schwab &amp; Co., Inc. (Member SIPC) are separate but affiliated companies and subsidiaries of The Charles Schwab Corporation. Nothing here is an offer or solicitation of securities, products and services by Charles Schwab &amp; Co., Inc. in any jurisdiction where their offer or sale is not qualified or exempt from registration.
+</p><p class="legalResize" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:12px; line-height:15px;"><strong>For clients of Charles Schwab, U.K., Limited:</strong><br>Charles Schwab, U.K., Limited is authorized and regulated by the Financial Conduct Authority ("FCA") to arrange deals in investments and make arrangements with a view to transactions in investments under registration number 225116. Charles Schwab, U.K., Limited is designated under U.S. regulations as a foreign branch office of Charles Schwab &amp; Co., Inc. Charles Schwab, U.K., Limited is a private limited company registered in England and Wales No. 4709153 and a wholly owned subsidiary of Charles Schwab &amp; Co., Inc. Registered office: 33 Ludgate Hill, London EC4M 7JN.</p>
+</td></tr></table>
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left" valign="top">
+                      
+                    
+
+
+
+    
+        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%" width="100%">
+  <tr>
+   <td align="left" valign="top">     <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%" width="100%">
+  <tr>
+   <td align="left" style="padding: 0px 15px;" valign="top">
+    <p class="legalResize" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size: 12px; line-height: 130%;">
+     If you have any questions or concerns, PLEASE DO NOT REPLY TO THIS EMAIL. Instead, visit <a  href="https://click.email.schwab.com/?qs=caff29aaee6ba34227bf8a92d42c43390a6a386f0a1f75ebbe1267da68a31d0c5372afb8fded251a3c7af86ad82ec24f160dfda1ff1f5e82" style="text-decoration:underline;color:#0066cc" target="_blank" title="Contact Us">Schwab.com/contactus</a> to identify a fast and simple way to get in touch.</p></td></tr></table> 
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%" width="100%">
+  <tr>
+   <td align="left" style="padding: 0px 15px;" valign="top">
+    <p class="legalResize" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size: 12px; line-height: 130%;">
+     For your protection, we are unable to accept instructions to change your email address sent in reply to this message. To update your address using a secure channel, please <a  href="https://click.email.schwab.com/?qs=caff29aaee6ba3420fee2f9bc416faef4e3d2bb8002bd760522058d95e10c02894d14f21f22089fdc4c6f4cd9db629952d4b4c859aedd32d" style="text-decoration:underline;color:#0066cc" target="_blank" title="log in">log in</a> to your account.</p></td></tr></table> 
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%" width="100%">
+  <tr>
+   <td align="left" style="padding: 0px 15px;" valign="top">
+    <p class="legalResize" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size: 12px; line-height: 130%;">
+     For your security, Charles Schwab will never request personal information through email.</p></td></tr></table>     
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%" width="100%">
+  <tr>
+   <td align="left" style="padding: 0px 15px;" valign="top">
+    <p class="legalResize" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size: 12px; line-height: 130%;">
+      Review <a  href="https://click.email.schwab.com/?qs=caff29aaee6ba342623822a658c3a09b6ec6947bb77eb956dd97b87da76c54bc1a314a46f79aea2591c1613bed249b39078e138ef2ae86ab" style="text-decoration:underline;color:#0066cc" target="_blank" title="Schwab Safe">SchwabSafe<sup style="line-height: 1; font-size: 75%; vertical-align: top; mso-text-raise:30%;">&reg;</sup></a> and the <a  href="https://click.email.schwab.com/?qs=caff29aaee6ba3429a48002524ab9e057535c6eb70ec778d19b6fff84ef02054ef31668a915083ac220c3a43f1f2dad7c1b38d795adc2840" style="text-decoration:underline;color:#0066cc" target="_blank" title="Schwab Security Guarantee">Schwab Security Guarantee</a>.</p></td></tr></table>      
+     <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%" width="100%">
+  <tr>
+   <td align="left" style="padding: 0px 15px;" valign="top">
+    <p class="legalResize" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size: 12px; line-height: 130%;">Notice: All email sent to or from the Charles Schwab corporate email system is subject to archival, monitoring, and/or review by Schwab personnel.</p></td></tr></table> 
+  <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%" width="100%">
+ 
+  <tr>
+   <td align="left" style="padding: 0px 15px;" valign="top">
+    <p class="legalResize" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size: 12px; line-height: 130%;">
+     Charles Schwab &amp; Co., Inc., 3000 Schwab Way, Westlake, TX 76262-8104</p></td></tr></table></td></tr></table> 
+     <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width: 100%" width="100%">
+ 
+  <tr>
+   <td align="left" style="padding: 0px 15px;" valign="top">
+    <p class="legalResize" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size: 12px; line-height: 130%; margin:0;">
+     &copy;2025 Charles Schwab &amp; Co., Inc. (&quot;Schwab&quot;). All rights reserved. Member <a   data-linkto="https://" href="https://click.email.schwab.com/?qs=caff29aaee6ba3428bd6bcb5b26ddd1fa3646a2e50324dcb45b78cd70a6f2978395b1b1a6e5dee057a3dcfcf782dee3feccad36847ff8237" style="color:#0066CC;text-decoration:underline;" target="_blank" title="SIPC">SIPC</a>.</p></td></tr></table></td></tr></table> 
+    </td></tr></table>
+    
+
+                    </td>
+                  </tr>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left" valign="top">
+                      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="min-width:100%" width="100%">
+ 
+  <tr>
+   <td align="left" class="legalResize" style="padding: 0px 15px; line-height: normal; font-size: 12px;" valign="top">
+    <p class="legalResize" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; color: #333333; font-size:12px; line-height:130%;">(1025-RTB2) EML129031-00</p></td></tr></table>
+                      
+                    </td>
+                  </tr>
+                </table>
+                <!-- END Disclaimers and Legal -->
+              </td>
+            </tr>
+          </table>
+          <!--End OUTER CONTAINER-->
+        
+      
+      </td></tr><tr>
+        <td valign="top">
+          
+          </custom>
+        </td>
+      </tr>
+    
+   
+    </table><img src="https://click.email.schwab.com/open.aspx?ffcb10-fec212777662057b-fe60167272630d7d7417-fe9c13727665067c76-ff991773-fe6112787d64067d7116-fec8157473670575&d=70251&bmt=0" width="1" height="1" alt="">
+    </custom>
+  </body>
+</html>
+
+--HTwtPn0eXACw=_?:--

@@ -1,0 +1,328 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7011:709:b0:4d4:9739:2b92 with SMTP id hz9csp131638mdb;
+        Mon, 3 Nov 2025 20:27:20 -0800 (PST)
+X-Received: by 2002:a17:907:7ea5:b0:b6d:6a4d:d922 with SMTP id a640c23a62f3a-b707061bdbfmr1479878266b.42.1762230440591;
+        Mon, 03 Nov 2025 20:27:20 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762230440; cv=none;
+        d=google.com; s=arc-20240605;
+        b=j655cQ2d9O9fardYxiNS1XhhdaE7wYoF/iN+ya21UZ/idh3YF3AHshpwfMWWQ1zpIO
+         xMnuXmwKsSguEJi7fG1OHv19/D0RaDobsJ9Z4YnNURROQBb6GiWJ6AbGofwEfFbTqZok
+         0WfYljE6C7IzmjPaZeeojvFvaKrG9adLeIUU34/ylIByvRNilIAC7XZGo5uJQpNvy7nE
+         Vtjgtv17NEHpsRue2opOKeMPG24ZeyOJdmiiqm9bgPsqoITklf6v62QNy4ldsDLgQvok
+         42FxoWn7Anh3GxXqrsB4O1Y5g6JoWLJcM+zw8W6OUA2ar6eVeHJOUnidFyHLCSJ/duob
+         lsqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=in-reply-to:references:subject:from:date:message-id:auto-submitted
+         :to:dkim-signature;
+        bh=jnSuesL2G+ixhYon2mWtt8r2XODOiPbEL7i7Tx+enD0=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=k8eh5fTUZPxxTe7MhJNgijUDPyi4bFmOPOgEIyymW5SuMViQLl0/AqZ6R05ekljozb
+         5EARikhK8lRnHGEXWw3ejfu80hAHlhJzgse4GxnfMd7mKfFntLVU+Bfev/L5Tq3dbCgP
+         4R/rg/UmPKOZV7+xzPtaC5mppWW5G1/kk9frSBEJ2jruhCUqHmk5FJgJxwDxqaJXMs2Z
+         XvDvi1UanawTIItFPS38xR/oDQPW9I4Cs3KXQ3k9k3bjdgXxaDPOCbXiOsWcDAochc5D
+         TPB1beC7pAIi9WeAr1ABok4V5pn7j5MHaraFZmupBRI4Zhllh8S1N39mKwk2R5FsM1Zh
+         H3sA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@googlemail.com header.s=20230601 header.b=X2RtzZOc;
+       spf=none (google.com: postmaster@mail-sor-f65.google.com does not designate permitted sender hosts) smtp.helo=mail-sor-f65.google.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=googlemail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <>
+Received: from mail-sor-f65.google.com (mail-sor-f65.google.com. [209.85.220.65])
+        by mx.google.com with SMTPS id a640c23a62f3a-b70be0929bdsor166204366b.5.2025.11.03.20.27.20
+        for <liencf@gmail.com>
+        (Google Transport Security);
+        Mon, 03 Nov 2025 20:27:20 -0800 (PST)
+Received-SPF: none (google.com: postmaster@mail-sor-f65.google.com does not designate permitted sender hosts) client-ip=209.85.220.65;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@googlemail.com header.s=20230601 header.b=X2RtzZOc;
+       spf=none (google.com: postmaster@mail-sor-f65.google.com does not designate permitted sender hosts) smtp.helo=mail-sor-f65.google.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=googlemail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1762230440; x=1762835240; dara=google.com;
+        h=in-reply-to:references:subject:from:date:message-id:auto-submitted
+         :to:from:to:cc:subject:date:message-id:reply-to;
+        bh=jnSuesL2G+ixhYon2mWtt8r2XODOiPbEL7i7Tx+enD0=;
+        b=X2RtzZOckaSC5rLPUiXD7FtoF/7ZDqQUGl+85Phob3xWxZ6oI2MH5J9sbSb5iMy+2v
+         vSgqTsIgQIv9m4BWkpVMUuli45uJPeDxA1DLjQE9npfiE/VLCSC0w1SXfM67yTh3Z6/2
+         dEYmVt9eR5DxdV5nfjr8QOhFfAXUnFpb9goVJrGW19xFW1JZ/vwwfSxIajU1RvmOQjeU
+         t2ylQUT56d/l5Jm8ZfSHXAipR1g2TBmA9y5Wpvkju6m88o1gYNA/NeyoV9aS9O2Mem12
+         4cH2o78+wi6oc8Hr0n7i+Cdh5wjZVybGIHmQB2LHlVHgbqGcRUXSRlldhzScdM2uQrsY
+         MqTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762230440; x=1762835240;
+        h=in-reply-to:references:subject:from:date:message-id:auto-submitted
+         :to:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jnSuesL2G+ixhYon2mWtt8r2XODOiPbEL7i7Tx+enD0=;
+        b=K8Vs+GVukE/DfxIUWY+1ykUJ151T92eXPd3xokIhKgqOf2+DI4jA3XKVSdg/5ncFU4
+         W9XoaliMgYz5SaMijC0bFnLqkdz9eumLwiKe2nT0nlYJMyuQpG08u7h+ArxomNYtnh2E
+         XqH3TwPFguBGZrPTiGDqc35tQkwyMkc3ybmFpnUXcK2gWmj4Ea9ZEotvcPHgEeIAmeXh
+         a/5uV2MLQk/A1doAxnyLxhkCyBGQZJxtbame+Fs3AAyTYxXhe0zBCPMQnzlLRBqIa3YZ
+         3TcIO+ZbN8yIW1uMo7r3FMGnYi4eTqzi0ASO8j6YWUY8hhmmsxf4Hv66JtfCYuN8nk8o
+         ht7A==
+X-Gm-Message-State: AOJu0YwQv+uGBloGKC2CePq6SBRdYp6MfkYBnjPlEqTXw3gT745aaH7H
+	i4F7T7GU8dpZ3RIusCGXajCaR3kpZLdr4UJTPqpX00Ay2B1mj1PxO6AY8DEE4DSxGu0M8iShAou
+	8FkVQsB4GVq15XdeHe6M3wtGZDTGQ5X3OLgLUr1CD77ov13JZbw1a7rPXOw==
+X-Google-Smtp-Source: AGHT+IF0Ri+sQgMWeqvslF1bTykZLPTDXzXQJB2c9maRLzmQ9iW++ChjJtaX2dJl9iVrUOQa+E6JoTh84iI2nmT3vkW6hGOAUA15bOU=
+X-Received: by 2002:a17:907:724f:b0:b72:1ced:f213 with SMTP id a640c23a62f3a-b721ceef127mr178975966b.37.1762230440374;
+        Mon, 03 Nov 2025 20:27:20 -0800 (PST)
+Content-Type: multipart/report; boundary="000000000000692f560642bd3f0e"; report-type=delivery-status
+To: liencf@gmail.com
+Received: by 2002:a17:907:724f:b0:b72:1ced:f213 with SMTP id
+ a640c23a62f3a-b721ceef127mr147438766b.37; Mon, 03 Nov 2025 20:27:20 -0800 (PST)
+Return-Path: <>
+Auto-Submitted: auto-replied
+Message-ID: <690980a8.170a0220.27a23.49c5.GMR@mx.google.com>
+Date: Mon, 03 Nov 2025 20:27:20 -0800 (PST)
+From: Mail Delivery Subsystem <mailer-daemon@googlemail.com>
+Subject: Delivery Status Notification (Failure)
+References: <jyvrb.tbrot.6f2f5b79@mdjyu.atl261.unlayer.com>
+In-Reply-To: <jyvrb.tbrot.6f2f5b79@mdjyu.atl261.unlayer.com>
+X-Failed-Recipients: liencf@google.com
+
+--000000000000692f560642bd3f0e
+Content-Type: multipart/related; boundary="000000000000692f850642bd3f0f"
+
+--000000000000692f850642bd3f0f
+Content-Type: multipart/alternative; boundary="000000000000692f860642bd3f10"
+
+--000000000000692f860642bd3f10
+Content-Type: text/plain; charset="UTF-8"
+
+
+** Address not found **
+
+Your message wasn't delivered to liencf@google.com because the address couldn't be found, or is unable to receive mail.
+
+Learn more here: https://support.google.com/mail/?p=NoSuchUser
+
+The response was:
+
+The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For more information, go to https://support.google.com/mail/?p=NoSuchUser
+
+--000000000000692f860642bd3f10
+Content-Type: text/html; charset="UTF-8"
+
+
+<html>
+<head>
+<style>
+* {
+font-family:Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+</style>
+</head>
+<body>
+<table cellpadding="0" cellspacing="0" class="email-wrapper" style="padding-top:32px;background-color:#ffffff;"><tbody>
+<tr><td>
+<table cellpadding=0 cellspacing=0><tbody>
+<tr><td style="max-width:560px;padding:24px 24px 32px;background-color:#fafafa;border:1px solid #e0e0e0;border-radius:2px">
+<img style="padding:0 24px 16px 0;float:left" width=72 height=72 alt="Error Icon" src="cid:icon.png">
+<table style="min-width:272px;padding-top:8px"><tbody>
+<tr><td><h2 style="font-size:20px;color:#212121;font-weight:bold;margin:0">
+Address not found
+</h2></td></tr>
+<tr><td style="padding-top:20px;color:#757575;font-size:16px;font-weight:normal;text-align:left">
+Your message wasn't delivered to <a style='color:#212121;text-decoration:none'><b>liencf@google.com</b></a> because the address couldn't be found, or is unable to receive mail.
+</td></tr>
+<tr><td style="padding-top:24px;color:#4285F4;font-size:14px;font-weight:bold;text-align:left">
+<a style="text-decoration:none" href="https://support.google.com/mail/?p=NoSuchUser">LEARN MORE</a>
+</td></tr>
+</tbody></table>
+</td></tr>
+</tbody></table>
+</td></tr>
+<tr style="border:none;background-color:#fff;font-size:12.8px;width:90%">
+<td align="left" style="padding:48px 10px">
+The response was:<br/>
+<p style="font-family:monospace">
+The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For more information, go to https://support.google.com/mail/?p=NoSuchUser
+</p>
+</td>
+</tr>
+</tbody></table>
+</body>
+</html>
+
+--000000000000692f860642bd3f10--
+--000000000000692f850642bd3f0f
+Content-Type: image/png; name="icon.png"
+Content-Disposition: attachment; filename="icon.png"
+Content-Transfer-Encoding: base64
+Content-ID: <icon.png>
+
+iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAYAAADnRuK4AAAACXBIWXMAABYlAAAWJQFJUiTwAAAA
+GXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABTdJREFUeNrsnD9sFEcUh5+PRMqZ
+yA0SPhAUQAQFUkyTgiBASARo6QApqVIkfdxGFJFSgGhJAUIiBaQB0ZIOKVCkwUgURjIg2fxL4kS+
+YDvkbC/388bi8N16Z4/d7J/5PsniuD3fyePP772ZeTsDQRAYQL/UGAJAIEAgQCBAIAAEAgQCBAIE
+AkAgyJT3Mv+Eq7vYK8mTE+MDRCAghQECAeRQA5V2ZOpmg5vDx3NPzRbmGRMEcmTrEbNNB8zWfRD+
+f/Efs2e3zCZvMjaksBg27TfbcuSNPEKP9ZyuAQKtHX2O9ncNgWC57umMPKvRNb0GEKgnLoUyxTQC
+rcns0/6uIRAs8/hGf9cQCJZpTpjdO2f25/03z+mxntM1eLtsZAgiUtX4JcaBCAQIBAgECARQ8CJa
+G5jab4J4pm4WZmO3OALVh802fIwcLkyPkcKAGggAgQCBAIEAgQCBABAIEAjKA/1AnahhbO5FdOOY
+VsrrDbPBYcYKgf5D2wLaV3p+22xh1u17tO3S+DTcvxvagUDeivPgx/a/95J/73w7Sj26Hn4pKo2M
+ehuV/KyBJM6d0f7k6RKx/R63vvL2tmf/ItDdM2ZTP6f7nkp9Y2fDx1v9akmpIU+KSCLVUghUQfSL
+zVKeTklbLxGoctw/nzC5rw8L5KRNbkpnKq6pgSqEClzNnFzY+XnYWrt6VpVk1vbwWvg+RKCKMOUw
+Q1LEOXA+/MX3mpJvGDHb265xtnzmFoUK1HaKQGlMtePYM+q2KKjXuaS1NJYIEKgI8jhEgqHt4cqy
+Ky53j3hyHz2bqSLp2o2LbJ7MxKovkGqXteoWpaOk96O9/yF/dF7NwlS36AuIQIBA5celQK4PIxBE
+4LLzrtoLgaALdSy6CJRkWQCBPGLsTHznomZ9nszUECgJ2ml3WWHe+QVFNPSQx6UdZNtxr9pbEShN
+eTTz8mQXHoHSlke7+Z+c9m6VGoHSkEfs/trLW3wQKApN1V3lGfnGu2Z6BFoLtYCs3GWBPAiUCLVh
+/HoaeRCoT9R873KLM/IgUBfapnCpe5AHgXry4pf412ihEHkQqCdxd5VqrcezhUIESsJMTJ+Pdthp
+Z0WgyNlXXPHc2Mc4IVAELl2Gnh8mhUDvCkfbIVAkcbf/aOoO3fMKhqAD3frTa4quwpn0hUDOkQhI
+YYBAgECAQAAU0QlYObl+5Ug8NcprZkZxjUCxRPVA6zmtEXHCBykskrhjgHXN09PoEcgFl4M4H11j
+nBAoApcj6ZoPGScEAgTKApcDoTw5sgWB+sGlz1n90IBAPdE6j1o21PfcC11jLagL1oFWRyGlKU3p
+OxcSJQ7NZAjkhHp/uG2HFAYIBAgECASAQIBAgECAQAAIBOkxEARBtp9wdVfAMOfIifEBIhCQwgCB
+ABAI0oV2jhxZ+nfBatuPZfgBCy0Eqqo8c01b+uu51XZvzOgDWoHNTGR+pCwpLEd5svuAZXlO2uEr
+PyEQ8hRWHgRCHmqg0sjTnLalv6crJQ8C/U8stqNO0I4+VZOHFIY8COS1PGL2ybd5yUMKK7s8zYmL
+dujyd3n+nESgcsvzZd4/KwIhDwIhT35QA6UyE1qyxZnfvJMHgdKS549JC1qvvJOHFIY8CFR5eV5O
+XimqPAhUdHnmfx+zgxdOFXkoqIGKKs/cswnb/8Oeog8HEai48nxUhiFBIORBIOShBioskkbySCLk
+IQIhDwIhj28p7FApR6b1qlEbHGpkO/rr6215vi/zH1r2x7tApSGFAQIBAgECAQIBIBAgECAQIBBA
+LK8FGADCTxYrr+EVJgAAAABJRU5ErkJggg==
+--000000000000692f850642bd3f0f--
+--000000000000692f560642bd3f0e
+Content-Type: message/delivery-status
+
+Reporting-MTA: dns; googlemail.com
+Received-From-MTA: dns; liencf@gmail.com
+Arrival-Date: Mon, 03 Nov 2025 20:27:19 -0800 (PST)
+X-Original-Message-ID: <jyvrb.tbrot.6f2f5b79@mdjyu.atl261.unlayer.com>
+
+Final-Recipient: rfc822; liencf@google.com
+Action: failed
+Status: 5.1.3
+Diagnostic-Code: smtp; The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For more information, go to https://support.google.com/mail/?p=NoSuchUser
+Last-Attempt-Date: Mon, 03 Nov 2025 20:27:20 -0800 (PST)
+
+--000000000000692f560642bd3f0e
+Content-Type: message/rfc822
+
+X-Google-Smtp-Source: AGHT+IGcFDqidZLGYkBm+IlSMGXK/06JL8mvcPWJWXZOi1T053OGEbRH0IuyXsA1/3NBdiV5PQXb
+X-Received: by 2002:a17:907:724f:b0:b72:1ced:f213 with SMTP id a640c23a62f3a-b721ceef127mr178973666b.37.1762230439544;
+        Mon, 03 Nov 2025 20:27:19 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762230439; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Gm1llat+56zXUewOUb/RMYcjJff+dPSsFkcg/be8k/2shuAGs1fOlNvhfGyLpmpdZ7
+         EPyaPggdJZQdM25jba1YGkqRRKm+wwVMqBcMyqhkJqTQHoAuChEL38uVwP86cqWZ3GLg
+         NrEpQxQAxM4ImkZIcnNBd/izDVLMDFEex+Q3EpuYoENdAgBmodtLh4hGG3QSgJDVcVvA
+         1JXVlsepYG4nbci6Ntf5gpMGra0ykXoCnSvba2CGlbeebahwbvPOFOobpBbQOp+rR3iq
+         m/Qb8R2oNHgYPSfNdUYTABT7wJEbKCFA5cnoIl4LqWIsjO7kMtPx+vE0chrPu7krBSUI
+         fuyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=date:message-id:reply-to:mime-version:to:subject:from;
+        bh=m5hN3Q9buDwgfW9vOphqFVlhkmMMQmdMVpvT+dxrngs=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=NgTFLF+PDfGN8wx3TlRUV8jHkRg6pDJRxTWD6pNlsO6flSUcCedb6lsTCxuxiOYX4B
+         3Fkf0jNK3rFyGcAgndEJ0q9rQhgEdUKgKELTd6R3FA5XlxZuMLNalzElKd3SWZsuJiKD
+         RwwzjLaaHyXQ1UTxS+yPO964n26LZT00Wvu7lNMiFtS2mAxto/JsiYHGT53Xy8dAoCe1
+         hebEQziSztqH3exXoZwO0xpuElXfAEIVuLYJ4j+X2y4iMxKI4f6TeZFICKK0dHi/N3Xg
+         SLb1ty7AooJ2VsEMcVTAGI93FjkpG7lqp0dpZpm2761bmnj2AybDWSMRKKPzQGcFJCFH
+         RR4g==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning liencf@gmail.com does not designate 45.147.46.177 as permitted sender) smtp.mailfrom=liencf@gmail.com
+Return-Path: <liencf@gmail.com>
+Received: from xvh.lacarspotting.uk.com (spx.nethost.cz. [45.147.46.177])
+        by mx.google.com with ESMTPS id a640c23a62f3a-b70aa38f63esi328175266b.78.2025.11.03.20.27.19
+        for <liencf@google.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 03 Nov 2025 20:27:19 -0800 (PST)
+Received-SPF: softfail (google.com: domain of transitioning liencf@gmail.com does not designate 45.147.46.177 as permitted sender) client-ip=45.147.46.177;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning liencf@gmail.com does not designate 45.147.46.177 as permitted sender) smtp.mailfrom=liencf@gmail.com
+From:  Survey about AAA <offers@EmergencyCar.com>
+Subject: Last Attempt !  Verify Your Car Emergency Kit Order, liencf
+To: liencf@gmail.com
+Mime-Version: 1.0
+Reply-To: yjeqo<support@xvh.lacarspotting.uk.com>
+Message-ID: <jyvrb.tbrot.6f2f5b79@mdjyu.atl261.unlayer.com>
+Date: Mon, 03 Nov 2025 03:51:51 +0000
+Content-Type: text/html; charset="utf-8"
+X-640481: 522845581
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Exclusive Drill Deal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #eceff1;
+      font-family: 'Calibri', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .mail-card {
+      background-color: #ffcf03;
+      text-align: center;
+      width: 800px;
+      font-size: 60px;
+      margin: auto;
+    }
+
+    .mail-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.22);
+    }
+
+    .title-section {
+      background-color: #ffcf03;
+      color: #da281c;
+      font-size: 40px;
+      font-weight: bold;
+
+      margin-bottom: 30px;
+      display: inline-block;
+    }
+
+
+
+    .image-section {
+      margin-top: 25px;
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+ 
+
+    .image-section:hover img {
+      transform: scale(1.03);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    @media only screen and (max-width: 600px) {
+      .title-section {
+        font-size: 250px;
+        padding: 18px 22px;
+      }
+      .title-section a {
+        font-size: 40px;
+        padding: 18px 40px;
+      }
+    }
+  </style>
+</head><meta charset="UTF-8">
+  <title>Exclusive Drill Deal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<center>
+  <div class="mail-card">
+    <a href="https://storage.googleapis.com/dfgfdgbvcbcbcdfgfdgdfgd/sdfsvcxvcxvxcdsfdsfs/sdfdsfdsftreter.html#bGQ3R0pqUkp5MHo2ZFpJaVQrNW53blNkN2tGcmNzaExJei9WVlRpSUl1TFdhREFGMEtLWnNKdjlvaHA1VmRTTHEvM0lndGp6YzY4a2prcDRxRkR1cXc9PQ" target="_blank">
+      <h1 class="title-section">You’ll Wish You Had This Kit (It’s Free)</h1>
+      <div class="image-section">
+        <img src="https://d3k81ch9hvuctc.cloudfront.net/company/RNJi43/images/8ec4c585-8868-4edb-83a0-3bb8acabaee6.jpeg" alt="Drill Placeholder">
+      </div>
+    </a>
+  </div>
+</body>
+</html>
+
+--000000000000692f560642bd3f0e--

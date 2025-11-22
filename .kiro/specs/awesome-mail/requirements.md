@@ -228,6 +228,27 @@
 4. WHEN 使用者同步郵件 THEN 系統 SHALL 顯示同步進度並支援背景同步
 5. WHEN 使用者在不同設備間切換 THEN 系統 SHALL 保持郵件狀態同步
 
+### Requirement 12.1（2025-11 更新：AI 背景處理與同步整合）
+
+**User Story:** 作為使用者，我希望 AI 功能在背景穩定運作且不影響同步與操作，並在需要時能優先處理我正在閱讀的郵件。
+
+#### Acceptance Criteria
+
+1. WHEN 系統處理 AI 相關任務（Title/Summary/Security）THEN 系統 SHALL 以背景優先權佇列執行，且任務資訊 SHALL 持久化以支援重啟續跑
+2. WHEN 使用者點擊某封郵件以閱讀 THEN 系統 SHALL 以最高優先權處理該郵件的 Title/Summary/Security 任務
+3. WHEN 任務需要 full content 而尚未具備 THEN 系統 SHALL 自動下載 full content 後再執行任務
+4. WHEN 使用者檢視同步狀態頁 THEN 系統 SHALL 顯示 AI 佇列儀表（pending/running/failed/completed 與最近錯誤）
+5. WHEN 修復同步進行中 THEN 系統 SHALL 僅在「捕捉起始 historyId」與「刪除相位」暫停增量同步，其餘時間增量同步 SHOULD 持續進行
+6. WHEN 手動 Refresh THEN 系統 SHALL 先執行增量同步，再執行 ALL MAIL 補齊；且僅在刪除相位暫停增量同步
+7. WHEN 發生 Gmail 429 THEN 系統 SHALL 使用降低 pageSize/batchSize 與退避機制，並在 partial failure 時保留 pageToken 以利重試
+
+### Requirement 12.2（2025-11 更新：修復同步與內容保護）
+
+1. WHEN 進行修復同步 THEN 系統 SHALL 不修改 hasFullContent 旗標（不做升降級），但在 metadata-only 更新時 SHALL 保留現有 htmlBody/body/attachments
+2. WHEN 非修復期間偵測到 full content 受損（僅剩 snippet/空值）THEN 系統 SHALL 將 hasFullContent 設為 false 以觸發開啟郵件時重新下載
+3. WHEN 手動開啟郵件且內容缺失 THEN 系統 SHALL 立即下載 full content 並更新 UI
+4. WHEN 估算遠端 ALL MAIL 總量 THEN 系統 SHALL 使用 users.getProfile(messagesTotal) 作為基準來源（不使用 messages.list 的 resultSizeEstimate）
+
 ### Requirement 13
 
 **User Story:** 作為多設備使用者，我希望我的設定、偏好和資料能在所有設備間同步，以便獲得一致的使用體驗

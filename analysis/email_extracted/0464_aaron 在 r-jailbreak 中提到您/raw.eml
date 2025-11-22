@@ -1,0 +1,2013 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:d801:b0:4d4:9739:2b92 with SMTP id of1csp38898mdb;
+        Tue, 4 Nov 2025 10:58:03 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGdThVgpMqJLJPfhmp0uke1rqTLinpBthqVXTk2teWi7JEtGxUeM9QfeAnoyCACGpRpyRQF
+X-Received: by 2002:a05:6e02:308c:b0:433:3095:9094 with SMTP id e9e14a558f8ab-433407c33d5mr5046825ab.18.1762282683079;
+        Tue, 04 Nov 2025 10:58:03 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762282683; cv=none;
+        d=google.com; s=arc-20240605;
+        b=LPU76QV2Fx1NEZo1dg1/5nhXuM0udwkYQnt6QFx5RFN5kh1XTuAvLtX5CuU6/pIkJu
+         9uu86UQJosDEL5Qx4SeIA60ieZPhasUjZMI/Aw9fpq1PCRv11U1Cv6l1WzJ3n1iJdlps
+         eBaeDPRBwku+ucA1YiMbGgih7Z7qMp5d/7GM26i+EDLu9nOG6zkEV3mXkM29E0+7C2/2
+         tVV1XfSdeePh0OCd7krff1lossbP95mJa8hLnrFKIOOlW6eaHaSR5MwUJR37ZQvlD7JC
+         DJGTDsl9W5DlIABwqjVX1uNWM+Rx6yID1iataIZutg12KgvNKVYdBvfPb2c0iSYLL8oF
+         Rpqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:mime-version:from:date
+         :content-transfer-encoding:dkim-signature:dkim-signature;
+        bh=eSaVO7zgKBkmThF78woyHBfXrgAQ5OHawN1GfyxKzS8=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=hK7Hd2k50bP8toXVWNTuNPLpelrvWxOzwtohNQvMV/lKxkPrEksulYdujx4Vep8ki7
+         6C5rq6UDmTGw/k92XF3sv6vxf3avr0Hf2zggf/MXMvLwaKGM+V5vE5hIH9f/tD3vtPud
+         XZ/OKB3rQAXosEfHKNSzz7MilZU0w+yrvH69nsivwIZ/cmDvFNRD/yNb21zkqJgW1eUc
+         EMAhWYokvukk5mfn/SZRP9tpiPi9mihkU5mwbcwXkKKs9/MW5rEyeLnsk9xN9ZJvzyzF
+         47gdfEXfDCEvKW+kg/ynbnD9+eQs0ZITO5Gxomlg7CvC0k4ynRj2Mfo56G8UNqXQ0GpJ
+         IlzA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@discord.com header.s=s1 header.b=UDEsybk6;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=BYEH+7AW;
+       spf=pass (google.com: domain of bounces+12551241-80ff-liencf=gmail.com@mail.discord.com designates 149.72.170.220 as permitted sender) smtp.mailfrom="bounces+12551241-80ff-liencf=gmail.com@mail.discord.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=discord.com
+Return-Path: <bounces+12551241-80ff-liencf=gmail.com@mail.discord.com>
+Received: from o21.ptr6759.discord.com (o21.ptr6759.discord.com. [149.72.170.220])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-4332c35df92si56644195ab.67.2025.11.04.10.58.02
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Nov 2025 10:58:03 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+12551241-80ff-liencf=gmail.com@mail.discord.com designates 149.72.170.220 as permitted sender) client-ip=149.72.170.220;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@discord.com header.s=s1 header.b=UDEsybk6;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=BYEH+7AW;
+       spf=pass (google.com: domain of bounces+12551241-80ff-liencf=gmail.com@mail.discord.com designates 149.72.170.220 as permitted sender) smtp.mailfrom="bounces+12551241-80ff-liencf=gmail.com@mail.discord.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=discord.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=discord.com;
+	h=content-transfer-encoding:content-type:date:from:mime-version:subject:
+	to:cc:content-type:date:feedback-id:from:subject:to;
+	s=s1; bh=eSaVO7zgKBkmThF78woyHBfXrgAQ5OHawN1GfyxKzS8=;
+	b=UDEsybk6a0LxZWHcr+uiMbGkTijwpofrQvmjG0eLITH7ebICqDjjhsU2Rr+jI+habPDZ
+	djy/O61tUNhHoC0GXYn1UP7uaU+SLDrkPcX4ueKVqHV4oq4d09zgj2PcHHV5/Y5tUT1HMl
+	yq3+49WSfVtvmeEjK4col11GeUql+U95TfQQ7zujwlXp+oSmZm+a74uetBzzhKpBvxYNsD
+	plMWSpD4DgffVkj0XkJiJrC63nw7FZYuUmiXHTFa4xPw9neFHZR/w8ZozY4pAWo7+2Gt2j
+	ZZuP0+9h7DBRAAfrmu3oM9L4lc54afiYDmU/bBANaS8VGQ6XtIPQR9JcYU2ehvEg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-transfer-encoding:content-type:date:from:mime-version:subject:
+	to:cc:content-type:date:feedback-id:from:subject:to;
+	s=smtpapi; bh=eSaVO7zgKBkmThF78woyHBfXrgAQ5OHawN1GfyxKzS8=;
+	b=BYEH+7AWw+8xIdJAQSdiONrB122fAVHWApGlreZjIZzOWRDUQN3Zbay/SxbuMm+SDzkl
+	MSecwfsokRmNDTEIKs5SQMxNRyLz5sTmLE+nsguZ+87jnZXM/yCJv2aoD8peZxVMTrwogN
+	LjtlPPXLqdNzoaVgya4TJ8AGTaRgceiGI=
+Received: by recvd-57475cd989-g8hhg with SMTP id recvd-57475cd989-g8hhg-1-690A4CB9-41
+	2025-11-04 18:58:01.456957178 +0000 UTC m=+7269217.693475130
+Received: from MTI1NTEyNDE (unknown)
+	by geopod-ismtpd-8 (SG) with HTTP
+	id ZKDX_szfRxKCHPhR9vvXzQ
+	Tue, 04 Nov 2025 18:58:01.449 +0000 (UTC)
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Date: Tue, 04 Nov 2025 18:58:01 +0000 (UTC)
+From: Discord <noreply@discord.com>
+Mime-Version: 1.0
+Message-ID: <ZKDX_szfRxKCHPhR9vvXzQ@geopod-ismtpd-8>
+Subject: aaron =?UTF-8?B?5ZyoIHIvSmFpbGJyZWFrIOS4reaPkOWIsOaCqA==?=
+X-SG-EID: 
+ =?us-ascii?Q?u001=2Encph=2Fx3Jw0NdHDwq6twCdiOEjRqduaW+3S=2FWXBRXzv62NXoGt1LlW8ZOp?=
+ =?us-ascii?Q?GajFHOcoLCAoXHl5PVmN06qMedr5FVH+rD=2FSixO?=
+ =?us-ascii?Q?jSX8ayXJwktd6cdSEdhI9rr3mkJR6Cjav4rdCCq?=
+ =?us-ascii?Q?RWOl=2FAqIubJDALCHZoIhfZJ67s8g4MPhcIUD09v?=
+ =?us-ascii?Q?Ig=2Fu8Yuw00sVOFRl3nUyWZ=2FlvIovlhxNSpMkPu0?=
+ =?us-ascii?Q?Q=2FjTwDAVhPn4roDnKBGbic=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BgEZWfumblglSWItMn4BIbpECHXPUpsUF9dSD?=
+ =?us-ascii?Q?p54mkUkw7dc3TrueKICO1=2F=2FoIAYYQ=3D=3D?=
+To: liencf@gmail.com
+X-Entity-ID: u001./CsYf4h0MhpT6Wn4uiuimw==
+
+
+    <!doctype html>
+    <html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-mic=
+rosoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office">
+      <head>
+        <title>
+         =20
+        </title>
+        <!--[if !mso]><!-->
+        <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+        <!--<![endif]-->
+        <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+        <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-sc=
+ale=3D1">
+        <style type=3D"text/css">
+          #outlook a { padding:0; }
+          body { margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-=
+size-adjust:100%; }
+          table, td { border-collapse:collapse;mso-table-lspace:0pt;mso-tab=
+le-rspace:0pt; }
+          img { border:0;height:auto;line-height:100%; outline:none;text-de=
+coration:none;-ms-interpolation-mode:bicubic; }
+          p { display:block;margin:13px 0; }
+        </style>
+        <!--[if mso]>
+        <noscript>
+        <xml>
+        <o:OfficeDocumentSettings>
+          <o:AllowPNG/>
+          <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+        </xml>
+        </noscript>
+        <![endif]-->
+        <!--[if lte mso 11]>
+        <style type=3D"text/css">
+          .mj-outlook-group-fix { width:100% !important; }
+        </style>
+        <![endif]-->
+       =20
+      <!--[if !mso]><!-->
+        <link href=3D"https://fonts.googleapis.com/css2?family=3DPoppins:it=
+al,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1=
+,300;1,400;1,500;1,600;1,700;1,800;1,900&display=3Dswap" rel=3D"stylesheet"=
+ type=3D"text/css">
+        <style type=3D"text/css">
+          @import url(https://fonts.googleapis.com/css2?family=3DPoppins:it=
+al,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1=
+,300;1,400;1,500;1,600;1,700;1,800;1,900&display=3Dswap);
+        </style>
+      <!--<![endif]-->
+
+   =20
+       =20
+    <style type=3D"text/css">
+      @media only screen and (min-width:480px) {
+        .mj-column-per-100 { width:100% !important; max-width: 100%; }
+.mj-column-per-8 { width:8% !important; max-width: 8%; }
+.mj-column-per-66 { width:66% !important; max-width: 66%; }
+.mj-column-per-26 { width:26% !important; max-width: 26%; }
+.mj-column-per-30 { width:30% !important; max-width: 30%; }
+.mj-column-per-70 { width:70% !important; max-width: 70%; }
+      }
+    </style>
+    <style media=3D"screen and (min-width:480px)">
+      .moz-text-html .mj-column-per-100 { width:100% !important; max-width:=
+ 100%; }
+.moz-text-html .mj-column-per-8 { width:8% !important; max-width: 8%; }
+.moz-text-html .mj-column-per-66 { width:66% !important; max-width: 66%; }
+.moz-text-html .mj-column-per-26 { width:26% !important; max-width: 26%; }
+.moz-text-html .mj-column-per-30 { width:30% !important; max-width: 30%; }
+.moz-text-html .mj-column-per-70 { width:70% !important; max-width: 70%; }
+    </style>
+   =20
+ =20
+        <style type=3D"text/css">
+       =20
+       =20
+
+    @media only screen and (max-width:480px) {
+      table.mj-full-width-mobile { width: 100% !important; }
+      td.mj-full-width-mobile { width: auto !important; }
+    }
+ =20
+        </style>
+        <style type=3D"text/css">* {
+  font-family: Poppins, Helvetica Neue, Helvetica, Arial, Lucida Grande, sa=
+ns-serif !important;
+  }
+
+  h2 {
+  font-weight: 700 !important;
+  font-size: 20px;
+  }
+
+  ul {
+  margin-bottom: 24px !important;
+  }
+
+  h1, h2, h3 {
+  color: #060607 !important;
+  }
+
+  h3 {
+  font-weight: 700 !important;
+  }
+
+  div, li {
+  color: #2E3338;
+  }
+
+  p, span {
+  font-size: 14px;
+  line-height: 20px;
+  color: #4F5660 !important;
+  }
+
+  .no-style {
+  font-size: unset;
+  line-height: unset;
+  color: unset !important;
+  }
+
+  .cta-button a {
+  padding: 10px !important;
+  font-size: 14px !important;
+  display: block !important; /* Makes the button fully clickable, not just =
+the text */
+  }
+
+  .download-button a {
+  padding: 8px 24px !important;
+  font-size: 14px !important;
+  }
+
+  .cta-button {
+  margin: 24px 0px !important;
+  }
+
+  .help-text p {
+  font-size: 12px;
+  margin: 0;
+  }
+
+  .footer *:not(a) {
+  color: #747F8D !important;
+  }
+
+  .round-border {
+  overflow: hidden;
+  border-radius: 8px;
+  }
+
+  .social-media div { text-align: center !important; }
+  .social-media-col { width: 40px !important; }</style>
+        <!-- prettier-ignore -->
+      </head>
+      <body style=3D"word-spacing:normal;background-color:#F9F9F9;">
+       =20
+    <div style=3D"display:none;font-size:1px;color:#ffffff;line-height:1px;=
+max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
+     =20
+    </div>
+ =20
+       =20
+      <div
+         style=3D"background-color:#F9F9F9;"
+      >
+       =20
+     =20
+      <!--[if mso | IE]><table align=3D"center" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"width:604px=
+;" width=3D"604" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-h=
+eight-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"margin:0px auto;max-width:604px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0px;text-alig=
+n:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><![endif]-->
+                 =20
+      <style type=3D"text/css">
+    html,
+    body,
+    * {
+      -webkit-text-size-adjust: none;
+      text-size-adjust: none;
+    }
+    a {
+      color: #1eb0f4;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+          <!--[if mso | IE]><tr><td class=3D"" width=3D"604px" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:604px;" width=3D"604" bgcolor=3D"transpa=
+rent" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:=
+exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:604px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:20px 0px;text=
+-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:604px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0;word-b=
+reak:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:140px;">
+             =20
+        <a
+           href=3D"https://click.discord.com/ls/click?upn=3Du001.a0NJ38DJJG=
+1sulNx5wS1jvdSQ2XvqHIrLV9yv-2FClqGMsQ561nXpQGbTcquM2dU3XIjjN_NsZBigbiferOVf=
+Yn15JOBPjoc3oYIL6oQ-2BWZ2bk6w-2BTZFekbHSC-2B-2BsXTaLL5BAq8WZADv69dyWRspmUPi=
+FWixtWJt6ViPJB-2F9YLhY3meb0A8auyfHKO9t4eNeKAT3biQSmXwtGV8xIiYX4b3o57scTxMjY=
+HO5k2V-2B-2B2UBNOQcITU4roPvKxCWoaOVUljBdpT99ool80pYNcJZrmh21F-2Fm-2FuWrPw13=
+BIIdP3sPpMkbBGbXjNe0KV6lTktoTMzVBHU" target=3D"_blank"
+        >
+         =20
+      <img
+         height=3D"38" src=3D"https://cdn.discordapp.com/email_assets/59242=
+3b8aedd155170617c9ae736e6e7.png" style=3D"border:0;display:block;outline:no=
+ne;text-decoration:none;height:38px;width:100%;font-size:13px;" width=3D"14=
+0"
+      />
+   =20
+        </a>
+     =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"604px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:604px;" width=3D=
+"604" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:=
+exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"margin:0px auto;max-width:604px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0;text-align:=
+center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"align-center-outlook"=
+ width=3D"604px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" class=3D"align-center-outlook" role=3D"presentation" style=
+=3D"width:604px;" width=3D"604" bgcolor=3D"#ffffff" ><tr><td style=3D"line-=
+height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  class=3D"align-center" style=3D"background:#ffffff;background-c=
+olor:#ffffff;margin:0px auto;border-radius:8px;max-width:604px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#ffffff;background-color:#fffff=
+f;width:100%;border-radius:8px;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:20px 20px 0;t=
+ext-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:564px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0;word-b=
+reak:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:160px;">
+             =20
+      <img
+         height=3D"77" src=3D"https://cdn.discordapp.com/email_assets/b8b45=
+946cdb48e362c48e0d7dc704f23.png" style=3D"border:0;display:block;outline:no=
+ne;text-decoration:none;height:77;width:100%;font-size:13px;" width=3D"160"
+      />
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:12px;wor=
+d-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:Poppins, Helvetica Neue, Helvetica, Arial, Lu=
+cida Grande, sans-serif;font-size:20px;font-weight:bold;line-height:1;text-=
+align:center;color:#000000;"
+      >=E6=82=A8=E6=9C=89 5+ =E5=89=87=E6=96=B0=E8=A8=8A=E6=81=AF</div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"604px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:604px;" width=3D=
+"604" bgcolor=3D"#ffffff" ><tr><td style=3D"line-height:0px;font-size:0px;m=
+so-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#ffffff;background-color:#ffffff;margin:0px=
+ auto;max-width:604px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#ffffff;background-color:#fffff=
+f;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:12px 24px;tex=
+t-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:556px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0;word-b=
+reak:break-word;"
+                >
+                 =20
+      <p
+         style=3D"border-top:solid 1px #f0f2f4;font-size:1px;margin:0px aut=
+o;width:100%;"
+      >
+      </p>
+     =20
+      <!--[if mso | IE]><table align=3D"center" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" style=3D"border-top:solid 1px #f0f2f4;font-size:1px;m=
+argin:0px auto;width:556px;" role=3D"presentation" width=3D"556px" ><tr><td=
+ style=3D"height:0;line-height:0;"> &nbsp;
+</td></tr></table><![endif]-->
+   =20
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+        <!-- Messages -->
+          <!--[if mso | IE]><tr><td class=3D"" width=3D"604px" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:604px;" width=3D"604" bgcolor=3D"#ffffff=
+" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exac=
+tly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#ffffff;background-color:#ffffff;margin:0px=
+ auto;max-width:604px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#ffffff;background-color:#fffff=
+f;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:12px 24px;tex=
+t-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:middle;width:44.48px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-8 mj-outlook-group-fix" style=3D"font-size:=
+0px;text-align:left;direction:ltr;display:inline-block;vertical-align:middl=
+e;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:middle;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0;word-b=
+reak:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:40px;">
+             =20
+      <img
+         height=3D"40" src=3D"https://cdn.discordapp.com/embed/avatars/3.pn=
+g" style=3D"border:0;border-radius:50%;display:block;outline:none;text-deco=
+ration:none;height:40;width:100%;font-size:13px;" width=3D"40"
+      />
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td><td class=3D"" style=3D"vertical-align:mid=
+dle;width:366.96px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-66 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:midd=
+le;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"vertical-align:middle;padding:10px 16px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0;word-b=
+reak:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:Poppins, Helvetica Neue, Helvetica, Arial, Lu=
+cida Grande, sans-serif;font-size:18px;font-weight:500;line-height:1;text-a=
+lign:center;color:#000000;"
+      >announcements</div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td><td class=3D"" style=3D"vertical-align:mid=
+dle;width:144.56px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-26 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:midd=
+le;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:middle;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"font=
+-size:0px;padding:0;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"#5865f2" role=3D"presentation" s=
+tyle=3D"border:none;border-radius:30px;cursor:auto;mso-padding-alt:8px 18px=
+;background:#5865f2;" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://click.discord.com/ls/click?upn=3Du001.a0NJ=
+38DJJG1sulNx5wS1jsNn3XBzoBrwnbnMEAedjU0nzLYV6l1PvncEDfi6kNXu1awb4yg-2BPuPcD=
+7YZArsGhkET-2B3AOTrhWkko4f41L-2FDdWw13tSp4UCHjnspNe2l3B-2BFHpVfnAO5kyTM17Dc=
+uOR7agLU77gtW1RYAuTHDdP-2B8BQmoyFMSKkEc6UY1-2BVlg0339Msw6cxX7u9F1sK2FyLOhrK=
+xmkQKIUJAC2gGUUhUWrOA2MjexGJqYx9W8JvuDm4DkAOjWIDkjKvOdLQopiACpezeg0Xaw0pJSs=
+5aopdZJ7aLDPoUORLMXZUM1CBv8y-2B4DjXRVVMjYV-2F8BYcrPWpoeCWTNACXBhJPvhJV16yRR=
+ybOinW3rjqfkiovE0eI8Yh5rgp05n0xEnxnihReEfaN41WZn6Z92mZfnD7VFqRGd4jejiwTGjhr=
+i3tZCMahPR3nZyPljoN-2Bv-2Bd-2BOHzvUcNg8dLQjTtIXqgxvJ-2FF1yT79YNGhGjQ2C75XIU=
+buxtPCGQ-2B7n-2BnBWXbRkBBWHcQP6fP4U0x2eZK1r8I8Pp-2BAigpG6o4LH9G3Y6iUe2cd8E8=
+OJisLnOkbX9PEL3Awah7qfUPpn3yO6XHvT5cCgNgQzpkoBAXMg8pbm7-2FDOrR6mRiBlWkJOr2W=
+JiCdKC3vLQd9P1EVMOi835zxK4RdjuPTi-2FuuzZgYFQvdu-2BbsKqWfdvOWCMP3aIiDoeQiBOo=
+EWgqGrqmG61Fjmfp09UjtJQUDfgK7942PunFodabcrtkRoeVjOLnYfAh9F3fxdOq9AvSwKAxYgM=
+nV-2FYu-2BMj4iwzWGYvJy47DoPvaqurbbgs8EMIocUVJNalHRDvaUlr72F9O-2FpEhYoNsclGg=
+b-2B7-2FJi3YpDmY5NJvCEaeakbcOCZDahoK7cpwpuUA0KIuXqk-2F09o7KnAAwrDTqEg4NAAji=
+uXO9BXzcTBp0D-2F4u1besR6Mlg8kBzTUVEvna2dlJruIa0D9RTSSt7ashb6qUuMr0ddGM8ly6x=
+8XRugAozkX3VDpVgwL-2FRKyu3qg9lwcfQGcn2AHnf-2B2dX0mCAPxSo0ObtrwI-2Bs6qw9okLv=
+Pc3PHd1-2FBlyGsJzcjHlTu41U5qchSIdKLOlJsm8UI5O55uqCl53gvM0VEkwe4YskP-2FwYy-2=
+B3zCfyUUNNMUD9u7Nhl3rZg5Xj8X2y-2BY-2FY6o8pRT3eCiu2mJzDul6yF6W7Pl12NeKm9S6IU=
+9dFnop0EQ1QjDN9VHcbj7YS00bnGlTqr8QW0YfCfKcRabNl0ho0IKhQxtRY-2B9-2FOGqZQcv-2=
+F5fBb4Q-2BOdHWcgbmsN1NERiXUxC3POaSZGHvb9lJ5ujnScfYMr6RVFsmL4G1ZuTRQ-2FwKJvg=
+smbVUhdErRl4t-2BwYEAqOhM0uBJEmgLpmBAyM-2FqK118Sqr8XeiRpJiHEKpudiMZlONu6si2N=
+lyQxt-2FV6Z0rqmEwcchgVT8VgR-2FoIaW20CXoikfp4wh05A7-2BpIhaJ_NsZBigbiferOVfYn=
+15JOBPjoc3oYIL6oQ-2BWZ2bk6w-2BTZFekbHSC-2B-2BsXTaLL5BAq8pS8HhQC60L0k4Mns3Kq=
+T8yy9Gews-2BuNhWeyh3onW9D0-2Br7AWckwk8VuWJofLFACc0uKx59RsnzQU9Fn7NZVN41flvZ=
+nKZXHPBGWP0eOnOXdWJOAb-2BRDrPrUBpKA1EQTMGGoMscoUYy85C-2BHGa27WhKEYQmIUlo3mV=
+gA3hF89Sy0U1nPCgjGUbDwU8XHEgACN" style=3D"display:inline-block;background:#=
+5865f2;color:white;font-family:Poppins, Helvetica Neue, Helvetica, Arial, L=
+ucida Grande, sans-serif !important;font-size:13px;font-weight:600;line-hei=
+ght:16px;margin:0;text-decoration:none;text-transform:none;padding:8px 18px=
+;mso-padding-alt:0px;border-radius:30px;" target=3D"_blank"
+              >
+                =E6=AA=A2=E8=A6=96=E8=A8=8A=E6=81=AF
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+       =20
+          <!--[if mso | IE]><tr><td class=3D"" width=3D"604px" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:604px;" width=3D"604" bgcolor=3D"#ffffff=
+" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exac=
+tly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#ffffff;background-color:#ffffff;margin:0px=
+ auto;max-width:604px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#ffffff;background-color:#fffff=
+f;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:12px 24px;tex=
+t-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:556px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0;word-b=
+reak:break-word;"
+                >
+                 =20
+      <p
+         style=3D"border-top:solid 1px #f0f2f4;font-size:1px;margin:0px aut=
+o;width:100%;"
+      >
+      </p>
+     =20
+      <!--[if mso | IE]><table align=3D"center" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" style=3D"border-top:solid 1px #f0f2f4;font-size:1px;m=
+argin:0px auto;width:556px;" role=3D"presentation" width=3D"556px" ><tr><td=
+ style=3D"height:0;line-height:0;"> &nbsp;
+</td></tr></table><![endif]-->
+   =20
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+       =20
+          <!--[if mso | IE]><tr><td class=3D"" width=3D"604px" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:604px;" width=3D"604" bgcolor=3D"#ffffff=
+" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exac=
+tly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#ffffff;background-color:#ffffff;margin:0px=
+ auto;max-width:604px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#ffffff;background-color:#fffff=
+f;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:12px 24px;tex=
+t-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:middle;width:44.48px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-8 mj-outlook-group-fix" style=3D"font-size:=
+0px;text-align:left;direction:ltr;display:inline-block;vertical-align:middl=
+e;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:middle;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0;word-b=
+reak:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:40px;">
+             =20
+      <img
+         height=3D"40" src=3D"https://cdn.discordapp.com/embed/avatars/2.pn=
+g" style=3D"border:0;border-radius:50%;display:block;outline:none;text-deco=
+ration:none;height:40;width:100%;font-size:13px;" width=3D"40"
+      />
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td><td class=3D"" style=3D"vertical-align:mid=
+dle;width:366.96px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-66 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:midd=
+le;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"vertical-align:middle;padding:10px 16px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0;word-b=
+reak:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:Poppins, Helvetica Neue, Helvetica, Arial, Lu=
+cida Grande, sans-serif;font-size:18px;font-weight:500;line-height:1;text-a=
+lign:center;color:#000000;"
+      >announcements</div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td><td class=3D"" style=3D"vertical-align:mid=
+dle;width:144.56px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-26 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:midd=
+le;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:middle;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"font=
+-size:0px;padding:0;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"#5865f2" role=3D"presentation" s=
+tyle=3D"border:none;border-radius:30px;cursor:auto;mso-padding-alt:8px 18px=
+;background:#5865f2;" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://click.discord.com/ls/click?upn=3Du001.a0NJ=
+38DJJG1sulNx5wS1jsNn3XBzoBrwnbnMEAedjU0nzLYV6l1PvncEDfi6kNXu1awb4yg-2BPuPcD=
+7YZArsGhkET-2B3AOTrhWkko4f41L-2FDdWw13tSp4UCHjnspNe2l3B-2BFHpVfnAO5kyTM17Dc=
+uOR7agLU77gtW1RYAuTHDdP-2B8BQmoyFMSKkEc6UY1-2BVlg0339Msw6cxX7u9F1sK2FyLOhrK=
+xmkQKIUJAC2gGUUhUWrOA2MjexGJqYx9W8JvuDm4DkAOjWIDkjKvOdLQopiACpezeg0Xaw0pJSs=
+5aopdZJ7aLDPoUORLMXZUM1CBv8y-2B4DjXRVVMjYV-2F8BYcrPWpoeCWTNACXBhJPvhJV16yRQ=
+Clk1GtY9LFSXN1cbglD8euLdbbiiz0smS-2B-2B-2B2e2grQGaANlnHyXI7-2BXUVd4Ys-2F6Og=
+8wcVLbfnCpj8SaLLQkSYEF0rJ-2FIhckCCbpo1IhyYPVoCvKFTb7G2zZNN-2FJe7SVRg03rLT9-=
+2FIUlE1UltXP6Bgqc7rqIiHHIW-2FULONPdEpsBBe5BLpTlY3w-2B3a7xhJ7Et5Q-2BTlnXquJG=
+3CiwmHQpthVjHTqKJ5udrO1YO0lIbKrYVsT6Eqc1-2BZ45RH5JaT4AGhbVy-2BKaEDUKEJ-2FdG=
+vXD50VNImj5Z7-2B0TbZntzHhNSa-2F2krF12-2FNOZrqBnbiwjZjJt9bhrDc5Q8JxMo7gFfIlD=
+7Fh6C2ysssKJEmD9DhNOZHMCwXR1ShLvFq-2Blao42HJB-2FJSTnyeqfXgWmVaTAYWKlD-2BTSX=
+Q0WXEUsu-2FoMHLmViZGp1pViv1nIjPlsZ8fopjq9AlwiAjAJRkrA0lxW8a0nohKZZSe5F1S9Gp=
+VUQxSbTOIxzXeevYPy6-2FiZA3Na-2FM3n1wS80LuIwENFwQYp5KlfGgDvNMk-2BIWr4NJfMiwP=
+IuASDhvm9Hkc5dRpk4dgynr-2F4tr11UXWPbnOBU6I2QDqfs4e8wV-2BLvqZS-2FblaaIPGtfFp=
+AWfX7tmgjCYeklRrJzRAcYSfw0Jk9BJxXYh9SA0EIESJzYAsEtQwcM1c7n-2FoOzqHGZNSvp-2B=
+3uWebkyKy7zdXoAWzBof5q6H7sfZmF4dCCHpJm-2FpjsFeEOhEjKfTI4XFuR5KTjzZ7VzRKTiu-=
+2B2bWY2CWxaeYzKUzsYc7QpOCArP7kevyvhZ9NUdKEaZ9nWSOmgLlfi0TgopWSNPWFK-2F3l-2B=
+R9XiTA0qFxH0ksSySaWyCqEpvrCNCug1nIj3Bnu5trGoWRa-2BGnwfxKtCxOFgq5fgitBMm4SVY=
+cOrr6hnU2vmB1MkwFFBHu8a5YV8tHecNDOomD-2FML7h8Q4owpQhoHU7ziy6WOsYcmeTei3lq9a=
+JZgboNtwkXQWnGhcoQ2yZSBM9l2mhpckjFo-2B-2FV-2BRv-2BH-2BCTUcvQFV9jGy4UBVNAZJd=
+3bJJDS-2BMRXsWGFTZFVLpwmVbHMWJm1GtPrml0zHDvUs-2BqSfbhqEFirKFQT-2FgBBkziJbb_=
+NsZBigbiferOVfYn15JOBPjoc3oYIL6oQ-2BWZ2bk6w-2BTZFekbHSC-2B-2BsXTaLL5BAq8PVJ=
+WK2GcZwuHYyn59xneLL0ky5OAhpLrs2jx1NojtiER1pc0udopNxfQJXLTusdpSG6MJWYakAe9S0=
+DeWBNlDRMJXZW8-2FHhDsA4-2FDjwVYa7gDq5sYtOAkzZ9r7HuVBi36V9ALDGOX1X5kic1bwDgj=
+lLc6EG9-2FEDlf60IF-2F37DOL04sFKyqdZiwCG6Ny715c3" style=3D"display:inline-bl=
+ock;background:#5865f2;color:white;font-family:Poppins, Helvetica Neue, Hel=
+vetica, Arial, Lucida Grande, sans-serif !important;font-size:13px;font-wei=
+ght:600;line-height:16px;margin:0;text-decoration:none;text-transform:none;=
+padding:8px 18px;mso-padding-alt:0px;border-radius:30px;" target=3D"_blank"
+              >
+                =E6=AA=A2=E8=A6=96=E8=A8=8A=E6=81=AF
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+       =20
+          <!--[if mso | IE]><tr><td class=3D"" width=3D"604px" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:604px;" width=3D"604" bgcolor=3D"#ffffff=
+" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exac=
+tly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#ffffff;background-color:#ffffff;margin:0px=
+ auto;max-width:604px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#ffffff;background-color:#fffff=
+f;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:12px 24px;tex=
+t-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:556px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0;word-b=
+reak:break-word;"
+                >
+                 =20
+      <p
+         style=3D"border-top:solid 1px #f0f2f4;font-size:1px;margin:0px aut=
+o;width:100%;"
+      >
+      </p>
+     =20
+      <!--[if mso | IE]><table align=3D"center" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" style=3D"border-top:solid 1px #f0f2f4;font-size:1px;m=
+argin:0px auto;width:556px;" role=3D"presentation" width=3D"556px" ><tr><td=
+ style=3D"height:0;line-height:0;"> &nbsp;
+</td></tr></table><![endif]-->
+   =20
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+       =20
+          <!--[if mso | IE]><tr><td class=3D"" width=3D"604px" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:604px;" width=3D"604" bgcolor=3D"#ffffff=
+" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exac=
+tly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#ffffff;background-color:#ffffff;margin:0px=
+ auto;max-width:604px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#ffffff;background-color:#fffff=
+f;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:12px 24px;tex=
+t-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:middle;width:44.48px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-8 mj-outlook-group-fix" style=3D"font-size:=
+0px;text-align:left;direction:ltr;display:inline-block;vertical-align:middl=
+e;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:middle;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0;word-b=
+reak:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:40px;">
+             =20
+      <img
+         height=3D"40" src=3D"https://cdn.discordapp.com/icons/649459001951=
+649812/7ff393d5b102644a3e551f0fe1312ed9.png" style=3D"border:0;border-radiu=
+s:50%;display:block;outline:none;text-decoration:none;height:40;width:100%;=
+font-size:13px;" width=3D"40"
+      />
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td><td class=3D"" style=3D"vertical-align:mid=
+dle;width:366.96px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-66 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:midd=
+le;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"vertical-align:middle;padding:10px 16px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0;word-b=
+reak:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:Poppins, Helvetica Neue, Helvetica, Arial, Lu=
+cida Grande, sans-serif;font-size:18px;font-weight:500;line-height:1;text-a=
+lign:center;color:#000000;"
+      >#=F0=9F=A4=96android-app (=E5=B0=8F=E8=AA=AA=E7=8B=82=E4=BA=BA=E7=84=
+=A1=E6=AD=A1=E4=B8=8D=E8=AA=AA)</div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td><td class=3D"" style=3D"vertical-align:mid=
+dle;width:144.56px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-26 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:midd=
+le;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:middle;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"font=
+-size:0px;padding:0;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"#5865f2" role=3D"presentation" s=
+tyle=3D"border:none;border-radius:30px;cursor:auto;mso-padding-alt:8px 18px=
+;background:#5865f2;" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://click.discord.com/ls/click?upn=3Du001.a0NJ=
+38DJJG1sulNx5wS1jsNn3XBzoBrwnbnMEAedjU0nzLYV6l1PvncEDfi6kNXu1awb4yg-2BPuPcD=
+7YZArsGhkET-2B3AOTrhWkko4f41L-2FDdWw13tSp4UCHjnspNe2l3B-2BFHpVfnAO5kyTM17Dc=
+uOR7agLU77gtW1RYAuTHDdP-2B8BQmoyFMSKkEc6UY1-2BVlg0339Msw6cxX7u9F1sK2FyLOhrK=
+xmkQKIUJAC2gGUUhUWrOA2MjexGJqYx9W8JvuDm4DkAOjWIDkjKvOdLQopiACpezeg0Xaw0pJSs=
+5aopdZJ7aLDPoUORLMXZUM1CBv8y-2B4DjXRVVMjYV-2F8BYcrPWpoeCWTNACXBhJPvhJV16yRS=
+kbsYaNL48m36kKLpzofmE4ejNIhLfQIjHVkbGAK2nwhloEszXLifDs9pclDLIu-2Fr6XseyZqRW=
+W8cpFJ66v-2FoSs3R14f4vozp-2FCpN8EgmFx95zXW9vSgLxPDRl85nRcSWqZj5zxVbjdetU5NO=
+K1G8mKMsUkNyZFo628uEWKm1SZLKqIotqWKEzcym3gLFBdiHfWOYXE4qLbfxZRwQvbQKTW4Kt4-=
+2FBV4JvqF-2BwL86H3iP1aLqGHumASYTlCSbsMPlsmpxtVik-2F7Rv7EJNL0rLcLrzg1Z6GN-2F=
+wDLTEEPQOrfDq5-2FyfkosCnf0cOITajJl-2Ba0d8hpqXsGPtNx7pJEMmicyuc69ARtMxaPFias=
+UWH7k2WDFGMgmg7e43REvLJ1Hv5JeyEbY6jKeHdWpx7PYc-2BBbm52UzPbpuGtq6qwrZLOnZAo9=
+WaC1D2No0Jew-2FdUY0EZKOUJ1WOdnx-2BGLfVP6G2s1sRQfV1TkimpFZ60rv7jPMHDWm30-2Fd=
+OhsmO-2BrnouWTkAMxd-2Fs51jB-2FEOoVJmluQAFyq2TtnIgv97DEO5fJn3zcNEhHl-2F-2BPD=
+71ThBpxNLIAtvAUCO-2FTkVKfVKo-2FoeQWGdsobh-2FAAT-2Bb6Y5j8JmbTcxwQCfN-2BAlxts=
+GF4f-2BVdF199sDiY2lTJZ-2FTFRYjPl-2FimAo8vqKtjN0H4iugsla5ZuOyaKdJkBXx-2BxJsW=
+E7fjQX7bvp6X1Xbh8-2BMJQhGaHkDZqEwqya1rcf04HfMRKkcNvSalPJEly1EdRx9EEKuWqnadq=
+MPB6xbdhJJLh2hgQpsIvAzu0E5FV6g2JklLEOcUlH8W5aXF3edYeYT-2BxnVY1kazFVWxrMw-2F=
+p5vF9Is6jJHetNXGU1ezSTuELgxPqQxw7o72doR7t0R7luvI1gR-2Bq7wVIZ7BX1Vty6IM7qQl-=
+2BUroeDTmaLVtK8h7wmR0oADN7smHL0wj37dK6o20-2BpEtqaciCBJ0oUue2hluWFfNlOjyPQAT=
+yWPIMbcki6fqw68vkTGcqyz8rGyfUqa7rre6-2F2OQG-2F0bW6dgZ7yslg9j-2B1V9SQY7fPV5R=
+Qm4SJdHbyHo3Nc-2BHUa7tMcEPNWs5vBv5TWuvvrNQPbQRngtTWDEPad4UFvAA_NsZBigbiferO=
+VfYn15JOBPjoc3oYIL6oQ-2BWZ2bk6w-2BTZFekbHSC-2B-2BsXTaLL5BAq8HDBTqQgq0nTZsRL=
+OuJBhgegl-2BL3F89bMwvLvmBMwuybzAIdANxJfmkbhUODRFwvBf54VRyg-2FLFq6Fgs-2BsSlj=
+zJdI8yFR0qtgBWmvCzDLE0Xksyst9i9-2BU8qslnLhP1L0N-2BoXmkJ2w3hBfd3Hrv-2Fht1pQz=
+zabzI3NwRKGCoWuF4Yl1vxWJguEM-2F07lrqdLFeQ" style=3D"display:inline-block;ba=
+ckground:#5865f2;color:white;font-family:Poppins, Helvetica Neue, Helvetica=
+, Arial, Lucida Grande, sans-serif !important;font-size:13px;font-weight:60=
+0;line-height:16px;margin:0;text-decoration:none;text-transform:none;paddin=
+g:8px 18px;mso-padding-alt:0px;border-radius:30px;" target=3D"_blank"
+              >
+                =E6=AA=A2=E8=A6=96=E8=A8=8A=E6=81=AF
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+       =20
+          <!--[if mso | IE]><tr><td class=3D"" width=3D"604px" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:604px;" width=3D"604" bgcolor=3D"#ffffff=
+" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exac=
+tly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#ffffff;background-color:#ffffff;margin:0px=
+ auto;max-width:604px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#ffffff;background-color:#fffff=
+f;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:12px 24px;tex=
+t-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:556px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0;word-b=
+reak:break-word;"
+                >
+                 =20
+      <p
+         style=3D"border-top:solid 1px #f0f2f4;font-size:1px;margin:0px aut=
+o;width:100%;"
+      >
+      </p>
+     =20
+      <!--[if mso | IE]><table align=3D"center" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" style=3D"border-top:solid 1px #f0f2f4;font-size:1px;m=
+argin:0px auto;width:556px;" role=3D"presentation" width=3D"556px" ><tr><td=
+ style=3D"height:0;line-height:0;"> &nbsp;
+</td></tr></table><![endif]-->
+   =20
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"604px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:604px;" width=3D=
+"604" bgcolor=3D"#ffffff" ><tr><td style=3D"line-height:0px;font-size:0px;m=
+so-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#ffffff;background-color:#ffffff;margin:0px=
+ auto;border-radius:8px;max-width:604px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#ffffff;background-color:#fffff=
+f;width:100%;border-radius:8px;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0 24px 12px;t=
+ext-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:556px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"left" style=3D"font-size:0px;padding:0px 24px 0=
+px 0px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:Poppins, Helvetica Neue, Helvetica, Arial, Lu=
+cida Grande, sans-serif;font-size:13px;line-height:20px;text-align:left;col=
+or:#000000;"
+      ><p>=E9=9C=80=E8=A6=81=E5=B9=AB=E5=BF=99=E5=97=8E=EF=BC=9F<a href=3D"=
+https://click.discord.com/ls/click?upn=3Du001.a0NJ38DJJG1sulNx5wS1jjzYylRfR=
+1dTnRDiglN63M-2BMCClfzJfrsZtMYvRMSOpubXgqn3QOXIgl2Qki904cEg-3D-3DCXaY_NsZBi=
+gbiferOVfYn15JOBPjoc3oYIL6oQ-2BWZ2bk6w-2BTZFekbHSC-2B-2BsXTaLL5BAq8j7HOsToO=
+pfFIivJuG6wUvUr2xecl5-2B7d3ON-2FD-2Fe5qi9rHCCKjD58KFNY29QbL-2BTQiUxFxNlz8EW=
+o6mVqIwvq5iY5I-2F-2FmwoszrVnPXgKBJfbXdWkRSp2VVfsRLbRKeL8HmavgZ-2B3nenmByclp=
+SEilPz72OTgjdo9mOaG8r0qFsZroXlf2AlGzqIKMsusTYnTh" style=3D"font-family: Hel=
+vetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;color: #5865f2;">=
+=E8=81=AF=E7=B5=A1=E6=88=91=E5=80=91=E7=9A=84=E6=94=AF=E6=8F=B4=E5=9C=98=E9=
+=9A=8A</a>=E6=88=96=E5=9C=A8 X =E4=B8=8A<a href=3D"https://click.discord.co=
+m/ls/click?upn=3Du001.a0NJ38DJJG1sulNx5wS1jj3tSd0wO7l0RMa-2Fg4oVt1Y-3DUx53_=
+NsZBigbiferOVfYn15JOBPjoc3oYIL6oQ-2BWZ2bk6w-2BTZFekbHSC-2B-2BsXTaLL5BAq8Hdr=
+HUqEL6OxBkAatUrVCWv8sCXxvh0ArgGSyVQOWN9YLAWrk9iMQGidPhdbzozuWr31QU13LjurBES=
+-2Bj6gKW99Ne1laQRJyIzDz-2FuvUt66hqFzus-2BYTshaOD7Go5mnuOnCOu0wspHpcxy7EoMWN=
+xDK5oLWeG3Eob0jOWbO4VlMUm5PEDe5E0WVTP1vdjVOIf" style=3D"font-family: Helvet=
+ica Neue, Helvetica, Arial, Lucida Grande, sans-serif;color: #5865f2;">@dis=
+cord</a>=E8=81=AF=E7=B5=A1=E6=88=91=E5=80=91=E3=80=82<br>
+=E6=83=B3=E7=B5=A6=E6=88=91=E5=80=91=E6=84=8F=E8=A6=8B=E5=9B=9E=E9=A5=8B=E5=
+=97=8E=EF=BC=9F=E5=89=8D=E5=BE=80<a href=3D"https://click.discord.com/ls/cl=
+ick?upn=3Du001.a0NJ38DJJG1sulNx5wS1joI9Fqppk-2F0J2T5Y6xRzgVmFjYYBJG4huhnJGb=
+yj2T7mIGh-_NsZBigbiferOVfYn15JOBPjoc3oYIL6oQ-2BWZ2bk6w-2BTZFekbHSC-2B-2BsXT=
+aLL5BAq8-2FocEDgBnf4mXf5cFbkxIGnOrUVQUOv7yXijXUjr6PvFuz2v2t72-2FxQGUt1irF-2=
+F-2BJ2cqcE1-2Bt4po4jXTO-2Btr5yhB32HqaxejVPV1tQ-2FFaSAfSPHjLgA4G18VHc-2FUX44=
+75disDC4k51MFkOOEGOW6l4FcGaFZ2XjCXyMJofPZCv-2BBAgLyIdFf9qtwyStSOhH81" style=
+=3D"font-family: Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-seri=
+f;color: #5865f2;">=E6=84=8F=E8=A6=8B=E5=9B=9E=E9=A5=8B=E7=B6=B2=E7=AB=99</=
+a>=E5=91=8A=E8=A8=B4=E6=88=91=E5=80=91=E6=82=A8=E7=9A=84=E6=83=B3=E6=B3=95=
+=E3=80=82</p>
+</div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"604px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:604px;" width=3D=
+"604" bgcolor=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0=
+px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:604px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0;text-align:=
+center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:604px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   style=3D"font-size:0px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"height:20px;line-height:20px;"
+      >&#8202;</div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"shadow=
+-outlook" width=3D"604px" ><table align=3D"center" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" class=3D"shadow-outlook" role=3D"presentation" sty=
+le=3D"width:604px;" width=3D"604" bgcolor=3D"#ffffff" ><tr><td style=3D"lin=
+e-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  class=3D"shadow" style=3D"background:#ffffff;background-color:#=
+ffffff;margin:0px auto;border-radius:8px;max-width:604px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#ffffff;background-color:#fffff=
+f;width:100%;border-radius:8px;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:20px;text-ali=
+gn:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:middle;width:169.2px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-30 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:midd=
+le;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:middle;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0;word-b=
+reak:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:151px;">
+             =20
+      <img
+         alt=3D"Discord Logo" height=3D"auto" src=3D"https://cdn.discordapp=
+.com/email_assets/48c1591c504842fec68a26a4056baa73.png" style=3D"border:0;d=
+isplay:block;outline:none;text-decoration:none;height:auto;width:100%;font-=
+size:13px;" width=3D"151"
+      />
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td><td class=3D"" style=3D"vertical-align:mid=
+dle;width:394.8px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-70 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:midd=
+le;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:middle;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"left" style=3D"font-size:0px;padding:20px 20px =
+0;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:Poppins, Helvetica Neue, Helvetica, Arial, Lu=
+cida Grande, sans-serif;font-size:18px;font-weight:700;line-height:23px;tex=
+t-align:left;color:#000000;"
+      >=E5=95=9F=E7=94=A8=E9=80=9A=E7=9F=A5</div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"left" style=3D"font-size:0px;padding:0px 20px 0=
+px 20px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:Poppins, Helvetica Neue, Helvetica, Arial, Lu=
+cida Grande, sans-serif;font-size:14px;line-height:20px;text-align:left;col=
+or:#505464!important;"
+      ><p>=E7=94=A8=E6=89=8B=E6=A9=9F<a href=3D"https://click.discord.com/l=
+s/click?upn=3Du001.a0NJ38DJJG1sulNx5wS1jsNn3XBzoBrwnbnMEAedjU0nzLYV6l1PvncE=
+Dfi6kNXu1awb4yg-2BPuPcD7YZArsGhkET-2B3AOTrhWkko4f41L-2FDdWw13tSp4UCHjnspNe2=
+l3B-2BFHpVfnAO5kyTM17DcuOR7agLU77gtW1RYAuTHDdP-2B-2Boa2hqZvu6hXjO1fVRXZjzby=
+q3fuopflSVqo3C33g0P9PyXmJRoUgQKvOWnKml6iqmZC8112e76t-2FZrOvvemlvFNspazqeAlQ=
+H0mXwn21Sy2vVRmtgC8wFhjLgGsCsn34xDDqrrzGErJIeKhK1zWbhcqQJUme4S0k-2FXjOl-2B3=
+wo-2F08QqRYfJoMrkbvFYGqatARAg-2BCTKhpVziyIK8bF7u1JrLtYJue3YIwS0xK8tObGrq9ck=
+4Cu8HauUv3PUyJu3f2eiFp-2FU0YEEfrDfRWrfFgaT-2Bv9QHfTJTikoqYAuCVq7w-3D-3Dt3IJ=
+_NsZBigbiferOVfYn15JOBPjoc3oYIL6oQ-2BWZ2bk6w-2BTZFekbHSC-2B-2BsXTaLL5BAq8uK=
+Kz1CmV-2FJYd5p5cXdbuVcw-2B2W85zNrdWOgZowrvjwjqn5OvTlG6scy8JomTPjoKem7APDUgq=
+ZIrHgDmfRag2Dn47VUrUGxm8Go11bxwQj-2BJPMrScsv0NIxCfv-2FiwY2RTnVHogh9HbRCoosz=
+Qi2fiqjXNo-2BQoX-2FF0nARPCf-2BAIKhOdRcbU9t0Cibh2cVKDJm" style=3D"font-famil=
+y: Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;color: #5865=
+f2;">=E4=B8=8B=E8=BC=89 Discord</a>=EF=BC=8C=E6=8E=A5=E6=94=B6 Discord =E6=
+=B4=BB=E5=8B=95 (=E4=BE=8B=E5=A6=82=E8=A8=8A=E6=81=AF=E3=80=81=E6=8F=90=E5=
+=8F=8A=E3=80=81=E5=A5=BD=E5=8F=8B=E8=AB=8B=E6=B1=82=E5=92=8C=E6=B4=BB=E5=8B=
+=95) =E7=9A=84=E6=8E=A8=E6=92=AD=E9=80=9A=E7=9F=A5=E3=80=82</p>
+</div>
+   =20
+                </td>
+              </tr>
+            <!-- button -->
+              <tr>
+                <td
+                   align=3D"left" vertical-align=3D"middle" style=3D"font-s=
+ize:0px;padding:20px;padding-top:6px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"#5865f2" role=3D"presentation" s=
+tyle=3D"border:none;border-radius:30px;cursor:auto;mso-padding-alt:8px 12px=
+;background:#5865f2;" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://click.discord.com/ls/click?upn=3Du001.a0NJ=
+38DJJG1sulNx5wS1jsNn3XBzoBrwnbnMEAedjU0nzLYV6l1PvncEDfi6kNXu1awb4yg-2BPuPcD=
+7YZArsGhkET-2B3AOTrhWkko4f41L-2FDdWw13tSp4UCHjnspNe2l3B-2BFHpVfnAO5kyTM17Dc=
+uOR7agLU77gtW1RYAuTHDdP-2B-2Boa2hqZvu6hXjO1fVRXZjzbyq3fuopflSVqo3C33g0P9PyX=
+mJRoUgQKvOWnKml6iqmZC8112e76t-2FZrOvvemlvFNspazqeAlQH0mXwn21Sy2vVRmtgC8wFhj=
+LgGsCsn34xDDqrrzGErJIeKhK1zWbhcqQJUme4S0k-2FXjOl-2B3wo-2F08QqRYfJoMrkbvFYGq=
+atARAg-2BCTKhpVziyIK8bF7u1JrLtYJue3YIwS0xK8tObGrq9ck4Cu8HauUv3PUyJu3f2eiFp-=
+2FU0YEEfrDfRWrfFgaT-2Bv9QHfTJTikoqYAuCVq7w-3D-3Djzna_NsZBigbiferOVfYn15JOBP=
+joc3oYIL6oQ-2BWZ2bk6w-2BTZFekbHSC-2B-2BsXTaLL5BAq8zUUM1hR-2BOogW6QCD40gn8gf=
+Vrzx75CqFLtiTHz5sZym89ppltRY12xAsJ8CjWRMdElhlI-2Blo-2BvXmgwBFfOePcQMLVi8pNF=
+MvOFTYx20GfEJp1iKJYXihsTdKkYTqb8-2BwBvmP-2B-2BSwodLfMr4uMtCxVVV5aNj2vFlwhd7=
+1-2BvB0qY2n2aeXp-2B2KQ-2BBbPW0OkvOs" style=3D"display:inline-block;backgrou=
+nd:#5865f2;color:white;font-family:Poppins, Helvetica Neue, Helvetica, Aria=
+l, Lucida Grande, sans-serif !important;font-size:13px;font-weight:600;line=
+-height:16px;margin:0;text-decoration:none;text-transform:none;padding:8px =
+12px;mso-padding-alt:0px;border-radius:30px;" target=3D"_blank"
+              >
+                =E5=8F=96=E5=BE=97=E6=87=89=E7=94=A8=E7=A8=8B=E5=BC=8F
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"604px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:604px;" width=3D=
+"604" bgcolor=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0=
+px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:604px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0;text-align:=
+center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:604px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   style=3D"font-size:0px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"height:20px;line-height:20px;"
+      >&#8202;</div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+        <!-- Footer -->
+          <!--[if mso | IE]><tr><td class=3D"footer-outlook" width=3D"604px=
+" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ class=3D"footer-outlook" role=3D"presentation" style=3D"width:604px;" widt=
+h=3D"604" bgcolor=3D"transparent" ><tr><td style=3D"line-height:0px;font-si=
+ze:0px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  class=3D"footer" style=3D"background:transparent;background-col=
+or:transparent;margin:0px auto;max-width:604px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:20px 0;paddin=
+g-bottom:0px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:604px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0;word-b=
+reak:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:Poppins, Helvetica Neue, Helvetica, Arial, Lu=
+cida Grande, sans-serif;font-size:12px;line-height:24px;text-align:center;c=
+olor:#99AAB5;"
+      >=E5=B7=B2=E7=94=B1 Discord =E7=99=BC=E9=80=81 &bull;
+      <a href=3D"https://click.discord.com/ls/click?upn=3Du001.a0NJ38DJJG1s=
+ulNx5wS1jg47LNijrYlxYHgEj-2F4b07UMFx-2FY1i3YU2fQrHXY43ACXT0w_NsZBigbiferOVf=
+Yn15JOBPjoc3oYIL6oQ-2BWZ2bk6w-2BTZFekbHSC-2B-2BsXTaLL5BAq8A4dvHHqpG-2FQ9El4=
+D4ObtileUDVfHdgVrPFvdhcb9Wfgx5hkNl4EDnjsH9I-2BA5oFFeFrOIk-2B7m5mtdJ6o-2F2Wf=
+N1OBjkoEECcR9LZq1qoPFNfpdRWVjHbG3ZdSur-2FCMbqa-2B1gAjEIkwixv0HPMr7re8PxXQf0=
+SNiGzvQ9U8KguA3ouUYMEgGmV2oNbAPHmjtz7" style=3D"color: #0067E0; text-decora=
+tion: none"
+        >=E9=80=A0=E8=A8=AA=E6=88=91=E5=80=91=E7=9A=84=E9=83=A8=E8=90=BD=E6=
+=A0=BC</a
+      >
+      &bull; <a href=3D"https://click.discord.com/ls/click?upn=3Du001.a0NJ3=
+8DJJG1sulNx5wS1jj3tSd0wO7l0RMa-2Fg4oVt1Y-3DqLWQ_NsZBigbiferOVfYn15JOBPjoc3o=
+YIL6oQ-2BWZ2bk6w-2BTZFekbHSC-2B-2BsXTaLL5BAq8dUSq8ja5m-2BnERZDpdqhKjbHUutxU=
+Vh5ez8U7KZ1anAh1mftZ1kNZAIDf-2BngJf2-2BfrYoQ-2B0ij-2Fyg3xDjy4RudYcpvrhFcNsz=
+rDtWUqgxKQQWtHk2MDf7FEyVg733ssEuQjMm7ZJUqLmTNgrxx52HgdQU-2Bp8iS26RLngYKeqTI=
+nz2Pa2RI3aYg4-2Bj2QQi1-2FGKy" style=3D"color: #0067E0; text-decoration: non=
+e">@discord</a></div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0;word-b=
+reak:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:Poppins, Helvetica Neue, Helvetica, Arial, Lu=
+cida Grande, sans-serif;font-size:12px;line-height:24px;text-align:center;c=
+olor:#99AAB5;"
+      >444 De Haro Street, Suite 200, San Francisco, CA 94107</div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0;word-b=
+reak:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:Poppins, Helvetica Neue, Helvetica, Arial, Lu=
+cida Grande, sans-serif;font-size:12px;line-height:24px;text-align:center;c=
+olor:#99AAB5;"
+      ><a target=3D"_blank" rel=3D"noreferrer" href=3D"https://click.discor=
+d.com/ls/click?upn=3Du001.a0NJ38DJJG1sulNx5wS1jkHWGNmdQEYiyAb7UfpODDgMkFue8=
+DlcnrCWGzxfJf-2FtgN9Ix8H0m20M-2Bjc035mRHHlNsxzEysCBWutFqLnIHJxCgMSuCEqmBOv-=
+2F-2BLXVd6klnitGaXmiaE7ooTgMbvoT4IkoapoJHiLzdUQcmoH5k-2FIo5kiED2wa9kxk39-2B=
+eamj9lHglNtIACTNG6ZyT-2FHB3LZdJ6dZYg5Tc8MOfXmojXgCOlIcfucjcL4s6qqJScO6u302A=
+e8dE5K2qCujInMKpHQV7RHM6kIHr8UI-2BIdIzvpApO-2FwMgIrikZaMBbSco9RE1BJkRd6S9Wk=
+MmwKPa1Fm6-2Fdwae-2BHKsYDwEOrcfOI8fg-3DtkOA_NsZBigbiferOVfYn15JOBPjoc3oYIL6=
+oQ-2BWZ2bk6w-2BTZFekbHSC-2B-2BsXTaLL5BAq8-2B5Q6j-2FbAtnfKMWhCjQbvcgrFjWWfmZ=
+rnvqbi8Vcu4pD4eqyAC5gmVrx7H-2FAwLESvSoS8Px0W7ClJiQAlW6yrb8ton8AcKgMPPra-2FL=
+G-2BODDoKnBdTaOWwBekzxpOQ-2Bj7jjF-2BeBJZQwtCmylUUWdfslcEgHZEHJzgMrlR2Ahgknn=
+KXb73spoBstvhxNYTRFZ4Y" style=3D"color: #0067E0; text-decoration: none">
+        =E5=8F=96=E6=B6=88=E8=A8=82=E9=96=B1
+      </a></div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"left" style=3D"font-size:0px;padding:0;word-bre=
+ak:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:Poppins, Helvetica Neue, Helvetica, Arial, Lu=
+cida Grande, sans-serif;font-size:13px;line-height:1;text-align:left;color:=
+#000000;"
+      ><img src=3D"https://discord.com/api/science/212441101662027777/45311=
+ce0-0cd7-4565-a0af-d81a80efe6bf.gif?properties=3DeyJlbWFpbF90eXBlIjogIm1pc3=
+NlZF9tZXNzYWdlX2VtYWlsIiwgInN1YmplY3RfdHlwZSI6ICJndWlsZF9tZW50aW9uIiwgImNhd=
+GVnb3J5IjogImNvbW11bmljYXRpb24ifQ%3D%3D" width=3D"1" height=3D"1" /></div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table><![endif]-->
+   =20
+   =20
+      </div>
+   =20
+      <img src=3D"https://click.discord.com/wf/open?upn=3Du001.JFvHvRC-2FDC=
+k3N-2B1tZqzlvgfqJEw4VLM-2BRjKn3ppaR7ir0l-2FuM4GPihsPFmw8Zhj6O-2BfXHKZtfgi7m=
+K4aJZ7bLF7zYQsBoJD-2Bq3KKDRUCr-2BB09FwxVlLxypVS0MatMuFwNRZQ13GRF-2FYe4mcvmC=
+m4JppZle2jVQrFgHMOso-2BSXPOLNMFy3gj5KiSzBZfWY7xCTxWo2IGJtdxSxcRX17K9jENEBG4=
+0MMJZs1XWp9iMusv-2BSxhcquu-2BgpsR8D8-2B1ypG" alt=3D"" width=3D"1" height=3D=
+"1" border=3D"0" style=3D"height:1px !important;width:1px !important;border=
+-width:0 !important;margin-top:0 !important;margin-bottom:0 !important;marg=
+in-right:0 !important;margin-left:0 !important;padding-top:0 !important;pad=
+ding-bottom:0 !important;padding-right:0 !important;padding-left:0 !importa=
+nt;"/></body>
+    </html>
+ =20=

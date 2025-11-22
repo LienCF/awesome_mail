@@ -1,0 +1,324 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:6000:2d85:b0:42b:41d2:a556 with SMTP id fy5csp2526199wrb;
+        Sun, 16 Nov 2025 23:27:48 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGBh07/Yzka1KCqEf5LwgnJ+eIjSpRA0t7UVsi5m+oFpZlROuP1i+GmGOJsjxTo8WMElw2K
+X-Received: by 2002:a05:622a:1195:b0:4ee:1dd0:5a43 with SMTP id d75a77b69052e-4ee1dd05cc3mr39911781cf.2.1763364468250;
+        Sun, 16 Nov 2025 23:27:48 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1763364468; cv=none;
+        d=google.com; s=arc-20240605;
+        b=QUCIgm7U5TK+Z6P8DNC/Jw5o3cw8ZR6clud863B7BTvPnKzBI3akDuri7ikMuLEfIQ
+         kB8zqvvekFZWvjSfvvsf5KX3TZiTvd5MuXIgo4YFe7/Ww013mvicZo03gzoynZ4rwjsH
+         OXMGrvfL6m37DC47lEdfwGZ1ZBYEQlxATY2xSzpEULBod1JKmWM6CeJV2E9dUvh8oMq0
+         o+6+RG+GpR0whSQID27J/NY10dLHKKJp+wDc+jYahfwdwmxiPCqwAjczvkiR2RQAPjwI
+         Pyn9MTIv2uVv1PVJVK6HMECTOk/wEBiqXgs6WKbIHxnmN6DN04q1klyc6LI6gHSSptSW
+         ZhqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:message-id:to:from:date:dkim-signature;
+        bh=Fzp+43deMemSxWwFTo9XWg70H3nlxPxkuNfGDgVkpk0=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=ColgLl17a3aDJIO7Xuiqy6cSCMQOzbIwUfXZvtMl3sGm2u8xakoNrZuKbMS8Arwkl7
+         Dc1sMsNj49njVC5F949jRd9IxdJVAgzDt5VAEYiYdRploqKY64z/XhL57xJT/vPF+jDw
+         ygqscgLZA8aDpcLtpwXYgUGqZDB0Vym13uvzkUKUpR9K86Qul6S6h9OTQrtC1JhD1ZUW
+         J/MTsrd1P5OhugSyppOpd/uUSg1cdeGKTUmQMM5WEtGzqpQhVZsDS8IX83gfDCDKdHhD
+         H3CQ3MLtOmAGgeu/cCWLyr43NxLYDPcjAUxaeMVQuBDTNw3uue895hWKfWpclodDTtU3
+         55WA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@email.apple.com header.s=email0517 header.b=Nd3X4jHe;
+       spf=pass (google.com: domain of do_not_reply@email.apple.com designates 17.111.110.121 as permitted sender) smtp.mailfrom=do_not_reply@email.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=email.apple.com
+Return-Path: <do_not_reply@email.apple.com>
+Received: from rn2-txn-msbadger08104.apple.com (rn2-txn-msbadger08104.apple.com. [17.111.110.121])
+        by mx.google.com with ESMTPS id d75a77b69052e-4ee047dc09asi19810021cf.1499.2025.11.16.23.27.47
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 16 Nov 2025 23:27:48 -0800 (PST)
+Received-SPF: pass (google.com: domain of do_not_reply@email.apple.com designates 17.111.110.121 as permitted sender) client-ip=17.111.110.121;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@email.apple.com header.s=email0517 header.b=Nd3X4jHe;
+       spf=pass (google.com: domain of do_not_reply@email.apple.com designates 17.111.110.121 as permitted sender) smtp.mailfrom=do_not_reply@email.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=email.apple.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=email.apple.com;
+	s=email0517; t=1763364467;
+	bh=Fzp+43deMemSxWwFTo9XWg70H3nlxPxkuNfGDgVkpk0=;
+	h=Date:From:To:Message-ID:Subject:Content-Type;
+	b=Nd3X4jHea/ejQMkEa9RhsvzRqYf6Av8kVY1Cr9Cx9pOtM4OkvtpVkZ8M32aeGWCal
+	 yIKrUyK7UpxiKV68e/fKhHHqkoqsHSj/mh8JzPqNGQkIQVR8buSpU0suelp0R5DbXY
+	 KuwI3q27MSLrV5GFcqD4zXV47q4HDafc9cpZYSb53ZbKeYI7UFUy3JOipC1CQrK20b
+	 7ORDW7E0L0U9StmmGEgIcRKyol3XgWBRbUxEJ+yTraUWFuNkh4GIw3ZSMfMA9ovHPt
+	 ckzBfpEmCKCg18tY5UsmVBVpELJMNpiBt4pqUCQb2q138ai2qfnGYJSCjB6QX6jTIU
+	 Wb3mKAC6QiCzw==
+Date: Mon, 17 Nov 2025 07:27:47 +0000 (GMT)
+From: App Store Connect <do_not_reply@email.apple.com>
+To: liencf@gmail.com
+Message-ID: <188978852.143652146.1763364467793@email.apple.com>
+Subject: You've accepted the Paid Applications Agreement.
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_143652144_321569792.1763364467793"
+X-Broadcast-Id: 10631
+X-Attach-Flag: N
+X-COMMS-C: false
+X-Sent-To: liencf@gmail.com,2,FaJGiSShrKoVReWPcq5YruBvppBaslIh%2F69qPArI5VhkyXJUnAIbeIpFUZKopOOYnLpsWUqbQ4%2BK9IixjwUR8m9vW3GiJgMONBSQdSDRVVfuBGVgmGaYY3rg4cztgL99V0cMoBPl3SvQBM6sBsAuenoMdSabFqtNNSdA5z7z6jlPVJsltgiDAs9PGVxEgpYro0o3syjcpPab7qQkkOCvN9XMxxlfZk4vw18yKnPcmsuuszIuDnLYOXshspJAZOFHCph5FQsYUYIUamTz4RExxrpdlN27UNbBMNnkh6Bu%2Bl%2F1%2FFW5gCCNRLY7a5ali3kp4qf0JCSBGLvxCu3QdiSvPz7IpXzcjidfh%2BmIizqcyuEqQyidTVNB7lzVZQAckeFuuHZ128G72uJ%2BjPpxvSTFrwdmyjt04CR9cRcSvne7whTrnB2%2BeXWnLJpVo24wiLhO%2Bsqkmlrc3pb2Dq0LjeUAgg%3D%3D
+X-TXN_ID: a7c47a94-4889-4735-99b8-b0969105a214
+X-DKIM_SIGN_REQUIRED: YES
+X-EmailType-Id: 10631
+X-Business-Group: iTunes
+X-Country: US
+
+------=_Part_143652144_321569792.1763364467793
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Disposition: inline
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>App Store Connect</title>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-885=
+9-1" />
+  <meta name=3D"x-apple-disable-message-reformatting" />
+ =20
+ =20
+  <style type=3D"text/css">
+    A { text-decoration: none; }
+
+    A:link { color: #0088FF; text-decoration: none; }
+
+    A:visited { text-decoration: none; }
+
+    A:active { color: #696969; text-decoration: underline;}
+
+    A:hover { text-decoration: underline; }
+
+    BODY, TD, P, UL, OL {
+    font-family: Helvetica, Lucida Grande, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    color: #666666;
+    text-align: left;
+    }
+
+    P {
+    margin-bottom: 1em;
+    }
+
+    H1 {
+    line-height:145%;
+    }
+
+    HR {
+    border: 0;
+    border-top: 1px solid #dddddd;
+    margin: 10px 0px 15px 0px;
+    }
+
+    @media only screen and (max-device-width: 481px) and (min-device-pixel-=
+ratio : 2), only screen and (min-device-width: 481px) and (-webkit-min-devi=
+ce-pixel-ratio : 2) {
+     =20
+     =20
+       =20
+        *[id=3Dheader] { background:url('https://appstoreconnect.apple.com/=
+itc/images/email/email-asc-logo@2X.png') no-repeat 0 top; -webkit-backgroun=
+d-size: 173px 45px; }
+       =20
+       =20
+     =20
+    }
+
+    @media only screen and (max-device-width: 480px) {
+
+   =20
+      table[class=3D"table3"], td[class=3D"cell3"] {
+        text-align: left !important;
+      }
+      img[id=3D"header"] {
+        width: 135px !important;
+        height: 35px !important;
+      }
+      td[id=3D"header"] {
+        -webkit-background-size: 135px 35px;
+      }
+
+      p {
+        text-align: left !important;
+      }
+
+      .footer {
+        td[class=3D"cell"] {
+          font-size: 11px !important;
+          line-height: 15px !important;
+          span[class=3D"name"] {
+            padding: 0 !important;
+            margin-right: 0 !important;
+            border: 0 !important;
+          } =20
+          span:last-of-type[class=3D"address"] {
+            display: block !important;
+            margin-top: 5px !important;
+          }
+        }
+      }
+   =20
+
+    }
+  </style>
+=20
+
+ =20
+
+ =20
+
+</head>
+<body>
+<table class=3D"table" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" ali=
+gn=3D"center" width=3D"100%" style=3D"max-width: 700px;">
+  <tr align=3D"center">
+    <td class=3D"spacer" align=3D"left" valign=3D"top" bgcolor=3D"#ffffff" =
+width=3D"20">
+      <img src=3D"https://itunesconnect.apple.com/itc/images/email/spacer.g=
+if" border=3D"0" alt=3D"" width=3D"20" height=3D"1">
+    </td>
+    <td align=3D"left">
+      <table class=3D"table3" width=3D"100%" style=3D"max-width: 700px;" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" bgcolor=3D"=
+#ffffff" >
+        <tr>
+       =20
+          <td class=3D"cell3" id=3D"header" width=3D"648" align=3D"left" st=
+yle=3D"padding-bottom: 10px;">
+           =20
+           =20
+               =20
+                    <img id=3D"header" src=3D"https://appstoreconnect.apple=
+.com/itc/images/email/email-asc-logo@2X.png" border=3D"0" alt=3D"App Store =
+Connect" width=3D"173" height=3D"45">
+               =20
+               =20
+           =20
+          </td>
+       =20
+       =20
+        </tr>
+       =20
+        <tr>
+          <td class=3D"cell3" width=3D"100%" style=3D"font-size: 0px; line-=
+height: 1px; background:none; border-top:solid 1px #dddddd; height:1px; max=
+-width: 700px; margin:0px 0px 0px 0px; padding-bottom: 15px">=C2=A0</td>
+        </tr>
+       =20
+        <tr>
+          <td class=3D"cell3" align=3D"left" valign=3D"top" bgcolor=3D"#fff=
+fff" width=3D"100%" style=3D"font-family: Helvetica, Lucida Grande, Arial, =
+sans-serif; font-size: 14px; line-height: 18px; color: #666666; text-align:=
+ justify; max-width: 700px;">
+                       =20
+
+                               =20
+    Dear =E5=BF=97=E5=B3=B0 =E9=80=A3, <br/>
+    <p>The Paid Applications Agreement (Schedule 2 to the Apple Developer P=
+rogram License Agreement) that you accepted is available
+        in App Store Connect. Sign in to your account to view the agreement=
+, which includes details such as tax collection,
+        tax remittance, and commissions for sales of apps on the App Store =
+and in-app purchases. <br/>
+        <a target=3D"_blank" href=3D"https://itunesconnect.apple.com/WebObj=
+ects/iTunesConnect.woa/wa/downloadAgreement?contentProviderId=3D69a6de75-83=
+7f-47e3-e053-5b8c7c11a4d1&agreementId=3Dc89bc87b-692f-4fd8-aa18-d78ce522ac6=
+4">View agreement ></a>
+    </p>
+
+    <p>
+        <b>Next Steps</b><br/><br/>
+        <b>Provide your contact, banking, and tax Information.</b> To recei=
+ve payments from Apple, you=E2=80=99ll need to provide your contact,
+        banking, and tax information in the Agreements, Tax, and Banking se=
+ction of App Store Connect. <br/>
+        <a target=3D"_blank" href=3D"https://itunesconnect.apple.com/WebObj=
+ects/iTunesConnect.woa/da/jumpTo?page=3Dcontracts">View account ></a>
+    </p>
+
+    <p>
+        <b>Offer in-app purchases.</b> Enable users to buy content, digital=
+ goods, or subscriptions from within your apps by using the
+        StoreKit framework to securely process payments. You can create up =
+to 10,000 in-app purchase products across all apps in your
+        account. <br/>
+        <a target=3D"_blank" href=3D"https://developer.apple.com/in-app-pur=
+chase/">Learn more ></a>
+    </p>
+
+    <p>
+        <b>Enroll in the App Store Small Business Program.</b> Take advanta=
+ge of a reduced commission rate of 15% on paid apps and in-app
+        purchases by applying for the App Store Small Business Program. <br=
+/>
+        <a target=3D"_blank" href=3D"https://developer.apple.com/app-store/=
+small-business-program/">Apply now ></a>
+    </p>
+
+    <p>
+        If you have any questions, <a target=3D"_blank" href=3D"https://itu=
+nesconnect.apple.com/WebObjects/iTunesConnect.woa/da/jumpTo?page=3DcontactU=
+s">Contact Us</a>.
+    </p>
+
+    <br/>
+
+    Best Regards,
+    <br/>
+    The App Store Team
+
+
+                       =20
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td class=3D"spacer" align=3D"right" valign=3D"top" bgcolor=3D"#ffffff"=
+ width=3D"20">
+      <img src=3D"https://itunesconnect.apple.com/itc/images/email/spacer.g=
+if" border=3D"0" alt=3D"" width=3D"20" height=3D"1">
+    </td>
+  </tr>
+</table>
+
+
+  <table class=3D"footer" width=3D"100%" border=3D"0" cellspacing=3D"0" cel=
+lpadding=3D"0" align=3D"center" style=3D"max-width: 700px;margin-top: 25px;=
+margin-bottom: 45px;padding-left: 20px;padding-right: 20px;">
+    <tr>
+      <td class=3D"cell" align=3D"left">=C2=A0</td>
+    </tr>
+    <tr>
+      <td class=3D"cell" style=3D"font-size: 10px;line-height: 12px;color: =
+#9f9f9f;font-family: Helvetica, Lucida Grande, Arial, sans-serif;text-align=
+: center;">
+          <span style=3D"padding-right: 8px;margin-right: 8px;border-right:=
+ 1px solid #9f9f9f;"><a href=3D"https://developer.apple.com/contact/">Conta=
+ct Us</a></span><span class=3D"name" style=3D"padding-right: 8px;margin-rig=
+ht: 8px;border-right: 1px solid #9f9f9f;"><a href=3D"https://appstoreconnec=
+t.apple.com">App Store Connect</a></span><span class=3D"address">One Apple =
+Park Way, Cupertino, CA 95014</span>
+      </td>
+    </tr>
+    <tr>
+      <td><hr style=3D"border: 0; border-top: 1px solid #dddddd; margin: 15=
+px 0;"/></td>
+    </tr>
+    <tr>
+      <td class=3D"cell" style=3D"font-size: 10px;line-height: 12px;color: =
+#9f9f9f;font-family: Helvetica, Lucida Grande, Arial, sans-serif;text-align=
+: center;">
+        <span style=3D"padding-right: 8px;margin-right: 8px;border-right: 1=
+px solid #9f9f9f;"><a href=3D"https://www.apple.com/legal/privacy/">Privacy=
+ Policy</a></span><span><a href=3D"https://www.apple.com/legal/internet-ser=
+vices/itunes/">Terms of Service</a></span>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
+------=_Part_143652144_321569792.1763364467793--

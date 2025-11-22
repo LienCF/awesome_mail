@@ -1,0 +1,773 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:df93:b0:4ca:2b22:f54c with SMTP id ok19csp1029929mdb;
+        Wed, 8 Oct 2025 09:18:07 -0700 (PDT)
+X-Received: by 2002:a05:690c:688d:b0:764:b3c2:826a with SMTP id 00721157ae682-780e1559023mr80175827b3.16.1759940287318;
+        Wed, 08 Oct 2025 09:18:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1759940287; cv=none;
+        d=google.com; s=arc-20240605;
+        b=IXqI/zcPsYtgnzfRSyyb7iUQ+zU9ZeY9tT+DDT5eBDj7xCRC4jplLvrDGhAZd+ygJ+
+         +n1QAYmsSGeribsoc/KalVepHJacCDpMhHWCpZ8ipokPqk5TNLzRaVIhT3jmwiNW/eNS
+         I4qiNq7ky06lSPb2a2UlpIkWfAC8XFa6RCIBd1tum+6DMGSGF0PELWpah3CcSpF1YV96
+         RE5WsU4SUe0cMNf+in2mDRcGW4nYRqD+2qTJ5EL1Xo7il45nTmjMGQyVhQsK37TwQA0I
+         /evDtFXoXjMNQLt/XBMpI3qmomBh9F1kLdeZviBO9SE4Xw/Wznh2d9X1zzNgLU6m14dV
+         +/xg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:from:subject:message-id:list-id:feedback-id:precedence
+         :list-unsubscribe:list-unsubscribe-post:reply-to:date:mime-version
+         :dkim-signature;
+        bh=GybBkNYS1g2poYXa69N53xMLLbwynjCoGUvziG0vtBg=;
+        fh=xaPyPzmcA1bm/04STfhenhR0drOiM8ZrqPvDv4paeEQ=;
+        b=jAv2TElbyvNYDMV/kw9hmSDWEMr60Uc0amJCqSJVQSLszCBUjE6ZTL695tjMozLq5W
+         SVxs8u3KyyAIQiXEAZWaNBzpPRl0w+zT94BiyMks+VX/VymVFFRE/8L0B56DT1zrrNk5
+         DiL5zLNlNcJCRM+qu1+ewKx+sUlxmsWE3C8WKlzwkCnbOONw/HNsAO3TUnch3X1i7Dc7
+         7xQ6FuEDUBN0C1TJBgVpAFxY12oWMQsDLBtNYqc0D65xN9XKr2MwbLUss88wOotu5GP0
+         j0gnzlPflP/1MSPOkVs1Zz0iluFxWUNB6apyup55LE50b611XShac6Uk48g1Jm8YoxtN
+         n1LA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b="tJ7j7/bw";
+       spf=pass (google.com: domain of 3v47mabmkbsqqyyqvo23y1o-xy1ozv8qyyqvo.mywvsoxmpqwksv.myw@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3v47maBMKBsQqyyqvo23y1o-xy1ozv8qyyqvo.mywVsoxMPqwksv.myw@scoutcamp.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <3v47maBMKBsQqyyqvo23y1o-xy1ozv8qyyqvo.mywVsoxMPqwksv.myw@scoutcamp.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id 00721157ae682-77f81e3bb86sor128059677b3.14.2025.10.08.09.18.07
+        for <LienCF@gmail.com>
+        (Google Transport Security);
+        Wed, 08 Oct 2025 09:18:07 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 3v47mabmkbsqqyyqvo23y1o-xy1ozv8qyyqvo.mywvsoxmpqwksv.myw@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b="tJ7j7/bw";
+       spf=pass (google.com: domain of 3v47mabmkbsqqyyqvo23y1o-xy1ozv8qyyqvo.mywvsoxmpqwksv.myw@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3v47maBMKBsQqyyqvo23y1o-xy1ozv8qyyqvo.mywVsoxMPqwksv.myw@scoutcamp.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1759940287; x=1760545087; dara=google.com;
+        h=to:from:subject:message-id:list-id:feedback-id:precedence
+         :list-unsubscribe:list-unsubscribe-post:reply-to:date:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GybBkNYS1g2poYXa69N53xMLLbwynjCoGUvziG0vtBg=;
+        b=tJ7j7/bw0NAM6N3hwjDuKPHV+E//FJemHPH8wPHA5kwDpEkxHleVDUe6hCWWR0KleV
+         2jkqt9cSHmZYiWS/zAzcG34IPcXTvUJzLae7HzLVEYUFBEXMkkZT9F6gMjw1a+7hb/5E
+         fwVXnfiTcr6PW3v4fTMkV6kV4N5HkZfD6C7H44bE+++GxXLbZCQMXj5X6nm5K6cPJODN
+         gF+l+1JnaKOl3WJ91e0ikO0hHuccHfT8wlkiwHaXYGXu40XVdkh565zgbTFG1Aogkj16
+         mRCtzm1TybJ+8wQeD/BqX+Rvpu0ScOEPLKH5fBqupSazqcbJoXQR1pOPQ7Z6JHSVML7d
+         Vzpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759940287; x=1760545087;
+        h=to:from:subject:message-id:list-id:feedback-id:precedence
+         :list-unsubscribe:list-unsubscribe-post:reply-to:date:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GybBkNYS1g2poYXa69N53xMLLbwynjCoGUvziG0vtBg=;
+        b=ZnVmhiz/3169TSsCGkZGIK+UtkrBtfDIqXqyr9GI0ftqqMAHl+YbOJAh+xgvGS9YHY
+         RX7ON8fTPA4ATW8So/xAlcqjk23wF1F7VaaXBo7qPOHLS6PgtziGcyNvqha3N6KfdMfw
+         QORrF5c1UpQvJiJwHhr+7Uzavxz1L7oBSZMfBQpKHjA3sb6V2d8gv4HhB9+bryZRXGUS
+         ctbZiLmtobkt0c2EUv7gn1Qc9vUJmGMW6Gv7XcxYiTs/i0pStlzhWLUv6/j9vc3XVdIn
+         r3iMJUvKNufYmwVTFbpvldLApbSWkQGcEIen7h+hJNSIPL7d9dlJ7+iq/WqUOQYCxrkP
+         MfHw==
+X-Gm-Message-State: AOJu0Yzavmu9B9hOWsE1a044D9yhHP+mqiLE4U98TnQ9dYhLn/4IlPIj
+	rEWSrX9GJSsMpGgHyV7+bWdMw8LTyfwgrWNAsiughd9j+YynheqxXTeRvq52
+X-Google-Smtp-Source: AGHT+IE/A0KxNTaRmKc9QRhywFJBqU3w+BDfnTNDGrdk5K7XM4dr0QoBoWX0VoOZUUOnBpwFwYISliY=
+MIME-Version: 1.0
+X-Received: by 2002:a05:690c:4512:b0:77f:7108:bd88 with SMTP id
+ 00721157ae682-780e1689bd6mr71043157b3.32.1759940287117; Wed, 08 Oct 2025
+ 09:18:07 -0700 (PDT)
+Date: Wed, 08 Oct 2025 09:18:07 -0700
+Reply-To: googlestore-noreply@google.com
+X-Google-Id: 4061082
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Unsubscribe: <https://myaccount.google.com/communication-preferences/auto/unsubscribe/gt/AF5yWjCiV91eJK1hiLNZARxMVCo3AIVE6xdTaQfLnsF1ZlMH53VZP6WLUextP8Xsa8V2QEvj8HuXLsz7g9UfLLmXAju3Pyx8sHTkqQRu0C_G9WpmF0Wzr1Yjf49X4Doxku4CqC4fgDPcE-yB_QmtKY_HV8JsFog8pi3BtmNYSvFZbqXLj202fY8tWboF6GxEYYnABR8x6O8hxFbIO623lBL-csTSDc4GgS8Ktine0vuFM5gaRYEakhAk48IinE9WQbqC?utm_source=gm_header&utm_medium=email>
+Precedence: bulk
+Feedback-ID: P-60-4001:C20145406:M110708555-zh-TW:gamma
+List-Id: <f3ad28c535f9f7c71ce6d34214ed312418f006cd.google.com>
+X-Notifications: c1e660435f7a0000
+X-Notifications-Bounce-Info: AeTnV4GmYeCzDGLQyp8Q30DGfm5QS33KIOmK_MpboRbOx_vsQZv5kxAeVSdiQ3Tf2jY7h_NFBnctdWCtdyCCDiZ5r4qW5Tw1IARKD6tHj1TSk-0oxTF8If40VWf1mk6Ob_OOnCoq_Q4QBfU3vYsqqgsuZfXuFHVyWzzRY1UIv3DxEizUd4mE1Mo_A0jrJIx5XSCUdgHeLyyJ0aqA-Dwm1kAzejPBMGEFxt-XGTz5ctB-obVDVnNMlj9G6p_A-BORDAKGDL8P3o0G-F-c6dpy2DvLouBJzmz6xuD0mjS0HuUh_Sd-CoM0TOR9jZGMMtrLa-uetYHKfG6Fwi3WBSCLm_VJ9O_8pjqU4T_xq-jAnWUA9iz06k4HhAwykuEhg29L-7ujzXn55QZ1Yc35eykALkJa_h8z42VsUlxmRBBRaSvcGtg4fDqyna9fz27r4BCuM3146U9sKCJ3wQKjhbhPHugL5hHCWwcWG0sDKlrRcM7Hh4FP3fYaOA17irAusSC4x8iCMB5sNdA-Qg11IV1_8c4T9YTSaNizpaiNZiUKtE5wD6nxquCdUyQzt3ZXF4IomLMYIxU4NjAwNjA0MDQxNTM1NTk2OTMzMg
+Message-ID: <916fc29746be7dd9af1fba1689d1bb89d21e2bdf-20145406-111677004@google.com>
+Subject: Final call: Special offers end soon
+From: Google Store <googlestore-noreply@google.com>
+To: LienCF@gmail.com
+Content-Type: multipart/alternative; boundary="000000000000a3c5ef0640a807b9"
+
+--000000000000a3c5ef0640a807b9
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: base64
+
+R2V0IHRoZXNlIGRlYWxzIGJlZm9yZSB0aGV5J3JlIGdvbmUNCg0KDQpUaGVzZSBkZWFscyB3b24n
+dCBiZSBhcm91bmQgbXVjaCBsb25nZXIuDQoNCg0KUGl4ZWwgMTAgUHJvIFhMIChVbmxvY2tlZCkN
+Cg0KDQoNCg0KUGl4ZWwgMTAgUHJvIFhMIChVbmxvY2tlZCkNCg0KDQpTYXZlICQyMDAgRnJvbSAk
+OTk5ICQxLDE5OSBFbmRzIDEwLzgvMjUgMQ0KDQoNClNob3Agbm93DQoNCg0KDQoNClBpeGVsIDEw
+IChVbmxvY2tlZCkNCg0KDQoNCg0KUGl4ZWwgMTAgKFVubG9ja2VkKQ0KDQoNClNhdmUgJDEwMCBG
+cm9tICQ2OTkgJDc5OSBFbmRzIDEwLzgvMjUgMQ0KDQoNClNob3Agbm93DQoNCg0KDQoNClBpeGVs
+IEJ1ZHMgUHJvIDINCg0KDQoNCg0KUGl4ZWwgQnVkcyBQcm8gMg0KDQoNClNhdmUgJDQwICQxODkg
+JDIyOSBFbmRzIDEwLzEyLzI1IDENCg0KDQpTaG9wIG5vdw0KDQoNCg0KDQpOZXN0IHggWWFsZSBM
+b2NrDQoNCg0KDQoNCk5lc3QgeCBZYWxlIExvY2sNCg0KDQpTYXZlICQ3NSAkMTc0ICQyNDkgRW5k
+cyAxMC8xMi8yNSAxDQoNCg0KU2hvcCBub3cNCg0KDQoNCg0KTmVzdCBMZWFybmluZyBUaGVybW9z
+dGF0ICg0dGggZ2VuKQ0KDQoNCg0KDQpOZXN0IExlYXJuaW5nIFRoZXJtb3N0YXQgKDR0aCBnZW4p
+DQoNCg0KU2F2ZSAkNDAgJDIzOS45OSAkMjc5Ljk5IEVuZHMgMTAvMTMvMjUgMQ0KDQoNClNob3Ag
+bm93DQoNCg0KDQoNClBpeGVsIFRhYmxldCAoMTI4IEdCKQ0KDQoNCg0KDQpQaXhlbCBUYWJsZXQg
+KDEyOCBHQikNCg0KDQpTYXZlICQxMjAgRnJvbSAkMjc5ICQzOTkgRW5kcyAxMC8xMi8yNSAxDQoN
+Cg0KU2hvcCBub3cNCg0KDQoNCg0KRml0Yml0IEFjZSBMVEUNCg0KDQoNCg0KRml0Yml0IEFjZSBM
+VEUNCg0KDQpTYXZlICQzMCAkMTQ5Ljk5ICQxNzkuOTkgRW5kcyAxMC8xMi8yNSAxDQoNCg0KU2hv
+cCBub3cNCg0KDQoNCg0KR29vZ2xlIFRWIFN0cmVhbWVyICg0SykNCg0KDQoNCg0KR29vZ2xlIFRW
+IFN0cmVhbWVyICg0SykNCg0KDQpTYXZlICQxNSAkODQuOTkgJDk5Ljk5IEVuZHMgMTAvMTIvMjUg
+MQ0KDQoNClNob3Agbm93DQoNCg0KDQoNCkNoYXJnZSB3aXJlbGVzc2x5IGluIGEgc25hcC4NCg0K
+DQpDaGFyZ2Ugd2lyZWxlc3NseSBpbiBhIHNuYXAuDQoNCg0KUGl4ZWwgMTAgcGhvbmVzIGhhdmUg
+UGl4ZWxzbmFwIG1hZ25ldGljIHRlY2hub2xvZ3kgdGhhdCBsZXRzIHlvdSAgDQplZmZvcnRsZXNz
+bHkgc25hcCBvbiBjaGFyZ2Vycywgc3RhbmRzLCBncmlwcywgd2FsbGV0cywgYW5kIG1vcmUuIDIN
+Cg0KDQpTaG9wIG5vdw0KDQoNCkNoYXJnZSB3aXJlbGVzc2x5IGluIGEgc25hcC4NCg0KDQoNCkdl
+dCBtb3JlIHdoZW4geW91IHNob3Agb24gdGhlIEdvb2dsZSBTdG9yZS4NCg0KDQoNCg0KDQpQaXhl
+bCBDYXJlKw0KDQpHZXQgcGVhY2Ugb2YgbWluZCBmb3IgeW91ciBQaXhlbCBkZXZpY2VzIHdpdGgg
+dW5saW1pdGVkICQwIHNjcmVlbiByZXBhaXJzIDMgIA0KYW5kIGJhdHRlcnkgcmVwbGFjZW1lbnRz
+IDQgdXNpbmcgR29vZ2xlLWNlcnRpZmllZCBwYXJ0cy4NCg0KDQoNCkxlYXJuIG1vcmUg4oC6DQoN
+Cg0KDQpGaW5hbmNpbmcNCg0KTWFrZSBzaG9wcGluZyBzaW1wbGUuIEdldCBzcGVjaWFsIGZpbmFu
+Y2luZyBvbiBxdWFsaWZ5aW5nIHB1cmNoYXNlcy4NCg0KDQoNCkxlYXJuIG1vcmUg4oC6DQoNCg0K
+DQpGcmVlIHNoaXBwaW5nDQoNCkdldCBmcmVlIHNoaXBwaW5nIG9uIGFsbCBwdXJjaGFzZXMuIDUN
+Cg0KDQoNCkxlYXJuIG1vcmUg4oC6DQoNCg0KDQoxMDAlIG9mIFBpeGVsLCBOZXN0LCBhbmQgQ2hy
+b21lY2FzdCBkZXZpY2VzIGxhdW5jaGVkIHNpbmNlIDIwMjAgaW5jbHVkZSAgDQpyZWN5Y2xlZCBt
+YXRlcmlhbHMuICoqDQoNCg0KDQoNCg0KRm9sbG93IE1hZGUgYnkgR29vZ2xlIG9uIFlvdVR1YmUN
+Cg0KDQoNCkZvbGxvdyBNYWRlIGJ5IEdvb2dsZSBvbiBGYWNlYm9vaw0KDQoNCg0KRm9sbG93IE1h
+ZGUgYnkgR29vZ2xlIG9uIFR3aXR0ZXINCg0KDQoNCkZvbGxvdyBNYWRlIGJ5IEdvb2dsZSBvbiBJ
+bnN0YWdyYW0NCg0KDQoNCg0KMSBQaXhlbCAxMCBQcm8gWEwgKFVubG9ja2VkKSBTYXZlICQyMDA6
+IFN0YXJ0cyAxMC83LzIwMjUgYW5kIGVuZHMgMTAvOC8yMDI1LA0KUGl4ZWwgMTAgKFVubG9ja2Vk
+KSBTYXZlICQxMDA6IFN0YXJ0cyAxMC83LzIwMjUgYW5kIGVuZHMgMTAvOC8yMDI1LA0KUGl4ZWwg
+QnVkcyBQcm8gMiBTYXZlICQ0MDogU3RhcnRzIDEwLzcvMjAyNSBhbmQgZW5kcyAxMC8xMi8yMDI1
+LA0KTmVzdCB4IFlhbGUgTG9jayBTYXZlICQ3NTogU3RhcnRzIDEwLzYvMjAyNSBhbmQgZW5kcyAx
+MC8xMi8yMDI1LA0KTmVzdCBMZWFybmluZyBUaGVybW9zdGF0ICg0dGggZ2VuKSBTYXZlICQ0MDog
+U3RhcnRzIDEwLzYvMjAyNSBhbmQgZW5kcyAgDQoxMC8xMy8yMDI1LA0KUGl4ZWwgVGFibGV0ICgx
+MjggR0IpIFNhdmUgJDEyMDogU3RhcnRzIDEwLzcvMjAyNSBhbmQgZW5kcyAxMC8xMi8yMDI1LA0K
+Rml0Yml0IEFjZSBMVEUgU2F2ZSAkMzA6IFN0YXJ0cyAxMC83LzIwMjUgYW5kIGVuZHMgMTAvMTIv
+MjAyNSwNCkdvb2dsZSBUViBTdHJlYW1lciAoNEspIFNhdmUgJDE1OiBTdGFydHMgMTAvNi8yMDI1
+IGFuZCBlbmRzIDEwLzEyLzIwMjUuDQoNClN0YXJ0IHRpbWUgZm9yIGVhY2ggcHJvbW90aW9uIGlz
+IDEyOjAwIGFtIFBUIGFuZCBlbmRzIDExOjU5IHBtIFBULCB3aGlsZSAgDQpzdXBwbGllcyBsYXN0
+IGFuZCBzdWJqZWN0IHRvIGF2YWlsYWJpbGl0eS4gVVMgcmVzaWRlbnRzIHdpdGggVVMgc2hpcHBp
+bmcgIA0KYWRkcmVzc2VzIG9ubHkuIE11c3QgYmUgMTggeWVhcnMgb3Igb2xkZXIuIFVubGVzcyBv
+dGhlcndpc2Ugc3RhdGVkLCBvZmZlcnMgIA0KY2Fubm90IGJlIGNvbWJpbmVkIHdpdGggb3RoZXIg
+b2ZmZXJzIHRoYXQgaW5jbHVkZSB0aGUgc2FtZSBwcm9kdWN0LiBPZmZlcnMgIA0KYXJlIG5vdCB0
+cmFuc2ZlcmFibGUgYW5kIGFyZSBub3QgdmFsaWQgZm9yIGNhc2ggb3IgY2FzaCBlcXVpdmFsZW50
+LiAgDQpQdXJjaGFzZSBtdXN0IGJlIG1hZGUgb24gR29vZ2xlIFN0b3JlIFVTLiBWb2lkIHdoZXJl
+IHByb2hpYml0ZWQuDQoNCjIgQ29tcGFyZWQgdG8gUWkgMS4zIHdpcmVsZXNzIGNoYXJnaW5nLiBS
+ZXF1aXJlcyBRaSAyLjAtY2VydGlmaWVkIHdpcmVsZXNzICANCmNoYXJnZXIgKHNvbGQgc2VwYXJh
+dGVseSkuDQpDaGFyZ2VycyBhbmQgbWFnbmV0aWMgYWNjZXNzb3JpZXMgZWFjaCBzb2xkIHNlcGFy
+YXRlbHkuDQpQaXhlbHNuYXAgYWNjZXNzb3JpZXMgYXJlIGNvbXBhdGlibGUgd2l0aCBQaXhlbCAx
+MCwgUGl4ZWwgMTAgUHJvLCBQaXhlbCAxMCAgDQpQcm8gWEwsIGFuZCBQaXhlbCAxMCBQcm8gRm9s
+ZCBvbmx5Lg0KDQozICQwIHNjcmVlbiByZXBhaXIgaXMgb25seSBhdmFpbGFibGUgZm9yIGZyb250
+IHNjcmVlbiBhbmQgYmFjayBnbGFzcyBvZiAgDQpQaXhlbCBwaG9uZXM7IG5vdCBhdmFpbGFibGUg
+Zm9yIGlubmVyIHNjcmVlbnMgb2YgUGl4ZWwgRm9sZCBwaG9uZXMuIEZvciAgDQpjb21wbGV0ZSBk
+ZXRhaWxzLCBzZWUgdGhlIFBpeGVsIENhcmUrIFRlcm1zIGFuZCBDb25kaXRpb25zLg0KDQo0IENv
+dmVyYWdlIGlzIGF2YWlsYWJsZSBvbmx5IGZvciBiYXR0ZXJpZXMgdGhhdCByZXRhaW4gbGVzcyB0
+aGFuIDgwJSBvZiAgDQpvcmlnaW5hbCBjaGFyZ2UgY2FwYWNpdHkuDQoNCjUgRnJlZSBkZWxpdmVy
+eSAoYXQgdGhlIGxvd2VzdCBjb3N0IG9wdGlvbikgbWF5IGJlIGRpc2NvbnRpbnVlZCBvciBjaGFu
+Z2VkICANCmF0IGFueSB0aW1lLg0KDQoqKiBGb3IgcHJvZHVjdHMgbGF1bmNoZWQgaW4gMjAyMCBh
+bmQgMjAyMTogTmVzdCwgUGl4ZWwsIGFuZCBDaHJvbWVjYXN0ICANCmRldmljZXMgYXJlIG1hZGUg
+d2l0aCByZWN5Y2xlZCBwbGFzdGljIHJhbmdpbmcgYmV0d2VlbiA5JSBhbmQgNjglIGJhc2VkIG9u
+ICANCndlaWdodCBvZiBwbGFzdGljIHVzZWQgaW4gZWFjaCByZXNwZWN0aXZlIHByb2R1Y3QgbGF1
+bmNoZWQgZHVyaW5nIHRoaXMgIA0KdGltZWZyYW1lLiBUaGUgZm9sbG93aW5nIGl0ZW1zIGFyZSBl
+eGNsdWRlZDogcGxhc3RpY3MgaW4gcHJpbnRlZCBjaXJjdWl0ICANCmJvYXJkcywgbGFiZWxzLCBj
+YWJsZXMsIGNvbm5lY3RvcnMsIGVsZWN0cm9uaWMgY29tcG9uZW50cyBhbmQgbW9kdWxlcywgIA0K
+b3B0aWNhbCBjb21wb25lbnRzLCBlbGVjdHJvc3RhdGljIGRpc2NoYXJnZSAoRVNEKSBjb21wb25l
+bnRzLCAgDQplbGVjdHJvbWFnbmV0aWMgaW50ZXJmZXJlbmNlIChFTUkpIGNvbXBvbmVudHMsIGZp
+bG1zLCBjb2F0aW5ncyBhbmQgIA0KYWRoZXNpdmVzLg0KDQpGb3IgcHJvZHVjdHMgbGF1bmNoZWQg
+aW4gMjAyMjogUGl4ZWwsIE5lc3QsIGFuZCBDaHJvbWVjYXN0IGRldmljZXMgYXJlIG1hZGUgIA0K
+d2l0aCByZWN5Y2xlZCBtYXRlcmlhbHMgcmFuZ2luZyBiZXR3ZWVuIDklIGFuZCA2MCUgYmFzZWQg
+b24gcmVzcGVjdGl2ZSAgDQpwcm9kdWN0IHdlaWdodHMuDQoNCg0KDQoNCg0KwqkgMjAyNSBHb29n
+bGUgTExDLCAxNjAwIEFtcGhpdGhlYXRyZSBQYXJrd2F5LCBNb3VudGFpbiBWaWV3LCBDQSA5NDA0
+MywgIA0KVW5pdGVkIFN0YXRlcw0KDQoNCg0KDQoNClRoaXMgZW1haWwgd2FzIHNlbnQgdG8gTGll
+bkNGQGdtYWlsLmNvbSBiZWNhdXNlIHlvdSBhc2tlZCB0byByZWNlaXZlICANCm9mZmVycywgdXBk
+YXRlcyBhbmQgbW9yZSBhYm91dCBkZXZpY2VzIGZyb20gR29vZ2xlIG9uIHN0b3JlLmdvb2dsZS5j
+b20uIElmICANCnlvdSdkIGxpa2UgdG8gdW5zdWJzY3JpYmUsIGNsaWNrIGhlcmUuDQoNCg0KDQoN
+Cg0KUHJpdmFjeSBwb2xpY3kgfCBUZXJtcyBvZiBTZXJ2aWNlDQoNCg0KDQo=
+--000000000000a3c5ef0640a807b9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!doctype html> <html lang=3Den-US xmlns=3Dhttp://www.w3.org/1999/xhtml xml=
+ns:o=3Durn:schemas-microsoft-com:office:office> <head><!-- Yahoo App Androi=
+d will strip this --></head> <head> <title>Last Call Offer email</title> <m=
+eta charset=3Dutf-8> <meta name=3Dviewport content=3D"width=3Ddevice-width,=
+ initial-scale=3D1"> <style>* { border: none; margin: 0; padding: 0; font-f=
+amily: "Google Sans", Arial, sans-serif; text-decoration: none; } table { b=
+order-collapse: collapse; } a[x-apple-data-detectors] { color: inherit !imp=
+ortant; text-decoration: inherit !important; pointer-events: none !importan=
+t; } img { display: block; max-width: 100%; } sup { font-size: 10px; } .eds=
+__heading_1 sup, .eds__heading_2 sup { font-size: 30%; } .eds__heading_1, .=
+eds__heading_2, .eds__heading_3, .eds__heading_4, .eds__heading_5, .eds__he=
+ading_6, .eds__subheading_1, .eds__subheading_2, .eds__eyebrow, .eds__body,=
+ .eds__footnote { color: #202124; margin: 0; } .eds__heading_1 { font-weigh=
+t: 700; font-size: 48px; line-height: 1.2; letter-spacing: -1.4px; } .eds__=
+heading_2 { font-weight: 700; font-size: 40px; line-height: 1.2; } .eds__he=
+ading_3 { font-weight: 700; font-size: 32px; line-height: 1.2; } .eds__head=
+ing_4 { font-weight: 700; font-size: 28px; line-height: 1.2; } .eds__headin=
+g_5 { font-weight: 700; font-size: 24px; line-height: 1.5; } .eds__heading_=
+6 { font-weight: 700; font-size: 20px; line-height: 1.5; } .eds__subheading=
+_1 { font-weight: 700; font-size: 16px; line-height: 1.5; letter-spacing: 0=
+.1px; } .eds__subheading_2 { font-weight: 700; font-size: 14px; line-height=
+: 1.5; } .eds__eyebrow { font-weight: 500; font-size: 14px; line-height: 1.=
+5; letter-spacing: 0.25px; } .eds__body { font-weight: 400; font-size: 14px=
+; line-height: 1.5; letter-spacing: 0.2px; } .eds__footnote { font-family: =
+"Roboto", "Google Sans", Arial, sans-serif; font-weight: 400; font-size: 12=
+px; line-height: 20px; } html { background: #FFFFFF; } .shell__backdrop { b=
+ackground: #FFFFFF; padding-top: 16px; padding-bottom: 24px; } .shell__body=
+ { background: #FFFFFF; width: 720px; margin: 0 auto; } .masthead, .masthea=
+d img { margin: auto; display: block; } .masthead .id-1 { background-color:=
+ #FFFFFF; padding: 26px 0; } .masthead .id-1 img { height: 20px; width: 110=
+px; } .lco_hero { padding: 40px 32px 12px; text-align: center; } .lco_hero =
+.headline { max-width: 480px; margin: 0 auto; } .image img, .image a { widt=
+h: 100%; max-width: 100%; height: 100%; max-height: 100%; display: block; c=
+ursor: initial; } .cta { font-family: "Google Sans", Arial, sans-serif; fon=
+t-weight: 500; margin: auto; display: inline-block; width: max-content; tex=
+t-align: center; } .cta a { text-decoration: none; cursor: pointer; display=
+: inline-block; } .cta .cta-caret { font-size: 24px; line-height: 18px; fon=
+t-weight: 400; } .cta .medium_light { background-color: transparent; border=
+: 2px solid #1967D2; border-radius: 100px; color: #1967D2; font-size: 16px;=
+ line-height: 24px; } .cta .medium { margin: auto; padding: 10px 22px; } .c=
+ta a:hover .medium_light { background-color: #1967D2; border: 2px solid #19=
+67D2; color: #FFFFFF; } .lco_promotions { padding: 20px 22px; } .lco_promot=
+ions .card { background: #F8F9FA; height: 100%; width: 328px; border-radius=
+: 12px; } .lco_promotions .card__vspacer { height: 8px; } .lco_promotions .=
+card__copy { padding: 24px 16px 0; } .lco_promotions .card__footer { paddin=
+g: 24px 16px; font-style: italic; } .lco_promotions .spacer { width: 20px; =
+} .lco_promotions .vspacer, .lco_promotions .card__large-vspacer { height: =
+20px; } .lco_promotions .icon { height: 32px; width: 32px; } .lco_promotion=
+s .savings-price { padding-right: 12px; color: #188038; font-weight: 700; }=
+ .lco_promotions .current-price { padding-right: 12px; font-weight: 700; } =
+.lco_promotions .old-price { padding-right: 12px; text-decoration: line-thr=
+ough; } .image a.cursor_pointer img { cursor: pointer; } .lco_featured_prom=
+o .id-2 { padding: 0px 22px 20px; } .lco_featured_promo .card { width: 100%=
+; background: #F8F9FA; border-radius: 12px; overflow: hidden; } .lco_featur=
+ed_promo .column { width: 50%; } .lco_featured_promo .content { padding: 40=
+px 32px; } .lco_featured_promo .content__body { padding: 8px 0px 16px; } .l=
+co_featured_promo .m-block { display: none; } .evp { height: 1px; width: 72=
+0px; background-color: #F8F9FA; border-radius: 20px; } .evp .heading { font=
+-size: 20px; line-height: 30px; text-align: center; font-family: 'Google Sa=
+ns', Arial, sans-serif; font-weight: 700; padding: 40px 48px 24px; color: #=
+202124; } .evp .h-spacer-outer { width: 22px; } .evp .h-spacer-inner { widt=
+h: 20px; } .evp .height-100-p { height: 100%; } .evp .width-100-p { width: =
+100%; } .evp .card .card-table { background-color: #FFFFFF; border-radius: =
+12px; } .evp .card-3 { width: 208px; } .evp .card-3 .card-padding { width: =
+16px; } .evp .icon { padding-top: 24px; padding-bottom: 16px; float: left; =
+} .evp .icon img { height: 48px; width: 48px; } .evp .icon-partner { paddin=
+g-bottom: 16px; float: left; } .evp .icon-partner img { width: 64px; height=
+: 32px; float: none; } .evp .card-heading { font-size: 16px; line-height: 2=
+4px; font-weight: 700; padding-bottom: 6px; font-family: 'Google Sans', Ari=
+al, sans-serif; color: #202124; } .evp .card-body { font-size: 14px; line-h=
+eight: 21px; padding-bottom: 16px; font-family: 'Google Sans', Arial, sans-=
+serif; color: #202124; } .evp .card-cta, .evp .card-cta a { font-size: 14px=
+; line-height: 21px; padding-bottom: 24px; font-family: 'Google Sans', Aria=
+l, sans-serif; text-decoration: none; font-weight: 500; color: #1967D2; } .=
+evp .card-cta:hover, .evp .card-cta a:hover { color: #174EA6; } .evp .cta-c=
+aret { font-size: 24px; line-height: 18px; font-weight: 400; vertical-align=
+: top; } .evp .v-spacer { height: 20px; font-size: 20px; line-height: 20px;=
+ background-color: #F8F9FA; border-bottom-right-radius: 20px; border-bottom=
+-left-radius: 20px; } .evp .v-spacer-mobile { display: none; } .footer { wi=
+dth: 100% !important; text-align: center; padding: 0px 48px 28px 48px; back=
+ground-color: #ffffff; border-collapse: separate; } .footer img { box-sizin=
+g: content-box; display: inline-block; max-width: none; } .footer tr { padd=
+ing: 0; } .footer table { margin: auto; width:100%; text-align:center; bord=
+er-collapse: separate; border-spacing: 0; } .footer .footer__text--primary,=
+ .footer .footer__text--secondary{ color: #423F3F ; font-family: Google San=
+s, Arial, sans-serif; font-weight: regular; text-decoration: none; } .foote=
+r .footer__text--primary, .footer .footer__text--primary a{ font-size: 14px=
+; line-height: 21px; } .footer .footer__text--secondary, .footer .footer__t=
+ext--secondary a{ font-size: 12px; line-height: 20px; } .footer .footer__te=
+xt--bold { font-weight: 600; } .footer .footer__text--standout-link { text-=
+decoration: underline; color: #1c5ac9; } .footer__divider { padding: 0 0 0 =
+0; border-collapse: collapse; border-top: 1px solid #80868B; font-size: 0px=
+; line-height: 0px; } .footer__sustainability-container { padding-top: 28px=
+; padding-bottom: 12px; text-align:center; } .footer__social-media-containe=
+r { padding: 24px 0 24px 0 } .footer__disclaimer-container { padding: 24px =
+0 0 0; } .footer__diclaimer-row { padding-bottom: 16px; } .footer__diclaime=
+r-row a{ text-decoration: underline; color: #1c5ac9; font-size: 12px; line-=
+height: 20px; } .footer__entity-and-address-container { padding: 32px 0 16p=
+x 0; } .footer__rationale-container { padding: 0 0 16px 0; } .footer__links=
+-container { padding: 0; } @media (max-width: 720px) { .shell__body { width=
+: 100%; max-width: 500px; } .eds__heading_1 { font-size: 34px; letter-spaci=
+ng: -1px; } .eds__heading_2 { font-size: 30px; } .eds__heading_3 { font-siz=
+e: 28px; } .eds__heading_4 { font-size: 24px; line-height: 1.5; } .eds__hea=
+ding_5 { font-size: 22px; } .eds__heading_3 { font-size: 28px; } .lco_promo=
+tions { padding: 20px 16px; } .lco_promotions .column { display: block; } .=
+lco_promotions .card { height: 100%; width: 100%; } .lco_promotions .spacer=
+ { width: 100%; height: 20px; } .lco_featured_promo .id-2 { padding-left: 1=
+6px; padding-right: 16px; } .lco_featured_promo .content { padding: 24px 16=
+px; } .lco_featured_promo .column { display: block; width: 100%; } .lco_fea=
+tured_promo .m-none { display: none; } .lco_featured_promo .m-block { displ=
+ay: block; } } @media screen and (max-width: 720px) { .evp { width: 100%; }=
+ .evp .stack { width: 100%; display: block; } .evp .heading { padding: 32px=
+ 36px; } .evp .v-spacer { display: none; } .evp .v-spacer-mobile { display:=
+ table-cell; height: 16px; font-size: 16px; line-height: 16px; background-c=
+olor: #F8F9FA; } .evp .card-heading, .evp .card-body, .evp .card-cta { text=
+-align: center; } .evp .icon, .evp .icon-partner { float: none; } .evp .hei=
+ght-auto { height: auto; } .evp .m-fluid { width: 100%; } .evp .m-hide { di=
+splay: none; } .evp .h-spacer-outer { width: 16px; } .footer { padding: 0px=
+ 16px 28px 16px; } .footer__disclaimer-container { padding: 24px 0 0 0; } .=
+footer__entity-and-address-container { padding: 32px 0 8px 0; } } @media on=
+ly screen and (max-width: 720px) { .footer__sustainability-container { padd=
+ing: 20px 16px 8px 16px; } .footer__social-media-container { padding: 24px =
+0 24px 0; } .footer__rationale-container { padding: 0 0 8px 0; } }</style> =
+<style> @media screen { @font-face { font-family: "Google Sans"; src: url("=
+https://www.emailimagecdn4htg.com/shared/fonts/GoogleSans-Italic.woff2") fo=
+rmat("woff2"); font-weight: 400; font-style: italic; } @font-face { font-fa=
+mily: "Google Sans"; src: url("https://www.emailimagecdn4htg.com/shared/fon=
+ts/GoogleSans-Regular.woff2") format("woff2"); font-weight: 400; font-style=
+: normal; } @font-face { font-family: "Google Sans"; src: url("https://www.=
+emailimagecdn4htg.com/shared/fonts/GoogleSans-Medium.woff2") format("woff2"=
+); font-weight: 500; font-style: normal; } @font-face { font-family: "Googl=
+e Sans"; src: url("https://www.emailimagecdn4htg.com/shared/fonts/GoogleSan=
+s-MediumItalic.woff2") format("woff2"); font-weight: 500; font-style: itali=
+c; } @font-face { font-family: "Google Sans"; src: url("https://www.emailim=
+agecdn4htg.com/shared/fonts/GoogleSans-Bold.woff2") format("woff2"); font-w=
+eight: 700; font-style: normal; } @font-face { font-family: "Google Sans"; =
+src: url("https://www.emailimagecdn4htg.com/shared/fonts/GoogleSans-BoldIta=
+lic.woff2") format("woff2"); font-weight: 700; font-style: italic; } } </st=
+yle> <!--[if gte mso 9]> <xml> <o:OfficeDocumentSettings> <o:AllowPNG/> <o:=
+PixelsPerInch>96</o:PixelsPerInch> </o:OfficeDocumentSettings> </xml> <![en=
+dif]--> </head> <body> <div class=3Dpreheader style=3Ddisplay:none;max-heig=
+ht:0px;overflow:hidden;>Get these deals before they=E2=80=99re gone</div> <=
+div class=3Dshell> <div class=3Dshell__backdrop> <div class=3Dshell__body> =
+<div class=3Dmasthead> <div class=3Did-1> <!--[if mso]> <table align=3D"cen=
+ter" style=3D"background-color: #FFFFFF; width: 100%;"><tr><td align=3D"cen=
+ter" style=3D"padding:26px 0;"> <!--<![endif]--><!----> <!--[if mso]> <tabl=
+e align=3D"center"><tr><td align=3D"center"> <img src=3D'https://services.g=
+oogle.com/fh/files/emails/google_store_logo_2x.png' class=3D'logo ' alt=3D'=
+' aria-hidden=3D'hidden' width=3D"110" height=3D"20"/> </td></tr></table> <=
+/td> <!--<![endif]--><!----> <!--[if !mso]><!--> <img src=3Dhttps://service=
+s.google.com/fh/files/emails/google_store_logo_2x.png class=3D"logo " alt=
+=3D"" aria-hidden=3Dhidden> <!--<![endif]--> <!--[if mso]> </tr></table> <!=
+--<![endif]--><!----> </div> </div> <div class=3Dlco_hero> <div class=3Dhea=
+dline> <h3 class=3D"eds__heading_3 ">These deals won=E2=80=99t be around mu=
+ch longer.</h3> </div> </div> <div class=3Dlco_promotions> <table role=3Dpr=
+esentation height=3D0 valign=3Dtop> <tr> <td class=3Dcolumn> <table class=
+=3Dcard role=3Dpresentation> <tr> <td> <div class=3D"image "> <a href=3Dhtt=
+ps://c.gle/AF5yWjBZ5w0xrNPRH4r8YPCK4-_2ejJaV2iXtJsO9SDZcvtrt5LWK5znqY6rnpCi=
+h7F-aN2ye3VFcBBMhNGVHvzjQKP2DmmvlmchWPXiDl7bETykVHdFnpPbeg1gh8KLEYp_DI3s0TM=
+-dzGSX-_vmo0m3_UdQ9cUj-3GXEr57uT3hNDtedz-dZcpYmuEY78Aez3nqCwMRLkVPBduNcwLyD=
+MNThHy6GcY8d1MD3efhKPagFA02xCe_qFTHqzXkZR37EOjZ884AZiZR6Jti_xvCydjOQfQV6XR5=
+2mJ3QHdTYqgeXFK_EE_7HaisbzrMGRRMMOH7gXxTMqAPI2L1F2kTqD8AnJ2sHUpdlIJ4ZzubRNk=
+K02_TWfUhnrrgTUKvYpoiwuZSvLwXlG5fn6ZBO49s3eOUwdqQQfj0NW_5drMxa2cbOhOsB9QqNj=
+kgaT2or2G7l9JfCxUFM2d6j6Gb6rENsfDUlW5uGG16hwOTGDarmg class=3Dcursor_pointer=
+> <img src=3Dhttps://services.google.com/fh/files/emails/pixel10proxl_final=
+_resized.png alt=3D"Pixel 10 Pro XL (Unlocked)"> </a> </div> </td> </tr> <t=
+r> <td> <div class=3Dcard__copy> <h6 class=3D"eds__heading_6 ">Pixel 10 Pro=
+ XL (Unlocked)</h6> <div class=3Dcard__vspacer></div> <p class=3D"eds__body=
+ "> <span class=3Dsavings-price> Save $200 </span> <span class=3Dcurrent-pr=
+ice> From $999 </span> <span class=3Dold-price>$1,199</span> Ends=C2=A010/8=
+/25<sup>1</sup> </p> <div class=3Dcard__vspacer></div> </div> </td> </tr> <=
+tr> <td height=3D100% valign=3Dbottom> <div class=3Dcard__copy> <div class=
+=3D"cta "> <a href=3Dhttps://c.gle/AF5yWjCVPS4PDEich9uQbdfURluXKTHuwk21812J=
+GQZc41YQS0b9uMdtfpVbQSspsk9e--zg3ySYKN-aev0KEiaJjGx89EwPthvC6DTjei4OVTB5vxR=
+BNNm_wlWr5AnA3juGLbmLHij599B6iVAgPvrGXXZ-jtlWUXV8YrXIteLIfSNGtU28w3n0lNNU5k=
+b0vSYfW8xJxbjzUrUd4D8ah6EYm1qiCJxtf1AIlq-gGEJKreOilYGDtBE-kyF5KyqePJSmfX6vq=
+WxnTynqPEphRJZ38xEAl5iWhBwo381QDLALeDxmGyjD6Q0KpoYNNg3-AtSDGuXQwJ3t-PKP7L4_=
+LKKy1v0ge5Dfd1BbmkFxBERaGKGABlUH-zPhlMxtq3VvsRhcOc4wO9zqyaF9cDJHepWlcjLU8Gs=
+1Tc8Ltf_RsGPFBPVKfgADLSjlMeRFCzhiA0Y3g9Ysq10v2yeM82xAhsFAwSfEquDqITU0JXbxVk=
+0> <div class=3D"medium_light medium"> Shop now </div> </a> </div> </div> <=
+/td> </tr> <tr> <td> <div class=3Dcard__footer> <p class=3D"eds__body ">=C2=
+=A0</p> </div> </td> </tr> </table> </td> <td class=3Dcolumn><div class=3Ds=
+pacer></div></td> <td class=3Dcolumn> <table class=3Dcard role=3Dpresentati=
+on> <tr> <td> <div class=3D"image "> <a href=3Dhttps://c.gle/AF5yWjDHCa61oB=
+PuuH1ZABrSubK-U8B_IUoJsJq8lkVjQrecgmE3jQVRdprNIcgIMJzdEJjjSkjt2n6me9RXfHGvG=
+MJcwRA4sh3JRBC9mpweTerqEI_3wcLmSeNtFWGvqec_gd1MALlrOFoyfLlP_noeHvLn2O-KMiuy=
+3eCCfn1QB3tfOU38k_8K8DRGSAFEQrsqPlmltq8gOIvZiq1BQsS074xfill-MySzOi37l2Z6chQ=
+RcitzC7aKnDaFv9TRHYUwtdlx09g class=3Dcursor_pointer> <img src=3Dhttps://ser=
+vices.google.com/fh/files/emails/pixel10lco_final_resized.png alt=3D"Pixel =
+10 (Unlocked)"> </a> </div> </td> </tr> <tr> <td> <div class=3Dcard__copy> =
+<h6 class=3D"eds__heading_6 ">Pixel 10 (Unlocked)</h6> <div class=3Dcard__v=
+spacer></div> <p class=3D"eds__body "> <span class=3Dsavings-price> Save $1=
+00 </span> <span class=3Dcurrent-price> From $699 </span> <span class=3Dold=
+-price>$799</span> Ends=C2=A010/8/25<sup>1</sup> </p> <div class=3Dcard__vs=
+pacer></div> </div> </td> </tr> <tr> <td height=3D100% valign=3Dbottom> <di=
+v class=3Dcard__copy> <div class=3D"cta "> <a href=3Dhttps://c.gle/AF5yWjAh=
+O6oWjNGG4250lIZu9Y1hoLvD2C1P3sYJodtOfOFyC-DfZUJ6QYxTJ-15vVXV_LV9z_ykiMt-hQu=
+LQq0-rLO5zHBkAJG0mMMJZdUf4CRfTVLU3D47wKcvU3YUYlWtQyHIXzeExQfbvoi-wcEuvOiIm6=
+fMPJxsEko7o2LUd3d0OZgr53vwwulorFgwrBs4yOX_pTZxbhEv_sVtv9gdbvssRbaYyyg33PLuZ=
+PIiJRzKjphKtreqYZfd2IlY-Q5YQ7E6hhA> <div class=3D"medium_light medium"> Sho=
+p now </div> </a> </div> </div> </td> </tr> <tr> <td> <div class=3Dcard__fo=
+oter> <p class=3D"eds__body ">=C2=A0</p> </div> </td> </tr> </table> </td> =
+</tr> <tr><td colspan=3D3 class=3Dvspacer>=C2=A0</td></tr> <tr> <td class=
+=3Dcolumn> <table class=3Dcard role=3Dpresentation> <tr> <td> <div class=3D=
+"image "> <a href=3Dhttps://c.gle/AF5yWjC4ozgYC37KLLpQhA_9aCJ82F_LK1v6KgymZ=
+l3OWqcVdZdg-NXPsnZIKIJFHYf4fcvJjEqGNMpdARqLY2tYoV13jgzsuAPQzNw-KDwLfA0qJnhG=
+DaAdapLzgAlgqKkydlj3jsRBHkA3gqfcNkQVzubHOAxFAjNdGqchy5TUBTzxrIjU5eiyZjP15K3=
+cuKrB43fuXhwFEbQKcpUW_aFQGQwiLa0LV7oAC2S5w3N7j5OWdVwC0SvVv8w3QkSXDcLA_Af6ui=
+plT7k6uU9dJrIuAO0VPbBC class=3Dcursor_pointer> <img src=3Dhttps://services.=
+google.com/fh/files/emails/pixel_budspro2_resized2.png alt=3D"Pixel Buds Pr=
+o 2"> </a> </div> </td> </tr> <tr> <td> <div class=3Dcard__copy> <h6 class=
+=3D"eds__heading_6 ">Pixel Buds Pro 2</h6> <div class=3Dcard__vspacer></div=
+> <p class=3D"eds__body "> <span class=3Dsavings-price> Save $40 </span> <s=
+pan class=3Dcurrent-price> $189 </span> <span class=3Dold-price>$229</span>=
+ Ends=C2=A010/12/25<sup>1</sup> </p> <div class=3Dcard__vspacer></div> </di=
+v> </td> </tr> <tr> <td height=3D100% valign=3Dbottom> <div class=3Dcard__c=
+opy> <div class=3D"cta "> <a href=3Dhttps://c.gle/AF5yWjA4WIGnUkgoo7LMkiioe=
+VfZyix_2-BtoahFtnC4PUfeHEmLdF5xoG6ftEeFPowf_iNAO9dQ3dXX4twltjVv92Cw_yReKURy=
+l_5l6yxsGEECfFYcMFWwHigBVLGIcbmwVUVxukYRxe87twfu3J8ndJWZuoSaQ0N5NH7-OahEWFm=
+OAT4LZ04ohZyntodZiw6gXgiIKmACcK3CbyYRtNQ6TaW8HoE2yCi97lV_oIMUHjw9aywt7OQz8X=
+OrFraw9bLvXFktw24SPqXtrNZn_PGK-_862w1v> <div class=3D"medium_light medium">=
+ Shop now </div> </a> </div> </div> </td> </tr> <tr> <td> <div class=3Dcard=
+__footer> <p class=3D"eds__body ">=C2=A0</p> </div> </td> </tr> </table> </=
+td> <td class=3Dcolumn><div class=3Dspacer></div></td> <td class=3Dcolumn> =
+<table class=3Dcard role=3Dpresentation> <tr> <td> <div class=3D"image "> <=
+a href=3Dhttps://c.gle/AF5yWjB9W3C_T6aA2ymmiYvGgPs26JCtfNABp5kusIbSopz_S0eN=
+1PCPLHhUdhW17-h9niP5dQY5VlMLLsN__Q45voERKb3ldQUWQ2s5jwZv4jcs6F6qLzgTJ-84cax=
+T2RRWxBTRnTZlTk7b02HHdPIW21wiC6vYcWCuAgR-cb5_MauH4PAItboWHgVe6SaR1Rc6EiQH00=
+UH-ZtSsouQRe4SoDRyvN5eHJw9EfgkZM1vHJUx_nMeCFyyyyiZ-E43WdQEf4G7_J_q7QQvf6Z1w=
+VhxzTbX3RLt class=3Dcursor_pointer> <img src=3Dhttps://services.google.com/=
+fh/files/emails/nestlock_lco.png alt=3D"Nest x Yale Lock"> </a> </div> </td=
+> </tr> <tr> <td> <div class=3Dcard__copy> <h6 class=3D"eds__heading_6 ">Ne=
+st x Yale Lock</h6> <div class=3Dcard__vspacer></div> <p class=3D"eds__body=
+ "> <span class=3Dsavings-price> Save $75 </span> <span class=3Dcurrent-pri=
+ce> $174 </span> <span class=3Dold-price>$249</span> Ends=C2=A010/12/25<sup=
+>1</sup> </p> <div class=3Dcard__vspacer></div> </div> </td> </tr> <tr> <td=
+ height=3D100% valign=3Dbottom> <div class=3Dcard__copy> <div class=3D"cta =
+"> <a href=3Dhttps://c.gle/AF5yWjAKGXEuYG_nJpT2XikMW3m7zgUFxi2tKXnWdGzQdxdg=
+JIo-LGRY6d8ezUX-5jj3RdlFpCnD70PVHElq8l48cbTTztQN3Euwa65mTsdHdTrTLPYLs0OKKq2=
+RuSDn3QtLh5142ZHVZ89HsGjl6f5Cg7EelVDIagSx1XaWKgFi4lOS1SOwawQbbrBGhNuGPwXLd8=
+uz6oBeIwt6wN4-gdV3ykibZwUJf7iSMbdomfYFVnt0TP73-6xrA9kPe5a86l-0LEXIs7TydKpxb=
+vBlue2U4y81oiZe> <div class=3D"medium_light medium"> Shop now </div> </a> <=
+/div> </div> </td> </tr> <tr> <td> <div class=3Dcard__footer> <p class=3D"e=
+ds__body ">=C2=A0</p> </div> </td> </tr> </table> </td> </tr> <tr><td colsp=
+an=3D3 class=3Dvspacer>=C2=A0</td></tr> <tr> <td class=3Dcolumn> <table cla=
+ss=3Dcard role=3Dpresentation> <tr> <td> <div class=3D"image "> <a href=3Dh=
+ttps://c.gle/AF5yWjCgGMjNQdOYC3OiUqNKl1gfH1uSn6SfZR3Pf30Fbhs-FkqJGTQlGa3Afy=
+0F1TWQEkZQXio2ufOzNH1OIopEZFyJ7dgEG3DcBvLAqVTZLpDktcC5dkEGSmJzFJewtKuxVfuN1=
+xfxKoSU94RkguNqSrcMNzODvDD2jZVnP0d0D0xZZBMHbIoW9aqExFj3UHnftFzn5pQpsFRND6Ks=
+Zdx8Qg3gkDZXLAhEONOBywE-zkJ16H_dHHRt4UIcSKZ4dQJFf21crULhAmOgw10kD36vo5Yk61f=
+_cGiQEdndXkZLnLOrbvh-jzPCF0C97VtyzqXqzSnPIus class=3Dcursor_pointer> <img s=
+rc=3Dhttps://services.google.com/fh/files/emails/nestlearningthermostat_lco=
+2.png alt=3D"Nest=C2=A0Learning=C2=A0Thermostat (4th=C2=A0gen)"> </a> </div=
+> </td> </tr> <tr> <td> <div class=3Dcard__copy> <h6 class=3D"eds__heading_=
+6 ">Nest=C2=A0Learning=C2=A0Thermostat (4th=C2=A0gen)</h6> <div class=3Dcar=
+d__vspacer></div> <p class=3D"eds__body "> <span class=3Dsavings-price> Sav=
+e $40 </span> <span class=3Dcurrent-price> $239.99 </span> <span class=3Dol=
+d-price>$279.99</span> Ends=C2=A010/13/25<sup>1</sup> </p> <div class=3Dcar=
+d__vspacer></div> </div> </td> </tr> <tr> <td height=3D100% valign=3Dbottom=
+> <div class=3Dcard__copy> <div class=3D"cta "> <a href=3Dhttps://c.gle/AF5=
+yWjCIOlDJRBv6f96jU-tFAYg7KixDJctjdLLvnP-WgxWXWkQnxw3XuGHj6fm_7TTawq-FXCiVyf=
+iE0NBZEghu4xEbuu9km9y_vTnSGNHWIZWuD7t3VeyKEqtonO1zHr2BZqzBty5z1p-6aOANFke11=
+ReJgj3fFrFb02Fcp48LD59-C_U0n92YXJTYg8rl-OuW2isKZYouoI2uMpyxXs2n9T0jHfKaOign=
+xvM5EWQiMW_8v-4TdfOY0zGyGHYB8dfTVOkgBFaHqeQc2Rar-GdWPb7ZxfejKd2vxRgNkIH0sMC=
+cE6c7ylnPZzpYkmMQTGk6r31kjKM> <div class=3D"medium_light medium"> Shop now =
+</div> </a> </div> </div> </td> </tr> <tr> <td> <div class=3Dcard__footer> =
+<p class=3D"eds__body ">=C2=A0</p> </div> </td> </tr> </table> </td> <td cl=
+ass=3Dcolumn><div class=3Dspacer></div></td> <td class=3Dcolumn> <table cla=
+ss=3Dcard role=3Dpresentation> <tr> <td> <div class=3D"image "> <a href=3Dh=
+ttps://c.gle/AF5yWjDkL0GtPgvb9U5KelcelJhPlz9ZfXD3x8AErCZlUpXiHmRHZhpPeBeFXZ=
+aQAL8eYJ5qde67rOzdA9QWLzDcTMFYSE_MmjsyOtrqPc3QRPrVuQOBA4oFhH5_y6aW7z3AIHCbq=
+osbsZa9_Rw08OJG9B2tdA_pBZixuWcm85bqRYbzRKGcqEI-TA-4KEDFACK3Z4CFb0XwkhjX9ypW=
+UsF99Ybp57jnZQKKovdP8UXzReAmSWcUpGeoCrZrIPN_wKj-NoF9Iw95d1W_1CJp8LygYO1hJBl=
+HEyOYk_sfoH2nndMKvfczGDRvdsu17dH4IigthAJIvUvG9JlIuIOOYGOQHxsbOyeXALxJnoxq8r=
+Oy2QDFUWsRqR47xpLD1ad_EvOKykXbDNX4roHbRFWI7DJBaT-y2axsPcWW6eNw6l6rD0tI9fnJO=
+0WV0aIT_ocQ00lJky2Hbr2ih3sd_Rfu4SRxdFEsl8HQ7b9ulYU class=3Dcursor_pointer> =
+<img src=3Dhttps://services.google.com/fh/files/emails/pixeltablet_resized.=
+png alt=3D"Pixel Tablet (128 GB)"> </a> </div> </td> </tr> <tr> <td> <div c=
+lass=3Dcard__copy> <h6 class=3D"eds__heading_6 ">Pixel Tablet (128 GB)</h6>=
+ <div class=3Dcard__vspacer></div> <p class=3D"eds__body "> <span class=3Ds=
+avings-price> Save $120 </span> <span class=3Dcurrent-price> From $279 </sp=
+an> <span class=3Dold-price>$399</span> Ends=C2=A010/12/25<sup>1</sup> </p>=
+ <div class=3Dcard__vspacer></div> </div> </td> </tr> <tr> <td height=3D100=
+% valign=3Dbottom> <div class=3Dcard__copy> <div class=3D"cta "> <a href=3D=
+https://c.gle/AF5yWjC10vp0IhuZze6FuwynjFwoLHLK_mbW_GC0MsQwGQNbxZM2eLC-Bfcjz=
+UzFk9EBZZDbWwd8wPWJlDrdpjosnh5p2eMEtJPCmDJRfY7fShpth_lRNTyBQs_TDh5Q3Nfg92UG=
+jiJn5O1sPsQvXJxRiCLlyurpricbexSkfw5tcZ7wrWf7NVk4nKOb70H3rvGf1DvR5uYcQlZpgqq=
+Cq3cukVWhwE70w0ZUh7vIR4yknhYgJ_s2qGnx2yCsg16ETv_ziC1pdHAyNALRJX5iGl2vrQ6OZj=
+nEBcr5Y22726cJR1B8r0np_s7dpQHGxX-dLfksAfVIk3HxZ09MIL3EvGlbo59R0bWu3WNK5Q0c9=
+VR2V9qCo00c_d16OV_ArLjIgBXt6NojhFHKuHHxN9A4sDGV1I9x6CFLmtEFSX4ohWj-SCa3rnRe=
+Au5CT6OiT-3ZkMHHd0M3iOp451b165tEghf0KH2-9Ep2VPtj3-0> <div class=3D"medium_l=
+ight medium"> Shop now </div> </a> </div> </div> </td> </tr> <tr> <td> <div=
+ class=3Dcard__footer> <p class=3D"eds__body ">=C2=A0</p> </div> </td> </tr=
+> </table> </td> </tr> <tr><td colspan=3D3 class=3Dvspacer>=C2=A0</td></tr>=
+ <tr> <td class=3Dcolumn> <table class=3Dcard role=3Dpresentation> <tr> <td=
+> <div class=3D"image "> <a href=3Dhttps://c.gle/AF5yWjAW5v4ObzvWWtcPnB_CuB=
+JGG92DzOIYvf7rLbX2Hj947MHDnlK2ThdXKZnTljJ2tYwfKiZ40PtbT9QX5QgOcL1v6HF_FLKup=
+HWHKkEDOOGki3uQwp9YVOQ5NZgCW_a_2t0Fpz098_Pk2HuLZfERAMYk7tLx5SuVoC18eSAMXhGO=
+oYyzQrVx6nPChGfsdJK1cSGMLaTzE_-8Ch8uVjob2X1ZEx_rf9VNts91d4bEVP_anZ8GPHyH9n2=
+4oxolrvifUu0Qg3caEe55SnkNHRdZBQE class=3Dcursor_pointer> <img src=3Dhttps:/=
+/services.google.com/fh/files/emails/acelte_resized.png alt=3D"Fitbit Ace L=
+TE"> </a> </div> </td> </tr> <tr> <td> <div class=3Dcard__copy> <h6 class=
+=3D"eds__heading_6 ">Fitbit Ace LTE</h6> <div class=3Dcard__vspacer></div> =
+<p class=3D"eds__body "> <span class=3Dsavings-price> Save $30 </span> <spa=
+n class=3Dcurrent-price> $149.99 </span> <span class=3Dold-price>$179.99</s=
+pan> Ends=C2=A010/12/25<sup>1</sup> </p> <div class=3Dcard__vspacer></div> =
+</div> </td> </tr> <tr> <td height=3D100% valign=3Dbottom> <div class=3Dcar=
+d__copy> <div class=3D"cta "> <a href=3Dhttps://c.gle/AF5yWjCQeywRJ7gj73PI_=
+1GEd9pl_S7j0rl_eTeRctQwWIB-LHQwjYQv7w_0tFl8iLKB6i749SrbeaocC73k8OXoLoEVg7NU=
+GwLQfXDbXKGwIimNUA9V-_Pht1gfNVUA8n9Jl7JRysw9xE5Y2qmq00l9826tTPpsrz-5tz3YS7H=
+Oefadjp75rbIXs-0ZFYXACOKGQjln0thdV48VN6CVqxe50VtAKiU0AX4cq9F5tB9xaqX6KrSn8i=
+P5lyb-OCv3IZmkvNo65MuCk94w12fEfohYG10> <div class=3D"medium_light medium"> =
+Shop now </div> </a> </div> </div> </td> </tr> <tr> <td> <div class=3Dcard_=
+_footer> <p class=3D"eds__body ">=C2=A0</p> </div> </td> </tr> </table> </t=
+d> <td class=3Dcolumn><div class=3Dspacer></div></td> <td class=3Dcolumn> <=
+table class=3Dcard role=3Dpresentation> <tr> <td> <div class=3D"image "> <a=
+ href=3Dhttps://c.gle/AF5yWjBn0kGeDh6dA_FzmRFcOwe3eT92l0q-Tmnm670kXGy4imi5i=
+hVmNSblHW5yKJTIAQwjplnkJQR7umc2yy5jO0SEefOG1TG0R2pLiV-FfVkPRkEuLouyOb5Rnx-T=
+0APejXJzIjev6TFXfAvVmzXr7YRfwlF8Tdg1eoe2uQe19G-qho8hAjqjjBlhOttyYwalLRIqciy=
+_r2rbm2eNIFYQthIJs28u1cDbpcId2D61JfXl53-6ai7BkbVZlT1kuAvDlIqDPAH5quwyqV3-CC=
+xw7yf-B1ertdOj1Q class=3Dcursor_pointer> <img src=3Dhttps://services.google=
+.com/fh/files/emails/streamer4k_lco.png alt=3D"Google TV Streamer (4K)"> </=
+a> </div> </td> </tr> <tr> <td> <div class=3Dcard__copy> <h6 class=3D"eds__=
+heading_6 ">Google TV Streamer (4K)</h6> <div class=3Dcard__vspacer></div> =
+<p class=3D"eds__body "> <span class=3Dsavings-price> Save $15 </span> <spa=
+n class=3Dcurrent-price> $84.99 </span> <span class=3Dold-price>$99.99</spa=
+n> Ends=C2=A010/12/25<sup>1</sup> </p> <div class=3Dcard__vspacer></div> </=
+div> </td> </tr> <tr> <td height=3D100% valign=3Dbottom> <div class=3Dcard_=
+_copy> <div class=3D"cta "> <a href=3Dhttps://c.gle/AF5yWjBsZr4dlXmJi8P7luq=
+DyyYExRz0hTzEU8AMQbiwq4ePMmRW1kQsss0GSO5nrRHPORgV0rxppaknQ52KHDfpRtQERG1Jnv=
+q86y8cUdUq3nQS5Dwc53V9LeuFKx7prZ_TXBsgzOBhvcvVszjEC10-KKx5V0NGGyiJHkqfAkNTf=
+mYO5Op5auVE5wivAEPb3jSDhjG8u7AJHaOsLzTtkUWToxRTLzaxPlLPwKD7OI5e9cZDh-0hpPLW=
+ouid6zWo-SMGQB7H5wr7bU0-hS3iH0AyqQ-kJ1WuVJMAZQ> <div class=3D"medium_light =
+medium"> Shop now </div> </a> </div> </div> </td> </tr> <tr> <td> <div clas=
+s=3Dcard__footer> <p class=3D"eds__body ">=C2=A0</p> </div> </td> </tr> </t=
+able> </td> </tr> </table> </div> <div class=3Dlco_featured_promo> <div cla=
+ss=3Did-2> <table class=3Dcard role=3Dpresentation> <tr> <td class=3D"colum=
+n m-block"> <div class=3D"image "> <a href=3Dhttps://c.gle/AF5yWjC8RHtoO1Kg=
+OL32wTXeMnEgZI45BqXDW32oj6sH0TaCK3xjatgbDssLvAsjAsQs0oWj_4kLW1PW5_gp0plV1Ba=
+RpRuEob39XwFDB2t8pd_rJt0Cx7D2EGE6lgPiDw0tb8h8KpHplZ_UDqtgGI7WSxyIJKQ7MTPQ_l=
+4DgVAXczEnFgBgKLoakx369Yy4Y3zwiSwFIzCD95VAgMpCUr9-2LBKS3rq1WEJQeINjEIiuYnDf=
+b3Qpnyoz-_glacsakNz9ldQ4dtj6t-ZLM3PCUvCF4IfED6fVKAUYnt5A65z66BXeKREDbsN-izz=
+LqMjROIZBtwT_2qv4-7IJYOb0_KWo_6foBovzfU5ASSCJox6mW2sYi2we0pTKQA8O7Omm0IlZ9N=
+P9dFoTJfVdCIVCET-RQB1SqW6BUTiMH34dM05hb66jcWmlvx5Ar7hAY_TkLxGsS31BqTDrk9vw3=
+V_lQE-nGXUUWtlQZoV7G2IRJ5rY5mq9UbAYkq3pPnmZ0cRgLqbOwD7JNVdIA class=3Dcursor=
+_pointer> <img src=3Dhttps://services.google.com/fh/files/emails/pixelsnap_=
+p10_lco2.png alt=3D"Charge wirelessly in a snap. "> </a> </div> </td> <td c=
+lass=3Dcolumn> <div class=3Dcontent> <h6 class=3D"eds__heading_6 ">Charge w=
+irelessly in a snap. </h6> <div class=3Dcontent__body> <p class=3D"eds__bod=
+y ">Pixel 10 phones have Pixelsnap magnetic technology that lets you effort=
+lessly snap on chargers, stands, grips, wallets, and more.<sup>2</sup></p> =
+</div> <div class=3D"cta "> <a href=3Dhttps://c.gle/AF5yWjDzsEaFcX6yYd_7MTa=
+enR41DlFKUkp7Se6EcxHVmSc5FtiIocaQCx4GoN0dXwo7a2wSvr9htLDPt_r9XB_JFqnbGeGs2x=
+s_xTAVvk-IYyXbqFlWX7-HOhkRAM-N0fetMxptVGxGnglMIxEmlFXO_BkepM5CuVeyiYRq1Bq0e=
+Tp5WTjaB76TPxP3aqs8f32LDH68W90SrkCPuswrbpkjC36b1nLs3d5kqI04rhKoHOR-Su77htVS=
+Gv1S-ee4eoj89Wuz6vbbwVJotP7YiBAMea9_vhE9cyCLLdNG2kIguvWWp5nWgmGyAxwOTj9jlGP=
+dmClvrOMrsTxoHmZBe3Rd5H4dd08lhxY72zJNZCsK7valFsVMBYZ5QdhddaYFTfq8ILRnh8Dw1r=
+0QGKQEywVoW66KHpg9QZ18Ao2gPbkzQxK9eY-UHbKYS_QwvweWrVX7xHB1JZRz7M80vaSB27LUo=
+Pm0Ymo7R90cQGtNukd2cfWMXDsVivpXGMRiBL90YFcbeVQrGLVsZA> <div class=3D"medium=
+_light medium"> Shop now </div> </a> </div> </div> </td> <td class=3D"colum=
+n m-none"> <div class=3D"image "> <a href=3Dhttps://c.gle/AF5yWjC8RHtoO1KgO=
+L32wTXeMnEgZI45BqXDW32oj6sH0TaCK3xjatgbDssLvAsjAsQs0oWj_4kLW1PW5_gp0plV1BaR=
+pRuEob39XwFDB2t8pd_rJt0Cx7D2EGE6lgPiDw0tb8h8KpHplZ_UDqtgGI7WSxyIJKQ7MTPQ_l4=
+DgVAXczEnFgBgKLoakx369Yy4Y3zwiSwFIzCD95VAgMpCUr9-2LBKS3rq1WEJQeINjEIiuYnDfb=
+3Qpnyoz-_glacsakNz9ldQ4dtj6t-ZLM3PCUvCF4IfED6fVKAUYnt5A65z66BXeKREDbsN-izzL=
+qMjROIZBtwT_2qv4-7IJYOb0_KWo_6foBovzfU5ASSCJox6mW2sYi2we0pTKQA8O7Omm0IlZ9NP=
+9dFoTJfVdCIVCET-RQB1SqW6BUTiMH34dM05hb66jcWmlvx5Ar7hAY_TkLxGsS31BqTDrk9vw3V=
+_lQE-nGXUUWtlQZoV7G2IRJ5rY5mq9UbAYkq3pPnmZ0cRgLqbOwD7JNVdIA class=3Dcursor_=
+pointer> <img src=3Dhttps://services.google.com/fh/files/emails/pixelsnap_p=
+10_lco2.png alt=3D"Charge wirelessly in a snap. "> </a> </div> </td> </tr> =
+</table> </div> </div> <table class=3Devp role=3Dpresentation cellpadding=
+=3D0 cellspacing=3D0 border=3D0 align=3Dcenter height=3D100%> <tr> <td clas=
+s=3Dheading colspan=3D7 align=3Dcenter> Get more when you shop on the Googl=
+e=C2=A0Store. </td> </tr> <tr> <td class=3Dh-spacer-outer>=C2=A0</td> <td c=
+lass=3D"card card-3 stack height-auto height-100-p" valign=3Dtop> <table cl=
+ass=3D"height-auto height-100-p width-100-p card-table" role=3Dpresentation=
+ cellpadding=3D0 cellspacing=3D0 border=3D0 height=3D100%> <tr> <td class=
+=3Dcard-padding>=C2=A0</td> <td valign=3Dtop class=3D"height-auto height-10=
+0-p"> <table class=3D"height-auto height-100-p width-100-p" align=3Dcenter =
+role=3Dpresentation cellpadding=3D0 cellspacing=3D0 border=3D0> <tr> <td va=
+lign=3Dtop> <table class=3Dwidth-100-p role=3Dpresentation cellpadding=3D0 =
+cellspacing=3D0 border=3D0> <tr> <td class=3Dicon align=3Dcenter> <img src=
+=3Dhttps://services.google.com/fh/files/emails/icon_evergreen_values_pixel_=
+care_plus_dsk2x.png alt=3D"" style=3D"border: none; display: block;" border=
+=3D0> </td> </tr> <tr> <td class=3Dcard-heading> Pixel=C2=A0Care+ </td> </t=
+r> <tr> <td class=3Dcard-body> Get peace of mind for your Pixel devices wit=
+h unlimited $0 screen repairs<sup>3</sup> and battery replacements<sup>4</s=
+up> using Google-certified parts. </td> </tr> </table> </td> </tr> <tr> <td=
+ class=3Dcard-cta valign=3Dbottom> <a href=3Dhttps://c.gle/AF5yWjCBf4TbNICS=
+AV1UJlc2W8rT4Fal4_0TxRzQhP6b4nmu9-Uz1NfMFahHIr8uCnMIoHloqzZWJYOAB59DOic8yQm=
+DnNIxTvurYQ6AZKbDL60Um7b9Zfv6jkFefQ6w53v6qXvxH-VEXNz5MsoXeekzO9qMUknFKktKFq=
+0gNdDFxScbX7my_fDaEEtd__FC7R0mPlmXPkqC2AnVVfcBP-cyF68yz1czO4iTE1YnV39xakOHB=
+oGgEJDD9xykpc7_rqkXLVWeKgOJcCpR8sdETv_RYtUuJC861b0Cqr53ZH46BI8INoahUA aria-=
+label=3D"Learn=C2=A0more: Pixel=C2=A0Care+">Learn=C2=A0more<span class=3Dct=
+a-caret>=C2=A0=E2=80=BA</span></a> </td> </tr> </table> </td> <td class=3Dc=
+ard-padding>=C2=A0</td> </tr> </table> <table role=3Dpresentation cellpaddi=
+ng=3D0 cellspacing=3D0 border=3D0 style=3D"width: 100%"> <tr> <td class=3Dv=
+-spacer-mobile>=C2=A0</td> </tr> </table> </td> <td class=3D"h-spacer-inner=
+ m-hide">=C2=A0</td> <td class=3D"card card-3 stack height-auto height-100-=
+p" valign=3Dtop> <table class=3D"height-auto height-100-p width-100-p card-=
+table" role=3Dpresentation cellpadding=3D0 cellspacing=3D0 border=3D0 heigh=
+t=3D100%> <tr> <td class=3Dcard-padding>=C2=A0</td> <td valign=3Dtop class=
+=3D"height-auto height-100-p"> <table class=3D"height-auto height-100-p wid=
+th-100-p" align=3Dcenter role=3Dpresentation cellpadding=3D0 cellspacing=3D=
+0 border=3D0> <tr> <td valign=3Dtop> <table class=3Dwidth-100-p role=3Dpres=
+entation cellpadding=3D0 cellspacing=3D0 border=3D0> <tr> <td class=3Dicon =
+align=3Dcenter> <img src=3Dhttps://services.google.com/fh/files/emails/icon=
+_evergreen_values_finance_dsk2x.png alt=3D"" style=3D"border: none; display=
+: block;" border=3D0> </td> </tr> <tr> <td class=3Dcard-heading> Financing =
+</td> </tr> <tr> <td class=3Dcard-body> Make shopping simple. Get special f=
+inancing on qualifying purchases. </td> </tr> </table> </td> </tr> <tr> <td=
+ class=3Dcard-cta valign=3Dbottom> <a href=3Dhttps://c.gle/AF5yWjAvL5KiWEs-=
+kpDEqgcPPHorLI_BZBPY2FO2AE5rARqFRbeTMcUERqDOV9B7HZyOXfUHFBLLV5MxATlz3PzN7xU=
+zPOUhwuZrSKvCgKRQBC9ZIzOGddhnWTFsy_-gtGHyqSTr6qcQDb0wl9fTCkpgqKiUCA_xEJYgWi=
+DitYDniZdNsRqoV1RWLupq8zgK6k8Q3eqi1eDT19OSb8CHkVWXhh-6j6Yst37edHV4ZvCRHQd4P=
+afkx_ICJonXZ-ETC3p86T3VOO5KyXMMvqGIaxNitlgmqa2bmgi5lLcGSQ_kmk-lCW9z aria-la=
+bel=3D"Learn=C2=A0more: Financing">Learn=C2=A0more<span class=3Dcta-caret>=
+=C2=A0=E2=80=BA</span></a> </td> </tr> </table> </td> <td class=3Dcard-padd=
+ing>=C2=A0</td> </tr> </table> <table role=3Dpresentation cellpadding=3D0 c=
+ellspacing=3D0 border=3D0 style=3D"width: 100%"> <tr> <td class=3Dv-spacer-=
+mobile>=C2=A0</td> </tr> </table> </td> <td class=3D"h-spacer-inner m-hide"=
+>=C2=A0</td> <td class=3D"card card-3 stack height-auto height-100-p" valig=
+n=3Dtop> <table class=3D"height-auto height-100-p width-100-p card-table" r=
+ole=3Dpresentation cellpadding=3D0 cellspacing=3D0 border=3D0 height=3D100%=
+> <tr> <td class=3Dcard-padding>=C2=A0</td> <td valign=3Dtop class=3D"heigh=
+t-auto height-100-p"> <table class=3D"height-auto height-100-p width-100-p"=
+ align=3Dcenter role=3Dpresentation cellpadding=3D0 cellspacing=3D0 border=
+=3D0> <tr> <td valign=3Dtop> <table class=3Dwidth-100-p role=3Dpresentation=
+ cellpadding=3D0 cellspacing=3D0 border=3D0> <tr> <td class=3Dicon align=3D=
+center> <img src=3Dhttps://services.google.com/fh/files/emails/icon_evergre=
+en_values_free_shipping_dsk2x.png alt=3D"" style=3D"border: none; display: =
+block;" border=3D0> </td> </tr> <tr> <td class=3Dcard-heading> Free=C2=A0sh=
+ipping </td> </tr> <tr> <td class=3Dcard-body> Get free shipping on all=C2=
+=A0purchases.<sup>5</sup> </td> </tr> </table> </td> </tr> <tr> <td class=
+=3Dcard-cta valign=3Dbottom> <a href=3Dhttps://c.gle/AF5yWjCtQ4zVBZTDBavUXE=
+m6SsxDdQ8TF0dg20gpniK9lt8hfbgzXpVY5ihNAbfUCZN7qNVHlq-H2tkSjWmQp5QOJeVfcYnNb=
+YyyccJB-Zf29QnXUaUGHuWCNKzXWrAouLA2UUBIw1YBo_rK1cjBLs7MR4zvXTAafq7SyayUV39F=
+dSWzeKJ2-9qZsvmbtRFrbG-Eb9ie2kDoFU8slDWAJNiDrL6iUZmR89GXEk2sx9KuR8SzLi1SbGi=
+IsZohTatmeuyP16Z3L7uA3OfKurprofwrxmmQVOKopCddRQRPv1NEO5uihFlxkYH4DjY aria-l=
+abel=3D"Learn=C2=A0more: Free=C2=A0shipping">Learn=C2=A0more<span class=3Dc=
+ta-caret>=C2=A0=E2=80=BA</span></a> </td> </tr> </table> </td> <td class=3D=
+card-padding>=C2=A0</td> </tr> </table> <table role=3Dpresentation cellpadd=
+ing=3D0 cellspacing=3D0 border=3D0 style=3D"width: 100%"> <tr> <td class=3D=
+v-spacer-mobile>=C2=A0</td> </tr> </table> </td> <td class=3Dh-spacer-outer=
+>=C2=A0</td> </tr> <tr> <td colspan=3D7 class=3Dv-spacer>=C2=A0</td> </tr> =
+</table> <table class=3Dfooter cellpadding=3D0> <tr> <td> <table role=3Dpre=
+sentation cellpadding=3D0> <tr> <td class=3Dfooter__sustainability-containe=
+r style=3D""> <table style=3Dmargin:auto;> <tr> <td class=3Dfooter__text--p=
+rimary style=3Dtext-align:center;> <img src=3Dhttps://services.google.com/f=
+h/files/emails/gleaf_dual_tone_24px.png width=3D21px style=3D"width:21px; h=
+eight:21px; vertical-align: middle; margin-right:12px" height=3D21px> 100% =
+of Pixel, Nest, and Chromecast devices launched since 2020 include <a href=
+=3Dhttps://c.gle/AF5yWjBEXaRqkrr-TYyYqrBNJYELU7hvKt3GecDLusSh3i-Tn3V_EtYUX1=
+omethq5h8F-c4KbZaKrneJQV_QnSYdfGjGiTZ2xONVUwbAYqkCKunpaS0G5jjbdLqW4yNxYpl1z=
+X7ArViiB5DtE3tl33Hlo0Y_AcsHUc6givHtMW6-vfS41dkDvLo8Pg252_SY4IncVubfKcVO2AAM=
+OmdvUODFo6bi9OOpHeugrdMuGZns_pcwHXUIfbS7l9_xzfIA5FSgh2i79ktF6UcnTmYGt0Stc_h=
+8WZCXHmmH-XM_s9OZnbA1j79paI7w8UP9i2K40z4KRW6Y5wlMMju0m_p4I5FjiEup5SfO style=
+=3D"color: #0063D2;" target=3D_blank rel=3Dnoopener>recycled=C2=A0materials=
+</a>.<sup>**</sup> </td> </tr> </table> </td> </tr> </table> </td> </tr> <t=
+r> <td> <table role=3Dpresentation cellpadding=3D0> <tr> <td class=3Dfooter=
+__social-media-container> <table role=3Dpresentation class=3Dfooter__table =
+style=3Dwidth:auto align=3Dcenter cellpadding=3D0> <tr> <td height=3D48 wid=
+th=3Dauto></td> <td align=3Dcenter height=3D48 width=3D48 style=3D"padding-=
+left: 4px; padding-right:4px"> <a href=3Dhttps://c.gle/AF5yWjCnhFpSigBsMFz2=
+TjE3a2egPUe_7jF62PzmSCOh9LpL103_BJrMCO3h3FlrAvI9W5dgtiCxZqEirL_KzKTlxhO_pZ_=
+hZvjcx6pYa7Se0ZcwNLd1JAMwz1K9kvHlVA> <table role=3Dpresentation cellpadding=
+=3D0> <tr> <td valign=3Dcenter style=3D"height:48px; width:48px"> <img src=
+=3Dhttps://services.google.com/fh/files/emails/footer_social_icon_youtube_g=
+ray_48_x2.png width=3D48 alt=3D" Follow Made by Google on YouTube" style=3D=
+"border: none;" height=3D48></td> </tr> </table> </a> </td> <td align=3Dcen=
+ter height=3D48 width=3D48 style=3D"padding-left: 4px; padding-right:4px"> =
+<a href=3Dhttps://c.gle/AF5yWjBzwT8fb7bKs9Mp-3X5A22vVfQ3lGNUBYf3K_ZbchkJrlI=
+xGw14i33au0odNkfFA3hja7wEL3-CTsySZX3C7g-GOR4o_tZ7jx2IHbGRR9Mqh77IHSZuAuoR52=
+Z_fmg> <table role=3Dpresentation cellpadding=3D0> <tr> <td valign=3Dcenter=
+ style=3D"height:48px; width:48px"> <img src=3Dhttps://services.google.com/=
+fh/files/emails/footer_social_icon_facebook_gray_48_x2.png width=3D48 alt=
+=3D" Follow Made by Google on Facebook" style=3D"border: none;" height=3D48=
+></td> </tr> </table> </a> </td> <td align=3Dcenter height=3D48 width=3D48 =
+style=3D"padding-left: 4px; padding-right:4px"> <a href=3Dhttps://c.gle/AF5=
+yWjCBwpP-2c5uBMwi8XYJk1C1HGtOcTEp4LoQOzvtVuUnRgguhASgu_sYDcngccXxGvxcQWl9Te=
+T32DcDXzk-ACTADvORdx_KH_5HGa8uvmxeOJ_D6rwjSeQ0w0lftQ> <table role=3Dpresent=
+ation cellpadding=3D0> <tr> <td valign=3Dcenter style=3D"height:48px; width=
+:48px"> <img src=3Dhttps://services.google.com/fh/files/emails/footer_socia=
+l_icon_twitter_gray_48_x2.png width=3D48 alt=3D" Follow Made by Google on T=
+witter" style=3D"border: none;" height=3D48></td> </tr> </table> </a> </td>=
+ <td align=3Dcenter height=3D48 width=3D48 style=3D"padding-left: 4px; padd=
+ing-right:4px"> <a href=3Dhttps://c.gle/AF5yWjBsp7fSH2YLQFppC7Spp3vN81dCyTt=
+sndfx63O7tTkWenjJgJu6IL1Zru_Hn5gv__kBVOoAzfxfTVZ8SNIXrkr-EVcKdsHCsMXZxxbrv5=
+VMSsZqAII97Q-9a4xnUx6kjEY-Zg> <table role=3Dpresentation cellpadding=3D0> <=
+tr> <td valign=3Dcenter style=3D"height:48px; width:48px"> <img src=3Dhttps=
+://services.google.com/fh/files/emails/footer_social_icon_instagram_gray_48=
+_x2.png width=3D48 alt=3D" Follow Made by Google on Instagram" style=3D"bor=
+der: none;" height=3D48></td> </tr> </table> </a> </td> <td height=3D48 wid=
+th=3Dauto></td> </tr> </table> </td> </tr> </table> </td> </tr> <tr> <td> <=
+table role=3Dpresentation width=3D100%> <tr> <td class=3Dfooter__divider> <=
+/td> </tr> </table> </td> </tr> <tr> <td> <table role=3Dpresentation cellpa=
+dding=3D0> <tr> <td class=3Dfooter__disclaimer-container> <table role=3Dpre=
+sentation cellpadding=3D0> <tr> <td class=3Dfooter__text--secondary style=
+=3D"width:10px; text-align:center; font-size:8px;vertical-align:top"> 1</td=
+> <td style=3Dwidth:4px> </td> <td class=3D"footer__diclaimer-row footer__t=
+ext--secondary" style=3D"text-align: left"> Pixel 10 Pro XL (Unlocked) Save=
+ $200: Starts 10/7/2025 and ends 10/8/2025,<br>Pixel 10 (Unlocked) Save $10=
+0: Starts 10/7/2025 and ends 10/8/2025,<br>Pixel Buds Pro 2 Save $40: Start=
+s 10/7/2025 and ends 10/12/2025,<br>Nest x Yale Lock Save $75: Starts 10/6/=
+2025 and ends 10/12/2025,<br>Nest Learning Thermostat (4th gen) Save $40: S=
+tarts 10/6/2025 and ends 10/13/2025,<br>Pixel Tablet (128 GB) Save $120: St=
+arts 10/7/2025 and ends 10/12/2025,<br>Fitbit Ace LTE Save $30: Starts 10/7=
+/2025 and ends 10/12/2025,<br>Google TV Streamer (4K) Save $15: Starts 10/6=
+/2025 and ends 10/12/2025. <br><br>Start time for each promotion is 12:00 a=
+m PT and ends 11:59 pm PT, while supplies last and subject to availability.=
+ US residents with US shipping addresses only. Must be 18 years or older. U=
+nless otherwise stated, offers cannot be combined with other offers that in=
+clude the same product. Offers are not transferable and are not valid for c=
+ash or cash equivalent. Purchase must be made on Google Store US. Void wher=
+e prohibited. </td> </tr> <tr> <td class=3Dfooter__text--secondary style=3D=
+"width:10px; text-align:center; font-size:8px;vertical-align:top"> 2</td> <=
+td style=3Dwidth:4px> </td> <td class=3D"footer__diclaimer-row footer__text=
+--secondary" style=3D"text-align: left"> Compared to Qi 1.3 wireless chargi=
+ng. Requires Qi 2.0-certified wireless charger (sold separately).<br>Charge=
+rs and magnetic accessories each sold separately.<br>Pixelsnap accessories =
+are compatible with Pixel 10, Pixel 10 Pro, Pixel 10 Pro XL, and Pixel 10 P=
+ro Fold only. </td> </tr> <tr> <td class=3Dfooter__text--secondary style=3D=
+"width:10px; text-align:center; font-size:8px;vertical-align:top"> 3</td> <=
+td style=3Dwidth:4px> </td> <td class=3D"footer__diclaimer-row footer__text=
+--secondary" style=3D"text-align: left"> $0 screen repair is only available=
+ for front screen and back glass of Pixel phones; not available for inner s=
+creens of Pixel Fold phones. For complete details, see the Pixel Care+ <a h=
+ref=3Dhttps://c.gle/AF5yWjC1j-YkOXGZYuAmO6gLr38Y_nFDHdl5jl-CVr48lq1sYpA0ydy=
+hipiR80_eMq8eYqdNnps44uy4Dp0eMkuzXHTFlxgBBBGTaU4Exsykpeup5nA33kEg2WWkVquvy-=
+jZQ7Nq7ojfVBXCjQbsWU_uLIzgNvPveq8kRS3XKSDVasYXfUlibOWRvlugExcJJxv2AY9g5otnb=
+-gHM5ghRRJj7SPbQtLDrFMwsNkcdGuibskiggprTr6uHLSvWJI-VQx2ngjJ-sZ7W4mag-lMxs8 =
+style=3D"color: #1967D2; text-decoration: underline;">Terms and Conditions<=
+/a>. </td> </tr> <tr> <td class=3Dfooter__text--secondary style=3D"width:10=
+px; text-align:center; font-size:8px;vertical-align:top"> 4</td> <td style=
+=3Dwidth:4px> </td> <td class=3D"footer__diclaimer-row footer__text--second=
+ary" style=3D"text-align: left"> Coverage is available only for batteries t=
+hat retain less than 80% of original charge capacity. </td> </tr> <tr> <td =
+class=3Dfooter__text--secondary style=3D"width:10px; text-align:center; fon=
+t-size:8px;vertical-align:top"> 5</td> <td style=3Dwidth:4px> </td> <td cla=
+ss=3D"footer__diclaimer-row footer__text--secondary" style=3D"text-align: l=
+eft"> Free delivery (at the lowest cost option) may be discontinued or chan=
+ged at any=C2=A0time. </td> </tr> <tr> <td class=3Dfooter__text--secondary =
+style=3D"width:10px; text-align:center; font-size:8px;vertical-align:top"> =
+**</td> <td style=3Dwidth:4px> </td> <td class=3D"footer__diclaimer-row foo=
+ter__text--secondary" style=3D"padding-bottom: 0px;text-align: left"> For p=
+roducts launched in 2020 and 2021: Nest, Pixel, and Chromecast devices are =
+made with recycled plastic ranging between 9% and 68% based on weight of pl=
+astic used in each respective product launched during this timeframe. The f=
+ollowing items are excluded: plastics in printed circuit boards, labels, ca=
+bles, connectors, electronic components and modules, optical components, el=
+ectrostatic discharge (ESD) components, electromagnetic interference (EMI) =
+components, films, coatings and adhesives. <br><br> For products launched i=
+n 2022: Pixel, Nest, and Chromecast devices are made with recycled material=
+s ranging between 9% and 60% based on respective product weights. </td> </t=
+r> </table> </td> </tr> </table> </td> </tr> <tr> <td> <table role=3Dpresen=
+tation cellpadding=3D0> <tr> <td class=3D"footer__entity-and-address-contai=
+ner footer__text--secondary footer__text--bold"> =C2=A9 2025 Google LLC, <a=
+ href=3D# class=3D"footer__text--secondary footer__text--bold"> 1600 Amphit=
+heatre Parkway, Mountain View, CA 94043, United States </a> </td> </tr> </t=
+able> </td> </tr> <tr> <td> <table role=3Dpresentation cellpadding=3D0> <tr=
+> <td class=3D"footer__rationale-container footer__text--secondary"> This e=
+mail was sent to <a href=3D# style=3D"word-break: break-all" class=3Dfooter=
+__text--secondary> LienCF@gmail.com</a> because you asked to receive offers=
+, updates and more about devices from Google on <a href=3Dhttps://c.gle/AF5=
+yWjDhsrlJVRoGv30PjlabkWQVbDR61_gFrguY5jCnDMYArHP5PFvXn4notiUIVpzzFUG4KhqKhl=
+GN0-bHE8CHnvXVMc9QY1MO3ixgLQCfpkNf94pZpviO4Io class=3Dfooter__text--standou=
+t-link>store.google.com</a>. If you=E2=80=99d like to unsubscribe, click <a=
+ href=3Dhttps://myaccount.google.com/communication-preferences/unsubscribe/=
+gt/AF5yWjCiV91eJK1hiLNZARxMVCo3AIVE6xdTaQfLnsF1ZlMH53VZP6WLUextP8Xsa8V2QEvj=
+8HuXLsz7g9UfLLmXAju3Pyx8sHTkqQRu0C_G9WpmF0Wzr1Yjf49X4Doxku4CqC4fgDPcE-yB_Qm=
+tKY_HV8JsFog8pi3BtmNYSvFZbqXLj202fY8tWboF6GxEYYnABR8x6O8hxFbIO623lBL-csTSDc=
+4GgS8Ktine0vuFM5gaRYEakhAk48IinE9WQbqC?utm_source=3Dgm&amp;utm_medium=3Dema=
+il&amp;auto=3Dtrue class=3Dfooter__text--standout-link>here</a>. </td> </tr=
+> </table> </td> </tr> <tr> <td> <table role=3Dpresentation cellpadding=3D0=
+> <tr> <td align=3Dcenter class=3D"footer__text--secondary footer__links-co=
+ntainer"> <a href=3Dhttps://c.gle/AF5yWjBzT2aOUb-qCioZVqBRNYFDzPH6VC6b6TGId=
+bpQje58hFtBtmvF2fWcB1_eXWRJB_r0XOGFk9t308Vn-ur-62QYTa7UoNPxQIqgArXQc2R6xN-G=
+XvS_zWy-EGU_58tC3SRD1ZN3nAE3GuPuX5b4f7JK-V5FlHPOV-TYJKo9DbhhsK-MTePhrAA8sbN=
+d0G-bo_Lwn4D00Vgl7bSnoByDEsVZL8JesCwirSHaOvbYn6MOjrEYbJYpvvjeB1a5maarP9J6bk=
+RDSaKVFv2CW76WVy9sFj0GUodANM8_boXDWnVr3D0 class=3Dfooter__text--secondary> =
+Privacy policy </a> =C2=A0=C2=A0|=C2=A0=C2=A0 <a href=3Dhttps://c.gle/AF5yW=
+jCGzK3azfiv5YIjIO2rKACkQsCHftcbv61fNHRiv2TuvO_wc1NUYD7yq7soMMoWwAZXVRLAKVTN=
+GVtQkbVCFpuIlE0dTbrg78_D_jIXgXUgA3CR95Cadp8s1eMGUR6-yJm5Jy17HOc5Cvu1EZk1snC=
+Pvw1gEAGafMZ4lCYyC2ganceNSypUozLJmH46pb_lnADSuRaHxGN3Kb6gTYOzj6Zsx9Ig4Fh2Ay=
+Z78vPZVvKiC5KmRNgBwOiM0-mq5kCEVTB7B84xK_xY6ZTJLfVnwEr0feCLx6WZ2-MjAWY class=
+=3Dfooter__text--secondary> Terms of Service </a> </td> </tr> </table> </td=
+> </tr> </table> </div> </div> </div> <img alt=3D"" height=3D1 width=3D3 sr=
+c=3Dhttps://notifications.google.com/g/img/AF5yWjAyzaHaOukTDft14j4Z_-wrYa8q=
+BS84KcAy7bkoajYoHVRUlLarSHzWlxkBrp2DCs_gOdtwav5bDZNUAuMjE3S1AMHTh6e14Kw-NE_=
+xaGpPpRXckvbxfSryeSKC2Xi8k7bpSw.gif></body> </html>
+--000000000000a3c5ef0640a807b9--

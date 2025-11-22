@@ -1,0 +1,439 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:a80f:b0:4ec:41ca:fc70 with SMTP id cj15csp228570mdb;
+        Tue, 11 Nov 2025 06:56:17 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFMo+cZNt5X78AQfvrNhj+f04yQrLb0pR7cFuc83+Mr0Mk/X2Y7iXHfB9NAvqL4UlXED3N9
+X-Received: by 2002:a05:620a:4081:b0:89e:5809:3620 with SMTP id af79cd13be357-8b257ef9dc8mr1306506385a.2.1762872977471;
+        Tue, 11 Nov 2025 06:56:17 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762872977; cv=none;
+        d=google.com; s=arc-20240605;
+        b=FwKpA7NYjbnlxXqjfVSPnVxfpE0QSNstg2jPC031gDDon4hKsokVKzMsrUbnUNxBzA
+         5QIA0KJdx/ISeFSff7NXsJbF5K/eswTdQklu6CDGWSOd+aqHkBnF8Erftk0V0OdyNQsv
+         6ZHemo230li+YhYHl5+iDuoXcYUPpSHN6qS+sTrGBNM+N56RSAbqRXTAu/C3tl4EKGox
+         fJf233blmpzNL3RSi0FoojTQ0lkuvBFvFdmv48cmdBIGws3rv1lVtSFDPS5Gzg6Q1wHA
+         OAsD/JDau4IYBBCL7rzR+zxkChmY44J35cz2BsRrRVlkcwhA1xnuRQ2y/zOpUO0/WVov
+         41FA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:date:message-id:mime-version:subject:to:from
+         :dkim-signature:dkim-signature;
+        bh=91og4ycI/0jUXwzomOapZ3FZDdR3SHBJcxiC75YCmWo=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=fTZe7P2oBJ3SSxLDDgpctPMc+1CA+aHUgKnw8wfy+MxIUiL4hMS62jG7gOKWlce+nc
+         AWGNWyuvjVNGRR28RX2BCsRBazpOZX2fcsIgIbUvVcNCqWQ3svPz8ZzFJ21hamTkuJGA
+         NRP4sTOl/hLYWFdTGsVF0GkjOqtLhZHneivANlIjv3xiO5AvfMRRK+j26Mc10UFAYSPW
+         Z6AnfZvz6lZXolGd0VxhFI5xveV8tmdFndZ2WpK1tMtWzZu3gqCm8VLiiFhm7zDakftv
+         mmmwaUKBCsEak4RPGxCCQ0t7LUJxQBYhmsePnzReFHIexwpf8y2LB8BlTnWjjO/E6klc
+         b/3A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@1min.ai header.s=pxyljvvueb6komanzgwvp32pemdlk4kv header.b=EKWrjSkj;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=AFbzwlUs;
+       spf=pass (google.com: domain of 0100019a736ae66e-9f197a5d-5f7a-44da-af6b-75a715d0fa0e-000000@amazonses.com designates 54.240.9.99 as permitted sender) smtp.mailfrom=0100019a736ae66e-9f197a5d-5f7a-44da-af6b-75a715d0fa0e-000000@amazonses.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=1min.ai
+Return-Path: <0100019a736ae66e-9f197a5d-5f7a-44da-af6b-75a715d0fa0e-000000@amazonses.com>
+Received: from a9-99.smtp-out.amazonses.com (a9-99.smtp-out.amazonses.com. [54.240.9.99])
+        by mx.google.com with ESMTPS id af79cd13be357-8b23520d610si512111185a.261.2025.11.11.06.56.17
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Nov 2025 06:56:17 -0800 (PST)
+Received-SPF: pass (google.com: domain of 0100019a736ae66e-9f197a5d-5f7a-44da-af6b-75a715d0fa0e-000000@amazonses.com designates 54.240.9.99 as permitted sender) client-ip=54.240.9.99;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@1min.ai header.s=pxyljvvueb6komanzgwvp32pemdlk4kv header.b=EKWrjSkj;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=AFbzwlUs;
+       spf=pass (google.com: domain of 0100019a736ae66e-9f197a5d-5f7a-44da-af6b-75a715d0fa0e-000000@amazonses.com designates 54.240.9.99 as permitted sender) smtp.mailfrom=0100019a736ae66e-9f197a5d-5f7a-44da-af6b-75a715d0fa0e-000000@amazonses.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=1min.ai
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=pxyljvvueb6komanzgwvp32pemdlk4kv; d=1min.ai; t=1762872977;
+	h=From:To:Subject:MIME-Version:Content-Type:Message-ID:Date;
+	bh=91og4ycI/0jUXwzomOapZ3FZDdR3SHBJcxiC75YCmWo=;
+	b=EKWrjSkjung1SxLo3wV1tkClzbeNBBdmSgvkKdfUtPiefhZ3UIIcOABDBZkrtiBa
+	fndDGb/V3cQNyKB2PserdQW9ZAwkG1doCcguT3TT0vZdyInWB7dMesL2K4/NRJRgDlA
+	NpurL5qedtEg/thOL1aVddSdy2yzyITKd/2qzd9sks966LUMSPJtCCKThQq1vLJgsSk
+	DZJpVrhkYsGijtT/lFiQDpNXB5fkFezeJFE+42GYeQu1sha0OiOCF2iV47P5u7Cd3Gk
+	bnjBl9tux/02GSr7qbD7puG14t+atlT14Ic9pSjE6eUOftrmaJ2Ug5PCr5lExZXuG1X
+	r/RKxwAHFA==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw; d=amazonses.com; t=1762872977;
+	h=From:To:Subject:MIME-Version:Content-Type:Message-ID:Date:Feedback-ID;
+	bh=91og4ycI/0jUXwzomOapZ3FZDdR3SHBJcxiC75YCmWo=;
+	b=AFbzwlUsaGVcrL/BgFx5Dj9xwAtmceir6Ld1OLWdPxS7nXzny2i8Qy+IvG/arG7a
+	3Hi9OhoSyigHBXXszdODZLcOpElGEo2jdS4gPfCF7iZJ7izXEF2IyfAn71b1pxaNqdM
+	4+1udLrFJCG/SF9C9mYM5i1BDWb/1Vne7osKftvA=
+From: "1min.AI" <support@1min.ai>
+To: liencf@gmail.com
+Subject: =?UTF-8?Q?=F0=9F=94=AE_Weekly_AI_Innovations_#93:_Video?=
+ =?UTF-8?Q?_Face_Swap_and_AI_Model_Information?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_109530_1571408065.1762872977006"
+Message-ID: <0100019a736ae66e-9f197a5d-5f7a-44da-af6b-75a715d0fa0e-000000@email.amazonses.com>
+Date: Tue, 11 Nov 2025 14:56:17 +0000
+Feedback-ID: ::1.us-east-1.On8hSkW2xWCj4KzTwZGGnYeSYnxC8ZQeCslOh8JNUVs=:AmazonSES
+X-SES-Outgoing: 2025.11.11-54.240.9.99
+
+------=_Part_109530_1571408065.1762872977006
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+------=_Part_109530_1571408065.1762872977006
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta name=3D"viewport" content=3D"width=3Ddevice-width"/><meta=
+ http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/><title=
+>Simple Transactional Email</title><style>.center {
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: fit-content;
+}
+/* -------------------------------------
+GLOBAL RESETS
+------------------------------------- */
+img {
+border: none;
+-ms-interpolation-mode: bicubic;
+max-width: 100%; }
+body {
+background-color: #f6f6f6;
+font-family: sans-serif;
+-webkit-font-smoothing: antialiased;
+font-size: 16px;
+line-height: 1.4;
+margin: 0;
+padding: 0;
+-ms-text-size-adjust: 100%;
+-webkit-text-size-adjust: 100%; }
+table {
+border-collapse: separate;
+mso-table-lspace: 0pt;
+mso-table-rspace: 0pt;
+width: 100%; }
+table td {
+font-family: sans-serif;
+font-size: 16px;
+vertical-align: top; }
+/* -------------------------------------
+BODY & CONTAINER
+------------------------------------- */
+.body {
+background-color: #f6f6f6;
+width: 100%; }
+/* Set a max-width, and make it display as block so it will automatically s=
+tretch to that width, but will also shrink down on a phone or something */
+.container {
+display: block;
+Margin: 0 auto !important;
+/* makes it centered */
+max-width: 580px;
+padding: 10px;
+width: 580px; }
+/* This should also be a block element, so that it will fill 100% of the .c=
+ontainer */
+.content {
+box-sizing: border-box;
+display: block;
+Margin: 0 auto;
+max-width: 580px;
+padding: 10px; }
+/* -------------------------------------
+HEADER, FOOTER, MAIN
+------------------------------------- */
+.main {
+background: #ffffff;
+border-radius: 3px;
+width: 100%; }
+.wrapper {
+box-sizing: border-box;
+padding: 20px; }
+.content-block {
+padding-bottom: 10px;
+padding-top: 10px;
+}
+.footer {
+clear: both;
+Margin-top: 10px;
+text-align: center;
+width: 100%; }
+.footer td,
+.footer p,
+.footer span,
+.footer a {
+color: #999999;
+font-size: 14px;
+text-align: center; }
+/* -------------------------------------
+TYPOGRAPHY
+------------------------------------- */
+h1,
+h2,
+h3,
+h4 {
+color: #000000;
+font-family: sans-serif;
+font-weight: 400;
+line-height: 1.4;
+margin-top: 35px;
+margin-bottom: 20px; }
+h1 {
+font-size: 30px;
+font-weight: 300; }
+p,
+ul,
+ol {
+font-family: sans-serif;
+font-size: 16px;
+font-weight: normal;
+margin: 0;
+margin-bottom: 15px;
+line-height: 1.4;
+}
+p li,
+ul li,
+ol li {
+list-style-position: inside;
+margin-left: 5px; }
+a {
+color: #3498db;
+text-decoration: underline; }
+img.demo {
+margin-bottom: 35px; }
+/* -------------------------------------
+BUTTONS
+------------------------------------- */
+.btn {
+box-sizing: border-box;
+width: 100%; }
+.btn > tbody > tr > td {
+padding-bottom: 15px; }
+.btn table {
+width: auto; }
+.btn table td {
+background-color: #ffffff;
+border-radius: 5px;
+text-align: center; }
+.btn a {
+background-color: #ffffff;
+border: solid 1px #3498db;
+border-radius: 5px;
+box-sizing: border-box;
+color: #3498db;
+cursor: pointer;
+display: inline-block;
+font-size: 16px;
+font-weight: bold;
+margin: 0;
+padding: 12px 25px;
+text-decoration: none; }
+.btn-primary table td {
+background-color: #3498db; }
+.btn-primary a {
+background-color: #1577ff;
+border-color: #1577ff;
+color: #ffffff; }
+/* -------------------------------------
+OTHER STYLES THAT MIGHT BE USEFUL
+------------------------------------- */
+.last {
+margin-bottom: 0; }
+.first {
+margin-top: 0; }
+.align-center {
+text-align: center; }
+.align-right {
+text-align: right; }
+.align-left {
+text-align: left; }
+.clear {
+clear: both; }
+.mt0 {
+margin-top: 0; }
+.mb0 {
+margin-bottom: 0; }
+.preheader {
+color: transparent;
+display: none;
+height: 0;
+max-height: 0;
+max-width: 0;
+opacity: 0;
+overflow: hidden;
+mso-hide: all;
+visibility: hidden;
+width: 0; }
+.powered-by a {
+text-decoration: none; }
+hr {
+border: 0;
+border-bottom: 1px solid #f6f6f6;
+Margin: 20px 0; }
+/* -------------------------------------
+RESPONSIVE AND MOBILE FRIENDLY STYLES
+------------------------------------- */
+@media only screen and (max-width: 620px) {
+table[class=3Dbody] h1 {
+font-size: 28px !important;
+margin-bottom: 10px !important; }
+table[class=3Dbody] p,
+table[class=3Dbody] ul,
+table[class=3Dbody] ol,
+table[class=3Dbody] td,
+table[class=3Dbody] span,
+table[class=3Dbody] a {
+font-size: 16px !important; }
+table[class=3Dbody] .wrapper,
+table[class=3Dbody] .article {
+padding: 10px !important; }
+table[class=3Dbody] .content {
+padding: 0 !important; }
+table[class=3Dbody] .container {
+padding: 0 !important;
+width: 100% !important; }
+table[class=3Dbody] .main {
+border-left-width: 0 !important;
+border-radius: 0 !important;
+border-right-width: 0 !important; }
+table[class=3Dbody] .btn table {
+width: 100% !important; }
+table[class=3Dbody] .btn a {
+width: 100% !important; }
+table[class=3Dbody] .img-responsive {
+height: auto !important;
+max-width: 100% !important;
+width: auto !important; }}
+/* -------------------------------------
+PRESERVE THESE STYLES IN THE HEAD
+------------------------------------- */
+@media all {
+.ExternalClass {
+width: 100%; }
+.ExternalClass,
+.ExternalClass p,
+.ExternalClass span,
+.ExternalClass font,
+.ExternalClass td,
+.ExternalClass div {
+line-height: 100%; }
+.apple-link a {
+color: inherit !important;
+font-family: inherit !important;
+font-size: inherit !important;
+font-weight: inherit !important;
+line-height: inherit !important;
+text-decoration: none !important; }
+.btn-primary table td:hover {
+background-color: #34495e !important; } }</style></head><body><table class=
+=3D"body" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tbody><tr><td>&=
+nbsp;</td><td class=3D"container"><div class=3D"content"><!-- START CENTERE=
+D WHITE CONTAINER--><span class=3D"preheader">1min.AI - Easy - Quick - Effi=
+cient</span><table class=3D"main"><!-- START MAIN CONTENT AREA--><tbody><tr=
+><td class=3D"wrapper"><table border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0"><tbody><tr><td><img class=3D"demo" src=3D"https://asset.1min.ai/resourc=
+es/newsletter/top-banner.png" width=3D"100%"/><p>Hi <strong>=E9=80=A3=E5=BF=
+=97=E5=B3=B0</strong> =F0=9F=91=8B,</p><p>Warm wishes for a fantastic day!W=
+e're always busy working on ways to make 1min.AI even better for you!
+This week, we're excited to share your team report, some product updates, A=
+I tips and news from the community.</p><h1>=F0=9F=93=8A =E9=80=A3=E5=BF=97=
+=E5=B3=B0's Team report</h1><p>=F0=9F=8F=A6 <a href=3D"https://b0qhh51m.r.u=
+s-east-1.awstrack.me/L0/https:%2F%2Fapp.1min.ai%2Fbilling-usage%3Futm_sourc=
+e=3Dnewsletter%26utm_medium=3Demail%26utm_campaign=3D68/1/0100019a736ae66e-=
+9f197a5d-5f7a-44da-af6b-75a715d0fa0e-000000/tvTt_Q_MnegqWI20EBmfkTptFkI=3D4=
+51">Total credits remaining:</a> 72,918,857</p><hr/><h1>=F0=9F=94=AE 1min.A=
+I updates</h1><div><p>Transform any clip instantly =E2=80=94 swap faces in =
+videos with stunning realism using <strong><a>Video Face Swap</a></strong>,=
+ and bring your imagination to life in seconds =F0=9F=8E=AD</p><figure><img=
+ src=3D"https://blog1minai.wordpress.com/wp-content/uploads/2025/11/face-sw=
+ap-video-frame.webp" alt=3D""></figure><p>Discover detailed insights about =
+every AI model at your fingertips, unlock smarter decisions and supercharge=
+ your results with AI model information =F0=9F=A4=94</p><figure><img src=3D=
+"https://blog1minai.wordpress.com/wp-content/uploads/2025/11/xnapper-2025-1=
+1-11-20.27.12.png" alt=3D""></figure><figure><img src=3D"https://blog1minai=
+.wordpress.com/wp-content/uploads/2025/11/xnapper-2025-11-11-20.27.25.png?w=
+=3D1024" alt=3D""></figure></div><hr/><h1>=F0=9F=A4=96 AI Tips - News</h1><=
+div><ul>
+<li><a>A better way of thinking about the AI bubble</a></li>
+
+
+
+<li><a>Tinder to use AI to get to know users, tap into their Camera Roll ph=
+otos</a></li>
+
+
+
+<li><a>Google Maps releases new AI tools that let you create interactive pr=
+ojects</a></li>
+</ul></div><hr/><h1>=F0=9F=92=A1 Resources - Tips</h1><p>=F0=9F=92=B0 &nbsp=
+;Affiliate Program =E2=86=92 <a href=3D"https://b0qhh51m.r.us-east-1.awstra=
+ck.me/L0/https:%2F%2F1min.ai%2Faffiliate/1/0100019a736ae66e-9f197a5d-5f7a-4=
+4da-af6b-75a715d0fa0e-000000/Te9AlAbZCYIipGyOvpZ93IQKeVY=3D451">1min.ai/aff=
+iliate</a></p><p>=F0=9F=8E=81 &nbsp;Free Credits Program =E2=86=92 <a href=
+=3D"https://b0qhh51m.r.us-east-1.awstrack.me/L0/https:%2F%2F1min.ai%2Ffree-=
+credits/1/0100019a736ae66e-9f197a5d-5f7a-44da-af6b-75a715d0fa0e-000000/k3zw=
+DTp6OqVq5eMbLuxgYKNwr2E=3D451">1min.ai/free-credits</a></p><p>=F0=9F=92=8C =
+&nbsp;Newsletter =E2=86=92 <a href=3D"https://b0qhh51m.r.us-east-1.awstrack=
+.me/L0/https:%2F%2F1min.ai%2Fnewsletter/1/0100019a736ae66e-9f197a5d-5f7a-44=
+da-af6b-75a715d0fa0e-000000/feDRLd2e7tWtEmuf7stHR9YGS80=3D451">1min.ai/news=
+letter</a></p><p>=F0=9F=93=9D &nbsp;AI Blog =E2=86=92 <a href=3D"https://b0=
+qhh51m.r.us-east-1.awstrack.me/L0/https:%2F%2F1min.ai%2Fblog/1/0100019a736a=
+e66e-9f197a5d-5f7a-44da-af6b-75a715d0fa0e-000000/e-tF_loPHjBjg9CESOutQXmuf-=
+A=3D451">1min.ai/blog</a></p><p>=F0=9F=92=A1 &nbsp;Feedback - Feature Reque=
+sts =E2=86=92 <a href=3D"https://b0qhh51m.r.us-east-1.awstrack.me/L0/https:=
+%2F%2Ffeedback.1min.ai/1/0100019a736ae66e-9f197a5d-5f7a-44da-af6b-75a715d0f=
+a0e-000000/X0BhaRxtKTn6vpO7co4Rv5n9Xho=3D451">feedback.1min.ai</a></p><p>=
+=F0=9F=99=8B &nbsp;Help Center =E2=86=92 <a href=3D"https://b0qhh51m.r.us-e=
+ast-1.awstrack.me/L0/https:%2F%2Fhelp.1min.ai/1/0100019a736ae66e-9f197a5d-5=
+f7a-44da-af6b-75a715d0fa0e-000000/W81ejY3UO_XkE-IBWOeKtS0L9FU=3D451">help.1=
+min.ai</a></p><p>=F0=9F=94=8A &nbsp;Social Media =E2=86=92 <a href=3D"https=
+://b0qhh51m.r.us-east-1.awstrack.me/L0/https:%2F%2Ftwitter.com%2F1min_dot_a=
+i/1/0100019a736ae66e-9f197a5d-5f7a-44da-af6b-75a715d0fa0e-000000/JOMHkL_Z8d=
+S0A5UwcRryYoy9nC4=3D451">X (Twitter)</a>,&nbsp;<a href=3D"https://b0qhh51m.=
+r.us-east-1.awstrack.me/L0/https:%2F%2Fwww.linkedin.com%2Fcompany%2F1min-ai=
+/1/0100019a736ae66e-9f197a5d-5f7a-44da-af6b-75a715d0fa0e-000000/O_-l-kJYt03=
+eBSrqQauUe-v2bmU=3D451">LinkedIn</a>,&nbsp;
+<a href=3D"https://b0qhh51m.r.us-east-1.awstrack.me/L0/https:%2F%2Fwww.yout=
+ube.com%2F@1min_dot_AI/1/0100019a736ae66e-9f197a5d-5f7a-44da-af6b-75a715d0f=
+a0e-000000/aJjGk29HjoV4IlvixFvq3w2xAwQ=3D451">Youtube</a>,&nbsp;
+<a href=3D"https://b0qhh51m.r.us-east-1.awstrack.me/L0/https:%2F%2Fwww.tikt=
+ok.com%2F@1min_AI/1/0100019a736ae66e-9f197a5d-5f7a-44da-af6b-75a715d0fa0e-0=
+00000/WV0hzwfu22koM_Fa_NdDetJ8qWQ=3D451">TikTok</a>,&nbsp;
+<a href=3D"https://b0qhh51m.r.us-east-1.awstrack.me/L0/https:%2F%2Ffacebook=
+.com%2F1min.AI/1/0100019a736ae66e-9f197a5d-5f7a-44da-af6b-75a715d0fa0e-0000=
+00/BiJaHJcmwV96dMa9byBwMGe5vNY=3D451">Facebook</a></p><hr/><h1>=F0=9F=8E=81=
+ Deals of the Week</h1><div><p>=F0=9F=8D=80 The lucky number, derived from =
+the last number of the Powerball Jackpot drawing on November 10 is <strong>=
+23</strong>.</p><p>=F0=9F=AA=84&nbsp;<strong><strong><strong><strong><stron=
+g><strong><strong><strong><strong><strong><strong><strong><strong><strong><=
+strong><strong><strong><strong><strong><strong><strong><strong><strong><str=
+ong><strong>Q0MDM2OA</strong></strong></strong></strong></strong></strong><=
+/strong></strong></strong></strong></strong></strong></strong></strong></st=
+rong></strong></strong></strong></strong></strong></strong></strong></stron=
+g></strong></strong>&nbsp;=E2=86=92 23% OFF on all payments before November=
+ 18, 6 AM PST.</p><figure><img src=3D"https://blog1minai.wordpress.com/wp-c=
+ontent/uploads/2024/07/add-discount-code.png?w=3D460" alt=3D""></figure></d=
+iv><hr/><h1>=F0=9F=8E=89 That's all for this week</h1><p>Your feedback is v=
+aluable to us as we continuously strive to improve our products and service=
+s. If you have any further questions or concerns, please don't hesitate to =
+<strong>reply to this email</strong> or <strong>chat with us</strong> direc=
+tly in the app =F0=9F=92=AC</p><p>Hope you enjoy these updates! =F0=9F=A5=
+=B3</p><p>- 1min.AI Team =F0=9F=92=8C</p><table class=3D"btn btn-primary" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tbody><tr><td align=3D"cen=
+ter"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tbody><tr><td=
+><a href=3D"https://b0qhh51m.r.us-east-1.awstrack.me/L0/https:%2F%2Fapp.1mi=
+n.ai%3Futm_source=3Dnewsletter%26utm_medium=3Demail%26utm_campaign=3D68/1/0=
+100019a736ae66e-9f197a5d-5f7a-44da-af6b-75a715d0fa0e-000000/ZnsgmCKk6DvC8Iu=
+9sjxOzr8WCGQ=3D451" target=3D"_blank">Join the AI era with 1min.AI</a></td>=
+</tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></=
+td></tr><!-- END MAIN CONTENT AREA--></tbody></table><!-- START FOOTER--><d=
+iv class=3D"footer"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+><tbody><tr><td class=3D"content-block"><span class=3D"apple-link">&copy; 2=
+024 1min.AI. All rights reserved. <a href=3D"https://b0qhh51m.r.us-east-1.a=
+wstrack.me/L0/https:%2F%2Fapi.1min.ai%2Fsupports%2Funsubscribe%3Femail=3Dli=
+encf@gmail.com/1/0100019a736ae66e-9f197a5d-5f7a-44da-af6b-75a715d0fa0e-0000=
+00/jHqe0HayiDzmkp7tXzIZqI4YY2I=3D451" target=3D"_blank">Unsubscribe</a></sp=
+an></td></tr></tbody></table></div><!-- END FOOTER--><!-- END CENTERED WHIT=
+E CONTAINER--></div></td><td>&nbsp;</td></tr></tbody></table><img alt=3D"" =
+src=3D"https://b0qhh51m.r.us-east-1.awstrack.me/I0/0100019a736ae66e-9f197a5=
+d-5f7a-44da-af6b-75a715d0fa0e-000000/2mvIhCUpQp6DjmpamVgMohlvtkg=3D451" sty=
+le=3D"display: none; width: 1px; height: 1px;">
+</body></html>
+------=_Part_109530_1571408065.1762872977006--

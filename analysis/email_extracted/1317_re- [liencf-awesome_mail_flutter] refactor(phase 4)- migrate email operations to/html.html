@@ -1,0 +1,57 @@
+<p></p>
+<p><b>@cursor[bot]</b> commented on this pull request.</p>
+
+<hr>
+
+<p>In <a href="https://github.com/LienCF/awesome_mail_flutter/pull/2#discussion_r2416302854">lib/presentation/blocs/mailbox/mailbox_bloc.dart</a>:</p>
+<pre style='color:#555'>&gt; +    try {
++      // TODO: Implement archive logic via GmailSyncService or EmailRepository
++      // For now, just log
++      _logger.info(&#39;Archive email: ${event.emailId}&#39;);
++    } on Exception catch (error, stackTrace) {
++      _logger.error(&#39;封存郵件失敗&#39;, error, stackTrace);
++
++      // Rollback: re-add email
++      final rolledBackEmails = List&lt;Email&gt;.from(state.emails);
++      rolledBackEmails.insert(emailIndex, email);
++
++      emit(state.copyWith(
++        emails: rolledBackEmails,
++        errorMessage: &#39;封存郵件失敗：$error&#39;,
++      ));
++    }
+</pre>
+<h3 dir="auto">Bug: Email Rollback Fails, UI/Backend Mismatch</h3>
+
+
+<p dir="auto">The rollback logic for <code class="notranslate">_onEmailArchive</code> and <code class="notranslate">_onEmailDelete</code> attempts to re-insert an email using an <code class="notranslate">emailIndex</code> from the original list. After an optimistic removal, this index is incorrect for the modified list, potentially misplacing the email or causing an index error. Additionally, <code class="notranslate">_onEmailArchive</code> performs an optimistic UI update but lacks a backend implementation, leading to an inconsistent state where emails are removed from the UI but not archived on the server.</p>
+
+
+<details>
+<summary>Additional Locations (2)</summary>
+<ul dir="auto">
+<li><a href="https://github.com/LienCF/awesome_mail_flutter/blob/80397f7d32bb4a3a41befd0888b7b02ae4199b31/lib/presentation/blocs/mailbox/mailbox_bloc.dart#L566-L575"><code class="notranslate">lib/presentation/blocs/mailbox/mailbox_bloc.dart#L566-L575</code></a></li>
+<li><a href="https://github.com/LienCF/awesome_mail_flutter/blob/80397f7d32bb4a3a41befd0888b7b02ae4199b31/lib/presentation/blocs/mailbox/mailbox_bloc.dart#L433-L442"><code class="notranslate">lib/presentation/blocs/mailbox/mailbox_bloc.dart#L433-L442</code></a></li>
+</ul>
+</details>
+<p dir="auto"><a href="https://cursor.com/open?data=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImJ1Z2JvdC12MSJ9.eyJ2ZXJzaW9uIjoxLCJ0eXBlIjoiQlVHQk9UX0ZJWF9JTl9DVVJTT1IiLCJkYXRhIjp7InJlZGlzS2V5IjoiYnVnYm90OmI5ZWIyNzM5LWUxY2QtNDBlMy04N2E2LTUwM2JkYTVkYzVmYyIsImVuY3J5cHRpb25LZXkiOiJCMjBscnZTdzI1dDJObWM0QnVXZE1nSGlILXdxM1AtM19KTjN2SWlNT2pRIiwiYnJhbmNoIjoicmVmYWN0b3IvbWlncmF0ZS1lbWFpbC1vcGVyYXRpb25zLXRvLWJsb2MifSwiaWF0IjoxNzYwMDA1NTcxLCJleHAiOjE3NjA2MTAzNzF9.b--J4-CjJ5NHoczMEjEpU_SE4hyDPz8OoEIOOG1vX8Z6gCNtP3uFRZqSWVy0sYv28hhsQmlX0nuUy7dUbRvG_n-WxWDjVZjI9cI64-uoxuS8IIUa24cwSNGK__uGL_zj-KkjBOKLh8PxcFZoUriaNnP4GI4ScJgT6N_1GmpColK1C5dOg65f5CLO-_8Y0Tk8Htpk4WEe53NYIe-QPLEIenIhl3gU60u0rr3ISfrCDs6RjnqGXPQjNWfiBi2073X5QyLyrMXrfQ-XW9njKkIibQ5aJVatTgWuL_E9VFVH3es47Prei-nhVG4dLFfUcGrJDPUmh1RJ8RNFD4nQ9Run6g" rel="nofollow"><themed-picture data-catalyst-inline="true"><picture><source media="(prefers-color-scheme: dark)" srcset="https://camo.githubusercontent.com/1afae4771ef4417f4b2cd4c7239657abaa000a2fa0dec6ef9d6e426a847cec82/68747470733a2f2f637572736f722e636f6d2f6669782d696e2d637572736f722d6461726b2e737667" data-canonical-src="https://cursor.com/fix-in-cursor-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://camo.githubusercontent.com/50ad35914a07b2d7a1e4b503872e93cd05451d150c626088eec4ececcbd899d5/68747470733a2f2f637572736f722e636f6d2f6669782d696e2d637572736f722d6c696768742e737667" data-canonical-src="https://cursor.com/fix-in-cursor-light.svg"><img alt="Fix in Cursor" src="https://camo.githubusercontent.com/3ac38201a3bba7379349751d569a8a3099a5621b2a94422c29684d3da241fa7c/68747470733a2f2f637572736f722e636f6d2f6669782d696e2d637572736f722e737667" data-canonical-src="https://cursor.com/fix-in-cursor.svg"></picture></themed-picture></a> <a href="https://cursor.com/agents?data=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImJ1Z2JvdC12MSJ9.eyJ2ZXJzaW9uIjoxLCJ0eXBlIjoiQlVHQk9UX0ZJWF9JTl9XRUIiLCJkYXRhIjp7InJlZGlzS2V5IjoiYnVnYm90OmI5ZWIyNzM5LWUxY2QtNDBlMy04N2E2LTUwM2JkYTVkYzVmYyIsImVuY3J5cHRpb25LZXkiOiJCMjBscnZTdzI1dDJObWM0QnVXZE1nSGlILXdxM1AtM19KTjN2SWlNT2pRIiwiYnJhbmNoIjoicmVmYWN0b3IvbWlncmF0ZS1lbWFpbC1vcGVyYXRpb25zLXRvLWJsb2MiLCJyZXBvT3duZXIiOiJMaWVuQ0YiLCJyZXBvTmFtZSI6ImF3ZXNvbWVfbWFpbF9mbHV0dGVyIiwicHJOdW1iZXIiOjIsImNvbW1pdFNoYSI6IjgwMzk3ZjdkMzJiYjRhM2E0MWJlZmQwODg4YjdiMDJhZTQxOTliMzEifSwiaWF0IjoxNzYwMDA1NTcxLCJleHAiOjE3NjA2MTAzNzF9.LScrHpo7r--U6gsFOluE6H1tHmv4hVXsp1iCgi2ZHL_wTWXuMYbjFkhOIuWIN2ToSdolORJcqgf7vE6k4RaIS5Rz0AdG3tl6R4Qap_K0vj1g9ZLCrE7mSgkckqEtEt8d_hLpWmPniuClixrVobUIxv90yvZ6SEilGqyUthRHbrqnf7TzRZcMMPgGrmi4XksDVwLdSp2nzvcTV19y1bKZTzKymAo9LOCjSQsvejFm845gdI2kquPqfA39ftvWDveQyNPSIyQWtQ26rRm2m8uDQa-VzybgBIcHnW3KDgIU_Es9vHyb9QoVF6KV3b_y0mSgpXnm9qWg9s-lcnuYBDEPLQ" rel="nofollow"><themed-picture data-catalyst-inline="true"><picture><source media="(prefers-color-scheme: dark)" srcset="https://camo.githubusercontent.com/0a029ae6126cb47f61a08bc3c73c3380d5ec66726d97713c599939b2dac4d0d7/68747470733a2f2f637572736f722e636f6d2f6669782d696e2d7765622d6461726b2e737667" data-canonical-src="https://cursor.com/fix-in-web-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://camo.githubusercontent.com/721dc43279e941176ee8477b6e9e32e597af3b8f5ac3ac440303acc48d1b0519/68747470733a2f2f637572736f722e636f6d2f6669782d696e2d7765622d6c696768742e737667" data-canonical-src="https://cursor.com/fix-in-web-light.svg"><img alt="Fix in Web" src="https://camo.githubusercontent.com/90e55942f68584945ed4173abb3b01cc7197346a407822ed4faaf5d18def4ae8/68747470733a2f2f637572736f722e636f6d2f6669782d696e2d7765622e737667" data-canonical-src="https://cursor.com/fix-in-web.svg"></picture></themed-picture></a></p>
+
+<p style="font-size:small;-webkit-text-size-adjust:none;color:#666;">&mdash;<br />Reply to this email directly, <a href="https://github.com/LienCF/awesome_mail_flutter/pull/2#pullrequestreview-3318254612">view it on GitHub</a>, or <a href="https://github.com/notifications/unsubscribe-auth/ABG7O2BUWXMBBMYXBZ2JTBD3WYZ5TAVCNFSM6AAAAACIV7BCT6VHI2DSMVQWIX3LMV43YUDVNRWFEZLROVSXG5CSMV3GSZLXHMZTGMJYGI2TINRRGI">unsubscribe</a>.<br />You are receiving this because you modified the open/close state.<img src="https://github.com/notifications/beacon/ABG7O2CRI6DAN2PC6VJJO533WYZ5TA5CNFSM6AAAAACIV7BCT6WGG33NNVSW45C7OR4XAZNRKB2WY3CSMVYXKZLTORJGK5TJMV32UY3PNVWWK3TUL5UWJTWFZCGBI.gif" height="1" width="1" alt="" /><span style="color: transparent; font-size: 0; display: none; visibility: hidden; overflow: hidden; opacity: 0; width: 0; height: 0; max-width: 0; max-height: 0; mso-hide: all">Message ID: <span>&lt;LienCF/awesome_mail_flutter/pull/2/review/3318254612</span><span>@</span><span>github</span><span>.</span><span>com&gt;</span></span></p>
+<script type="application/ld+json">[
+{
+"@context": "http://schema.org",
+"@type": "EmailMessage",
+"potentialAction": {
+"@type": "ViewAction",
+"target": "https://github.com/LienCF/awesome_mail_flutter/pull/2#pullrequestreview-3318254612",
+"url": "https://github.com/LienCF/awesome_mail_flutter/pull/2#pullrequestreview-3318254612",
+"name": "View Pull Request"
+},
+"description": "View this Pull Request on GitHub",
+"publisher": {
+"@type": "Organization",
+"name": "GitHub",
+"url": "https://github.com"
+}
+}
+]</script>

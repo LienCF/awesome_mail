@@ -1,0 +1,320 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:d801:b0:4d4:9739:2b92 with SMTP id of1csp1714990mdb;
+        Thu, 6 Nov 2025 22:02:43 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEXl90RpGNDeFUPn5CdQ1zApbBVfO6Ksb9k4quQiPAWEe+xNbP7hbwM4A6UVj3YHBZBaqgl
+X-Received: by 2002:a17:903:4b46:b0:294:ccc6:cd30 with SMTP id d9443c01a7336-297c03eaf6cmr32228145ad.17.1762495363555;
+        Thu, 06 Nov 2025 22:02:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762495363; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Fqj4e4qiNBioRuk3WqhdF6pS2Mov8cBPznQu7pZhivDqVvfou+HUaZc98HRp8XRiw6
+         QoYkD7xbJ96RirW0bWhrCRdHrH7JeZv1hmqSUnlvea/ZRZh/EjJzkIi1UskC3oswnRuJ
+         ptOU0A2EHznRGoWM9HcZ1poa6cLgM3Gp8e/TZBXHEIWy05fRgesqFtqOo7VcZpNBWbRB
+         B/j3XF/Bn6KdlEEZxAkH5VatmKtUs8w20DS62iQMQj68J3o9C7MyfInOI0WTwP7OcNbG
+         YpHHNTthCXGvPx9Kge0G4cbILNLRcddupWndXKS+X3v1HujPa1cDpuoqdQPkqI4eK/SG
+         Htpw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:message-id:to:from:date:dkim-signature;
+        bh=C5vwK3JFssDfK5CdMLeot6H4ryVb/PdQ2glT6y3FH+c=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=aOCKD3mjWY5YGdh+rNzvCtrovoji+wPB65zTuZN+ocLFPhgDrA6Sclz3n8z6uWG3Sw
+         O9ngJgDoIQA9ZPaJPSYHEpmGYkIOhq/VIBfaJmQZGjFosLsjRNDJd3OHVbHx8pD6NIFr
+         04swf+K7V/37W1JYoclX84Q6QarKekKG9w7Y0WmLdnlsuYjVPYN9pjtX5UwSWltVQveJ
+         PKp1AJd2jRO5SG57PPwJlYGEyDDkVInRGtqqJ4KvtJTAQlr1y+Uj33PB1A5Vu0i6lUqc
+         ccHD7Oj/mQC3GUG0d1MGnKGoXu2OiyuM5sd2lzlNe/cQFQy3/6S9gMTP1rD52lNTUG8b
+         v56g==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@email.apple.com header.s=email0517 header.b=m4jY4Ycz;
+       spf=pass (google.com: domain of no_reply@email.apple.com designates 17.111.110.86 as permitted sender) smtp.mailfrom=no_reply@email.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=email.apple.com
+Return-Path: <no_reply@email.apple.com>
+Received: from rn2-txn-msbadger05102.apple.com (rn2-txn-msbadger05102.apple.com. [17.111.110.86])
+        by mx.google.com with ESMTPS id d9443c01a7336-29651d2c4e8si28313525ad.5.2025.11.06.22.02.42
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 06 Nov 2025 22:02:43 -0800 (PST)
+Received-SPF: pass (google.com: domain of no_reply@email.apple.com designates 17.111.110.86 as permitted sender) client-ip=17.111.110.86;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@email.apple.com header.s=email0517 header.b=m4jY4Ycz;
+       spf=pass (google.com: domain of no_reply@email.apple.com designates 17.111.110.86 as permitted sender) smtp.mailfrom=no_reply@email.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=email.apple.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=email.apple.com;
+	s=email0517; t=1762495356;
+	bh=C5vwK3JFssDfK5CdMLeot6H4ryVb/PdQ2glT6y3FH+c=;
+	h=Date:From:To:Message-ID:Subject:Content-Type;
+	b=m4jY4YczL0PzoI9gF4B6RPPNaLCjxQHOdFbrduX5Xv0xx2pna5q0WxBQ15quXl+4H
+	 XaNLI+w6TYbvaqZewcnZYODh9QBn8/xUKci7tlBzC1ui156ZXjJhHypKA0k/rkN/R8
+	 Ecg4SNX9ureAPl0a2Ts19gQaQftVlbVYHYQ2ko6mFiArX4tk/4OerLFN45BpHe9kGo
+	 XRJ107CYOA9wiFT9m4ZCcsczyHptjOfKmNUCrTRparimNxxwuKMZ4aUizgurgIZJer
+	 GERnEh5MyI/2qyrZQWf08D2eLl2Ml8a0xniKOOzIgYxrkeSmU6N7vTvpC5egKPBbUb
+	 6Rnb7tse/njwA==
+Date: Fri, 7 Nov 2025 06:02:36 +0000 (GMT)
+From: App Store Connect <no_reply@email.apple.com>
+To: liencf@gmail.com
+Message-ID: <773724069.8796625.1762495356584@email.apple.com>
+Subject: =?ISO-2022-JP?Q?EventKeeper_=1B$BE]ZK7WF|4o=1B(B_(ios)_has_b?=
+ =?ISO-2022-JP?Q?een_approved_for_beta_testing.?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_8796623_400286286.1762495356583"
+X-Broadcast-Id: 10631
+X-Attach-Flag: N
+X-COMMS-C: false
+X-Sent-To: liencf@gmail.com,2,v%2Baz2kwvyyhU34wShQQMPgxnd8Fr7K9Lckrms2xlyhdkyXJUnAIbeIpFUZKopOOYnLpsWUqbQ4%2BK9IixjwUR8k3ayMjhtew4tmEouj9Jjb3pAKjbeP3XysJ%2BueyRUPs0itB13wSmg5bABKreSml49rQG4TmunEw1ygW2BWF35NLIeoOq5z4g1byL6bFIcVYnULc8WCRT5dPQhQZoKMjAbdXMxxlfZk4vw18yKnPcmsuuszIuDnLYOXshspJAZOFHCph5FQsYUYIUamTz4RExxrpdlN27UNbBMNnkh6Bu%2Bl%2F1%2FFW5gCCNRLY7a5ali3kp4qf0JCSBGLvxCu3QdiSvPz7IpXzcjidfh%2BmIizqcyuEqQyidTVNB7lzVZQAckeFuuHZ128G72uJ%2BjPpxvSTFrwdmyjt04CR9cRcSvne7whTrnB2%2BeXWnLJpVo24wiLhO%2Bsqkmlrc3pb2Dq0LjeUAgg%3D%3D
+X-TXN_ID: f4b792ff-8b77-4b70-ba2a-d2bf684577a4
+X-DKIM_SIGN_REQUIRED: YES
+X-EmailType-Id: 10631
+X-Business-Group: iTunes
+X-Country: US
+
+------=_Part_8796623_400286286.1762495356583
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Disposition: inline
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>App Store Connect</title>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-885=
+9-1" />
+  <meta name=3D"x-apple-disable-message-reformatting" />
+ =20
+ =20
+  <style type=3D"text/css">
+    A { text-decoration: none; }
+
+    A:link { color: #0088FF; text-decoration: none; }
+
+    A:visited { text-decoration: none; }
+
+    A:active { color: #696969; text-decoration: underline;}
+
+    A:hover { text-decoration: underline; }
+
+    BODY, TD, P, UL, OL {
+    font-family: Helvetica, Lucida Grande, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    color: #666666;
+    text-align: left;
+    }
+
+    P {
+    margin-bottom: 1em;
+    }
+
+    H1 {
+    line-height:145%;
+    }
+
+    HR {
+    border: 0;
+    border-top: 1px solid #dddddd;
+    margin: 10px 0px 15px 0px;
+    }
+
+    @media only screen and (max-device-width: 481px) and (min-device-pixel-=
+ratio : 2), only screen and (min-device-width: 481px) and (-webkit-min-devi=
+ce-pixel-ratio : 2) {
+     =20
+     =20
+       =20
+        *[id=3Dheader] { background:url('https://appstoreconnect.apple.com/=
+itc/images/email/email-asc-logo@2X.png') no-repeat 0 top; -webkit-backgroun=
+d-size: 173px 45px; }
+       =20
+       =20
+     =20
+    }
+
+    @media only screen and (max-device-width: 480px) {
+
+   =20
+      table[class=3D"table3"], td[class=3D"cell3"] {
+        text-align: left !important;
+      }
+      img[id=3D"header"] {
+        width: 135px !important;
+        height: 35px !important;
+      }
+      td[id=3D"header"] {
+        -webkit-background-size: 135px 35px;
+      }
+
+      p {
+        text-align: left !important;
+      }
+
+      .footer {
+        td[class=3D"cell"] {
+          font-size: 11px !important;
+          line-height: 15px !important;
+          span[class=3D"name"] {
+            padding: 0 !important;
+            margin-right: 0 !important;
+            border: 0 !important;
+          } =20
+          span:last-of-type[class=3D"address"] {
+            display: block !important;
+            margin-top: 5px !important;
+          }
+        }
+      }
+   =20
+
+    }
+  </style>
+=20
+
+ =20
+
+ =20
+
+</head>
+<body>
+<table class=3D"table" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" ali=
+gn=3D"center" width=3D"100%" style=3D"max-width: 700px;">
+  <tr align=3D"center">
+    <td class=3D"spacer" align=3D"left" valign=3D"top" bgcolor=3D"#ffffff" =
+width=3D"20">
+      <img src=3D"https://itunesconnect.apple.com/itc/images/email/spacer.g=
+if" border=3D"0" alt=3D"" width=3D"20" height=3D"1">
+    </td>
+    <td align=3D"left">
+      <table class=3D"table3" width=3D"100%" style=3D"max-width: 700px;" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" bgcolor=3D"=
+#ffffff" >
+        <tr>
+       =20
+          <td class=3D"cell3" id=3D"header" width=3D"648" align=3D"left" st=
+yle=3D"padding-bottom: 10px;">
+           =20
+           =20
+               =20
+                    <img id=3D"header" src=3D"https://appstoreconnect.apple=
+.com/itc/images/email/email-asc-logo@2X.png" border=3D"0" alt=3D"App Store =
+Connect" width=3D"173" height=3D"45">
+               =20
+               =20
+           =20
+          </td>
+       =20
+       =20
+        </tr>
+       =20
+        <tr>
+          <td class=3D"cell3" width=3D"100%" style=3D"font-size: 0px; line-=
+height: 1px; background:none; border-top:solid 1px #dddddd; height:1px; max=
+-width: 700px; margin:0px 0px 0px 0px; padding-bottom: 15px">=C2=A0</td>
+        </tr>
+       =20
+        <tr>
+          <td class=3D"cell3" align=3D"left" valign=3D"top" bgcolor=3D"#fff=
+fff" width=3D"100%" style=3D"font-family: Helvetica, Lucida Grande, Arial, =
+sans-serif; font-size: 14px; line-height: 18px; color: #666666; text-align:=
+ justify; max-width: 700px;">
+                       =20
+
+                               =20
+  <p>Hello Chih Feng Lien,</p>
+
+  <p>Build 1.0.3 (52) of your app has been approved for TestFlight beta tes=
+ting.</p>
+ =20
+
+  <table id=3D"details" cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+    <tr>
+      <td>App Name: EventKeeper =E5=80=92=E6=95=B8=E8=A8=88=E6=97=A5=E5=99=
+=A8</td>
+    </tr>
+    <tr>
+      <td>App Apple ID: 6748804156</td>
+    </tr>
+   =20
+      <tr>
+        <td>Bundle Version Short String: 1.0.3</td>
+      </tr>
+      <tr>
+        <td>Build Number: 52</td>
+      </tr>
+      <tr>
+        <td>Platform: iOS</td>
+      </tr>
+      <tr>
+        <td>SKU: EVENTKEEPER</td>
+      </tr>
+   =20
+   =20
+  </table>
+ =20
+    <p>If you haven't already invited testers, go to <a target=3D"_blank" h=
+ref=3D"https://appstoreconnect.apple.com/apps/6748804156/testflight/ios/e6f=
+39009-f66b-430e-9e7d-cd56ddf41dd0">build 1.0.3 (52)</a> in the TestFlight s=
+ection of App Store Connect and select groups or individual testers.
+
+      <a href=3D"https://help.apple.com/app-store-connect/#/devdc42b26b8">L=
+earn about adding testers to your developer account</a>.</p>
+ =20
+ =20
+
+  <p>As a reminder, approval for testing through TestFlight does not consti=
+tute approval for customer distribution. Items submitted for customer distr=
+ibution will undergo a full review to make sure they follow the <a target=
+=3D"_blank" href=3D"https://developer.apple.com/app-store/review/guidelines=
+/">App Store Review Guidelines</a>.</p>
+
+  <p>Best regards,<br/>App Review</p>
+
+
+                       =20
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td class=3D"spacer" align=3D"right" valign=3D"top" bgcolor=3D"#ffffff"=
+ width=3D"20">
+      <img src=3D"https://itunesconnect.apple.com/itc/images/email/spacer.g=
+if" border=3D"0" alt=3D"" width=3D"20" height=3D"1">
+    </td>
+  </tr>
+</table>
+
+
+  <table class=3D"footer" width=3D"100%" border=3D"0" cellspacing=3D"0" cel=
+lpadding=3D"0" align=3D"center" style=3D"max-width: 700px;margin-top: 25px;=
+margin-bottom: 45px;padding-left: 20px;padding-right: 20px;">
+    <tr>
+      <td class=3D"cell" align=3D"left">=C2=A0</td>
+    </tr>
+    <tr>
+      <td class=3D"cell" style=3D"font-size: 10px;line-height: 12px;color: =
+#9f9f9f;font-family: Helvetica, Lucida Grande, Arial, sans-serif;text-align=
+: center;">
+          <span style=3D"padding-right: 8px;margin-right: 8px;border-right:=
+ 1px solid #9f9f9f;"><a href=3D"https://developer.apple.com/contact/">Conta=
+ct Us</a></span><span class=3D"name" style=3D"padding-right: 8px;margin-rig=
+ht: 8px;border-right: 1px solid #9f9f9f;"><a href=3D"https://appstoreconnec=
+t.apple.com">App Store Connect</a></span><span class=3D"address">One Apple =
+Park Way, Cupertino, CA 95014</span>
+      </td>
+    </tr>
+    <tr>
+      <td><hr style=3D"border: 0; border-top: 1px solid #dddddd; margin: 15=
+px 0;"/></td>
+    </tr>
+    <tr>
+      <td class=3D"cell" style=3D"font-size: 10px;line-height: 12px;color: =
+#9f9f9f;font-family: Helvetica, Lucida Grande, Arial, sans-serif;text-align=
+: center;">
+        <span style=3D"padding-right: 8px;margin-right: 8px;border-right: 1=
+px solid #9f9f9f;"><a href=3D"https://www.apple.com/legal/privacy/">Privacy=
+ Policy</a></span><span><a href=3D"https://www.apple.com/legal/internet-ser=
+vices/itunes/">Terms of Service</a></span>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
+------=_Part_8796623_400286286.1762495356583--

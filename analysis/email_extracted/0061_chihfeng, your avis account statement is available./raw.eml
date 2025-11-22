@@ -1,0 +1,640 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:8883:b0:4ec:41ca:fc70 with SMTP id ee3csp1801421mdb;
+        Fri, 14 Nov 2025 10:19:44 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFFjK6RxLRhDB3NnpexDPomPCtef+o5H8KHXtF2cQEWF/tFT4aAFLcze6JOkcIONeCaUfcO
+X-Received: by 2002:a05:6e02:1d99:b0:433:7c86:74ec with SMTP id e9e14a558f8ab-4348c94e14amr60440995ab.23.1763144384515;
+        Fri, 14 Nov 2025 10:19:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1763144384; cv=none;
+        d=google.com; s=arc-20240605;
+        b=HFESg+xHAR9S4U86pyo1oxkQH2TKUaPiNA/BiI0cguxcNFp/rjSlCyLe+fiOusjSWO
+         vruiC2znrdfWbMoVWRgcf/SQgQznTuEHPYcNaQ9GrUwfA+RlPWvEasSizn1ggPMFkawo
+         YOJA640+zFViYX0HZdcVZmK/feNX/7OIEi/s1q1okUt2vpBS0ecKuetWi/8nJIiQ7Zpo
+         GS9pecNe5UNFQTSGDMeQjjlB3Oeshgr0LJoImYjEV/5WbYu8mCGx5+fwkxkLgYws7PgG
+         I6v/x04H9Yd65hiqm+7a9WmF5iHYnwXYkIReC/i+2b1uiU589iL9UERj0H/qQrtaYK+C
+         7FvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:message-id:reply-to:mime-version:list-help:date:subject
+         :to:from:dkim-signature:dkim-signature;
+        bh=1tOOxg4FPJdA+lODFc/yWqDCsMuDAHgcKKNXroSgrHI=;
+        fh=vJ4NSVUPajgSi0/CEKHf5eaby7wPvKNevbuC/lPebKM=;
+        b=G2KOqLbHzq+kkk/FTjY6ysq2x6rxpkyVj2kIEtigjLx4S7CNFI+KfVR7V5Rd2txKGC
+         2FgvEbUKY7s7rIVbALSjqFN6m2Aat+E8nux2xtNWiG2U+x/rL3yF74/BkaOyaIrbsdrj
+         UP4Uh9J9zZyxgHALBbJwaVl8g/PCYQJyEJQXHXbUmqjX4k4eSXATPdYIR7ieeJYhS8KL
+         de7GzwwS0ldZ7/ZR4tzfT9Ta2nKvez/1YayvlGu8mBndhYjBU7Q6o+BJW2WgtTF62zMh
+         tBWIDlxUltiG6ARGY5uUMIPT4DMpoGYifUJmcHgmHwLiBt7m/AiAfSwcapWcdsic1rr9
+         dSeQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@e.avis.com header.s=200608 header.b=S7W2qWoZ;
+       dkim=pass header.i=@s6.y.mc.salesforce.com header.s=fbldkim6 header.b=BZr+LbTh;
+       spf=pass (google.com: domain of bounce-2926_html-137994878-5675680-6419187-29481@bounce.e.avis.com designates 198.245.87.66 as permitted sender) smtp.mailfrom=bounce-2926_HTML-137994878-5675680-6419187-29481@bounce.e.avis.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=avis.com
+Return-Path: <bounce-2926_HTML-137994878-5675680-6419187-29481@bounce.e.avis.com>
+Received: from mta2.e.avis.com (mta2.e.avis.com. [198.245.87.66])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-43483957223si44321005ab.115.2025.11.14.10.19.44
+        for <LIENCF@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 14 Nov 2025 10:19:44 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounce-2926_html-137994878-5675680-6419187-29481@bounce.e.avis.com designates 198.245.87.66 as permitted sender) client-ip=198.245.87.66;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@e.avis.com header.s=200608 header.b=S7W2qWoZ;
+       dkim=pass header.i=@s6.y.mc.salesforce.com header.s=fbldkim6 header.b=BZr+LbTh;
+       spf=pass (google.com: domain of bounce-2926_html-137994878-5675680-6419187-29481@bounce.e.avis.com designates 198.245.87.66 as permitted sender) smtp.mailfrom=bounce-2926_HTML-137994878-5675680-6419187-29481@bounce.e.avis.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=avis.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=200608; d=e.avis.com;
+ h=From:To:Subject:Date:List-Help:MIME-Version:Reply-To:Message-ID:Content-Type;
+ i=avis@e.avis.com;
+ bh=1tOOxg4FPJdA+lODFc/yWqDCsMuDAHgcKKNXroSgrHI=;
+ b=S7W2qWoZhJrNB/gvNo3fQejFNwjJwAz0WD53B04lPsJQC3HPv2cwuHdqwhV4RqhLj4xA3s+pB7sW
+   Qk2XfXL4J9x5+XU7EvIPLYda/u1IhMP2syoc0s+r1wBKtGpGF7vdFHm/ARmkw2hjY7w1ix/05iOW
+   8nNjdtrRUn/LxdxMu4I=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=fbldkim6; d=s6.y.mc.salesforce.com;
+ h=From:To:Subject:Date:List-Help:MIME-Version:Reply-To:Message-ID:Content-Type;
+ bh=1tOOxg4FPJdA+lODFc/yWqDCsMuDAHgcKKNXroSgrHI=;
+ b=BZr+LbThmnpXMFSrOJ8mE429FCambAe2oukmf310ummvNB7os6JChUpQFDUTrl4nWwRJffo38F0M
+   PgQCevc4GmJzF3KP2kJdYqNJk1i1sj/c5LrvtK6MunaKOF2P3GqxP0uh9Z43yQq353fAb2ZxOoob
+   MpS5Vve9Hq1Jcyq7+EBRt1wLHd2gvk21ekg912fPVprGLhZJXMDemuluutwkM0azccrwStYmHqEz
+   5pwx5XLHH0lNtCLQLY4BIygFP/55CaFd1Db6UMcmeqaGK+uEzlEYbu7zfw5vdfk1LjTJontCLVxe
+   NTx2Qe+gNAktGTaX6NWW10L9BDBi7jBvhpSaZA==
+Received: by mta2.e.avis.com id h2tpc02fmd49 for <LIENCF@GMAIL.COM>; Fri, 14 Nov 2025 17:42:01 +0000 (envelope-from <bounce-2926_HTML-137994878-5675680-6419187-29481@bounce.e.avis.com>)
+From: "Avis" <avis@e.avis.com>
+To: <LIENCF@GMAIL.COM>
+Subject: Chihfeng, your Avis account statement is available.
+Date: Fri, 14 Nov 2025 11:42:01 -0600
+List-Help: <https://click.e.avis.com/subscription_center.aspx?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtaWQiOiI2NDE5MTg3IiwicyI6IjEzNzk5NDg3OCIsImxpZCI6IjI5MjYiLCJqIjoiNTY3NTY4MCIsImpiIjoiMjk0ODEiLCJkIjoiNjAyNDgifQ.Y7mInjJXKq6ejpO0I7NqXiT1VOjQY94Lc31UftGLM_o>
+MIME-Version: 1.0
+Reply-To: "Avis Do Not Reply" <reply-fe8a11767261027575-2926_HTML-137994878-6419187-29481@e.avis.com>
+X-SFMC-Stack: 6
+x-job: 6419187_5675680
+Message-ID: <9a0734cc-8e2b-4733-b629-0495751302b4@ind1s06mta1262.xt.local>
+Feedback-ID: 6419187:5675680:198.245.87.66:sfmktgcld
+Content-Type: multipart/alternative;
+	boundary="sjBhQrT3ifB2=_?:"
+
+This is a multi-part message in MIME format.
+
+--sjBhQrT3ifB2=_?:
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Loyalty Account Statement 
+https://click.e.avis.com/?qs=38aa1a0658f3e03581a0fc2bf43291868eb19c06cf173a66da203db2b86bbded766368a5f6037c71d342125a690510823d88a8be4d7eb5b17676b17d2a5890dd 
+View your profile today.   |  
+https://view.e.avis.com/?qs=79fea972a9181416202460d0ea124f3a2543746c5acb4a60549e4d97f6d8e5c0cb600bc7bd7dbeab7a52613930b1bc518a0956a2971b692ca94f4f11bffe49c87bcdf32d10f83d92c6e938d84af4ba41ccf16c2d85e74498 
+View in Browser   |  
+ 
+ Add avis@e.avis.com  to your Address Book. 
+
+https://click.e.avis.com/?qs=38aa1a0658f3e0354c7a3143c790a19fff97f24ec483b8ad701f46356953fad9fc95c3d6a2206f61a5680c9e1142cd1f9337d19de5ecbbca7cdd1e7bf4bdf08a 
+
+
+
+https://click.e.avis.com/?qs=38aa1a0658f3e0355e2da77a3369c0926b24995441c81c2ae4adcc262dd0602ffa652322bc114fe5d58922fae64eeea197a9f10115bbdb26ecd1959d35b749b3 
+
+Dear Chihfeng,
+
+  
+
+ Thanks for choosing Avis! Here's a snapshot of your activity:
+Your Account Activity as of Oct 31, 2025 
+
+Chihfeng Lien
+ Membership Tier: Preferred
+ Wizard #: P9B***
+02025 Rentals 
+
+ 
+ Rent now to enjoy Expedited Service plus other Preferred Member benefits and
+ rewards. 
+ 
+$0 2025 Spend 
+
+ 
+
+https://click.e.avis.com/?qs=38aa1a0658f3e03581a0fc2bf43291868eb19c06cf173a66da203db2b86bbded766368a5f6037c71d342125a690510823d88a8be4d7eb5b17676b17d2a5890dd 
+view my account 
+
+ Free Days** can be redeemed for as little as 700 points! 
+
+
+ Remember, every rental gets you closer to earning Preferred Plus membership and additional benefits! 
+
+
+ Log in to review your detailed account history.
+
+https://click.e.avis.com/?qs=38aa1a0658f3e0354c7a3143c790a19fff97f24ec483b8ad701f46356953fad9fc95c3d6a2206f61a5680c9e1142cd1f9337d19de5ecbbca7cdd1e7bf4bdf08a 
+Log In and Rent 
+
+https://click.e.avis.com/?qs=38aa1a0658f3e0354c7a3143c790a19fff97f24ec483b8ad701f46356953fad9fc95c3d6a2206f61a5680c9e1142cd1f9337d19de5ecbbca7cdd1e7bf4bdf08a 
+Free days** start at 700 points. Limited to certain car classes based on availability. Rental accessories are 250 points per day.
+
+
+ P.S. – Be sure to opt in to receive Avis email offers and discounts just for Preferred members at 
+https://click.e.avis.com/?qs=38aa1a0658f3e03581a0fc2bf43291868eb19c06cf173a66da203db2b86bbded766368a5f6037c71d342125a690510823d88a8be4d7eb5b17676b17d2a5890dd 
+avis.com/login.
+
+ 
+ 
+
+https://click.e.avis.com/?qs=38aa1a0658f3e03504e435ccb872305a2fe86c5eb221650ababc67c195ef47bf4c4224a50372b20a64eddaa62192177d6d41aec7183ec2e1a238f2388a70aa42 
+
+https://click.e.avis.com/?qs=38aa1a0658f3e035a2da4be98a8aa56c0f2d60d4152113059231531a7ae6702e6caa04237fdf899005edb5151eca77ee97346b9a3440cf51c0ffc4d356894db8 
+
+Statement activity is current as of the end of the previous month. 
+
+
+ *First-time Avis Preferred renters may be required to stop at the Preferred counter to verify proper identification. 
+
+
+ **Free days start at 700 points and are limited to certain car classes based on availability. The value of a free day varies by location, car class, and time of rental. Rental accessories are 250 points per day. 
+
+
+ Full terms and conditions, including criteria for qualifying rentals and spend, are available at 
+https://click.e.avis.com/?qs=38aa1a0658f3e0354ad220f9ff9e19a14fcf9f090b9230dcc59e6fb50992961d75130982e0a3aa181ee0a3141e835d236e78974cdc6b13e4996172a618250a33 
+avis.com/terms .
+
+Your privacy is important to us. Read our 
+https://click.e.avis.com/?qs=38aa1a0658f3e0357b99b39b109627c268ec8e277dc7576a04a0cc7c6a65bd826465bcfcd8e7fbb0dfd73c345d41e93ddf3f37f26bcfa4713377ca8f9676c23b 
+Privacy Statement . 
+
+ If you wish to unsubscribe, simply 
+https://click.e.avis.com/?qs=38aa1a0658f3e035947d092ef43dd2bf5643b4741c250c7a5a04d6245aa16d98e0c152b36ff45895bb21821f2b66a05466b1cd272c661e18536c28a03afa0f0b 
+click here .
+
+ To change your email address, 
+https://click.e.avis.com/?qs=38aa1a0658f3e03540bd14b086d7aa5fc636cc28f4af3bb400864468e83f28ae00fef2c857f3e1714c302a504095d03d99bf569cc820f08343436b608a9551b7 
+click here .
+
+ Avis Rent A Car System, LLC | 379 Interpace Parkway | Parsippany NJ 07054 
+
+Copyright (c) 2025 Avis Rent A Car System, LLC. 
+
+ Thank you for not smoking. Avis maintains a 100% smoke-free fleet. 
+
+
+
+--sjBhQrT3ifB2=_?:
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+<!---->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html mcdisabled-mcdisabled-mcdisabled-xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Loyalty Account Statement </title>
+<style type="text/css">
+body, table, td, a {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+body, table tr, table td, a, span, table.MsoNormalTable {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+/* center email in Android 4.4 */
+body {
+    margin: 0 !important;
+}
+div[style*="margin: 16px 0"] {
+    margin: 0 !important;
+}
+body {
+    width: 100% !important;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    margin: 0;
+    padding: 0;
+}
+.ExternalClass {
+    width: 100% !important;
+}
+.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div, .ExternalClass br {
+    line-height: 120%;
+}
+img {
+    outline: none;
+    text-decoration: none;
+    -ms-interpolation-mode: bicubic;
+}
+a img {
+    border: none;
+}
+.applelinks a {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+.applelinksgrey a {
+    color: #666666 !important;
+    text-decoration: none !important;
+}
+.applelinksgrey1 a {
+    color: #333333 !important;
+    text-decoration: none !important;
+}
+.nowrap {
+    white-space: nowrap;
+}
+table {
+    border-collapse: collapse;
+}
+#MessageViewBody a {
+    color: inherit !important;
+    text-decoration: none !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+}
+a[x-apple-data-detectors] {
+    color: inherit !important;
+    text-decoration: none !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+}
+
+@media only screen and (max-width : 747px ) {
+*[class*=resizetofull] {
+    width: 100% !important;
+    margin: 0 auto !important;
+}
+/*Place this on main table hosting email - Makes it fluid*/
+*[class*=mobilepadding] {
+    padding: 10px !important;
+}
+/* Mobile padding */
+*[class*=padtop10] {
+    padding-top: 10px !important;
+}
+/* Mobile padding top*/
+*[class*=padbottom10] {
+    padding-bottom: 20px !important;
+}
+/* Mobile padding bottom*/
+*[class=padding15] {
+    padding: 15px !important;
+}
+/* adds padding 15px on mobile view */
+*[class*=fourteen] {
+    font-size: 14px !important;
+}
+/* Mobile font size */
+*[class*=mobile-block] {
+    width: 100% !important;
+}
+/* unhide image element from desktop*/
+*[class*=removepadding] {
+    padding: 0 !important;
+}
+/* removes padding from Desktop view */
+*[class*=leftfloat] {
+    float: left !important;
+}
+/* This code allows column to stack on each other in mobile */
+*[class*=mobile-hide] {
+    display: none !important;
+}
+/*Hide images from mobile - but keeps it in desktop */
+*[class*=mobile-show] {
+    display: block !important;
+    overflow: visible !important;
+    height: auto !important;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    max-height: inherit !important; /*Hides elements in desktop but displays them in Mobile */
+}
+*[class*=mobile-show-row] {
+    display: table-row !important;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: inherit !important; /*Hides elements in desktop but displays them in Mobile */
+}
+*[class*=SocialCenter] {
+    margin-left: 60px !important;
+}
+*[class=paddingFooter] {
+    padding: 30px 15px 15px 15px !important;
+}
+*[class=logoPaddingFullsize] {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+}
+*[class=center] {
+    text-align: center !important;
+    margin: 0 auto !important;
+    padding: 10px 10px 5px 10px !important;
+}
+/* center */
+*[class*=mobile-hero] {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+*[class*=padding-left] {
+    padding-left: 15px !important;
+}
+*[class*=padding-five] {
+    padding-left: 5px !important;
+}
+*[class*=sixteen] {
+    font-size: 16px !important;
+}
+*[class*=width110] {
+    width: 100px !important;
+}
+*[class*=width200] {
+    width: 180px !important;
+    padding-left: 10px !important;
+}
+*[class*=border-none] {
+    border: 1px solid #fff !important;
+}
+*[class*=borderBot] {
+    border-bottom: 1px solid #fff;
+!important;
+}
+.border-none {
+    border: 1px solid #fff !important;
+}
+*[class*=pad-all] {
+    padding: 5px !important;
+}
+*[class*=borderTop] {
+    margin-top: 10px !important;
+}
+*[class*=ht0] {
+    height: 0px !important;
+}
+.resp_img {
+    width: 100% !important;
+    height: auto !important;
+}
+.resp_img2 {
+    width: 93% !important;
+    height: auto !important;
+}
+.padding_mob {
+    padding: 1px !important;
+}
+}
+.auto-style1 {
+    height: 151px;
+}
+.disabled-link {
+    pointer-events: none;
+    cursor: text;
+}
+.font12_lh15 {
+    height: 47px;
+    width: 165.18px;
+    color: #FFFFFF;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 20px;
+    text-align: center;
+}
+}
+</style>
+</head>
+<body bgcolor="#F0F0F0" style="background-color: #F0F0F0; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; width: 100% !important; -webkit-text-size-adjust: none; font-family:Arial, Helvetica, sans-serif !important;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="resizetofull" align="center">
+  <tr>
+    <td align="center" valign="top" bgcolor="#F0F0F0"><table width="640" border="0" cellpadding="0" cellspacing="0" class="resizetofull" align="center">
+        <tr>
+          <td align="center" valign="top"><!-- PRE HEADER --->
+            
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" class="resizetofull">
+              <tr>
+                <td bgcolor="#E1DED9"><table width="640" border="0" cellspacing="0" cellpadding="0" align="center" class="resizetofull">
+                    <tr>
+                      <td bgcolor="#E1DED9" align="left" style="font-family:Arial, Helvetica, sans-serif !important; font-size: 11px; line-height: 16px; color: #666666; padding-left: 20px; padding-right: 20px;" class="padding15"><table cellpadding="0" cellspacing="0" width="100%">
+                          <tr>
+                            <td align="left" valign="top" style="font-family:Arial, Helvetica, sans-serif !important; font-size: 10px; line-height: 18px; mso-line-height-rule: exactly; color: #494949; padding-top: 8px; padding-bottom: 10px; padding-left: 22px" class="padding15"><a href="https://click.e.avis.com/?qs=38aa1a0658f3e035f5041c3125241d723573c0f51373e441f7c9612136f631a09bcc78e0ea4fdd056b71931f8afea7bc3609a4c904823490fbfe7956f6b6a81b" style="color: #494949; text-decoration: none;" target="_blank"  title="View your profile today. ">View your profile today.</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://view.e.avis.com/?qs=79fea972a9181416202460d0ea124f3a2543746c5acb4a60549e4d97f6d8e5c0cb600bc7bd7dbeab7a52613930b1bc518a0956a2971b692ca94f4f11bffe49c87bcdf32d10f83d92fc8310ccc88cc773b63c8223cfefad4a" style="color: #494949; text-decoration: underline;" target="_blank"  title="View in Browser" name="View in Browser">View in Browser</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="" style="color: #494949; text-decoration:none; cursor: text;" class="disabled-link"> Add avis@e.avis.com</a> to your Address Book. </td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table></td>
+              </tr>
+            </table>
+            
+            <!-- END PREHEADER --></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><table width="570" border="0" cellspacing="0" cellpadding="0" align="center"  class="resizetofull">
+              <tr>
+                <td align="center" valign="top" bgcolor="#d4032b"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    
+                    <tr>
+                      <td align="center" valign="top"><table cellpadding="0" cellspacing="0" width="100%" border="0">
+                          <tr>
+                            <td align="center" valign="top" style="font-size: 0px;"><a href="https://click.e.avis.com/?qs=38aa1a0658f3e0352a10a0f82fe98bcd944f57c9df6bde864d57393061c6b7b2d3509139f6d126539cf217378b7a708626337d50f2b2390fbd3bc31dfc9a2663"  target="_blank" title="AVIS | PREFERRED® - YOUR ACCOUNT STATEMENT"> <img src="https://image.e.avis.com/lib/fe8b1274746d057572/m/1/600e3b52-8fe8-47d3-a61f-12fb17d4b95f.png" alt="AVIS | PREFERRED® - YOUR ACCOUNT STATEMENT" title="AVIS | PREFERRED® - YOUR ACCOUNT STATEMENT" border="0" width="640" style="display: block; background-color: #f0f1f5;" class="resp_img" /></a></td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table></td>
+              </tr>
+              <tr>
+                <td align="center" valign="middle" bgcolor="#d4032b"><table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#d4032b">
+                    <tr>
+                      <td align="left" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td align="left" valign="middle" style="font-family:Arial, Helvetica, sans-serif !important; font-size:14px; color:#ffffff; line-height:normal; padding:0px 0px 0px 7%;" class="font12"><a class="applelinkwhite" style="color:#ffffff; text-decoration:none;"><strong></strong> </a></td>
+                          </tr>
+                        </table></td>
+                      <td align="center" valign="top" width="25%" style="padding-right: 40px;"><a href="https://click.e.avis.com/?qs=38aa1a0658f3e0355007a40f7e2a736be06a574a1bfd6836d15c46bc822a62811bbb6a4d4f4a42cb322c1931d81dc63e2478d1c4996b5cec9c42ec6b7da75cd5" target="_blank"  title="How to Use Points" ><img src="https://image.e.avis.com/lib/fe8b1274746d057572/m/1/5b67b223-57a0-46c4-94bf-25194e3eb6f4.png" width="150" height="35" alt="How to Use Points" title="How to Use Points" border="0" style="display:block;" class="mobileimg" /></a></td>
+                    </tr>
+                  </table></td>
+              </tr>
+              <tr>
+                <td valign="top" align="center" width="100%" style="background-color: #ffffff;"><!-- BLOCK 1 -->
+                  
+                  <table width="480" class="" border="0" align="center" cellpadding="0" cellspacing="0" style="font-family:Arial, Helvetica, sans-serif !important;">
+                    <tr>
+                      <td valign="top" align="center" style="padding: 0 10px;"><table class="" border="0" cellspacing="0" cellpadding="0" width="480">
+                          <tr>
+                            <td width="480" class="applelinks padding-left" valign="top" align="left" style="font-family:Arial, Helvetica, sans-serif !important; padding-top: 30px; padding-bottom: 25px; font-size: 16px; line-height: 20px; color: #404040; ">Dear Chihfeng,<br>
+                               <br>
+                              Thanks for choosing Avis! Here's a snapshot of your activity:</td>
+                          </tr>
+                          <tr>
+                            <td valign="top"><table  width="480" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff" class="containFull" align="center">
+                                <tr>
+                                  <td valign="middle"><table cellpadding="0" cellspacing="0" width="100%" style="background-color:#c21e25; margin-bottom: 5px; margin-top:0px; ">
+                                      <tr>
+                                        <td  valign="middle" width="" align="left"  style="font-family:Arial, Helvetica, sans-serif !important;  line-height:30px; padding-left:10px;  color: #FFFFFF; margin-bottom:5px; padding-top:0px; "><strong style="font-size: 16px; font-family:Arial, Helvetica, sans-serif !important;"><em>Your Account Activity</em></strong></td>
+                                        <td width="" valign="top" align="right"  style="height: 20px; color: #FFFFFF; font-family:Arial, Helvetica, sans-serif !important; font-size: 12px; letter-spacing: 0; padding-top:5px;    line-height: 30px; text-align: right; padding-right:20px; padding-bottom:5px; padding-to:5px;"> as of Oct 31, 2025 </td>
+                                      </tr>
+                                    </table></td>
+                                </tr>
+                                <tr>
+                                  <td><table cellpadding="0" cellspacing="0" width="100%">
+                                      <tr>
+                                        <td width="50%" bgcolor="#F0F0F0" style="font-family:Arial, Helvetica, sans-serif !important;"><table cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                              <td style="padding:20px 5px 15px 10px; font-family:Arial, Helvetica, sans-serif !important;"><span style="height: 48px;  width: 119px;  color: #404140;  font-family:Arial, Helvetica, sans-serif !important;  font-size: 24px;  font-weight: bold;  letter-spacing: 0;  line-height: 24px;">Chihfeng Lien</span><br/>
+                                                Membership Tier: <span style="height: 20px; width: 172px; color: #D60022; font-family:Arial, Helvetica, sans-serif !important; font-size: 14px; letter-spacing: 0; line-height: 20px;">Preferred</span><br/>
+                                                Wizard #: <span style="height: 20px; width: 172px; color: #D60022; font-family:Arial, Helvetica, sans-serif !important; font-size: 14px; letter-spacing: 0; line-height: 20px;">P9B***</span><br/></td>
+                                            </tr>
+                                          </table></td>
+                                        <td width="50%" bgcolor="#F0F0F0"  style="border-left: 10px solid #fff;  padding:20px 5px 15px 10px;  font-family:Arial, Helvetica, sans-serif !important;" align="left" ><table cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                              <td style="padding-left:10px; font-family:Arial, Helvetica, sans-serif !important;"><span style="height: 58px; width: 33px; color: #DE0000;  font-family:Arial, Helvetica, sans-serif !important;  font-size: 58px;  font-weight: bold;  letter-spacing: 0;  line-height: 58px; padding-left:10px;">0</span><br/>
+                                                <span style="height: 20px;  width: 109px;  color: #404140;  font-family:Arial, Helvetica, sans-serif !important;  font-size: 16px;  letter-spacing: 0;  line-height: 20px; padding-left:10px;">2025 Rentals </span><br/></td>
+                                            </tr>
+                                          </table></td>
+                                      </tr>
+                                      <tr>
+                                        <td>&nbsp;</td>
+                                      </tr>
+                                      <tr>
+                                        <td width="50%" bgcolor="#F0F0F0" style=""><table cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                              <td style="padding:20px 5px 15px 10px;  font-family:Arial, Helvetica, sans-serif !important;"> <span style="height: 58px;  width: 74px;  color: #404140;  font-family:Arial, Helvetica, sans-serif !important;  font-size: 16px;  font-weight: bold;  letter-spacing: 0;  line-height: 20px; padding-left:0px;">Rent now to enjoy Expedited Service plus other Preferred Member benefits and<br/>
+                                                rewards. </span><br/>
+                                                <br/></td>
+                                            </tr>
+                                          </table></td>
+                                        <td width="50%" bgcolor="#F0F0F0" style="border-left: 10px solid #fff;  padding:20px 5px 15px 10px; font-family:Arial, Helvetica, sans-serif !important;" align="left" ><table cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                              <td style="padding-left:10px; font-family:Arial, Helvetica, sans-serif !important;"><span style="height: 58px;  width: 160px;  color: #DE0000;  font-family:Arial, Helvetica, sans-serif !important;  font-size: 58px;  font-weight: bold;  letter-spacing: 0;  line-height: 58px; padding-left:10px;">$0 </span><br/>
+                                                <span style="height: 20px;  width: 109px;  color: #404140;  font-family:Arial, Helvetica, sans-serif !important;  font-size: 16px;  letter-spacing: 0;  line-height: 20px; padding-left:10px;">2025 Spend </span><br/></td>
+                                            </tr>
+                                          </table></td>
+                                      </tr>
+                                    </table></td>
+                                </tr>
+                                <tr>
+                                  <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                  <td width="85%" align="center" valign="top" style="padding-bottom: 5px;"><table border="0" cellspacing="0" cellpadding="0" width="240" align="center">
+                                      <tbody>
+                                        <tr>
+                                          <td width="208" height="47" align="center" valign="top"><table width="100%" bgcolor="#D4002A" cellpadding="0" cellspacing="0" border="0" align="center">
+                                              <tr>
+                                                <td align="center" style="padding: 15px 15px;" class="padlr20"><table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse: collapse;">
+                                                    <tr>
+                                                      <td align="center"><a href="https://click.e.avis.com/?qs=38aa1a0658f3e035b279c09bf9bd760ff3209cf4efe11c714ba42a0c96cc76722f21906b427165b12ee3765b669c28797ba109b9e148b1d954c803e43cd69084"  title="View My Account" style="color: #ffffff; font: bold 14px Arial, Helvetica, sans-serif; font-size:14px; text-decoration: none; text-transform: uppercase; line-height: normal; text-align: center;" target="_blank" class="font12">view my account</a></td>
+                                                    </tr>
+                                                  </table></td>
+                                              </tr>
+                                            </table></td>
+                                        </tr>
+                                      </tbody>
+                                    </table></td>
+                                </tr>
+                                <tr>
+                                  <td width="480" class="applelinks padding-left" valign="top" align="left" style="font-family:Arial, Helvetica, sans-serif !important; padding-top: 20px; padding-bottom: 25px; font-size: 16px; line-height: 20px; color: #404040; padding-left:10px;"> Free Days** can be redeemed for as little as 700 points! <br>
+                                    <br>
+                                    Remember, every rental gets you closer to earning Preferred Plus membership and additional benefits! <br>
+                                    <br>
+                                    Log in to review your detailed account history.</td>
+                                </tr>
+                                <tr>
+                                  <td width="480" class="applelinks padding-left" valign="top" align="left" style="font-family:Arial, Helvetica, sans-serif !important; padding-top: 10px; padding-bottom: 15px; font-size: 16px; line-height: 20px; color: #404040; padding-left:10px;"><table align="center" border="0" cellspacing="0" cellpadding="0" width="240">
+                                      <tbody>
+                                        <tr>
+                                          <td width="208" height="47" align="center" valign="top"><table width="100%" bgcolor="#13406B" cellpadding="0" cellspacing="0" border="0" style=>
+                                              <tr>
+                                                <td align="center" style="padding: 15px 15px;" class="padlr20"><table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse: collapse;">
+                                                    <tr>
+                                                      <td align="center"><a href="https://click.e.avis.com/?qs=38aa1a0658f3e035c5dba513f1b882e288a6849778e074f4d572b02d365a7a08483938e5f3985d47838f630b1bbc33e752425fd0404b31578ed4811b9c935dec"  title="Log In and Rent" style="color: #ffffff; font: bold 14px Arial, Helvetica, sans-serif; font-size:14px; text-decoration: none; text-transform: uppercase; line-height: normal; text-align: center;" target="_blank" class="font12"><span style="color:#fff;">Log In and Rent </span></a></td>
+                                                    </tr>
+                                                  </table></td>
+                                              </tr>
+                                            </table></td>
+                                        </tr>
+                                      </tbody>
+                                    </table></td>
+                                </tr>
+                                <tr>
+                                  <td width="400" align="center"  style="padding: 0px 0px 30px 0px; font-size: 12px; font-family:Arial, Helvetica, sans-serif !important; color: #404040; font-weight: normal; line-height: 15px; text-align: center;" valign="top" class="applelinks"><table width="380" align="center" border="0" cellpadding="0" cellspacing="0" >
+                                      <tr>
+                                        <td align="center" width="" style="padding-top:0px; padding-left:10px;"><a href="https://click.e.avis.com/?qs=38aa1a0658f3e035164e870a2dfdfc50f8c9baa1db25f0e29a07163dea8540b560042d0c89c363ba1c39a9cd1101b9b1793defded2e3774a08c5f634cda56dc7"  title="Free days** start at 700 points. Limited to certain car classes based on availability. Rental accessories are 250 points per day." target="_blank" style="text-decoration: none; color: #404040;"><span style="text-decoration: none; color: #404040;font-family:Arial, Helvetica, sans-serif !important;font-size:12px; text-align: center;">Free days** start at 700 points. Limited to certain car classes based on availability. Rental accessories are 250 points per day.</span></a></td>
+                                      </tr>
+                                    </table></td>
+                                </tr>
+                                <tr>
+                                  <td width="480" class="applelinks padding-left" valign="top" align="left" style="font-family:Arial, Helvetica, sans-serif !important; padding-top: 0px; padding-bottom: 25px; font-size: 16px; line-height: 20px; color: #404040; padding-left: 10px;"> P.S. – Be sure to opt in to receive Avis email offers and discounts just for Preferred members at <a href="https://click.e.avis.com/?qs=38aa1a0658f3e035116d1596ee313c993375c9c31b9142075b0ced5d852219d22814ce900411ddf5ef150bb42eab8e431a5b24c5c95e8c751ff7734114066e1c" target="_blank" title="avis.com/login" ><span style="color:#D4002A; text-decoration: underline;">avis.com/login</span></a>.</td>
+                                </tr>
+                                
+                              </table></td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                    
+                    <!--  OFFER 1 -->
+                  </table></td>
+              </tr>
+              <tr>
+                <td bgcolor="#F0F0F0" width="100%" class="resizetofull" valign="top" align="left"><table width="640" cellpadding="0" cellspacing="0" border="0" role="presentation" bgcolor="#ffffff" class="Hero" align="center">
+                    <tr>
+                      <td align="center" border="0" cellpadding="0" cellspacing="0" style="border: 0; padding: 0; margin: 0;"><table cellpadding="0" cellspacing="0" width="100%" border="0" class="resizetofull">
+                          <tr>
+                            <td align="center" valign="middle" bgcolor="#ffffff"><table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+                                <tr>
+                                  <td align="center" valign="top" width="640" style="padding-top:0px;"><a href="https://click.e.avis.com/?qs=38aa1a0658f3e0353c86f92abfcdb260b252d318279f7325a7f36c94536cde7cdc290c4f77d066cc3105c049304c0041b601f3c5565fc83c5635c913ff3bb2f4" target="_blank"  title="GET THE APP"><img src="https://image.e.avis.com/lib/fe8b1274746d057572/m/1/8481ea60-8513-43d5-a4a8-07539c94987b.png" width="640" height="" alt="GET THE APP" border="0" style="display:block;" class="mobileimg" /></a></td>
+                                </tr>
+                                <!-- Avis First Banner -->
+<tr>
+  <td align="center" valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="center" valign="top" style="padding-top:0px;"><a href="https://click.e.avis.com/?qs=38aa1a0658f3e0350ba27e2fdd0d3d11ff7774d468986cb8a3cf88b63245067521e1fdeb344cc48c3ae95bf156cf7a7520652f86f2f660f13a8128a7989152f3"  target="_blank"> <img src="https://image.e.avis.com/lib/fe8b1274746d057572/m/1/ee5770ff-940b-4259-b6ea-26668a01e874.png" alt="AVIS FIRST THE NEW CLASS OF RENTAL Now Offering curbside pickup & drop-off, premium vehicles, and a dedicated personal concierge. LEARN MORE Available at select locations." title="AVIS FIRST THE NEW CLASS OF RENTAL Now Offering curbside pickup & drop-off, premium vehicles, and a dedicated personal concierge. LEARN MORE Available at select locations." border="0" width="640" style="display: block;" class="resp_img" /></a></td>
+      </tr>
+    </table></td>
+</tr>
+
+                                <!-- <tr>                                   <td align="center" valign="top" width="640" style="padding-bottom:30px;"><a href="https://www.avis.com/en/plan-on-us?MID=programtrigger&utm_medium=email&utm_source=trigger&utm_campaign=programtrigger&utm_content=programtrigger_pref-pts_20251114_5675680_acctstatement24" target="_blank" alias="Avis Plan On Us - Banner" title="OUR ONLY PLAN IS TO MAKE SURE YOU KEEP YOURS. AVIS(R) PLAN ON US(TM)" alt="OUR ONLY PLAN IS TO MAKE SURE YOU KEEP YOURS. AVIS(R) PLAN ON US(TM)"  ><img src="https://image.e.avis.com/lib/fe8b1274746d057572/m/1/edfb617d-43f7-4644-ab45-6d9cb483334e.jpg" width="640" height="" alt="OUR ONLY PLAN IS TO MAKE SURE YOU KEEP YOURS. AVIS(R) PLAN ON US(TM)" title="OUR ONLY PLAN IS TO MAKE SURE YOU KEEP YOURS. AVIS(R) PLAN ON US(TM)" border="0" style="display:block;" class="mobileimg" /></a></td>                                 </tr> -->
+                              </table></td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table></td>
+              </tr>
+              <tr>
+                <td align="center"><table width="640" bgcolor="#ffffff" class="resizetofull" border="0" cellspacing="0" cellpadding="0" align="center" style="width:640px;">
+                    <tr>
+                      <td bgcolor="#ffffff" align="center" style="padding-top: 30px; padding-bottom: 20px; padding-left: 40px; padding-right: 40px;" class="paddingFooter"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td align="center" style="font-family:Arial, Helvetica, sans-serif !important; font-size: 11px; line-height: 15px !important; color: #404040; mso-line-height-rule: exactly; text-align:center;">Statement activity is current as of the end of the previous month. <br />
+                              <br>
+                              *First-time Avis Preferred renters may be required to stop at the Preferred counter to verify proper identification. <br>
+                              <br>
+                              **Free days start at 700 points and are limited to certain car classes based on availability. The value of a free day varies by location, car class, and time of rental. Rental accessories are 250 points per day. <br>
+                              <br>
+                              Full terms and conditions, including criteria for qualifying rentals and spend, are available at <a href="https://click.e.avis.com/?qs=38aa1a0658f3e03551dff4ba46f24886a2e0cfbb5acff5abe954f684d598c089c3e36692f428e32ddd1b4ad99a410aea491a2f5a2bac0e11c5aeeaf20dd2e483" style="color:#D4002A; text-decoration:underline;" target="_blank" title="Footer - Avis Terms"  >avis.com/terms</a>.</td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                    <tr>
+                      <td align="center" style="font-family:Arial, Helvetica, sans-serif !important; font-size: 10px; line-height: 15px !important; color: #404040; mso-line-height-rule: exactly; padding-bottom:30px;">Your privacy is important to us. Read our <a href="https://click.e.avis.com/?qs=38aa1a0658f3e035c221d6f719f323efb09362b8bbb3e32dfeddf8dad2290e6a02cd0595d3fb3a6a778296fdd3a828d5ab33cb55eb14023f258bc170f6e419c3" style="color: #D32433; text-decoration: underline;" target="_blank"  title="Footer - Privacy" name="Footer - Privacy">Privacy Statement</a>. <br />
+                        If you wish to unsubscribe, simply <a href="https://click.e.avis.com/?qs=38aa1a0658f3e035a83d96f9d35d65499c5c715f04c74acaf5c59e59ff2c087372076599863c747a125ece6c2c682e9e68435f24ce179c2d48b552eecc59d3c8" style="color: #D32433; text-decoration: underline;" target="_blank"  title="Footer - unsubscribe" name="Footer - unsubscribe">click here</a>.<br />
+                        To change your email address, <a style="color: #D32433; text-decoration: underline;"  name="Footer - Profile Login" title="Footer - Profile Login" href="https://click.e.avis.com/?qs=38aa1a0658f3e0355e65638c4dfecb5295f159fac34094ee18f0689c2d669c946745e19bc6b3150cc8b308b7ecef5d6bd6ef4fd06c292ad38914d31ba0a28efd" target="_blank">click here</a>.<br />
+                        <br />
+                        <a class="applelinksgrey" style="color: #404040; text-decoration: none;"> Avis Rent A Car System, LLC | 379 Interpace Parkway | Parsippany NJ 07054</a><br />
+                        <span class="applelinks">Copyright &copy; 2025 Avis Rent A Car System, LLC. </span> <br />
+                        Thank you for not smoking. Avis maintains a 100% smoke-free fleet. </td>
+                    </tr>
+                  </table></td>
+              </tr>
+            </table>
+            
+            <!-- END BLOCK 1 --></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<img src="https://click.e.avis.com/open.aspx?ffcb10-fe8a11767261027575-fdfa1571756c067d721d717d-fe8b1274746d057572-ff2c16797762-fe171573726d0d797d1378-fef71679716c05&d=60248&bmt=0" width="1" height="1" alt="">
+<img src="https://pixel.inbox.exacttarget.com/pixel.gif?r=f3e012ba7254473db7ecaf33fbce06211fba1a88&c=trigger&campaign_code=AVIS_NA_PREFERRED_MONTHLY_STATEMENT&BU=Avis&jb=5675680&s=137994878" width="1" height="1" /> <img src="https://pixel.app.returnpath.net/pixel.gif?r=f3e012ba7254473db7ecaf33fbce06211fba1a88&c=trigger&campaign_code=AVIS_NA_PREFERRED_MONTHLY_STATEMENT&BU=Avis&jb=5675680&s=137994878" width="1" height="1" />
+</body>
+</html>
+
+--sjBhQrT3ifB2=_?:--

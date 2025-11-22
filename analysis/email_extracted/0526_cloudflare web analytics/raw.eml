@@ -1,0 +1,383 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7011:2011:b0:4d4:9739:2b92 with SMTP id sc17csp1173131mdb;
+        Sun, 2 Nov 2025 15:50:45 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IExv28bld/qyAQ1Swl2oZlLOx01toqw4brkAHFsPEpj9YrWUmaOPCB337Wx2U1QDwoNgptI
+X-Received: by 2002:a05:690c:84:b0:780:d282:5f3e with SMTP id 00721157ae682-78648550425mr95642667b3.36.1762127445191;
+        Sun, 02 Nov 2025 15:50:45 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762127445; cv=none;
+        d=google.com; s=arc-20240605;
+        b=PYxjDUA06ZPv0HnAgplWPoHNjwIwdqdLr41BGqtHiXWetecmjDRFIaUzqT+Pwpvb9G
+         cHRON4eCxyersz8SGtUrlDb4XiDIGzazdV2bL0QBTca3b5dkch4pjNK5Kmly/wEkmLNr
+         rdgNmHEAa8RXnurrRAZrdvOxPI3XiBYUudL1yhZGR9UqpgkbvBOYqKtT22UoGpxsuLA8
+         2KRTzme1WEH5g7i1GTn6d5jDf4MrOZP8EDqDciQWrc1zX2FeznS4dTSuqa4kP47vKPHb
+         RS1JyVVvSZryDGqaflL7mxR9nL49Vy9BpKqSEptnFQ/nQIHzNdzUHJKSqdGkc45Kcxak
+         RVOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=from:subject:mime-version:date:message-id:to:dkim-signature;
+        bh=ps/FCkqUqju4m3aviezKpMH7eu56Ti8hrIrEzvMKdqI=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=bVHZEIQIo8PfUaWf7+hK2cypxowsQ1mpZMtcZl/2mN982l1u65Bx2IhVoAdc76Xh3R
+         EPaSjwHTNoGowqbfd6Ir+UUpZdwf5Qgk2hOo5ecA/O1RGpZjj1NvV2K6Et3wafKAgbtx
+         CDagge5BXBRHxk39aoyO6BrW8qwUn0bufVjrXjieiBZu+fZNk67n7XTQoT8z+ctijplL
+         NFdVfeLcIpizzdcXHFFQ9tKkHqizNTcVBlHksMOdpuR9dpJxSROyvxIWloyDrIR/NRGq
+         1PQA0YsYdooEcJBm11Y+jOOj7tXATVj9xhnWpLBKTkXaJ8SGFVejK2y8v+/fbgRQaNNF
+         PUKg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@notify.cloudflare.com header.s=scph0619 header.b=rF+9dA5c;
+       spf=pass (google.com: domain of msprvs1=20401iwuzi0lj=bounces-265094@notify.cloudflare.com designates 147.253.211.95 as permitted sender) smtp.mailfrom="msprvs1=20401iWuZI0Lj=bounces-265094@notify.cloudflare.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=notify.cloudflare.com
+Return-Path: <msprvs1=20401iWuZI0Lj=bounces-265094@notify.cloudflare.com>
+Received: from mta-253-211-95.sparkpostmail.com (mta-253-211-95.sparkpostmail.com. [147.253.211.95])
+        by mx.google.com with ESMTPS id 00721157ae682-7864c6321e9si59045897b3.359.2025.11.02.15.50.44
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 02 Nov 2025 15:50:45 -0800 (PST)
+Received-SPF: pass (google.com: domain of msprvs1=20401iwuzi0lj=bounces-265094@notify.cloudflare.com designates 147.253.211.95 as permitted sender) client-ip=147.253.211.95;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@notify.cloudflare.com header.s=scph0619 header.b=rF+9dA5c;
+       spf=pass (google.com: domain of msprvs1=20401iwuzi0lj=bounces-265094@notify.cloudflare.com designates 147.253.211.95 as permitted sender) smtp.mailfrom="msprvs1=20401iWuZI0Lj=bounces-265094@notify.cloudflare.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=notify.cloudflare.com
+Return-Path: <msprvs1=20401iWuZI0Lj=bounces-265094@notify.cloudflare.com>
+X-MSFBL: sQEtnuEvYQ/7iKQn0+82I4KCE02IhYmniAJWXeKJ6Is=|eyJ0ZW5hbnRfaWQiOiJ
+	zcGMiLCJzdWJhY2NvdW50X2lkIjoiMCIsImN1c3RvbWVyX2lkIjoiMjY1MDk0Iiw
+	iciI6ImxpZW5jZkBnbWFpbC5jb20iLCJtZXNzYWdlX2lkIjoiNjkwNjU0ZWUwNzY
+	5MzhkNTM2ZGQifQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=notify.cloudflare.com; s=scph0619; t=1762127444;
+	i=@notify.cloudflare.com;
+	bh=ps/FCkqUqju4m3aviezKpMH7eu56Ti8hrIrEzvMKdqI=;
+	h=To:Message-ID:Date:Content-Type:Subject:From:From:To:Cc:Subject;
+	b=rF+9dA5cnjQ1SZt7C4xpCCGK0Ikr4BEzE/tdv9MCorWvZREkLURqdm1WibUVKDujq
+	 0atFD5bNGGK6Z+gh22PdRXtHndjTCGjXkqhNTEmL36FcmP76XDBdceCM5FkAnZlf+O
+	 cPYM0L4AkLFK18S5oyrLZ9J949HwDNhG6qlS3haA=
+Received: from [10.90.19.46] ([10.90.19.46])
+	by i-09525476ed4c8cc73.mta1vrest.sd.prd.sparkpost (ecelerity 5.1.0.74659 r(msys-ecelerity:tags/5.1.0.17)) with REST
+	id DD/6B-29384-45EE7096; Sun, 02 Nov 2025 23:50:44 +0000
+To: liencf@gmail.com
+Message-ID: <DD.6B.29384.45EE7096@i-09525476ed4c8cc73.mta1vrest.sd.prd.sparkpost>
+Date: Sun, 02 Nov 2025 23:50:44 +0000
+Content-Type: multipart/alternative; boundary="_----GVpUUaQbogfg3I96aZsaoQ===_42/27-00456-B0C92096"
+MIME-Version: 1.0
+Subject: Cloudflare Web Analytics
+From: "Cloudflare" <noreply@notify.cloudflare.com>
+
+--_----GVpUUaQbogfg3I96aZsaoQ===_42/27-00456-B0C92096
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+
+Account name: Liencf@gmail.com's Account=0AAccount ID: 291e947f956b5329b9c7=
+7d2fde13bfb5=0A=0AWeekly Summary from Oct 26 to Nov 1=0A###################=
+#############################################################=0A=0AThis rep=
+ort includes aggregate visits, page views, and median page load time=0Afor =
+all your sites so you can monitor their performance.=0A=0ALearn more about =
+Web Analytics:=0Ahttps://developers.cloudflare.com/analytics/web-analytics/=
+=0A=0A---------------------------------------------------------------------=
+-----------=0A=0ATotal sites: 6=0AVisits: 10 (=E2=86=98 50%)=0APage views: =
+10 (=E2=86=98 50%)=0APage load time: 307ms ( )=0ATop site by visits=0A#####=
+###########################################################################=
+=0A=0AThis report includes information about visits, as well as core web vi=
+tals=0Ametrics for your top performing site(s), so you can monitor and impr=
+ove their=0Aperformance.=0A=0ALearn more about Core Web Vitals:=0Ahttps://d=
+evelopers.cloudflare.com/analytics/web-analytics/understanding-web-analytic=
+s/core-web-vitals/=0A=0A---------------------------------------------------=
+-----------------------------=0A=0A#1 xamide.com=0Ahttps://dash.cloudflare.=
+com/291e947f956b5329b9c77d2fde13bfb5/web-analytics/overview=3FsiteTag~in=3D=
+3386a5b1e4cd42bda4d254bf097790d0&excludeBots=3DYes&utm_source=3DANS&utm_med=
+ium=3Demail&utm_campaign=3Dpg-cf-wa=0A=0ASummary=0A=3D=3D=3D=3D=3D=3D=3D=0A=
+Visits: 10 ( )=0APage views: 10 ( )=0APage load time: 307ms ( )=0A=0ATop Br=
+owsers=0A=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=0AUnknown - 100% (10 visits)=
+=0A=0ACore Web Vitals (75th Percentile)=0A=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=0ALarge =
+Contentful Paint (LCP)=0A600ms ( )=0AGood: 100% | Okay: 0% | Poor: 0%=0A=0A=
+Cumulative Layout Shift (CLS)=0A0.06 ( )=0AGood: 100% | Okay: 0% | Poor: 0%=
+=0A=0AInteraction to Next Paint (INP)=0ANo data=0A=0A=0AView all websites:=
+=0Ahttps://dash.cloudflare.com/=3Fto=3D/291e947f956b5329b9c77d2fde13bfb5/we=
+b-analytics/sites&utm_source=3DANS&utm_medium=3Demail&utm_campaign=3Dpg-cf-=
+wa=0A######################################################################=
+##########=0A=0AYou are receiving this email because Web Analytics notifica=
+tions are currently=0Aenabled for this account. You can manage notification=
+s here:=0Ahttps://dash.cloudflare.com/=3Fto=3D/291e947f956b5329b9c77d2fde13=
+bfb5/notifications=0Aor unsubscribe here (https://notifications.cloudflare.=
+com/accounts/291e947f956b5329b9c77d2fde13bfb5/policies/e5808f9cb4ef4d71abd2=
+00df06397c5a/email/unsubscribe=3Femail=3Dliencf%40gmail.com&token=3Dp6UoCmv=
+x3TNLh5Qdbw_Q91lDOBYxYtsYacUv2JMIhMI%3D)=0A=0ACopyright=C2=A9 2025 Cloudfla=
+re, Inc.=0A101 Townsend Street, San Francisco, CA 94107=0Ahttps://www.cloud=
+flare.com | https://community.cloudflare.com=0A=0AFacebook: https://www.fac=
+ebook.com/Cloudflare=0ATwitter: https://twitter.com/Cloudflare=0ALinkedIn: =
+https://www.linkedin.com/company/cloudflare-inc-=0A
+--_----GVpUUaQbogfg3I96aZsaoQ===_42/27-00456-B0C92096
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="UTF-8"
+
+<!DOCTYPE html>=0A<html=0A  xmlns=3D"http://www.w3.org/1999/xhtml"=0A  xmln=
+s:v=3D"urn:schemas-microsoft-com:vml"=0A  xmlns:o=3D"urn:schemas-microsoft-=
+com:office:office"=0A>=0A<head>=0A  <title>Cloudflare Web Analytics - Weekl=
+y Summary for Liencf@gmail.com&#39;s Account</title>=0A  <meta charset=3D"u=
+tf-8">=0A  <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge" />=0A=
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8" =
+/>=0A  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-sca=
+le=3D1" />=0A  <style type=3D"text/css">=0A    body{background:#f6f6f6;font=
+-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubun=
+tu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif}=0A   =
+ img{-ms-interpolation-mode:bicubic}=0A    #outlook a{padding:0}=0A    tabl=
+e{mso-table-lspace:0pt;mso-table-rspace:0pt}=0A    .ReadMsgBody{width:100%}=
+=0A    .ExternalClass{width:100%}=0A    p,a,td{mso-line-height-rule:exactly=
+}=0A    a[href^=3D"tel"],a[href^=3D"sms"]{color:inherit;cursor:default;text=
+-decoration:none}=0A    p,a,td,body,table{-ms-text-size-adjust:100%;-webkit=
+-text-size-adjust:100%}=0A    .ExternalClass,.ExternalClass p,.ExternalClas=
+s td,.ExternalClass div,.ExternalClass span,.ExternalClass font{line-height=
+:100%}=0A    table{border-collapse:collapse}=0A    html{-webkit-text-size-a=
+djust:none}=0A    #gmailModule,.mobileOnly{display:none!important}=0A    a,=
+a:hover{color:#0051c3;text-decoration:none!important}=0A    .button a,.butt=
+on a:hover{color:#ffffff!important;text-decoration:none!important}=0A    .f=
+ooter a,.footer a:hover{color:#8f8f8f!important;text-decoration:none!import=
+ant}=0A    a[x-apple-data-detectors]{color:inherit!important;text-decoratio=
+n:none!important;font-size:inherit!important;font-family:inherit!important;=
+font-weight:inherit!important;line-height:inherit!important}=0A  </style>=
+=0A</head>=0A<body bgcolor=3D"#f6f6f6" style=3D"background:#f6f6f6;margin:0=
+;padding:0;mso-padding-alt:0px 0px 0px 0px">=0A  <table role=3D"presentatio=
+n" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" style=3D=
+"background:#f7f7f7;border:0;border-collapse:collapse;width:100%">=0A    <t=
+r>=0A      <td>=0A        <table role=3D"presentation" width=3D"650" cellsp=
+acing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"center" style=3D"width:=
+650px;border:0;border-collapse:collapse;margin:0 auto">=0A          <tr>=0A=
+            <td height=3D"10" bgcolor=3D"#f38020" style=3D"background:#f380=
+20;height:10px;font-size:0"> </td>=0A          </tr>=0A          <tr>=0A   =
+         <td bgcolor=3D"#fff" style=3D"background:#fff;color:#444">=0A     =
+         <table role=3D"presentation" width=3D"580" cellspacing=3D"0" cellp=
+adding=3D"0" border=3D"0" align=3D"center" style=3D"width:580px;border:0;bo=
+rder-collapse:collapse;margin:0 auto">=0A                <!--header-->=0A  =
+              <tr><td height=3D"16" style=3D"height:16px;font-size:0"> </td=
+></tr>=0A                <tr>=0A                  <td>=0A                  =
+  <a href=3D"https://www.cloudflare.com/">=0A                      <img src=
+=3D"https://info.cloudflare.com/rs/713-XSC-918/images/logo_fullcolor_1168x1=
+68.png" alt=3D"Cloudflare" width=3D"217" height=3D"31" style=3D"border:none=
+">=0A                    </a>=0A                  </td>=0A                <=
+/tr>=0A                <tr><td height=3D"42" style=3D"height:42px;font-size=
+:0"> </td></tr>=0A                <tr><td style=3D"background:#fff;font-siz=
+e:44px;font-weight:600">Web Analytics</td></tr>=0A                <tr><td h=
+eight=3D"32" style=3D"height:32px;font-size:0"> </td></tr>=0A              =
+  <tr>=0A                  <td>=0A                    <table role=3D"presen=
+tation" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" sty=
+le=3D"width:100%;border:0;border-collapse:collapse;text-align:left">=0A    =
+                  <tr style=3D"font-size:12px;height:20px;vertical-align:to=
+p;white-space:nowrap">=0A                        <td width=3D"1%" style=3D"=
+padding-right:32px">Account name</td>=0A                        <td>Account=
+ ID</td>=0A                      </tr>=0A                      <tr>=0A     =
+                   <td>Liencf@gmail.com&#39;s Account</td>=0A              =
+          <td>291e947f956b5329b9c77d2fde13bfb5</td>=0A                     =
+ </tr>=0A                    </table>=0A                  </td>=0A         =
+       </tr>=0A                <tr><td height=3D"32" style=3D"height:32px;f=
+ont-size:0"> </td></tr>=0A                <!--/header-->=0A                =
+                <!--summary-->=0A                <tr>=0A                  <=
+td style=3D"font-size:24px">=0A                    Weekly Summary from <spa=
+n style=3D"font-weight:600">Oct 26</span> to <span style=3D"font-weight:600=
+">Nov 1</span>=0A                  </td>=0A                </tr>=0A        =
+        <tr><td height=3D"10" style=3D"height:10px;font-size:0"> </td></tr>=
+=0A                <tr>=0A                  <td style=3D"font-size:14px">=
+=0A                    This report includes aggregate visits, page views, a=
+nd=0A                    median page load time for all your sites so you ca=
+n monitor=0A                    their performance. Learn more about <a href=
+=3D"https://developers.cloudflare.com/analytics/web-analytics/">Web Analyti=
+cs</a>.=0A                  </td>=0A                </tr>=0A               =
+ <tr><td height=3D"16" style=3D"height:16px;font-size:0"> </td></tr>=0A    =
+            <tr><td height=3D"1" style=3D"height:1px;font-size:0;background=
+:#ccc;"> </td></tr>=0A                <tr><td height=3D"16" style=3D"height=
+:16px;font-size:0"> </td></tr>=0A                <tr>=0A                  <=
+td>=0A                    <table role=3D"presentation" width=3D"100%" cells=
+pacing=3D"0" cellpadding=3D"0" border=3D"0" style=3D"width:100%;border:0;bo=
+rder-collapse:collapse;text-align:left">=0A                      <tr valign=
+=3D"top" style=3D"font-size:12px;height:20px;vertical-align:top;white-space=
+:nowrap">=0A                        <td width=3D"25%" style=3D"width:25%">T=
+otal sites</td>=0A                        <td width=3D"25%" style=3D"width:=
+25%">Visits</td>=0A                        <td width=3D"25%" style=3D"width=
+:25%">Page views</td>=0A                        <td width=3D"25%" style=3D"=
+width:25%">Page load time</td>=0A                      </tr>=0A            =
+          <tr valign=3D"top" style=3D"vertical-align:top">=0A              =
+          <td>=0A                          <span style=3D"font-size:26px">6=
+</span><br />=0A                        </td>=0A                        <td=
+>=0A                          <span style=3D"font-size:26px">=0A           =
+                 10=0A                          </span><br />=0A           =
+               <span style=3D"color:red;margin:0">=0A                      =
+      =E2=86=98 50%=0A                          </span>=0A                 =
+       </td>=0A                        <td>=0A                          <sp=
+an style=3D"font-size:26px">=0A                            10=0A           =
+               </span><br />=0A                          <span style=3D"col=
+or:red;margin:0">=0A                            =E2=86=98 50%=0A           =
+               </span>=0A                        </td>=0A                  =
+      <td>=0A                          <span style=3D"font-size:26px">=0A  =
+                          307ms=0A                          </span><br />=
+=0A                          <span style=3D"color:;margin:0">=0A           =
+                  =0A                          </span>=0A                  =
+      </td>=0A                      </tr>=0A                    </table>=0A=
+                  </td>=0A                </tr>=0A                <tr><td h=
+eight=3D"32" style=3D"height:32px;font-size:0"> </td></tr>=0A              =
+  <!--/summary-->=0A                                                <!--top=
+3-->=0A                <tr>=0A                  <td style=3D"font-size:24px=
+">=0A                    <span style=3D"font-weight:600">Top</span> site by=
+ visits=0A                  </td>=0A                </tr>=0A               =
+ <tr><td height=3D"10" style=3D"height:10px;font-size:0"> </td></tr>=0A    =
+            <tr>=0A                  <td style=3D"font-size:14px">=0A      =
+              This report includes information about visits, as well as=0A =
+                   core web vitals metrics for your top performing site(s),=
+=0A                    so you can monitor and improve their performance.=0A=
+                    Learn more about <a href=3D"https://developers.cloudfla=
+re.com/analytics/web-analytics/understanding-web-analytics/core-web-vitals/=
+">Core Web Vitals</a>.=0A                  </td>=0A                </tr>=0A=
+                                <!--website-->=0A                <tr><td he=
+ight=3D"16" style=3D"height:16px;font-size:0"> </td></tr>=0A               =
+ <tr><td height=3D"1" style=3D"height:1px;font-size:0;background:#ccc;"> </=
+td></tr>=0A                <tr><td height=3D"16" style=3D"height:16px;font-=
+size:0"> </td></tr>=0A                <tr><td style=3D"font-size:18px;font-=
+weight:600">#1 =E2=80=A2 <a href=3D"https://dash.cloudflare.com/291e947f956=
+b5329b9c77d2fde13bfb5/web-analytics/overview=3FsiteTag~in=3D3386a5b1e4cd42b=
+da4d254bf097790d0&excludeBots=3DYes&utm_source=3DANS&utm_medium=3Demail&utm=
+_campaign=3Dpg-cf-wa" target=3D"_blank" rel=3D"noreferrer">xamide.com</a></=
+td></tr>=0A                <tr><td height=3D"16" style=3D"height:16px;font-=
+size:0"> </td></tr>=0A                <tr>=0A                  <td>=0A     =
+               <table role=3D"presentation" width=3D"100%" cellspacing=3D"0=
+" cellpadding=3D"0" border=3D"0" style=3D"width:100%;border:0;border-collap=
+se:collapse;text-align:left">=0A                      <tr valign=3D"top" st=
+yle=3D"font-size:12px;height:20px;vertical-align:top;white-space:nowrap">=
+=0A                        <td width=3D"25%" style=3D"width:25%">Visits</td=
+>=0A                        <td width=3D"25%" style=3D"width:25%">Page view=
+s</td>=0A                        <td width=3D"25%" style=3D"width:25%">Page=
+ load time</td>=0A                        <td width=3D"25%" style=3D"width:=
+25%" rowspan=3D"3">=0A                          <table role=3D"presentation=
+" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" style=3D"=
+width:100%;border:0;border-collapse:collapse;text-align:left">=0A          =
+                                              <!--browser-->=0A            =
+                <tr>=0A                              <td>Unknown</td>=0A   =
+                           <td align=3D"right" style=3D"text-align:right">1=
+0</td>=0A                            </tr>=0A                            <t=
+r>=0A                              <td colspan=3D"2" bgcolor=3D"#ccc" style=
+=3D"background:#ccc"><p style=3D"height:5px;width:100%;background:#086fff;c=
+olor:#fff;margin:0;font-size:0"> </p></td>=0A                            </=
+tr>=0A                                                        <!--/browser-=
+->=0A                                                      </table>=0A     =
+                   </td>=0A                        </tr>=0A                =
+      <tr valign=3D"top" style=3D"vertical-align:top">=0A                  =
+      <td>=0A                          <span style=3D"font-size:26px">10</s=
+pan><br />=0A                          <span style=3D"color:;margin:0"> </s=
+pan>=0A                        </td>=0A                        <td>=0A     =
+                     <span style=3D"font-size:26px">10</span><br />=0A     =
+                     <span style=3D"color:;margin:0"> </span>=0A           =
+             </td>=0A                        <td>=0A                       =
+   <span style=3D"font-size:26px">307ms</span><br />=0A                    =
+      <span style=3D"color:;margin:0"> </span>=0A                        </=
+td>=0A                      </tr>=0A                    </table>=0A        =
+          </td>=0A                </tr>=0A                <tr><td height=3D=
+"24" style=3D"height:24px;font-size:0"> </td></tr>=0A                <tr><t=
+d style=3D"font-weight:600">Core Web Vitals</td></tr>=0A                <tr=
+><td height=3D"8" style=3D"height:8px;font-size:0"> </td></tr>=0A          =
+      <tr>=0A                  <td>=0A                    <table role=3D"pr=
+esentation" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0"=
+ style=3D"width:100%;border:0;border-collapse:collapse;text-align:left">=0A=
+                      <tr style=3D"font-size:12px">=0A                     =
+   <td style=3D"vertical-align:top">Large Contentful Paint (LCP)</td>=0A   =
+                     <td width=3D"32" style=3D"width:32px;font-size:0"> </t=
+d>=0A                        <td width=3D"25%">LCP 75th Percentile</td>=0A =
+                     </tr>=0A                      <tr>=0A                 =
+       <td style=3D"padding-bottom: 10px; vertical-align: top;">=0A        =
+                                              <div style=3D"display: flex; =
+justify-content: center; padding-right: 10px; padding-top: 10px;">=0A      =
+                        <span style=3D"width:100%;height:20px;background:#2=
+db35e;font-size:0;display:inline-block;"></span>=0A                        =
+      <span style=3D"width:0%;height:20px;background:#fbad41;font-size:0;di=
+splay:inline-block;"></span>=0A                              <span style=3D=
+"width:0%;height:20px;background:#fc574a;font-size:0;display:inline-block;"=
+></span>=0A                            </div>=0A                           =
+                       </td>=0A                        <td style=3D"padding=
+-bottom: 10px;"> </td>=0A                        <td style=3D"padding-botto=
+m: 10px;">=0A                                                      <span st=
+yle=3D"font-size:26px">600ms</span> <br />=0A                            <s=
+pan style=3D"color:;margin:0"> </span></td>=0A                             =
+                   </tr>=0A                      <tr><td colspan=3D"2" heig=
+ht=3D"10" style=3D"height:10px;font-size:0"> </td></tr>=0A                 =
+     <tr style=3D"font-size:12px">=0A                        <td style=3D"v=
+ertical-align:top">Cumulative Layout Shift (CLS)</td>=0A                   =
+     <td width=3D"32" style=3D"width:32px;font-size:0"> </td>=0A           =
+             <td>CLS 75th Percentile</td> =0A                      </tr>=0A=
+                      <tr>=0A                        <td style=3D"padding-b=
+ottom: 10px; vertical-align: top;">=0A                                     =
+                 <div style=3D"display: flex; justify-content: center; padd=
+ing-right: 10px; padding-top: 10px;">=0A                              <span=
+ style=3D"width:100%;height:20px;background:#2db35e;font-size:0;display:inl=
+ine-block;"></span>=0A                              <span style=3D"width:0%=
+;height:20px;background:#fbad41;font-size:0;display:inline-block;"></span>=
+=0A                              <span style=3D"width:0%;height:20px;backgr=
+ound:#fc574a;font-size:0;display:inline-block;"></span>=0A                 =
+           </div>=0A                                                  </td>=
+=0A                        <td style=3D"padding-bottom: 10px;"> </td>=0A   =
+                     <td style=3D"padding-bottom: 10px;">=0A               =
+                                       <span style=3D"font-size:26px">0.06<=
+/span> <br />=0A                            <span style=3D"color:;margin:0"=
+> </span>=0A                                                  </td>=0A     =
+                 </tr>=0A                      <tr><td colspan=3D"2" height=
+=3D"10" style=3D"height:10px;font-size:0"> </td></tr>=0A                   =
+   <tr style=3D"font-size:12px">=0A                        <td style=3D"ver=
+tical-align:top">Interaction to Next Paint (INP)</td>=0A                   =
+     <td width=3D"32" style=3D"width:32px;font-size:0"> </td>=0A           =
+             <td>INP 75th Percentile</td> =0A                      </tr>=0A=
+                      <tr>=0A                        <td style=3D"padding-b=
+ottom: 10px; vertical-align: top;">=0A                                     =
+                 <span style=3D"color: gray">No data</span>=0A             =
+                                     </td>=0A                        <td st=
+yle=3D"padding-bottom: 10px;"> </td>=0A                        <td style=3D=
+"padding-bottom: 10px;">=0A                                                =
+      <span style=3D"color: gray">No data</span>=0A                        =
+                          </td>=0A                      </tr>=0A           =
+         </table>=0A                  </td>=0A                </tr>=0A     =
+           <!--/website-->=0A                                <tr><td height=
+=3D"42" style=3D"height:42px;font-size:0"> </td></tr>=0A                <!-=
+-/top3-->=0A                                <tr><td align=3D"center" style=
+=3D"text-align:center"><a href=3D"https://dash.cloudflare.com/=3Fto=3D/291e=
+947f956b5329b9c77d2fde13bfb5/web-analytics/sites&utm_source=3DANS&utm_mediu=
+m=3Demail&utm_campaign=3Dpg-cf-wa" style=3D"display:inline-block;background=
+:#f6821f;color:#fff;font-size:14px;font-weight:600;padding:16px 24px">VIEW =
+ALL WEBSITES</a></td></tr>=0A                <tr><td height=3D"42" style=3D=
+"height:42px;font-size:0"> </td></tr>=0A              </table>=0A          =
+  </td>=0A          </tr>=0A          <tr><td height=3D"32" style=3D"height=
+:32px;font-size:0"> </td></tr>=0A          <!--footer-->=0A          <tr st=
+yle=3D"font-size:13px">=0A            <td style=3D"color:#8f8f8f;text-align=
+:center">=0A              You are receiving this email because Web Analytic=
+s notifications are currently enabled for this account.<br />=0A           =
+   You can manage notifications <a href=3D"https://dash.cloudflare.com/=3Ft=
+o=3D/291e947f956b5329b9c77d2fde13bfb5/notifications" style=3D"color:#8f8f8f=
+;text-decoration:underline!important">here</a> or <a href=3D"https://notifi=
+cations.cloudflare.com/accounts/291e947f956b5329b9c77d2fde13bfb5/policies/e=
+5808f9cb4ef4d71abd200df06397c5a/email/unsubscribe=3Femail=3Dliencf%40gmail.=
+com&token=3Dp6UoCmvx3TNLh5Qdbw_Q91lDOBYxYtsYacUv2JMIhMI%3D" style=3D"color:=
+#8f8f8f;text-decoration:underline!important">unsubscribe</a> from this aler=
+t.<br />=0A              <br />=0A              <br />=0A              Copy=
+right=C2=A9 2025 Cloudflare, Inc.<br />=0A              101 Townsend Street=
+, San Francisco, CA 94107<br />=0A              <br />=0A              <a h=
+ref=3D"https://www.cloudflare.com" style=3D"color:#8f8f8f;text-decoration:n=
+one">www.cloudflare.com</a> | <a href=3D"https://community.cloudflare.com" =
+style=3D"color:#8f8f8f;text-decoration:none">Community</a><br />=0A        =
+      <br />=0A              <table role=3D"presentation" cellspacing=3D"0"=
+ cellpadding=3D"0" border=3D"0" style=3D"border:0;border-collapse:collapse;=
+margin:0 auto">=0A                <tr>=0A                  <td width=3D"44"=
+>=0A                    <a href=3D"https://www.facebook.com/Cloudflare" tit=
+le=3D"Facebook">=0A                      <img src=3D"https://info.cloudflar=
+e.com/rs/713-XSC-918/images/social-icon-fb-email-108px.png" width=3D"36" he=
+ight=3D"36" alt=3D"Facebook" style=3D"display:block;border:none" constrain=
+=3D"true" imagepreview=3D"false">=0A                    </a>=0A            =
+      </td>=0A                  <td width=3D"44">=0A                    <a =
+href=3D"https://twitter.com/Cloudflare" title=3D"Twitter">=0A              =
+        <img src=3D"https://info.cloudflare.com/rs/713-XSC-918/images/socia=
+l-icon-twitter-email-108px.png" width=3D"36" height=3D"36" alt=3D"Twitter" =
+style=3D"display:block;border:none" constrain=3D"true" imagepreview=3D"fals=
+e">=0A                    </a>=0A                  </td>=0A                =
+  <td width=3D"44">=0A                    <a href=3D"https://www.linkedin.c=
+om/company/cloudflare-inc-" title=3D"LinkedIn">=0A                      <im=
+g src=3D"https://info.cloudflare.com/rs/713-XSC-918/images/social-icon-link=
+edin-email-108px.png" width=3D"36" height=3D"36" alt=3D"LinkedIn" style=3D"=
+display:block;border:none" constrain=3D"true" imagepreview=3D"false">=0A   =
+                 </a>=0A                  </td>=0A                </tr>=0A =
+             </table>=0A            </td>=0A          </tr>=0A          <!-=
+-/footer-->=0A          <tr><td height=3D"32" style=3D"height:32px;font-siz=
+e:0"> </td></tr>=0A        </table>=0A      </td>=0A    </tr>=0A  </table>=
+=0A</body>=0A</html>=0A
+--_----GVpUUaQbogfg3I96aZsaoQ===_42/27-00456-B0C92096--

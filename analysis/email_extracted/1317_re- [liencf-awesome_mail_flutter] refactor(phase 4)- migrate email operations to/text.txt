@@ -1,0 +1,52 @@
+@cursor[bot] commented on this pull request.
+
+
+
+> +    try {
++      // TODO: Implement archive logic via GmailSyncService or EmailRepository
++      // For now, just log
++      _logger.info('Archive email: ${event.emailId}');
++    } on Exception catch (error, stackTrace) {
++      _logger.error('封存郵件失敗', error, stackTrace);
++
++      // Rollback: re-add email
++      final rolledBackEmails = List<Email>.from(state.emails);
++      rolledBackEmails.insert(emailIndex, email);
++
++      emit(state.copyWith(
++        emails: rolledBackEmails,
++        errorMessage: '封存郵件失敗：$error',
++      ));
++    }
+
+### Bug: Email Rollback Fails, UI/Backend Mismatch
+
+<!-- **High Severity** -->
+
+<!-- DESCRIPTION START -->
+The rollback logic for `_onEmailArchive` and `_onEmailDelete` attempts to re-insert an email using an `emailIndex` from the original list. After an optimistic removal, this index is incorrect for the modified list, potentially misplacing the email or causing an index error. Additionally, `_onEmailArchive` performs an optimistic UI update but lacks a backend implementation, leading to an inconsistent state where emails are removed from the UI but not archived on the server.
+<!-- DESCRIPTION END -->
+
+<!-- LOCATIONS START
+lib/presentation/blocs/mailbox/mailbox_bloc.dart#L515-L531
+lib/presentation/blocs/mailbox/mailbox_bloc.dart#L566-L575
+lib/presentation/blocs/mailbox/mailbox_bloc.dart#L433-L442
+LOCATIONS END -->
+<details>
+<summary>Additional Locations (2)</summary>
+
+- [`lib/presentation/blocs/mailbox/mailbox_bloc.dart#L566-L575`](https://github.com/LienCF/awesome_mail_flutter/blob/80397f7d32bb4a3a41befd0888b7b02ae4199b31/lib/presentation/blocs/mailbox/mailbox_bloc.dart#L566-L575)
+- [`lib/presentation/blocs/mailbox/mailbox_bloc.dart#L433-L442`](https://github.com/LienCF/awesome_mail_flutter/blob/80397f7d32bb4a3a41befd0888b7b02ae4199b31/lib/presentation/blocs/mailbox/mailbox_bloc.dart#L433-L442)
+
+</details>
+
+<a href="https://cursor.com/open?data=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImJ1Z2JvdC12MSJ9.eyJ2ZXJzaW9uIjoxLCJ0eXBlIjoiQlVHQk9UX0ZJWF9JTl9DVVJTT1IiLCJkYXRhIjp7InJlZGlzS2V5IjoiYnVnYm90OmI5ZWIyNzM5LWUxY2QtNDBlMy04N2E2LTUwM2JkYTVkYzVmYyIsImVuY3J5cHRpb25LZXkiOiJCMjBscnZTdzI1dDJObWM0QnVXZE1nSGlILXdxM1AtM19KTjN2SWlNT2pRIiwiYnJhbmNoIjoicmVmYWN0b3IvbWlncmF0ZS1lbWFpbC1vcGVyYXRpb25zLXRvLWJsb2MifSwiaWF0IjoxNzYwMDA1NTcxLCJleHAiOjE3NjA2MTAzNzF9.b--J4-CjJ5NHoczMEjEpU_SE4hyDPz8OoEIOOG1vX8Z6gCNtP3uFRZqSWVy0sYv28hhsQmlX0nuUy7dUbRvG_n-WxWDjVZjI9cI64-uoxuS8IIUa24cwSNGK__uGL_zj-KkjBOKLh8PxcFZoUriaNnP4GI4ScJgT6N_1GmpColK1C5dOg65f5CLO-_8Y0Tk8Htpk4WEe53NYIe-QPLEIenIhl3gU60u0rr3ISfrCDs6RjnqGXPQjNWfiBi2073X5QyLyrMXrfQ-XW9njKkIibQ5aJVatTgWuL_E9VFVH3es47Prei-nhVG4dLFfUcGrJDPUmh1RJ8RNFD4nQ9Run6g"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cursor.com/fix-in-cursor-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://cursor.com/fix-in-cursor-light.svg"><img alt="Fix in Cursor" src="https://cursor.com/fix-in-cursor.svg"></picture></a>&nbsp;<a href="https://cursor.com/agents?data=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImJ1Z2JvdC12MSJ9.eyJ2ZXJzaW9uIjoxLCJ0eXBlIjoiQlVHQk9UX0ZJWF9JTl9XRUIiLCJkYXRhIjp7InJlZGlzS2V5IjoiYnVnYm90OmI5ZWIyNzM5LWUxY2QtNDBlMy04N2E2LTUwM2JkYTVkYzVmYyIsImVuY3J5cHRpb25LZXkiOiJCMjBscnZTdzI1dDJObWM0QnVXZE1nSGlILXdxM1AtM19KTjN2SWlNT2pRIiwiYnJhbmNoIjoicmVmYWN0b3IvbWlncmF0ZS1lbWFpbC1vcGVyYXRpb25zLXRvLWJsb2MiLCJyZXBvT3duZXIiOiJMaWVuQ0YiLCJyZXBvTmFtZSI6ImF3ZXNvbWVfbWFpbF9mbHV0dGVyIiwicHJOdW1iZXIiOjIsImNvbW1pdFNoYSI6IjgwMzk3ZjdkMzJiYjRhM2E0MWJlZmQwODg4YjdiMDJhZTQxOTliMzEifSwiaWF0IjoxNzYwMDA1NTcxLCJleHAiOjE3NjA2MTAzNzF9.LScrHpo7r--U6gsFOluE6H1tHmv4hVXsp1iCgi2ZHL_wTWXuMYbjFkhOIuWIN2ToSdolORJcqgf7vE6k4RaIS5Rz0AdG3tl6R4Qap_K0vj1g9ZLCrE7mSgkckqEtEt8d_hLpWmPniuClixrVobUIxv90yvZ6SEilGqyUthRHbrqnf7TzRZcMMPgGrmi4XksDVwLdSp2nzvcTV19y1bKZTzKymAo9LOCjSQsvejFm845gdI2kquPqfA39ftvWDveQyNPSIyQWtQ26rRm2m8uDQa-VzybgBIcHnW3KDgIU_Es9vHyb9QoVF6KV3b_y0mSgpXnm9qWg9s-lcnuYBDEPLQ"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cursor.com/fix-in-web-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://cursor.com/fix-in-web-light.svg"><img alt="Fix in Web" src="https://cursor.com/fix-in-web.svg"></picture></a>
+
+
+
+-- 
+Reply to this email directly or view it on GitHub:
+https://github.com/LienCF/awesome_mail_flutter/pull/2#pullrequestreview-3318254612
+You are receiving this because you modified the open/close state.
+
+Message ID: <LienCF/awesome_mail_flutter/pull/2/review/3318254612@github.com>

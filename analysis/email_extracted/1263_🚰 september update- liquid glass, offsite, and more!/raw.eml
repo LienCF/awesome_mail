@@ -1,0 +1,1423 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:df93:b0:4ca:2b22:f54c with SMTP id ok19csp2441133mdb;
+        Fri, 10 Oct 2025 09:59:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGM+Sel0AkG65uaC6M3r/fBy8ks8zFadhle8J8jSf8D0lBLj7Uu2jx9muH8BmFn1QczdpOS
+X-Received: by 2002:a05:620a:19a1:b0:84a:5f9d:a30c with SMTP id af79cd13be357-88352ba72eamr1698768985a.63.1760115572416;
+        Fri, 10 Oct 2025 09:59:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1760115572; cv=none;
+        d=google.com; s=arc-20240605;
+        b=IzdOuoKXEgdeoYaRCoAaaghX2qiT2wIC5DB3TWAj/NPqpwkMkFjL8b9/vrTcRzvrIe
+         ch9FcOnh4M5B/NU2NpBAz/1uiyuHxMkCKs8lvDunOFqWOBM2JxsUJk6eW4YcV1b7ow1E
+         TkwuNyi/Bxv/Q5/EAQZhq+ssMxgkXihVOUSMHonkJeEmFW/tPpp2vs7/pJ1CKNr67t2Y
+         HEYpz+vC/beXX8VWPj0/DpoMguu/28OPnu4A6zPh9lyDkLGkV/5oJNkOmUKTHosmcyML
+         WzxnIc1fU8cEhS0taGaL73yF+WXyDJvaos1eyuVFIvzn0iK6rX9zK7GpG2/+8bJ8+h/8
+         s1vg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:mime-version:date:message-id:subject:to:from
+         :list-unsubscribe-post:list-unsubscribe:precedence:dkim-signature
+         :dkim-signature;
+        bh=57e8nOxL1eAbIy5eheeErEAk1E23NhhOmYrJKAq3PnE=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=ElWTviebI3RPUwyYP5RnIeDu7eHMryaZxxj3IVc4bFYRE7rOvb0UmW9Ldjin9rCpPE
+         fbRLb8dePKzkY24yfxllDdgUyCeTP/6Pn6lwK4PiA4D+b75aV78CA+ssq6vlKhaAWgwE
+         X4hpN669Utq836ydQxCAWTgAC0vsEb8q7Ekm4QbUyQmk8bxtY4Xzy6R3lXwf8sdL1Dt3
+         8p2NjTam/XvxhzFAvyvTKUXEMUrsVEm5oRSQM1ONgc+VWuaIXghrf4//ZXuodgbc7WmW
+         FoSQxTpyeYdWcz6ysrx8eklp8yayrU/ZXzKNEVD09GFF12xYp4MZ4tefvYb3fJN0UMpm
+         kvjw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@raycast.com header.s=resend header.b=H6LMBQG4;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=mabEAC2w;
+       spf=pass (google.com: domain of 01000199cf103d73-a8cc0ca5-caab-42f2-b94b-cfa564be6263-000000@send.raycast.com designates 54.240.9.8 as permitted sender) smtp.mailfrom=01000199cf103d73-a8cc0ca5-caab-42f2-b94b-cfa564be6263-000000@send.raycast.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=raycast.com
+Return-Path: <01000199cf103d73-a8cc0ca5-caab-42f2-b94b-cfa564be6263-000000@send.raycast.com>
+Received: from a9-8.smtp-out.amazonses.com (a9-8.smtp-out.amazonses.com. [54.240.9.8])
+        by mx.google.com with ESMTPS id af79cd13be357-885f16a08dbsi165645085a.390.2025.10.10.09.59.32
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Oct 2025 09:59:32 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 01000199cf103d73-a8cc0ca5-caab-42f2-b94b-cfa564be6263-000000@send.raycast.com designates 54.240.9.8 as permitted sender) client-ip=54.240.9.8;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@raycast.com header.s=resend header.b=H6LMBQG4;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=mabEAC2w;
+       spf=pass (google.com: domain of 01000199cf103d73-a8cc0ca5-caab-42f2-b94b-cfa564be6263-000000@send.raycast.com designates 54.240.9.8 as permitted sender) smtp.mailfrom=01000199cf103d73-a8cc0ca5-caab-42f2-b94b-cfa564be6263-000000@send.raycast.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=raycast.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple; s=resend;
+	d=raycast.com; t=1760115572;
+	h=List-Unsubscribe:List-Unsubscribe-Post:From:To:Subject:Message-ID:Date:MIME-Version:Content-Type;
+	bh=h7NQET4jXuxpzdDBAvXum8dpxUtEVhnWwGAwYHzDMHY=;
+	b=H6LMBQG4QHXkvAGobdclqtaBkaqJa3JRyXaPdcXwDzmunITNm72aNqKsWjwLTRj/
+	ZZX5QyDl0F4qjcF/wOZTaR8NIPpesSGHJlQsOnF2SU17NFcBK8KsPKIEB6jSaERtQ9F
+	/o7efDvdDD5uJj/87/oTmYKkG5AUa2OqYZX1hqKA=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw; d=amazonses.com; t=1760115572;
+	h=List-Unsubscribe:List-Unsubscribe-Post:From:To:Subject:Message-ID:Date:MIME-Version:Content-Type:Feedback-ID;
+	bh=h7NQET4jXuxpzdDBAvXum8dpxUtEVhnWwGAwYHzDMHY=;
+	b=mabEAC2wHFWZk1ry+u/exeAIcioct3j8fSvk3USPagjbb5+4heuHqMGtcf0MPk30
+	aFGR/Iedfc6MaD/baxG1FEg5at3cUN3F2FSQozsuVNk6SoyyBTssFBczFFi6Vvc1GSk
+	qo0RaUx7UTkij8HKDpIDV1ptdkcfURmNSzNxQ/Ms=
+Precedence: bulk
+X-Entity-Ref-ID: 07b25017-51c0-4fc8-af23-098a19f3e6f2
+List-Unsubscribe:
+ <https://unsubscribe.resend.com/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb250YWN0SWQiOiI1ZGUzMThlMi1jZDA1LTQ2ZjAtODU2Yy1iZjZmOWYxYTk0YjIiLCJhdWRpZW5jZUlkIjoiOTdjNjc2ZDgtMmY2ZC00NTlmLWJmNWMtNTk5YzI3NGQ3NTA1IiwiYnJvYWRjYXN0SWQiOiJhYTQyMmUzYi0zMTNlLTQxYjQtODkxZC1kNGUwOTc2MjBjMjgiLCJ0ZWFtSWQiOiJhZjgyY2E5MC0zNmU2LTRkNmItODdmMC0wYjA1NWJhOTUxZDYiLCJpYXQiOjE3NjAxMTIxNDksImV4cCI6MTc5MTY0ODE0OX0.ejc7Wqe0i_uMH4jYlxl81JQHHxEPOqvzKLP7l_aTd8I>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+From: Raycast Team <team@raycast.com>
+To: liencf@gmail.com
+Subject: =?UTF-8?Q?=F0=9F=9A=B0_September_Update=3A_Liquid_?=
+ =?UTF-8?Q?Glass=2C_Offsite=2C_and_more!?=
+Message-ID: <01000199cf103d73-a8cc0ca5-caab-42f2-b94b-cfa564be6263-000000@email.amazonses.com>
+Date: Fri, 10 Oct 2025 16:59:32 +0000
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--_NmP-9290d9f262c27f4c-Part_1"
+Feedback-ID: ::1.us-east-1.epbACCJLarUaEI78XZoGREJ9LamRjxMH5pM2kZb64rA=:AmazonSES
+X-SES-Outgoing: 2025.10.10-54.240.9.8
+
+----_NmP-9290d9f262c27f4c-Part_1
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+---------------------------------------------------------------------------=
+-----
+
+Hello =F0=9F=91=8B
+
+It=E2=80=99s Pedro http://x.com/peduarte here =
+with another monthly update! As always,
+team picks at the bottom of the =
+email.
+
+By the way, you may notice this email looks a little different than=
+ the previous
+ones. That's because we've migrated to Resend and decided to =
+simplify our
+template. But I'll keep iterating and improving on it, so let =
+me know what you
+think!
+
+
+
+
+
+YEARLY OFFSITE
+
+The whole team got together in=
+ Rovinj, Croatia, this year to celebrate our
+yearly offsite. Aside from all=
+ the travel disruptions, we had such a great time
+together!
+
+One of the things I love the most about our offsites is that it=E2=80=99s =
+mainly
+centered around people. Hanging out, doing fun activities, playing =
+games, etc
+and not full of work meetings for a whole week! We did hold a =
+work-related
+session in the morning, where Thomas and Petr shared an =
+overview of how Raycast
+is doing and what we=E2=80=99ve got planned for the=
+ next year. And wow. I hope you=E2=80=99re
+ready!
+
+I selfishly took this =
+opportunity to take a bunch of photos which I always enjoy
+doing, you can check them out here
+https://x.com/peduarte/status/1973389535=
+657472149 to get a feel for the culture
+at Raycast. Thanks to Sandy for =
+organising this event. It gets harder each year
+as the company grows.
+
+
+
+
+
+A LITTLE GLASS
+
+We=E2=80=99ve added a touch of Liquid Glass on both our =
+macOS and iOS apps. Enjoy a
+refreshed look, featuring rounder corners, =
+updated app icons, and smooth
+progressive blurs. Thomas shared some =
+beautiful images of how it looks in Tahoe
+https://x.=
+com/thomaspaulmann/status/1967920772896395680 and iOS 26
+https://x.com/thomaspaulmann/status/1968283679442239813. We also made a =
+little
+video where we talk about it a bit more. Check it out
+https://x.com/peduarte/status/1967903168995754451 if you=E2=80=99re curious=
+.
+
+
+
+
+
+FUTURE FIFTY 2025
+
+This year, we got selected to be part of the =
+Future Fifty 2025 by TechNation.
+Future Fifty is where late-stage UK tech =
+levels up, with 30%+ of the country=E2=80=99s
+unicorns coming through the =
+program. We=E2=80=99re thrilled to join the lineup. Learn
+more about it here https://technation.io/programmes/future-fifty/.
+
+
+
+
+
+IN OTHER NEWS
+
+=F0=9F=87=AF=F0=9F=87=B5 We=E2=80=99re hosting a hackathon =
+https://raycast.connpass.com/event/369928/ and
+community meetup =
+https://raycast.connpass.com/event/370096/ in Tokyo at the end
+of October
+
+=E2=98=95 We got inspired by Cursor and Notion, and kicked off the =
+Raycaf=C3=A9 trend. I
+hosted the first one in Barcelona
+https://x.com/peduarte/status/1972673141731164500, and Roy just did one in
+Berlin https://x.com/RvRoo/status/1976607410795282686. The community is =
+getting
+involved and hosting them in various places around the world! =
+Amazing to see.
+Make sure to join one near you https://ray.so/events
+
+=F0=9F=9B=A1=EF=B8=8F We=E2=80=99re enterprise ready with our SOC2 Type II =
+certificate. Want to bring it
+to your company? Let's talk =E2=86=92 =
+enterprise@raycast.com enterprise@raycast.com
+
+=F0=9F=90=A6 We crossed 80,=
+000 Twitter followers https://x.com/raycast. I=E2=80=99m so impressed.
+Thank you!
+
+=F0=9F=A4=97 We=E2=80=99ve launched our Ambassador Program =
+https://ray.so/ambassadors! Sign up so
+you can also host a Raycaf=C3=A9!
+
+=F0=9F=A7=98=E2=80=8D=E2=99=82=EF=B8=8F We're slowing down our release =
+cycle for a little while. See Thomas'
+announcement here https://x.=
+com/thomaspaulmann/status/1976636662705705022.
+
+=F0=9F=AA=9F Remember to =
+sign up for the Windows raycast.com/windows waitlist.
+
+
+
+
+
+TEAM PICKS
+
+Time for everyone=E2=80=99s favorite part. Team picks!
+
+=F0=9F=93=BD=EF=B8=8F=C2=A0Bruno watched the Palme D=E2=80=99Or winner It =
+Was Just An Accident
+https://boxd.it/TX2k and enjoyed how different it is.
+
+=F0=9F=A4=BA=C2=A0Mathieu discovered what a tenon cutter
+https://www.leevalley.com/en-us/shop/tools/hand-tools/dowel-and-tenon-cutte=
+rs/42299-veritas-power-tenon-cutters
+is and is looking forward to building =
+some fences. TIL.
+
+=E2=98=82=EF=B8=8F=C2=A0Beno=C3=AEt took his kids to see=
+ My Neighbour Totoro https://totoroshow.com/ in
+London. Oh I bet that was =
+absolutely amazing.
+
+=F0=9F=A5=B5=C2=A0Daniel finished reading Fever Pitch
+https://www.goodreads.com/book/show/4264.Fever_Pitch, recommended by his
+football-obsessed friend.
+
+=F0=9F=93=BA=C2=A0Adil watched MobLand =
+https://www.imdb.com/fr/title/tt31510819/ and highly
+recommends. Gonna check it out!
+
+=F0=9F=9A=B4=C2=A0Johan got a new electric=
+ bike
+https://www.ecoride.com/en-se/?srsltid=3DAfmBOorFv4FfHGATWiYPBl6NKtJW=
+L_4Clw-u8NfeAmJhsxsEZoClcnVS.
+His new obsession!
+
+=F0=9F=93=A6=C2=A0Hugo =
+recommends makedo https://www.make.do/, which are basically cardboard
+boxes for kids to create things with. They just built a spaceship with it. =
+So
+cool!
+
+=F0=9F=94=A5=C2=A0Marcos bought a soldering iron
+https://www.amazon.de/dp/B09B3XGWJG?ref=3Dppx_yo2ov_dt_b_fed_asin_title&th=
+=3D1 and a
+multi-meter
+https://www.amazon.de/dp/B0011D6O0A?=
+ref=3Dppx_yo2ov_dt_b_fed_asin_title to make
+quick reparations at home.
+
+=F0=9F=8E=A6=C2=A0John watched Butch Cassidy and the Sundance Kid
+https://www.imdb.com/title/tt0064115/ in honour of the great Robert Redford=
+.
+
+=E2=9D=84=EF=B8=8F=C2=A0Samuel is ready for the Swedish winter with his =
+new lightweight down jacket
+https://haku-clothing.com/products/17066?=
+srsltid=3DAfmBOorj9bz9zuoB5VqaObTSXaMf30BCTcBTXdcKoOPHE8LBUwdWXj_O.
+
+=F0=9F=93=9A=C2=A0Alex S. has re-read Replay https://www.goodreads.=
+com/book/show/341735.Replay.
+A science fiction, where the main character =
+lives his life from 18 to 43 over
+and over again.
+
+=F0=9F=92=A1=C2=A0Thomas=
+ got this really beautiful lamp
+https://www.madeindesign.co.=
+uk/prod-lop-small-rectangle-table-lamp-plastic-material-transparent-archipr=
+oducts-design-award-winner-bang-refm115920701.html.
+Next time we make a video with him, you=E2=80=99ll see it in his background=
+!
+
+=F0=9F=8E=9F=EF=B8=8F=C2=A0Petr managed to grab Radiohead tickets for =
+their London concert!
+
+=F0=9F=A7=B6 As usual Steph got a bunch of wool. 9.=
+5kg this time!
+
+=F0=9F=93=B8=C2=A0And I got this tiny Godox IM20 =
+https://amzn.eu/d/apXR6zc flash, USB
+chargeable. Love it.
+
+
+
+
+That's it for this month. For all changes, check out our=C2=A0changelog
+https://www.raycast.com/changelog.
+
+See you next month!
+
+---------------------------------------------------------------------------=
+-----
+
+Raycast Technologies Inc.
+2093 Philadelphia Pike #3222, Claymont, DE=
+ 19703
+Unsubscribe https://unsubscribe.resend.com/?token=3DeyJhbGciOiJIUzI1=
+NiIsInR5cCI6IkpXVCJ9.eyJjb250YWN0SWQiOiI1ZGUzMThlMi1jZDA1LTQ2ZjAtODU2Yy1iZj=
+ZmOWYxYTk0YjIiLCJhdWRpZW5jZUlkIjoiOTdjNjc2ZDgtMmY2ZC00NTlmLWJmNWMtNTk5YzI3N=
+GQ3NTA1IiwiYnJvYWRjYXN0SWQiOiJhYTQyMmUzYi0zMTNlLTQxYjQtODkxZC1kNGUwOTc2MjBj=
+MjgiLCJ0ZWFtSWQiOiJhZjgyY2E5MC0zNmU2LTRkNmItODdmMC0wYjA1NWJhOTUxZDYiLCJpYXQ=
+iOjE3NjAxMTIxNDksImV4cCI6MTc5MTY0ODE0OX0.ejc7Wqe0i_uMH4jYlxl81JQHHxEPOqvzKL=
+P7l_aTd8I
+
+
+
+----_NmP-9290d9f262c27f4c-Part_1
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir=3D"ltr" =
+lang=3D"en">
+  <head>
+    <meta content=3D"width=3Ddevice-width" =
+name=3D"viewport" />
+    <link
+      rel=3D"preload"
+      as=3D"image"
+      href=3D"https://resend-attachments.s3.amazonaws.com/2614zFw1iazXHKv" =
+/>
+    <link
+      rel=3D"preload"
+      as=3D"image"
+      href=3D"https://resend-attachments.s3.amazonaws.com/dQrRwzJwngiihHm" =
+/>
+    <link
+      rel=3D"preload"
+      as=3D"image"
+      href=3D"https://resend-attachments.s3.amazonaws.com/vdG8VVgQ0lYWHm5" =
+/>
+    <link
+      rel=3D"preload"
+      as=3D"image"
+      href=3D"https://resend-attachments.s3.amazonaws.com/BULHsTLyQJkNhp7" =
+/>
+    <link
+      rel=3D"preload"
+      as=3D"image"
+      href=3D"https://resend-bucket-test.s3.amazonaws.com//XBhqz5mxmDPp3MH"=
+ />
+    <meta content=3D"text/html; charset=3DUTF-8" =
+http-equiv=3D"Content-Type" />
+    <meta name=3D"x-apple-disable-message-re=
+formatting" />
+    <meta content=3D"IE=3Dedge" http-equiv=3D"X-UA-Compatibl=
+e" />
+    <meta name=3D"x-apple-disable-message-reformatting" />
+    <meta
+      content=3D"telephone=3Dno,address=3Dno,email=3Dno,date=3Dno,url=3Dno"
+      name=3D"format-detection" />
+    <meta content=3D"light" =
+name=3D"color-scheme" />
+    <meta content=3D"light" =
+name=3D"supported-color-schemes" />
+    <style>
+                    :root {
+                      color-scheme: light;
+                      =
+supported-color-schemes: light dark;
+                    }
+
+                    hr {
+        border-width: 1px !important;
+        padding: 0 !important;
+        margin-top: 32px;
+        margin-bottom: 18px;
+      }
+
+      @media (prefers-color-scheme: =
+dark) {
+        hr { border-color: #333333 !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <!--$--><!--html--><!--head--><!=
+--body-->
+    <table
+      align=3D"center"
+      width=3D"100%"
+      border=3D"0"
+      cellpadding=3D"0"
+      cellspacing=3D"0"
+      role=3D"presentation"
+      style=3D"font-family:-apple-system, =
+BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Roboto&#x27;, =
+&#x27;Oxygen&#x27;, &#x27;Ubuntu&#x27;, &#x27;Cantarell&#x27;, &#x27;Fira =
+Sans&#x27;, &#x27;Droid Sans&#x27;, &#x27;Helvetica Neue&#x27;, =
+sans-serif;font-size:1.0769230769230769em;min-height:100%;line-height:155%;=
+background-color:#ffffff;padding:16px">
+      <tbody>
+        <tr>
+          <td>
+            <table
+              align=3D"center"
+              width=3D"100%"
+              border=3D"0"
+              cellpadding=3D"0"
+              cellspacing=3D"0"
+              role=3D"presentation"
+              style=3D"align:center;wid=
+th:560px;line-height:155%;max-width:560px;font-family:-apple-system, =
+BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Roboto&#x27;, =
+&#x27;Oxygen&#x27;, &#x27;Ubuntu&#x27;, &#x27;Cantarell&#x27;, &#x27;Fira =
+Sans&#x27;, &#x27;Droid Sans&#x27;, &#x27;Helvetica Neue&#x27;, =
+sans-serif">
+              <tbody>
+                <tr>
+                  <td>
+                    <table
+                      =
+align=3D"center"
+                      width=3D"100%"
+                      border=3D"0"
+                      cellpadding=3D"0"
+                      cellspacing=3D"0"
+                      =
+role=3D"presentation">
+                      <tbody style=3D"width:100%">
+                        <tr style=3D"width:100%">
+                         =
+ <td align=3D"left" data-id=3D"__react-email-column">
+                            <img
+                              class=3D""
+                              height=3D"45"
+                              =
+src=3D"https://resend-attachments.s3.amazonaws.com/2614zFw1iazXHKv"
+                              style=3D"display:block;outline:none;border:no=
+ne;text-decoration:none;max-width:100%;border-radius:8px"
+                              width=3D"45" />
+                          =
+</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div></div>
+                    <hr
+                      class=3D"divider"
+                      style=3D"width:100%;border:none;border-top:1px solid =
+#eaeaea;padding-bottom:1em;border-width:2px" />
+                    <p
+                      class=3D""
+                      =
+style=3D"margin:0;padding:0;font-size:1em;padding-top:0.=
+5em;padding-bottom:0.5em;text-align:left">
+                      =
+<span>Hello =F0=9F=91=8B</span>
+                    </p>
+                    <p
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      <span>It=E2=80=99s =
+</span
+                      ><span
+                        ><a
+                          href=3D"http://x.com/peduarte"
+                          rel=3D"noopener noreferrer nofollow"
+                          style=3D"color:#FF6363;text-decoration-line:none;=
+text-decoration:underline"
+                          target=3D"_blank"
+                          >Pedro</a
+                        ></span
+                      ><span>
+                        here with another =
+monthly update! As always, team picks
+                        at the bottom=
+ of the email.</span
+                      >
+                    </p>
+                    <p
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em;color:#666666">
+                      <span
+                        ><em
+                          >By the way, you may=
+ notice this email looks a little
+                          different than =
+the previous ones. That&#x27;s because
+                          we&#x27;ve=
+ migrated to Resend and decided to simplify
+                          our =
+template. But I&#x27;ll keep iterating and
+                          =
+improving on it, so let me know what you think!</em
+                        ></span
+                      >
+                    </p>
+                    <p
+                      =
+class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;=
+padding-top:0.5em;padding-bottom:0.5em">
+                      <br />
+                    </p>
+                    <img
+                      =
+class=3D""
+                      src=3D"https://resend-attachments.s3.=
+amazonaws.com/dQrRwzJwngiihHm"
+                      =
+style=3D"display:block;outline:none;border:none;text-decoration:none;max-wi=
+dth:100%;border-radius:8px"
+                      width=3D"100%" />
+                    <h2
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1.=
+8em;line-height:1.44em;padding-top:0.389em;font-weight:600">
+                      <span>Yearly offsite</span>
+                    </h2>
+                    <p
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      <span
+                        >The whole team got together in Rovinj, Croatia, =
+this
+                        year to celebrate our yearly offsite. Aside =
+from all the
+                        travel disruptions, we had such a =
+great time
+                        together!</span
+                      >
+                    </p>
+                    <p
+                      =
+class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;=
+padding-top:0.5em;padding-bottom:0.5em">
+                      <span
+                        >One of the things I love the most about our =
+offsites is
+                        that it=E2=80=99s mainly centered =
+around people. Hanging out,
+                        doing fun activities, =
+playing games, etc and not full of
+                        work meetings =
+for a whole week! We did hold a
+                        work-related =
+session in the morning, where Thomas and
+                        Petr =
+shared an overview of how Raycast is doing and what
+                        we=E2=80=99ve got planned for the next year. And =
+wow. I hope
+                        you=E2=80=99re ready!</span
+                      >
+                    </p>
+                    <p
+                      class=3D""
+                      =
+style=3D"margin:0;padding:0;font-size:1em;padding-top:0.=
+5em;padding-bottom:0.5em">
+                      <span
+                        >I selfishly took this opportunity to take a bunch =
+of
+                        photos which I always enjoy doing, you can =
+</span
+                      ><span
+                        ><a
+                          href=3D"https://x.com/peduarte/status/19733895356=
+57472149"
+                          rel=3D"noopener noreferrer nofollow"
+                          style=3D"color:#FF6363;text-decoration-line:none;=
+text-decoration:underline"
+                          target=3D"_blank"
+                          >check them out here</a
+                        =
+></span
+                      ><span>
+                        to get a feel=
+ for the culture at Raycast. Thanks to
+                        Sandy for =
+organising this event. It gets harder each
+                        year as =
+the company grows.</span
+                      >
+                    </p>
+                    <p
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      <br />
+                    </p>
+                    <img
+                      =
+class=3D""
+                      src=3D"https://resend-attachments.s3.=
+amazonaws.com/vdG8VVgQ0lYWHm5"
+                      =
+style=3D"display:block;outline:none;border:none;text-decoration:none;max-wi=
+dth:100%;border-radius:8px"
+                      width=3D"100%" />
+                    <h2
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1.=
+8em;line-height:1.44em;padding-top:0.389em;font-weight:600">
+                      <span>A little glass</span>
+                    </h2>
+                    <p
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      <span
+                        >We=E2=80=99ve added a touch of Liquid Glass on =
+both our macOS
+                        and iOS apps. Enjoy a refreshed look=
+, featuring rounder
+                        corners, updated app icons, and=
+ smooth progressive
+                        blurs. Thomas shared some =
+beautiful images of how it
+                        looks in </span
+                      ><span
+                        ><a
+                          href=3D"https://x.com/thomaspaulmann/status/19679=
+20772896395680"
+                          rel=3D"noopener noreferrer =
+nofollow"
+                          style=3D"color:#FF6363;text-decoration-=
+line:none;text-decoration:underline"
+                          =
+target=3D"_blank"
+                          >Tahoe</a
+                        ></span
+                      ><span> and </span
+                      ><span
+                        ><a
+                          href=3D"https://x.com/thomaspaulmann/status/19682=
+83679442239813"
+                          rel=3D"noopener noreferrer =
+nofollow"
+                          style=3D"color:#FF6363;text-decoration-=
+line:none;text-decoration:underline"
+                          =
+target=3D"_blank"
+                          >iOS 26</a
+                        ></span
+                      ><span
+                        >. We also made a little video where we talk about =
+it a
+                        bit more. Check </span
+                      ><span
+                        ><a
+                          href=3D"https://x.com/peduarte/status/19679031689=
+95754451"
+                          rel=3D"noopener noreferrer nofollow"
+                          style=3D"color:#FF6363;text-decoration-line:none;=
+text-decoration:underline"
+                          target=3D"_blank"
+                          >it out</a
+                        ></span
+                      ><span> if you=E2=80=99re curious.</span>
+                    </p>
+                    <p
+                      =
+class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;=
+padding-top:0.5em;padding-bottom:0.5em">
+                      <br />
+                    </p>
+                    <img
+                      =
+class=3D""
+                      src=3D"https://resend-attachments.s3.=
+amazonaws.com/BULHsTLyQJkNhp7"
+                      =
+style=3D"display:block;outline:none;border:none;text-decoration:none;max-wi=
+dth:100%;border-radius:8px"
+                      width=3D"100%" />
+                    <h2
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1.=
+8em;line-height:1.44em;padding-top:0.389em;font-weight:600">
+                      <span>Future Fifty 2025</span>
+                    </h2>
+                    <p
+                      =
+class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;=
+padding-top:0.5em;padding-bottom:0.5em">
+                      <span
+                        >This year, we got selected to be part of the =
+Future
+                        Fifty 2025 by TechNation. Future Fifty is =
+where
+                        late-stage UK tech levels up, with 30%+ of =
+the country=E2=80=99s
+                        unicorns coming through the =
+program. We=E2=80=99re thrilled to
+                        join the lineup.=
+ Learn more </span
+                      ><span
+                        ><a
+                          href=3D"https://technation.=
+io/programmes/future-fifty/"
+                          rel=3D"noopener =
+noreferrer nofollow"
+                          style=3D"color:#FF6363;text-=
+decoration-line:none;text-decoration:underline"
+                          =
+target=3D"_blank"
+                          >about it here</a
+                        ></span
+                      ><span>.</span>
+                    </p>
+                    <p
+                      =
+class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;=
+padding-top:0.5em;padding-bottom:0.5em">
+                      <br />
+                    </p>
+                    <h3
+                      =
+class=3D""
+                      style=3D"margin:0;padding:0;font-size:1.=
+4em;line-height:1.08em;padding-top:0.389em;font-weight:600">
+                      <span>In Other News</span>
+                    </h3>
+                    <p
+                      class=3D"node-paragraph"
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      =
+<span>=F0=9F=87=AF=F0=9F=87=B5 We=E2=80=99re hosting a </span
+                      ><span
+                        ><a
+                          href=3D"https://raycast.connpass.=
+com/event/369928/"
+                          rel=3D"noopener noreferrer =
+nofollow"
+                          style=3D"color:#FF6363;text-decoration-=
+line:none;text-decoration:underline"
+                          =
+target=3D"_blank"
+                          >hackathon</a
+                        ></span
+                      ><span> and </span
+                      ><span
+                        ><a
+                          href=3D"https://raycast.connpass.=
+com/event/370096/"
+                          rel=3D"noopener noreferrer =
+nofollow"
+                          style=3D"color:#FF6363;text-decoration-=
+line:none;text-decoration:underline"
+                          =
+target=3D"_blank"
+                          >community meetup</a
+                        ></span
+                      ><span> in Tokyo at =
+the end of October</span>
+                    </p>
+                    <p
+                      class=3D""
+                      =
+style=3D"margin:0;padding:0;font-size:1em;padding-top:0.=
+5em;padding-bottom:0.5em">
+                      <span
+                        >=E2=98=95 We got inspired by Cursor and Notion, =
+and kicked off
+                        the Raycaf=C3=A9 trend. I hosted the=
+ first one in </span
+                      ><span
+                        =
+><a
+                          href=3D"https://x.com/peduarte/status/1972673=
+141731164500"
+                          rel=3D"noopener noreferrer =
+nofollow"
+                          style=3D"color:#FF6363;text-decoration-=
+line:none;text-decoration:underline"
+                          =
+target=3D"_blank"
+                          >Barcelona</a
+                        ></span
+                      ><span>, and Roy just=
+ did one in </span
+                      ><span
+                        ><a
+                          href=3D"https://x.com/RvRoo/status/19766074107952=
+82686"
+                          rel=3D"noopener noreferrer nofollow"
+                          style=3D"color:#FF6363;text-decoration-line:none;=
+text-decoration:underline"
+                          target=3D"_blank"
+                          >Berlin</a
+                        ></span
+                      ><span
+                        >. The community is =
+getting involved and hosting them in
+                        various places=
+ around the world! Amazing to see. Make
+                        sure to =
+</span
+                      ><span
+                        ><a
+                          href=3D"https://ray.so/events"
+                          rel=3D"noopener noreferrer nofollow"
+                          style=3D"color:#FF6363;text-decoration-line:none;=
+text-decoration:underline"
+                          target=3D"_blank"
+                          >join one near you</a
+                        =
+></span
+                      ><span> </span>
+                    </p>
+                    <p
+                      class=3D"node-paragraph"
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      <span
+                        >=F0=9F=9B=A1=EF=B8=8F We=E2=80=99re enterprise =
+ready with our SOC2 Type II
+                        certificate. Want to =
+bring it to your company?
+                        Let&#x27;s talk =E2=86=92=
+ </span
+                      ><span
+                        ><a
+                          href=3D"mailto:enterprise@raycast.com"
+                          rel=3D"noopener noreferrer nofollow"
+                          style=3D"color:#FF6363;text-decoration-line:none;=
+text-decoration:underline"
+                          target=3D"_blank"
+                          >enterprise@raycast.com</a
+                        ></span
+                      ><span> </span>
+                    </p>
+                    <p
+                      =
+class=3D"node-paragraph"
+                      style=3D"margin:0;padding:0;=
+font-size:1em;padding-top:0.5em;padding-bottom:0.5em">
+                      <span>=F0=9F=90=A6 We crossed 80,000 </span
+                      ><span
+                        ><a
+                          href=3D"https://x.com/raycast"
+                          rel=3D"noopener noreferrer nofollow"
+                          style=3D"color:#FF6363;text-decoration-line:none;=
+text-decoration:underline"
+                          target=3D"_blank"
+                          >Twitter followers</a
+                        =
+></span
+                      ><span>. I=E2=80=99m so impressed. Thank you!=
+ </span>
+                    </p>
+                    <p
+                      class=3D"node-paragraph"
+                      =
+style=3D"margin:0;padding:0;font-size:1em;padding-top:0.=
+5em;padding-bottom:0.5em">
+                      <span>=F0=9F=A4=97 =
+We=E2=80=99ve launched our </span
+                      ><span
+                        ><a
+                          href=3D"https://ray.=
+so/ambassadors"
+                          rel=3D"noopener noreferrer =
+nofollow"
+                          style=3D"color:#FF6363;text-decoration-=
+line:none;text-decoration:underline"
+                          =
+target=3D"_blank"
+                          >Ambassador Program</a
+                        ></span
+                      ><span>! Sign up so =
+you can also host a Raycaf=C3=A9! </span>
+                    </p>
+                    <p
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      <span
+                        >=F0=9F=A7=98=E2=80=8D=E2=99=82=EF=B8=8F We&#x27;re=
+ slowing down our release cycle for a
+                        little while.=
+ See Thomas&#x27; </span
+                      ><span
+                        ><a
+                          href=3D"https://x.=
+com/thomaspaulmann/status/1976636662705705022"
+                          =
+rel=3D"noopener noreferrer nofollow"
+                          =
+style=3D"color:#FF6363;text-decoration-line:none;text-decoration:underline"
+                          target=3D"_blank"
+                          =
+>announcement here</a
+                        ></span
+                      ><span>.</span>
+                    </p>
+                    <p
+                      class=3D"node-paragraph"
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      <span>=F0=9F=AA=9F =
+Remember to sign up for the </span
+                      ><span
+                        ><a
+                          href=3D"raycast.=
+com/windows"
+                          rel=3D"noopener noreferrer nofollow"
+                          style=3D"color:#FF6363;text-decoration-line:none;=
+text-decoration:underline"
+                          target=3D"_blank"
+                          >Windows</a
+                        ></span
+                      ><span> waitlist. </span>
+                    </p>
+                    <p
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      <br />
+                    </p>
+                    <h3
+                      =
+class=3D""
+                      style=3D"margin:0;padding:0;font-size:1.=
+4em;line-height:1.08em;padding-top:0.389em;font-weight:600">
+                      <span>Team Picks</span>
+                    </h3>
+                    <p
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      <span
+                        >Time for everyone=E2=80=99s favorite part. Team =
+picks!</span
+                      >
+                    </p>
+                    <p
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      =
+<span>=F0=9F=93=BD=EF=B8=8F=C2=A0Bruno watched the Palme D=E2=80=99Or =
+winner </span
+                      ><span
+                        ><a
+                          href=3D"https://boxd.it/TX2k"
+                          rel=3D"noopener noreferrer nofollow"
+                          style=3D"color:#FF6363;text-decoration-line:none;=
+text-decoration:underline"
+                          target=3D"_blank"
+                          >It Was Just An Accident</a
+                        ></span
+                      ><span> and enjoyed =
+how different it is.</span>
+                    </p>
+                    <p
+                      class=3D""
+                      =
+style=3D"margin:0;padding:0;font-size:1em;padding-top:0.=
+5em;padding-bottom:0.5em">
+                      <span>=F0=9F=A4=BA=C2=A0Ma=
+thieu discovered what a </span
+                      ><span
+                        ><a
+                          href=3D"https://www.=
+leevalley.com/en-us/shop/tools/hand-tools/dowel-and-tenon-cutters/42299-ver=
+itas-power-tenon-cutters"
+                          rel=3D"noopener =
+noreferrer nofollow"
+                          style=3D"color:#FF6363;text-=
+decoration-line:none;text-decoration:underline"
+                          =
+target=3D"_blank"
+                          >tenon cutter</a
+                        ></span
+                      ><span>
+                        is and is looking forward to building some fences.
+                        TIL.</span
+                      >
+                    </p>
+                    <p
+                      =
+class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;=
+padding-top:0.5em;padding-bottom:0.5em">
+                      =
+<span>=E2=98=82=EF=B8=8F=C2=A0Beno=C3=AEt took his kids to see </span
+                      ><span
+                        ><a
+                          href=3D"https://totoroshow.com/"
+                          rel=3D"noopener noreferrer nofollow"
+                          style=3D"color:#FF6363;text-decoration-line:none;=
+text-decoration:underline"
+                          target=3D"_blank"
+                          >My Neighbour Totoro</a
+                        =
+></span
+                      ><span>
+                        in London. Oh=
+ I bet that was absolutely amazing.</span
+                      >
+                    </p>
+                    <p
+                      =
+class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;=
+padding-top:0.5em;padding-bottom:0.5em">
+                      =
+<span>=F0=9F=A5=B5=C2=A0Daniel finished reading </span
+                      ><span
+                        ><a
+                          href=3D"https://www.goodreads.com/book/show/4264.=
+Fever_Pitch"
+                          rel=3D"noopener noreferrer nofollow"
+                          style=3D"color:#FF6363;text-decoration-line:none;=
+text-decoration:underline"
+                          target=3D"_blank"
+                          >Fever Pitch</a
+                        ></span
+                      ><span
+                        >, recommended by his =
+football-obsessed friend.</span
+                      >
+                    </p>
+                    <p
+                      =
+class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;=
+padding-top:0.5em;padding-bottom:0.5em">
+                      =
+<span>=F0=9F=93=BA=C2=A0Adil watched </span
+                      ><span
+                        ><a
+                          href=3D"https://www.=
+imdb.com/fr/title/tt31510819/"
+                          rel=3D"noopener =
+noreferrer nofollow"
+                          style=3D"color:#FF6363;text-=
+decoration-line:none;text-decoration:underline"
+                          =
+target=3D"_blank"
+                          >MobLand</a
+                        ></span
+                      ><span> and highly =
+recommends. Gonna check it out!</span>
+                    </p>
+                    <p
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      =
+<span>=F0=9F=9A=B4=C2=A0Johan got a new </span
+                      ><span
+                        ><a
+                          href=3D"https://www.=
+ecoride.com/en-se/?srsltid=3DAfmBOorFv4FfHGATWiYPBl6NKtJWL_4Clw-u8NfeAmJhsx=
+sEZoClcnVS"
+                          rel=3D"noopener noreferrer nofollow"
+                          style=3D"color:#FF6363;text-decoration-line:none;=
+text-decoration:underline"
+                          target=3D"_blank"
+                          >electric bike</a
+                        ></span
+                      ><span>. His new obsession!</span>
+                    </p>
+                    <p
+                      =
+class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;=
+padding-top:0.5em;padding-bottom:0.5em">
+                      =
+<span>=F0=9F=93=A6=C2=A0Hugo recommends </span
+                      ><span
+                        ><a
+                          href=3D"https://www.=
+make.do/"
+                          rel=3D"noopener noreferrer nofollow"
+                          style=3D"color:#FF6363;text-decoration-line:none;=
+text-decoration:underline"
+                          target=3D"_blank"
+                          >makedo</a
+                        ></span
+                      ><span
+                        >, which are basically=
+ cardboard boxes for kids to
+                        create things with. =
+They just built a spaceship with it.
+                        So cool!</span
+                      >
+                    </p>
+                    <p
+                      class=3D""
+                      =
+style=3D"margin:0;padding:0;font-size:1em;padding-top:0.=
+5em;padding-bottom:0.5em">
+                      <span>=F0=9F=94=A5=C2=A0Ma=
+rcos bought a </span
+                      ><span
+                        =
+><a
+                          href=3D"https://www.amazon.de/dp/B09B3XGWJG?=
+ref=3Dppx_yo2ov_dt_b_fed_asin_title&amp;th=3D1"
+                          =
+rel=3D"noopener noreferrer nofollow"
+                          =
+style=3D"color:#FF6363;text-decoration-line:none;text-decoration:underline"
+                          target=3D"_blank"
+                          =
+>soldering iron</a
+                        ></span
+                      =
+><span> and a </span
+                      ><span
+                        =
+><a
+                          href=3D"https://www.amazon.de/dp/B0011D6O0A?=
+ref=3Dppx_yo2ov_dt_b_fed_asin_title"
+                          =
+rel=3D"noopener noreferrer nofollow"
+                          =
+style=3D"color:#FF6363;text-decoration-line:none;text-decoration:underline"
+                          target=3D"_blank"
+                          =
+>multi-meter</a
+                        ></span
+                      =
+><span> to make quick reparations at home.</span>
+                    </p>
+                    <p
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      =
+<span>=F0=9F=8E=A6=C2=A0John watched </span
+                      ><span
+                        ><a
+                          href=3D"https://www.=
+imdb.com/title/tt0064115/"
+                          rel=3D"noopener =
+noreferrer nofollow"
+                          style=3D"color:#FF6363;text-=
+decoration-line:none;text-decoration:underline"
+                          =
+target=3D"_blank"
+                          >Butch Cassidy and the Sundance=
+ Kid</a
+                        ></span
+                      ><span> in =
+honour of the great Robert Redford.</span>
+                    </p>
+                    <p
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      <span
+                        >=E2=9D=84=EF=B8=8F=C2=A0Samuel is ready for the =
+Swedish winter with his new </span
+                      ><span
+                        ><a
+                          =
+href=3D"https://haku-clothing.com/products/17066?srsltid=3DAfmBOorj9bz9zuoB=
+5VqaObTSXaMf30BCTcBTXdcKoOPHE8LBUwdWXj_O"
+                          =
+rel=3D"noopener noreferrer nofollow"
+                          =
+style=3D"color:#FF6363;text-decoration-line:none;text-decoration:underline"
+                          target=3D"_blank"
+                          =
+>lightweight down jacket</a
+                        ></span
+                      ><span>.</span>
+                    </p>
+                    <p
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      =
+<span>=F0=9F=93=9A=C2=A0Alex S. has re-read </span
+                      =
+><span
+                        ><a
+                          =
+href=3D"https://www.goodreads.com/book/show/341735.Replay"
+                          rel=3D"noopener noreferrer nofollow"
+                          style=3D"color:#FF6363;text-decoration-line:none;=
+text-decoration:underline"
+                          target=3D"_blank"
+                          >Replay</a
+                        ></span
+                      ><span
+                        >. A science fiction, =
+where the main character lives his
+                        life from 18 to =
+43 over and over again.</span
+                      >
+                    </p>
+                    <p
+                      =
+class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;=
+padding-top:0.5em;padding-bottom:0.5em">
+                      =
+<span>=F0=9F=92=A1=C2=A0Thomas got this really </span
+                      ><span
+                        ><a
+                          href=3D"https://www.madeindesign.co.=
+uk/prod-lop-small-rectangle-table-lamp-plastic-material-transparent-archipr=
+oducts-design-award-winner-bang-refm115920701.html"
+                          rel=3D"noopener noreferrer nofollow"
+                          style=3D"color:#FF6363;text-decoration-line:none;=
+text-decoration:underline"
+                          target=3D"_blank"
+                          >beautiful lamp</a
+                        =
+></span
+                      ><span
+                        >. Next time =
+we make a video with him, you=E2=80=99ll see it in
+                        =
+his background!</span
+                      >
+                    </p>
+                    <p
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      <span
+                        >=F0=9F=8E=9F=EF=B8=8F=C2=A0Petr managed to grab =
+Radiohead tickets for their
+                        London concert!</span
+                      >
+                    </p>
+                    <p
+                      class=3D""
+                      =
+style=3D"margin:0;padding:0;font-size:1em;padding-top:0.=
+5em;padding-bottom:0.5em">
+                      <span
+                        >=F0=9F=A7=B6 As usual Steph got a bunch of wool. 9=
+.5kg this
+                        time!</span
+                      >
+                    </p>
+                    <p
+                      =
+class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;=
+padding-top:0.5em;padding-bottom:0.5em">
+                      =
+<span>=F0=9F=93=B8=C2=A0And I got this tiny </span
+                      =
+><span
+                        ><a
+                          =
+href=3D"https://amzn.eu/d/apXR6zc"
+                          =
+rel=3D"noopener noreferrer nofollow"
+                          =
+style=3D"color:#FF6363;text-decoration-line:none;text-decoration:underline"
+                          target=3D"_blank"
+                          =
+>Godox IM20</a
+                        ></span
+                      =
+><span> flash, USB chargeable. Love it. </span>
+                    </p>
+                    <p
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em">
+                      <br />
+                    </p>
+                    <p
+                      =
+class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;=
+padding-top:0.5em;padding-bottom:0.5em">
+                      <span
+                        >That&#x27;s it for this month. For all changes, =
+check
+                        out our=C2=A0</span
+                      =
+><span
+                        ><a
+                          =
+href=3D"https://www.raycast.com/changelog"
+                          =
+rel=3D"noopener noreferrer nofollow"
+                          =
+style=3D"color:#FF6363;text-decoration-line:none;text-decoration:underline"
+                          target=3D"_blank"
+                          =
+>changelog</a
+                        ></span
+                      ><span>=
+.</span>
+                    </p>
+                    <p
+                      class=3D""
+                      =
+style=3D"margin:0;padding:0;font-size:1em;padding-top:0.=
+5em;padding-bottom:0.5em">
+                      <span>See you next month!=
+</span>
+                    </p>
+                    <hr
+                      class=3D"divider"
+                      =
+style=3D"width:100%;border:none;border-top:1px solid =
+#eaeaea;padding-bottom:1em;border-width:2px" />
+                    <table
+                      align=3D"center"
+                      width=3D"100%"
+                      border=3D"0"
+                      cellpadding=3D"0"
+                      cellspacing=3D"0"
+                      =
+role=3D"presentation"
+                      class=3D"node-footer footer"
+                      style=3D"font-size:0.8em">
+                      =
+<tbody>
+                        <tr>
+                          <td>
+                            <table
+                              =
+align=3D"center"
+                              width=3D"100%"
+                              border=3D"0"
+                              =
+cellpadding=3D"0"
+                              cellspacing=3D"0"
+                              role=3D"presentation">
+                              <tbody style=3D"width:100%">
+                                <tr style=3D"width:100%">
+                                  <td
+                                    =
+align=3D"left"
+                                    data-id=3D"__react-email=
+-column">
+                                    <img
+                        =
+              class=3D"node-image"
+                                      =
+height=3D"49"
+                                      =
+src=3D"https://resend-bucket-test.s3.amazonaws.com//XBhqz5mxmDPp3MH"
+                                      style=3D"display:block;outline:none;b=
+order:none;text-decoration:none;max-width:100%;border-radius:8px;padding-to=
+p:10px;padding-bottom:10px"
+                                      =
+width=3D"185" />
+                                  </td>
+                                </tr>
+                              =
+</tbody>
+                            </table>
+                            =
+<p
+                              class=3D""
+                              =
+style=3D"margin:0;padding:0;font-size:1em;padding-top:0.=
+5em;padding-bottom:0.5em;color:#7f7f7f;text-align:center">
+                              <span style=3D"color:#A8A29E"
+                                >Raycast Technologies Inc.</span
+                              ><br /><span style=3D"color:#A8A29E"
+                                >2093 Philadelphia Pike #3222, Claymont, DE
+                                19703</span
+                              =
+><br /><span
+                                ><u
+                          =
+        ><a
+                                    href=3D"https://unsubscribe=
+.resend.com/?token=3DeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.=
+eyJjb250YWN0SWQiOiI1ZGUzMThlMi1jZDA1LTQ2ZjAtODU2Yy1iZjZmOWYxYTk0YjIiLCJhdWR=
+pZW5jZUlkIjoiOTdjNjc2ZDgtMmY2ZC00NTlmLWJmNWMtNTk5YzI3NGQ3NTA1IiwiYnJvYWRjYX=
+N0SWQiOiJhYTQyMmUzYi0zMTNlLTQxYjQtODkxZC1kNGUwOTc2MjBjMjgiLCJ0ZWFtSWQiOiJhZ=
+jgyY2E5MC0zNmU2LTRkNmItODdmMC0wYjA1NWJhOTUxZDYiLCJpYXQiOjE3NjAxMTIxNDksImV4=
+cCI6MTc5MTY0ODE0OX0.ejc7Wqe0i_uMH4jYlxl81JQHHxEPOqvzKLP7l_aTd8I"
+                                    rel=3D"noopener noreferrer nofollow"
+                                    style=3D"color:#FF6363;text-decoration-=
+line:none;text-decoration:underline"
+                                    =
+target=3D"_blank"
+                                    >Unsubscribe</a
+                                  ></u
+                                =
+></span
+                              >
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p
+                      class=3D""
+                      style=3D"margin:0;padding:0;font-size:1em;padding-top=
+:0.5em;padding-bottom:0.5em;text-align:left">
+                      <br />
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--/$-->
+  </body>
+</html>
+
+----_NmP-9290d9f262c27f4c-Part_1--

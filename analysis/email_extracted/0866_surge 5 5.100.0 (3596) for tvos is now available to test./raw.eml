@@ -1,0 +1,304 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:8da6:b0:4d4:9739:2b92 with SMTP id gr38csp3085587mdb;
+        Thu, 23 Oct 2025 08:30:08 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFd43hYWq+Qrb0zpBz3ZWtNnZQKl7VX+AiylfkFpHbIfMGjsNvQvWNmQ2i+0mO07IVFIkeD
+X-Received: by 2002:a05:622a:1917:b0:4e8:9201:62c1 with SMTP id d75a77b69052e-4e89d28b52dmr307272831cf.28.1761233408137;
+        Thu, 23 Oct 2025 08:30:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761233408; cv=none;
+        d=google.com; s=arc-20240605;
+        b=XKhF+sARQdvkgR2CWY9ltT5bT1zj8TcFKdwVpKxMVBCDhiUnFlF6r5qTkvga1RrH5W
+         yFsItvg14NCQsYa6NBVHZFd7eOcU9GC036htw9/4CmAGp1SWB5cHHOxX8bvCSgaR16M3
+         Xy1T1TJG0SEiWAfuXMUoB+MV+88/6RKrVsA45SBQcTXjGqUZBQptrH0Sid+HhHxEmT62
+         mNOf74WdIPW+yFMi2agYPRCtAO1hWj9LUunqX5b0Ah7VCjVsMzRSoQr/4tlL4UTY5BvS
+         ZzTE2i3kjFnRB72+sI+RPEH4T1gB/oHkouukPz4wGbQixPGHKz0H9smhKPDwZamirNk7
+         gq6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:message-id:to:reply-to:from:date
+         :dkim-signature;
+        bh=9ohKxoJFVrfuVi3naZn2klTmiGChbZDTgfqgyRermbk=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=QTu2Q8p3jB1g36VFZ15yCbtdLoCm+AlxKOuXYXn3/Sog6HMzAWkkg/KCGGUndaCUXH
+         Ylggu602iTsBb8k/Ucise6rSLh+XxIN6rqxG29mF1OyqK4rmjDi29D3dMz1fqnY3sMA0
+         MpCZzzztrsXbRVivJrYGg3QxP7Lgdrx15yVcbnTyocy4wyfHV9rIZb1gxOGe8rg1HE/Y
+         4kADXIj8NSYXGqmdmqJ3xmHlbzT2pbygniJySIKFZxV3Bo08PhixiNaO0eAG//6+iJmE
+         1v/a2XDnrqubtlZCYBKuPW3p1Ujb5JTthvQWVOEwFSSvouelERDSjoXDveUlWoB02+rv
+         14qw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@email.apple.com header.s=email0517 header.b=Hk7Vznql;
+       spf=pass (google.com: domain of no_reply@email.apple.com designates 17.132.110.12 as permitted sender) smtp.mailfrom=no_reply@email.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=email.apple.com
+Return-Path: <no_reply@email.apple.com>
+Received: from rn2-txn-daspmsbadger02105.apple.com (rn2-txn-daspmsbadger02105.apple.com. [17.132.110.12])
+        by mx.google.com with ESMTPS id d75a77b69052e-4eb808a9177si8022551cf.711.2025.10.23.08.30.07
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 23 Oct 2025 08:30:08 -0700 (PDT)
+Received-SPF: pass (google.com: domain of no_reply@email.apple.com designates 17.132.110.12 as permitted sender) client-ip=17.132.110.12;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@email.apple.com header.s=email0517 header.b=Hk7Vznql;
+       spf=pass (google.com: domain of no_reply@email.apple.com designates 17.132.110.12 as permitted sender) smtp.mailfrom=no_reply@email.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=email.apple.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=email.apple.com;
+	s=email0517; t=1761233406;
+	bh=9ohKxoJFVrfuVi3naZn2klTmiGChbZDTgfqgyRermbk=;
+	h=Date:From:To:Message-ID:Subject:Content-Type;
+	b=Hk7Vznql+2FbrkU5gSW5gssgkIiGZ3Fl1OOM5W4TfAnwEhlDG3NvVwkBGjU5XvPOs
+	 hwxeLl3yOi/ZVIjVaWR8OacV7bGbCCYYvwPC+i0mb2X9tSFTevhyV1rLsVdj8xH4vG
+	 Z+UNKzQwVMkWOMGHxEebYy4Hqk14iJZ6RYRlMdLqSLmkDaeZ5iW+KDRAnHdv7j8pSu
+	 r02vbwe58bHB2mHIQbkvE5AW4T6P+p6sbMfLftQSGdBqb3ZvOG/ca4RNqlSJ+fdxOC
+	 n2yBQ7CZQMpYubvIRfM9ptEzxOq63D4kGqN/awVTu1IpCoPtZdWXy85iHHE4Lf7otk
+	 DKOMZIWilxvKA==
+Date: Thu, 23 Oct 2025 15:30:06 +0000 (GMT)
+From: TestFlight <no_reply@email.apple.com>
+Reply-To: support@nssurge.com
+To: liencf@gmail.com
+Message-ID: <1207113469.218076227.1761233406761@email.apple.com>
+Subject: Surge 5 5.100.0 (3596) for tvOS is now available to test.
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_218076225_1560339134.1761233406761"
+X-Broadcast-Id: 10631
+X-Attach-Flag: N
+X-COMMS-C: false
+X-Sent-To: liencf@gmail.com,2,MojBzQrkE7hBhlAH%2F9WwilxxdhPGsFUOGv1qjCu5wNVkyXJUnAIbeIpFUZKopOOYnLpsWUqbQ4%2BK9IixjwUR8h8iWtESjUmL7VbRptkM1cOjiO7qiByXlsKM3VyK%2Bnbpq8%2FokLPWq1v%2FxHXwlRCGPUpXJwTlpgZ0vLUKZO9q0Vd%2BSWAyPvmUn7V7X5C1I1HagsdqVbDFQCYpmrA53thzQNXMxxlfZk4vw18yKnPcmsuuszIuDnLYOXshspJAZOFHCph5FQsYUYIUamTz4RExxrpdlN27UNbBMNnkh6Bu%2Bl%2F1%2FFW5gCCNRLY7a5ali3kp5k2RQIELzB2r%2Bc4jI9fe1jS%2BAhjSfx8HpOZ3ri5eivIqQyidTVNB7lzVZQAckeFuuHZ128G72uJ%2BjPpxvSTFrwdmyjt04CR9cRcSvne7whTrnB2%2BeXWnLJpVo24wiLhO%2Bsqkmlrc3pb2Dq0LjeUAgg%3D%3D
+X-TXN_ID: e27c8581-9ee5-4f19-abf0-c29de71844fa
+X-DKIM_SIGN_REQUIRED: YES
+X-EmailType-Id: 10631
+X-Business-Group: iTunes
+X-Country: US
+
+------=_Part_218076225_1560339134.1761233406761
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Disposition: inline
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>iTunes Connect</title>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-885=
+9-1">
+  <style type=3D"text/css">
+    A { text-decoration: none; }
+    A:link { color: #0088CC; text-decoration: none; }
+    A:visited { text-decoration: none; }
+    A:active { color: #696969; text-decoration: underline;}
+    A:hover { text-decoration: underline; }
+    BODY, TD, P, UL, OL,h1,h2,h3 {
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    color: #666666;
+    text-align: justify;
+    font-weight: 300;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    P {
+    margin-bottom: 1em;
+    }
+    H1 {
+    line-height:145%;
+    }
+    HR {
+    border: 0;
+    border-top: 1px solid #dddddd;
+    margin: 10px 0px 15px 0px;
+    }
+    @media only screen and (max-device-width: 481px) and (min-device-pixel-=
+ratio : 2), only screen and (min-device-width: 481px) and (-webkit-min-devi=
+ce-pixel-ratio : 2) {
+    *[id=3Dheader] { background:url('https://itunesconnect.apple.com/itc/im=
+ages/email/email-itc-logo@2X.png') no-repeat 0 top; -webkit-background-size=
+: 173px 45px; }
+    *[id=3Dhr-fade] { background:url('https://itunesconnect.apple.com/itc/i=
+mages/email/email-hr@2X.png') no-repeat 0 top; -webkit-background-size: 648=
+px 18px; }
+    }
+    @media only screen and (max-width: 580px) {
+        table[class=3D"table"], td[class=3D"cell"] {
+            width: 100% !important;
+        }
+        img[id=3D"header"] {
+            width: 135px !important;
+            height: 35px !important;
+        }
+        td[id=3D"header"] {
+            -webkit-background-size: 135px 35px;
+        }
+        table[class=3D"footer_table"] td[class=3D"backgroundcell"] {
+            width:100% !important;
+            background-size: 100% auto;
+        }
+        table[class=3D"footer_table"] {
+            width:100% !important;
+        }
+
+        body {
+            margin: 0 15px
+        }
+    }
+  </style>
+</head>
+<body style=3D"background-color: #ffffff" bgcolor=3D"#ffffff">
+    <table class=3D"table" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ align=3D"center" width=3D"580">
+        <tr align=3D"center">
+            <td align=3D"center">
+                       =20
+
+                               =20
+
+    <table cellspacing=3D"0" cellpadding=3D"0" style=3D"margin: auto;" bord=
+er=3D"0" width=3D"580" class=3D"table">
+        <tr><td class=3D"cell"><img src=3D"https://itunesconnect.apple.com/=
+itc/images/email/spacer.gif" border=3D"0" alt=3D"" width=3D"1" height=3D"40=
+px"/></td></tr>
+        <tr>
+            <td class=3D"cell" align=3D"center">
+               =20
+
+               =20
+                   =20
+                        <p align=3D"center" style=3D"text-align:center;"><i=
+mg src=3D'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ed/fb/df/ed=
+fbdf00-60f9-9a4f-4c34-fd4f687402ab/App_Icon-marketing.lsr/800x800bb-80.png'=
+ align=3D"center" style=3D"border-radius:7px; max-width: 400px; width: 100%=
+;" alt=3D'Surge 5, app icon'/></p>
+                   =20
+               =20
+                   =20
+
+               =20
+               =20
+            </td>
+        </tr>
+        <tr><td class=3D"cell"><img src=3D"https://itunesconnect.apple.com/=
+itc/images/email/spacer.gif" border=3D"0" alt=3D"" width=3D"1" height=3D"20=
+px"/></td></tr>
+        <tr>
+            <td class=3D"cell" align=3D"center">
+                <h1 style=3D"font-size:28px;margin-bottom:0;margin-top:0;pa=
+dding:0;text-align:center;color:#4C4C4C;-webkit-text-size-adjust:none;font-=
+family: 'HelveticaNeue-Light','Helvetica Neue',Helvetica,Arial,sans-serif;"=
+>
+                    Surge 5 5.100.0 (3596) is ready to test on tvOS.
+                </h1>
+            </td>
+        </tr>
+       =20
+        <tr><td class=3D"cell"><img src=3D"https://itunesconnect.apple.com/=
+itc/images/email/spacer.gif" border=3D"0" alt=3D"" width=3D"1" height=3D"40=
+px"/></td></tr>
+        <tr>
+            <td class=3D"cell" align=3D"left">
+                <h2 style=3D"font-size:17px;margin:0;padding:0;text-align:l=
+eft;color:#4A4A4A;-webkit-text-size-adjust:none;font-family: 'HelveticaNeue=
+-Medium','Helvetica Neue',Helvetica,Arial,sans-serif;">What to Test:</h2>
+            </td>
+        </tr>
+        <tr><td class=3D"cell"><img src=3D"https://itunesconnect.apple.com/=
+itc/images/email/spacer.gif" border=3D"0" alt=3D"" width=3D"1" height=3D"10=
+px"/></td></tr>
+        <tr>
+            <td class=3D"cell" align=3D"left">
+                <pre style=3D"font-size:17px;margin:0;padding:0;text-align:=
+left;color:#4A4A4A;-webkit-text-size-adjust:none;font-family: 'HelveticaNeu=
+e-Light','Helvetica Neue',Helvetica,Arial,sans-serif;white-space: -moz-pre-=
+wrap;white-space: -pre-wrap; white-space: -o-pre-wrap; white-space: pre-wra=
+p; word-wrap: break-word;">5.16.2 RC1</pre>
+            </td>
+        </tr>
+       =20
+        <tr><td class=3D"cell"><img src=3D"https://itunesconnect.apple.com/=
+itc/images/email/spacer.gif" border=3D"0" alt=3D"" width=3D"1" height=3D"40=
+px"/></td></tr>
+        <tr>
+            <td class=3D"cell" align=3D"center">
+               =20
+               =20
+                    <p style=3D"font-size:17px;margin:0;padding:0;color:#4A=
+4A4A;-webkit-text-size-adjust:none;font-family: 'HelveticaNeue-Light','Helv=
+etica Neue',Helvetica,Arial,sans-serif;text-align: center;">To test this ap=
+p, open <a href=3D'https://testflight.apple.com/v1/app/1442620678?build=3D1=
+85537272' style=3D"text-decoration:none">TestFlight</a> on  Apple TV using =
+tvOS 17.0 or later and install the update.</p>
+               =20
+            </td>
+        </tr>
+        <tr><td class=3D"cell" style=3D"border-bottom:1px solid #e9e9e9"><i=
+mg src=3D"https://itunesconnect.apple.com/itc/images/email/spacer.gif" bord=
+er=3D"0" alt=3D"" width=3D"1" height=3D"40px"/></td></tr>
+        <tr><td class=3D"cell"><img src=3D"https://itunesconnect.apple.com/=
+itc/images/email/spacer.gif" border=3D"0" alt=3D"" width=3D"1" height=3D"20=
+px"/></td></tr>
+        <tr>
+            <td class=3D"cell" align=3D"left">
+                <p style=3D"font-size: 10px;line-height:16px;text-align:lef=
+t;color:#888;-webkit-text-size-adjust:none;font-family:-apple-system, Blink=
+MacSystemFont, sans-serif;">By using Surge 5, you agree that crash data as =
+well as statistics about how you use Surge 5 will be provided to Surge Netw=
+orks Inc. and linked to your email address. Surge Networks Inc. may contact=
+ you regarding this information. Review the TestFlight Terms and Conditions=
+, as well as the terms, policies, and practices of Surge Networks Inc.. Bet=
+a versions of apps may crash or result in data loss.</p>
+            </td>
+        </tr>
+    </table>
+
+
+                       =20
+
+            </td>
+        </tr>
+    </table>
+    <table class=3D"footer_table" width=3D"580" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0" align=3D"center" style=3D"margin-bottom:40px;">
+        <tr>
+            <td class=3D"backgroundcell" style=3D"margin:0px auto;" align=
+=3D"center" width=3D"580">
+                <table cellspacing=3D"0" cellpadding=3D"0" style=3D"margin:=
+ auto;" border=3D"0" width=3D"100%">
+                    <tr>
+                        <td align=3D"center">
+                            <p style=3D"font-size:10px;line-height:16px;col=
+or:#888;-webkit-text-size-adjust:none;margin:0;padding:0;font-family:-apple=
+-system, BlinkMacSystemFont, sans-serif;">
+                                TestFlight is a service provided by Apple.<=
+br/>
+                                <span style=3D"white-space:nowrap;">
+                                    <a style=3D"text-decoration:none;" targ=
+et=3D"_blank" href=3D"https://www.apple.com/legal/internet-services/itunes/=
+">Terms of Service</a>=20
+                                    |=20
+                                    <a style=3D"text-decoration:none;" targ=
+et=3D"_blank" href=3D"http://www.apple.com/legal/privacy/">Privacy Policy</=
+a>=20
+                                   =20
+                                        |=20
+                                        <a style=3D"text-decoration:none;" =
+target=3D"_blank"
+                                           href=3D'mailto:support@nssurge.c=
+om?subject=3DUnsubscribe%20from%20TestFlight&body=3Dliencf@gmail.com%20want=
+s%20to%20stop%20receiving%20TestFlight%20emails%20about%20Surge 5'>
+                                            Unsubscribe
+                                        </a>
+                                   =20
+                                </span>
+                                <br>
+                                Copyright =A9 2025 Apple Inc. <span style=
+=3D"white-space:nowrap;">One Apple Park Way</span><br/>
+                                Cupertino, CA 95014, United States.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+------=_Part_218076225_1560339134.1761233406761--

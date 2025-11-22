@@ -1,0 +1,675 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:8883:b0:4ec:41ca:fc70 with SMTP id ee3csp863730mdb;
+        Thu, 13 Nov 2025 06:19:45 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE3GQsyN/yL+lB+twaMTEQ8cTjfc/0JWWH20HvJEjaNI1z+iAGgu50k0+B0GgKs+EQmVMaX
+X-Received: by 2002:a05:6a20:244d:b0:34d:fcc9:2272 with SMTP id adf61e73a8af0-359090921fbmr8519449637.5.1763043584821;
+        Thu, 13 Nov 2025 06:19:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1763043584; cv=none;
+        d=google.com; s=arc-20240605;
+        b=DEMFDIedgM6HJlA7MrvQrMgQcFbMLdte05EJM6zyqG1tPpP73S5B1M40uQsjFinfH6
+         Dw7AxO6jyPXpsuOARwPxMwj56x/PFocLiypqDgby8Bpe4nV5NDBRJNBOKrfX/f/O5ulh
+         bCKaKMUnnXNL4eWO9cVo6G9voWM9CzQ9G0B8Tg7uV4kNkAeZur9wltrHU0WU+71hXYq+
+         MhyqL0DL73t9xApcfnxvYWsXmk3hJilIhM7QLDDQlgYr1jY+3Ai7/fHw12pmwBiLMR34
+         axgN/CMaDAkqxqe1eixwaY7SWwszIg7WZ4Dv5BNDE6iH8i57HNG+1IIKpaNqwNmMXUWF
+         GnSA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:date:message-id:content-transfer-encoding:mime-version
+         :subject:to:from:dkim-signature:dkim-signature;
+        bh=oLlAr8nRe6qnXs9IYvvQInewAuM3JxJjEkDighe/ojo=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=RoN5yM8SMGMLpoqSZrTvOKNxVxRayzCZv0b1ndRRIlQV7mzkKd7beEBI3EFM7ukFz6
+         yq55ibgrXFTlXKQYMgrQBsgVOxdPG/CVtmsDZrfQlwzIRrnKcCxXrnJVo5t5VYhEFNBS
+         qBA/P7nTORMaRNLcKr2DdNB6M1YIG3gZPP18ThGhu1nCtbqcI4weKh/nHvYcMW4pQZ6e
+         JsLlTemBPVhudtelzC7Ptz9mUmM0L1aDsiN21LhHYwzkXqKnJeSdpTRejznNRKa3jw09
+         EuKiG6y2MxJ1x0NiXgNT8LSmowXvzs8+nb567jLGvBtx7/fBrwll2Yxnl80JV6a0/yGU
+         HyHw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@mail2.disneyplus.com header.s=obyll2lmgkvezlgnrak7lgy6xotoclxv header.b=p87yCZc6;
+       dkim=pass header.i=@amazonses.com header.s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx header.b=oz2Nh2ra;
+       spf=pass (google.com: domain of 0101019a7d9629ad-99f8ac83-ae55-46fb-9965-b5069309c143-000000@from-us-west-2.mail2.disneyplus.com designates 69.169.237.14 as permitted sender) smtp.mailfrom=0101019a7d9629ad-99f8ac83-ae55-46fb-9965-b5069309c143-000000@from-us-west-2.mail2.disneyplus.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=disneyplus.com
+Return-Path: <0101019a7d9629ad-99f8ac83-ae55-46fb-9965-b5069309c143-000000@from-us-west-2.mail2.disneyplus.com>
+Received: from b237-14.smtp-out.us-west-2.amazonses.com (b237-14.smtp-out.us-west-2.amazonses.com. [69.169.237.14])
+        by mx.google.com with ESMTPS id 41be03b00d2f7-bc37582ecc7si1156185a12.379.2025.11.13.06.19.44
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Nov 2025 06:19:44 -0800 (PST)
+Received-SPF: pass (google.com: domain of 0101019a7d9629ad-99f8ac83-ae55-46fb-9965-b5069309c143-000000@from-us-west-2.mail2.disneyplus.com designates 69.169.237.14 as permitted sender) client-ip=69.169.237.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@mail2.disneyplus.com header.s=obyll2lmgkvezlgnrak7lgy6xotoclxv header.b=p87yCZc6;
+       dkim=pass header.i=@amazonses.com header.s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx header.b=oz2Nh2ra;
+       spf=pass (google.com: domain of 0101019a7d9629ad-99f8ac83-ae55-46fb-9965-b5069309c143-000000@from-us-west-2.mail2.disneyplus.com designates 69.169.237.14 as permitted sender) smtp.mailfrom=0101019a7d9629ad-99f8ac83-ae55-46fb-9965-b5069309c143-000000@from-us-west-2.mail2.disneyplus.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=disneyplus.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=obyll2lmgkvezlgnrak7lgy6xotoclxv; d=mail2.disneyplus.com;
+	t=1763043584; i=@trx.mail2.disneyplus.com;
+	h=From:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-ID:Date;
+	bh=fe0WcucIN9xSEYw+1ax2HZOlvrlEbZJYTRJepPbhzpk=;
+	b=p87yCZc60R22LJiKYIvFd/tImTz4XnBC1uESM5DzUKLRSSZRw1tKcUFEOFX1+5tl
+	Q9U+y31c0PUmHURar0Ku/KA7eHLPw3ygPJzfGds1FGQulm8RwEfg4FDMi3IbnMLdV23
+	ve3ytRv3FuVcRVy9VHHTGecgz/IpZ73KQZgbmY4A=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx; d=amazonses.com; t=1763043584;
+	h=From:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-ID:Date:Feedback-ID;
+	bh=fe0WcucIN9xSEYw+1ax2HZOlvrlEbZJYTRJepPbhzpk=;
+	b=oz2Nh2raN5rNSBKIJMrXaV7PCKnuTQjhMKEXJDfHfpoh5IbYOY5J9oPGMZhmpQa3
+	nQTy1o8HOywV7S8J0CCP+NwOnJPw6L4Xx/W2grXmbDksLhSv2iDsnQ3V+IlG4sSU3Ki
+	Py3tiJjh+qOvNXQlfyGK2qjweAEnTQ74Wndnah5M=
+From: Disney+ <disneyplus@trx.mail2.disneyplus.com>
+To: liencf@gmail.com
+Subject: =?UTF-8?Q?=E6=82=A8=E7=9A=84_Disne?=
+ =?UTF-8?Q?y+_=E4=B8=80=E6=AC=A1=E6=80=A7=E9=A9=97=E8=AD=89=E7=A2=BC?=
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Transactional: true
+Message-ID: <0101019a7d9629ad-99f8ac83-ae55-46fb-9965-b5069309c143-000000@us-west-2.amazonses.com>
+Date: Thu, 13 Nov 2025 14:19:44 +0000
+Feedback-ID: ::1.us-west-2.yZf3I0oF+xJHgtO/v6gj7xKPD1Y1xdtG8QcRkcIeQJk=:AmazonSES
+X-SES-Outgoing: 2025.11.13-69.169.237.14
+
+
+
+
+  =20
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.=
+w3.org/TR/html4/loose.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microso=
+ft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office" lang=3D"zh-=
+Hant">
+
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html;" charset=3D"utf=
+-8" />
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1.0" />
+    <!--[if !mso]><!-->
+    <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge" />
+    <!--<![endif]-->
+    <meta name=3D"color-scheme" content=3D"light">
+    <meta name=3D"supported-color-schemes" content=3D"light">
+    <style type=3D"text/css">
+
+
+
+       =20
+        .ReadMsgBody {
+            width: 100%;
+        }
+
+        /* Forces Hotmail to display emails at full width */
+        .ExternalClass {
+            width: 100%;
+        }
+
+        /* Hotmail table centering fix */
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+            line-height: 100%;
+        }
+
+        /* Forces Hotmail to display normal line spacing */
+        .ExternalClass * {
+            line-height: 100%
+        }
+
+        p {
+            margin: 1em 0;
+        }
+
+        /* Yahoo paragraph fix */
+        table td {
+            border-collapse: collapse;
+        }
+
+        /* Anti-aliasing font for Webkit-based browsers */
+        td,
+        span,
+        a,
+        b,
+        p,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* This resolves the Outlook 07, 10, and Gmail td padding issue fix=
+ */
+        /* This resolves the issue when iphone puts links on dates, etc. */
+        .appleLinksWhite a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .appleLinksWhiteUL a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .appleLinksWhite2 a {
+            color: #F9F9F9 !important;
+            text-decoration: none !important;
+        }
+
+        .appleLinksGray a {
+            color: #1f326f;
+            text-decoration: none;
+        }
+
+        .appleLinksGray2 a {
+            color: #707070;
+            text-decoration: none;
+        }
+
+        .appleLinksGray3 a {
+            color: #95a1bc !important;
+            text-decoration: none !important;
+        }
+
+        .appleLinksGray4 a {
+            color: #afafaf !important;
+            text-decoration: none !important;
+        }
+
+        .appleLinksGray5 a {
+            color: #c0c0c0 !important;
+            text-decoration: none !important;
+        }
+
+        .appleLinksGray5UL a {
+            color: #c0c0c0 !important;
+            text-decoration: underline;
+        }
+
+        .appleLinksBlack a {
+            color: #000000 !important;
+            text-decoration: none;
+        }
+
+        .appleLinksGreen a {
+            color: #1a3c34 !important;
+        }
+
+        .blueLinks,
+        .blueLinks a {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        a.mobileshow,
+        .mobilehide {
+            display: none;
+            color: #fff;
+            /* for Gmail */
+        }
+
+        .tonline {
+            display: block !important;
+        }
+
+        .module, .module_1 {
+            margin: 0 !important;
+            border: none !important;
+        }
+        @media only screen and (max-width: 480px) {
+            #background {
+                background-color: #ffffff !important;
+            }
+        }
+        @media only screen and (max-width: 580px) {
+            .module, .module_1 {
+                margin-bottom: -1px !important;
+                border-width: 1px !important;
+            }
+        }
+      @media (prefers-color-scheme: dark) {
+        td.appleLinksWhite {
+          -webkit-text-fill-color: #ffffff !important;
+        }
+          .module_1 {
+           background-color: #202124 !important;
+          }
+      }=20
+    </style>
+    <!--[if mso]>
+        <style>
+        td, a {
+        font-family: Arial, sans-serif !important;
+        }
+        .buttonLink, .button2Link {
+        background-color:transparent !important;
+        border: transparent !important;
+        }
+        </style>
+        <![endif]-->
+    <!--[if gte mso 9]>
+        <xml>
+        <o:OfficeDocumentSettings>
+        <o:AllowPNG/>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+        </xml>
+        <![endif]-->
+    <title>MyDisney Email</title>
+</head>
+
+<body leftmargin=3D"0" topmargin=3D"0" marginwidth=3D"0" marginheight=3D"0"=
+ style=3D"width:100% !important;-webkit-text-size-adjust:none;-ms-text-size=
+-adjust:none;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padd=
+ing-top:0;padding-bottom:0;padding-right:0;padding-left:0;background-image:=
+none;background-repeat:repeat;background-position:top left;background-attac=
+hment:scroll;">
+    <span class=3D"preheader" style=3D"color:#F1F2F4;display:none!important=
+;font-size:1px;line-height:1px;max-height:0;max-width:0;mso-hide:all!import=
+ant;opacity:0;overflow:hidden;visibility:hidden">=E4=BB=A5=E4=B8=8B=E6=98=
+=AF=E6=82=A8=E7=9A=84 Disney+ =E4=B8=80=E6=AC=A1=E6=80=A7=E9=A9=97=E8=AD=89=
+=E7=A2=BC</span>
+    <!-- Insert &zwnj;&nbsp; hack after hidden preview text -->
+    <div style=3D"display: none; max-height: 0px; overflow: hidden;"> &nbsp=
+;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&z=
+wnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;
+    </div>
+    <table id=3D"background" role=3D"presentation" cellpadding=3D"0" cellsp=
+acing=3D"0" border=3D"0" align=3D"center" width=3D"100%" bgcolor=3D"#F1F2F4=
+">
+        <tr>
+            <td style=3D"padding: 20px;">
+                <table role=3D"presentation" cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" align=3D"center" width=3D"440" bgcolor=3D"#F1F2F4" styl=
+e=3D"width: 440px !important;">
+                    <tr>
+                        <td align=3D"center">
+                            <table role=3D"presentation" cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" width=3D"100%">
+                                <tr>
+                                    <td>
+                                        <!-- START MyDisney_Header -->
+
+<table class=3D"module" role=3D"presentation" cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" width=3D"100%" align=3D"center">
+  <tr>
+    <td valign=3D"top" align=3D"center">
+      <table class=3D"module" role=3D"presentation" cellpadding=3D"0" cells=
+pacing=3D"0" border=3D"0" width=3D"100%" align=3D"center">
+        <tr>
+          <td valign=3D"top" align=3D"center"><a href=3D"https://us-west-2.=
+mail2.disneyplus.com/CL0/https:%2F%2Fmy.disney.com/1/0101019a7d9629ad-99f8a=
+c83-ae55-46fb-9965-b5069309c143-000000/79t4yTAEm5NBh9EQJqig9zUSXyuTAD7zt3LY=
+QbhriGs=3D431" alias=3D"Header_logo" mso-deep-link=3D"true" style=3D"text-d=
+ecoration: none;"><img src=3D"https://prod-ripcut-delivery.disney-plus.net/=
+v1/variant/disney/2B8D814644D6D732CD8A2BD6B4E0757CAABF32B11746F2F23FA484616=
+52FB578" alt=3D"MyDisney" style=3D"display: block;height: auto;color:#fffff=
+f;font-family:'PingFang TC', '=E5=BE=AE=E8=BB=9F=E6=AD=A3=E9=BB=91=E9=AB=94=
+', 'Microsoft JhengHei', Arial, sans-serif;font-size:20px;text-align: cente=
+r; font-weight:normal;" width=3D"440" border=3D"0"></a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END MyDisney_Header -->
+                                    </td>
+                                </tr>
+                                <!-- =3D=3D=3D=3D=3D=3D START Body Modules =
+=3D=3D=3D=3D=3D=3D -->
+                                <!-- START Main_Body_Module -->
+                               =20
+                               =20
+                                <tr>
+                                    <td align=3D"center" style=3D"padding-b=
+ottom: 15px;">
+                                        <table class=3D"module_1" role=3D"p=
+resentation" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%=
+" bgcolor=3D"#ffffff" style=3D"border-radius: 0px 0px 12px 12px;border:2px =
+solid #ffffff;">
+                                            <tr>
+                                                <td>
+                                                    <table class=3D"module"=
+ role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" wid=
+th=3D"100%" bgcolor=3D"#ffffff" style=3D"border-radius: 0px 0px 12px 12px;b=
+order:2px solid #ffffff;">
+                                                        <tr>
+                                                            <td align=3D"le=
+ft" style=3D"padding: 45px 45px 20px 45px;font-size: 35px; font-weight:bold=
+; color:#252526; font-family:'PingFang TC', '=E5=BE=AE=E8=BB=9F=E6=AD=A3=E9=
+=BB=91=E9=AB=94', 'Microsoft JhengHei', Arial, sans-serif; letter-spacing:n=
+ormal; line-height:50px; mso-line-height-rule: exactly;">
+                                                                =E4=BB=A5=
+=E4=B8=8B=E6=98=AF=E6=82=A8=E7=9A=84 Disney+ =E4=B8=80=E6=AC=A1=E6=80=A7=E9=
+=A9=97=E8=AD=89=E7=A2=BC
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align=3D"le=
+ft" style=3D"padding: 0px 45px 0px 45px;font-size: 20px; color:#252526; fon=
+t-family:'PingFang TC', '=E5=BE=AE=E8=BB=9F=E6=AD=A3=E9=BB=91=E9=AB=94', 'M=
+icrosoft JhengHei', Arial, sans-serif; letter-spacing:normal; line-height: =
+30px; mso-line-height-rule: exactly;">
+                                                                =E8=AB=8B=
+=E4=BD=BF=E7=94=A8=E9=80=99=E7=B5=84=E9=A9=97=E8=AD=89=E7=A2=BC=E4=BE=86=E9=
+=A9=97=E8=AD=89=E6=82=A8=E7=9A=84 MyDisney =E5=B8=B3=E6=88=B6=E9=97=9C=E8=
+=81=AF=E9=9B=BB=E5=AD=90=E9=83=B5=E4=BB=B6=E5=9C=B0=E5=9D=80=E3=80=82=E9=80=
+=99=E7=B5=84=E9=A9=97=E8=AD=89=E7=A2=BC=E5=B0=87=E5=9C=A8 15 =E5=88=86=E9=
+=90=98=E5=BE=8C=E5=A4=B1=E6=95=88=E3=80=82
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align=3D"le=
+ft" style=3D"padding: 25px 45px 25px 45px;font-size: 28px; font-weight:bold=
+; color:#252526; font-family:'PingFang TC', '=E5=BE=AE=E8=BB=9F=E6=AD=A3=E9=
+=BB=91=E9=AB=94', 'Microsoft JhengHei', Arial, sans-serif; letter-spacing:4=
+px; line-height:38px; mso-line-height-rule: exactly;">
+                                                                027788
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align=3D"le=
+ft" style=3D"padding: 0px 45px 40px 45px;font-size: 20px; color:#252526; fo=
+nt-family:'PingFang TC', '=E5=BE=AE=E8=BB=9F=E6=AD=A3=E9=BB=91=E9=AB=94', '=
+Microsoft JhengHei', Arial, sans-serif; letter-spacing:normal; line-height:=
+ 30px; mso-line-height-rule: exactly;">
+                                                                =E5=A6=82=
+=E6=9E=9C=E6=82=A8=E6=B2=92=E6=9C=89=E6=8F=90=E5=87=BA=E9=80=99=E9=A0=85=E8=
+=A6=81=E6=B1=82=EF=BC=8C=E8=AB=8B=E5=89=8D=E5=BE=80<a href=3D"https://us-we=
+st-2.mail2.disneyplus.com/CL0/https:%2F%2Fsupport.disney.com%2Fhc%2Fen-us%2=
+Farticles%2F22907439345556/1/0101019a7d9629ad-99f8ac83-ae55-46fb-9965-b5069=
+309c143-000000/X-UkNgzoAIqgCbiL6VdbPDdKTk7OTUzCjSZ2ifOBiHI=3D431" alias=3D"=
+help_center" style=3D"text-decoration:none;color:#3300ff;">=E4=BD=BF=E7=94=
+=A8=E8=AA=AA=E6=98=8E=E4=B8=AD=E5=BF=83</a>=E4=BA=86=E8=A7=A3=E6=9B=B4=E5=
+=A4=9A=E8=B3=87=E8=A8=8A=E3=80=82
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                           =20
+                                        </table>
+                                    </td>
+                                </tr>
+                               =20
+                                <!-- END Main_Body_Module -->
+                                <!-- START Educational_Body_Module -->
+                               =20
+                               =20
+                                <tr>
+                                    <td align=3D"center">
+                                        <table class=3D"module_1" role=3D"p=
+resentation" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%=
+" bgcolor=3D"#ffffff"  style=3D"border: 2px solid #ffffff; border-radius: 1=
+2px;">
+                                          =20
+                                            <tr>
+                                                <td>
+                                                    <table class=3D"module"=
+ role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" wid=
+th=3D"100%" bgcolor=3D"#ffffff" style=3D"border: 2px solid #ffffff; border-=
+radius: 12px;">
+                                                        <tr>
+                                                            <td align=3D"le=
+ft" style=3D"padding: 40px 45px 12px 45px;">
+                                                                <img src=3D=
+"https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/340F1C79ECC=
+98699141D07CE55818027567972C68C0C62DB05F18B34FE74F31F" alt=3D"MyDisney" sty=
+le=3D"display: block;height: auto;" width=3D"107" border=3D"0">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align=3D"le=
+ft" style=3D"padding: 0px 45px 12px 45px; font-size: 28px; font-weight: bol=
+d; color:#252526; font-family:'PingFang TC', '=E5=BE=AE=E8=BB=9F=E6=AD=A3=
+=E9=BB=91=E9=AB=94', 'Microsoft JhengHei', Arial, sans-serif; letter-spacin=
+g:normal; line-height: 38px; mso-line-height-rule: exactly;">
+                                                                =E6=96=B9=
+=E4=BE=BF=E7=9C=81=E6=99=82=EF=BC=8C=E6=AD=A1=E6=A8=82=E5=8A=A0=E5=80=8D=E3=
+=80=82
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align=3D"le=
+ft" style=3D"padding: 0px 45px 12px 45px; font-size: 20px; color:#252526; f=
+ont-family:'PingFang TC', '=E5=BE=AE=E8=BB=9F=E6=AD=A3=E9=BB=91=E9=AB=94', =
+'Microsoft JhengHei', Arial, sans-serif; letter-spacing:normal; line-height=
+: 30px; mso-line-height-rule: exactly;">
+                                                                =E6=82=A8=
+=E5=8F=AF=E4=BB=A5=E9=80=8F=E9=81=8E MyDisney =E8=BC=95=E9=AC=86=E7=99=BB=
+=E5=85=A5 Walt Disney =E9=9B=86=E5=9C=98=E7=9A=84=E5=90=84=E9=A0=85=E6=9C=
+=8D=E5=8B=99=E8=88=87=E9=AB=94=E9=A9=97=EF=BC=8C=E4=BE=8B=E5=A6=82 Disney+=
+=E3=80=81ESPN=E3=80=81=E8=8F=AF=E7=89=B9=E8=BF=AA=E5=A3=AB=E5=B0=BC=E4=B8=
+=96=E7=95=8C=E5=92=8C<a href=3D"https://us-west-2.mail2.disneyplus.com/CL0/=
+https:%2F%2Fmy.disney.com/2/0101019a7d9629ad-99f8ac83-ae55-46fb-9965-b50693=
+09c143-000000/EkYGtEotSzqPU1hmFPV2klmiWjYkCTz8fMGsP9ol-Zg=3D431" alias=3D"m=
+y_disney" style=3D"text-decoration:none;color:#3300ff;">=E5=85=B6=E4=BB=96=
+=E6=9C=8D=E5=8B=99</a>=E3=80=82
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align=3D"le=
+ft" style=3D"padding: 0px 45px 40px 45px;">
+                                                                <img src=3D=
+"https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/89EA88E6026=
+C0BBA0148351B0B49913E8E55D71087346B3DC7DF24153B06E8D5" alt=3D"Brands" style=
+=3D"display: block;height: auto;" width=3D"285" border=3D"0">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                          =20
+                                        </table>
+                                    </td>
+                                </tr>
+                               =20
+                                <!-- END Educational_Body_Module -->
+                                <!-- =3D=3D=3D=3D=3D=3D END Body Modules =
+=3D=3D=3D=3D=3D=3D=3D=3D -->
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align=3D"center">
+                            <table class=3D"module" role=3D"presentation" c=
+ellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" bgcolor=3D"#=
+F1F2F4">
+                                <tr>
+                    <td> =20
+<table role=3D"presentation" width=3D"100%" cellspacing=3D"0" cellpadding=
+=3D"0" border=3D"0">
+  <tr>
+    <td style=3D"padding: 10px;">
+      <table role=3D"presentation" width=3D"100%" cellspacing=3D"0" cellpad=
+ding=3D"0" border=3D"0">
+        <tr>
+          <td style=3D"font-size: 14px; font-family: 'PingFang TC', '=E5=BE=
+=AE=E8=BB=9F=E6=AD=A3=E9=BB=91=E9=AB=94', 'Microsoft JhengHei', Arial, sans=
+-serif; line-height: 24px;mso-line-height-rule:exactly; color: #252526;" al=
+ign=3D"left">
+    =E8=AB=8B=E5=8B=BF=E5=9B=9E=E8=A6=86=E6=AD=A4=E8=A8=8A=E6=81=AF=EF=BC=
+=8C=E5=9B=A0=E7=82=BA=E6=AD=A4=E5=9C=B0=E5=9D=80=E4=B8=8D=E6=8E=A5=E6=94=B6=
+=E9=9B=BB=E5=AD=90=E9=83=B5=E4=BB=B6=EF=BC=8C=E6=82=A8=E5=B0=87=E4=B8=8D=E6=
+=9C=83=E7=8D=B2=E5=BE=97=E5=9B=9E=E8=A6=86=E3=80=82=E6=AD=A4=E6=9C=8D=E5=8B=
+=99=E9=9B=BB=E9=83=B5=E5=8C=85=E5=90=AB=E9=87=8D=E8=A6=81=E8=B3=87=E8=A8=8A=
+=EF=BC=8C=E8=88=87=E6=82=A8=E7=9A=84 Disney+ =E5=B8=B3=E6=88=B6=EF=BC=8C=E4=
+=BB=A5=E5=8F=8A=E6=82=A8=E6=9C=80=E8=BF=91=E5=90=91=E6=88=91=E5=80=91=E8=A8=
+=82=E8=B3=BC=E3=80=81=E9=A0=90=E8=A8=82=E6=88=96=E8=A8=82=E9=96=B1=E7=9A=84=
+=E5=85=B6=E4=B8=AD=E4=B8=80=E9=A0=85=E6=9C=8D=E5=8B=99=E6=9C=89=E9=97=9C=E3=
+=80=82=E8=BF=AA=E5=A3=AB=E5=B0=BC (Disney) =E5=B0=8A=E9=87=8D=E4=B8=A6=E4=
+=BF=9D=E8=AD=B7=E5=80=8B=E4=BA=BA=E9=9A=B1=E7=A7=81=E3=80=82=E8=AB=8B=E9=96=
+=B1=E8=AE=80<span style=3D"display:inline-block;">
+
+
+
+ =20
+ =20
+ =20
+
+
+
+<a href=3D"https://us-west-2.mail2.disneyplus.com/CL0/https:%2F%2Fwww.disne=
+yplus.com%2Flegal%2Fprivacy-policy/1/0101019a7d9629ad-99f8ac83-ae55-46fb-99=
+65-b5069309c143-000000/qACC3Isufqk3NIK01YSDMPRkfLhEw9ITL3v-lIDT8Jg=3D431" a=
+lias=3D"privacy_policy" style=3D"text-decoration:underline;color:#252526;">
+=E9=9A=B1=E7=A7=81=E6=AC=8A=E6=94=BF=E7=AD=96</a></span>=E5=92=8C<span styl=
+e=3D"display:inline-block;">
+
+
+
+ =20
+ =20
+ =20
+
+
+
+<a href=3D"https://us-west-2.mail2.disneyplus.com/CL0/https:%2F%2Fwww.disne=
+yplus.com%2Flegal%2Fsupplemental-privacy-policy-for-taiwan/1/0101019a7d9629=
+ad-99f8ac83-ae55-46fb-9965-b5069309c143-000000/jJttZyRY9GRcbJELDF0frERKfdhw=
+qmfYpcVRN9WcZ6A=3D431" alias=3D"supplemental_privacy_policy" style=3D"text-=
+decoration:underline;color:#252526;">
+=E8=A3=9C=E5=85=85=E9=9A=B1=E7=A7=81=E6=AC=8A=E6=94=BF=E7=AD=96</a></span>=
+=E3=80=82<br><br>=E6=AD=A4=E6=9C=8D=E5=8B=99=E9=9B=BB=E5=AD=90=E9=83=B5=E4=
+=BB=B6=E5=AF=84=E4=BB=B6=E4=BA=BA=EF=BC=9A=E5=8F=B0=E7=81=A3=E8=8F=AF=E7=89=
+=B9=E8=BF=AA=E5=A3=AB=E5=B0=BC=E8=82=A1=E4=BB=BD=E6=9C=89=E9=99=90=E5=85=AC=
+=E5=8F=B8=EF=BC=8C114 =E5=8F=B0=E5=8C=97=E5=B8=82=E5=A0=A4=E9=A0=82=E5=A4=
+=A7=E9=81=93=E4=BA=8C=E6=AE=B5 183 =E8=99=9F 3 =E6=A8=93=E3=80=82=E6=89=80=
+=E6=9C=89=E8=B3=87=E8=A8=8A=E6=96=BC=E7=99=BC=E5=B8=83=E6=99=82=E5=9D=87=E6=
+=AD=A3=E7=A2=BA=E7=84=A1=E8=AA=A4=E3=80=82<br><br>
+
+
+
+ =20
+ =20
+ =20
+
+
+
+<a href=3D"https://us-west-2.mail2.disneyplus.com/CL0/https:%2F%2Fwww.disne=
+yplus.com%2Flegal%2Fsubscriber-agreement/1/0101019a7d9629ad-99f8ac83-ae55-4=
+6fb-9965-b5069309c143-000000/QrT9oDLSRYffb-smktQqlW6_rAExbaKWbOLHoFsTwvQ=3D=
+431" alias=3D"subscriber_agreement" style=3D"text-decoration:underline;colo=
+r:#252526;">
+=E8=A8=82=E9=96=B1=E5=8D=94=E8=AD=B0</a> =E2=80=93=20
+
+
+
+ =20
+ =20
+ =20
+
+
+
+<a href=3D"https://us-west-2.mail2.disneyplus.com/CL0/https:%2F%2Fwww.disne=
+yplus.com%2Flegal%2Fprivacy-policy/2/0101019a7d9629ad-99f8ac83-ae55-46fb-99=
+65-b5069309c143-000000/HHXxmTZD6lhXmderHpzCjRhEQ1Xy-vxBWvq0tkydTdo=3D431" a=
+lias=3D"privacy_policy" style=3D"text-decoration:underline;color:#252526;">
+=E9=9A=B1=E7=A7=81=E6=AC=8A=E6=94=BF=E7=AD=96</a> =E2=80=93=20
+
+
+
+ =20
+ =20
+ =20
+
+
+
+<a href=3D"https://us-west-2.mail2.disneyplus.com/CL0/https:%2F%2Fwww.disne=
+yplus.com%2Flegal%2Fsupplemental-privacy-policy-for-taiwan/2/0101019a7d9629=
+ad-99f8ac83-ae55-46fb-9965-b5069309c143-000000/ilewSjYGImC2qiJYBcHxLJUXh3Pt=
+GFbZNTYTA80hFnA=3D431" alias=3D"supplemental_privacy_policy" style=3D"text-=
+decoration:underline;color:#252526;">
+=E8=A3=9C=E5=85=85=E9=9A=B1=E7=A7=81=E6=AC=8A=E6=94=BF=E7=AD=96</a>=E3=80=
+=82<br><br>&copy; 2025 =E8=BF=AA=E5=A3=AB=E5=B0=BC=E5=8F=8A=E5=85=B6=E9=97=
+=9C=E4=BF=82=E5=AF=A6=E9=AB=94=E3=80=82=E7=89=88=E6=AC=8A=E6=89=80=E6=9C=89=
+<br><br>
+
+<br><br>SRC: 60f0f_TW_ZH-HANT
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+  </td>
+                  </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <custom name=3D"opencounter" type=3D"tracking" />
+<img alt=3D"" src=3D"http://us-west-2.mail2.disneyplus.com/CI0/0101019a7d96=
+29ad-99f8ac83-ae55-46fb-9965-b5069309c143-000000/clJoGUbFo0QLvuTgVv_UW5HyR_=
+b7HwzRLm51UElDzT0=3D431" style=3D"display: none; width: 1px; height: 1px;">
+</body>
+
+</html>

@@ -1,0 +1,812 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:df93:b0:4ca:2b22:f54c with SMTP id ok19csp5594265mdb;
+        Wed, 15 Oct 2025 17:38:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGsZjf9LWoZ/Gf+Xp//YRyD/IDy2vbxqAk9NDPMNInMnALQr1z9WgQ9ZadKba0DUjprqMvD
+X-Received: by 2002:a05:620a:4441:b0:857:9a62:170b with SMTP id af79cd13be357-8834ff8dd80mr3722677185a.3.1760575083874;
+        Wed, 15 Oct 2025 17:38:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1760575083; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Ji5Ed/Ep3gO6XUbPR5dW5gX3bbK++NCfknm4jGicvC72XRRMNTBjr4FoCLaYQfnnm4
+         yi8ZvMXERESIN/c2L4gbDaJwnZBzfMeqd+ZOyBHWHanUqQOoYuJV9SIvsUGoas7D1pU6
+         GuHQG5joCB+Vng6n7SEwZdkKIG+rRse9+foPyOlV/sqj1JWvWgy4fob96y4pFBdhQNJI
+         BEcbEBLLKHjhqANaEVBdzOKkc1IJFdWUA5DMqTFDnkItyOSg069hW3eybm1O6Gi1wT6F
+         2xnhEHvZFXUobtmvyCr7ppCMpLOy23eDLqfyiengM6i9dwOGfmCKoDjdU0LqiAdeAKY5
+         rNTw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:list-unsubscribe-post:list-unsubscribe:subject:message-id
+         :mime-version:from:date:dkim-signature:dkim-signature;
+        bh=heWGcdQCT71hyWO0hRlKzp7fbs4o7FjQBbSZxzsAaFY=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=KmxThsgrviLn8SRN3GDORIC3u3v+lZ33++jt90fdmvR903c6m9sCLdvn5DWP6d0ilZ
+         YnLQG1aB3oORhQ9noVzfC1bKvSrzOp0hs/fkdPqeUBbVneG27B6kjIPm4tqTZOuYVMP0
+         eioPzwanvC2QOJDVmGaQNo1A8dmxOEO/+Iq5ocsOsygL194pb3VKJtGr2TsS+ZG0CRvR
+         seOK3b90RuAFPYGElRunoN6cLuMajIiFde1DjeJnZzIbl6rl7jZsY49eqbD/Swa86+dt
+         9h8uynyvGwazHmKZEVdR9UGXbmwW+onQLEoi1tMQA91vzqR2VStfSlyWBrLyM4UoWDGE
+         XT0g==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@4th-valley.com header.s=HF header.b=XdQY4ZTI;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=DCJfgjtj;
+       spf=pass (google.com: domain of bounces+18774196-5243-liencf=gmail.com@em8990.4th-valley.com designates 192.254.115.148 as permitted sender) smtp.mailfrom="bounces+18774196-5243-liencf=gmail.com@em8990.4th-valley.com";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=4th-valley.com
+Return-Path: <bounces+18774196-5243-liencf=gmail.com@em8990.4th-valley.com>
+Received: from o23.email.careerbits.com (o23.email.careerbits.com. [192.254.115.148])
+        by mx.google.com with ESMTPS id af79cd13be357-88f39b84384si51981885a.1419.2025.10.15.17.38.03
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Oct 2025 17:38:03 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+18774196-5243-liencf=gmail.com@em8990.4th-valley.com designates 192.254.115.148 as permitted sender) client-ip=192.254.115.148;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@4th-valley.com header.s=HF header.b=XdQY4ZTI;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=DCJfgjtj;
+       spf=pass (google.com: domain of bounces+18774196-5243-liencf=gmail.com@em8990.4th-valley.com designates 192.254.115.148 as permitted sender) smtp.mailfrom="bounces+18774196-5243-liencf=gmail.com@em8990.4th-valley.com";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=4th-valley.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=4th-valley.com;
+	h=content-type:date:from:mime-version:subject:list-unsubscribe:
+	list-unsubscribe-post:to:cc:content-type:date:feedback-id:from:subject:to;
+	s=HF; bh=heWGcdQCT71hyWO0hRlKzp7fbs4o7FjQBbSZxzsAaFY=;
+	b=XdQY4ZTIf5ZxeVn1ozQ5d9eAKoNQIUtOt33aHZb0aH+NzmWMEwzev28vs+x/c7LPe9VT
+	jBmunaJvSyrUeR7gH8N4vb6BtdL1SnqBF3UC0ALx3fTOsPUdWipfE9NC/peC+zNQts1qyt
+	YZSnuTUC92WkRPtU0fNB3lxBL1Tw7yusjnFLfarn+TnWzuCapF5UVC5Q6jeL0IvWW+XgZG
+	BLOYGTVtTUURrA37BCWbiN/JpHgBmZhGY6G5TKr3B3V3r9mN5BWjlwWo09wEYN2O8mYhSX
+	6QdEnQ5XkWmH3x5bHvuNc25voUmw20HycZRZAL+jYhwt2JpQguki0qEATNBTMqlA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:date:from:mime-version:subject:list-unsubscribe:
+	list-unsubscribe-post:to:cc:content-type:date:feedback-id:from:subject:to;
+	s=smtpapi; bh=heWGcdQCT71hyWO0hRlKzp7fbs4o7FjQBbSZxzsAaFY=;
+	b=DCJfgjtj5iRr7iZs/n/2tnHBelj3IjyKMQqzRh7XB0cwGBIq+hzFMiK0/QY1m9uV4vxC
+	gTKrufnvGkaZdy4bhEnXQOyKTUJG0l+cbQ70dsHcbvIssQxd+T/bMopwuGLS1XnSQngFo6
+	mQBymfxEjsnXr0mc5rtf8kYhj/U7jsOqg=
+Received: by recvd-7cff88d8b9-s9485 with SMTP id recvd-7cff88d8b9-s9485-1-68F03E6B-13
+	2025-10-16 00:38:03.303358344 +0000 UTC m=+3720885.780660470
+Received: from MTg3NzQxOTY (unknown)
+	by geopod-ismtpd-10 (SG) with HTTP
+	id Og23ovlhQY6dtfsQ2NS7MQ
+	Thu, 16 Oct 2025 00:38:03.265 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=7d86d1482800f51f43782b0132b3b4ba7f118463b147edecb85b929b2ad9
+Date: Thu, 16 Oct 2025 00:38:03 +0000 (UTC)
+From: Connect =?UTF-8?b?Sm9i772cUmlrYQ==?= Watanabe
+	<rika.watanabe@4th-valley.com>
+Mime-Version: 1.0
+Message-ID: <Og23ovlhQY6dtfsQ2NS7MQ@geopod-ismtpd-10>
+Subject: [Job Opening] IT Engineer =?UTF-8?B?4oCT?= Responsible for the
+ Development, Operation, and Maintenance of In-House
+ =?UTF-8?Q?Services=EF=BD=9CExpected?= Annual Salary:
+ =?UTF-8?B?wqUzLjVN4oCTwqU2Ljg4Te+9nE9zYWth?=
+List-Unsubscribe: 
+ =?us-ascii?Q?=3Chttps=3A=2F=2Fclicks=2Ecareerbits=2Ecom=2Flt=2Funsubscribe=2F8E0472685EEC9137?=
+ =?us-ascii?Q?DA6ECC8A8B6E69F9040AA2D1D9E528813A40019?=
+ =?us-ascii?Q?BDE19EC6C617935CE075D9BB63CBC5128A015DF?=
+ =?us-ascii?Q?0D049CE56107D79A10C70971929B7D18CDFDFAB?=
+ =?us-ascii?Q?98E698754AD9E92E1B886FCEC3298763171EE36?=
+ =?us-ascii?Q?03E31B4F50236D31819D24D12F3D=2F3A576AA23D?=
+ =?us-ascii?Q?25361B01AE55DDA06741BA3F197F38B41032BAF?=
+ =?us-ascii?Q?E693F0853=3E?=
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-SG-EID: 
+ =?us-ascii?Q?u001=2E8j9WnGe99KAy8kwn7KgRfuSbAkh8JjWo4V17ifrPFHN0cy4nNcUXJBpGx?=
+ =?us-ascii?Q?yGNEwyZOSOmf20qV9rkLMqhGQsPOoeyOjNf9cHS?=
+ =?us-ascii?Q?wnvarUntLivV5bFEMl11xFPJq+oOGrx5DhmfqYb?=
+ =?us-ascii?Q?HaPsglEwO8zJsS9KZD6shwQ+0+CKEK5CYXSTjN1?=
+ =?us-ascii?Q?opyiEdcgtJOFHY1MQQOj9wN0sNYrsffqHVD=2FC=2Fp?=
+ =?us-ascii?Q?GVr4gpz47GQFi+k2T092IQIbiqpCVFYRqXAFG9Q?=
+ =?us-ascii?Q?suvY51Ax1f0khbrqSuZo6lPmoA=3D=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BpTL9BgbK5wfSJMJGMsmprDg3bCyg88svQa5L?=
+ =?us-ascii?Q?WeTMNnsjkZK8L4iKz1YDxEA0gtiXnByeTjkQtCz?=
+ =?us-ascii?Q?XFrkBLdr31aulWkLz3pWNTyMNdZ0LJi3?=
+To: liencf@gmail.com
+X-Entity-ID: u001.x0bnYriMR4HspYtyYevYUg==
+
+--7d86d1482800f51f43782b0132b3b4ba7f118463b147edecb85b929b2ad9
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+=E2=80=8A
+=E2=80=8ADear ChihFeng,=C2=A0=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=
+=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=
+=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=
+=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80 =C2=A0Hello! My name is Rika from C=
+onnect Job Agent.Thank you as always for using Connect Job.
+We are excited to introduce a new position for =E3=80=90IT Engineer=E3=80=
+=91-System Development, SE, Infrastructure.=E3=83=BC=E3=83=BC=E3=83=BC=E3=
+=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=
+=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=80=90Company name=E3=80=91JoBins=
+ Co., Ltd.=C2=A0=E3=80=90Job position=E3=80=91=E3=80=90IT Engineer=E3=80=91=
+-System Development, SE, Infrastructure (Daily conversation Japanese requir=
+ed)=C2=A0=C2=A0
+=E2=98=85Past Achievements and Future Outlook
+Founded in 2012 as an agency, JoBins evolved into the =E2=80=9CAgent Linkag=
+e System=E2=80=9D=E2=80=94a platform connecting recruiting companies and ag=
+ents=E2=80=94in 2021. In 2024, it further developed into the =E2=80=9CJob A=
+gent Network Platform (JANP)=E2=80=9D, a platform connecting agents with ea=
+ch other.
+Since its transformation into an IT company, JoBins has achieved an ARR (An=
+nual Recurring Revenue) growth rate of approximately 300% from FY2022 to FY=
+2023. JANP, launched this year, has grown rapidly, with service growth reac=
+hing approximately six times in just two months.
+If you=E2=80=99re looking to grow with the company and broaden your career =
+options, now is the perfect time to join JoBins.=E3=83=BC=E3=83=BC=E3=83=BC=
+=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=
+=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=C2=A0
+Applications will close once the position is filled.=C2=A0If you're interes=
+ted, we encourage you to apply as soon as possible!
+Learn more &amp; apply
+=E2=80=8A=E2=80=8A[Business Description]Development and operation of the re=
+cruitment agency platform =E2=80=9CJoBins=E2=80=9D.[JoBins=E2=80=99 Values]=
+=E3=80=88Vision=E3=80=89Chance for All
+At JoBins, our vision is our =E2=80=98North Star.=E2=80=99 It constantly gu=
+ides our direction.While our business activities and goals may evolve, our =
+Vision explains why we exist and remains constant. This vision is an unchan=
+ging guidepost that points us in the right direction in a constantly changi=
+ng business environment.We believe everyone has equal opportunities and the=
+ right and freedom to take on new challenges. JoBins leverages technology t=
+o create opportunities for all people and companies.
+=E3=80=88Mission=E3=80=89Create the world=E2=80=99s best job-seeking platfo=
+rmOur mission sets a concrete goal: =E2=80=9CCreate the world=E2=80=99s bes=
+t job-seeking platform.=E2=80=9DOur goal is to generate 100 million hiring =
+decisions per year. We hope to work with colleagues who are committed to th=
+is mission, help each other overcome obstacles, and share the best view tog=
+ether.=E3=80=88Values=E3=80=89Full Speed
+We are =E2=80=9Cchallengers.=E2=80=9D We cannot compete with major companie=
+s in terms of money, recognition, or headcount. The one thing we can win on=
+ is speed. We operate at full speed in everything, from decision-making to =
+employee development.Learning from FailureThe powerful weapon of =E2=80=9Cf=
+ull speed=E2=80=9D has one weakness: failure. We value accepting failure an=
+d always learning from it.The Reward for Work Is Work
+The most important thing to remember is that =E2=80=9Cthe reward for work i=
+s work.=E2=80=9D It is essential to complete the tasks you are assigned and=
+ use them to drive your growth.=E2=80=8A=E2=80=8A=E2=97=86Job Position
+=E3=80=90IT Engineer=E3=80=91-System Development, SE, Infrastructure=C2=A0=
+=E2=97=86Job Description
+=E3=83=BBYou will be responsible for the development, operation, and mainte=
+nance of JoBins=E2=80=99 in-house services, ensuring that our platform can =
+be used more effectively by a growing number of partner agencies.=E3=83=BBT=
+he core system foundation is already established, and you will have the opp=
+ortunity to continuously work on improvements.
+=E3=83=BBWe encourage engineers to actively share ideas and propose enhance=
+ments, such as =E2=80=9CIt would work better if we did this!=E2=80=9D =E2=
+=80=94 helping us make the service even stronger together.=C2=A0=E2=97=86Ap=
+plication requirementsExperience in developing applications using PHP
+=E2=80=BBThe required skills may vary depending on the assigned position.Th=
+e key skill areas are listed below (only category names are shown, with det=
+ails omitted).For specific requirements, please contact me.=C2=A0=E3=80=90R=
+equired Skills and Expertise=E3=80=91
+-Web development experience with PHP and Laravel=C2=A0-Front-End Developmen=
+t (JavaScript, Vue.js, React)-Familiarity with Databases and Performance Op=
+timization-Familiarity with cloud technology, DevOps practice, and Automati=
+on=C2=A0Japanese: Daily conversational levelEnglish: Daily conversational l=
+evel or above=C2=A0=E2=97=86Employment TypeFull-time employee=E2=80=BBProba=
+tionary period: 6 months (no change in conditions during the probation peri=
+od)=C2=A0=E2=97=86Salary =E2=80=BBSalary will be determined in accordance w=
+ith our internal grading system, taking into consideration your previous sa=
+lary and experience.=E2=80=BBOvertime allowance will be paid separately.Mon=
+thly salary: =C2=A5250,000 =E2=80=93 =C2=A5430,000Estimated annual income: =
+=C2=A53,500,000 =E2=80=93 =C2=A56,880,000
+Bonus: Provided four times a year (based on company performance and individ=
+ual evaluation; evaluations are conducted quarterly)Salary review: Four tim=
+es a year=C2=A0=E2=97=86Work Location3F, Yotsubashi KM Building, 1-19-8 Kit=
+ahorie, Nishi-ku, Osaka-shi, Osaka, Japan
+
+Learn more &amp; apply
+=E2=80=8AIf you have any questions before application, please feel free to =
+drop an email to me at:=C2=A0rika.watanabe@4th-valley.com=C2=A0Connect Job =
+career consultants not only introduce job openings but also provide advice =
+on creating clear and effective application documents. We offer one-on-one =
+support for interview preparation as well. Additionally, we handle inquirie=
+s that might be difficult to ask directly to companies and coordinate inter=
+view schedules on your behalf.=C2=A0All of our advice, including tips on wr=
+iting resumes and crafting impactful self-presentations, is completely free=
+. Please feel free to reach out anytime!=E2=80=8A
+
+=E2=80=8A=E2=80=8A=E2=80=8A=E2=89=AA=E5=8F=82=E5=8A=A0=E5=8F=AF=E5=90=A6=E3=
+=81=AE=E3=81=94=E9=80=A3=E7=B5=A1=E3=81=AB=E9=96=A2=E3=81=97=E3=81=A6=E2=89=
+=AB=E5=8F=82=E5=8A=A0=E5=8F=AF=E5=90=A6=E3=81=AE=E3=81=94=E9=80=A3=E7=B5=A1=
+=E3=81=AB=E9=96=A2=E3=81=97=E3=81=A6=E3=81=AF=E6=8A=BD=E9=81=B8=E3=81=AE=E5=
+=A0=B4=E5=90=88=E3=81=AF=E5=BD=93=E9=81=B8=E3=81=AE=E6=96=B9=E3=83=BB=E4=BA=
+=8B=E5=89=8D=E9=81=B8=E8=80=83=E3=81=AE=E5=A0=B4=E5=90=88=E3=81=AF=E6=9B=B8=
+=E9=A1=9E=E9=81=B8=E8=80=83=E9=80=9A=E9=81=8E=E8=80=85=E3=81=AE=E3=81=BF=E3=
+=81=AB=E3=81=94=E6=A1=88=E5=86=85=E8=87=B4=E3=81=97=E3=81=BE=E3=81=99=E3=80=
+=82=E3=81=AA=E3=81=8A=E3=80=81=E3=81=94=E5=8F=82=E5=8A=A0=E3=81=84=E3=81=9F=
+=E3=81=A0=E3=81=91=E3=82=8B=E6=96=B9=E3=81=B8=E3=81=AE=E9=80=A3=E7=B5=A1=E3=
+=81=AF=E7=B5=90=E6=9E=9C=E7=A2=BA=E5=AE=9A=E3=81=AE=E9=9A=9B=E3=81=AB=E9=A0=
+=86=E6=AC=A1=E9=80=9A=E7=9F=A5=E8=87=B4=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=
+ =E7=B5=90=E6=9E=9C=E3=82=92=E3=82=BF=E3=82=A4=E3=83=A0=E3=83=AA=E3=83=BC=
+=E3=81=AB=E3=81=8A=E4=BC=9D=E3=81=88=E5=87=BA=E6=9D=A5=E3=81=AA=E3=81=84=E3=
+=81=93=E3=81=A8=E3=82=82=E3=81=94=E3=81=96=E3=81=84=E3=81=BE=E3=81=99=E3=81=
+=AE=E3=81=A7=E3=80=81=E3=81=94=E4=BA=86=E6=89=BF=E3=81=AE=E7=A8=8B=E3=81=A9=
+=E3=81=86=E3=81=9E=E3=82=88=E3=82=8D=E3=81=97=E3=81=8F=E3=81=8A=E9=A1=98=E3=
+=81=84=E8=87=B4=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=C2=A0
+&lt;&lt;Notification about whether to participate or not&gt;&gt;
+We will inform only those who were chosen by lottery or those who passed th=
+e document screening in the case of pre-selection. Please note that we will=
+ notify you when the results are confirmed. Please note that we may not be =
+able to inform you of the results in a timely manner. Thank you for your un=
+derstanding.=E2=80=8A=E2=80=8A=E2=80=8A
+--7d86d1482800f51f43782b0132b3b4ba7f118463b147edecb85b929b2ad9
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!DOCTYPE html><html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:=
+schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:offi=
+ce" lang=3D"en"><head><title></title><meta http-equiv=3D"Content-Type" cont=
+ent=3D"text/html; charset=3Dutf-8" /><meta name=3D"viewport" content=3D"wid=
+th=3Ddevice-width,initial-scale=3D1" /><!--[if mso]>
+<xml><w:WordDocument xmlns:w=3D"urn:schemas-microsoft-com:office:word"><w:D=
+ontUseAdvancedTypographyReadingMail/></w:WordDocument>
+<o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch><o:AllowPNG/=
+></o:OfficeDocumentSettings></xml>
+<![endif]--><style>
+*{box-sizing:border-box}body{margin:0;padding:0}a[x-apple-data-detectors]{c=
+olor:inherit!important;text-decoration:inherit!important}#MessageViewBody a=
+{color:inherit;text-decoration:none}p{line-height:inherit}.desktop_hide,.de=
+sktop_hide table{mso-hide:all;display:none;max-height:0;overflow:hidden}.im=
+age_block img+div{display:none}sub,sup{font-size:75%;line-height:0} @media =
+(max-width:670px){.mobile_hide{display:none}.row-content{width:100%!importa=
+nt}.stack .column{width:100%;display:block}.mobile_hide{min-height:0;max-he=
+ight:0;max-width:0;overflow:hidden;font-size:0}.desktop_hide,.desktop_hide =
+table{display:table!important;max-height:none!important}}
+</style><!--[if mso ]><style>sup, sub { font-size: 100% !important; } sup {=
+ mso-text-raise:10% } sub { mso-text-raise:-10% }</style> <![endif]--></hea=
+d><body class=3D"body" style=3D"background-color:#fff;margin:0;padding:0;-w=
+ebkit-text-size-adjust:none;text-size-adjust:none"><table class=3D"nl-conta=
+iner" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" style=3D"mso-table-lspace:0;mso-table-rspace:0;background=
+-color:#fff"><tbody><tr><td><table class=3D"row row-1" align=3D"center" wid=
+th=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presen=
+tation" style=3D"mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><td><tab=
+le class=3D"row-content stack" align=3D"center" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace:0;mso=
+-table-rspace:0;color:#000;width:650px;margin:0 auto" width=3D"650"><tbody>=
+<tr><td class=3D"column column-1" width=3D"100%" style=3D"mso-table-lspace:=
+0;mso-table-rspace:0;font-weight:400;text-align:left;padding-bottom:5px;pad=
+ding-top:5px;vertical-align:top"><table class=3D"image_block block-1" width=
+=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presenta=
+tion" style=3D"mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><td class=
+=3D"pad" style=3D"width:100%;padding-right:0;padding-left:0"><div class=3D"=
+alignment" align=3D"center"><div style=3D"max-width:130px"><img src=3D"http=
+s://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/2eae2308-b806-4b=
+f8-b04a-a8f55cc19e9b/HF-2000031/Connect%20Job%20%E3%83%AD%E3%82%B4.jpg" sty=
+le=3D"display:block;height:auto;border:0;width:100%" width=3D"130" alt=3D""=
+ title=3D"" height=3D"auto" /></div></div></td></tr></tbody></table><table =
+class=3D"divider_block block-2" width=3D"100%" border=3D"0" cellpadding=3D"=
+10" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace:0;mso=
+-table-rspace:0"><tbody><tr><td class=3D"pad"><div class=3D"alignment" alig=
+n=3D"center"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" width=3D"100%" style=3D"mso-table-lspace:0;mso-table-rspa=
+ce:0"><tbody><tr><td class=3D"divider_inner" style=3D"font-size:1px;line-he=
+ight:1px;border-top:1px solid #bbb"><span style=3D"word-break: break-word;"=
+>=E2=80=8A</span></td></tr></tbody></table></div></td></tr></tbody></table>=
+<table class=3D"image_block block-3" width=3D"100%" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace:0=
+;mso-table-rspace:0"><tbody><tr><td class=3D"pad" style=3D"width:100%"><div=
+ class=3D"alignment" align=3D"center"><div style=3D"max-width:650px"><img s=
+rc=3D"https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/2eae23=
+08-b806-4bf8-b04a-a8f55cc19e9b/HF-2000031/new%20open.png" style=3D"display:=
+block;height:auto;border:0;width:100%" width=3D"650" alt=3D"" title=3D"" he=
+ight=3D"auto" /></div></div></td></tr></tbody></table><table class=3D"image=
+_block block-4" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" style=3D"mso-table-lspace:0;mso-table-rspace:0=
+">
+<tbody><tr><td class=3D"pad" style=3D"width:100%"><div class=3D"alignment" =
+align=3D"center"><div style=3D"max-width:650px"><img src=3D"https://d15k2d1=
+1r6t6rl.cloudfront.net/pub/2606/e3b04xwq/rb5/rka/0s2/example%20%2833%29.png=
+" style=3D"display:block;height:auto;border:0;width:100%" width=3D"650" alt=
+=3D"" title=3D"" height=3D"auto" /></div></div></td></tr></tbody></table><t=
+able class=3D"divider_block block-5" width=3D"100%" border=3D"0" cellpaddin=
+g=3D"10" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace:=
+0;mso-table-rspace:0"><tbody><tr><td class=3D"pad"><div class=3D"alignment"=
+ align=3D"center"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" r=
+ole=3D"presentation" width=3D"100%" style=3D"mso-table-lspace:0;mso-table-r=
+space:0"><tbody><tr><td class=3D"divider_inner" style=3D"font-size:1px;line=
+-height:1px;border-top:1px solid #bbb"><span style=3D"word-break: break-wor=
+d;">=E2=80=8A</span></td></tr></tbody></table></div></td></tr></tbody></tab=
+le><table class=3D"text_block block-6" width=3D"100%" border=3D"0" cellpadd=
+ing=3D"10" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspac=
+e:0;mso-table-rspace:0;word-break:break-word"><tbody><tr><td class=3D"pad">=
+<div style=3D"font-family:sans-serif"><div class=3D"" style=3D"font-size:14=
+px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;mso-line-height-al=
+t:16.8px;color:#555;line-height:1.2"><p style=3D"margin:0;font-size:14px;ms=
+o-line-height-alt:16.8px"><span style=3D"word-break: break-word; font-size:=
+ 14px;">Dear ChihFeng,&nbsp;=E3=80=80<strong>=E3=80=80=E3=80=80=E3=80=80=E3=
+=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=
+=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80=
+=E3=80=80=E3=80=80=E3=80=80=E3=80=80=E3=80=80 </strong></span></p><p style=
+=3D"margin:0;font-size:14px;mso-line-height-alt:16.8px">&nbsp;</p><p style=
+=3D"margin:0;font-size:14px;mso-line-height-alt:16.8px"><span style=3D"word=
+-break: break-word; font-size: 14px;">Hello! My name is Rika from Connect J=
+ob Agent.</span></p><p style=3D"margin:0;font-size:14px;mso-line-height-alt=
+:16.8px"><span style=3D"word-break: break-word; font-size: 14px;">Thank you=
+ as always for using Connect Job.</span></p><p style=3D"margin:0;font-size:=
+14px;mso-line-height-alt:16.8px">
+<span style=3D"word-break: break-word; font-size: 14px;">We are excited to =
+introduce a new position for =E3=80=90<strong>IT Engineer=E3=80=91-System D=
+evelopment, SE, Infrastructure.</strong></span></p><p style=3D"margin:0;fon=
+t-size:14px;mso-line-height-alt:16.8px"><span style=3D"word-break: break-wo=
+rd; font-size: 14px;">=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=
+=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=
+=E3=83=BC=E3=83=BC</span></p><p style=3D"margin:0;font-size:14px;mso-line-h=
+eight-alt:16.8px"><span style=3D"word-break: break-word; font-size: 14px;">=
+<strong>=E3=80=90Company name=E3=80=91</strong></span></p><p style=3D"margi=
+n:0;font-size:14px;mso-line-height-alt:16.8px"><span style=3D"word-break: b=
+reak-word; font-size: 14px;"><strong><span style=3D"word-break: break-word;=
+ background-color: #fcff00;">JoBins Co., Ltd.</span></strong></span></p><p =
+style=3D"margin:0;font-size:14px;mso-line-height-alt:16.8px">&nbsp;</p><p s=
+tyle=3D"margin:0;font-size:14px;mso-line-height-alt:16.8px"><span style=3D"=
+word-break: break-word; font-size: 14px;"><strong>=E3=80=90Job position=E3=
+=80=91</strong></span></p><p style=3D"margin:0;font-size:14px;mso-line-heig=
+ht-alt:16.8px"><span style=3D"word-break: break-word; background-color: #fc=
+ff00; font-size: 14px;"><strong>=E3=80=90IT Engineer=E3=80=91-System Develo=
+pment, SE, Infrastructure (Daily conversation Japanese required)&nbsp;</str=
+ong></span></p><p style=3D"margin:0;font-size:14px;mso-line-height-alt:16.8=
+px">&nbsp;</p><p style=3D"margin:0;font-size:14px;mso-line-height-alt:16.8p=
+x">
+<span style=3D"word-break: break-word; font-size: 14px;"><strong>=E2=98=85P=
+ast Achievements and Future Outlook</strong></span></p><p style=3D"margin:0=
+;font-size:14px;mso-line-height-alt:16.8px">
+<span style=3D"word-break: break-word; font-size: 14px;">Founded in 2012 as=
+ an agency, JoBins evolved into the =E2=80=9CAgent Linkage System=E2=80=9D=
+=E2=80=94a platform connecting recruiting companies and agents=E2=80=94in 2=
+021. In 2024, it further developed into the =E2=80=9CJob Agent Network Plat=
+form (JANP)=E2=80=9D, a platform connecting agents with each other.</span><=
+br />
+<span style=3D"word-break: break-word; font-size: 14px;">Since its transfor=
+mation into an IT company, JoBins has achieved an ARR (Annual Recurring Rev=
+enue) growth rate of approximately 300% from FY2022 to FY2023. JANP, launch=
+ed this year, has grown rapidly, with service growth reaching approximately=
+ six times in just two months.</span><br />
+<span style=3D"word-break: break-word; font-size: 14px;">If you=E2=80=99re =
+looking to grow with the company and broaden your career options, now is th=
+e perfect time to join JoBins.</span></p><p style=3D"margin:0;font-size:14p=
+x;mso-line-height-alt:16.8px"><span style=3D"word-break: break-word; font-s=
+ize: 14px;">=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=
+=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=83=BC=E3=
+=83=BC</span></p><p style=3D"margin:0;font-size:14px;mso-line-height-alt:16=
+.8px">&nbsp;</p><p style=3D"margin:0;font-size:14px;mso-line-height-alt:16.=
+8px">
+<span style=3D"word-break: break-word; font-size: 14px;"><em>Applications w=
+ill close once the position is filled.</em></span></p><p style=3D"margin:0;=
+font-size:14px;mso-line-height-alt:16.8px">&nbsp;</p><p style=3D"margin:0;f=
+ont-size:14px;mso-line-height-alt:16.8px"><span style=3D"word-break: break-=
+word; font-size: 14px;"><strong>If you're interested, we encourage you to a=
+pply as soon as possible!</strong></span></p></div></div></td></tr></tbody>=
+</table><table class=3D"button_block block-7" width=3D"100%" border=3D"0" c=
+ellpadding=3D"10" cellspacing=3D"0" role=3D"presentation" style=3D"mso-tabl=
+e-lspace:0;mso-table-rspace:0"><tbody><tr><td class=3D"pad"><div class=3D"a=
+lignment" align=3D"center"><a href=3D"https://clicks.careerbits.com/lt/clic=
+k/8E0472685EEC9137DA6ECC8A8B6E69F9040AA2D1D9E528813A40019BDE19EC6C617935CE0=
+75D9BB63CBC5128A015DF0D049CE52D1ACF824C967630C9986603AAFAB7EDD13CD316F2D884=
+BAFBC996EB3C93370171F72706EE401D2B777A34D9C76DD26F65/79777AA9741821071FA046=
+D19B6C0AA235453A6DCA4226B3A8247510578CD9C52B752C5597FD8E9DDF28F60121BC2C38D=
+7C70298EBCA8AB348E398138CBFCC56929016AC00C7123020DBA67EB5584120D25B0F978521=
+A896F74F57E2DBB39F176C01ECFC/D9E427C4178256720AC302EFF3CDB46DC9424A9B23EEA5=
+BA2318F1BE8AA3355BF97C00172F4165B221D5068C8B77AA7FDCE8C86CB7483A3479D3D57B0=
+1D2F96BEDC294B5B15A45A8EAAE357A3C" target=3D"_blank" style=3D"color:#ffffff=
+;text-decoration:none;"><!--[if mso]>
+<v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:w=3D"urn:schem=
+as-microsoft-com:office:word"  href=3D"https://clicks.careerbits.com/lt/cli=
+ck/8E0472685EEC9137DA6ECC8A8B6E69F9040AA2D1D9E528813A40019BDE19EC6C617935CE=
+075D9BB63CBC5128A015DF0D049CE52D1ACF824C967630C9986603AAFAB7EDD13CD316F2D88=
+4BAFBC996EB3C93370171F72706EE401D2B777A34CBDE7C9D6962/25737DB5240727011DA11=
+4D0923F1DFA644E3D6EC54C36F4E96C36591EDAD98C52377418E9A08B97CE64BA5F58AA3938=
+F8C50A92F59694B144AD86028BEAD0569AE910B718EA023A68E1A069ED764D21DF1B1390805=
+8B087FE794FEA829F871B3828A3B1/92CD6B9C5CB3414F07954197A7D8B86ACA4D44813293F=
+0F76831C8BA8EBF0D5FE0692512791E15E13AD70C97901BFC2B8AF1C867B06438225ED7DF6E=
+39D6E07EC8C7C2EA964B0BFEF9"  style=3D"height:38px;width:170px;v-text-anchor=
+:middle;" arcsize=3D"11%" fillcolor=3D"#fe7700">
+<v:stroke dashstyle=3D"Solid" weight=3D"0px" color=3D"#fe7700"/>
+<w:anchorlock/>
+<v:textbox inset=3D"0px,0px,0px,0px">
+<center dir=3D"false" style=3D"color:#ffffff;font-family:sans-serif;font-si=
+ze:14px">
+<![endif]-->
+<span class=3D"button" style=3D"background-color: #fe7700; mso-shading: tra=
+nsparent; border-bottom: 0px solid transparent; border-left: 0px solid tran=
+sparent; border-radius: 4px; border-right: 0px solid transparent; border-to=
+p: 0px solid transparent; color: #ffffff; display: inline-block; font-famil=
+y: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 14px; font-weig=
+ht: 400; mso-border-alt: none; padding-bottom: 5px; padding-top: 5px; paddi=
+ng-left: 20px; padding-right: 20px; text-align: center; width: auto; word-b=
+reak: keep-all; letter-spacing: normal;"><span style=3D"word-break: break-w=
+ord; line-height: 28px;"><strong>Learn more &amp; apply</strong></span></sp=
+an>
+<!--[if mso]></center></v:textbox></v:roundrect><![endif]--></a></div></td>=
+</tr></tbody></table><table class=3D"divider_block block-8" width=3D"100%" =
+border=3D"0" cellpadding=3D"10" cellspacing=3D"0" role=3D"presentation" sty=
+le=3D"mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><td class=3D"pad"><=
+div class=3D"alignment" align=3D"center"><table border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%" style=3D"mso-tab=
+le-lspace:0;mso-table-rspace:0"><tbody><tr><td class=3D"divider_inner" styl=
+e=3D"font-size:1px;line-height:1px;border-top:1px solid #bbb"><span style=
+=3D"word-break: break-word;">=E2=80=8A</span></td></tr></tbody></table></di=
+v></td></tr></tbody></table><table class=3D"image_block block-9" width=3D"1=
+00%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"=
+ style=3D"mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><td class=3D"pa=
+d" style=3D"width:100%"><div class=3D"alignment" align=3D"center"><div styl=
+e=3D"max-width:650px"><img src=3D"https://d15k2d11r6t6rl.cloudfront.net/pub=
+/2606/e3b04xwq/yux/weg/itg/PLC_template_sectiontitle%20%2825%29.png" style=
+=3D"display:block;height:auto;border:0;width:100%" width=3D"650" alt=3D"" t=
+itle=3D"" height=3D"auto" /></div></div></td></tr></tbody></table><table cl=
+ass=3D"divider_block block-10" width=3D"100%" border=3D"0" cellpadding=3D"1=
+0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace:0;mso-=
+table-rspace:0"><tbody><tr><td class=3D"pad"><div class=3D"alignment" align=
+=3D"center"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D=
+"presentation" width=3D"100%" style=3D"mso-table-lspace:0;mso-table-rspace:=
+0"><tbody><tr><td class=3D"divider_inner" style=3D"font-size:1px;line-heigh=
+t:1px;border-top:1px solid #bbb"><span style=3D"word-break: break-word;">=
+=E2=80=8A</span></td></tr></tbody></table></div></td></tr></tbody></table><=
+table class=3D"text_block block-11" width=3D"100%" border=3D"0" cellpadding=
+=3D"10" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace:0=
+;mso-table-rspace:0;word-break:break-word"><tbody><tr><td class=3D"pad"><di=
+v style=3D"font-family:sans-serif"><div class=3D"" style=3D"font-size:12px;=
+font-family:Helvetica Neue,Helvetica,Arial,sans-serif;mso-line-height-alt:1=
+4.399999999999999px;color:#555;line-height:1.2"><p style=3D"margin:0;font-s=
+ize:14px;mso-line-height-alt:16.8px"><strong>[Business Description]</strong=
+><br />Development and operation of the recruitment agency platform =E2=80=
+=9CJoBins=E2=80=9D.<br /><br /><strong>[JoBins=E2=80=99 Values]</strong><br=
+ /><strong>=E3=80=88Vision=E3=80=89</strong><br />Chance for All<br />
+At JoBins, our vision is our =E2=80=98North Star.=E2=80=99 It constantly gu=
+ides our direction.<br />While our business activities and goals may evolve=
+, our Vision explains why we exist and remains constant. This vision is an =
+unchanging guidepost that points us in the right direction in a constantly =
+changing business environment.<br />We believe everyone has equal opportuni=
+ties and the right and freedom to take on new challenges. JoBins leverages =
+technology to create opportunities for all people and companies.<br />
+<br /><strong>=E3=80=88Mission=E3=80=89</strong><br />Create the world=E2=
+=80=99s best job-seeking platform<br />Our mission sets a concrete goal: =
+=E2=80=9CCreate the world=E2=80=99s best job-seeking platform.=E2=80=9D<br =
+/>Our goal is to generate 100 million hiring decisions per year. We hope to=
+ work with colleagues who are committed to this mission, help each other ov=
+ercome obstacles, and share the best view together.<br /><br /><strong>=E3=
+=80=88Values=E3=80=89</strong><br />Full Speed<br />
+We are =E2=80=9Cchallengers.=E2=80=9D We cannot compete with major companie=
+s in terms of money, recognition, or headcount. The one thing we can win on=
+ is speed. We operate at full speed in everything, from decision-making to =
+employee development.<br /><br />Learning from Failure<br />The powerful we=
+apon of =E2=80=9Cfull speed=E2=80=9D has one weakness: failure. We value ac=
+cepting failure and always learning from it.<br /><br />The Reward for Work=
+ Is Work<br />
+The most important thing to remember is that =E2=80=9Cthe reward for work i=
+s work.=E2=80=9D It is essential to complete the tasks you are assigned and=
+ use them to drive your growth.</p></div></div></td></tr></tbody></table><t=
+able class=3D"divider_block block-12" width=3D"100%" border=3D"0" cellpaddi=
+ng=3D"10" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace=
+:0;mso-table-rspace:0"><tbody><tr><td class=3D"pad"><div class=3D"alignment=
+" align=3D"center"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+role=3D"presentation" width=3D"100%" style=3D"mso-table-lspace:0;mso-table-=
+rspace:0"><tbody><tr><td class=3D"divider_inner" style=3D"font-size:1px;lin=
+e-height:1px;border-top:1px solid #bbb"><span style=3D"word-break: break-wo=
+rd;">=E2=80=8A</span></td></tr></tbody></table></div></td></tr></tbody></ta=
+ble><table class=3D"image_block block-13" width=3D"100%" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lsp=
+ace:0;mso-table-rspace:0"><tbody><tr><td class=3D"pad" style=3D"width:100%"=
+><div class=3D"alignment" align=3D"center"><div style=3D"max-width:650px"><=
+img src=3D"https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/2=
+eae2308-b806-4bf8-b04a-a8f55cc19e9b/HF-2000031/mail_title%20%283%29.png" st=
+yle=3D"display:block;height:auto;border:0;width:100%" width=3D"650" alt=3D"=
+" title=3D"" height=3D"auto" /></div></div></td></tr></tbody></table><table=
+ class=3D"divider_block block-14" width=3D"100%" border=3D"0" cellpadding=
+=3D"10" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace:0=
+;mso-table-rspace:0"><tbody><tr><td class=3D"pad"><div class=3D"alignment" =
+align=3D"center"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation" width=3D"100%" style=3D"mso-table-lspace:0;mso-table-rs=
+pace:0"><tbody><tr><td class=3D"divider_inner" style=3D"font-size:1px;line-=
+height:1px;border-top:1px solid #bbb"><span style=3D"word-break: break-word=
+;">=E2=80=8A</span></td></tr></tbody></table></div></td></tr></tbody></tabl=
+e><table class=3D"text_block block-15" width=3D"100%" border=3D"0" cellpadd=
+ing=3D"10" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspac=
+e:0;mso-table-rspace:0;word-break:break-word"><tbody><tr><td class=3D"pad">=
+<div style=3D"font-family:sans-serif"><div class=3D"" style=3D"font-size:12=
+px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;mso-line-height-al=
+t:14.399999999999999px;color:#555;line-height:1.2"><p style=3D"margin:0;fon=
+t-size:14px;mso-line-height-alt:16.8px"><span style=3D"word-break: break-wo=
+rd; font-size: 14px;"><strong>=E2=97=86Job Position</strong></span></p><p s=
+tyle=3D"margin:0;font-size:14px;mso-line-height-alt:16.8px">
+<span style=3D"word-break: break-word; font-size: 14px; background-color: #=
+fcff00;"><strong>=E3=80=90IT Engineer=E3=80=91-System Development, SE, Infr=
+astructure</strong></span></p><p style=3D"margin:0;font-size:14px;mso-line-=
+height-alt:14.399999999999999px">&nbsp;</p><p style=3D"margin:0;font-size:1=
+4px;mso-line-height-alt:16.8px"><span style=3D"word-break: break-word; font=
+-size: 14px;"><strong>=E2=97=86<u>Job Description</u></strong></span></p><p=
+ style=3D"margin:0;font-size:14px;mso-line-height-alt:16.8px">
+<span style=3D"word-break: break-word; font-size: 14px;">=E3=83=BBYou will =
+be responsible for the development, operation, and maintenance of JoBins=E2=
+=80=99 in-house services, ensuring that our platform can be used more effec=
+tively by a growing number of partner agencies.<br />=E3=83=BBThe core syst=
+em foundation is already established, and you will have the opportunity to =
+continuously work on improvements.<br />
+=E3=83=BBWe encourage engineers to actively share ideas and propose enhance=
+ments, such as =E2=80=9CIt would work better if we did this!=E2=80=9D =E2=
+=80=94 helping us make the service even stronger together.</span></p><p sty=
+le=3D"margin:0;font-size:14px;mso-line-height-alt:14.399999999999999px">&nb=
+sp;</p><p style=3D"margin:0;font-size:14px;mso-line-height-alt:16.8px"><spa=
+n style=3D"word-break: break-word; font-size: 14px;"><strong>=E2=97=86<u>Ap=
+plication requirements</u></strong></span><br />Experience in developing ap=
+plications using PHP<br />
+=E2=80=BBThe required skills may vary depending on the assigned position.<b=
+r />The key skill areas are listed below (only category names are shown, wi=
+th details omitted).<br />For specific requirements, please contact me.</p>=
+<p style=3D"margin:0;font-size:14px;mso-line-height-alt:14.399999999999999p=
+x">&nbsp;</p><p style=3D"margin:0;font-size:14px;mso-line-height-alt:16.8px=
+">=E3=80=90Required Skills and Expertise=E3=80=91</p><p style=3D"margin:0;f=
+ont-size:14px;mso-line-height-alt:16.8px">
+-Web development experience with PHP and Laravel&nbsp;<br />-Front-End Deve=
+lopment (JavaScript, Vue.js, React)<br />-Familiarity with Databases and Pe=
+rformance Optimization<br />-Familiarity with cloud technology, DevOps prac=
+tice, and Automation</p><p style=3D"margin:0;font-size:14px;mso-line-height=
+-alt:14.399999999999999px">&nbsp;</p><p style=3D"margin:0;font-size:14px;ms=
+o-line-height-alt:16.8px"><strong>Japanese: Daily conversational level</str=
+ong><br />English: Daily conversational level or above</p><p style=3D"margi=
+n:0;font-size:14px;mso-line-height-alt:14.399999999999999px">&nbsp;</p><p s=
+tyle=3D"margin:0;font-size:14px;mso-line-height-alt:16.8px"><strong>=E2=97=
+=86<u>Employment Type</u></strong></p><p style=3D"margin:0;font-size:14px;m=
+so-line-height-alt:16.8px">Full-time employee<br />=E2=80=BBProbationary pe=
+riod: 6 months (no change in conditions during the probation period)</p><p =
+style=3D"margin:0;font-size:14px;mso-line-height-alt:14.399999999999999px">=
+&nbsp;</p><p style=3D"margin:0;font-size:14px;mso-line-height-alt:16.8px"><=
+span style=3D"word-break: break-word; font-size: 14px;"><strong>=E2=97=86<u=
+>Salary </u></strong></span></p><p style=3D"margin:0;font-size:14px;mso-lin=
+e-height-alt:16.8px">=E2=80=BBSalary will be determined in accordance with =
+our internal grading system, taking into consideration your previous salary=
+ and experience.<br />=E2=80=BBOvertime allowance will be paid separately.<=
+br />Monthly salary: =C2=A5250,000 =E2=80=93 =C2=A5430,000<br />Estimated a=
+nnual income: =C2=A53,500,000 =E2=80=93 =C2=A56,880,000<br />
+Bonus: Provided four times a year (based on company performance and individ=
+ual evaluation; evaluations are conducted quarterly)<br />Salary review: Fo=
+ur times a year</p><p style=3D"margin:0;font-size:14px;mso-line-height-alt:=
+14.399999999999999px">&nbsp;</p><p style=3D"margin:0;font-size:14px;mso-lin=
+e-height-alt:16.8px"><span style=3D"word-break: break-word; font-size: 14px=
+; background-color: transparent;"><strong>=E2=97=86<u>Work Location</u></st=
+rong></span></p><p style=3D"margin:0;font-size:14px;mso-line-height-alt:16.=
+8px">3F, Yotsubashi KM Building, 1-19-8 Kitahorie, Nishi-ku, Osaka-shi, Osa=
+ka, Japan</p></div></div></td></tr></tbody></table><table class=3D"button_b=
+lock block-16" width=3D"100%" border=3D"0" cellpadding=3D"10" cellspacing=
+=3D"0" role=3D"presentation" style=3D"mso-table-lspace:0;mso-table-rspace:0=
+"><tbody><tr><td class=3D"pad"><div class=3D"alignment" align=3D"center">
+<a href=3D"https://clicks.careerbits.com/lt/click/8E0472685EEC9137DA6ECC8A8=
+B6E69F9040AA2D1D9E528813A40019BDE19EC6C617935CE075D9BB63CBC5128A015DF0D049C=
+E52D1ACF824C967630C9986603AAFAB7EDD13CD316F2D884BAFBC996EB3C93370171F72706E=
+E401D2B777A34D9C76DD26F65/79777AA9741821071FA046D19B6C0AA235453A6DCA4226B3A=
+8247510578CD9C52B752C5597FD8E9DDF28F60121BC2C38D7C70298EBCA8AB348E398138CBF=
+CC56929016AC00C7123020DBA67EB5584120D25B0F978521A896F74F57E2DBB39F176C01ECF=
+C/D9E427C4178256720AC302EFF3CDB46DC9424A9B23EEA5BA2318F1BE8AA3355BF97C00172=
+F4165B221D5068C8B77AA7FDCE8C86CB7483A3479D3D57B01D2F96BEDC294B5B15A45A8EAAE=
+357A3C" target=3D"_blank" style=3D"color:#ffffff;text-decoration:none;"><!-=
+-[if mso]>
+<v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:w=3D"urn:schem=
+as-microsoft-com:office:word"  href=3D"https://clicks.careerbits.com/lt/cli=
+ck/8E0472685EEC9137DA6ECC8A8B6E69F9040AA2D1D9E528813A40019BDE19EC6C617935CE=
+075D9BB63CBC5128A015DF0D049CE52D1ACF824C967630C9986603AAFAB7EDD13CD316F2D88=
+4BAFBC996EB3C93370171F72706EE401D2B777A34CBDE7C9D6962/25737DB5240727011DA11=
+4D0923F1DFA644E3D6EC54C36F4E96C36591EDAD98C52377418E9A08B97CE64BA5F58AA3938=
+F8C50A92F59694B144AD86028BEAD0569AE910B718EA023A68E1A069ED764D21DF1B1390805=
+8B087FE794FEA829F871B3828A3B1/92CD6B9C5CB3414F07954197A7D8B86ACA4D44813293F=
+0F76831C8BA8EBF0D5FE0692512791E15E13AD70C97901BFC2B8AF1C867B06438225ED7DF6E=
+39D6E07EC8C7C2EA964B0BFEF9"  style=3D"height:38px;width:170px;v-text-anchor=
+:middle;" arcsize=3D"11%" fillcolor=3D"#fe7700">
+<v:stroke dashstyle=3D"Solid" weight=3D"0px" color=3D"#fe7700"/>
+<w:anchorlock/>
+<v:textbox inset=3D"0px,0px,0px,0px">
+<center dir=3D"false" style=3D"color:#ffffff;font-family:sans-serif;font-si=
+ze:14px">
+<![endif]-->
+<span class=3D"button" style=3D"background-color: #fe7700; mso-shading: tra=
+nsparent; border-bottom: 0px solid transparent; border-left: 0px solid tran=
+sparent; border-radius: 4px; border-right: 0px solid transparent; border-to=
+p: 0px solid transparent; color: #ffffff; display: inline-block; font-famil=
+y: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 14px; font-weig=
+ht: 400; mso-border-alt: none; padding-bottom: 5px; padding-top: 5px; paddi=
+ng-left: 20px; padding-right: 20px; text-align: center; width: auto; word-b=
+reak: keep-all; letter-spacing: normal;"><span style=3D"word-break: break-w=
+ord; line-height: 28px;"><strong>Learn more &amp; apply</strong></span></sp=
+an>
+<!--[if mso]></center></v:textbox></v:roundrect><![endif]--></a></div></td>=
+</tr></tbody></table><table class=3D"divider_block block-17" width=3D"100%"=
+ border=3D"0" cellpadding=3D"10" cellspacing=3D"0" role=3D"presentation" st=
+yle=3D"mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><td class=3D"pad">=
+<div class=3D"alignment" align=3D"center"><table border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%" style=3D"mso-=
+table-lspace:0;mso-table-rspace:0"><tbody><tr><td class=3D"divider_inner" s=
+tyle=3D"font-size:1px;line-height:1px;border-top:1px solid #bbb"><span styl=
+e=3D"word-break: break-word;">=E2=80=8A</span></td></tr></tbody></table></d=
+iv></td></tr></tbody></table><table class=3D"text_block block-18" width=3D"=
+100%" border=3D"0" cellpadding=3D"10" cellspacing=3D"0" role=3D"presentatio=
+n" style=3D"mso-table-lspace:0;mso-table-rspace:0;word-break:break-word"><t=
+body><tr><td class=3D"pad"><div style=3D"font-family:sans-serif"><div class=
+=3D"" style=3D"font-size:14px;font-family:Helvetica Neue,Helvetica,Arial,sa=
+ns-serif;mso-line-height-alt:16.8px;color:#555;line-height:1.2"><p style=3D=
+"margin:0;font-size:14px;mso-line-height-alt:16.8px"><span style=3D"word-br=
+eak: break-word; font-size: 14px;">If you have any questions before applica=
+tion, please feel free to drop an email to me at:&nbsp;rika.watanabe@4th-va=
+lley.com</span></p><p style=3D"margin:0;font-size:14px;mso-line-height-alt:=
+16.8px">&nbsp;</p><p style=3D"margin:0;font-size:14px;mso-line-height-alt:1=
+6.8px"><span style=3D"word-break: break-word; font-size: 14px;">Connect Job=
+ career consultants not only introduce job openings but also provide advice=
+ on creating clear and effective application documents. We offer one-on-one=
+ support for interview preparation as well. Additionally, we handle inquiri=
+es that might be difficult to ask directly to companies and coordinate inte=
+rview schedules on your behalf.</span></p><p style=3D"margin:0;font-size:14=
+px;mso-line-height-alt:16.8px">&nbsp;</p><p style=3D"margin:0;font-size:14p=
+x;mso-line-height-alt:16.8px"><span style=3D"word-break: break-word; font-s=
+ize: 14px;">All of our advice, including tips on writing resumes and crafti=
+ng impactful self-presentations, is completely free. Please feel free to re=
+ach out anytime!</span></p></div></div></td></tr></tbody></table><table cla=
+ss=3D"divider_block block-19" width=3D"100%" border=3D"0" cellpadding=3D"10=
+" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace:0;mso-t=
+able-rspace:0"><tbody><tr><td class=3D"pad"><div class=3D"alignment" align=
+=3D"center"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D=
+"presentation" width=3D"100%" style=3D"mso-table-lspace:0;mso-table-rspace:=
+0"><tbody><tr><td class=3D"divider_inner" style=3D"font-size:1px;line-heigh=
+t:1px;border-top:1px solid #bbb"><span style=3D"word-break: break-word;">=
+=E2=80=8A</span></td></tr></tbody></table></div></td></tr></tbody></table><=
+/td></tr></tbody></table></td></tr></tbody></table><table class=3D"row row-=
+2" align=3D"center" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" role=3D"presentation" style=3D"mso-table-lspace:0;mso-table-rspace=
+:0"><tbody><tr><td><table class=3D"row-content stack" align=3D"center" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D=
+"mso-table-lspace:0;mso-table-rspace:0;border-radius:0;color:#000;width:650=
+px;margin:0 auto" width=3D"650"><tbody><tr><td class=3D"column column-1" wi=
+dth=3D"100%" style=3D"mso-table-lspace:0;mso-table-rspace:0;font-weight:400=
+;text-align:left;padding-bottom:5px;padding-top:5px;vertical-align:top"><ta=
+ble class=3D"image_block block-1" width=3D"100%" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace:0;=
+mso-table-rspace:0"><tbody><tr><td class=3D"pad" style=3D"width:100%"><div =
+class=3D"alignment" align=3D"center"><div style=3D"max-width:650px"><img sr=
+c=3D"https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/2eae230=
+8-b806-4bf8-b04a-a8f55cc19e9b/HF-2000031/Midcareer_titleEN.png" style=3D"di=
+splay:block;height:auto;border:0;width:100%" width=3D"650" alt=3D"" title=
+=3D"" height=3D"auto" /></div></div></td></tr></tbody></table></td></tr></t=
+body></table></td></tr></tbody></table><table class=3D"row row-3" align=3D"=
+center" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" rol=
+e=3D"presentation" style=3D"mso-table-lspace:0;mso-table-rspace:0"><tbody><=
+tr><td><table class=3D"row-content stack" align=3D"center" border=3D"0" cel=
+lpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-l=
+space:0;mso-table-rspace:0;border-radius:0;color:#000;width:650px;margin:0 =
+auto" width=3D"650"><tbody><tr><td class=3D"column column-1" width=3D"50%" =
+style=3D"mso-table-lspace:0;mso-table-rspace:0;font-weight:400;text-align:l=
+eft;padding-bottom:5px;padding-top:5px;vertical-align:top"><table class=3D"=
+image_block block-1" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" role=3D"presentation" style=3D"mso-table-lspace:0;mso-table-rspac=
+e:0"><tbody><tr><td class=3D"pad" style=3D"width:100%"><div class=3D"alignm=
+ent" align=3D"center"><div style=3D"max-width:325px"><a href=3D"https://cli=
+cks.careerbits.com/lt/click/8E0472685EEC9137DA6ECC8A8B6E69F9040AA2D1D9E5288=
+13A40019BDE19EC6C617935CE075D9BB63CBC5128A015DF0D049CE52D1ACF824C967630C998=
+6603AAFAB7EDD13CD316F2D884BAFBC996F2369068067CAE2C00E0404770236268D9D8788C6=
+E3C/7A767CB3270D201B4DBF53DF913F1DEC3B1E366CCD4326B6A3246B425A85CC9D26636F4=
+4AAD0D799D126F70A34EF2D21E5FB0094F6DB82BD41B0D2018BAED64B83D345AD19F53E2C3A=
+DCB778ED2D6C37C558008D9E6FFB97EE7D65EADABE830F3C79C4F0/D1E169CA19E57D6817DE=
+0FDFDE8BAC66C8454B9B26E5A5AE2D7FD9B282A60D6AF1611C1A3A50499F67CD05828576A16=
+0D29EF971BB71122279C1D37930E3F176F1CF81A49D7703B0BEB52C7A2D26" target=3D"_b=
+lank"><img src=3D"https://d15k2d11r6t6rl.cloudfront.net/public/users/Integr=
+ators/2eae2308-b806-4bf8-b04a-a8f55cc19e9b/HF-2000031/Midcareer_BizEN.png" =
+style=3D"display:block;height:auto;border:0;width:100%" width=3D"325" alt=
+=3D"" title=3D"" height=3D"auto" /></a></div></div>
+</td></tr></tbody></table></td><td class=3D"column column-2" width=3D"50%" =
+style=3D"mso-table-lspace:0;mso-table-rspace:0;font-weight:400;text-align:l=
+eft;padding-bottom:5px;padding-top:5px;vertical-align:top"><table class=3D"=
+image_block block-1" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" role=3D"presentation" style=3D"mso-table-lspace:0;mso-table-rspac=
+e:0"><tbody><tr><td class=3D"pad" style=3D"width:100%"><div class=3D"alignm=
+ent" align=3D"center"><div style=3D"max-width:325px">
+<a href=3D"https://clicks.careerbits.com/lt/click/8E0472685EEC9137DA6ECC8A8=
+B6E69F9040AA2D1D9E528813A40019BDE19EC6C617935CE075D9BB63CBC5128A015DF0D049C=
+E52D1ACF824C967630C9986603AAFAB7EDD13CD316F2D884BAFBC996F2369068067CAE2C00E=
+0404770236268D9D8788C6E3C/7D6D68B3270D361A4DBF53DF913F1DEC3B1E366CCD4326B6A=
+3246B425A85CC9D26636F44AAD0D799D126F70A34EF2D21E5FB0094F6DB82BD41B0D2018BAE=
+D64B83D345AD19F53E2C3ADCB778ED2D6C37C558008D9E6FFB97EE7D65EADABE830F3C79C4F=
+0/D1E169CA19E57D6817DE0FDFDE8BAC66C8454B9B26E5A5AE2D7FD9B282A60D6AF1611C1A3=
+A50499F67CD05828576A160D29EF971BB71122279C1D37930E3F176F1CF81A49D7703B0BEB5=
+2C7A2D26" target=3D"_blank"><img src=3D"https://d15k2d11r6t6rl.cloudfront.n=
+et/public/users/Integrators/2eae2308-b806-4bf8-b04a-a8f55cc19e9b/HF-2000031=
+/Midcareer_engineerEN%20%281%29.png" style=3D"display:block;height:auto;bor=
+der:0;width:100%" width=3D"325" alt=3D"" title=3D"" height=3D"auto" /></a><=
+/div></div></td></tr></tbody></table></td></tr></tbody></table></td></tr></=
+tbody></table><table class=3D"row row-4" align=3D"center" width=3D"100%" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=
+=3D"mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><td><table class=3D"r=
+ow-content stack" align=3D"center" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" role=3D"presentation" style=3D"mso-table-lspace:0;mso-table-rspace=
+:0;border-radius:0;color:#000;width:650px;margin:0 auto" width=3D"650"><tbo=
+dy><tr><td class=3D"column column-1" width=3D"100%" style=3D"mso-table-lspa=
+ce:0;mso-table-rspace:0;font-weight:400;text-align:left;padding-bottom:5px;=
+padding-top:5px;vertical-align:top"><div class=3D"spacer_block block-1" sty=
+le=3D"height:50px;line-height:50px;font-size:1px">=E2=80=8A</div><table cla=
+ss=3D"divider_block block-2" width=3D"100%" border=3D"0" cellpadding=3D"10"=
+ cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace:0;mso-ta=
+ble-rspace:0"><tbody><tr><td class=3D"pad"><div class=3D"alignment" align=
+=3D"center"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D=
+"presentation" width=3D"100%" style=3D"mso-table-lspace:0;mso-table-rspace:=
+0"><tbody><tr><td class=3D"divider_inner" style=3D"font-size:1px;line-heigh=
+t:1px;border-top:1px solid #bbb"><span style=3D"word-break: break-word;">=
+=E2=80=8A</span></td></tr></tbody></table></div></td></tr></tbody></table><=
+div class=3D"spacer_block block-3" style=3D"height:10px;line-height:10px;fo=
+nt-size:1px">=E2=80=8A</div><table class=3D"text_block block-4" width=3D"10=
+0%" border=3D"0" cellpadding=3D"10" cellspacing=3D"0" role=3D"presentation"=
+ style=3D"mso-table-lspace:0;mso-table-rspace:0;word-break:break-word"><tbo=
+dy><tr><td class=3D"pad"><div style=3D"font-family:sans-serif"><div class=
+=3D"" style=3D"font-size:14px;font-family:Helvetica Neue,Helvetica,Arial,sa=
+ns-serif;mso-line-height-alt:16.8px;color:#555;line-height:1.2"><p style=3D=
+"margin:0;text-align:center;font-size:11px;mso-line-height-alt:13.2px"><spa=
+n style=3D"word-break: break-word; font-size: 11px;">=E2=89=AA=E5=8F=82=E5=
+=8A=A0=E5=8F=AF=E5=90=A6=E3=81=AE=E3=81=94=E9=80=A3=E7=B5=A1=E3=81=AB=E9=96=
+=A2=E3=81=97=E3=81=A6=E2=89=AB</span></p><p style=3D"margin:0;text-align:ce=
+nter;font-size:11px;mso-line-height-alt:13.2px"><span style=3D"word-break: =
+break-word; font-size: 11px;">=E5=8F=82=E5=8A=A0=E5=8F=AF=E5=90=A6=E3=81=AE=
+=E3=81=94=E9=80=A3=E7=B5=A1=E3=81=AB=E9=96=A2=E3=81=97=E3=81=A6=E3=81=AF=E6=
+=8A=BD=E9=81=B8=E3=81=AE=E5=A0=B4=E5=90=88=E3=81=AF=E5=BD=93=E9=81=B8=E3=81=
+=AE=E6=96=B9=E3=83=BB=E4=BA=8B=E5=89=8D=E9=81=B8=E8=80=83=E3=81=AE=E5=A0=B4=
+=E5=90=88=E3=81=AF=E6=9B=B8=E9=A1=9E=E9=81=B8=E8=80=83=E9=80=9A=E9=81=8E=E8=
+=80=85=E3=81=AE=E3=81=BF=E3=81=AB=E3=81=94=E6=A1=88=E5=86=85=E8=87=B4=E3=81=
+=97=E3=81=BE=E3=81=99=E3=80=82=E3=81=AA=E3=81=8A=E3=80=81=E3=81=94=E5=8F=82=
+=E5=8A=A0=E3=81=84=E3=81=9F=E3=81=A0=E3=81=91=E3=82=8B=E6=96=B9=E3=81=B8=E3=
+=81=AE=E9=80=A3=E7=B5=A1=E3=81=AF=E7=B5=90=E6=9E=9C=E7=A2=BA=E5=AE=9A=E3=81=
+=AE=E9=9A=9B=E3=81=AB=E9=A0=86=E6=AC=A1=E9=80=9A=E7=9F=A5=E8=87=B4=E3=81=97=
+=E3=81=BE=E3=81=99=E3=80=82 =E7=B5=90=E6=9E=9C=E3=82=92=E3=82=BF=E3=82=A4=
+=E3=83=A0=E3=83=AA=E3=83=BC=E3=81=AB=E3=81=8A=E4=BC=9D=E3=81=88=E5=87=BA=E6=
+=9D=A5=E3=81=AA=E3=81=84=E3=81=93=E3=81=A8=E3=82=82=E3=81=94=E3=81=96=E3=81=
+=84=E3=81=BE=E3=81=99=E3=81=AE=E3=81=A7=E3=80=81=E3=81=94=E4=BA=86=E6=89=BF=
+=E3=81=AE=E7=A8=8B=E3=81=A9=E3=81=86=E3=81=9E=E3=82=88=E3=82=8D=E3=81=97=E3=
+=81=8F=E3=81=8A=E9=A1=98=E3=81=84=E8=87=B4=E3=81=97=E3=81=BE=E3=81=99=E3=80=
+=82</span></p><p style=3D"margin:0;text-align:center;font-size:11px;mso-lin=
+e-height-alt:16.8px">&nbsp;</p><p style=3D"margin:0;text-align:center;font-=
+size:11px;mso-line-height-alt:13.2px">
+<span style=3D"word-break: break-word; font-size: 11px;">&lt;&lt;Notificati=
+on about whether to participate or not&gt;&gt;</span></p><p style=3D"margin=
+:0;text-align:center;font-size:11px;mso-line-height-alt:13.2px">
+<span style=3D"word-break: break-word; font-size: 11px;">We will inform onl=
+y those who were chosen by lottery or those who passed the document screeni=
+ng in the case of pre-selection. Please note that we will notify you when t=
+he results are confirmed. Please note that we may not be able to inform you=
+ of the results in a timely manner. Thank you for your understanding.</span=
+></p></div></div></td></tr></tbody></table><table class=3D"divider_block bl=
+ock-5" width=3D"100%" border=3D"0" cellpadding=3D"10" cellspacing=3D"0" rol=
+e=3D"presentation" style=3D"mso-table-lspace:0;mso-table-rspace:0"><tbody><=
+tr><td class=3D"pad"><div class=3D"alignment" align=3D"center"><table borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"=
+100%" style=3D"mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><td class=
+=3D"divider_inner" style=3D"font-size:1px;line-height:1px;border-top:1px so=
+lid #bbb"><span style=3D"word-break: break-word;">=E2=80=8A</span></td></tr=
+></tbody></table></div></td></tr></tbody></table><div class=3D"spacer_block=
+ block-6" style=3D"height:30px;line-height:30px;font-size:1px">=E2=80=8A</d=
+iv><div class=3D"spacer_block block-7" style=3D"height:10px;line-height:10p=
+x;font-size:1px">=E2=80=8A</div></td></tr></tbody></table></td></tr></tbody=
+></table></td></tr></tbody></table><!-- End --><p style=3D"text-align: cent=
+er">=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=
+=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=
+=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=
+=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=
+=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=EF=BC=BF=
+=EF=BC=BF=EF=BC=BF</p><p style=3D"text-align: center"><strong style=3D"font=
+-size: 16px"><em>Connect Job</em></strong></p><p style=3D"text-align: cente=
+r"><span style=3D"font-size: 12px">You are receiving this email because you=
+ subscribe to our service, Connect Job.</span></p><p style=3D"text-align: c=
+enter"><br></p><p style=3D"text-align: center"><span style=3D"font-size: 12=
+px">Tokyo Office(HQ) : </span>WeWork Kojimachi, Bancho Kojimachi Building 5=
+F 6-6-2 Kojimachi, Chiyoda-ku, Tokyo, 102-0083, Japan</p><p style=3D"text-a=
+lign: center"><span style=3D"font-size: 12px">Myanmar Office : The Keier Gr=
+oup Serviced Offices and coworking space No. 561, 563, 565, 567,#803, Merch=
+ant Street, Kyauktada Township, Yangon</span></p><p style=3D"text-align: ce=
+nter"><br></p><p style=3D"text-align: center"><a href=3D"https://job.connec=
+tiu.com/?surveyId=3D1702&amp;hf=3D10766388&amp;eID=3D10766388" target=3D"_b=
+lank">Unsubscribe emails by category</a></p><p style=3D"text-align: center"=
+><br></p><p style=3D"text-align: center"><a href=3D"https://support.connect=
+iu.com/hc/en-us/requests/new" target=3D"_blank"><strong>Contact Us</strong>=
+</a></p><p style=3D"text-align: center"><em>Copyright =C2=A9 Fourth Valley =
+Concierge Corporation</em></p><p><a href=3D"https://clicks.careerbits.com/l=
+t/unsubscribe/8E0472685EEC9137DA6ECC8A8B6E69F9040AA2D1D9E528813A40019BDE19E=
+C6C617935CE075D9BB63CBC5128A015DF0D049CE56107D79A10C70971929B7D18CDFDFAB98E=
+698754AD9E92E1B886FCEC3298763171EE3603E31B4F50236D31819D24D12F3D/3A576AA23D=
+25361B01AE55DDA06741BA3F197F38B41032BAFE693F0853." target=3D"_blank" style=
+=3D"background-color: rgba(255, 255, 255, 1); color: rgba(255, 255, 255, 1)=
+">h</a></p><img src=3D"https://clicks.careerbits.com/lt/open/8E0472685EEC91=
+37DA6ECC8A8B6E69F9040AA2D1D9E528813A40019BDE19EC6C617935CE075D9BB63CBC5128A=
+015DF0D049CE56107D79A10C70971929B7D18CDFDFAB98E698754AD9E92E1B886FCEC329876=
+3171EE3603E31B4F50236D31819D24D12F3D/3A576AA23D25361B01AE55DDA06741BA3F197F=
+38B41032BAFE693F0853" alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=
+=3D"height:1px!important;width:1px!important;border-width:0!important;margi=
+n-top:0!important;margin-bottom:0!important;margin-right:0!important;margin=
+-left:0!important;padding-top:0!important;padding-bottom:0!important;paddin=
+g-right:0!important;padding-left:0!important"></body></html>
+--7d86d1482800f51f43782b0132b3b4ba7f118463b147edecb85b929b2ad9--

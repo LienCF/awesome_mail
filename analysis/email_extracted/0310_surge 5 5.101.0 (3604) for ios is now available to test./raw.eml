@@ -1,0 +1,315 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7011:1e11:b0:4ec:1446:8385 with SMTP id uy17csp167545mdb;
+        Sat, 8 Nov 2025 06:27:45 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHhe6HrrnD7XhCPXtwNR6fKNJ6ZYIDjZL28uiEM7h6HGL7L4xAINe5p7YT7khHzdDKBI9BU
+X-Received: by 2002:a17:90b:6ce:b0:340:f05a:3ecb with SMTP id 98e67ed59e1d1-3436ccffad9mr2769383a91.28.1762612065457;
+        Sat, 08 Nov 2025 06:27:45 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762612065; cv=none;
+        d=google.com; s=arc-20240605;
+        b=gnI283w6vMltMeniio5cEJTf081rWGAqg7bfgxszT5qa+OA/F+mogGiAT2I4+imKZN
+         BUwlzl/uNhmsm8pYyDTQvbhnFOMhwgN3RGNqx9y1dw0KSVwOK+kMXmUn0fuD/7fNm1yD
+         ERHYE776QrX+WrzGHpWPGoJdufWbxR5SnfF8WFd88KtNDLHNvQYDGyzuPKZvRPP5nTG6
+         UXN5KqupGNzy2zBnmC/zdPA+eiHlnBZ0eAbBspF/JBO1Is8GvMzjaQDVuRQorCbl/5FS
+         lWdmkprq//apfe07AxcgaD9JT2bZvBBTUTxup0zOyNUm1SBgGeQneiYKxFZV5dZsxskI
+         ZI+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:message-id:to:reply-to:from:date
+         :dkim-signature;
+        bh=cIH+VQT5u6ZePr/hzAsTyW2HI+VpzDdkppOwa7iP0Jo=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=glJCofDk4QdCrxsh7FZyXW/5wzeK2XJ2nYvvfBiZ9pen4ghZg0jbLKFkeW/TMhsznl
+         pAyWJcSdDPi7JfwIEMEUUdXCiocQWnV0E0BxUhywarcvt+PowxLVs6sgs/H165h3k95r
+         I9AfpyqLtsfnp3fqQxx1oFqnPTeGipU7GQW9HZu1fmcpjFczUU+6fiPat5bE5fD0AH0Q
+         f6wPMt6leUGUespJC70gUYNfelYaYd4kTVO1rCNgcEKSsd5NFwOOS7GU9HGC/VVbkuWe
+         FymegSsFDm+ccL4OLiLcrqWuJYitzhGzFDg2SRdjXXE3zGPGajtTdfwEH3+Tue/xoHYV
+         FG+A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@email.apple.com header.s=email0517 header.b=IMCge2kP;
+       spf=pass (google.com: domain of no_reply@email.apple.com designates 17.111.110.79 as permitted sender) smtp.mailfrom=no_reply@email.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=email.apple.com
+Return-Path: <no_reply@email.apple.com>
+Received: from rn2-txn-msbadger04106.apple.com (rn2-txn-msbadger04106.apple.com. [17.111.110.79])
+        by mx.google.com with ESMTPS id d2e1a72fcca58-7b0cce5d0c0si3217033b3a.749.2025.11.08.06.27.45
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 08 Nov 2025 06:27:45 -0800 (PST)
+Received-SPF: pass (google.com: domain of no_reply@email.apple.com designates 17.111.110.79 as permitted sender) client-ip=17.111.110.79;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@email.apple.com header.s=email0517 header.b=IMCge2kP;
+       spf=pass (google.com: domain of no_reply@email.apple.com designates 17.111.110.79 as permitted sender) smtp.mailfrom=no_reply@email.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=email.apple.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=email.apple.com;
+	s=email0517; t=1762612064;
+	bh=cIH+VQT5u6ZePr/hzAsTyW2HI+VpzDdkppOwa7iP0Jo=;
+	h=Date:From:To:Message-ID:Subject:Content-Type;
+	b=IMCge2kP2fhoVBPik4CLqDC+G6i9utfjFgIZmSqX7xyHLBV0YBEV5NNDKAB6b8JbE
+	 5XEHygDF3pItuv7nRaGNah7TNcLhoV80wI4R64LjcyhpwVlLz6fKSKefiGoQJxtKje
+	 r/VM3GvXvSOmDftLpC0xXX4Xo0Fcum+ByeMlnO2ffsNAg/lE0RQmzQYIn5jGT4l/mM
+	 uKh7EcSE407n//9ku/l1WlLZn/OjdY3QnnrQCj8j3cq18q6Lsqdw6FBOMpbN5C2FrF
+	 SCsKNdIJ4vHpFFRz9P+I7QwyX1eboY65cj0WEyju3euUgVL7R7Kv9J1cwGED07wcs1
+	 jUvWBSh4u4s1g==
+Date: Sat, 8 Nov 2025 14:27:44 +0000 (GMT)
+From: TestFlight <no_reply@email.apple.com>
+Reply-To: support@nssurge.com
+To: liencf@gmail.com
+Message-ID: <1387552309.24874961.1762612064457@email.apple.com>
+Subject: Surge 5 5.101.0 (3604) for iOS is now available to test.
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_24874959_1994483255.1762612064457"
+X-Broadcast-Id: 10631
+X-Attach-Flag: N
+X-COMMS-C: false
+X-Sent-To: liencf@gmail.com,2,PCnrWmoQEasRCldHsvMDiNOCgkXm9a4Zy3GzUj%2BwMkhkyXJUnAIbeIpFUZKopOOYnLpsWUqbQ4%2BK9IixjwUR8hrm1DZ7j7K98wSt0Xyj0h5N4KmFF9FlBex1Bo8TRxFDvQNsxqKTZZGwLocHovSkKBs5XTvAJsNr%2Fut1C%2FLFVJEi1TZyLHMW%2FeIPEb8dbftmpXuF9yqzURYdtO3W6vdHz9XMxxlfZk4vw18yKnPcmsuuszIuDnLYOXshspJAZOFHCph5FQsYUYIUamTz4RExxrpdlN27UNbBMNnkh6Bu%2Bl%2F1%2FFW5gCCNRLY7a5ali3kp5k2RQIELzB2r%2Bc4jI9fe1jS%2BAhjSfx8HpOZ3ri5eivIqQyidTVNB7lzVZQAckeFuuHZ128G72uJ%2BjPpxvSTFrwdmyjt04CR9cRcSvne7whTrnB2%2BeXWnLJpVo24wiLhO%2Bsqkmlrc3pb2Dq0LjeUAgg%3D%3D
+X-TXN_ID: adce917f-bcfb-4132-a06e-2c70cb1b07e7
+X-DKIM_SIGN_REQUIRED: YES
+X-EmailType-Id: 10631
+X-Business-Group: iTunes
+X-Country: US
+
+------=_Part_24874959_1994483255.1762612064457
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Disposition: inline
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>iTunes Connect</title>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-885=
+9-1">
+  <style type=3D"text/css">
+    A { text-decoration: none; }
+    A:link { color: #0088CC; text-decoration: none; }
+    A:visited { text-decoration: none; }
+    A:active { color: #696969; text-decoration: underline;}
+    A:hover { text-decoration: underline; }
+    BODY, TD, P, UL, OL,h1,h2,h3 {
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    color: #666666;
+    text-align: justify;
+    font-weight: 300;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    P {
+    margin-bottom: 1em;
+    }
+    H1 {
+    line-height:145%;
+    }
+    HR {
+    border: 0;
+    border-top: 1px solid #dddddd;
+    margin: 10px 0px 15px 0px;
+    }
+    @media only screen and (max-device-width: 481px) and (min-device-pixel-=
+ratio : 2), only screen and (min-device-width: 481px) and (-webkit-min-devi=
+ce-pixel-ratio : 2) {
+    *[id=3Dheader] { background:url('https://itunesconnect.apple.com/itc/im=
+ages/email/email-itc-logo@2X.png') no-repeat 0 top; -webkit-background-size=
+: 173px 45px; }
+    *[id=3Dhr-fade] { background:url('https://itunesconnect.apple.com/itc/i=
+mages/email/email-hr@2X.png') no-repeat 0 top; -webkit-background-size: 648=
+px 18px; }
+    }
+    @media only screen and (max-width: 580px) {
+        table[class=3D"table"], td[class=3D"cell"] {
+            width: 100% !important;
+        }
+        img[id=3D"header"] {
+            width: 135px !important;
+            height: 35px !important;
+        }
+        td[id=3D"header"] {
+            -webkit-background-size: 135px 35px;
+        }
+        table[class=3D"footer_table"] td[class=3D"backgroundcell"] {
+            width:100% !important;
+            background-size: 100% auto;
+        }
+        table[class=3D"footer_table"] {
+            width:100% !important;
+        }
+
+        body {
+            margin: 0 15px
+        }
+    }
+  </style>
+</head>
+<body style=3D"background-color: #ffffff" bgcolor=3D"#ffffff">
+    <table class=3D"table" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ align=3D"center" width=3D"580">
+        <tr align=3D"center">
+            <td align=3D"center">
+                       =20
+
+                               =20
+
+    <table cellspacing=3D"0" cellpadding=3D"0" style=3D"margin: auto;" bord=
+er=3D"0" width=3D"580" class=3D"table">
+        <tr><td class=3D"cell"><img src=3D"https://itunesconnect.apple.com/=
+itc/images/email/spacer.gif" border=3D"0" alt=3D"" width=3D"1" height=3D"40=
+px"/></td></tr>
+        <tr>
+            <td class=3D"cell" align=3D"center">
+               =20
+
+               =20
+                   =20
+               =20
+                   =20
+                       =20
+                           =20
+                           =20
+                               =20
+                               =20
+                                    <p align=3D"center" style=3D"text-align=
+:center;"><img src=3D'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4=
+/80/af/51/80af5190-5a97-03d5-e26f-f77f73c9a81d/AppIconS-0-0-1x_U007epad-0-1=
+-0-0-85-220.png/304x304bb-80.png' align=3D"center" style=3D"-webkit-border-=
+radius: 25%;-moz-border-radius:25%;border-radius: 25%; max-width: 152px; bo=
+rder: 1px solid #ebebeb;" alt=3D'Surge 5, app icon'/></p>
+                               =20
+                           =20
+                       =20
+
+                       =20
+                   =20
+
+               =20
+               =20
+            </td>
+        </tr>
+        <tr><td class=3D"cell"><img src=3D"https://itunesconnect.apple.com/=
+itc/images/email/spacer.gif" border=3D"0" alt=3D"" width=3D"1" height=3D"20=
+px"/></td></tr>
+        <tr>
+            <td class=3D"cell" align=3D"center">
+                <h1 style=3D"font-size:28px;margin-bottom:0;margin-top:0;pa=
+dding:0;text-align:center;color:#4C4C4C;-webkit-text-size-adjust:none;font-=
+family: 'HelveticaNeue-Light','Helvetica Neue',Helvetica,Arial,sans-serif;"=
+>
+                    Surge 5 5.101.0 (3604) is ready to test on iOS.
+                </h1>
+            </td>
+        </tr>
+       =20
+        <tr><td class=3D"cell"><img src=3D"https://itunesconnect.apple.com/=
+itc/images/email/spacer.gif" border=3D"0" alt=3D"" width=3D"1" height=3D"40=
+px"/></td></tr>
+        <tr>
+            <td class=3D"cell" align=3D"left">
+                <h2 style=3D"font-size:17px;margin:0;padding:0;text-align:l=
+eft;color:#4A4A4A;-webkit-text-size-adjust:none;font-family: 'HelveticaNeue=
+-Medium','Helvetica Neue',Helvetica,Arial,sans-serif;">What to Test:</h2>
+            </td>
+        </tr>
+        <tr><td class=3D"cell"><img src=3D"https://itunesconnect.apple.com/=
+itc/images/email/spacer.gif" border=3D"0" alt=3D"" width=3D"1" height=3D"10=
+px"/></td></tr>
+        <tr>
+            <td class=3D"cell" align=3D"left">
+                <pre style=3D"font-size:17px;margin:0;padding:0;text-align:=
+left;color:#4A4A4A;-webkit-text-size-adjust:none;font-family: 'HelveticaNeu=
+e-Light','Helvetica Neue',Helvetica,Arial,sans-serif;white-space: -moz-pre-=
+wrap;white-space: -pre-wrap; white-space: -o-pre-wrap; white-space: pre-wra=
+p; word-wrap: break-word;">- Bug fixes</pre>
+            </td>
+        </tr>
+       =20
+        <tr><td class=3D"cell"><img src=3D"https://itunesconnect.apple.com/=
+itc/images/email/spacer.gif" border=3D"0" alt=3D"" width=3D"1" height=3D"40=
+px"/></td></tr>
+        <tr>
+            <td class=3D"cell" align=3D"center">
+               =20
+               =20
+                    <p style=3D"font-size:17px;margin:0;padding:0;color:#4A=
+4A4A;-webkit-text-size-adjust:none;font-family: 'HelveticaNeue-Light','Helv=
+etica Neue',Helvetica,Arial,sans-serif;text-align: center;">To test this ap=
+p, open <a href=3D'https://testflight.apple.com/v1/app/1442620678?build=3D1=
+87154404' style=3D"text-decoration:none">TestFlight</a> on  your iOS device=
+ using iOS 16.0 or later and install the update.</p>
+               =20
+            </td>
+        </tr>
+        <tr><td class=3D"cell" style=3D"border-bottom:1px solid #e9e9e9"><i=
+mg src=3D"https://itunesconnect.apple.com/itc/images/email/spacer.gif" bord=
+er=3D"0" alt=3D"" width=3D"1" height=3D"40px"/></td></tr>
+        <tr><td class=3D"cell"><img src=3D"https://itunesconnect.apple.com/=
+itc/images/email/spacer.gif" border=3D"0" alt=3D"" width=3D"1" height=3D"20=
+px"/></td></tr>
+        <tr>
+            <td class=3D"cell" align=3D"left">
+                <p style=3D"font-size: 10px;line-height:16px;text-align:lef=
+t;color:#888;-webkit-text-size-adjust:none;font-family:-apple-system, Blink=
+MacSystemFont, sans-serif;">By using Surge 5, you agree that crash data as =
+well as statistics about how you use Surge 5 will be provided to Surge Netw=
+orks Inc. and linked to your email address. Surge Networks Inc. may contact=
+ you regarding this information. Review the TestFlight Terms and Conditions=
+, as well as the terms, policies, and practices of Surge Networks Inc.. Bet=
+a versions of apps may crash or result in data loss.</p>
+            </td>
+        </tr>
+    </table>
+
+
+                       =20
+
+            </td>
+        </tr>
+    </table>
+    <table class=3D"footer_table" width=3D"580" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0" align=3D"center" style=3D"margin-bottom:40px;">
+        <tr>
+            <td class=3D"backgroundcell" style=3D"margin:0px auto;" align=
+=3D"center" width=3D"580">
+                <table cellspacing=3D"0" cellpadding=3D"0" style=3D"margin:=
+ auto;" border=3D"0" width=3D"100%">
+                    <tr>
+                        <td align=3D"center">
+                            <p style=3D"font-size:10px;line-height:16px;col=
+or:#888;-webkit-text-size-adjust:none;margin:0;padding:0;font-family:-apple=
+-system, BlinkMacSystemFont, sans-serif;">
+                                TestFlight is a service provided by Apple.<=
+br/>
+                                <span style=3D"white-space:nowrap;">
+                                    <a style=3D"text-decoration:none;" targ=
+et=3D"_blank" href=3D"https://www.apple.com/legal/internet-services/itunes/=
+">Terms of Service</a>=20
+                                    |=20
+                                    <a style=3D"text-decoration:none;" targ=
+et=3D"_blank" href=3D"http://www.apple.com/legal/privacy/">Privacy Policy</=
+a>=20
+                                   =20
+                                        |=20
+                                        <a style=3D"text-decoration:none;" =
+target=3D"_blank"
+                                           href=3D'mailto:support@nssurge.c=
+om?subject=3DUnsubscribe%20from%20TestFlight&body=3Dliencf@gmail.com%20want=
+s%20to%20stop%20receiving%20TestFlight%20emails%20about%20Surge 5'>
+                                            Unsubscribe
+                                        </a>
+                                   =20
+                                </span>
+                                <br>
+                                Copyright =A9 2025 Apple Inc. <span style=
+=3D"white-space:nowrap;">One Apple Park Way</span><br/>
+                                Cupertino, CA 95014, United States.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+------=_Part_24874959_1994483255.1762612064457--

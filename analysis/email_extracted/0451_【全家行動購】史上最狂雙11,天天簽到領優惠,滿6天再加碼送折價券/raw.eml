@@ -1,0 +1,4267 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:d801:b0:4d4:9739:2b92 with SMTP id of1csp244301mdb;
+        Tue, 4 Nov 2025 18:41:03 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG80p0lTmbM0FO3WUYjBPMssMfYuC/tA+5pMChaHf6vI0+QqtiKbmaE9EbN5Z5VPY9BksEQ
+X-Received: by 2002:a05:6a20:158c:b0:334:8d1f:fa8d with SMTP id adf61e73a8af0-34f83f0cceamr1587619637.18.1762310463470;
+        Tue, 04 Nov 2025 18:41:03 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762310463; cv=none;
+        d=google.com; s=arc-20240605;
+        b=bxDiYEVaPDpmk4et62MuF4w8pbxmbD9/C5ZmvxQBIr101SuwMjNXJNpVfjhtsOJ/lx
+         iKZ2phrMGvA191pIP59R8tzr/woCIjxwrw9Tr5HRxoA5aeKQlIyA1NPLJ3mOe0llfWZi
+         NUbbfACohX6jFEK/1vH1q7HIynnuCun1+6DQ/NiCw1U9pRG/nEqOoubYAu4vVlixe67H
+         W6fKEuOtUgGBu8x52C8wX4ktlcxyHYcZkqe0AEJzGhyYToxOku3N4EvFasHt6Bw74PQJ
+         6BLXGaFQJ3vANftLZUNjljnErb+X59eQmXzk1TMFuwUyu0ONu+CGsyPNHHNa7H/sLp2l
+         9b1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:mime-version:date:content-transfer-encoding:message-id
+         :subject:to:from:dkim-signature:dkim-signature;
+        bh=d8lOcEAQnSF77ktwYZHiIUlQpzH316Lo+RuSEyWpkZA=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=LlZ9/qW6g9+bshDJIMFf0E/OoXBbB4+voxK0g1vN0JZNc0lX17ey8KdTyjwcLLNwrC
+         akUgMJyvoRGwiRwYaMgk1aeRNh+5SHIk8NvzZeN1BzdswlTUeUPnDQ/+0wb8gmglqfqI
+         EBJ00Vq0iFlHuWHo1YQHOnZlfiQ0DurS0ekYyGNDhFKxSwU6K9u9Ov+AgzCCC8gWOXoP
+         i2JdPtpi0je4Rpy9S+emxjeQUI0uBVyfHlLT+3eXhsxUOdTbHhn0MIYnCzsPdbWliIeY
+         XAMGpJ7CdjcQhafRShfmXPldAYAQe5Dg86AP9ux+Ejxf5J1POK1GeBwMkBqJpqAjuvAr
+         PCTw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@info.91app.com header.s=av3uknhc5jqfzmy6nqkieccmgabrcfag header.b=mnupgbux;
+       dkim=pass header.i=@amazonses.com header.s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx header.b=C8cWj0T7;
+       spf=pass (google.com: domain of 0101019a51e39d9b-e7089a68-172a-4b33-afdd-df42361c8a08-000000@sender.info.91app.com designates 54.240.27.32 as permitted sender) smtp.mailfrom=0101019a51e39d9b-e7089a68-172a-4b33-afdd-df42361c8a08-000000@sender.info.91app.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=91app.com
+Return-Path: <0101019a51e39d9b-e7089a68-172a-4b33-afdd-df42361c8a08-000000@sender.info.91app.com>
+Received: from a27-32.smtp-out.us-west-2.amazonses.com (a27-32.smtp-out.us-west-2.amazonses.com. [54.240.27.32])
+        by mx.google.com with ESMTPS id 41be03b00d2f7-b93c00d2860si8354111a12.1131.2025.11.04.18.41.03
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Nov 2025 18:41:03 -0800 (PST)
+Received-SPF: pass (google.com: domain of 0101019a51e39d9b-e7089a68-172a-4b33-afdd-df42361c8a08-000000@sender.info.91app.com designates 54.240.27.32 as permitted sender) client-ip=54.240.27.32;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@info.91app.com header.s=av3uknhc5jqfzmy6nqkieccmgabrcfag header.b=mnupgbux;
+       dkim=pass header.i=@amazonses.com header.s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx header.b=C8cWj0T7;
+       spf=pass (google.com: domain of 0101019a51e39d9b-e7089a68-172a-4b33-afdd-df42361c8a08-000000@sender.info.91app.com designates 54.240.27.32 as permitted sender) smtp.mailfrom=0101019a51e39d9b-e7089a68-172a-4b33-afdd-df42361c8a08-000000@sender.info.91app.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=91app.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=av3uknhc5jqfzmy6nqkieccmgabrcfag; d=info.91app.com; t=1762310463;
+	i=@e.info.91app.com;
+	h=Content-Type:From:To:Subject:Message-ID:Content-Transfer-Encoding:Date:MIME-Version;
+	bh=npw07apyDC+al18xCnueY4b9LmXfY/FJhDJlH0Fq+lI=;
+	b=mnupgbuxxp17kp6FoPmBEur4nLSs98HHpNceo8gcWM09cyHiUPHLLQALhHcKwJac
+	QTLLECMn1tjjo32vtuaZLHsmIdviEf31UDx53ZVlIR6mry0KTAeQuwjpiQXm32ouVqd
+	Fz7RBD2kl2fVsnKFeLMgHOtVb2f7La5dDhM59OzGZtpcgMawR8zp6jc4jH/fInGaC0N
+	MN8yn1ROtNI36NllWvB3+axC5N8UBQd7wXZ0gT2GTB4vtf5EqBGkpQlMbdKPGDiEsDb
+	CrtwzA0I0Nv4Eor3LrqKLuxOXm+CvyBA78sbDJCzBCOtxQPu7sx4B6vZ0T2WgfAk3gi
+	Rt6974rlKw==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx; d=amazonses.com; t=1762310463;
+	h=Content-Type:From:To:Subject:Message-ID:Content-Transfer-Encoding:Date:MIME-Version:Feedback-ID;
+	bh=npw07apyDC+al18xCnueY4b9LmXfY/FJhDJlH0Fq+lI=;
+	b=C8cWj0T7iDLpf6Kiol8uydPGknuGGmFLBnE5sVi8uSF7D2ZudF51lnx4qbvTp9mY
+	fjiMDBXjLh3O/z/Z2Fl8o0ufpJZNF+FwPi/06l5kLKfUIMt1H3pq1LWXtKsM7mxTLCD
+	to2iGOpM+sQ6GpzI3P9WzxqLQEpOnL2gYjqJOeXA=
+Content-Type: text/html; charset=utf-8
+From: =?UTF-8?B?5YWo5a626KGM5YuV6LO8?= <service.member@e.info.91app.com>
+To: liencf@gmail.com
+Subject: =?UTF-8?B?44CQ5YWo5a626KGM5YuV6LO844CR5Y+y5LiK5pyA?=
+ =?UTF-8?B?54uC6ZuZMTHvvIzlpKnlpKnnsL3liLDpoJjlhKo=?=
+ =?UTF-8?B?5oOg77yM5ru/NuWkqeWGjeWKoOeivOmAgeaKmA==?= =?UTF-8?B?5YO55Yi4?=
+Message-ID: <0101019a51e39d9b-e7089a68-172a-4b33-afdd-df42361c8a08-000000@us-west-2.amazonses.com>
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 5 Nov 2025 02:41:02 +0000
+MIME-Version: 1.0
+Feedback-ID: ::1.us-west-2.eLdNtYN5oHumguccsh4xf8MlugsT/afuT3LdmqNa0/Q=:AmazonSES
+X-SES-Outgoing: 2025.11.05-54.240.27.32
+
+<!doctype html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microso=
+ft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office">
+  <head>
+    <title></title>
+    <!--[if !mso]><!-->
+    <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+    <!--<![endif]-->
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8=
+">
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1">
+    <style type=3D"text/css">
+      #outlook a { padding:0; }
+      body { margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size=
+-adjust:100%; }
+      table, td { border-collapse:collapse;mso-table-lspace:0pt;mso-table-r=
+space:0pt; }
+      img { border:0;height:auto;line-height:100%; outline:none;text-decora=
+tion:none;-ms-interpolation-mode:bicubic; }
+      p { display:block;margin:13px 0; }
+    </style>
+    <!--[if mso]>
+    <noscript>
+    <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+    </xml>
+    </noscript>
+    <![endif]-->
+    <!--[if lte mso 11]>
+    <style type=3D"text/css">
+      .mj-outlook-group-fix { width:100% !important; }
+    </style>
+    <![endif]-->
+   =20
+      <!--[if !mso]><!-->
+        <link href=3D"https://fonts.googleapis.com/css?family=3DRoboto:300,=
+400,500,700" rel=3D"stylesheet" type=3D"text/css">
+<link href=3D"https://fonts.googleapis.com/css?family=3DUbuntu:300,400,500,=
+700" rel=3D"stylesheet" type=3D"text/css">
+        <style type=3D"text/css">
+          @import url(https://fonts.googleapis.com/css?family=3DRoboto:300,=
+400,500,700);
+@import url(https://fonts.googleapis.com/css?family=3DUbuntu:300,400,500,70=
+0);
+        </style>
+      <!--<![endif]-->
+
+   =20
+   =20
+    <style type=3D"text/css">
+      @media only screen and (min-width:480px) {
+        .mj-column-per-22 { width:22% !important; max-width: 22%; }
+.mj-column-per-100 { width:100% !important; max-width: 100%; }
+.mj-column-per-50 { width:50% !important; max-width: 50%; }
+.mj-column-per-9 { width:9% !important; max-width: 9%; }
+      }
+    </style>
+    <style media=3D"screen and (min-width:480px)">
+      .moz-text-html .mj-column-per-22 { width:22% !important; max-width: 2=
+2%; }
+.moz-text-html .mj-column-per-100 { width:100% !important; max-width: 100%;=
+ }
+.moz-text-html .mj-column-per-50 { width:50% !important; max-width: 50%; }
+.moz-text-html .mj-column-per-9 { width:9% !important; max-width: 9%; }
+    </style>
+   =20
+ =20
+    <style type=3D"text/css">
+   =20
+   =20
+
+    @media only screen and (max-width:479px) {
+      table.mj-full-width-mobile { width: 100% !important; }
+      td.mj-full-width-mobile { width: auto !important; }
+    }
+ =20
+    </style>
+    <style type=3D"text/css">
+   =20
+    </style>
+   =20
+  </head>
+  <body style=3D"word-spacing:normal;background-color:#efeeea;">
+   =20
+   =20
+      <div
+         style=3D"background-color:#efeeea;"
+      >
+       =20
+     =20
+      <!--[if mso | IE]><table align=3D"center" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px=
+;" width=3D"600" bgcolor=3D"transparent" ><tr><td style=3D"line-height:0px;=
+font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:2=
+0px 0px 0px 0px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" width=3D"600px" ><t=
+able align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"" role=3D"presentation" style=3D"width:600px;" width=3D"600" bgcolor=
+=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-h=
+eight-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0px 0px 0px 0=
+px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><![endif]-->
+      <div style=3D"
+                    font-size: 0px;
+                    line-height: 0px;
+                    mso-line-height-rule: exactly;
+                    display: none;
+                    max-width: 0px;
+                    max-height: 0px;
+                    opacity: 0;
+                    overflow: hidden;
+                    mso-hide: all;
+                  ">=E9=80=A3=E5=BF=97=E5=B3=B0
+                </div>
+
+      <!--[if mso | IE]></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table><table align=3D"center" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation" st=
+yle=3D"width:600px;" width=3D"600" bgcolor=3D"#4a90e2" ><tr><td style=3D"li=
+ne-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#4a90e2;background-color:#4a90e2;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#4a90e2;background-color:#4a90e=
+2;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:20px 0px 20px=
+ 0px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" width=3D"600px" ><t=
+able align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"" role=3D"presentation" style=3D"width:600px;" width=3D"600" bgcolor=
+=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-h=
+eight-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0px;text-alig=
+n:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:132px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-22 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0px 0px =
+0px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:132px;">
+             =20
+      <img
+         src=3D"https://cms.cdn.91app.com/images/original/360/df4ae7f4-300e=
+-4eb0-a42e-73f59aaf27e1-1559645126-bui3p3tgjp_desktop.png" style=3D"border:=
+0;display:block;outline:none;text-decoration:none;height:auto;width:100%;fo=
+nt-size:13px;" width=3D"132" height=3D"auto"
+      />
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table><table align=3D"center" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation" st=
+yle=3D"width:600px;" width=3D"600" bgcolor=3D"#ffffff" ><tr><td style=3D"li=
+ne-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#ffffff;background-color:#ffffff;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#ffffff;background-color:#fffff=
+f;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:0=
+px 0px 20px 0px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" width=3D"600px" ><t=
+able align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"" role=3D"presentation" style=3D"width:600px;" width=3D"600" bgcolor=
+=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-h=
+eight-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0px;text-alig=
+n:left;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"left" style=3D"background:#ffffff;font-size:0px=
+;padding:10px25px10px25px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.7;text-align:left;=
+color:#000000;"
+      ><div style=3D"text-align:center;"><font size=3D"6"><b>=E9=80=B2=E7=
+=AB=99=E7=B0=BD=E5=88=B0=E6=8B=BF=E5=A5=BD=E5=BA=B7</b></font></div><div st=
+yle=3D"text-align:center;"><font size=3D"6"><b>$1=E5=85=83=E5=95=86=E5=93=
+=81=E5=A4=A9=E5=A4=A9=E6=90=B6</b></font></div></div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px;" width=3D=
+"600" bgcolor=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0=
+px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0px;text-alig=
+n:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#ffffff;font-size:0=
+px;padding:0px 0px 0px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:600px;">
+             =20
+        <a
+           href=3D"https://mart.family.com.tw/v2/GameModule/360/gpc001/GC20=
+25103000562?utm_id&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%=
+96%E8%BA%AB&amp;utm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketin=
+g&amp;utm_campaign&#x3D;79710" target=3D"_blank"
+        >
+         =20
+      <img
+         src=3D"https://static.91app.com/marketing-cloud/publish/personaliz=
+e-marketing/TW/360/785a3751-9744-4848-9d89-71bd8b4f4693.jpeg" style=3D"bord=
+er:0;display:block;outline:none;text-decoration:none;height:auto;width:100%=
+;font-size:13px;" width=3D"600" height=3D"auto"
+      />
+   =20
+        </a>
+     =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px;" width=3D=
+"600" bgcolor=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0=
+px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0px;text-alig=
+n:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#ffffff;font-size:0=
+px;padding:0px 0px 0px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:600px;">
+             =20
+        <a
+           href=3D"https://mart.family.com.tw/page/snapup2025?utm_id&#x3D;2=
+257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB&amp;utm_mediu=
+m&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_campaign&#x3D;7=
+9710" target=3D"_blank"
+        >
+         =20
+      <img
+         src=3D"https://static.91app.com/marketing-cloud/publish/personaliz=
+e-marketing/TW/360/b8547910-5a3f-4f81-b1b6-98ba147be3fc.jpeg" style=3D"bord=
+er:0;display:block;outline:none;text-decoration:none;height:auto;width:100%=
+;font-size:13px;" width=3D"600" height=3D"auto"
+      />
+   =20
+        </a>
+     =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px;" width=3D=
+"600" bgcolor=3D"#ffffff" ><tr><td style=3D"line-height:0px;font-size:0px;m=
+so-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#ffffff;background-color:#ffffff;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#ffffff;background-color:#fffff=
+f;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:2=
+0px 0px 20px 0px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0;line-height:0;text-align:left;display:inline-block;width:100%;direction=
+:ltr;vertical-align:top;"
+      >
+        <!--[if mso | IE]><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" ><tr><td style=3D"vertical-align:top;width:300=
+px;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"vertical-align:top;padding:0px 0px 0px 0px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#ffffff;font-size:0=
+px;padding:0px 0px 0px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:300px;">
+             =20
+        <a
+           href=3D"https://mart.family.com.tw/SalePage/Index/11270245?utm_i=
+d&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB&amp;u=
+tm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_campaig=
+n&#x3D;79710" target=3D"_blank"
+        >
+         =20
+      <img
+         src=3D"https://static.91app.com/marketing-cloud/publish/personaliz=
+e-marketing/TW/360/9cbb6318-d726-4c1e-ac5c-fda1e967b0d2.jpeg" style=3D"bord=
+er:0;display:block;outline:none;text-decoration:none;height:auto;width:100%=
+;font-size:13px;" width=3D"300" height=3D"auto"
+      />
+   =20
+        </a>
+     =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td><td style=3D"vertical-align:top;width:=
+300px;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#ffffff;font-size:0=
+px;padding:0px 0px 0px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:300px;">
+             =20
+        <a
+           href=3D"https://mart.family.com.tw/SalePage/Index/11270245?utm_i=
+d&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB&amp;u=
+tm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_campaig=
+n&#x3D;79710" target=3D"_blank"
+        >
+         =20
+      <img
+         src=3D"https://static.91app.com/marketing-cloud/publish/personaliz=
+e-marketing/TW/360/829ae926-7ee6-4e06-b79c-f21b6887cf08.jpeg" style=3D"bord=
+er:0;display:block;outline:none;text-decoration:none;height:auto;width:100%=
+;font-size:13px;" width=3D"300" height=3D"auto"
+      />
+   =20
+        </a>
+     =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td></tr></table><![endif]-->
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px;" width=3D=
+"600" bgcolor=3D"#ffffff" ><tr><td style=3D"line-height:0px;font-size:0px;m=
+so-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#ffffff;background-color:#ffffff;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#ffffff;background-color:#fffff=
+f;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:2=
+0px 0px 20px 0px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0;line-height:0;text-align:left;display:inline-block;width:100%;direction=
+:ltr;vertical-align:top;"
+      >
+        <!--[if mso | IE]><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" ><tr><td style=3D"vertical-align:top;width:300=
+px;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"left" style=3D"background:#ffffff;font-size:0px=
+;padding:10px 25px 10px 25px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.7;text-align:left;=
+color:#000000;"
+      >=E3=80=9011=E5=85=83=E6=90=B6=E8=B3=BC=E3=80=91=E5=85=A8=E5=AE=B6=E6=
+=96=B0=E7=86=B1=E4=BB=99=E5=A5=B3=E9=86=87=E5=A5=B6=E8=8C=B6(=E5=A4=A7=E6=
+=9D=AF*1=E6=9D=AF)</div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td><td style=3D"vertical-align:top;width:=
+300px;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"left" style=3D"background:#ffffff;font-size:0px=
+;padding:10px 25px 10px 25px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.7;text-align:left;=
+color:#000000;"
+      >=E3=80=9011=E5=85=83=E6=90=B6=E8=B3=BC=E3=80=91=E5=A4=A7=E9=BA=A5=E5=
+=85=8B(=E4=B8=80=E4=BB=BD)</div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td></tr></table><![endif]-->
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px;" width=3D=
+"600" bgcolor=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0=
+px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0px;text-alig=
+n:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#ffffff;font-size:0=
+px;padding:0px 0px 0px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:600px;">
+             =20
+        <a
+           href=3D"https://mart.family.com.tw/v2/official/SalePageCategory/=
+575102?sortMode&#x3D;Curator&amp;utm_id&#x3D;2257376&amp;utm_term&#x3D;2511=
+05_%E9%9B%9911%E6%9A%96%E8%BA%AB&amp;utm_medium&#x3D;E-mail&amp;utm_source&=
+#x3D;CampaignMarketing&amp;utm_campaign&#x3D;79710" target=3D"_blank"
+        >
+         =20
+      <img
+         src=3D"https://static.91app.com/marketing-cloud/publish/personaliz=
+e-marketing/TW/360/72345548-e62e-4669-bd81-c40af8274168.jpeg" style=3D"bord=
+er:0;display:block;outline:none;text-decoration:none;height:auto;width:100%=
+;font-size:13px;" width=3D"600" height=3D"auto"
+      />
+   =20
+        </a>
+     =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px;" width=3D=
+"600" bgcolor=3D"#FFFFFF" ><tr><td style=3D"line-height:0px;font-size:0px;m=
+so-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#FFFFFF;background-color:#FFFFFF;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#FFFFFF;background-color:#FFFFF=
+F;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:2=
+0px 0px 0px 0px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+       =20
+          <!--[if mso | IE]><tr><td class=3D"" width=3D"600px" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:600px;" width=3D"600" bgcolor=3D"#FFFFFF=
+" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exac=
+tly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#FFFFFF;background-color:#FFFFFF;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#FFFFFF;background-color:#FFFFF=
+F;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:0=
+px 10px 0px 10px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:580px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0;line-height:0;text-align:left;display:inline-block;width:100%;direction=
+:ltr;vertical-align:top;"
+      >
+        <!--[if mso | IE]><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" ><tr><![endif]-->
+         =20
+              <!--[if mso | IE]><td style=3D"vertical-align:top;width:290px=
+;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"border:none;vertical-align:top;padding:6px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+          <!--[if mso | IE]><v:rect xmlns:v=3D"urn:schemas-microsoft-com:vm=
+l" fill=3D"true" stroke=3D"false" style=3D"width:100%; height:300px"><v:fil=
+l type=3D"tile" src=3D"https://mkt-api.91app.com/mkt-image-processor/combin=
+e?imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2F=
+SalePage%2F10609990%2F0%2F638972369938630000%3Fv%3D1&amp;imgUrls&#x3D;https=
+%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FProductBadge%2F69605=
+%2FratioOneToOne%2F638978204109371600%3Fv%3D1&amp;width&#x3D;500&amp;height=
+&#x3D;500&amp;objectFit&#x3D;cover&amp;key&#x3D;214f2ea1e3b359f67b2cd89f197=
+16fad02ee66b91c95720a7a6aa125d0fe622e" color=3D"#f3f3f3" /><v:textbox inset=
+=3D"0,0,0,0" style=3D"mso-fit-shape-to-text:true;"><div><img width=3D"100%"=
+ src=3D"" style=3D"" /></div></v:textbox></v:rect><![endif]-->
+        <!--[if !mso]><!--><div style=3D"position:relative;"><div style=3D"=
+position: relative; overflow: hidden; aspect-ratio:1/1"><img src=3D"https:/=
+/mkt-api.91app.com/mkt-image-processor/combine?imgUrls&#x3D;https%3A%2F%2Fi=
+mg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FSalePage%2F10609990%2F0%2F6389=
+72369938630000%3Fv%3D1&amp;imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebap=
+i%2FimagesV3%2FCropped%2FProductBadge%2F69605%2FratioOneToOne%2F63897820410=
+9371600%3Fv%3D1&amp;width&#x3D;500&amp;height&#x3D;500&amp;objectFit&#x3D;c=
+over&amp;key&#x3D;214f2ea1e3b359f67b2cd89f19716fad02ee66b91c95720a7a6aa125d=
+0fe622e" class=3D"product-image" style=3D"width: 100%; "/></div><div style=
+=3D"position:absolute; top:0; left:0; width: 100%; height: 100%; overflow:h=
+idden;"><img width=3D"100%" src=3D"" style=3D"" /></div></div><!--<![endif]=
+-->              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:10px 12px 0px 12px ;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(0, 0, 0);"
+      >=E3=80=90=E7=9A=AE=E5=85=8B=E6=95=8F=E3=80=91=E6=96=87=E4=BB=B6=E5=
+=A4=BE/=E4=BE=BF=E6=A2=9D=E7=B4=99(1=E5=80=8Bx...</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;letter-spacing:0;line-height:1.8=
+;text-align:center;text-decoration:line-through;color:#FFFFFF;"
+      >-</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:16px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(255, 83, 83);"
+      >NT$70</div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"back=
+ground:#FFFFFF;font-size:0px;padding:12px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"rgb(255, 83, 83)" role=3D"presen=
+tation" style=3D"border:none;border-radius:3px;cursor:auto;mso-padding-alt:=
+10px 25px;text-align:center;background:rgb(255, 83, 83);" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://mart.family.com.tw/SalePage/Index/10609990=
+?utm_id&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB=
+&amp;utm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_c=
+ampaign&#x3D;79710" style=3D"display:inline-block;background:rgb(255, 83, 8=
+3);color:rgb(255, 255, 255);font-family:-apple-system,BlinkMacSystemFont,'S=
+egoeUI','Roboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','Helv=
+eticaNeue',sans-serif;font-size:13px;font-weight:normal;line-height:120%;ma=
+rgin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-paddi=
+ng-alt:0px;border-radius:3px;" target=3D"_blank"
+              >
+                =E5=89=8D=E5=BE=80=E9=81=B8=E8=B3=BC
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td><![endif]-->
+         =20
+              <!--[if mso | IE]><td style=3D"vertical-align:top;width:290px=
+;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"border:none;vertical-align:top;padding:6px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+          <!--[if mso | IE]><v:rect xmlns:v=3D"urn:schemas-microsoft-com:vm=
+l" fill=3D"true" stroke=3D"false" style=3D"width:100%; height:300px"><v:fil=
+l type=3D"tile" src=3D"https://mkt-api.91app.com/mkt-image-processor/combin=
+e?imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2F=
+SalePage%2F10926430%2F0%2F638972370518400000%3Fv%3D1&amp;imgUrls&#x3D;https=
+%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FProductBadge%2F69606=
+%2FratioOneToOne%2F638978204376889890%3Fv%3D1&amp;width&#x3D;500&amp;height=
+&#x3D;500&amp;objectFit&#x3D;cover&amp;key&#x3D;04639f663b720582260161f244b=
+efa771824fd57798758271c59491378fed581" color=3D"#f3f3f3" /><v:textbox inset=
+=3D"0,0,0,0" style=3D"mso-fit-shape-to-text:true;"><div><img width=3D"100%"=
+ src=3D"" style=3D"" /></div></v:textbox></v:rect><![endif]-->
+        <!--[if !mso]><!--><div style=3D"position:relative;"><div style=3D"=
+position: relative; overflow: hidden; aspect-ratio:1/1"><img src=3D"https:/=
+/mkt-api.91app.com/mkt-image-processor/combine?imgUrls&#x3D;https%3A%2F%2Fi=
+mg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FSalePage%2F10926430%2F0%2F6389=
+72370518400000%3Fv%3D1&amp;imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebap=
+i%2FimagesV3%2FCropped%2FProductBadge%2F69606%2FratioOneToOne%2F63897820437=
+6889890%3Fv%3D1&amp;width&#x3D;500&amp;height&#x3D;500&amp;objectFit&#x3D;c=
+over&amp;key&#x3D;04639f663b720582260161f244befa771824fd57798758271c5949137=
+8fed581" class=3D"product-image" style=3D"width: 100%; "/></div><div style=
+=3D"position:absolute; top:0; left:0; width: 100%; height: 100%; overflow:h=
+idden;"><img width=3D"100%" src=3D"" style=3D"" /></div></div><!--<![endif]=
+-->              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:10px 12px 0px 12px ;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(0, 0, 0);"
+      >=E3=80=90A1=E3=80=91=E9=A6=AC=E4=BE=86=E8=A5=BF=E4=BA=9E=E6=8E=92=E9=
+=AA=A8=E8=8C=B6=E9=A2=A8=E5=91=B3=E9=BA=B5(9...</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;text-decoration:line-through;color:rgb(153, 153, 153);"
+      >NT$189</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:16px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(255, 83, 83);"
+      >NT$175</div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"back=
+ground:#FFFFFF;font-size:0px;padding:12px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"rgb(255, 83, 83)" role=3D"presen=
+tation" style=3D"border:none;border-radius:3px;cursor:auto;mso-padding-alt:=
+10px 25px;text-align:center;background:rgb(255, 83, 83);" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://mart.family.com.tw/SalePage/Index/10926430=
+?utm_id&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB=
+&amp;utm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_c=
+ampaign&#x3D;79710" style=3D"display:inline-block;background:rgb(255, 83, 8=
+3);color:rgb(255, 255, 255);font-family:-apple-system,BlinkMacSystemFont,'S=
+egoeUI','Roboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','Helv=
+eticaNeue',sans-serif;font-size:13px;font-weight:normal;line-height:120%;ma=
+rgin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-paddi=
+ng-alt:0px;border-radius:3px;" target=3D"_blank"
+              >
+                =E5=89=8D=E5=BE=80=E9=81=B8=E8=B3=BC
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td><![endif]-->
+         =20
+        <!--[if mso | IE]></tr></table><![endif]-->
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+       =20
+          <!--[if mso | IE]><tr><td class=3D"" width=3D"600px" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:600px;" width=3D"600" bgcolor=3D"#FFFFFF=
+" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exac=
+tly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#FFFFFF;background-color:#FFFFFF;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#FFFFFF;background-color:#FFFFF=
+F;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:0=
+px 10px 0px 10px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:580px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0;line-height:0;text-align:left;display:inline-block;width:100%;direction=
+:ltr;vertical-align:top;"
+      >
+        <!--[if mso | IE]><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" ><tr><![endif]-->
+         =20
+              <!--[if mso | IE]><td style=3D"vertical-align:top;width:290px=
+;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"border:none;vertical-align:top;padding:6px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+          <!--[if mso | IE]><v:rect xmlns:v=3D"urn:schemas-microsoft-com:vm=
+l" fill=3D"true" stroke=3D"false" style=3D"width:100%; height:300px"><v:fil=
+l type=3D"tile" src=3D"https://mkt-api.91app.com/mkt-image-processor/combin=
+e?imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2F=
+SalePage%2F10588503%2F0%2F638978450004000000%3Fv%3D1&amp;imgUrls&#x3D;https=
+%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FProductBadge%2F69606=
+%2FratioOneToOne%2F638978204376889890%3Fv%3D1&amp;width&#x3D;500&amp;height=
+&#x3D;500&amp;objectFit&#x3D;cover&amp;key&#x3D;8fc6c3a15c75f56f17cdc3436fa=
+172a5975bf76b4d45273309715c71a2c6c25c" color=3D"#f3f3f3" /><v:textbox inset=
+=3D"0,0,0,0" style=3D"mso-fit-shape-to-text:true;"><div><img width=3D"100%"=
+ src=3D"" style=3D"" /></div></v:textbox></v:rect><![endif]-->
+        <!--[if !mso]><!--><div style=3D"position:relative;"><div style=3D"=
+position: relative; overflow: hidden; aspect-ratio:1/1"><img src=3D"https:/=
+/mkt-api.91app.com/mkt-image-processor/combine?imgUrls&#x3D;https%3A%2F%2Fi=
+mg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FSalePage%2F10588503%2F0%2F6389=
+78450004000000%3Fv%3D1&amp;imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebap=
+i%2FimagesV3%2FCropped%2FProductBadge%2F69606%2FratioOneToOne%2F63897820437=
+6889890%3Fv%3D1&amp;width&#x3D;500&amp;height&#x3D;500&amp;objectFit&#x3D;c=
+over&amp;key&#x3D;8fc6c3a15c75f56f17cdc3436fa172a5975bf76b4d45273309715c71a=
+2c6c25c" class=3D"product-image" style=3D"width: 100%; "/></div><div style=
+=3D"position:absolute; top:0; left:0; width: 100%; height: 100%; overflow:h=
+idden;"><img width=3D"100%" src=3D"" style=3D"" /></div></div><!--<![endif]=
+-->              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:10px 12px 0px 12px ;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(0, 0, 0);"
+      >114/11/07=E8=B5=B7=E9=99=B8=E7=BA=8C=E5=87=BA=E8=B2=A8=E3=80=90=E5=
+=86=B7=E8=97=8F=E5=BA=97...</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;text-decoration:line-through;color:rgb(153, 153, 153);"
+      >NT$252</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:16px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(255, 83, 83);"
+      >NT$229</div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"back=
+ground:#FFFFFF;font-size:0px;padding:12px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"rgb(255, 83, 83)" role=3D"presen=
+tation" style=3D"border:none;border-radius:3px;cursor:auto;mso-padding-alt:=
+10px 25px;text-align:center;background:rgb(255, 83, 83);" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://mart.family.com.tw/SalePage/Index/10588503=
+?utm_id&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB=
+&amp;utm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_c=
+ampaign&#x3D;79710" style=3D"display:inline-block;background:rgb(255, 83, 8=
+3);color:rgb(255, 255, 255);font-family:-apple-system,BlinkMacSystemFont,'S=
+egoeUI','Roboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','Helv=
+eticaNeue',sans-serif;font-size:13px;font-weight:normal;line-height:120%;ma=
+rgin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-paddi=
+ng-alt:0px;border-radius:3px;" target=3D"_blank"
+              >
+                =E5=89=8D=E5=BE=80=E9=81=B8=E8=B3=BC
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td><![endif]-->
+         =20
+              <!--[if mso | IE]><td style=3D"vertical-align:top;width:290px=
+;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"border:none;vertical-align:top;padding:6px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+          <!--[if mso | IE]><v:rect xmlns:v=3D"urn:schemas-microsoft-com:vm=
+l" fill=3D"true" stroke=3D"false" style=3D"width:100%; height:300px"><v:fil=
+l type=3D"tile" src=3D"https://mkt-api.91app.com/mkt-image-processor/combin=
+e?imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2F=
+SalePage%2F8220755%2F0%2F638972372543270000%3Fv%3D1&amp;imgUrls&#x3D;https%=
+3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FProductBadge%2F69607%=
+2FratioOneToOne%2F638978204570672420%3Fv%3D1&amp;width&#x3D;500&amp;height&=
+#x3D;500&amp;objectFit&#x3D;cover&amp;key&#x3D;5350de92fa16e795f63b2706684d=
+10cae9eade532046b1117331ed3c66d7d658" color=3D"#f3f3f3" /><v:textbox inset=
+=3D"0,0,0,0" style=3D"mso-fit-shape-to-text:true;"><div><img width=3D"100%"=
+ src=3D"" style=3D"" /></div></v:textbox></v:rect><![endif]-->
+        <!--[if !mso]><!--><div style=3D"position:relative;"><div style=3D"=
+position: relative; overflow: hidden; aspect-ratio:1/1"><img src=3D"https:/=
+/mkt-api.91app.com/mkt-image-processor/combine?imgUrls&#x3D;https%3A%2F%2Fi=
+mg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FSalePage%2F8220755%2F0%2F63897=
+2372543270000%3Fv%3D1&amp;imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebapi=
+%2FimagesV3%2FCropped%2FProductBadge%2F69607%2FratioOneToOne%2F638978204570=
+672420%3Fv%3D1&amp;width&#x3D;500&amp;height&#x3D;500&amp;objectFit&#x3D;co=
+ver&amp;key&#x3D;5350de92fa16e795f63b2706684d10cae9eade532046b1117331ed3c66=
+d7d658" class=3D"product-image" style=3D"width: 100%; "/></div><div style=
+=3D"position:absolute; top:0; left:0; width: 100%; height: 100%; overflow:h=
+idden;"><img width=3D"100%" src=3D"" style=3D"" /></div></div><!--<![endif]=
+-->              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:10px 12px 0px 12px ;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(0, 0, 0);"
+      >=E3=80=90=E7=99=BD=E8=98=AD=E6=B0=8F=E3=80=91=E9=97=9C=E9=8D=B5=E6=
+=B4=BB=E8=BA=8D=E9=9B=9E=E7=B2=BE=EF=BC=98=E5=85=A5(...</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;text-decoration:line-through;color:rgb(153, 153, 153);"
+      >NT$640</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:16px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(255, 83, 83);"
+      >NT$620</div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"back=
+ground:#FFFFFF;font-size:0px;padding:12px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"rgb(255, 83, 83)" role=3D"presen=
+tation" style=3D"border:none;border-radius:3px;cursor:auto;mso-padding-alt:=
+10px 25px;text-align:center;background:rgb(255, 83, 83);" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://mart.family.com.tw/SalePage/Index/8220755?=
+utm_id&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB&=
+amp;utm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_ca=
+mpaign&#x3D;79710" style=3D"display:inline-block;background:rgb(255, 83, 83=
+);color:rgb(255, 255, 255);font-family:-apple-system,BlinkMacSystemFont,'Se=
+goeUI','Roboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','Helve=
+ticaNeue',sans-serif;font-size:13px;font-weight:normal;line-height:120%;mar=
+gin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-paddin=
+g-alt:0px;border-radius:3px;" target=3D"_blank"
+              >
+                =E5=89=8D=E5=BE=80=E9=81=B8=E8=B3=BC
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td><![endif]-->
+         =20
+        <!--[if mso | IE]></tr></table><![endif]-->
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+       =20
+          <!--[if mso | IE]><tr><td class=3D"" width=3D"600px" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:600px;" width=3D"600" bgcolor=3D"#FFFFFF=
+" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exac=
+tly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#FFFFFF;background-color:#FFFFFF;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#FFFFFF;background-color:#FFFFF=
+F;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:0=
+px 10px 0px 10px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:580px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0;line-height:0;text-align:left;display:inline-block;width:100%;direction=
+:ltr;vertical-align:top;"
+      >
+        <!--[if mso | IE]><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" ><tr><![endif]-->
+         =20
+              <!--[if mso | IE]><td style=3D"vertical-align:top;width:290px=
+;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"border:none;vertical-align:top;padding:6px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+          <!--[if mso | IE]><v:rect xmlns:v=3D"urn:schemas-microsoft-com:vm=
+l" fill=3D"true" stroke=3D"false" style=3D"width:100%; height:300px"><v:fil=
+l type=3D"tile" src=3D"https://mkt-api.91app.com/mkt-image-processor/combin=
+e?imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2F=
+SalePage%2F10378317%2F0%2F638972373176330000%3Fv%3D1&amp;imgUrls&#x3D;https=
+%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FProductBadge%2F69608=
+%2FratioOneToOne%2F638978204714881250%3Fv%3D1&amp;width&#x3D;500&amp;height=
+&#x3D;500&amp;objectFit&#x3D;cover&amp;key&#x3D;2c6106fd5d60c7dcff4c7b3d9d4=
+eb1ec8d0daa1c39510369aa9db1cd6f8e4e28" color=3D"#f3f3f3" /><v:textbox inset=
+=3D"0,0,0,0" style=3D"mso-fit-shape-to-text:true;"><div><img width=3D"100%"=
+ src=3D"" style=3D"" /></div></v:textbox></v:rect><![endif]-->
+        <!--[if !mso]><!--><div style=3D"position:relative;"><div style=3D"=
+position: relative; overflow: hidden; aspect-ratio:1/1"><img src=3D"https:/=
+/mkt-api.91app.com/mkt-image-processor/combine?imgUrls&#x3D;https%3A%2F%2Fi=
+mg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FSalePage%2F10378317%2F0%2F6389=
+72373176330000%3Fv%3D1&amp;imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebap=
+i%2FimagesV3%2FCropped%2FProductBadge%2F69608%2FratioOneToOne%2F63897820471=
+4881250%3Fv%3D1&amp;width&#x3D;500&amp;height&#x3D;500&amp;objectFit&#x3D;c=
+over&amp;key&#x3D;2c6106fd5d60c7dcff4c7b3d9d4eb1ec8d0daa1c39510369aa9db1cd6=
+f8e4e28" class=3D"product-image" style=3D"width: 100%; "/></div><div style=
+=3D"position:absolute; top:0; left:0; width: 100%; height: 100%; overflow:h=
+idden;"><img width=3D"100%" src=3D"" style=3D"" /></div></div><!--<![endif]=
+-->              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:10px 12px 0px 12px ;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(0, 0, 0);"
+      >=E3=80=90=E6=AC=A3=E8=91=89=E7=94=9F=E6=B4=BB=E5=BB=9A=E6=88=BF=E3=
+=80=91=E5=8F=B0=E5=BC=8F=E7=82=92=E7=82=8A=E7=B2=89(3...</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;text-decoration:line-through;color:rgb(153, 153, 153);"
+      >NT$199</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:16px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(255, 83, 83);"
+      >NT$159</div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"back=
+ground:#FFFFFF;font-size:0px;padding:12px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"rgb(255, 83, 83)" role=3D"presen=
+tation" style=3D"border:none;border-radius:3px;cursor:auto;mso-padding-alt:=
+10px 25px;text-align:center;background:rgb(255, 83, 83);" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://mart.family.com.tw/SalePage/Index/10378317=
+?utm_id&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB=
+&amp;utm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_c=
+ampaign&#x3D;79710" style=3D"display:inline-block;background:rgb(255, 83, 8=
+3);color:rgb(255, 255, 255);font-family:-apple-system,BlinkMacSystemFont,'S=
+egoeUI','Roboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','Helv=
+eticaNeue',sans-serif;font-size:13px;font-weight:normal;line-height:120%;ma=
+rgin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-paddi=
+ng-alt:0px;border-radius:3px;" target=3D"_blank"
+              >
+                =E5=89=8D=E5=BE=80=E9=81=B8=E8=B3=BC
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td><![endif]-->
+         =20
+              <!--[if mso | IE]><td style=3D"vertical-align:top;width:290px=
+;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"border:none;vertical-align:top;padding:6px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+          <!--[if mso | IE]><v:rect xmlns:v=3D"urn:schemas-microsoft-com:vm=
+l" fill=3D"true" stroke=3D"false" style=3D"width:100%; height:300px"><v:fil=
+l type=3D"tile" src=3D"https://mkt-api.91app.com/mkt-image-processor/combin=
+e?imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2F=
+SalePage%2F11215574%2F0%2F638972373717930000%3Fv%3D1&amp;imgUrls&#x3D;https=
+%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FProductBadge%2F69609=
+%2FratioOneToOne%2F638978204885021740%3Fv%3D1&amp;width&#x3D;500&amp;height=
+&#x3D;500&amp;objectFit&#x3D;cover&amp;key&#x3D;d43737ffcbc9ac7c79b2afc96a8=
+44849d82ac02ab3d5cc62971a3ee7338ed91e" color=3D"#f3f3f3" /><v:textbox inset=
+=3D"0,0,0,0" style=3D"mso-fit-shape-to-text:true;"><div><img width=3D"100%"=
+ src=3D"" style=3D"" /></div></v:textbox></v:rect><![endif]-->
+        <!--[if !mso]><!--><div style=3D"position:relative;"><div style=3D"=
+position: relative; overflow: hidden; aspect-ratio:1/1"><img src=3D"https:/=
+/mkt-api.91app.com/mkt-image-processor/combine?imgUrls&#x3D;https%3A%2F%2Fi=
+mg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FSalePage%2F11215574%2F0%2F6389=
+72373717930000%3Fv%3D1&amp;imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebap=
+i%2FimagesV3%2FCropped%2FProductBadge%2F69609%2FratioOneToOne%2F63897820488=
+5021740%3Fv%3D1&amp;width&#x3D;500&amp;height&#x3D;500&amp;objectFit&#x3D;c=
+over&amp;key&#x3D;d43737ffcbc9ac7c79b2afc96a844849d82ac02ab3d5cc62971a3ee73=
+38ed91e" class=3D"product-image" style=3D"width: 100%; "/></div><div style=
+=3D"position:absolute; top:0; left:0; width: 100%; height: 100%; overflow:h=
+idden;"><img width=3D"100%" src=3D"" style=3D"" /></div></div><!--<![endif]=
+-->              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:10px 12px 0px 12px ;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(0, 0, 0);"
+      >=E3=80=90=E5=A5=87=E7=BE=8E=E9=A3=9F=E5=93=81=E3=80=91=E7=8F=8D=E7=
+=8F=A0=E8=9D=A6=E9=A4=83(500g)(...</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;text-decoration:line-through;color:rgb(153, 153, 153);"
+      >NT$430</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:16px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(255, 83, 83);"
+      >NT$399</div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"back=
+ground:#FFFFFF;font-size:0px;padding:12px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"rgb(255, 83, 83)" role=3D"presen=
+tation" style=3D"border:none;border-radius:3px;cursor:auto;mso-padding-alt:=
+10px 25px;text-align:center;background:rgb(255, 83, 83);" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://mart.family.com.tw/SalePage/Index/11215574=
+?utm_id&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB=
+&amp;utm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_c=
+ampaign&#x3D;79710" style=3D"display:inline-block;background:rgb(255, 83, 8=
+3);color:rgb(255, 255, 255);font-family:-apple-system,BlinkMacSystemFont,'S=
+egoeUI','Roboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','Helv=
+eticaNeue',sans-serif;font-size:13px;font-weight:normal;line-height:120%;ma=
+rgin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-paddi=
+ng-alt:0px;border-radius:3px;" target=3D"_blank"
+              >
+                =E5=89=8D=E5=BE=80=E9=81=B8=E8=B3=BC
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td><![endif]-->
+         =20
+        <!--[if mso | IE]></tr></table><![endif]-->
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+       =20
+          <!--[if mso | IE]><tr><td class=3D"" width=3D"600px" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:600px;" width=3D"600" bgcolor=3D"#FFFFFF=
+" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exac=
+tly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#FFFFFF;background-color:#FFFFFF;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#FFFFFF;background-color:#FFFFF=
+F;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0px 0px 20px =
+0px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"border:none;vertical-align:top;padding:6px 0px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0px;word=
+-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:12px;font-weight:400;line-height:1;text-align:center;=
+color:#666666;"
+      >=E6=9C=80=E7=B5=82=E5=95=86=E5=93=81=E8=B3=87=E8=A8=8A=E4=BB=A5=E7=
+=B6=B2=E7=AB=99=E5=85=A7=E5=AE=B9=E7=82=BA=E4=B8=BB</div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px;" width=3D=
+"600" bgcolor=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0=
+px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0px;text-alig=
+n:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#ffffff;font-size:0=
+px;padding:0px 0px 0px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:600px;">
+             =20
+        <a
+           href=3D"https://mart.family.com.tw/v2/official/SalePageCategory/=
+406474?sortMode&#x3D;Newest&amp;utm_id&#x3D;2257376&amp;utm_term&#x3D;25110=
+5_%E9%9B%9911%E6%9A%96%E8%BA%AB&amp;utm_medium&#x3D;E-mail&amp;utm_source&#=
+x3D;CampaignMarketing&amp;utm_campaign&#x3D;79710" target=3D"_blank"
+        >
+         =20
+      <img
+         src=3D"https://static.91app.com/marketing-cloud/publish/personaliz=
+e-marketing/TW/360/62f71660-f876-4513-bc94-a79bf36b7f7f.jpeg" style=3D"bord=
+er:0;display:block;outline:none;text-decoration:none;height:auto;width:100%=
+;font-size:13px;" width=3D"600" height=3D"auto"
+      />
+   =20
+        </a>
+     =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px;" width=3D=
+"600" bgcolor=3D"#FFFFFF" ><tr><td style=3D"line-height:0px;font-size:0px;m=
+so-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#FFFFFF;background-color:#FFFFFF;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#FFFFFF;background-color:#FFFFF=
+F;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:2=
+0px 0px 0px 0px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+       =20
+          <!--[if mso | IE]><tr><td class=3D"" width=3D"600px" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:600px;" width=3D"600" bgcolor=3D"#FFFFFF=
+" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exac=
+tly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#FFFFFF;background-color:#FFFFFF;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#FFFFFF;background-color:#FFFFF=
+F;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:0=
+px 10px 0px 10px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:580px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0;line-height:0;text-align:left;display:inline-block;width:100%;direction=
+:ltr;vertical-align:top;"
+      >
+        <!--[if mso | IE]><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" ><tr><![endif]-->
+         =20
+              <!--[if mso | IE]><td style=3D"vertical-align:top;width:290px=
+;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"border:none;vertical-align:top;padding:6px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+          <!--[if mso | IE]><v:rect xmlns:v=3D"urn:schemas-microsoft-com:vm=
+l" fill=3D"true" stroke=3D"false" style=3D"width:100%; height:300px"><v:fil=
+l type=3D"tile" src=3D"https://mkt-api.91app.com/mkt-image-processor/combin=
+e?imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2F=
+SalePage%2F10964138%2F0%2F638972429838670000%3Fv%3D1&amp;imgUrls&#x3D;https=
+%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FProductBadge%2F69518=
+%2FratioOneToOne%2F638972191708368650%3Fv%3D1&amp;width&#x3D;500&amp;height=
+&#x3D;500&amp;objectFit&#x3D;cover&amp;key&#x3D;fce27c3a9caeeb8f17609c7e7c9=
+1d31818775d4df746540f67ecddd6a4325052" color=3D"#f3f3f3" /><v:textbox inset=
+=3D"0,0,0,0" style=3D"mso-fit-shape-to-text:true;"><div><img width=3D"100%"=
+ src=3D"" style=3D"" /></div></v:textbox></v:rect><![endif]-->
+        <!--[if !mso]><!--><div style=3D"position:relative;"><div style=3D"=
+position: relative; overflow: hidden; aspect-ratio:1/1"><img src=3D"https:/=
+/mkt-api.91app.com/mkt-image-processor/combine?imgUrls&#x3D;https%3A%2F%2Fi=
+mg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FSalePage%2F10964138%2F0%2F6389=
+72429838670000%3Fv%3D1&amp;imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebap=
+i%2FimagesV3%2FCropped%2FProductBadge%2F69518%2FratioOneToOne%2F63897219170=
+8368650%3Fv%3D1&amp;width&#x3D;500&amp;height&#x3D;500&amp;objectFit&#x3D;c=
+over&amp;key&#x3D;fce27c3a9caeeb8f17609c7e7c91d31818775d4df746540f67ecddd6a=
+4325052" class=3D"product-image" style=3D"width: 100%; "/></div><div style=
+=3D"position:absolute; top:0; left:0; width: 100%; height: 100%; overflow:h=
+idden;"><img width=3D"100%" src=3D"" style=3D"" /></div></div><!--<![endif]=
+-->              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:10px 12px 0px 12px ;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(0, 0, 0);"
+      >=E3=80=90=E5=93=81=E8=88=88=E8=A1=8C=E3=80=91=E6=B5=B7=E8=8F=9C=E8=
+=8A=B1=E6=9E=9D=E6=BC=BF(150=C2=B17=E5=85=AC=E5=85=8B)</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;text-decoration:line-through;color:rgb(153, 153, 153);"
+      >NT$130</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:16px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(255, 83, 83);"
+      >NT$115</div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"back=
+ground:#FFFFFF;font-size:0px;padding:12px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"rgb(255, 83, 83)" role=3D"presen=
+tation" style=3D"border:none;border-radius:3px;cursor:auto;mso-padding-alt:=
+10px 25px;text-align:center;background:rgb(255, 83, 83);" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://mart.family.com.tw/SalePage/Index/10964138=
+?utm_id&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB=
+&amp;utm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_c=
+ampaign&#x3D;79710" style=3D"display:inline-block;background:rgb(255, 83, 8=
+3);color:rgb(255, 255, 255);font-family:-apple-system,BlinkMacSystemFont,'S=
+egoeUI','Roboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','Helv=
+eticaNeue',sans-serif;font-size:13px;font-weight:normal;line-height:120%;ma=
+rgin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-paddi=
+ng-alt:0px;border-radius:3px;" target=3D"_blank"
+              >
+                =E5=89=8D=E5=BE=80=E9=81=B8=E8=B3=BC
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td><![endif]-->
+         =20
+              <!--[if mso | IE]><td style=3D"vertical-align:top;width:290px=
+;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"border:none;vertical-align:top;padding:6px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+          <!--[if mso | IE]><v:rect xmlns:v=3D"urn:schemas-microsoft-com:vm=
+l" fill=3D"true" stroke=3D"false" style=3D"width:100%; height:300px"><v:fil=
+l type=3D"tile" src=3D"https://mkt-api.91app.com/mkt-image-processor/combin=
+e?imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2F=
+SalePage%2F10964135%2F0%2F638972429838670000%3Fv%3D1&amp;imgUrls&#x3D;https=
+%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FProductBadge%2F69518=
+%2FratioOneToOne%2F638972191708368650%3Fv%3D1&amp;width&#x3D;500&amp;height=
+&#x3D;500&amp;objectFit&#x3D;cover&amp;key&#x3D;fb6537270c0252cd7a56ef04037=
+bb492c0463603fc52fea185fd98f41684b979" color=3D"#f3f3f3" /><v:textbox inset=
+=3D"0,0,0,0" style=3D"mso-fit-shape-to-text:true;"><div><img width=3D"100%"=
+ src=3D"" style=3D"" /></div></v:textbox></v:rect><![endif]-->
+        <!--[if !mso]><!--><div style=3D"position:relative;"><div style=3D"=
+position: relative; overflow: hidden; aspect-ratio:1/1"><img src=3D"https:/=
+/mkt-api.91app.com/mkt-image-processor/combine?imgUrls&#x3D;https%3A%2F%2Fi=
+mg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FSalePage%2F10964135%2F0%2F6389=
+72429838670000%3Fv%3D1&amp;imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebap=
+i%2FimagesV3%2FCropped%2FProductBadge%2F69518%2FratioOneToOne%2F63897219170=
+8368650%3Fv%3D1&amp;width&#x3D;500&amp;height&#x3D;500&amp;objectFit&#x3D;c=
+over&amp;key&#x3D;fb6537270c0252cd7a56ef04037bb492c0463603fc52fea185fd98f41=
+684b979" class=3D"product-image" style=3D"width: 100%; "/></div><div style=
+=3D"position:absolute; top:0; left:0; width: 100%; height: 100%; overflow:h=
+idden;"><img width=3D"100%" src=3D"" style=3D"" /></div></div><!--<![endif]=
+-->              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:10px 12px 0px 12px ;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(0, 0, 0);"
+      >=E3=80=90=E9=A0=86=E8=8C=B6=E8=8C=B6=E8=88=96=E3=80=91=E6=B4=9B=E7=
+=A5=9E=E9=85=B8=E6=A2=85=E6=B9=AF(960=E5=85=AC=E5=85=8B)</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;text-decoration:line-through;color:rgb(153, 153, 153);"
+      >NT$130</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:16px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(255, 83, 83);"
+      >NT$115</div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"back=
+ground:#FFFFFF;font-size:0px;padding:12px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"rgb(255, 83, 83)" role=3D"presen=
+tation" style=3D"border:none;border-radius:3px;cursor:auto;mso-padding-alt:=
+10px 25px;text-align:center;background:rgb(255, 83, 83);" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://mart.family.com.tw/SalePage/Index/10964135=
+?utm_id&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB=
+&amp;utm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_c=
+ampaign&#x3D;79710" style=3D"display:inline-block;background:rgb(255, 83, 8=
+3);color:rgb(255, 255, 255);font-family:-apple-system,BlinkMacSystemFont,'S=
+egoeUI','Roboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','Helv=
+eticaNeue',sans-serif;font-size:13px;font-weight:normal;line-height:120%;ma=
+rgin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-paddi=
+ng-alt:0px;border-radius:3px;" target=3D"_blank"
+              >
+                =E5=89=8D=E5=BE=80=E9=81=B8=E8=B3=BC
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td><![endif]-->
+         =20
+        <!--[if mso | IE]></tr></table><![endif]-->
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+       =20
+          <!--[if mso | IE]><tr><td class=3D"" width=3D"600px" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:600px;" width=3D"600" bgcolor=3D"#FFFFFF=
+" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exac=
+tly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#FFFFFF;background-color:#FFFFFF;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#FFFFFF;background-color:#FFFFF=
+F;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:0=
+px 10px 0px 10px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:580px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0;line-height:0;text-align:left;display:inline-block;width:100%;direction=
+:ltr;vertical-align:top;"
+      >
+        <!--[if mso | IE]><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" ><tr><![endif]-->
+         =20
+              <!--[if mso | IE]><td style=3D"vertical-align:top;width:290px=
+;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"border:none;vertical-align:top;padding:6px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+          <!--[if mso | IE]><v:rect xmlns:v=3D"urn:schemas-microsoft-com:vm=
+l" fill=3D"true" stroke=3D"false" style=3D"width:100%; height:300px"><v:fil=
+l type=3D"tile" src=3D"https://mkt-api.91app.com/mkt-image-processor/combin=
+e?imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2F=
+SalePage%2F9761333%2F0%2F638972429838670000%3Fv%3D1&amp;imgUrls&#x3D;https%=
+3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FProductBadge%2F69518%=
+2FratioOneToOne%2F638972191708368650%3Fv%3D1&amp;width&#x3D;500&amp;height&=
+#x3D;500&amp;objectFit&#x3D;cover&amp;key&#x3D;f0567fac741b41e6e30c6bfba5b4=
+6e2607b098bc536ef058a54bdbebd03c1420" color=3D"#f3f3f3" /><v:textbox inset=
+=3D"0,0,0,0" style=3D"mso-fit-shape-to-text:true;"><div><img width=3D"100%"=
+ src=3D"" style=3D"" /></div></v:textbox></v:rect><![endif]-->
+        <!--[if !mso]><!--><div style=3D"position:relative;"><div style=3D"=
+position: relative; overflow: hidden; aspect-ratio:1/1"><img src=3D"https:/=
+/mkt-api.91app.com/mkt-image-processor/combine?imgUrls&#x3D;https%3A%2F%2Fi=
+mg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FSalePage%2F9761333%2F0%2F63897=
+2429838670000%3Fv%3D1&amp;imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebapi=
+%2FimagesV3%2FCropped%2FProductBadge%2F69518%2FratioOneToOne%2F638972191708=
+368650%3Fv%3D1&amp;width&#x3D;500&amp;height&#x3D;500&amp;objectFit&#x3D;co=
+ver&amp;key&#x3D;f0567fac741b41e6e30c6bfba5b46e2607b098bc536ef058a54bdbebd0=
+3c1420" class=3D"product-image" style=3D"width: 100%; "/></div><div style=
+=3D"position:absolute; top:0; left:0; width: 100%; height: 100%; overflow:h=
+idden;"><img width=3D"100%" src=3D"" style=3D"" /></div></div><!--<![endif]=
+-->              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:10px 12px 0px 12px ;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(0, 0, 0);"
+      >=E3=80=90=E5=86=B7=E5=87=8D=E5=BA=97=E5=8F=96-=E5=BB=9A=E9=AE=AE=E7=
+=8E=8B=E3=80=91=E9=AE=AE=E5=87=8D=E5=89=96=E5=8D=8A...</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;text-decoration:line-through;color:rgb(153, 153, 153);"
+      >NT$390</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:16px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(255, 83, 83);"
+      >NT$199</div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"back=
+ground:#FFFFFF;font-size:0px;padding:12px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"rgb(255, 83, 83)" role=3D"presen=
+tation" style=3D"border:none;border-radius:3px;cursor:auto;mso-padding-alt:=
+10px 25px;text-align:center;background:rgb(255, 83, 83);" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://mart.family.com.tw/SalePage/Index/9761333?=
+utm_id&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB&=
+amp;utm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_ca=
+mpaign&#x3D;79710" style=3D"display:inline-block;background:rgb(255, 83, 83=
+);color:rgb(255, 255, 255);font-family:-apple-system,BlinkMacSystemFont,'Se=
+goeUI','Roboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','Helve=
+ticaNeue',sans-serif;font-size:13px;font-weight:normal;line-height:120%;mar=
+gin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-paddin=
+g-alt:0px;border-radius:3px;" target=3D"_blank"
+              >
+                =E5=89=8D=E5=BE=80=E9=81=B8=E8=B3=BC
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td><![endif]-->
+         =20
+              <!--[if mso | IE]><td style=3D"vertical-align:top;width:290px=
+;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"border:none;vertical-align:top;padding:6px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+          <!--[if mso | IE]><v:rect xmlns:v=3D"urn:schemas-microsoft-com:vm=
+l" fill=3D"true" stroke=3D"false" style=3D"width:100%; height:300px"><v:fil=
+l type=3D"tile" src=3D"https://mkt-api.91app.com/mkt-image-processor/combin=
+e?imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2F=
+SalePage%2F9486983%2F0%2F638977353242670000%3Fv%3D1&amp;imgUrls&#x3D;https%=
+3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FProductBadge%2F69518%=
+2FratioOneToOne%2F638972191708368650%3Fv%3D1&amp;width&#x3D;500&amp;height&=
+#x3D;500&amp;objectFit&#x3D;cover&amp;key&#x3D;f9bc5618cabf76c8dca6cd5b6607=
+db3bfe4fc30fb694a2ce0f7eaeeebd182048" color=3D"#f3f3f3" /><v:textbox inset=
+=3D"0,0,0,0" style=3D"mso-fit-shape-to-text:true;"><div><img width=3D"100%"=
+ src=3D"" style=3D"" /></div></v:textbox></v:rect><![endif]-->
+        <!--[if !mso]><!--><div style=3D"position:relative;"><div style=3D"=
+position: relative; overflow: hidden; aspect-ratio:1/1"><img src=3D"https:/=
+/mkt-api.91app.com/mkt-image-processor/combine?imgUrls&#x3D;https%3A%2F%2Fi=
+mg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FSalePage%2F9486983%2F0%2F63897=
+7353242670000%3Fv%3D1&amp;imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebapi=
+%2FimagesV3%2FCropped%2FProductBadge%2F69518%2FratioOneToOne%2F638972191708=
+368650%3Fv%3D1&amp;width&#x3D;500&amp;height&#x3D;500&amp;objectFit&#x3D;co=
+ver&amp;key&#x3D;f9bc5618cabf76c8dca6cd5b6607db3bfe4fc30fb694a2ce0f7eaeeebd=
+182048" class=3D"product-image" style=3D"width: 100%; "/></div><div style=
+=3D"position:absolute; top:0; left:0; width: 100%; height: 100%; overflow:h=
+idden;"><img width=3D"100%" src=3D"" style=3D"" /></div></div><!--<![endif]=
+-->              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:10px 12px 0px 12px ;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(0, 0, 0);"
+      >=E3=80=90=E5=86=B7=E5=87=8D=E5=BA=97=E5=8F=96-=E4=BA=AB=E5=90=83=E8=
+=82=89=E8=82=89=E3=80=91=E7=BE=8E=E5=9C=8B=E7=89=B9...</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;text-decoration:line-through;color:rgb(153, 153, 153);"
+      >NT$199</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:16px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(255, 83, 83);"
+      >NT$129</div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"back=
+ground:#FFFFFF;font-size:0px;padding:12px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"rgb(255, 83, 83)" role=3D"presen=
+tation" style=3D"border:none;border-radius:3px;cursor:auto;mso-padding-alt:=
+10px 25px;text-align:center;background:rgb(255, 83, 83);" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://mart.family.com.tw/SalePage/Index/9486983?=
+utm_id&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB&=
+amp;utm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_ca=
+mpaign&#x3D;79710" style=3D"display:inline-block;background:rgb(255, 83, 83=
+);color:rgb(255, 255, 255);font-family:-apple-system,BlinkMacSystemFont,'Se=
+goeUI','Roboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','Helve=
+ticaNeue',sans-serif;font-size:13px;font-weight:normal;line-height:120%;mar=
+gin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-paddin=
+g-alt:0px;border-radius:3px;" target=3D"_blank"
+              >
+                =E5=89=8D=E5=BE=80=E9=81=B8=E8=B3=BC
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td><![endif]-->
+         =20
+        <!--[if mso | IE]></tr></table><![endif]-->
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+       =20
+          <!--[if mso | IE]><tr><td class=3D"" width=3D"600px" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:600px;" width=3D"600" bgcolor=3D"#FFFFFF=
+" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exac=
+tly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#FFFFFF;background-color:#FFFFFF;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#FFFFFF;background-color:#FFFFF=
+F;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:0=
+px 10px 0px 10px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:580px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0;line-height:0;text-align:left;display:inline-block;width:100%;direction=
+:ltr;vertical-align:top;"
+      >
+        <!--[if mso | IE]><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" ><tr><![endif]-->
+         =20
+              <!--[if mso | IE]><td style=3D"vertical-align:top;width:290px=
+;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"border:none;vertical-align:top;padding:6px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+          <!--[if mso | IE]><v:rect xmlns:v=3D"urn:schemas-microsoft-com:vm=
+l" fill=3D"true" stroke=3D"false" style=3D"width:100%; height:300px"><v:fil=
+l type=3D"tile" src=3D"https://mkt-api.91app.com/mkt-image-processor/combin=
+e?imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2F=
+SalePage%2F10588521%2F0%2F638972980464970000%3Fv%3D1&amp;imgUrls&#x3D;https=
+%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FProductBadge%2F69518=
+%2FratioOneToOne%2F638972191708368650%3Fv%3D1&amp;width&#x3D;500&amp;height=
+&#x3D;500&amp;objectFit&#x3D;cover&amp;key&#x3D;1792f7bb781a263276be0fb88bf=
+482f579c5f77330397bf8023116f030073c11" color=3D"#f3f3f3" /><v:textbox inset=
+=3D"0,0,0,0" style=3D"mso-fit-shape-to-text:true;"><div><img width=3D"100%"=
+ src=3D"" style=3D"" /></div></v:textbox></v:rect><![endif]-->
+        <!--[if !mso]><!--><div style=3D"position:relative;"><div style=3D"=
+position: relative; overflow: hidden; aspect-ratio:1/1"><img src=3D"https:/=
+/mkt-api.91app.com/mkt-image-processor/combine?imgUrls&#x3D;https%3A%2F%2Fi=
+mg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FSalePage%2F10588521%2F0%2F6389=
+72980464970000%3Fv%3D1&amp;imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebap=
+i%2FimagesV3%2FCropped%2FProductBadge%2F69518%2FratioOneToOne%2F63897219170=
+8368650%3Fv%3D1&amp;width&#x3D;500&amp;height&#x3D;500&amp;objectFit&#x3D;c=
+over&amp;key&#x3D;1792f7bb781a263276be0fb88bf482f579c5f77330397bf8023116f03=
+0073c11" class=3D"product-image" style=3D"width: 100%; "/></div><div style=
+=3D"position:absolute; top:0; left:0; width: 100%; height: 100%; overflow:h=
+idden;"><img width=3D"100%" src=3D"" style=3D"" /></div></div><!--<![endif]=
+-->              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:10px 12px 0px 12px ;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(0, 0, 0);"
+      >=E3=80=90=E5=86=B7=E8=97=8F=E5=BA=97=E5=8F=96=E2=80=94=E9=AD=94=E8=
+=8F=87=E9=83=A8=E8=90=BD=E3=80=91(=E5=85=8D)=E6=9C=89...</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;text-decoration:line-through;color:rgb(153, 153, 153);"
+      >NT$230</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:16px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(255, 83, 83);"
+      >NT$160</div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"back=
+ground:#FFFFFF;font-size:0px;padding:12px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"rgb(255, 83, 83)" role=3D"presen=
+tation" style=3D"border:none;border-radius:3px;cursor:auto;mso-padding-alt:=
+10px 25px;text-align:center;background:rgb(255, 83, 83);" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://mart.family.com.tw/SalePage/Index/10588521=
+?utm_id&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB=
+&amp;utm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_c=
+ampaign&#x3D;79710" style=3D"display:inline-block;background:rgb(255, 83, 8=
+3);color:rgb(255, 255, 255);font-family:-apple-system,BlinkMacSystemFont,'S=
+egoeUI','Roboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','Helv=
+eticaNeue',sans-serif;font-size:13px;font-weight:normal;line-height:120%;ma=
+rgin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-paddi=
+ng-alt:0px;border-radius:3px;" target=3D"_blank"
+              >
+                =E5=89=8D=E5=BE=80=E9=81=B8=E8=B3=BC
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td><![endif]-->
+         =20
+              <!--[if mso | IE]><td style=3D"vertical-align:top;width:290px=
+;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"border:none;vertical-align:top;padding:6px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+          <!--[if mso | IE]><v:rect xmlns:v=3D"urn:schemas-microsoft-com:vm=
+l" fill=3D"true" stroke=3D"false" style=3D"width:100%; height:300px"><v:fil=
+l type=3D"tile" src=3D"https://mkt-api.91app.com/mkt-image-processor/combin=
+e?imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2F=
+SalePage%2F10480594%2F0%2F638972429838670000%3Fv%3D1&amp;imgUrls&#x3D;https=
+%3A%2F%2Fimg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FProductBadge%2F69518=
+%2FratioOneToOne%2F638972191708368650%3Fv%3D1&amp;width&#x3D;500&amp;height=
+&#x3D;500&amp;objectFit&#x3D;cover&amp;key&#x3D;17beafb6132b4f630ac60417421=
+a8b345cb055b010f8e116da5b14968ad21055" color=3D"#f3f3f3" /><v:textbox inset=
+=3D"0,0,0,0" style=3D"mso-fit-shape-to-text:true;"><div><img width=3D"100%"=
+ src=3D"" style=3D"" /></div></v:textbox></v:rect><![endif]-->
+        <!--[if !mso]><!--><div style=3D"position:relative;"><div style=3D"=
+position: relative; overflow: hidden; aspect-ratio:1/1"><img src=3D"https:/=
+/mkt-api.91app.com/mkt-image-processor/combine?imgUrls&#x3D;https%3A%2F%2Fi=
+mg.91app.com%2Fwebapi%2FimagesV3%2FCropped%2FSalePage%2F10480594%2F0%2F6389=
+72429838670000%3Fv%3D1&amp;imgUrls&#x3D;https%3A%2F%2Fimg.91app.com%2Fwebap=
+i%2FimagesV3%2FCropped%2FProductBadge%2F69518%2FratioOneToOne%2F63897219170=
+8368650%3Fv%3D1&amp;width&#x3D;500&amp;height&#x3D;500&amp;objectFit&#x3D;c=
+over&amp;key&#x3D;17beafb6132b4f630ac60417421a8b345cb055b010f8e116da5b14968=
+ad21055" class=3D"product-image" style=3D"width: 100%; "/></div><div style=
+=3D"position:absolute; top:0; left:0; width: 100%; height: 100%; overflow:h=
+idden;"><img width=3D"100%" src=3D"" style=3D"" /></div></div><!--<![endif]=
+-->              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:10px 12px 0px 12px ;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(0, 0, 0);"
+      >=E3=80=90=E7=BE=8E=E5=BC=8F=E8=B3=A3=E5=A0=B4=E3=80=91=E4=BA=94=E6=
+=9C=A8=E7=B4=B0=E9=97=9C=E6=9D=B1=E9=BA=B5 (41...</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;letter-spacing:0;line-height:1.8=
+;text-align:center;text-decoration:line-through;color:#FFFFFF;"
+      >-</div>
+   =20
+                </td>
+              </tr>
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#FFFFFF;font-size:0=
+px;padding:0px 12px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:16px;font-weight:400;line-height:1.8;text-align:cente=
+r;color:rgb(255, 83, 83);"
+      >NT$295</div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"back=
+ground:#FFFFFF;font-size:0px;padding:12px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"rgb(255, 83, 83)" role=3D"presen=
+tation" style=3D"border:none;border-radius:3px;cursor:auto;mso-padding-alt:=
+10px 25px;text-align:center;background:rgb(255, 83, 83);" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://mart.family.com.tw/SalePage/Index/10480594=
+?utm_id&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB=
+&amp;utm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_c=
+ampaign&#x3D;79710" style=3D"display:inline-block;background:rgb(255, 83, 8=
+3);color:rgb(255, 255, 255);font-family:-apple-system,BlinkMacSystemFont,'S=
+egoeUI','Roboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','Helv=
+eticaNeue',sans-serif;font-size:13px;font-weight:normal;line-height:120%;ma=
+rgin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-paddi=
+ng-alt:0px;border-radius:3px;" target=3D"_blank"
+              >
+                =E5=89=8D=E5=BE=80=E9=81=B8=E8=B3=BC
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td><![endif]-->
+         =20
+        <!--[if mso | IE]></tr></table><![endif]-->
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+       =20
+          <!--[if mso | IE]><tr><td class=3D"" width=3D"600px" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:600px;" width=3D"600" bgcolor=3D"#FFFFFF=
+" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exac=
+tly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#FFFFFF;background-color:#FFFFFF;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#FFFFFF;background-color:#FFFFF=
+F;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0px 0px 20px =
+0px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"border:none;vertical-align:top;padding:6px 0px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0px;word=
+-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:12px;font-weight:400;line-height:1;text-align:center;=
+color:#666666;"
+      >=E6=9C=80=E7=B5=82=E5=95=86=E5=93=81=E8=B3=87=E8=A8=8A=E4=BB=A5=E7=
+=B6=B2=E7=AB=99=E5=85=A7=E5=AE=B9=E7=82=BA=E4=B8=BB</div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px;" width=3D=
+"600" bgcolor=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0=
+px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0px;text-alig=
+n:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#ffffff;font-size:0=
+px;padding:0px 0px 0px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:600px;">
+             =20
+        <a
+           href=3D"https://mart.family.com.tw/v2/official/SalePageCategory/=
+575156?sortMode&#x3D;Curator&amp;utm_id&#x3D;2257376&amp;utm_term&#x3D;2511=
+05_%E9%9B%9911%E6%9A%96%E8%BA%AB&amp;utm_medium&#x3D;E-mail&amp;utm_source&=
+#x3D;CampaignMarketing&amp;utm_campaign&#x3D;79710" target=3D"_blank"
+        >
+         =20
+      <img
+         src=3D"https://static.91app.com/marketing-cloud/publish/personaliz=
+e-marketing/TW/360/7c01b984-27c7-4c8b-9c6f-7a9cf85662f7.jpeg" style=3D"bord=
+er:0;display:block;outline:none;text-decoration:none;height:auto;width:100%=
+;font-size:13px;" width=3D"600" height=3D"auto"
+      />
+   =20
+        </a>
+     =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px;" width=3D=
+"600" bgcolor=3D"#ffffff" ><tr><td style=3D"line-height:0px;font-size:0px;m=
+so-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#ffffff;background-color:#ffffff;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#ffffff;background-color:#fffff=
+f;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:2=
+0px 0px 20px 0px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0;line-height:0;text-align:left;display:inline-block;width:100%;direction=
+:ltr;vertical-align:top;"
+      >
+        <!--[if mso | IE]><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" ><tr><td style=3D"vertical-align:top;width:300=
+px;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#ffffff;font-size:0=
+px;padding:0px 0px 0px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:300px;">
+             =20
+        <a
+           href=3D"https://mart.family.com.tw/SalePage/Index/11026130?utm_i=
+d&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB&amp;u=
+tm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_campaig=
+n&#x3D;79710" target=3D"_blank"
+        >
+         =20
+      <img
+         src=3D"https://static.91app.com/marketing-cloud/publish/personaliz=
+e-marketing/TW/360/eee9110a-b445-422f-8cc2-8ed3d8a95798.jpeg" style=3D"bord=
+er:0;display:block;outline:none;text-decoration:none;height:auto;width:100%=
+;font-size:13px;" width=3D"300" height=3D"auto"
+      />
+   =20
+        </a>
+     =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td><td style=3D"vertical-align:top;width:=
+300px;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"vertical-align:top;padding:0px 0px 0px 0px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#ffffff;font-size:0=
+px;padding:0px 0px 0px 0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:300px;">
+             =20
+        <a
+           href=3D"https://mart.family.com.tw/SalePage/Index/11016753?utm_i=
+d&#x3D;2257376&amp;utm_term&#x3D;251105_%E9%9B%9911%E6%9A%96%E8%BA%AB&amp;u=
+tm_medium&#x3D;E-mail&amp;utm_source&#x3D;CampaignMarketing&amp;utm_campaig=
+n&#x3D;79710" target=3D"_blank"
+        >
+         =20
+      <img
+         src=3D"https://static.91app.com/marketing-cloud/publish/personaliz=
+e-marketing/TW/360/4e3481d6-0edf-4063-a2ed-99f08505bf39.jpeg" style=3D"bord=
+er:0;display:block;outline:none;text-decoration:none;height:auto;width:100%=
+;font-size:13px;" width=3D"300" height=3D"auto"
+      />
+   =20
+        </a>
+     =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td></tr></table><![endif]-->
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px;" width=3D=
+"600" bgcolor=3D"#ffffff" ><tr><td style=3D"line-height:0px;font-size:0px;m=
+so-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#ffffff;background-color:#ffffff;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#ffffff;background-color:#fffff=
+f;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:2=
+0px 0px 20px 0px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0;line-height:0;text-align:left;display:inline-block;width:100%;direction=
+:ltr;vertical-align:top;"
+      >
+        <!--[if mso | IE]><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" ><tr><td style=3D"vertical-align:top;width:300=
+px;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"vertical-align:top;padding:0px 0px 0px 0px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"left" style=3D"background:#ffffff;font-size:0px=
+;padding:10px 25px 10px 25px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.7;text-align:left;=
+color:#000000;"
+      >=E3=80=90SK-II=E3=80=91=E9=9D=92=E6=98=A5=E9=9C=B2-3=E5=85=A5=E5=9C=
+=8B=E9=9A=9B=E8=88=AA=E7=A9=BA=E7=89=88(30mlX3)</div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td><td style=3D"vertical-align:top;width:=
+300px;" ><![endif]-->
+               =20
+      <div
+         class=3D"mj-column-per-50 mj-outlook-group-fix" style=3D"font-size=
+:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;=
+width:50%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"left" style=3D"background:#ffffff;font-size:0px=
+;padding:10px 25px 10px 25px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.7;text-align:left;=
+color:#000000;"
+      >=E3=80=90=E8=88=B9=E4=BA=95=E7=94=9F=E9=86=AB=E3=80=91=E8=88=B9=E4=
+=BA=95=E7=9B=8A=E7=94=9F=E8=8F=8C2000=E5=84=84(30=E9=A1=86/=E7=9B=92)</div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+              <!--[if mso | IE]></td></tr></table><![endif]-->
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px;" width=3D=
+"600" bgcolor=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0=
+px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0px;text-alig=
+n:left;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"back=
+ground:#ffffff;font-size:0px;padding:12px 25px 12px 25px;word-break:break-w=
+ord;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"#ff5353" role=3D"presentation" s=
+tyle=3D"border:none;border-radius:4px;cursor:auto;mso-padding-alt:8px 16px =
+8px 16px;text-align:center;background:#ff5353;" valign=3D"middle"
+            >
+              <a
+                 href=3D"https://mart.family.com.tw/v2/official/SalePageCat=
+egory/6457?sortMode&#x3D;Curator&amp;utm_id&#x3D;2257376&amp;utm_term&#x3D;=
+251105_%E9%9B%9911%E6%9A%96%E8%BA%AB&amp;utm_medium&#x3D;E-mail&amp;utm_sou=
+rce&#x3D;CampaignMarketing&amp;utm_campaign&#x3D;79710" style=3D"display:in=
+line-block;background:#ff5353;color:#ffffff;font-family:-apple-system,Blink=
+MacSystemFont,'SegoeUI','Roboto','Oxygen','Ubuntu','Cantarell','FiraSans','=
+DroidSans','HelveticaNeue',sans-serif;font-size:13px;font-weight:normal;lin=
+e-height:120%;margin:0;text-decoration:none;text-transform:none;padding:8px=
+ 16px 8px 16px;mso-padding-alt:0px;border-radius:4px;" target=3D"_blank"
+              >
+                =E9=BB=9E=E6=88=91=E7=9C=8B=E6=9B=B4=E5=A4=9A
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table><table align=3D"center" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation" st=
+yle=3D"width:600px;" width=3D"600" bgcolor=3D"#efeeea" ><tr><td style=3D"li=
+ne-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:#efeeea;background-color:#efeeea;margin:0px=
+ auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:#efeeea;background-color:#efeee=
+a;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:20px 0px 0px =
+0px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" width=3D"600px" ><t=
+able align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"" role=3D"presentation" style=3D"width:600px;" width=3D"600" bgcolor=
+=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-h=
+eight-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0px;text-alig=
+n:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:54px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-9 mj-outlook-group-fix" style=3D"font-size:=
+0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;w=
+idth:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"background:#efeeea;font-size:0=
+px;padding:0px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:54px;">
+             =20
+      <img
+         src=3D"https://img.91app.com/webapi/images/t/512/512/ShopIcon/360/=
+0/11051000" style=3D"border:0;display:block;outline:none;text-decoration:no=
+ne;height:auto;width:100%;font-size:13px;" width=3D"54" height=3D"auto"
+      />
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px;" width=3D=
+"600" bgcolor=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0=
+px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0px;text-alig=
+n:left;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"left" style=3D"background:#efeeea;font-size:0px=
+;padding:10px 25px 10px 25px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:14px;font-weight:400;line-height:1.7;text-align:left;=
+color:#333333;"
+      ><div style=3D"text-align:center;"><span style=3D"font-size:12px;font=
+-family:-apple-system,BlinkMacSystemFont,SegoeUI,Roboto,Oxygen,Ubuntu,Canta=
+rell,FiraSans,DroidSans,HelveticaNeue,sans-serif;word-spacing:normal;">=E4=
+=B8=8B=E8=BC=89=E5=AE=98=E6=96=B9 App=EF=BC=8C=E5=8D=B3=E6=99=82=E6=90=B6=
+=E5=88=B0=E9=99=90=E6=99=82=E5=84=AA=E6=83=A0=EF=BC=8C=E8=BF=BD=E8=B9=A4=E8=
+=A8=82=E5=96=AE=E9=80=B2=E5=BA=A6 !</span></div></div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px;" width=3D=
+"600" bgcolor=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0=
+px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0px;text-alig=
+n:left;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" vertical-align=3D"middle" style=3D"back=
+ground:#efeeea;font-size:0px;padding:12px 25px 6px 25px;word-break:break-wo=
+rd;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:separate;line-height:100%;"
+      >
+        <tbody>
+          <tr>
+            <td
+               align=3D"center" bgcolor=3D"#414141" role=3D"presentation" s=
+tyle=3D"border:none;border-radius:4px;cursor:auto;mso-padding-alt:8px 16px =
+8px 16px;text-align:center;background:#414141;" valign=3D"middle"
+            >
+              <p
+                 style=3D"display:inline-block;background:#414141;color:#ff=
+ffff;font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','Roboto','Oxyge=
+n','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue',sans-serif;f=
+ont-size:13px;font-weight:normal;line-height:120%;margin:0;text-decoration:=
+none;text-transform:none;padding:8px 16px 8px 16px;mso-padding-alt:0px;bord=
+er-radius:4px;"
+              >
+                =E9=BB=9E=E6=88=91=E4=B8=8B=E8=BC=89app
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table><table align=3D"center" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation" st=
+yle=3D"width:600px;" width=3D"600" bgcolor=3D"transparent" ><tr><td style=
+=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-=
+->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:0=
+px 0px 40px 0px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" width=3D"600px" ><t=
+able align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"" role=3D"presentation" style=3D"width:600px;" width=3D"600" bgcolor=
+=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-h=
+eight-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:6px 0px 0px 0=
+px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0px 25px=
+ 0px 25px;word-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:12px;font-weight:400;line-height:1.2;text-align:cente=
+r;color:#333333;"
+      >=E6=8F=90=E9=86=92=E6=82=A8=EF=BC=9A=E6=AD=A4=E9=80=9A=E7=9F=A5=E4=
+=BF=A1=E7=82=BA=E8=87=AA=E5=8B=95=E7=99=BC=E9=80=81=EF=BC=8C=E8=AB=8B=E5=8B=
+=BF=E7=9B=B4=E6=8E=A5=E5=9B=9E=E8=A6=86</div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px;" width=3D=
+"600" bgcolor=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0=
+px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:0=
+px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><![endif]-->
+      <div style=3D"margin-top: 10px; font-size: 12px; color: #999999">=E5=
+=A6=82=E6=9E=9C=E6=82=A8=E4=B8=8D=E5=B8=8C=E6=9C=9B=E5=86=8D=E6=94=B6=E5=88=
+=B0=E6=AD=A4=E9=A1=9E=E9=80=9A=E7=9F=A5=EF=BC=8C=E6=82=A8=E5=8F=AF=E4=BB=A5=
+=E9=9A=A8=E6=99=82 <a href=3D"https://mart.family.com.tw/V2/VipMember/Email=
+Notification" target=3D"_blank" style=3D"text-decoration: unset; color: #42=
+8BCA">=E5=8F=96=E6=B6=88=E8=A8=82=E9=96=B1</a></div>
+
+      <!--[if mso | IE]></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" widt=
+h=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px;" width=3D=
+"600" bgcolor=3D"transparent" ><tr><td style=3D"line-height:0px;font-size:0=
+px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"background:transparent;background-color:transparent;ma=
+rgin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:transparent;background-color:tr=
+ansparent;width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"border:none;direction:ltr;font-size:0px;padding:8=
+px 0px 0px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:600px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"vertical-align:top;" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0px;word=
+-break:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system,BlinkMacSystemFont,'SegoeUI','R=
+oboto','Oxygen','Ubuntu','Cantarell','FiraSans','DroidSans','HelveticaNeue'=
+,sans-serif;font-size:12px;font-weight:400;line-height:1.6;text-align:cente=
+r;color:#999999;"
+      >=E6=9C=AC=E6=9C=8D=E5=8B=99=E7=94=B191APP=E6=8F=90=E4=BE=9B</div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table><![endif]-->
+   =20
+   =20
+      </div>
+   =20
+  <img alt=3D"" src=3D"https://r4bsdkgs.r.us-west-2.awstrack.me/I0/0101019a=
+51e39d9b-e7089a68-172a-4b33-afdd-df42361c8a08-000000/hiC2CFEqnfJs2HEWqVy0p1=
+7YlFU=3D451" style=3D"display: none; width: 1px; height: 1px;">
+</body>
+</html>
+ =20

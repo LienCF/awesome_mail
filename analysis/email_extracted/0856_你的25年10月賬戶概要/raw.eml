@@ -1,0 +1,796 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:8da6:b0:4d4:9739:2b92 with SMTP id gr38csp3170025mdb;
+        Thu, 23 Oct 2025 10:36:56 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG0USyfnk52XHxXEZx+PgLrYlGUZ5las0QMIoe/jhCDjNcneo4cb2Ls5FWoxpg9mFqzVAAt
+X-Received: by 2002:a05:6830:3499:b0:746:d8cc:4ba with SMTP id 46e09a7af769-7c3e092420amr4045508a34.11.1761241016731;
+        Thu, 23 Oct 2025 10:36:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761241016; cv=none;
+        d=google.com; s=arc-20240605;
+        b=VRJj0lMZcY2CtjHfk4tD+7iNLk3zUTQ82+TRTnEKVRUKjOSMXTA69/N4AVbSOb3QFI
+         YQEOnMoWO5YgIQzAoP65A0enPQzlibHKaEzvzN5Xo/FpFYKASbmtXY5ZI5UlIzBOe6JE
+         /dXTEMduePfXVMv9rKaSJdXQWAjNb3+rot/n1yWEV0QYs5QACOie7st9LzZoR2NjcOqK
+         NDqvhScJn5++tVKd7Sw5kvVuKKhfP2Z28QvqJ8dfQEC/njZaDa8lpJqkZYGCwy3cs2iN
+         fsugxjFjVox/Uzw86RQO2Rk2cgB0ACxvRX+SPO/wn2X+J0DPX6SPAnei0/ELvM+Wp7zA
+         7l0A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:message-id:mime-version:list-help:date:subject:to:from
+         :dkim-signature:dkim-signature;
+        bh=7rEH0mhi+87m1N/TdmoZqm9ioiETsRj6FqbRbvnpgRI=;
+        fh=AuRPPJxWT3oDWns/IAyV12DuHusfebFT2kEqOaRmmSo=;
+        b=Ihw3KUUDdTs/3YVX/EUv95KqWd1UUVAG4Da8EuG9282o6MfWvPAnIof+iRqIRim+u9
+         2Z2sjHr+HIUa3+KLnJxHwVcgKjScSL4RzvU1kv8PHZ4NDh/4RR0t94Q8J6CwKoLawAX+
+         vw6kMXFe5HDa2zj97Tu/VS7uSgVwE+/SBNiN3aHk8uc5LvuBbTyQ7v9nARqfVGxR/gRa
+         pDRsOm+zhicM3eaUj0V4D0+aRcdLRgYsgrWinvCC2l/kP8mndf5+q0dn7RCwo5UIe5N8
+         L2mG2CRNNlHqt/tZfNwltcZr2kGc/MRLG720S7hXe8v/JQ7BlwNoPMpEk0FYelpEUxiL
+         lIeQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@e.cathaypacific.com header.s=10dkim1 header.b=cHHivqOc;
+       dkim=pass header.i=@s10.y.mc.salesforce.com header.s=fbldkim10 header.b="RvE7hM/A";
+       spf=pass (google.com: domain of bounce-17_html-35054453-273178-515002493-3746@bounce.e.cathaypacific.com designates 13.111.103.166 as permitted sender) smtp.mailfrom=bounce-17_HTML-35054453-273178-515002493-3746@bounce.e.cathaypacific.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=e.cathaypacific.com
+Return-Path: <bounce-17_HTML-35054453-273178-515002493-3746@bounce.e.cathaypacific.com>
+Received: from mta4.e.cathaypacific.com (mta4.e.cathaypacific.com. [13.111.103.166])
+        by mx.google.com with ESMTPS id 46e09a7af769-7c511189eb6si637872a34.124.2025.10.23.10.36.56
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 23 Oct 2025 10:36:56 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce-17_html-35054453-273178-515002493-3746@bounce.e.cathaypacific.com designates 13.111.103.166 as permitted sender) client-ip=13.111.103.166;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@e.cathaypacific.com header.s=10dkim1 header.b=cHHivqOc;
+       dkim=pass header.i=@s10.y.mc.salesforce.com header.s=fbldkim10 header.b="RvE7hM/A";
+       spf=pass (google.com: domain of bounce-17_html-35054453-273178-515002493-3746@bounce.e.cathaypacific.com designates 13.111.103.166 as permitted sender) smtp.mailfrom=bounce-17_HTML-35054453-273178-515002493-3746@bounce.e.cathaypacific.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=e.cathaypacific.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=10dkim1; d=e.cathaypacific.com;
+ h=From:To:Subject:Date:List-Help:MIME-Version:Message-ID:Content-Type;
+ i=no-reply@e.cathaypacific.com;
+ bh=7rEH0mhi+87m1N/TdmoZqm9ioiETsRj6FqbRbvnpgRI=;
+ b=cHHivqOcOp/3UfUitRT7m8C+VjWBBV2gCLRG5aC7XTvyC6rHCxSmGWeszf70fQqwyhLfoVYrX6fj
+   eyURNxDwDTn/W9MXSp+XQJU8neEqj4yC+wY0ujy4RJ/n2TEp5vwFvZYIK3EnVnMy2KpPEOkYgNgz
+   xQOfXPTIPvIYIjTK2YCuC4CN03KbJPCfve4CUcwSwNI0TkC1Nz3onzMUXkRqmCuBh4kUVQ6e6thQ
+   1JrIh9hOBMNrwKEefhENH9Nk2RfIfq4WydVmmtXVDC0Hm779+gAEjOE78Bh7+4NppcN4XN6qOP2t
+   NgFmAbiXAFVwwaWWVnve+cOXoXhx4M+ISO5KTQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=fbldkim10; d=s10.y.mc.salesforce.com;
+ h=From:To:Subject:Date:List-Help:MIME-Version:Message-ID:Content-Type;
+ bh=7rEH0mhi+87m1N/TdmoZqm9ioiETsRj6FqbRbvnpgRI=;
+ b=RvE7hM/A6/sR/giiKQUAya6fGhXRaTU9AyYolLojqzP+oZRHAr/3z4hFIhaJUBtUmqJZqyLBGOHL
+   SDSHFIihjZ4JKAM34KkAcmAaS/gFNW2dqQ8B0MyR58AEtzX54rL2K74SAwVJ2fvluHjqvM9SXIIZ
+   hiW7JCaYiKgJBj4QbECRY3o8wYEkIgHT7wTRXu5gYusttd3MK5Uvz3hGEMdVHgQiTYy69D9CEkpM
+   BzI/c43hCVJyM4l9da4Zx4v+IOMTV9k8UPXQk+vtdlUYWVTs71zN5QEIPfSoAD5TeWYfME+uA3EX
+   N9vWIEqzJRle6baVYOsVrTOf9xiIYUrtCgpjJw==
+Received: by mta4.e.cathaypacific.com id hv9jrg2fmd4d for <liencf@gmail.com>; Thu, 23 Oct 2025 17:36:55 +0000 (envelope-from <bounce-17_HTML-35054453-273178-515002493-3746@bounce.e.cathaypacific.com>)
+From: "Cathay Pacific" <no-reply@e.cathaypacific.com>
+To: <liencf@gmail.com>
+Subject: =?UTF-8?B?5L2g55qEMjXlubQxMOaciOizrOaItuamguimgQ==?=
+Date: Thu, 23 Oct 2025 11:36:54 -0600
+List-Help: <https://click.e.cathaypacific.com/subscription_center.aspx?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtaWQiOiI1MTUwMDI0OTMiLCJzIjoiMzUwNTQ0NTMiLCJsaWQiOiIxNyIsImoiOiIyNzMxNzgiLCJqYiI6IjM3NDYiLCJkIjoiMTAwMjE2In0.6hJX-xIzllHaIlcx8SA3pdePmwR0hxgUhmokFo4fGZg>
+MIME-Version: 1.0
+X-SFMC-Stack: 10
+x-job: 515002493_273178
+Message-ID: <36e9b3b7-b43f-405e-9f6d-16a29f97e259@dfw1s10mta949.xt.local>
+Feedback-ID: 515002493:273178:13.111.103.166:sfmktgcld
+Content-Type: multipart/alternative;
+	boundary="U6GIqy00VKP3=_?:"
+
+This is a multi-part message in MIME format.
+
+--U6GIqy00VKP3=_?:
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Email Preview
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+https://view.e.cathaypacific.com/?qs=b685762f276f1f6b9cc9f45e3d45dbf9074370282b2418d0726a50ca1d5dce66a9ba07e07e23b9da6c13b37bca5625d6a511bf87fa8369ea98f4ab69d4dfc45214ebb90857e9a54d6ac0a4b89a6d0766 
+未能閱讀此郵件？  使用瀏覽器閱讀。
+
+https://click.e.cathaypacific.com/?qs=047a0a321d927e95fbca24c472dae1886fe9a2fa172743356e252830783633bdcaf1715f7974ba6e177fae44863ded8f30ca985c5c11f3ff1b395767c2662624 
+
+
+ 尊敬的 Lien 先生
+
+ 會員號碼 : 155 XXXX 460
+
+
+ 
+ 
+ 
+
+ 你的賬戶概要
+
+結算截至: 2025年10月22日
+請按以下的「查閱賬戶資訊」以查看你最新的賬戶結餘。
+
+ 賬戶結餘
+
+ 「亞洲萬里通」里數
+  0 
+
+ 於里數到期前賺取或兌換里數以延長有效期18個月。 
+  
+https://click.e.cathaypacific.com/?qs=047a0a321d927e95d1d007f599e94149e68cabe4d3455609069bfb62f48fcaba7f6919f3875cf6f206d797a80f58a07f3c63330a03b44db05ef8fecdf101c3db 
+了解更多 
+
+
+ 會籍積分
+
+ 0 
+ 綠卡
+
+
+  再賺取300積分即可升級至銀卡    
+
+
+  
+
+
+  
+
+
+https://click.e.cathaypacific.com/?qs=047a0a321d927e954b9c21b7ff96fc5ac7e3b2bb3a267d8eaeee2fb8af3ced7793b8e84eaf4673cd32e8ea606430263a3c1bdf2eb634988595781388bb25dc18 
+查閱賬戶資訊 
+
+https://click.e.cathaypacific.com/?qs=047a0a321d927e95c5ec1f121acf637759a8947aebb3bfc17dd0a2c3694cc0d34a7f6ab65f4b21768ce6bdec1bc4eaf9d4370122fe97f693bf43f5fc1f06edb1 
+航班   |  
+https://click.e.cathaypacific.com/?qs=047a0a321d927e9566f048bd50adc072b28b0a854a32581ba73c5fc8d2e07626c8606edbbc6ce744e9dfe8b8ae499eca62281311fd6dc78ca3565d004619116f 
+旅遊   |  
+https://click.e.cathaypacific.com/?qs=047a0a321d927e95127cfd3b419ced3100f6098239c52742a72377342f9b28868456a3372d55399842e036fc49a200ba9b23af7c40e4a8fb784e7a074df11d78 
+購物   |  
+https://click.e.cathaypacific.com/?qs=047a0a321d927e955d6bc326d210cee085c63fa11b090f00f53170cb1b4584a14f652ce52aed12385a06a8d8dacf1f6e331d5309a21b1b5dd759fcd661fab75a 
+身心健旅   |  
+https://click.e.cathaypacific.com/?qs=047a0a321d927e95bc8813998e2298ce40f7701ba6b1c8c1287b8c73fe940597c41599cc73cc7631c0f433748aa139baf10d787e71193f0f3ca7bfb6251ded65 
+餐飲   |  
+https://click.e.cathaypacific.com/?qs=047a0a321d927e952a3319fb6b01a6bae282faeceae8e7c678ac69ffee7c7d6253ccd0323771a3eb30a0932798a5612ea131146c5d87fb1a12e194855951145a 
+支付   |  
+https://click.e.cathaypacific.com/?qs=047a0a321d927e95200b6d497bb2fef2c47d62fe376a8751de92a681367a97b8ce6b70972e5c98675bace41af2862235d6a9687e96474357d6475e3a2d73c166 
+會籍 
+
+
+ 
+
+ 
+
+https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fdeecf29bd2ce8e88c69bce82295e10a11b13c5cce84b34d41f3171cb6d0951dd4b54fa3405dcb4ee07e82876e96c75c0c275bcdbfed65880dd 
+
+https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fdeecf29bd2ce8e88c69bce82295e10a11b13c5cce84b34d41f3171cb6d0951dd4b54fa3405dcb4ee07e82876e96c75c0c275bcdbfed65880dd 
+升級國泰航空的國泰會員計劃將於2027年1月1日起生效 
+我們將於2027年1月1日起提升會員計劃，為你提供更快捷的會籍晉升、更簡易的會員體驗，以及專屬禮遇。https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fdeecf29bd2ce8e88c69bce82295e10a11b13c5cce84b34d41f3171cb6d0951dd4b54fa3405dcb4ee07e82876e96c75c0c275bcdbfed65880dd 
+按此 了解更多詳情。
+
+
+ 
+
+ 
+
+
+
+會員情報
+
+
+  
+
+https://click.e.cathaypacific.com/?qs=ccf00236ded11151f93174f8030b4de42ec62a2a036f49a930be6f9f4aad94ff738beeac7119cdc391dd58551430e3e321c32fc0d96704ac65d824a2722fe5e1 
+銜接至升級的會員計劃 
+
+	- 
+ 你的2027年會籍級別將根據你於2026年1月1日至12月31日期間所累積的會籍積分總數而定。  
+	- 
+ 你現有的會籍仍將根據賬戶內的會籍到期日屆滿。  
+	- 
+ 任何於2026年內延續或變更的會籍級別均將於2026年12月31日到期。
+https://click.e.cathaypacific.com/?qs=ccf00236ded11151f93174f8030b4de42ec62a2a036f49a930be6f9f4aad94ff738beeac7119cdc391dd58551430e3e321c32fc0d96704ac65d824a2722fe5e1 
+按此了解更多 。
+
+https://click.e.cathaypacific.com/?qs=ccf00236ded111519bca0872f37c5f6130ec83bb5651825899852a6d38c037c0bb72156d5cae0d2bf2bfac1c66a0e7e669ee4da9b5203448693e92ba0b36396a 
+金卡會員可於下月中起享用免費機上無線網絡服務 
+
+
+ 我們深知旅行途中保持聯繫的重要性。2025年11月15日起，乘搭所有客艙級別的國泰航空的國泰金卡會員，均可免費享用高速機上無線網絡。此服務亦將於今年年底前開放予選乘特選經濟客艙的所有會員。為確保順利使用免費無線網絡服務，請於預訂或辦理登機手續時加入你的會員編號。
+https://click.e.cathaypacific.com/?qs=ccf00236ded111519bca0872f37c5f6130ec83bb5651825899852a6d38c037c0bb72156d5cae0d2bf2bfac1c66a0e7e669ee4da9b5203448693e92ba0b36396a 
+按此了解更多 。
+
+
+  
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+
+https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fde492d27a5d193ab60c1f7bffe120d5a7f4b46ace15c873c8a7fdf1c579faf2df36e546a5aa821edfa2870513260ab0e399a2e9bc31be15668 
+取消訂閱  |
+https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fde56889842a9d198d662161ad949e77dac5a10e6e1929f90733b9531e5b1970642ce8ff14c734c080df7547d5b1906681c14211f1c7fa431d9 
+管理訂閱  |
+https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fde773aac584337305dda3c79fa81ace718d9f20dd2cc1f4c38ef40895e1717c3b6593c671e71533f48e248ef792e70e4e976bacf84a7e360cc 
+客戶私隱聲明  |
+https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fdeeb52e930462df26347ce9cab646d83ecc20ef205601a1242cb9873c58cf26141c322b1177202d040067e2af044c28c44eb5ea1d944a4068a 
+聯絡我們 
+
+ 這封是由國泰航空發出的服務電郵。這些電郵載有關於你使用我們服務及產品的主要資料，而並非旨在對你進行市場推廣。
+ 所有優惠詳情如有變動均不作另行通知。須受細則及條款限制。
+ 國泰航空有限公司 | 亞洲萬里通有限公司 | 香港大嶼山香港國際機場觀景路 8 號國泰城
+
+https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fdec11e08c5152531cff9cb665989b1efb849f9fac99e333c95cc647b90cbeee91ac5ba161977f12d3fde33f9db2047c663d6178845bf82b284 
+版權所有  <span style="font-family:Arial,helvetica,sans-serif;font-size:12px; color:#FFFFFF; vertical-align:middle;">&copy; Cathay Pacific Airways Limited </span>                          <span style="font-family:Arial,helvetica,sans-serif;font-size:12px; color:#FFFFFF; vertical-align:middle; display:inline-block;">國泰航空有限公司</span>
+https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fde83c9e70acf544c37c17164b6d9e03c4b0a7d396f94307c1bf88068207e8893f5d7c1a3e6fb62b710c8793f9c4139e0d9f5c59e4d80412622 
+
+
+  
+
+
+
+
+
+ 
+ 
+
+
+--U6GIqy00VKP3=_?:
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no">
+    <meta name="x-apple-disable-message-reformatting">
+    <img src="https://click.e.cathaypacific.com/open.aspx?ffcb10-fec3167776650375-fe6711707564067b7113-fe3211717064047f711d73-ff971577-fe621775756100797017-ff2b17777162&d=100216&bmt=0" width="1" height="1" alt="">
+    <title>Email Preview
+    </title>
+    <base target="_blank">
+    <style type="text/css">
+      a{text-decoration:none !important}
+body{background-color:#ffffff;-webkit-font-smoothing:antialiased;min-width:700px}
+table{border-collapse:collapse}
+/*div{line-height:1 !important}*/
+line body table,body table>tr>td,body table>tr>th,body table>tbody>tr>td,body table>tbody>tr>th,body table>thead>tr>td,body table>thead>tr>th,body table>tfoot>tr>td,body table>tfoot>tr>th{border:none !important}
+.displayBorder{border:1px solid #367878 !important}
+.deviceWidth{width:700px !important;padding:0px !important;margin:auto}
+.noWrap{white-space:nowrap !important}
+sup {line-height: 0 !important}
+sub {line-height: 0 !important}
+@media only screen and (max-width:620px),screen and (max-width:480px){.smItemWrap{display:block !important;text-align:center !important;min-width:160px !important}
+.smItemWrap .smTitle{display:block !important;            padding-top: 0px !important;padding-left: 0px !important;padding-right: 0px !important;font-size:15px !important;line-height:18px !important;text-align:center !important}
+.smItemWrap img{padding-right:0px!important}
+.noPadding{padding:0px !important}
+.responsive-td{width:100% !important;float:left !important;padding:0px !important}
+.imagePadding{padding-bottom: 10px !important}  
+.imagePadding-left{padding-bottom:8px !important;padding-left:0px !important;padding-right:4px !important}
+.imagePadding-right{padding-bottom:8px !important;padding-left:4px !important;padding-right:0px !important}  
+.mobileDevice{position:relative;left:-10px}
+body{min-width:0px !important}
+.clearfix{overflow:hidden}
+.deviceWidth{width:100% !important;padding:0px !important;margin:auto}
+.fullWidth{width:100% !important;padding:0 !important}
+.fullWidth img {width: 100% !important;padding: 0 !important;} 
+.halfWidth{width: 50% !important;padding: 0 !important} 
+.downloadWidth{padding:0 !important}
+.fullWidthBlock{float:none;width:auto !important;display:block !important}
+.QRcenter{padding:0 !important;text-align:center}
+.top_logos{padding-left:20px !important;padding-right:20px !important}
+.header_logo_brand_mpo img{width:125px !important;height:auto !important;padding-top:5px}
+.header_logo_second img{width:115px !important;height:auto !important}
+.viewWebLink{text-align:center}
+.footer_inner{padding:0 0 20px !important}
+.footer_inner_container{padding:0 20px}
+.footer_logos{float:left;padding-right:20px !important}
+.footer_logos img{height:16px}
+body td.bottom-link{padding:10px 0px !important}
+.footer_disclaimer{padding:20px 0px 0px !important}
+.footer_link{float:left;padding:20px 15px 0px 0px !important}
+.footer_link a,.footer_link span{font-size:13px !important}
+.footer_copyright{display:block;clear:both;padding-top:15px !important}
+.footer_copyright.marketing_footer{display:table-cell;padding-top:5px !important}
+.footer_copyright a,.footer_copyright span{font-size:9px !important}
+.footer_copyright_text{padding-right:0.2em!important}
+.smTitle{font-size:20px !important;line-height:24px !important}
+.smDescription{font-size:13px !important;line-height:17px !important}
+.smGreeting{font-size:16px !important}
+.smPadding{padding-left:1.67em !important;padding-right:1.67em !important;padding-top:1.67em !important;padding-bottom:1.67em !important;height:auto !important}
+.fontSize10{font-size:10px !important;height:10px !important;line-height:10px !important}
+.VC-smPadding{padding-left:0.84em !important;padding-right:0.84em !important;padding-top:1.67em !important;padding-bottom:2.08em !important}
+.VC-lineheight{height:0px !important}
+.VC-2-2-smPadding{padding-top:1.25em !important}
+.VC-Float{float:left;clear:left;text-align:center !important}
+.VC-smSpacing{height:1.25em !important;width:100% !important}
+.VC-sm-Asiamail{background:#facf00 !important}
+.VC-sm-Asiamil-content{background:#ffffff !important}
+.VC-sm-Asiamail-bottom{padding-bottom:8px !important}
+.VC-sm-Asiamail-top{padding-top:8px !important}
+.bottomImgPadding{padding:25px 0 5px !important}
+.downloadText{text-align:center !important;display:block !important}
+.downloadText-1{margin:0px !important;padding-left:20px !important;padding-right:20px !important;text-align:center !important}
+.downloadText-padding{padding-bottom:15px !important}
+.downloadText-top{padding-top:20px !important}
+.downloadText-top-1{padding-top:30px !important;padding-bottom:5px !important}
+.downloadText-top-2{padding-top:26px !important}
+.downloadText-top-3{padding-top:28px !important;padding-bottom:5px !important}
+.downloadImg{padding-bottom:30px !important;display:inline-block !important;margin:0 auto}
+.downloadImg-1{padding-top:15px !important;padding-bottom:30px !important;display:inline-block !important;padding-right:10px !important}
+.downloadImg-2{padding-top:15px !important}
+.downloadImg-3{padding-top:15px !important;padding-right:15px !important;padding-left:15px !important}
+.downloadImg-4,.downloadImg-4 img {padding-bottom:24px !important;padding-right:15px !important;padding-left:15px !important}
+.downloadImg-right{padding-bottom:30px !important;padding-right:22px !important;align:right}
+.downloadImg-left{padding-bottom:30px !important;padding-left:22px !important;align:left}
+.show{display:block !important}
+.topImgPadding{padding:5px 0px !important}
+.imgBlock{text-align:center !important}
+.fareTable_text_left{text-align:left !important;padding-right:5px !important;padding-left:5px !important;padding-top: 12px !important;font-size:12px !important;line-height: 14px !important;width: 50% !important}
+.fareTable_text_right{text-align:right !important;padding-right:5px !important;padding-left:5px !important;padding-top: 12px !important;font-size:12px !important;line-height: 14px !important}
+.fareTable_text_right-1{width:50% !important}
+.content_text_hr{padding-left:0px !important;padding-right:0px !important}
+.content_text_hr table{width:67px !important}
+.content_text_hr hr{width:67px;border-color:#006564;border-width:0.5px}
+.fareTable_title{width:100% !important;display:block;text-align:center !important;margin-left:auto;margin-right:auto}
+.deviceWidthLarger{width:100% !important;height:auto !important}
+.deviceWidthCommon{width:100% !important;padding-left:20px !important;padding-right:20px !important;}
+.discoveryBlock{display:block !important;padding:0px !important}
+.hide{display:none !important}
+.destinationImgHeight{height:200px}
+.packageImgHeight{height:192px}
+.leftAlign{text-align:left !important}
+.marginBottom{margin-bottom:10px !important}
+.tableStyle{font-size:11px !important;line-height:12px}
+.fanfareLogo{width:160px !important}
+.displayblock{padding:0px !important;margin:0px !important;display:block !important}
+.littleSize{font-size:13px !important}
+.textLeft{text-align:left !important}
+.ts12{font-size:12px !important;line-height:normal !important}
+.ts20{font-size:20px !important}
+.ts10{font-size:10px !important;line-height:normal !important}
+.paddingBottomLarge{padding-bottom:30px !important}
+.paddingmiddle{padding:8px 0px !important}
+.smallWidth{width:70px !important}
+.paddingLeft20{padding-left:20px !important}
+.paddingRight20{padding-right:20px !important}
+.borderNone{border:none !important}
+.paddingTopLarge{padding-top:20px !important}
+.headerMessage{margin:0px !important}
+td.hero-banner-message{padding:0px 21px !important}
+.remindInfo{font-size:13px !important;line-height:18px !important}
+.tripReady{font-size:11px !important}
+.inline{display:inline !important}
+.smallLineHeight{line-height:13px !important}
+.downloadImg-noPadding{padding:0px !important}
+.downloadImg-5 img{padding-top:13px !important;padding-left:5px !important;padding-right:20px !important}
+.downloadImg-6 img{padding-top: 15px !important;padding-bottom: 24px !important;padding-right: 15px !important;padding-left: 15px !important}
+.ImgCenter{text-align:center !important;padding:0px !important;width:200px !important}
+.imageCenter{padding:0px !important}
+.QRImageCenter{text-align:center !important;padding:0px !important;width:300px !important}
+.removePadding{padding:0px !important;text-align:center !important}
+.inline{display:inline !important}
+.titlePadding{padding-bottom:23px !important}
+.stylingblock-content-wrapper.camarker-inner{padding:0px !important}
+.x_stylingblock-content-wrapper.x_camarker-inner{padding:0px !important}
+.x_stylingblock-content-wrapper{padding:0px !important}
+.x_camarker-inner{padding:0px !important}
+.smTextPadding{padding:0px !important}
+.smPadding-1{padding-left:20px !important;padding-right:20px !important}
+.smTextPadding-1{padding-left:0px !important;padding-right:20px !important}
+.smTextPadding-2{padding-top:5px !important;padding-bottom:0px !important;padding-left:20px !important;padding-right:20px !important}
+.smTdHeight{padding-left:0px !important;padding-right:0px !important;padding-bottom:0px !important}
+.smDivpadding{height:10px !important}
+.camarker-inner{padding:0px !important}
+.copy_right_text{padding:0px !important}
+.smAccountSummary-1{padding-left:20px !important}
+.smAccountSummary-2{padding-left:56px !important;padding-right:56px !important}
+.lineToWidth{width:234px !important;height:0px !important;border:1px solid #C5C7C9 !important}
+.smAccountSummary-3{width:50% !important}
+.line{border-color:#c5c7c9 !important;border-width:1px !important;border-style:solid !important;height:186px !important}
+.smPaddingAccountSummary{padding-left:0px !important;padding-right:15px !important}
+.smPaddingAccountSummary-1{padding-left:15px !important;padding-right:0px !important}
+.smCardPadding{padding:30px 20px !important}
+.todoItemTitle{padding-bottom:20px !important}
+.smPaddingTop{padding-top:20px !important}
+.smBottomPadding{padding-bottom:30px !important}
+.smPSize{width:218px !important;padding:0 !important}
+.smPSize-02{padding-left:56px !important;padding-right:56px !important;padding-bottom:16px !important}
+.smLinePadding{padding-top:30px !important;padding-bottom:30px !important}
+.smPaddingBottom{padding-top:9px !important;padding-bottom:0px !important}
+.smPicHeight{height:186px !important}
+.smPaddingNoBottom{padding-bottom:0px !important}
+.gateText{padding-bottom:30px !important;padding-top:0px !important}
+.gateText-1{padding-top:30px !important}
+.smFontSize{font-size:12px !important;line-height:16px !important}
+.smPaddingBottom-1{padding-bottom:56px !important}
+.smline{width:30% !important;border:1 solid !important;background-color:#2D2D2D !important}
+.smPSize-03{padding-bottom:20px !important}
+.smPaddingTop-01{padding-top:0px !important}
+.smPaddingBottom-1{padding-bottom:54px !important}
+.mobile-padding-bottom-10{padding-bottom:10px !important;padding-right:0px !important}
+.mobile-width-280{width:280px !important}
+.todoItemTitle-01{padding-bottom:15px !important}
+.foot_padding{padding-left:20px !important;font-size:9px !important;line-height:11px !important}
+.foot_padding_01{font-size:14px !important;line-height:16px !important;padding-left:20px !important}
+.foot_padding_02{font-size:10px !important;line-height:16px !important;padding-left:20px !important;padding-bottom:11px !important}
+.npsdeviceWidthLarger{width:82% !important}  
+.nps-btn-padding{padding-left:0px !important;padding-right:9px !important}
+.nps-btn-size{width:39px !important;height:39px !important}
+.nps-btn-size-mobile{width:27px !important;height:27px !important}  
+}</style>
+  </head>
+  <body leftmargin="0" marginheight="0" marginwidth="0" style="width:100%; margin:0;line-height : 100%; font-size : 16px; color : #000000; padding : 0px; " topmargin="0" yahoo="fix"><style type="text/css">
+div.preheader 
+{ display: none !important; } 
+</style>
+<div class="preheader" style="font-size: 1px; display: none !important;">升級國泰航空的國泰會員計劃將於2027年1月1日起生效
+</div>
+    <!-- Wrapper start-->
+    <table align="center" class="deviceWidth" border="0" cellpadding="0" cellspacing="0"  bgcolor="#EBECED">
+      <tr>
+        <td align="center" style="padding-left:40px;padding-right:40px;padding-bottom:40px;" class="smTdHeight">
+          <!-- Common Script-->
+          
+<!--Custom Logic Code-->
+
+
+<!--Get Early Date-->
+
+<!-- new add fields -->
+
+
+<!--Mailing list 4 Indicator-->
+
+          
+          <!-- Header-->
+          <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td align="center" valign="top">
+      <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <!-- TOP LINK START -->
+        <tr>
+          <td align="center" valign="top">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" class="deviceWidth" width="700">
+              <tr>
+                <td align="center" bgcolor="#EBECED" style=" padding:0.625em 1.375em 0.5em 2.5em;">
+                  <!-- web link start -->
+                  <table align="right" border="0" cellpadding="0" cellspacing="0" class="fullWidth">
+                    <tr>
+                      <td align="right" class="center viewWebLink" valign="top" width="100%">
+                        <a   data-linkto="other" href="https://view.e.cathaypacific.com/?qs=b685762f276f1f6b9cc9f45e3d45dbf9074370282b2418d0726a50ca1d5dce66a9ba07e07e23b9da6c13b37bca5625d6a511bf87fa8369ea98f4ab69d4dfc4529e659eade522fa16187c7cc225bda892" name="click_to_view" style="color:#4c4c4c;text-decoration:none; line-height:13px; font-size:11px;font-family:Arial,helvetica,sans-serif;" title="">未能閱讀此郵件？ <span style="color: #367878;">使用瀏覽器閱讀。</span></a>
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- web link end -->
+                </td>
+              </tr>
+              <tr>
+                <td align="center" valign="top">
+                  <table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" class="deviceWidth" width="700">
+                    <tr>
+                      <td class="top_logos" style="padding:0 30px;">
+                        <!-- Logo start-->
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
+                          <tr>
+                            <td style="text-align:left; vertical-align:middle; padding:0 0 0.5em 0; height:68px;" height="68">
+                              <a  href="https://click.e.cathaypacific.com/?qs=047a0a321d927e95bd28b2a173dc66dc16ee80f8f54f230330687b574fb1124d3b4e42053051713a580a8a6415c9975df0b9b5537aa48dbc89832208c2f32df0" name="cx_logo" style="border:0" target="_blank"><img alt="Cathay Pacific" height="22" src="https://www.cathaypacific.com/content/dam/cx/applications/email/header-lrp/cathaypacific-zh-green.png" style="border-style: none;height: 24px;" width=""></a>
+                            </td>
+                          </tr>
+                        </table>
+                        <!--  Logo end -->
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <!-- salutation start -->
+              <tr>
+                <td align="center" valign="top">
+                  <table align="left" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td style="font-size:7px" width="640px">
+                        <hr class="fullWidth" height="1px" style="height:1px; border:0 none; color:#EBECED; background-color: #EBECED; margin-top:0em; margin-bottom:0em;" width="100%">
+                      </td>
+                    </tr>
+                  </table>
+                  <table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" class="deviceWidth" width="700">
+                    <tr>
+                      <td class="top_logos" style="padding:20px 30px 20px 30px;">
+                        <!-- Logo start-->
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
+                          <tr>
+                            <td style="color: #2D2D2D;font-family:Arial,helvetica,sans-serif;font-size: 18px; line-height: 20px; width: 640px; text-align: left; padding:0 0 4px 0">
+                              尊敬的 Lien 先生</td>
+                          </tr>
+                          <tr>
+                            <td style="color: #2D2D2D;font-family:Arial,helvetica,sans-serif;font-size: 11px;line-height: 15px;width: 640px;text-align: left; padding:0">
+                              會員號碼 : 155 XXXX 460</td>
+                          </tr>
+                        </table>
+                        <!-- salutation start -->
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- TOP LINK END -->
+      </table>
+    </td>
+  </tr>
+</table></td></tr></table>
+          
+          <!-- Customer input-->
+          <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: #E6E7E8; min-width: 100%; " class="slot-styling"><tr><td style="padding: 0px; " class="slot-styling camarker-inner"><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+ 
+  <tr>
+   <td align="center">
+    <!--####################################### BODY START  #######################################--><table align="center" bgcolor="#F9F9F9" border="0" cellpadding="0" cellspacing="0" class="deviceWidth" width="700">
+     
+      <tr>
+       <td align="center" valign="top" width="100%">
+        <!--######################### OFFER STORY 1 - HORIZONTAL START #######################--><table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+         
+          <tr>
+           <td align="center" valign="top" width="100%">
+            <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
+             
+              <tr>
+               <td class="smAccountSummary-1" style="display: flex;align-items:center;padding-top: 40px;padding-bottom: 3px;padding-left: 30px;">
+                <table border="0" cellpadding="0" cellspacing="0">
+                 
+                  <tr>
+                   <td>
+                    <img alt="" src="https://www.cathaypacific.com/content/dam/cx/applications/email/assets-lrp/member-icon.png" width="26"></td><td style="padding-left: 9px;margin: 0px;color: #2D2D2D;font-family:Arial,helvetica,sans-serif;font-size: 20px;line-height: 30px;text-align: left;vertical-align: middle;">
+                    你的賬戶概要</td></tr></table></td></tr><tr>
+               <td class="smAccountSummary-1 paddingRight20" style="padding-bottom: 20px;padding-left: 30px;" width="100%">
+                <div style="mso-line-height-rule:exactly;margin: 0px; color: #2D2D2D;font-family:Arial,helvetica,sans-serif;font-size: 14px;line-height: 20px;text-align: left;">
+                 <span style="font-weight: bold;">結算截至:</span>&nbsp;2025年10月22日<br>
+                 <span style="font-size:12px;"><span style="color:#4c4c4c;">請按以下的「查閱賬戶資訊」以查看你最新的賬戶結餘。</span></span></div></td></tr><tr>
+               <td class="smAccountSummary-1" style="padding-bottom: 10px;padding-left: 30px;" width="100%">
+                <div style="mso-line-height-rule:exactly;margin: 0px; color: #2D2D2D;font-family:Arial,helvetica,sans-serif;font-size: 16px;line-height: 30px;text-align: left;">
+                 賬戶結餘</div></td></tr></table><table border="0" cellpadding="0" cellspacing="0" class="VC-Float" width="100%">
+             
+              <tr>
+               <td align="left" class="VC-Float deviceWidthLarger" valign="top" width="349">
+                <table align="left" border="0" cellpadding="0" cellspacing="0" class="deviceWidthLarger borderNone" style=" border-right: solid 1px #C5C7C9;" width="349">
+                 
+                  <tr>
+                   <td align="left" class="smAccountSummary-1 paddingRight20" style="padding-left: 30px;" width="100%">
+                    <div style="mso-line-height-rule:exactly;margin: 0px; color: #886521;font-family:Arial,helvetica,sans-serif;font-size: 16px;line-height: 19px;text-align: left;">
+                     「亞洲萬里通」里數</div></td></tr><tr>
+                   <td align="left" class="smAccountSummary-1 paddingRight20" style="padding-top:5px;padding-left: 30px;" width="100%">
+                    <div style="mso-line-height-rule:exactly;margin: 0px;">
+                     <img src="https://www.cathaypacific.com/content/dam/cx/applications/email/assets-lrp/asiamiles.png" style="margin: 0px; padding: 0px; border: none; height: 19px;" width="15"> <span style="font-size: 5px">&nbsp;</span> <span style="color: #2D2D2D; font-family:Arial,helvetica,sans-serif;font-size: 24px; line-height: 29px; text-align: left;font-weight: bold;"> 0 </span></div></td></tr><tr>
+                   <td align="left" class="smAccountSummary-1 paddingRight20" style="padding-top: 9px;padding-left: 30px;padding-right: 33px;" width="100%">
+                    <div class="imagePadding" style="line-height: 20px;mso-line-height-rule:exactly;margin: 0px;text-align: left;">
+                     <span style="color: #2D2D2D;font-family:Arial,helvetica,sans-serif;font-size: 14px;text-align: left;">於里數到期前賺取或兌換里數以延長有效期18個月。 </span></div><div class="hide" style="mso-line-height-rule:exactly;margin: 0px;text-align: left;display:block;line-height:15px;">
+                     &nbsp;</div><div style="mso-line-height-rule:exactly;margin: 0px;text-align: left;">
+                     <a   data-linkto="other" href="https://click.e.cathaypacific.com/?qs=047a0a321d927e9500f4c9be94a98846852177b34a9e1febe4e5dff281aee6b9d3bd1d3aebabdc27518edf032c880f636b3635ddf6f48865fe5d5a2809e711d4" style="color:#367878;text-decoration:none;" title=""><span class="LinkDisplay" style="margin: 0px;color: #367878;font-family:Arial,helvetica,sans-serif;font-size: 14px;line-height: 17px;padding-right: 3px;vertical-align: middle;">了解更多 </span> <span style="padding-bottom:1px;height: 6px;vertical-align: middle;"> <img src="https://www.cathaypacific.com/content/dam/cx/applications/email/assets-lrp/link-arrow.png" width="13"> </span></a></div></td></tr></table></td><td class="deviceWidthLarger VC-Float smLinePadding show" style="display: none;">
+                <table align="left" border="0" cellpadding="0" cellspacing="0" class="deviceWidthLarger">
+                 
+                  <tr>
+                   <td align="left" class="smAccountSummary-1 paddingRight20" height="0" style="line-height: 0;" valign="top" width="100%">
+                    <table align="left" border="0" cellpadding="0" cellspacing="0">
+                     
+                      <tr>
+                       <td align="left" height="0" style="height: 0px !important; border: 1px solid #C5C7C9 !important;" valign="top" width="382">
+                       </td></tr></table></td></tr></table></td><td class="deviceWidthLarger VC-Float" style="font-weight: normal;" valign="top" width="330">
+                <table align="right" border="0" cellpadding="0" cellspacing="0" class="deviceWidthLarger smPSize-02" width="320">
+                 
+                  <tr>
+                   <td align="left" class="smAccountSummary-1 paddingRight20" height="0" style="line-height: 0;padding-right: 33px;" valign="top" width="100%">
+                    <div style="mso-line-height-rule:exactly;margin: 0px;color: #886521;font-family:Arial,helvetica,sans-serif;font-size: 16px;line-height: 19px;text-align: left;">
+                     會籍積分</div></td></tr><tr>
+                   <td class="smAccountSummary-1 paddingRight20" style="padding-top: 5px;padding-right: 33px;">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                     
+                      <tr>
+                       <td style="padding-right: 8px; color: #2D2D2D;font-family:Arial,helvetica,sans-serif;font-size: 24px;line-height: 29px;font-weight: bold;text-align: left;">
+                        0 </td><td style="height: 20px;">
+                        <img src="https://www.cathaypacific.com/content/dam/cx/applications/email/assets-lrp/green-card-face.png" width="30"></td><td style="padding-left: 8px;color: #2D2D2D;font-family:Arial,helvetica,sans-serif;font-size: 14px;line-height: 17px;text-align: left;font-weight: normal;vertical-align:middle;">
+                        綠卡</td></tr></table></td></tr><tr>
+                   <td class="smAccountSummary-1 paddingRight20" style="padding-right: 33px;padding-top: 10px;">
+                     <div class="imagePadding" style="line-height: 20px;mso-line-height-rule:exactly;margin: 0px;text-align: left;line-height: 16px;">
+                     <span style="color: #2D2D2D; font-family:Arial,helvetica,sans-serif;font-size: 14px; text-align: left;">再賺取<span style="font-weight: bold;">300</span>積分即可升級至銀卡</span></div> <div class="hide" style="mso-line-height-rule:exactly;margin: 0px;text-align: left;display:block;line-height:15px;">
+                     &nbsp;</div>    </td></tr></table></td></tr><tr>
+               <td align="left" height="0" style="line-height: 0; padding-bottom: 20px;" valign="top" width="100%">
+                &nbsp;<br>
+                <br>
+                &nbsp;</td></tr></table></td></tr></table></td></tr><tr>
+       <td align="center" bgcolor="#ffffff" valign="top" width="100%">
+       </td></tr><tr>
+      </tr></table></td></tr><tr>
+  </tr></table></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table align="center" cellpadding="0" cellspacing="0" class="deviceWidthLarger" style="background-color: #ffffff;" width="700">
+ 
+  <tr>
+   <td align="center" valign="top" width="100%">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" class="deviceWidthLarger" width="95%">
+     
+      <tr>
+       <td class="deviceWidthCommon" style="padding-bottom: 20px;padding-top:40px" width="640">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" class="deviceWidthLarger" width="100%">
+        </table><table align="center" border="0" cellpadding="0" cellspacing="0" class="mobile-width-280 white-table" id="btn" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 216px; background: #ffffff;">
+         
+          <tr>
+           <td align="center" class="mobile-width-280" height="55" style="background:#2C4036; height: 55px;" width="100%">
+            <a   data-linkto="other" href="https://click.e.cathaypacific.com/?qs=047a0a321d927e95bb1b2f2db36aee21ce80517661694c6c0cfab9b3a586f9ffdd6a3f071247d3db2c86221268cc659ee1970a2c23741bd5c2c596ae167dfccd" rel="noopener" style="color:#FFFFFF;text-decoration:none;background:#2C4036; text-align: center;line-height: 24px; font-family:Arial,helvetica,sans-serif;font-size: 16px;display: block;padding-right: 15px ;padding-left:15px;" target="_blank" title="" xt="SPCLICK">查閱賬戶資訊</a></td></tr></table></td></tr></table></td></tr><tr>
+   <td>
+   </td></tr></table></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><style type="text/css">
+a:hover {
+    text-decoration: underline !important;
+  }</style><table align="center" bgcolor="#EBECED" border="0" cellpadding="0" cellspacing="0" width="100%">
+	
+		<tr>
+			<td align="center">
+				<!--####################################### BODY START  #######################################--><table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="deviceWidth" width="700">
+					
+						<tr>
+							<td align="center" bgcolor="#F7F6F1" class="smTitle smGreeting" style="margin:0px;color: #367878;font-family:Arial,helvetica,sans-serif;font-size: 16px; line-height: 20px;text-align: center; padding-top: 16px;padding-bottom: 14px;" width="100%">
+								<table align="center" border="0" cellpadding="0" cellspacing="0">
+									
+										<tr>
+											<th align="center" class="deviceWidthLarger VC-Float" style="margin:0px;font-weight:normal;text-align:right;" valign="middle">
+												<a   data-linkto="other" href="https://click.e.cathaypacific.com/?qs=047a0a321d927e95dc67183763649f1ed7a0a55219f8954f0f1db73b2b9c9f931ac1d00a6792b0e8eda1ff56ebeef874d3c9aea5849ffe242d6ebe2e934b5721" style="color:#367878;text-decoration:none;" title="Flights">航班</a> <span style="color: #367878;">&nbsp;&nbsp;|&nbsp;&nbsp;</span> <a   data-linkto="other" href="https://click.e.cathaypacific.com/?qs=047a0a321d927e952d63c434d40c1fcc8087db221319bf866d91406892197f676bb4dec387f12feffd7596065d0c13304f422e2252dc6dc33636d7907fc65eed" style="color:#367878;text-decoration:none;" title="Holidays">旅遊</a> <span style="color: #367878;">&nbsp;&nbsp;|&nbsp;&nbsp;</span> <a   data-linkto="other" href="https://click.e.cathaypacific.com/?qs=047a0a321d927e953074406dd30bc9e6a48d5f535fe72f32567ea477af45df3ec71d18e78d2758fa2544c59225c902112b1b73c99d452ea3bdb41f472e86f824" style="color:#367878;text-decoration:none;" title="Shopping">購物</a> 
+<span style="color: #367878;">&nbsp;&nbsp;|&nbsp;&nbsp;</span> <a   data-linkto="other" href="https://click.e.cathaypacific.com/?qs=047a0a321d927e95c0cd7c787413ce0c945a4b79ffcc877d88877a1f1d41b1cf451fd89994a4f54938cda3788ade6dd1785d5e18b9d45b4d88a408b442c31a98" style="color:#367878;text-decoration:none;" title="Wellness">身心健旅
+</a> <span class="hide" style="color: #367878;">&nbsp;&nbsp;|&nbsp;&nbsp;</span></th><th align="center" class="deviceWidthLarger VC-Float" style="margin:0px;font-weight:normal;text-align:left;" valign="middle">
+												<a   data-linkto="other" href="https://click.e.cathaypacific.com/?qs=047a0a321d927e95968a869b99ca1a7419876e05c838d8905ad5b911b5e7f3ae91161dfcf485278488197a70a5e2e11b2e01281ee618f4c445b1786ac589b824" style="color:#367878;text-decoration:none;" title="Dining">餐飲</a> <span style="color: #367878;">&nbsp;&nbsp;|&nbsp;&nbsp;</span> <a   data-linkto="other" href="https://click.e.cathaypacific.com/?qs=047a0a321d927e95032720376275af100d2fdca193aa554cdcf665f2b968a6d38391a399571be8de9617e2d939ba8115073ea98e259b7bf136db32dad83ddb05" style="color:#367878;text-decoration:none;" title="Payment">支付</a> <span style="color: #367878;">&nbsp;&nbsp;|&nbsp;&nbsp;</span> <a   data-linkto="other" href="https://click.e.cathaypacific.com/?qs=047a0a321d927e951ba517559d92c5c2e1d5e40a376f9864ae9a2800b4b4728996518cd04932e88832af6acf2fb59a205f2fdaddb01f99a7bf42fdd9d5438cc5" style="color:#367878;text-decoration:none;" target="_blank" title="Membership">會籍</a></th></tr></table></td>
+</tr><tr>
+							<td align="left" bgcolor="#ffffff" class="smBottomPadding" height="0 " style="line-height: 0; padding-bottom: 30px;" valign="top " width="100% ">
+								&nbsp;</td></tr></table></td></tr></table> </td></tr></table>
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><style type="text/css">
+a:hover {
+    text-decoration: underline !important;
+  }</style><table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+	
+		<tr>
+			<td align="center">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" class="deviceWidthCommon" width="700">
+					
+						<tr>
+							<td align="center" bgcolor="#ffffff" valign="top" width="100%">
+								<table align="center" border="0" cellpadding="0" cellspacing="0" class="deviceWidthCommon" width="640">
+									
+										<tr>
+											<th bgcolor="#f9f9f9" class="VC-Float" style="background-color:F9F9F9; font-weight:normal;text-align:left; position: relative;" valign="top">
+												<!-- <a class="test" href="https://www.cathaypacific.com/cx/sc_CN.html" style="color:transparent;width:100%; height: 100%; position: absolute;z-index:auto;">placeholder</a> --><table align="left" border="0" cellpadding="0" cellspacing="0" class="deviceWidthCommon" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="640">
+													
+														<tr>
+															<td align="center" valign="top" width="100%">
+																<span style="margin: 0px;font-family:Arial,helvetica,sans-serif;font-size:20px;color:#272727 "><span style=""></span></span><a   data-linkto="https://" href="https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fde94b368a7d141395537333f5523f50df39deabdaeca1096c09c8dc902fdc63e6271dd7fa09a34cb672be1d92ad728682cdad1c1f1b512f8dc" style="text-decoration:none;" title=""><img alt="hero" data-assetid="603083" src="https://image.e.cathaypacific.com/lib/fe3211717064047f711d73/m/1/6c4a5fbf-e966-4961-b138-cf620537f729.jpg" style="margin: 0px; padding: 0px; display: block; height: auto; width: 100%; text-align: center; border: 0px;" width="640"></a><span style="margin: 0px;font-family:Arial,helvetica,sans-serif;font-size:20px;color:#272727 "><span style=""></span></span></td></tr><tr>
+															<td align="left" class="deviceWidthCommon" style="padding: 30px 20px; text-align: left;" valign="top">
+																<table border="0" cellpadding="0" cellspacing="0">
+																	
+																		<tr>
+																			<td style="line-height:26px; width:280px; text-align:left " width="428">
+																				<span style="margin: 0px;font-family:Arial,helvetica,sans-serif;font-size:20px;color:#272727 "><span style=""><a   data-linkto="https://" href="https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fde94b368a7d141395537333f5523f50df39deabdaeca1096c09c8dc902fdc63e6271dd7fa09a34cb672be1d92ad728682cdad1c1f1b512f8dc" style="color:#272727;text-decoration:none;" title="">升級國泰航空的國泰會員計劃將於2027年1月1日起生效</a></span></span></td></tr><tr>
+																			<td class="infoText " style="padding-top:20px; line-height:20px; width:640px; text-align:left ">
+																				<span style="margin: 0px; color:#272727;font-family:Arial,helvetica,sans-serif;font-size:14px "><span style="">我們將於2027年1月1日起提升會員計劃，為你提供更快捷的會籍晉升、更簡易的會員體驗，以及專屬禮遇。<b><a   data-linkto="https://" href="https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fde94b368a7d141395537333f5523f50df39deabdaeca1096c09c8dc902fdc63e6271dd7fa09a34cb672be1d92ad728682cdad1c1f1b512f8dc" style="color:#367878;text-decoration:none;" title="">按此</a></b>了解更多詳情。</span></span></td></tr></table></td></tr></table></th></tr><tr>
+											<td align="left" bgcolor="#ffffff" class="smBottomPadding" height="0" style="line-height: 0; padding-bottom: 40px;" valign="top" width="100%">
+												&nbsp;</td></tr></table></td></tr></table></td></tr></table> </td></tr></table>
+
+
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+ 
+  <tr>
+   <td align="center">
+    <table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="deviceWidth" width="700">
+     
+      <tr>
+       <td align="center" class="deviceWidthCommon" style="padding: 0px 30px; text-align: left;" valign="top" width="100%">
+        <table align="left" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+         
+          <tr>
+           <td align="left" valign="top" width="100%">
+            <p class="smTitle" style="margin: 0px;  color: #2D2D2D;font-family:Arial,helvetica,sans-serif;font-size: 20px;line-height: 26px;text-align: left; padding-bottom: 10px;">
+             會員情報</p></td></tr><tr>
+           <td style="font-family:Arial,helvetica,sans-serif;font-size:7px" width="640px">
+            <hr height="1px" style="height:1px; border:0 none; color: #BCBEC0; background-color: #BCBEC0; margin-top:0em; margin-bottom:0em;" width="100%">
+           </td></tr><tr>
+           <td align="left" bgcolor="#ffffff" height="0 " style="line-height: 0; padding-bottom: 20px; " valign="middle " width="100% ">
+            &nbsp;</td></tr><tr>
+           <td align="left" valign="top" width="100%">
+            <p class="smDescription" style="margin: 0px; line-height: 19px; text-align: left;">
+             <strong style="color: rgb(45, 45, 45); font-family: Arial,helvetica,sans-serif; font-size: 14px;"><a   data-linkto="https://" href="https://click.e.cathaypacific.com/?qs=ccf00236ded1115172cbf215ff8fbef909b89d9b23fcb02f77591be07effc6df90faec54b2caa7baf56342ac77eadaff5bfe06107680880bbf2d6b267d32d510" style="color:#272727;text-decoration:none;" title="">銜接至升級的會員計劃</a></strong></p><ul style="margin: 0;padding-top: 0px;padding-left: 30px;">
+             <li class="smDescription" style="margin: 0px;color: #2D2D2D;font-family:Arial,helvetica,sans-serif;font-size: 14px;line-height: 20px;;text-align: left;">
+              你的2027年會籍級別將根據你於2026年1月1日至12月31日期間所累積的會籍積分總數而定。 &nbsp;</li><li class="smDescription" style="margin: 0px;color: #2D2D2D;font-family:Arial,helvetica,sans-serif;font-size: 14px;line-height: 20px;;text-align: left;">
+              你現有的會籍仍將根據賬戶內的會籍到期日屆滿。 &nbsp;</li><li class="smDescription" style="margin: 0px;color: #2D2D2D;font-family:Arial,helvetica,sans-serif;font-size: 14px;line-height: 20px;;text-align: left;">
+              任何於2026年內延續或變更的會籍級別均將於2026年12月31日到期。<b><a   data-linkto="https://" href="https://click.e.cathaypacific.com/?qs=ccf00236ded1115172cbf215ff8fbef909b89d9b23fcb02f77591be07effc6df90faec54b2caa7baf56342ac77eadaff5bfe06107680880bbf2d6b267d32d510" style="color:#367878;text-decoration:none;" title="">按此了解更多</a></b>。</li></ul><p class="smDescription" style="margin: 0px; line-height: 19px; text-align: left;">
+             <br>
+             <strong style="color: rgb(45, 45, 45); font-family: Arial,helvetica,sans-serif; font-size: 14px;"><a   data-linkto="https://" href="https://click.e.cathaypacific.com/?qs=ccf00236ded11151c517b6cef6d33728b1641a5ab29c0c09223a423029e28c54a0250fe743bc638e01df7a713ae75d302659137284ae066d62a64b3c4b5c4daa" style="color:#272727;text-decoration:none;" title="">金卡會員可於下月中起享用免費機上無線網絡服務</a></strong></p><p class="smDescription" style="margin: 0px;color: #2D2D2D;font-family:Arial,helvetica,sans-serif;font-size: 14px;line-height: 20px;;text-align: left;">
+             我們深知旅行途中保持聯繫的重要性。2025年11月15日起，乘搭所有客艙級別的國泰航空的國泰金卡會員，均可免費享用高速機上無線網絡。此服務亦將於今年年底前開放予選乘特選經濟客艙的所有會員。為確保順利使用免費無線網絡服務，請於預訂或辦理登機手續時加入你的會員編號。<b><a   data-linkto="https://" href="https://click.e.cathaypacific.com/?qs=ccf00236ded11151c517b6cef6d33728b1641a5ab29c0c09223a423029e28c54a0250fe743bc638e01df7a713ae75d302659137284ae066d62a64b3c4b5c4daa" style="color:#367878;text-decoration:none;" title="">按此了解更多</a></b>。</p></td></tr></table></td></tr><tr>
+       <td align="left" bgcolor="#ffffff" class="smBottomPadding" height="0 " style="line-height: 0; padding-bottom: 40px; " valign="top " width="100% ">
+        &nbsp;</td></tr></table></td></tr></table> </td></tr></table>
+
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: #FFFFFF; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 0px 30px; " class="stylingblock-content-wrapper camarker-inner"><table cellspacing="0" cellpadding="0" role="presentation" style="width: 100%;"><tr><td><table cellspacing="0" cellpadding="0" role="presentation" style="width: 100%;"><tr><td valign="top" class="responsive-td" style="width: 50%; padding-right: 10px;"></td><td valign="top" class="responsive-td" style="width: 50%; padding-left: 10px;"></td></tr></table></td></tr></table></td></tr></table>
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: #FFFFFF; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 0px 30px; " class="stylingblock-content-wrapper camarker-inner"><table cellspacing="0" cellpadding="0" role="presentation" style="width: 100%;"><tr><td><table cellspacing="0" cellpadding="0" role="presentation" style="width: 100%;"><tr><td valign="top" class="responsive-td" style="width: 50%; padding-right: 10px;"></td><td valign="top" class="responsive-td" style="width: 50%; padding-left: 10px;"></td></tr></table></td></tr></table></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: #FFFFFF; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 0px 30px; " class="stylingblock-content-wrapper camarker-inner"><table cellspacing="0" cellpadding="0" role="presentation" style="width: 100%;"><tr><td>
+<table cellspacing="0" cellpadding="0" role="presentation" style="width: 100%;"><tr><td valign="top" class="responsive-td" style="width: 50%; padding-right: 10px;"></td><td valign="top" class="responsive-td" style="width: 50%; padding-left: 10px;"></td></tr></table></td></tr></table></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: #FFFFFF; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 0px 30px; " class="stylingblock-content-wrapper camarker-inner"><table cellspacing="0" cellpadding="0" role="presentation" style="width: 100%;"><tr><td><table cellspacing="0" cellpadding="0" role="presentation" style="width: 100%;"><tr><td valign="top" class="responsive-td" style="width: 50%; padding-right: 10px;"></td><td valign="top" class="responsive-td" style="width: 50%; padding-left: 10px;"></td></tr></table></td></tr></table></td></tr></table>
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: #FFFFFF; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 0px 30px; " class="stylingblock-content-wrapper camarker-inner"><table cellspacing="0" cellpadding="0" role="presentation" style="width: 100%;"><tr><td><table cellspacing="0" cellpadding="0" role="presentation" style="width: 100%;"><tr><td valign="top" class="responsive-td" style="width: 50%; padding-right: 10px;"></td><td valign="top" class="responsive-td" style="width: 50%; padding-left: 10px;"></td></tr></table></td></tr></table></td></tr></table></td></tr></table>
+          
+          <!-- Footer-->
+          <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td align="center" valign="top" width="100%">
+      <table align="center" bgcolor="#2C4036" border="0" cellpadding="0" cellspacing="0" class="deviceWidth" width="700">
+        <tr>
+          <td align="left" class="foot_padding_01 top_logos" style="padding: 40px 30px 0px;" valign="middle">
+            <a  href="https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fde21aca31a3a9749fa13ffd90b208b9185492fc6916d587cdfe67a18db8dbda6e09d21c2478b68e6f9da47210fdceff0c111b0bf4045a92bf2" name="footer_data_privacy" style="text-decoration:none;font-family:Arial,helvetica,sans-serif;font-size: 14px; line-height: 16px; color: #FFFFFF;text-align: left;" target="_blank">取消訂閱</a> 
+            <span style="color: #FFFFFF;"> |</span> 
+            <a  href="https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fdeb1b1b3d063415eeeba9731cec5965751dfa2a74fa03a95749bb5143dd812584a00d90e252edbe2edfc1dbc2f86298031fbf55abcd08e9ce7" name="footer_data_privacy" style="text-decoration:none;font-family:Arial,helvetica,sans-serif;font-size: 14px; line-height: 16px; color: #FFFFFF;text-align: left;" target="_blank">管理訂閱</a> 
+            <span style="color: #FFFFFF;"> |</span> 
+            <a  href="https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fde64f0d15c0ba627d54f54e6549c355709a7d3ae85e7625475c1cbeafdda44d7b3042d611e0a8a0ac6307437998728306d4c8674c648af9103" name="footer_data_privacy" style="text-decoration:none;font-family:Arial,helvetica,sans-serif;font-size: 14px; line-height: 16px; color: #FFFFFF;text-align: left;" target="_blank">客戶私隱聲明</a> 
+            <span style="color: #FFFFFF;"> |</span> 
+            <a  href="https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fde4e59b3495eceb5f959759ce6f91ed941a0b099bc18535df7de9f9840148d41336612c5a58bc1c050272adf45db17ca2129de073e6e233248" name="footer_contact_us" style="text-decoration:none;font-family:Arial,helvetica,sans-serif;font-size: 14px; line-height: 16px; color: #FFFFFF;text-align: left;" target="_blank">聯絡我們</a>
+          </td>
+        </tr>
+        <tr>
+          <td align="left" class="foot_padding_02 top_logos" style="padding: 25px 30px 19px;">
+            <table align="" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td align="left" style="font-family:Arial,helvetica,sans-serif;">
+                  <div style="mso-line-height-rule:exactly;font-size:10px; line-height:12px; color:#FFFFFF;margin:0px 0px 5px;">
+                    這封是由國泰航空發出的服務電郵。這些電郵載有關於你使用我們服務及產品的主要資料，而並非旨在對你進行市場推廣。</div>
+                  <div style="mso-line-height-rule:exactly;font-size:10px; line-height:12px; color:#FFFFFF;margin:5px 0px;">
+                    所有優惠詳情如有變動均不作另行通知。須受細則及條款限制。</div>
+                  <div style="mso-line-height-rule:exactly;font-size:10px; line-height:12px; color:#FFFFFF;margin:5px 0px 0px;">
+                    國泰航空有限公司 | 亞洲萬里通有限公司 | 香港大嶼山香港國際機場觀景路 8 號國泰城</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td align="left" class="footer_copyright marketing_footer foot_padding top_logos" style="padding-left:30px;padding-right:30px;">
+            <table align="" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td align="left">
+                  <a  href="https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fded282239e5c29c70f55c7090332569e116965246daa5c5792b54d6dc54bfee3e748a929348059448b12bd463d7433642adfe407f70c5647a7" style="text-decoration:none; font-family:Arial,helvetica,sans-serif;font-size:12px; vertical-align:middle; color:#FFFFFF;">版權所有</a> <span style="font-family:Arial,helvetica,sans-serif;font-size:12px; color:#FFFFFF; vertical-align:middle;">&copy; Cathay Pacific Airways Limited </span>                          <span style="font-family:Arial,helvetica,sans-serif;font-size:12px; color:#FFFFFF; vertical-align:middle; display:inline-block;">國泰航空有限公司</span></td>
+                <td align="left" style="padding-left:4px;">
+                  <a  href="https://click.e.cathaypacific.com/?qs=7afb4d0a7f550fdee8c58a45a0faac42ac8720054bddd4f17cbe8c2b3c69b86ac8156e5b902c67d0e0df49de82e86dbe22246c43e6f50454b175f05a515ef01f" style="text-decoration:none; font-family:Arial,helvetica,sans-serif;font-size:11px; vertical-align:1px;"><img alt="oneworld" height="28" src="https://www.cathaypacific.com/content/dam/cx/applications/email/footer-lrp/oneworld-footer-logo.png" style="vertical-align:middle;" width="28"></a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td align="left" class="foot_padding footer_copyright top_logos" style="padding:15px 30px 35px;">
+             </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table></td></tr></table>
+
+</td></tr></table>
+          
+        </td>
+      </tr>
+    </table>
+    <!-- Wrapper end -->
+  </body>
+</html>
+
+--U6GIqy00VKP3=_?:--

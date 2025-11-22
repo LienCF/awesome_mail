@@ -1,0 +1,576 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:8da6:b0:4d4:9739:2b92 with SMTP id gr38csp2115010mdb;
+        Tue, 21 Oct 2025 21:13:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFZUkx9EUsgvvQrNe+FqsTuDvRG9OPhnW94+lJMaPl/fnyzjDddVkkhr6FuSlGwS/1vxIFQ
+X-Received: by 2002:a17:90b:3ec1:b0:32e:753d:76da with SMTP id 98e67ed59e1d1-33bcf8fa157mr25859706a91.20.1761106381058;
+        Tue, 21 Oct 2025 21:13:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761106381; cv=none;
+        d=google.com; s=arc-20240605;
+        b=KRnr4fx0REr7FnPU/z0HlBjtSxfBbVeSKNTU6FWwsi4eQwa4ZLSQQzkB+gVxxJPofN
+         wKz228ArqHLDdPVCF77aZ+9581g7Up4HhT73pMy0cLStuc8i50cgM/3KUqnCw84BvC4j
+         I8auMiAy3/SK0nzVN52C0r7vj8OwB2Ln8RuYdpSrbysqvEsgSkxguuRZexbVI9WqkqWs
+         oH1Znshc/hCnDvM4ICZcsrEIXX5AlhvN/MPl6y4/X9Yw2Oss182psYO+B/PIG1ANma0d
+         SAZ1Fi5jfDw9svOPK8eVBVvoFAA5IDs1QApDbSOBWtg9FzHKNzEgRFGW/mrAmf/4H20k
+         2pKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:thread-index:precedence:subject:to:from
+         :date:message-id:mime-version:domainkey-signature:dkim-signature;
+        bh=sYNGqLph8sKpLrqKshrb8UFYn4bbk/xryZE6aTCArik=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=UUEmaexQ/mtpWNQuKrSzXw9bu3O3Vrs5RcPW1DncCkvzphZglkR60+Auw4HF90ZAju
+         iUTT0frErkGEy7stVEq+5nOFAbvgnFVktwbRgaX378qFH32+bu3hGI+bMebnlTd9uJHk
+         oDyHBQKIFs2ovZgE1YI/E7s5s5nc5KXR/7mg5gBqRnbdNT7gpvtC/RXCyVY0AgxjV2xd
+         nQf3Y/H5fldQb/rE8n23etk31GUDUth/qaU+4qYlrY5Di5Fzp9VTGhqZAa1r8TvSWEAS
+         VDrT3RFuFzIkQBu5eO6g2HVudtRcXPX8wBg6KypobO4C1oylV31icu9KXBbc/aEeVkQF
+         6Q0A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@news.mybank.com.tw header.s=mhun header.b=XsYfZcdr;
+       spf=pass (google.com: domain of cathaybk@news.mybank.com.tw designates 60.251.89.204 as permitted sender) smtp.mailfrom=cathaybk@news.mybank.com.tw;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=news.mybank.com.tw
+Return-Path: <cathaybk@news.mybank.com.tw>
+Received: from pxmail01.cathaybk.com.tw (pxmail01.cathaybk.com.tw. [60.251.89.204])
+        by mx.google.com with ESMTPS id d2e1a72fcca58-7a2300fa165si7453535b3a.467.2025.10.21.21.13.00
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 21 Oct 2025 21:13:01 -0700 (PDT)
+Received-SPF: pass (google.com: domain of cathaybk@news.mybank.com.tw designates 60.251.89.204 as permitted sender) client-ip=60.251.89.204;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@news.mybank.com.tw header.s=mhun header.b=XsYfZcdr;
+       spf=pass (google.com: domain of cathaybk@news.mybank.com.tw designates 60.251.89.204 as permitted sender) smtp.mailfrom=cathaybk@news.mybank.com.tw;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=news.mybank.com.tw
+DKIM-Signature: v=1; a=rsa-sha1; c=simple/simple; d=news.mybank.com.tw; h=From:To:Subject; q=dns/txt; s=mhun; t=1761106115; bh=DcjIBRxFiM1sH6VZWEceDhlyjOo=; b=XsYfZcdrzeSiyHezKx0jKqnojsszp0oFsc24ug8WfFNlnRKEE/MRhBu+vzBUR96TGxk5HBQd60vRZAdI6nMzoDgmDpWtwQPCB+Negc6FAOv19XfJax8rchFi7ppSJvHChC59KCf/QaDTWgFwKZS2t39FqkeiHaTPfkMKc6ynKyiIfr7M7QUgyod6zcNpTA/P6mS96sN7D0seA34ASg7LiIc24egrjNBnvvd9OSTkuDMaE9tY9Oei9pfdXO+xFpXKapU33F4aBpQMwUsRYgm/XwPGKIMDh0egGqNr/j8sXRCRwySPCWIwitruaOOIrmWvdzkT1QracliSxolZhzUHBw==
+DomainKey-Signature: a=rsa-sha1; c=simple; d=news.mybank.com.tw; h=From:To:Subject; q=dns; s=mhun; b=DIuFw/YaMQ5V6x6XfdUyVaBWP95SpC2K6Y+kbeLXTryAs2TLrLhWvwMLuH+rPwpTj6cVcVc83wu1QQmycX/o3Jc1JxhClTlAelnlcX7p9aLC4gI+COE5cNF2AuqRj565i/WMsyYabRSIeYs3JlGz4rZiRpeuTLaxxMKurbwiU3in/9htvz1sEND8n6DW4GCFLJMAE+DpU3FpTBtAA9vd2S6zm8sKZUW/pPWRLukAWyhvJ2IUPQ2QkUM9+83pzkJM42Wl4NfyzH/SdCERHVkNjfyk5ocOaIY1Cs+3qWwiHmMhY2yKKpw8mQI/zBjZ6eYPCHgPNz24CUvbNHSiYLRGwQ==;
+MIME-Version: 1.0
+Message-ID: <ab2f6e15cc3dbdff@b4fcf04afd979a7b>
+Date: Wed, 22 Oct 2025 12:08:35 +0800
+From: =?utf-8?B?5ZyL5rOw5LiW6I+v6YqA6KGM?= <cathaybk@news.mybank.com.tw>
+To: liencf@gmail.com
+Subject: =?utf-8?B?MjAyNuW5tOWwj+aouem7nijkv6HnlKjljaEp5qyK55uK5YWs5ZGK?=
+X-Mailer: Microsoft Office Outlook 12.0
+X-MimeOLE: Produced By Microsoft MimeOLE V6.0.6001.18645
+X-AssuranceSys-BulkMail: 1
+Precedence: bulk
+thread-index: MTEyODYwXzM1NjAwNDk1OA==
+Content-Type: multipart/signed;
+	boundary="b4f096a1.dcc8.401e.9e50.c75b13c23c48";
+	protocol="application/x-pkcs7-signature";
+	micalg="SHA256"
+Content-Transfer-Encoding: 7bit
+
+
+--b4f096a1.dcc8.401e.9e50.c75b13c23c48
+Content-Type: multipart/alternative;
+	boundary="b3f78444.f1f2.4775.9aa1.33eaeab1274c"
+
+
+--b3f78444.f1f2.4775.9aa1.33eaeab1274c
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+EDM=20HTML
+--b3f78444.f1f2.4775.9aa1.33eaeab1274c
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE=20html>=0a<html=20lang=3d"en"=20xmlns=3d"http://www.w3.org/1999/x=
+html"=20xmlns:v=3d"urn:schemas-microsoft-com:vml"=20xmlns:o=3d"urn:schemas-=
+microsoft-com:office:office">=0a<head>=0a<!--=20CelebrusInsert=20code-->=0a=
+<script=20type=3d"text/javascript"=20src=3d=20"https://www.cathaybk.com.tw/=
+celebrusInsert.js"></script>=0a<!--=20Google=20Tag=20Manager=20-->=0a<scrip=
+t=20type=3d"text/javascript"=20src=3d=20"https://www.cathaybk.com.tw/cathay=
+bk/promo/track/gtm/CUB_GTM.js"></script>=0a<!--=20AT=20-->=0a<script=20type=
+=3d"text/javascript"=20src=3d=20"https://www.cathaybk.com.tw/cathaybk/web/j=
+s/launch-en88f8719298e647dd91dbad89ef222833.min.js"></script>=20=20=20=20=
+=0a<meta=20charset=3d"utf-8">=0a<meta=20name=3d"viewport"=20content=3d"widt=
+h=3ddevice-width">=0a<meta=20http-equiv=3d"X-UA-Compatible"=20content=3d"IE=
+=3dedge">=0a<meta=20name=3d"x-apple-disable-message-reformatting">=0a<title=
+>=20=e3=80=90=e5=9c=8b=e6=b3=b0=e4=b8=96=e8=8f=af=e9=8a=80=e8=a1=8c=e3=80=
+=91=20</title>=0a=20=20<style>=0a=20=20=20=20body=20{=0a=20=20=20=20=20=20b=
+ackground:=20#eeeeee;=0a=20=20=20=20=20=20font-family:=20"Microsoft=20Jheng=
+Hei",=20sans-serif,=20"=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=bb=91=e9=ab=94";=0a=
+=20=20=20=20=20=20margin:=200px;=0a=20=20=20=20}=0a=20=20=0a=20=20=20=20.li=
+st=20li=20{=0a=20=20=20=20=20=20list-style:=20decimal;=0a=20=20=20=20}=0a=
+=20=20=0a=20=20=20=20.link_text=20{=0a=20=20=20=20=20=20color:=20#333333;=
+=0a=20=20=20=20=20=20font-size:=2014px;=0a=20=20=20=20=20=20line-height:=20=
+20px;=0a=20=20=20=20=20=20text-decoration:=20none;=0a=20=20=20=20}=0a=20=20=
+=0a=20=20=20=20a.link_text=20{=0a=20=20=20=20=20=20color:=20#333333;=0a=20=
+=20=20=20=20=20font-size:=2014px;=0a=20=20=20=20=20=20line-height:=2020px;=
+=0a=20=20=20=20=20=20text-decoration:=20none;=0a=20=20=20=20}=0a=20=20=0a=
+=20=20=20=20a.link_text:hover=20{=0a=20=20=20=20=20=20color:=20#00a94f;=0a=
+=20=20=20=20=20=20font-size:=2014px;=0a=20=20=20=20=20=20line-height:=2020p=
+x;=0a=20=20=20=20=20=20text-decoration:=20underline;=0a=20=20=20=20}=0a=20=
+=20=0a=20=20=20=20a.link_text:visited=20{=0a=20=20=20=20=20=20color:=20#333=
+333;=0a=20=20=20=20=20=20font-size:=2014px;=0a=20=20=20=20=20=20line-height=
+:=2020px;=0a=20=20=20=20=20=20text-decoration:=20none;=0a=20=20=20=20}=0a=
+=20=20=0a=20=20=20=20.container=20*=20{=0a=20=20=20=20=20=20margin:=200;=0a=
+=20=20=20=20=20=20padding:=200;=0a=20=20=20=20=20=20border:=200;=0a=20=20=
+=20=20=20=20background:=20#fff;=0a=20=20=20=20}=0a=20=20=0a=20=20=20=20.con=
+tainer=20img=20{=0a=20=20=20=20=20=20border:=200=20none;=0a=20=20=20=20=20=
+=20vertical-align:=200;=0a=20=20=20=20}=0a=20=20=0a=20=20=20=20.container=
+=20td=20{=0a=20=20=20=20=20=20margin:=200;=0a=20=20=20=20=20=20padding:=200=
+;=0a=20=20=20=20=20=20border:=200;=0a=20=20=20=20}=0a=20=20=20=20.text=20{=
+=0a=20=20=20=20=20=20font-size:=2013px;=0a=20=20=20=20=20=20line-height:=20=
+18px;=0a=20=20=20=20=20=20margin:=2020px;=0a=20=20=20=20=20=20margin-top:=
+=208px;=0a=20=20=20=20=20=20color:=20#8b8787;=0a=20=20=20=20=20=20text-alig=
+n:=20justify;=0a=20=20=20=20=20=20text-justify:=20inter-ideograph;=0a=20=20=
+=20=20}=0a=20=20=0a=20=20=20=20.p15=20{=0a=20=20=20=20=20=20margin:=2015px=
+=2020px;=0a=20=20=20=20}=0a=20=20=0a=20=20=20=20.light-gray=20{=0a=20=20=20=
+=20=20=20color:=20#a4a4a4;=0a=20=20=20=20}=0a=20=20=0a=20=20=20=20.notice=
+=20{=0a=20=20=20=20=20=20padding:=2034px;=0a=20=20=20=20=20=20background-co=
+lor:=20#1e1e1e;=0a=20=20=20=20=20=20color:=20#c5c1b9;=0a=20=20=20=20=20=20f=
+ont-size:=2013px;=0a=20=20=20=20=20=20text-align:=20justify;=0a=20=20=20=20=
+}=0a=20=20=0a=20=20=20=20.notice=20table=20{=0a=20=20=20=20=20=20margin:=20=
+0=20auto;=0a=20=20=20=20}=0a=20=20=0a=20=20=20=20.notice=20a=20{=0a=20=20=
+=20=20=20=20display:=20inline-block;=0a=20=20=20=20=20=20text-decoration:=
+=20underline;=0a=20=20=20=20=20=20color:=20#c5c1b9;=0a=20=20=20=20}=0a=20=
+=20=0a=20=20=20=20@media=20only=20screen=20and=20(max-width:=20640px)=20{=
+=0a=20=20=20=20=20=20.container=20{=0a=20=20=20=20=20=20=20=20width:=20100%=
+=20!important;=0a=20=20=20=20=20=20=20=20max-width:=20100%=20!important;=0a=
+=20=20=20=20=20=20=20=20clear:=20both=20!important;=0a=20=20=20=20=20=20}=
+=0a=20=20=20=20}=0a=20=20=0a=20=20</style>=0a</head>=0a<body><table=20style=
+=3d"width:=20100%;=20color:=20#808080;=20font-size:=2012px;=20font-family:=
+=20'Microsoft=20JhengHei',=20sans-serif,=20=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=
+=bb=91=e9=ab=94;"=20border=3d"0"=20cellpadding=3d"0"=20cellspacing=3d"0"=20=
+width=3d"100%">=0d=0a<tbody>=0d=0a<tr>=0d=0a<td>=0d=0a<table=20width=3d"480=
+"=20border=3d"0"=20align=3d"center"=20cellpadding=3d"10"=20cellspacing=3d"0=
+">=0d=0a<tbody>=0d=0a<tr>=0d=0a<td=20height=3d"30"=20style=3d"background:=
+=20#fff;">=0d=0a<table=20class=3d"alert"=20border=3d"0"=20align=3d"center"=
+=20cellpadding=3d"0"=20cellspacing=3d"0"=20style=3d"width:=20100%;=20margin=
+:=200=200%;=20color:=20#888888;=20font-size:=2014px;=20font-face:=20PingFan=
+g=20TC;">=0d=0a<tbody>=0d=0a<tr>=0d=0a<td=20style=3d"text-align:=20center;"=
+><a=20style=3d"color:=20#858585;=20text-decoration:=20none;"=20target=3d"_b=
+locck"=20href=3d"https://news.mybank.com.tw/cathaybk_a/click.aspx?url=3dhtt=
+ps%3a%2f%2fwww.cathaybk.com.tw%2fcathaybk%2fpromo%2fevent%2fcredit-card%2fd=
+iscount%2f2026%2fpointannounceInfo%2findex.html&k=3d2aBwE2V4%2frIL%2f0u7v5s=
+V3WlHdoyP3htqdA3%2bEzgmLSs%3d&link_id=3d825632&c=3dnZuANIb8DW9P6FWRHQmxaAQv=
+RSGoANARj8Pb%2fpW48I4WuG2nyHHC1Q%3d%3d">=20=e2=80=bb=e8=8b=a5=e6=98=af=e6=
+=82=a8=e7=84=a1=e6=b3=95=e6=ad=a3=e5=b8=b8=e7=80=8f=e8=a6=bd=ef=bc=8c=e8=ab=
+=8b=e9=bb=9e=e9=81=b8=e9=80=99=e8=a3=a1=ef=bc=8c=e7=9b=b4=e6=8e=a5=e5=88=b0=
+=e7=b6=b2=e7=ab=99=e4=b8=8a=e8=ae=80=e5=8f=96=20</a></td>=0d=0a</tr>=0d=0a<=
+/tbody>=0d=0a</table>=0d=0a</td>=0d=0a</tr>=0d=0a</tbody>=0d=0a</table>=0d=
+=0a<table=20width=3d"480"=20border=3d"0"=20align=3d"center"=20cellpadding=
+=3d"0"=20cellspacing=3d"0"=20bgcolor=3d"#fff">=0d=0a<tbody>=0d=0a<tr>=0d=0a=
+<td><!--=20[if=20mso]>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20<table=20role=3d"presentation"=20cellspacing=3d"0"=20cellpadding=
+=3d"0"=20border=3d"0"=20width=3d"480"=20align=3d"center">=0d=0a=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20<tr>=0d=0a=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20<td>=0d=0a=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20<![endif]-->=20<!--=20TODO=20logo=20-->=0d=0a<table=
+=20class=3d"deviceWidth_logo"=20border=3d"0"=20align=3d"center"=20cellpaddi=
+ng=3d"0"=20cellspacing=3d"0"=20style=3d"width:=20100%;=20margin:=200=200;">=
+=0d=0a<tbody>=0d=0a<tr>=0d=0a<td=20class=3d"deviceWidth_logoh"=20style=3d"t=
+ext-align:=20center;"><a=20href=3d"https://news.mybank.com.tw/cathaybk_a/cl=
+ick.aspx?url=3dhttps%3a%2f%2fwww.cathaybk.com.tw%2fcathaybk%2f&k=3d2aBwE2V4=
+%2frIL%2f0u7v5sV3WlHdoyP3htqdA3%2bEzgmLSs%3d&link_id=3d825633&c=3dnZuANIb8D=
+W9P6FWRHQmxaAQvRSGoANARj8Pb%2fpW48I4WuG2nyHHC1Q%3d%3d"=20target=3d"_blank">=
+=20<img=20src=3d"https://www.cathaybk.com.tw/cathaybk/-/media/FA9D5A73A78B4=
+CA9A1E5EEA1F24E798E.png"=20borde=3d"0"=20width=3d"100%"=20height=3d"auto"=
+=20style=3d"border:=200px;=20vertical-align:=20middle;=20margin:=200;"=20/>=
+=20</a></td>=0d=0a</tr>=0d=0a</tbody>=0d=0a</table>=0d=0a<!--=20TODO=20logo=
+=20end-->=20<img=20src=3d"https://news.mybank.com.tw/cathaybk_a/template/20=
+251016de963/treepoint_2026-eDM/images/treepoint_2026-eDM-1.png"=20alt=3d""=
+=20width=3d"480"=20height=3d"auto"=20/>=0d=0a<div>=0d=0a<table=20width=3d"4=
+16"=20border=3d"1"=20align=3d"center"=20cellpadding=3d"10px"=20cellspacing=
+=3d"0"=20bordercolor=3d"#CCCCCC"=20class=3d"box-table"=20style=3d"text-alig=
+n:=20center;">=0d=0a<tbody>=0d=0a<tr>=0d=0a<td=20colspan=3d"2"=20width=3d"4=
+2%"=20bgcolor=3d"#8CC63F"><span=20style=3d"font-weight:=20bold;=20font-size=
+:=2014px;=20color:=20#ffffff;">=e5=85=8c=e6=8f=9b=e9=80=9a=e8=b7=af/=e9=a0=
+=85=e7=9b=ae</span></td>=0d=0a<td=20width=3d"30%"=20bgcolor=3d"#8CC63F"><sp=
+an=20style=3d"font-weight:=20bold;=20font-size:=2014px;=20color:=20#ffffff;=
+">=e5=85=8c=e6=8f=9b=e6=af=94=e4=be=8b</span></td>=0d=0a</tr>=0d=0a<tr>=0d=
+=0a<td=20rowspan=3d"2">=e6=a9=9f=e5=a0=b4=e5=a4=96=e5=9c=8d<br=20/>=e5=81=
+=9c=e8=bb=8a</td>=0d=0a<td>=e5=a4=a7=e5=9c=92=e5=81=9c=e8=bb=8a=e5=a0=b4</t=
+d>=0d=0a<td>130=e9=bb=9e=e5=85=8c=e6=8f=9b=e4=b8=80=e6=97=a5=e5=81=9c=e8=bb=
+=8a=e8=b2=bb</td>=0d=0a</tr>=0d=0a<tr>=0d=0a<td>=e5=a4=a7=e7=a8=8b/=e5=a4=
+=a7=e9=b5=ac=e5=81=9c=e8=bb=8a=e5=a0=b4</td>=0d=0a<td>155=e9=bb=9e=e5=85=8c=
+=e6=8f=9b=e4=b8=80=e6=97=a5=e5=81=9c=e8=bb=8a=e8=b2=bb</td>=0d=0a</tr>=0d=
+=0a<tr>=0d=0a<td=20rowspan=3d"6">=e9=87=8c=e7=a8=8b/=e9=a3=af=e5=ba=97<br=
+=20/>=e7=a9=8d=e5=88=86<br=20/>=20<span=20style=3d"font-size:=2010px;"><br=
+=20/>=20=e5=84=aa=e6=83=a0<br=20/>=e6=8f=90=e4=be=9b=e6=9c=9f=e9=96=93<br=
+=20/>2026/1/1=e8=87=b3<br=20/>2026/6/30</span></td>=0d=0a<td>=e9=95=b7=e6=
+=a6=ae=e5=93=a9=e7=a8=8b=e5=85=8c=e6=8f=9b-=e5=85=b6=e4=bb=96=e5=8d=a1</td>=
+=0d=0a<td>360=e9=bb=9e=e5=85=8c=e6=8f=9b1,000=e5=93=a9</td>=0d=0a</tr>=0d=
+=0a<tr>=0d=0a<td>=e9=95=b7=e6=a6=ae=e5=93=a9=e7=a8=8b=e5=85=8c=e6=8f=9b-=e4=
+=b8=96=e7=95=8c=e5=8d=a1</td>=0d=0a<td>300=e9=bb=9e=e5=85=8c=e6=8f=9b1,000=
+=e5=93=a9</td>=0d=0a</tr>=0d=0a<tr>=0d=0a<td>=e8=8f=af=e5=a4=8f=e5=93=a9=e7=
+=a8=8b=e5=85=8c=e6=8f=9b-=e5=85=b6=e4=bb=96=e5=8d=a1</td>=0d=0a<td>840=e9=
+=bb=9e=e5=85=8c=e6=8f=9b1,000=e5=93=a9</td>=0d=0a</tr>=0d=0a<tr>=0d=0a<td>=
+=e8=8f=af=e5=a4=8f=e5=93=a9=e7=a8=8b=e5=85=8c=e6=8f=9b-=e4=b8=96=e7=95=8c=
+=e5=8d=a1</td>=0d=0a<td>720=e9=bb=9e=e5=85=8c=e6=8f=9b1,000=e5=93=a9</td>=
+=0d=0a</tr>=0d=0a<tr>=0d=0a<td>=e4=ba=9e=e6=b4=b2=e8=90=ac=e9=87=8c=e9=80=
+=9a=e9=87=8c=e6=95=b8=e5=85=8c=e6=8f=9b-<br=20/>=e5=85=b6=e4=bb=96=e5=8d=a1=
+</td>=0d=0a<td>360=e9=bb=9e=e5=85=8c=e6=8f=9b1,000=e9=87=8c=e6=95=b8</td>=
+=0d=0a</tr>=0d=0a<tr>=0d=0a<td>=e4=ba=9e=e6=b4=b2=e8=90=ac=e9=87=8c=e9=80=
+=9a=e9=87=8c=e6=95=b8=e5=85=8c=e6=8f=9b-<br=20/>=e4=b8=96=e7=95=8c=e5=8d=a1=
+</td>=0d=0a<td>300=e9=bb=9e=e5=85=8c=e6=8f=9b1,000=e9=87=8c=e6=95=b8</td>=
+=0d=0a</tr>=0d=0a<tr>=0d=0a<td=20rowspan=3d"2"=20p=3d""><a=20style=3d"color=
+:=20#2e31cc;=20font-size:=2012px;=20text-decoration:=20none;"=20target=3d"_=
+blocck"=20href=3d"https://news.mybank.com.tw/cathaybk_a/click.aspx?url=3dht=
+tps%3a%2f%2fmyrewards.app.link%2fQbr7kAXmUvb&k=3d2aBwE2V4%2frIL%2f0u7v5sV3W=
+lHdoyP3htqdA3%2bEzgmLSs%3d&link_id=3d825634&c=3dnZuANIb8DW9P6FWRHQmxaAQvRSG=
+oANARj8Pb%2fpW48I4WuG2nyHHC1Q%3d%3d"><span=20style=3d"text-decoration:=20un=
+derline;">=e5=9c=8b=e6=b3=b0=e5=84=aa=e6=83=a0App</span></a></td>=0d=0a</tr=
+>=0d=0a<tr>=0d=0a<td=20colspan=3d"2">=0d=0a<p=20style=3d"text-align:=20just=
+ify;=20vertical-align:=20middle;"=20cellpadding=3d"0">=e2=80=bb1=e9=bb=9e=
+=e5=b0=8f=e6=a8=b9=e9=bb=9e(=e4=bf=a1=e7=94=a8=e5=8d=a1)=e7=ad=89=e6=96=bc=
+=e6=96=b0=e8=87=ba=e5=b9=a31=e5=85=83=ef=bc=8c=e5=8f=af=e6=96=bc=e3=80=8c=
+=e5=9c=8b=e6=b3=b0=e5=84=aa=e6=83=a0App=e3=80=8d=e5=85=8c=e6=8f=9b=e6=8c=87=
+=e5=ae=9a=e5=84=aa=e6=83=a0=e5=88=b8=e3=80=81=e5=95=86=e5=93=81=e5=8f=8a=e6=
+=9c=8d=e5=8b=99=e3=80=82=e6=8c=87=e5=ae=9a=e5=84=aa=e6=83=a0=e5=88=b8=e3=80=
+=81=e5=95=86=e5=93=81=e5=8f=8a=e6=9c=8d=e5=8b=99=e4=bf=82=e7=94=b1=e6=9c=ac=
+=e8=a1=8c=e5=8f=8a=e7=89=b9=e7=b4=84=e5=95=86=e5=ba=97=e6=8f=90=e4=be=9b=ef=
+=bc=8c=e5=80=98=e8=8b=a5=e7=89=b9=e7=b4=84=e5=95=86=e5=ba=97=e8=aa=bf=e6=95=
+=b4=e5=83=b9=e6=a0=bc=e6=88=96=e7=95=b0=e5=8b=95=e5=84=aa=e6=83=a0=e5=85=a7=
+=e5=ae=b9=ef=bc=8c=e7=9a=86=e4=bb=a5=e5=9c=8b=e6=b3=b0=e5=84=aa=e6=83=a0App=
+=e6=8f=ad=e7=a4=ba=e8=aa=aa=e6=98=8e=e7=82=ba=e6=ba=96=e3=80=82</p>=0d=0a<p=
+></p>=0d=0a</td>=0d=0a</tr>=0d=0a</tbody>=0d=0a</table>=0d=0a<a=20href=3d"h=
+ttps://news.mybank.com.tw/cathaybk_a/click.aspx?url=3dhttps%3a%2f%2fwww.cat=
+haybk.com.tw%2fcathaybk%2fpromo%2fevent%2fcredit-card%2fdiscount%2f2026%2fp=
+ointannounceInfo%2findex.html&k=3d2aBwE2V4%2frIL%2f0u7v5sV3WlHdoyP3htqdA3%2=
+bEzgmLSs%3d&link_id=3d825632&c=3dnZuANIb8DW9P6FWRHQmxaAQvRSGoANARj8Pb%2fpW4=
+8I4WuG2nyHHC1Q%3d%3d"><img=20width=3d"106"=20height=3d"32"=20src=3d"https:/=
+/news.mybank.com.tw/cathaybk_a/template/20251016de963/treepoint_2026-eDM/im=
+ages/button@3x.png"=20alt=3d""=20/></a><img=20width=3d"480"=20height=3d"aut=
+o"=20src=3d"https://news.mybank.com.tw/cathaybk_a/template/20251016de963/tr=
+eepoint_2026-eDM/images/treepoint_2026-eDM-2.png"=20alt=3d""=20/>=0d=0a<tab=
+le=20border=3d"0"=20cellpadding=3d"0"=20cellspacing=3d"0"=20align=3d"center=
+">=0d=0a<tbody>=0d=0a<tr>=0d=0a<td=20valign=3d"center"=20bgcolor=3d"#FFFFFF=
+">=0d=0a<p=20valign=3d"center"=20style=3d"color:=20#888888;=20font-size:=20=
+16px;=20margin:=205=20px;=20text-align:=20right;">=e5=9c=8b=e6=b3=b0=e4=b8=
+=96=e8=8f=af=e5=95=86=e6=a5=ad=e9=8a=80=e8=a1=8c=20=e8=ac=b9=e5=95=9f</p>=
+=0d=0a</td>=0d=0a</tr>=0d=0a<!--=20[if=20mso]>=0d=0a=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20</td>=0d=0a=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20</tr>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20</table>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20<![endif]--></tbody>=0d=0a</table>=0d=0a</div>=0d=0a</td>=0d=0a</t=
+r>=0d=0a<tr>=0d=0a<td=20align=3d"center">=0d=0a<table=20width=3d"480"=20hei=
+ght=3d""=20border=3d"0"=20cellpadding=3d"0"=20cellspacing=3d"0"=20class=3d"=
+container"=20style=3d"max-width:=20480px;=20width:=20480px;">=0d=0a<tbody>=
+=0d=0a<tr>=0d=0a<td=20height=3d"32">&nbsp;</td>=0d=0a</tr>=0d=0a<tr>=0d=0a<=
+td><!--=20[if=20mso]>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20<table=20role=3d"presentation"=20cellspacing=3d"0"=20cell=
+padding=3d"0"=20border=3d"0"=20width=3d"480"=20align=3d"center">=0d=0a=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20<tr>=0d=0a=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20<td>=0d=
+=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20<![end=
+if]-->=0d=0a<table=20width=3d"480"=20border=3d"0"=20align=3d"center"=20cell=
+padding=3d"0"=20cellspacing=3d"0"=20style=3d"width:=20480px;=20margin:=205p=
+x=200;=20text-align:=20center;=20background:=20#fff;">=0d=0a<tbody>=0d=0a<t=
+r>=0d=0a<td=20height=3d"20"></td>=0d=0a</tr>=0d=0a<tr>=0d=0a<td=20align=3d"=
+center"><a=20style=3d"color:=20#555555;=20font-size:=2014px;=20text-decorat=
+ion:=20none;"=20target=3d"_blocck"=20href=3d"https://news.mybank.com.tw/cat=
+haybk_a/click.aspx?url=3dhttps%3a%2f%2fcathaybk.com.tw%2fcathaybk%2f&k=3d2a=
+BwE2V4%2frIL%2f0u7v5sV3WlHdoyP3htqdA3%2bEzgmLSs%3d&link_id=3d825635&c=3dnZu=
+ANIb8DW9P6FWRHQmxaAQvRSGoANARj8Pb%2fpW48I4WuG2nyHHC1Q%3d%3d">www.cathaybk.c=
+om.tw</a></td>=0d=0a</tr>=0d=0a<tr>=0d=0a<td=20height=3d"20"></td>=0d=0a</t=
+r>=0d=0a<tr>=0d=0a<td=20align=3d"center"=20height=3d"100%"=20valign=3d"top"=
+=20width=3d"100%"><!--=20[if=20mso]>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20<table=20role=3d"p=
+resentation"=20border=3d"0"=20cellspacing=3d"0"=20cellpadding=3d"0"=20align=
+=3d"center"=20width=3d"480">=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20<tr>=0d=0a=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20<td=20align=3d"center"=20valign=3d"top"=20width=3d"480">=0d=0a=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20<![endif]-->=0d=0a<table=20role=3d"presentation"=20border=3d"0"=20cel=
+lpadding=3d"0"=20cellspacing=3d"0"=20align=3d"center"=20width=3d"100%"=20st=
+yle=3d"max-width:=20480px;">=0d=0a<tbody>=0d=0a<tr>=0d=0a<td=20align=3d"cen=
+ter"=20valign=3d"top"=20style=3d"font-size:=200;=20width:=20115px;"><a=20hr=
+ef=3d"https://news.mybank.com.tw/cathaybk_a/click.aspx?url=3dhttps%3a%2f%2f=
+www.cathaybk.com.tw%2fcathaybk%2fpromo%2fevent%2febanking%2fproduct%2fAPP-W=
+EB%2findex.html&k=3d2aBwE2V4%2frIL%2f0u7v5sV3WlHdoyP3htqdA3%2bEzgmLSs%3d&li=
+nk_id=3d825636&c=3dnZuANIb8DW9P6FWRHQmxaAQvRSGoANARj8Pb%2fpW48I4WuG2nyHHC1Q=
+%3d%3d"=20target=3d"_blank"=20class=3d"gray_link"=20style=3d"color:=20#4343=
+43;=20font-size:=2015px;=20line-height:=2030px;=20text-decoration:=20none;=
+=20font-family:=20'Microsoft=20JhengHei',Arial,'=e5=be=ae=e8=bb=9f=e6=ad=a3=
+=e9=bb=91=e9=ab=94',=20sans-serif;=20display:=20inline-block;">=20<img=20bo=
+rde=3d"0"=20class=3d"img_icon_b"=20src=3d"https://www.cathaybk.com.tw/catha=
+ybk/-/media/A559FD3A2E6D4B48B6DA96469352DAFB.png"=20width=3d"40"=20style=3d=
+"max-width:=20120px;=20height:=20auto;=20display:=20block;=20margin:=200=20=
+auto;"=20alt=3d"5F5DCF665F2B49AEAC275C8B0A026556.ashx"=20/>=20</a></td>=0d=
+=0a<td=20align=3d"center"=20valign=3d"top"=20style=3d"font-size:=200;=20wid=
+th:=20115px;"><a=20href=3d"https://news.mybank.com.tw/cathaybk_a/click.aspx=
+?url=3dhttps%3a%2f%2fwww.cathaybk.com.tw%2fcathaybk%2fpersonal%2fcontact%2f=
+help%2ffaq%2f&k=3d2aBwE2V4%2frIL%2f0u7v5sV3WlHdoyP3htqdA3%2bEzgmLSs%3d&link=
+_id=3d825637&c=3dnZuANIb8DW9P6FWRHQmxaAQvRSGoANARj8Pb%2fpW48I4WuG2nyHHC1Q%3=
+d%3d"=20target=3d"_blank"=20class=3d"gray_link"=20style=3d"color:=20#434343=
+;=20font-size:=2012px;=20line-height:=2030px;=20text-decoration:=20none;=20=
+font-family:=20'Microsoft=20JhengHei',Arial,'=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=
+=bb=91=e9=ab=94',=20sans-serif;=20display:=20inline-block;">=20<img=20borde=
+=3d"0"=20class=3d"img_icon_b"=20src=3d"https://www.cathaybk.com.tw/cathaybk=
+/-/media/2A955BD86E304CB6A412C9DB0C5BFC3D.png"=20width=3d"40"=20style=3d"ma=
+x-width:=20120px;=20height:=20auto;=20display:=20block;=20margin:=200=20aut=
+o;"=20alt=3d""=20/>=20</a></td>=0d=0a<td=20align=3d"center"=20valign=3d"top=
+"=20style=3d"font-size:=200;=20width:=20115px;"><a=20href=3d"https://news.m=
+ybank.com.tw/cathaybk_a/click.aspx?url=3dhttps%3a%2f%2fwww.cathaybk.com.tw%=
+2fcathaybk%2fpersonal%2fcontact%2fhelp%2fintro%2f&k=3d2aBwE2V4%2frIL%2f0u7v=
+5sV3WlHdoyP3htqdA3%2bEzgmLSs%3d&link_id=3d825638&c=3dnZuANIb8DW9P6FWRHQmxaA=
+QvRSGoANARj8Pb%2fpW48I4WuG2nyHHC1Q%3d%3d"=20target=3d"_blank"=20class=3d"gr=
+ay_link"=20style=3d"color:=20#434343;=20font-size:=2012px;=20line-height:=
+=2030px;=20text-decoration:=20none;=20font-family:=20'Microsoft=20JhengHei'=
+,Arial,'=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=bb=91=e9=ab=94',=20sans-serif;=20dis=
+play:=20inline-block;">=20<img=20borde=3d"0"=20class=3d"img_icon_b"=20src=
+=3d"https://www.cathaybk.com.tw/cathaybk/-/media/316EBBD460894B3F96A46D8D86=
+69C215.png"=20width=3d"40"=20style=3d"max-width:=20120px;=20height:=20auto;=
+=20display:=20block;=20margin:=200=20auto;"=20alt=3d"E81EAA8FB60B496C88A812=
+98E21F102B.ashx"=20/></a></td>=0d=0a<td=20align=3d"center"=20valign=3d"top"=
+=20style=3d"font-size:=200;=20width:=20115px;"><a=20href=3d"https://news.my=
+bank.com.tw/cathaybk_a/click.aspx?url=3dhttps%3a%2f%2fwww.cathaybk.com.tw%2=
+fcathaybk%2fpersonal%2fabout%2fnews%2fcustomer-benefits%2fclient-privacy%2f=
+&k=3d2aBwE2V4%2frIL%2f0u7v5sV3WlHdoyP3htqdA3%2bEzgmLSs%3d&link_id=3d825639&=
+c=3dnZuANIb8DW9P6FWRHQmxaAQvRSGoANARj8Pb%2fpW48I4WuG2nyHHC1Q%3d%3d"=20targe=
+t=3d"_blank"=20class=3d"gray_link"=20style=3d"color:=20#434343;=20font-size=
+:=2012px;=20line-height:=2030px;=20text-decoration:=20none;=20font-family:=
+=20'Microsoft=20JhengHei',Arial,'=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=bb=91=e9=ab=
+=94',=20sans-serif;=20display:=20inline-block;">=20<img=20borde=3d"0"=20cla=
+ss=3d"img_icon_b"=20src=3d"https://www.cathaybk.com.tw/cathaybk/-/media/F97=
+DEF395BAF43E09CD151192F1F5604.png"=20width=3d"40"=20style=3d"max-width:=201=
+20px;=20height:=20auto;=20display:=20block;=20margin:=200=20auto;"=20alt=3d=
+""=20/>=20</a></td>=0d=0a</tr>=0d=0a<tr>=0d=0a<td=20align=3d"center"=20vali=
+gn=3d"top"=20style=3d"font-size:=200;=20width:=20110px;"><a=20href=3d"https=
+://news.mybank.com.tw/cathaybk_a/click.aspx?url=3dhttps%3a%2f%2fwww.cathayb=
+k.com.tw%2fcathaybk%2fpromo%2fevent%2febanking%2fproduct%2fAPP-WEB%2findex.=
+html&k=3d2aBwE2V4%2frIL%2f0u7v5sV3WlHdoyP3htqdA3%2bEzgmLSs%3d&link_id=3d825=
+636&c=3dnZuANIb8DW9P6FWRHQmxaAQvRSGoANARj8Pb%2fpW48I4WuG2nyHHC1Q%3d%3d"=20t=
+arget=3d"_blank"=20class=3d"gray_link"=20style=3d"color:=20#434343;=20font-=
+size:=2012px;=20line-height:=2030px;=20text-decoration:=20none;=20font-fami=
+ly:=20'Microsoft=20JhengHei',Arial,'=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=bb=91=e9=
+=ab=94',=20sans-serif;=20display:=20inline-block;">=20CUBE=20App=20</a></td=
+>=0d=0a<td=20align=3d"center"=20valign=3d"top"=20style=3d"font-size:=200;=
+=20width:=20110px;"><a=20href=3d"https://news.mybank.com.tw/cathaybk_a/clic=
+k.aspx?url=3dhttps%3a%2f%2fwww.cathaybk.com.tw%2fcathaybk%2fpersonal%2fcont=
+act%2fhelp%2ffaq%2f&k=3d2aBwE2V4%2frIL%2f0u7v5sV3WlHdoyP3htqdA3%2bEzgmLSs%3=
+d&link_id=3d825637&c=3dnZuANIb8DW9P6FWRHQmxaAQvRSGoANARj8Pb%2fpW48I4WuG2nyH=
+HC1Q%3d%3d"=20target=3d"_blank"=20class=3d"gray_link"=20style=3d"color:=20#=
+434343;=20font-size:=2012px;=20line-height:=2030px;=20text-decoration:=20no=
+ne;=20font-family:=20'Microsoft=20JhengHei',Arial,'=e5=be=ae=e8=bb=9f=e6=ad=
+=a3=e9=bb=91=e9=ab=94',=20sans-serif;=20display:=20inline-block;">=20=e5=b8=
+=b8=e8=a6=8b=e5=95=8f=e9=a1=8c=20</a></td>=0d=0a<td=20align=3d"center"=20va=
+lign=3d"top"=20style=3d"font-size:=200;=20width:=20110px;"><a=20href=3d"htt=
+ps://news.mybank.com.tw/cathaybk_a/click.aspx?url=3dhttps%3a%2f%2fwww.catha=
+ybk.com.tw%2fcathaybk%2fpersonal%2fcontact%2fhelp%2fintro%2f&k=3d2aBwE2V4%2=
+frIL%2f0u7v5sV3WlHdoyP3htqdA3%2bEzgmLSs%3d&link_id=3d825638&c=3dnZuANIb8DW9=
+P6FWRHQmxaAQvRSGoANARj8Pb%2fpW48I4WuG2nyHHC1Q%3d%3d"=20target=3d"_blank"=20=
+class=3d"gray_link"=20style=3d"color:=20#434343;=20font-size:=2012px;=20lin=
+e-height:=2030px;=20text-decoration:=20none;=20font-family:=20'Microsoft=20=
+JhengHei',Arial,'=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=bb=91=e9=ab=94',=20sans-ser=
+if;=20display:=20inline-block;">=20=e8=81=af=e7=b5=a1=e6=88=91=e5=80=91=20<=
+/a></td>=0d=0a<td=20align=3d"center"=20valign=3d"top"=20style=3d"font-size:=
+=200;=20width:=20110px;"><a=20href=3d"https://news.mybank.com.tw/cathaybk_a=
+/click.aspx?url=3dhttps%3a%2f%2fwww.cathaybk.com.tw%2fcathaybk%2fpersonal%2=
+fabout%2fnews%2fcustomer-benefits%2fclient-privacy%2f&k=3d2aBwE2V4%2frIL%2f=
+0u7v5sV3WlHdoyP3htqdA3%2bEzgmLSs%3d&link_id=3d825639&c=3dnZuANIb8DW9P6FWRHQ=
+mxaAQvRSGoANARj8Pb%2fpW48I4WuG2nyHHC1Q%3d%3d"=20target=3d"_blank"=20class=
+=3d"gray_link"=20style=3d"color:=20#434343;=20font-size:=2012px;=20line-hei=
+ght:=2030px;=20text-decoration:=20none;=20font-family:=20'Microsoft=20Jheng=
+Hei',Arial,'=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=bb=91=e9=ab=94',=20sans-serif;=
+=20display:=20inline-block;">=20=e5=ae=a2=e6=88=b6=e6=ac=8a=e7=9b=8a=e9=a0=
+=88=e7=9f=a5=20</a></td>=0d=0a</tr>=0d=0a</tbody>=0d=0a</table>=0d=0a<!--=
+=20[if=20mso]>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20</td>=0d=0a=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20</tr>=0d=0a=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20</table>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20<![endif]--></td>=0d=0a</tr>=
+=0d=0a<tr>=0d=0a<td=20height=3d"15"></td>=0d=0a</tr>=0d=0a<tr>=0d=0a<td>=0d=
+=0a<table=20width=3d"480"=20border=3d"0"=20align=3d"center"=20cellpadding=
+=3d"0"=20cellspacing=3d"0"=20bgcolor=3d"#fff">=0d=0a<tbody>=0d=0a<tr>=0d=0a=
+<td>=0d=0a<table=20border=3d"0"=20align=3d"center"=20cellspacing=3d"10"=20s=
+tyle=3d"width:=2096%;=20color:=20#333333;=20margin:=200=202%;=20text-align:=
+=20left;">=0d=0a<tbody>=0d=0a<tr>=0d=0a<td=20style=3d"border-top:=201px=20s=
+olid=20#bebebe;=20padding:=200;=20margin:=200;"=20align=3d"center"=20height=
+=3d"1"></td>=0d=0a</tr>=0d=0a<tr>=0d=0a<td>=0d=0a<p=20style=3d"color:=20#88=
+8888;=20font-size:=2013px;=20font-family:=20'Microsoft=20JhengHei',Arial,'=
+=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=bb=91=e9=ab=94',=20sans-serif;=20margin:=200=
+;">=e6=9c=ac=e9=83=b5=e4=bb=b6=e6=98=af=e7=94=b1=e7=b3=bb=e7=b5=b1=e2=be=83=
+=e5=8b=95=e5=af=84=e7=99=bc=ef=bc=8c=e8=ab=8b=e5=8b=bf=e7=9b=b4=e6=8e=a5=e5=
+=9b=9e=e8=a6=86=ef=bc=8c=e8=ac=9d=e8=ac=9d=ef=bc=81</p>=0d=0a</td>=0d=0a</t=
+r>=0d=0a<tr>=0d=0a<td=20style=3d"border-top:=201px=20solid=20#bebebe;=20pad=
+ding:=200;=20margin:=200;"=20align=3d"center"=20height=3d"1"></td>=0d=0a</t=
+r>=0d=0a<tr>=0d=0a<td=20style=3d"background:=20#fff;"><!--=e4=bf=a1=e7=94=
+=a8=e5=8d=a1=e8=ad=a6=e8=aa=9e-->=20<!--=20[if=20mso]>=0d=0a=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20<table=20role=3d"presentation"=20cellspacing=
+=3d"0"=20cellpadding=3d"10"=20border=3d"0"=20width=3d"480"=20align=3d"cente=
+r">=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20<tr>=0d=0a=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20<td>=0d=0a=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20<![endif]-->=0d=0a<table=20border=3d"0"=20cellpadding=3d"=
+0"=20cellspacing=3d"0"=20style=3d"width:=20100%;=20color:=20#333;=20height:=
+=20auto;=20background:=20#fff;">=0d=0a<tbody>=0d=0a<tr>=0d=0a<td=20valign=
+=3d"center"=20style=3d"color:=20#666;">=0d=0a<p=20valign=3d"center"=20style=
+=3d"font-size:=2024px;=20color:=20#555555;=20margin:=200;=20text-align:=20c=
+enter;=20font-family:=20'Microsoft=20JhengHei',Arial,'=e5=be=ae=e8=bb=9f=e6=
+=ad=a3=e9=bb=91=e9=ab=94',=20sans-serif;=20font-weight:=20600;">=e8=ac=b9=
+=e6=85=8e=e7=90=86=e8=b2=a1=20=e4=bf=a1=e7=94=a8=e7=84=a1=e5=83=b9</p>=0d=
+=0a<p=20valign=3d"center"=20style=3d"font-size:=2015px;=20color:=20#555555;=
+=20line-height:=201.5;=20margin:=2010px=200=200;=20text-align:=20justify;=
+=20font-family:=20'Microsoft=20JhengHei',Arial,'=e5=be=ae=e8=bb=9f=e6=ad=a3=
+=e9=bb=91=e9=ab=94',=20sans-serif;">=e4=bf=a1=e7=94=a8=e5=8d=a1=e6=9a=a8=e9=
+=a0=90=e5=80=9f=e7=8f=be=e9=87=91=e4=b9=8b=e5=90=84=e7=b4=9a=e5=88=a5=e5=be=
+=aa=e7=92=b0=e4=bf=a1=e7=94=a8=e5=b9=b4=e5=88=a9=e7=8e=87=e7=82=ba6.75=ef=
+=bc=85~15=ef=bc=85=ef=bc=88=e4=be=9d=e6=9c=ac=e8=a1=8c=e4=bf=a1=e7=94=a8=e8=
+=a9=95=e5=88=86=e5=88=b6=e5=ba=a6=e5=ae=9a=e6=9c=9f=e8=a9=95=e4=bc=b0=ef=bc=
+=8c=e5=be=aa=e7=92=b0=e5=88=a9=e7=8e=87=e4=b9=8b=e5=9f=ba=e6=ba=96=e6=97=a5=
+=e7=82=ba2015=e5=b9=b49=e6=9c=881=e6=97=a5=ef=bc=89=e3=80=82=e9=a0=90=e5=80=
+=9f=e7=8f=be=e9=87=91=e6=89=8b=e7=ba=8c=e8=b2=bb=ef=bc=9a=e9=a0=90=e5=80=9f=
+=e7=8f=be=e9=87=91=e9=87=91=e9=a1=8d=e4=b9=98=e4=bb=a53=ef=bc=85=e5=8a=a0=
+=e4=b8=8a=e6=96=b0=e8=87=ba=e5=b9=a3150=e5=85=83=e6=88=96=e7=be=8e=e5=85=83=
+5=e5=85=83=ef=bc=8c=e5=85=b6=e4=bb=96=e7=9b=b8=e9=97=9c=e8=b2=bb=e7=94=a8=
+=e4=bf=82=e4=be=9d=e6=9c=ac=e8=a1=8c=e7=b6=b2=e7=ab=99=e5=85=ac=e5=91=8a=e3=
+=80=82</p>=0d=0a</td>=0d=0a</tr>=0d=0a</tbody>=0d=0a</table>=0d=0a<!--=20[i=
+f=20mso]>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20</td>=0d=0a=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20</tr>=0d=0a=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20</table>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20<![endif]-->=20<!--=e4=bf=a1=e7=94=a8=e5=8d=a1=e8=ad=a6=e8=aa=9e=
+=20end--></td>=0d=0a</tr>=0d=0a</tbody>=0d=0a</table>=0d=0a</td>=0d=0a</tr>=
+=0d=0a</tbody>=0d=0a</table>=0d=0a</td>=0d=0a</tr>=0d=0a</tbody>=0d=0a</tab=
+le>=0d=0a<!--=20[if=20mso]>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20</td>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20</tr>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20</table>=0d=0a=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20<![endif]--></td>=0d=0a</tr>=0d=0a</tbo=
+dy>=0d=0a</table>=0d=0a</td>=0d=0a</tr>=0d=0a</tbody>=0d=0a</table>=0d=0a<t=
+able=20width=3d"480"=20border=3d"0"=20align=3d"center"=20cellpadding=3d"20"=
+=20cellspacing=3d"0"=20bgcolor=3d"#ddd">=0d=0a<tbody>=0d=0a<tr=20style=3d"c=
+olor:=20#555555;=20font-size:=2012px;=20line-height:=201.6;=20font-family:=
+=20'Microsoft=20JhengHei',Arial,'=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=bb=91=e9=ab=
+=94',=20sans-serif;">=0d=0a<td=20style=3d"background:=20#ddd;">=e6=9c=ac=e9=
+=80=9a=e8=a8=8a=e5=8f=8a=e5=85=b6=e6=89=80=e6=9c=89=e9=99=84=e4=bb=b6=e6=89=
+=80=e5=90=ab=e4=b9=8b=e8=b3=87=e8=a8=8a=e5=9d=87=e5=b1=ac=e6=a9=9f=e5=af=86=
+=ef=bc=8c=e5=83=85=e4=be=9b=e6=8c=87=e5=ae=9a=e4=b9=8b=e6=94=b6=e4=bb=b6=e4=
+=ba=ba=e4=bd=bf=e7=94=a8=ef=bc=8c=e6=9c=aa=e7=b6=93=e5=af=84=e4=bb=b6=e4=ba=
+=ba=e8=a8=b1=e5=8f=af=e4=b8=8d=e5=be=97=e6=8f=ad=e9=9c=b2=e3=80=81=e8=a4=87=
+=e8=a3=bd=e6=88=96=e6=95=a3=e5=b8=83=e6=9c=ac=e9=80=9a=e8=a8=8a=e3=80=82=e8=
+=8b=a5=e6=82=a8=e4=b8=a6=e9=9d=9e=e6=8c=87=e5=ae=9a=e4=b9=8b=e6=94=b6=e4=bb=
+=b6=e4=ba=ba=ef=bc=8c=e8=ab=8b=e5=8b=bf=e4=bd=bf=e7=94=a8=e3=80=81=e4=bf=9d=
+=e5=ad=98=e6=88=96=e6=8f=ad=e9=9c=b2=e6=9c=ac=e9=80=9a=e8=a8=8a=e4=b9=8b=e4=
+=bb=bb=e4=bd=95=e9=83=a8=e4=bb=bd=ef=bc=8c=e4=b8=a6=e8=ab=8b=e5=8d=b3=e9=80=
+=9a=e7=9f=a5=e5=af=84=e4=bb=b6=e4=ba=ba=e4=b8=a6=e5=ae=8c=e5=85=a8=e5=88=aa=
+=e9=99=a4=e6=9c=ac=e9=80=9a=e8=a8=8a=e3=80=82=e7=b6=b2=e8=b7=af=e9=80=9a=e8=
+=a8=8a=e5=8f=af=e8=83=bd=e5=90=ab=e6=9c=89=e7=97=85=e6=af=92=ef=bc=8c=e6=94=
+=b6=e4=bb=b6=e4=ba=ba=e6=87=89=e8=87=aa=e8=a1=8c=e7=a2=ba=e8=aa=8d=e6=9c=ac=
+=e9=83=b5=e4=bb=b6=e6=98=af=e5=90=a6=e5=ae=89=e5=85=a8=ef=bc=8c=e8=8b=a5=e5=
+=9b=a0=e6=ad=a4=e9=80=a0=e6=88=90=e6=90=8d=e5=ae=b3=ef=bc=8c=e5=af=84=e4=bb=
+=b6=e4=ba=ba=e6=81=95=e4=b8=8d=e8=b2=a0=e8=b2=ac=e3=80=82=20<br=20/>The=20i=
+nformation=20contained=20in=20this=20communication=20and=20attachment=20is=
+=20confidential=20and=20is=20intended=20only=20for=20the=20use=20of=20the=
+=20recipient=20to=20which=20this=20communication=20is=20addressed.=20Any=20=
+disclosure,=20copying=20or=20distribution=20of=20this=20communication=20wit=
+hout=20the=20sender's=20consents=20is=20strictly=20prohibited.=20If=20you=
+=20are=20not=20the=20intended=20recipient,=20please=20notify=20the=20sender=
+=20and=20delete=20this=20communication=20entirely=20without=20using,=20reta=
+ining,=20or=20disclosing=20any=20of=20its=20contents.=20Internet=20communic=
+ations=20cannot=20be=20guaranteed=20to=20be=20virus-free.=20The=20recipient=
+=20is=20responsible=20for=20ensuring=20that=20this=20communication=20is=20v=
+irus=20free=20and=20the=20sender=20accepts=20no=20liability=20for=20any=20d=
+amages=20caused=20by=20virus=20transmitted=20by=20this=20communication.</td=
+>=0d=0a</tr>=0d=0a<tr>=0d=0a<td=20align=3d"center"=20style=3d"background:=
+=20#ddd;"><img=20width=3d"41"=20height=3d"30"=20style=3d"border:=200px;"=20=
+src=3d"https://www.cathaybk.com.tw/cathaybk/-/media/428FF64A69144279A4F8FC2=
+4DAAD1733.png"=20alt=3d""=20/></td>=0d=0a</tr>=0d=0a</tbody>=0d=0a</table>=
+=0d=0a</td>=0d=0a</tr>=0d=0a</tbody>=0d=0a</table></body>=0a=0a</html>=0a=
+=0a=0a<img=20src=3d"https://news.mybank.com.tw/cathaybk_a/s.aspx?k=3d2aBwE2=
+V4%2frIL%2f0u7v5sV3QtGYSBJEccxiPEWLmWfPZE%3d"=20width=3d1=20height=3d1=20/>
+--b3f78444.f1f2.4775.9aa1.33eaeab1274c--
+
+--b4f096a1.dcc8.401e.9e50.c75b13c23c48
+Content-Disposition: attachment;
+	filename="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Type: application/x-pkcs7-signature;
+	name="smime.p7s"
+
+MIISQwYJKoZIhvcNAQcCoIISNDCCEjACAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
+ghAGMIIE+DCCA+CgAwIBAgIQR+gAAAAfYN9g/FuW9nHqVTANBgkqhkiG9w0BAQsFADBXMQswCQYD
+VQQGEwJUVzEXMBUGA1UEChMOVEFJV0FOLUNBIEluYy4xEDAOBgNVBAsTB1VzZXIgQ0ExHTAbBgNV
+BAMTFFRXQ0EgSW5mb1NlYyBVc2VyIENBMB4XDTI0MTIxMzAxNTIxNloXDTI2MTIxMzE1NTk1OVow
+czELMAkGA1UEBhMCVFcxJTAjBgNVBAoTHENhdGhheSBVbml0ZWQgQmFuayBDby4sIEx0ZC4xJDAi
+BgNVBAMUG2NhdGhheWJrQG5ld3MubXliYW5rLmNvbS50dzEXMBUGA1UEYRMOVkFUVFctMDQyMzE5
+MTAwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDZ3Tbhxkm0oUDaN6DmZI7iTiM6Wg+Y
+olcVz+jItVELp16SRc+ye24/N/gsVph5cw0uyZte6vGDm1O0pMjzxq5ZFDuT68ieR4rtcBggZ/td
+eoa1rjR4X2uSEIfnOmBq+j96WsVVkgIFSOffCIro3R3IXi6PGLMlAM4finYJOUyBXIb1Fh7DKrpg
+vSILgLvC30QbJwZNsw15q1eosGzo+w7keloa5+/rRJvAPP2lH+SJIKBrjH0iNb99hPITSuTFC+6D
+3RWKqynskRAxnKFb6XC2jzQjgH5NkkHyP/2pYMMQ0LL83D+TTDeyuMGu5OmwUP2QBCYiEDUg9MD8
+33if+iwDAgMBAAGjggGiMIIBnjAfBgNVHSMEGDAWgBQlwDrrrob/G+j67H8jfQ7M1WlCAzApBgNV
+HQ4EIgQgjltEXdfVtSFKP0r0YSNkN5wtjD15H2TDK0Ff73oqjk0wSwYDVR0fBEQwQjBAoD6gPIY6
+aHR0cDovL2l0YXgudHdjYS5jb20udHcvY3JsL1RXQ0FfSW5mb1NlY19VQ0FfMjAyNF9zaGEyLmNy
+bDAmBgNVHREEHzAdgRtjYXRoYXlia0BuZXdzLm15YmFuay5jb20udHcwfAYIKwYBBQUHAQEEcDBu
+MEMGCCsGAQUFBzAChjdodHRwOi8vc3Nsc2VydmVyLnR3Y2EuY29tLnR3L2NhY2VydC9JbmZvU2Vj
+MjAyNHNoYTIuY3J0MCcGCCsGAQUFBzABhhtodHRwOi8vc3Nsb2NzcC50d2NhLmNvbS50dy8wIwYD
+VR0gBBwwGjAJBgdngQwBBQICMA0GCysGAQQBgr8lAQEcMAkGA1UdEwQCMAAwDgYDVR0PAQH/BAQD
+AgTwMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDANBgkqhkiG9w0BAQsFAAOCAQEAk1ZV
+NC1QHHzFZl03bUodPvHUFmmzZWTwrl6/g9nT1RpTOWxGoJLgtkVUl9kqaG837E65i1tqW9pk1fHP
+KeIr0p7NHviLsP7wOdpSVJQErlmvJ9Q5+rtefVWQ1aRi6tgz6WIOo0YWOPyAK1O844oi1/vTdzhy
+saLaUPBAt4JEqka9Ml5n6IPNiVZ+wEWj2uLFvzs0LgW42wRbNYvmKiSbElDJvsgwpqpd2R6+G4g2
+7PCuNzd5bFYV8FjvDyoA5Np0YGumqW4nLxLuqhSOE2SXuotLX1YJWvV0FsyDOP4afJmZYLno4cta
++QX6oKIx1z3FSxSMDIXiqAfxnlPKOtHBWzCCBUEwggMpoAMCAQICAgy+MA0GCSqGSIb3DQEBCwUA
+MFExCzAJBgNVBAYTAlRXMRIwEAYDVQQKEwlUQUlXQU4tQ0ExEDAOBgNVBAsTB1Jvb3QgQ0ExHDAa
+BgNVBAMTE1RXQ0EgR2xvYmFsIFJvb3QgQ0EwHhcNMTIwNjI3MDYyODMzWhcNMzAxMjMxMTU1OTU5
+WjBRMQswCQYDVQQGEwJUVzESMBAGA1UEChMJVEFJV0FOLUNBMRAwDgYDVQQLEwdSb290IENBMRww
+GgYDVQQDExNUV0NBIEdsb2JhbCBSb290IENBMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKC
+AgEAsAXbyOuMxG6KIe+OTZxxCh9ScO1tgpyXxddMTkVJy0BCtRI0bBnCdKQxX4UCl+xDMwpT0pyM
+jre4edsr1WryjmbE7isBB5LUs9AC31D2Va9mDsvgR2AvKzI5NVI6KIP4exbGGLhi1kclkc7wGRJN
+rWP10z91XynwoTAcKqCYphW97v0ZNvDikUOP+srWECdJTO/dwfGFcJvK6qhaQ/xthm9z6TdFqfA2
+x8yIdR67bAb/m2s+F+xhqnF8xh2i90npFbU81qFh9RH3BW8d/RG+0DAHwimwCU4m3OOiqJFqH8KR
+RYhc5Zi4caUVGcl8dRHMcHRPLZsdkUT9Viig/ruGasj6XAtY3MZLdsirItlzD6X0WgKJP0+eIoLu
+onRTKj1TJ2kdbI4yLGQAJmNhNk6jRrc/fbMtrG2QopWizs/agucHNBmW6bghqil+pji+jilKIWZ5
+H7PDtQln3tbUB0bzKtrmIjdgy4G2D6AP6ciVf79VkQV6zz0VwG/eCZQBg9c0G8xApfC4m2fVmJE7
+p4R4lSakWgj4K3S0AAQ837gUjujfqY1sZ5IzHcC30uySyL4JvywpBW8Ca57vvL8qvFvAUI9BcHGH
+sk23BKmEozKvru5rF4uysf5s4ZCMiKiXSM7ITcvzBs9fagpCsR4edy+OoOaSDgb8BSLSJuExUX0y
+3A8CAwEAAaMjMCEwDgYDVR0PAQH/BAQDAgEGMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQEL
+BQADggIBAF80gXbvlh3V5bXZAmOEFsGuoHBRp/dMRzXIC9coPYlx2aozQeoUG2whAMBsQhl+n2lb
+IELfotLaxHyXS42w6KzI7qVpBJkKkqarJy4aTYG/hNRwHq1H/v1KnTPg8rnERQghCtppaXNyDb40
+/pSLrcMeNdeig+/lOMelhR+rzzTsPyj+DPFXhk7JVfcc1NilfQZ6b9XfEN+BTiFlsbbhF3mVRQbO
+X8zcRoljaESNk/RkcKA9nSgFwzlwuGJ7IP3k2+kIobiePQnHT/ss+JN2Qd5S4OFX0p0DvHee/p4p
+XvfBUWAf3toLsi11t0NIk+f2ecaEXYBZYJT8eJiPPJNR7UCQB99kYyTLTnEFodeUGogy8SJ0Iq6l
+ptgSaUxgowLuK+zUY5ILXr4vdmujtia8jwPYCvJMZEa9OWLllus0YxEozJXxre/v3IBYSOlLuOpl
+rOn8gLW1yEX5rMGf2bnqYoiOxPFLgxKt5ouE1p7C64MYn2q7GyRgM3DM7Pcy81zZeX3vnqT+ySPD
+JO4VkrE9kU8mhr1mcyQT6qSuY8GtfYQDPBB4hht548Tz8gSVIK4jgsSzOgBiv+Y2JOFXuscekHXV
+Xz+VYSvBO83ls2hh0EYmqSFSaS3rLsfrd86mOrUDM0920edcVAFdy3j0yQy/zxKOFy0jaJTnq/6p
+sisG0ATNMIIFwTCCA6mgAwIBAgIQQAE017sAAAAAAAAM0vH3UzANBgkqhkiG9w0BAQsFADBRMQsw
+CQYDVQQGEwJUVzESMBAGA1UEChMJVEFJV0FOLUNBMRAwDgYDVQQLEwdSb290IENBMRwwGgYDVQQD
+ExNUV0NBIEdsb2JhbCBSb290IENBMB4XDTI0MDMxNTAzNDU0NFoXDTMwMDMxNTE1NTk1OVowVzEL
+MAkGA1UEBhMCVFcxFzAVBgNVBAoTDlRBSVdBTi1DQSBJbmMuMRAwDgYDVQQLEwdVc2VyIENBMR0w
+GwYDVQQDExRUV0NBIEluZm9TZWMgVXNlciBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC
+ggEBANFSVSJ6+V1vK7jVRH/21mAHwetiNaDrzPvOYGtltT5VklqEPdZWx1EHcGAkizT3q/69bO6+
+DLjxY5dDq9VwKi1aak7TfWo3efoGXN3z5c2EQy7NHrbeyks8nbDrIntvGDG9LRSTRRPHghdC/Ox/
+6xhcDoRP3igYsGlpfgvvJk5FF22HfbkPU7Ct4u6jcO/RdvfLDoaehKqvS/6KMov1BBS6Hhr6Ysn1
+g3VgPtABqx5MdbcFmVL+vVK91qz7L+dkCatL0nqPbIW/gaCIlGkDzfLJHhXC3+h79zozaZmMq8nm
+B64Vfd+qprz87s3rDmzEPFIL5+2IVnd5kl1+ilt0onUCAwEAAaOCAY0wggGJMB8GA1UdIwQYMBaA
+FEjbzd6O6UlyWojosdg9B7O5a2ZQMB0GA1UdDgQWBBQlwDrrrob/G+j67H8jfQ7M1WlCAzAOBgNV
+HQ8BAf8EBAMCAYYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMDkGA1UdIAQyMDAwLgYE
+VR0gADAmMCQGCCsGAQUFBwIBFhhodHRwczovL3d3dy50d2NhLmNvbS50dy8wSQYDVR0fBEIwQDA+
+oDygOoY4aHR0cDovL1Jvb3RDQS50d2NhLmNvbS50dy9UV0NBUkNBL2dsb2JhbF9yZXZva2VfNDA5
+Ni5jcmwwEgYDVR0TAQH/BAgwBgEB/wIBADB+BggrBgEFBQcBAQRyMHAwRAYIKwYBBQUHMAKGOGh0
+dHA6Ly9zc2xzZXJ2ZXIudHdjYS5jb20udHcvY2FjZXJ0L2dsb2JhbF9yb290XzIwMTIuY3J0MCgG
+CCsGAQUFBzABhhxodHRwOi8vcm9vdG9jc3AudHdjYS5jb20udHcvMA0GCSqGSIb3DQEBCwUAA4IC
+AQB0XeG8bed7OPP+xjdp/cXHPjp1delP8ZVPBbeP0ZxvNIifOPYkUrHvsN4fTtC7Zd5Um7mGB5ar
+FafJgIvZiP3stkz/g/C77XTLGlApDUmNbkpHUxzJDQA3a1YKbeXEtWh/MIilrMzcLzwQz0oHgToo
+ePxMNXbFRCMktK88n8o0qUm8d4Xc8xDBOSObvNyNj5key4ZIrnW6oZQp6cFwNUAbt7sH0d7O1KJU
+qNaQUaOmxKQHAnBLRA18L+LZ4ZEhOY/1WyQKFe8Qgg+OeCh7W6/HQcMcvcpk6eh2tggBh1Aw+efk
+9DuQw1QYzq5MB9Mng08SrWJiCScFLmCxcFqLdnkhr/38XycDo7jmEp5SY15xay889fEDcM9ibEHM
+Oq+7YxRe7wMYgMrj3RosgESBaXItFkphyOoi4G3eFXYFVIYfOUnU2KWo+FnHJfqqMyhFCI/JAKWZ
+qE7culYHVQes3CSEUrBvQk9f+eF+9FXHRtcnLfxBN7aBWzPctkzDA/14XikZHcNvbDepQoMhzSwB
+ODMhNPvdJp68KpnBkhEthhhGDJ5uCHyl5Az1wGKDgEnvJPmu62fSH6nYwX1SNzdHBQuVSPnj1Ul1
+FB/pXLkwK2SBmdNczd7S2P+Ltof9zPLjpXSSJham89t/+jbkQBoBqD/vsTzvJC/jwkiYI1PQZSda
+HTGCAgEwggH9AgEBMGswVzELMAkGA1UEBhMCVFcxFzAVBgNVBAoTDlRBSVdBTi1DQSBJbmMuMRAw
+DgYDVQQLEwdVc2VyIENBMR0wGwYDVQQDExRUV0NBIEluZm9TZWMgVXNlciBDQQIQR+gAAAAfYN9g
+/FuW9nHqVTANBglghkgBZQMEAgEFAKBpMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZI
+hvcNAQkFMQ8XDTI1MTAyMjA0MDgzNVowLwYJKoZIhvcNAQkEMSIEIPSZLrbkJ4LVqRtFlCrAuX93
+zK4hGL16Ya+vV4JmLjnZMA0GCSqGSIb3DQEBAQUABIIBAAJcXbUL31JdCUTFV3aQlDy1zkGwNehc
+5VxuOxnVe7aw2m9KPV8Jg3giWA1tPFx7TCCaf6l119Js6t3qHdo55jSEEYhsn0s5Gysyt77iYWNP
+hn7b6p2iMnB/xD4EVBLgRBU8xsC7BhPsRIWzBp0+27dJWMreieDiZ9fXzQkVhbpITn6lmNhJiOWI
+zTSiOdkCEo8ikXJnot+YC8AKqsfRQyAe6T99cIun03UJh7qzBH8hYpQU1/7C+XXuH4/bQ3/I+8Kc
+I2ot9ZM5XU/k3U+MZ8aUVYv2TBVGOMR9Lde4dXyv9dV9KJ0dZehbIRFqVEFflO+fNitxt6ekz3Qo
+JqSxkB0=
+--b4f096a1.dcc8.401e.9e50.c75b13c23c48--

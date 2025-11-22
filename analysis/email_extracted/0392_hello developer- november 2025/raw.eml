@@ -1,0 +1,1287 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:d801:b0:4d4:9739:2b92 with SMTP id of1csp1315751mdb;
+        Thu, 6 Nov 2025 08:05:29 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHmAFRIl3UrATfBasJkKOMyvilX9zIyQPPCOmEfcXQjrZMNrOBTF60ueE6zSOSC6W+838Uf
+X-Received: by 2002:a05:6a21:7103:b0:340:6b3e:5611 with SMTP id adf61e73a8af0-350dcb3405amr5699604637.6.1762445129087;
+        Thu, 06 Nov 2025 08:05:29 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762445129; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Gg77QKDrpAIuYwHytuNkCpHeBNXOS2rqRjq8I70cEgLyDvgcDD89//A+LpmZX6wM0H
+         YbPSPh8Cc34te+gX8mYF5xGjM/4ldAB/qx/fgqb6gO9fFiPe16fdYEbEotSq/v9uC+Lw
+         iKnRw1+IGQEea/gdjuwB0lY5uXl7g11BugHVo3/ApJMoHTnuxccsebPL2xYTZThURozI
+         E8iMcwUpYNC6RwayWLrvhBnMqAuqKAy6zg8VFUTwdsvz4w7J4BARUFJUUpTdWm6+v9wS
+         nycvS29GDxxGxP3hE/h2PAOkdP9d/VrEbZ8r+tDsOdo6WMHVogsd2x2rlUXSLcRS0ebF
+         Q5EA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=list-unsubscribe:list-unsubscribe-post:feedback-id:mime-version
+         :subject:message-id:to:from:date:dkim-signature;
+        bh=RzNM6R6j7VNOUlFphZrz2DneEb2ey/vpUdGSVJc1CGE=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=DZbn9L4VZPqbCp8P52Or7CzVPbu13EREncpt9FvEPOA9nf0TqKlZ/JIP/cFICRrWj0
+         Jz7yY/neN1g4i9g/ikIVHJpH9O5IubRzqq9x9gJ+dGOLAejskb5YtN/ZneowjfjeSMyh
+         W0WCoHPp7b9seZ2rBvV0sN1FQzHgEjTQ3XCrLIqgMQltR8n8P8NvOg8YVaieMzoLEl+n
+         /5UJi85M/h5CULloVURok51zCmT5dAX2IWQLonHs48dlUEm6MbAu9/POk4m1vsQ5yLwN
+         pPGP9tuaXAuCQBOW206KjR7AZb01r7yxlQKlELFH/1iElCdFZMqFnRjDVw1AU9m5rdbo
+         crVw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@insideapple.apple.com header.s=insideapple0517 header.b=TO5Lzsgp;
+       spf=pass (google.com: domain of developer_bounces@insideapple.apple.com designates 17.179.250.164 as permitted sender) smtp.mailfrom=developer_bounces@insideapple.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=insideapple.apple.com
+Return-Path: <developer_bounces@insideapple.apple.com>
+Received: from rn2-msbadger12103.apple.com (rn2-msbadger12103.apple.com. [17.179.250.164])
+        by mx.google.com with ESMTPS id 41be03b00d2f7-ba8fe2ef0e9si1554337a12.468.2025.11.06.08.05.27
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 06 Nov 2025 08:05:29 -0800 (PST)
+Received-SPF: pass (google.com: domain of developer_bounces@insideapple.apple.com designates 17.179.250.164 as permitted sender) client-ip=17.179.250.164;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@insideapple.apple.com header.s=insideapple0517 header.b=TO5Lzsgp;
+       spf=pass (google.com: domain of developer_bounces@insideapple.apple.com designates 17.179.250.164 as permitted sender) smtp.mailfrom=developer_bounces@insideapple.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=insideapple.apple.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=insideapple.apple.com; s=insideapple0517; t=1762444835;
+	bh=RzNM6R6j7VNOUlFphZrz2DneEb2ey/vpUdGSVJc1CGE=;
+	h=Date:From:To:Message-ID:Subject:Content-Type:
+	 List-Unsubscribe-Post:List-Unsubscribe;
+	b=TO5LzsgpgiK9V1MKLEhXtWl69btKEeT8xIkSkHIX2iYPnTj375YrFecPkxt6vR6rO
+	 br+jlL8yRxkQhyzg0oUdeEaK844Hmpd5UpThMz+mHeX8U6/53fUCjrCYUmEzlVOsOk
+	 sN8YlNs4yo2u3Q+ok0aYzezP92XAFTe4AAH+Iwuwgf74YUAj9y3w/Y13Vo7zQOEP9E
+	 q83mbUUMeAI0pUs7ai4YBr9AZCMCXw8fa6jlNd9feZ7u9antm+Tz21OWtM44lILyoW
+	 Je1AmeP/jD7BMPSck4LNDtPzV9nglviRpXwSwHj5+F/a7gfFmygTXdnL0vIy1GtQvU
+	 95MYUgVnSuo7w==
+Date: Thu, 6 Nov 2025 16:00:35 +0000 (GMT)
+From: Apple Developer <developer@insideapple.apple.com>
+To: liencf@gmail.com
+Message-ID: <1205347119.5074756.1762444835902@insideapple.apple.com>
+Subject: Hello Developer: November 2025
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_5074751_699418515.1762444835902"
+X-Attach-Flag: N
+X-Sent-To: liencf@gmail.com,2,8w%2BvXLoOe%2FyPdV0vFeToEVnZveVrR%2BifFiCjD%2Bp9HLNSyGuXP8BO1zMLH0pIfktFfgVOvkxEMzHBzVdO%2Bqy3fPoeT1dUOlFAlfX4c2%2FKqIHMBmS%2F7KUP7RNQg9CtOd3SIsFywH3hCIkOxbdQozm%2FrC99UDqkHjBVzomGwkFJTisLutK3bBZjJDjqS%2BOPy%2B8mRq4hhtfeNc0pqFezVPM0v3Uv9SP8zUNfT%2FD72WyFqTJADDRKZiSCiiaIZNgEjI%2Fz9W%2BvYrf1%2FH9xtEJdktjyDA%3D%3D
+X-TXN_ID: 12b3de2c-b7a0-4583-a8e3-0020b63f8743
+X-DKIM_SIGN_REQUIRED: YES
+x-evs: BYPASS
+X-EmailType-Id: 181667
+X-Business-Group: 8067469
+X-Broadcast-Id: 181667
+Feedback-ID: M00779:c00353:developer@insideapple.apple.com:7967215940
+X-MSG-LINK: 3686c6df52c6a843f3e3394309ce796c
+X-rpcampaign: M00779~c00353~r0001~1038661~3686c6df52c6a843f3e3394309ce796c
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Unsubscribe: <https://unsub.apple.com/c/JgreQxU%2BTHmzeOZLTFzPas23Ar%2FPSt2EpgtBU7Hgel2xlHLPO8z4WcLPLoF%2FUbF51cDiwMyruspqYF1zN5axplLxhHtt47Q98bGpAg6aCxWsVSHCy8Qh%2F4dsrfE6NQrKkHoOL3DZtWwuEtTxZ30KZ6bEJ5Cun8AY3mCVnrIl6i1Non1CtmanLJfn%2BucooGnzTLlD9ZQoyKYhnCVW54JrSSnSjcN0orH5F%2Be7gdUd0Ezu0X6E2hmwUisuEneVdvJgxuZbJquk01mOqHC0TYMNC%2FojWdS%2B1FQJAiCugKqOocuVtEbnTpARveBxrzoH6EN85BNJhhAoU%2F%2Fq2PsaKK7su7i13ODqUZ5uu0tczFSvu68DmUCN2uU5Yf1UwA0OsA2z4YMqRY71QRAD0IsMh0tI0a3MzqIeIkaXs1f%2BVW%2Bf%2FtHrUBGBJQKUK9RI25%2FbKmBypfzZ4g5jVV4w6FPPe1Aw0xRpbkCEFjoPzxbOQFtq3hTMpfok6dIzbCZ64BtLORzH/9d835b7813>
+X-mp: d
+
+------=_Part_5074751_699418515.1762444835902
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Disposition: inline
+
+NOVEMBER 2025
+
+Hello Developer
+
+A collage of elements that represent and illustrate the new design, includi=
+ng text input boxes and a search button. The collage appears over a gray gr=
+id background.
+
+Catch the new designin the wild
+
+Discover how teams of all sizes have incorporated the new=C2=A0design and L=
+iquid=C2=A0Glass into their UIs =E2=80=94 and find out how their work can i=
+nspire yours.
+
+Browse examples
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR9K5nJGsHHtNAzc4fTmFZUQ%3D
+
+A woman stands on a stage in front of a crowd in a darkened theater. Behind=
+ her is a screen showing elements of the new Apple design.=20
+
+The new design: Ready for its close-up
+
+Join us in Cupertino on November 18 to find out how developers are embracin=
+g native design, expressing their brand identities, and adopting the latest=
+ features.
+
+Request to join in person
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR2r9c4fAK0NMqXx%2BuLP7ATY%3D
+
+Sign up for the livestream
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR%2F36cRHALPTHw7ACJnF3Cv8%3D
+
+A large crowd of student developers gathers outside on a lawn in front of a=
+ colorful WWDC25 sign.
+
+Announcing the Swift Student Challenge 2026
+
+Every year, the Challenge offers the next generation of developers an oppor=
+tunity to showcase their creativity and learn app-building skills they can =
+take into their careers =E2=80=94 and beyond.=20
+
+Submissions will be open February=C2=A06=E2=80=9328,=C2=A02026.
+
+Learn more
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR7fjkmMw8%2FROOjLNiFdSLB4%3D
+
+A woman stands in a crowded theater in front of a large video screen showin=
+g a meditation experience on Apple Vision Pro.
+
+Now playing: Developer activities on demand
+
+Meet with Apple activities are now available to stream anytime. Check out t=
+he latest on immersive and interactive media for visionOS, HTTPS Live Strea=
+ming, and optimizing power and performance.
+
+Browse the latest videos
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR2s92Y0g3gz5ryNA%2BcX3Y6U%3D
+
+A colorful collage of icons of Apple's games-related apps and services, set=
+ horizontally against a white background.
+
+Streaming today: Get in the=C2=A0game
+
+Join us online from 10 a.m. to 5 p.m. PT to learn all about building great =
+games for Apple platforms.
+
+Watch live
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR0NwpI%2F6%2BmU2F8T73aHm5jY%3D
+
+Plus, browse new Meet with Apple activities in Istanbul, Bangkok, Hanoi, Be=
+rlin, London, Jakarta, and more.
+
+Find an activity near you
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR560XnA%2BaEeq0xrCpN5hYaE%3D
+
+The App Store Connect logo in blue against a white background. On either si=
+de of it are icons of gifts in red and green.
+
+Get your apps and games ready for the holidays
+
+Make the most of your seasonal campaigns with App Store features like In-Ap=
+p Events and custom product pages. Plus, it=E2=80=99s easier to submit addi=
+tional items =E2=80=94 like a holiday In-App Event =E2=80=94 independent of=
+ an existing submission, giving you greater flexibility when planning=C2=A0=
+your campaigns.
+
+Learn about submitting for review
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR93NHts9CHQ%2FsUmCaAbhlOQ%3D
+
+Read more about promoting your apps and=C2=A0games
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR%2BPT8xEfJQ2jmC8KX1fkkJI%3D
+
+The App Store Connect logo in blue against a white background.
+
+TestFlight support for Managed Apple Accounts=20
+
+Managed Apple Accounts can now access TestFlight for beta testing, providin=
+g a seamless development experience and enabling organizations to leverage =
+the security and data management capabilities of Managed Apple Accounts.
+
+Learn more
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmRwYCBmzEHA8qL1%2FdI4u7ycs%3D
+
+DOCUMENTATION
+
+Significant Change API under PermissionKit
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR5wyGtKvxbIYLFZ82kjrI9c%3D
+
+New age rating property type in StoreKit
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR8%2FYTvnRYN%2BPQFM0VUXj0x0%3D
+
+Enabling enhanced security for your app
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR403NogrdfuarBIoFqauUbY%3D
+
+Downlink time difference of arrival ranging
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR3Tep0bNIUugPXqCW%2BTtzts%3D
+
+Digital Credentials API =E2=80=93 Mobile Document Provider
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR63D%2FJsNAwsHgP5eJ0G6BLk%3D
+
+A small Technotes icon, which shows an icon of a document with a code snipp=
+et in blue against a black background.
+
+TECHNOTES
+
+Handling account deletions and revoking tokens for Sign in with Apple
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR97dmtu5WiaYQlQ9gxPRqsw%3D
+
+Managing the on-device foundation model=E2=80=99s context window
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR1CrYFMGtP59YCQP8mXaig0%3D
+
+USB audio device design considerations
+https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2=
+FrPkRVGspDLrlnPqAxWwR051s9Xfp8CdwawVPZzopzVhD0Suu5w6Bk4ztBtDIbHVl8hD2sb%2Bv=
+thxGaG562f52SmawDuo83A4Jw9MirLJr664eac9EV%2FLWaR2VbIWi4dHu90bel5ZbiYtM4htqr=
+YlArduEJHzx8GuwyGgXdpuMikgJxmiR7pkyheBebLsRUU%2FkNlzIjR6F6b0LYQuKQaeAeevVJ6=
+vor%2Fr7qmA9He7gLrw0BO0z7Vxay5hsVLjRe8B%2F1vg5vsuoTiOkgD8VjZ%2Bo3QcT%2FyFXB=
+S2%2FGIUhVT4FdmR5lbug6VJBoDKLUsAEtIruE%3D
+
+View all Apple Developer Documentation updates
+https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UJR94mniF31x6BQ8mUoKnZV=
+GdhMPez2mA%2FDwb9NtLPnk7QBa5O5wm2K0lwSzzbxwCsMQMkpHcil36SzSYuqO2hfxEMFGsJN3=
+Bc5n6lcGfrVKCf9QEo3iiS0KsSSrwQX6e6IZmRAIwTagSVosXDSGOFO6mlmRCq799M7xyX4DbF6=
+P7wwkPcY8vQ0Obut8i7aFIC2GLCf%2FknWxAmTheRQzNWli3YAL%2FKrG5dFy0fmoo831ew4QUa=
+3UObHNvOnXkYTqOg%3D%3D
+
+Share your thoughts
+
+We=E2=80=99d love to hear from you. If you have suggestions for activities =
+or stories, please let=C2=A0us=C2=A0know.
+https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UJR94mniF31x6BQ8mUoKnZV=
+GdhMPez2mA%2FDwb9NtLPnk7QBa5O5wm2K0lwSzzbxwCsMQMkpHcil36SzSYuqO2hfxEMFGsJN3=
+Bc5n6lcGfrVKCf9QEo3iiS0KsSSrwQX6e6IZmRAIwTagSVosXDSGOFO6mlmRCq799M7xyX4DbF6=
+P7wwkPcY8vQ0Obut8i7aFIC2GLCf%2FknWxAmTheRQzNWli3YAL%2FKrG5dFy0fmoo831LvRjTt=
+vZTpXAoay1GKe5Ng%3D%3D
+
+-------------------
+
+ Copyright =C2=A9 2025 Apple=C2=A0Inc. One=C2=A0Apple=C2=A0Park=C2=A0Way,=
+=C2=A0MS=C2=A0923=E2=80=914DEV, Cupertino,=C2=A0CA=C2=A095014=20
+
+-------------------
+
+All Rights Reserved
+https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UJR94mniF31x6BQ8mUoKnZV=
+GdhMPez2mA%2FDwb9NtLPnk7QBa5O5wm2K0lwSzzbxwCsMQMkpHcil36SzSYuqO2hfxEMFGsJN3=
+Bc5n6lcGfrVKCf9QEo3iiS0KsSSrwQX6e6IZmRAIwTagSVosXDSGOFO6mlmRCq799M7xyX4DbF6=
+P7wwkPcY8vQ0Obut8i7aFIC2GLCf%2FknWxAmTheRQzNWli3YAL%2FKrG5dFy0fmoo831jG0QkT=
+8dZQAQeDmoZn6Z7A%3D%3D
+
+Privacy Policy
+https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UJR94mniF31x6BQ8mUoKnZV=
+GdhMPez2mA%2FDwb9NtLPnk7QBa5O5wm2K0lwSzzbxwCsMQMkpHcil36SzSYuqO2hfxEMFGsJN3=
+Bc5n6lcGfrVKCf9QEo3iiS0KsSSrwQX6e6IZmRAIwTagSVosXDSGOFO6mlmRCq799M7xyX4DbF6=
+P7wwkPcY8vQ0Obut8i7aFIC2GLCf%2FknWxAmTheRQzNWli3YAL%2FKrG5dFy0fmoo831yTWcXO=
+sOowMdyOLOFqYNRA%3D%3D
+
+Account
+https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UJR94mniF31x6BQ8mUoKnZV=
+GdhMPez2mA%2FDwb9NtLPnk7QBa5O5wm2K0lwSzzbxwCsMQMkpHcil36SzSYuqO2hfxEMFGsJN3=
+Bc5n6lcGfrVKCf9QEo3iiS0KsSSrwQX6e6IZmRAIwTagSVosXDSGOFO6mlmRCq799M7xyX4DbF6=
+P7wwkPcY8vQ0Obut8i7aFIC2GLCf%2FknWxAmTheRQzNWli3YAL%2FKrG5dFy0fmoo831xpKNou=
+I6cyVQu2eRa0itHg%3D%3D
+
+-------------------
+
+You can update your Apple Developer email preferences or unsubscribe.
+https://developer.apple.com/account#EmailsCard
+https://c.apple.com/r?v=3D2&a=3D8ps6Ok0qKWiF37xoxStPOmTNGs51zlivdjtcXTFjpLl=
+RuCwyddQ3iyYDv7lzbrRV0%2FsqmpE%2Bke0PNCs0kHZqlEj4m4LOo1Gsc6Jz%2B8V8%2Fewdx6=
+TRpS5tMNnEgIDkZy8CSzP8paFJjKvSxt3GlDd8cxHUKJoIDoourUQT8f2LAsrvY6Q%2FGM5Di5O=
+M1z4%2FAjXqYafpCV%2FJ%2Bh9CdbCLjMGVtP7NsQLXPFeKwXtEJdRRqJxQ0mkKtc7x2Z1yL0CO=
+YOAAyFRpam4IXKEbyTtT%2BipPWZPpdaMO1W1olZ0CdLkdXJ0rpxcwvVPmM6zVGZpg2x%2BSAcZ=
+GR%2F6bjvQPFrw%2F%2FsYaCZwJeVMh189Fu3pgUVBJja2DEu7TQ0geY%2B6cTJppO36Xe5bJwA=
+Z3uxCgmmKsfQ33GE8NoK8h%2FMb5d69nDb%2F%2Fje7EZqiWS9l%2B1auO%2BdkiejUXM0Hllct=
+y9zMDMEQXd1GU%2BhWJw4oyUU17QdY8xKeGOoI%3D
+
+-------------------
+------=_Part_5074751_699418515.1762444835902
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Disposition: inline
+
+<!DOCTYPE html><html><head><title></title><meta content=3D"width=3Ddevice-w=
+idth,initial-scale=3D1" name=3Dviewport><meta content=3D"text/html;charset=
+=3Dutf-8" http-equiv=3Dcontent-type><meta content=3D"date=3Dno" name=3Dform=
+at-detection><meta content=3D"address=3Dno" name=3Dformat-detection><meta c=
+ontent=3D"email=3Dno" name=3Dformat-detection><style type=3Dtext/css>@media=
+ only screen and (max-device-width:2732px){.m29 a[href^=3D"tel:"]{color:inh=
+erit!important}}@media screen and (max-device-width:414px) {u ~ div { min-w=
+idth: 375px;} body,u+div { min-width: 375px;} } </style><style type=3Dtext/=
+css>@media screen and (max-device-width:568px){h1 a,h2 a,h3 a,h4 a,h5 a,h6 =
+a{color:inherit!important;font-weight:inherit!important}}</style><style typ=
+e=3Dtext/css>@media only screen and (max-device-width:568px){.m0{display:no=
+ne!important}.m1{display:block!important;width:100%!important;height:inheri=
+t!important;overflow:visible!important}.m23,.m28{padding:0!important}.m28 t=
+able.m29{width:100%!important;max-width:414px!important;padding-top:0!impor=
+tant}.m30{padding:0 6.25%!important}.m28 table.m31{width:100%!important;max=
+-width:362px!important;padding-top:0!important}.m23 p{font-size:12px!import=
+ant;line-height:39px!important;padding:0!important}.m23 span.m32{font-size:=
+0;line-height:0;display:block}.m33,.m33 p{line-height:20px!important}.n6 .n=
+7 p .m34 a,.n6 .n7 p a[href^=3D"tel:"],.n6 .n7.n8 p.n9 .m34 a,.m29 a[href^=
+=3D"tel:"]{color:inherit!important}.m99>div,.n1>div,.m94>div,.n2>div{border=
+-top-width:1px;height:0;line-height:0;border-top-style:solid}.n6 .m29,.n6 .=
+m31,.n6.m26{background-color:#fff!important}.n6 .n7,.n6 .n7 p,.n6 .m33{text=
+-align:left!important}.n6 .m23{border-top:none!important}.n6 .m23 span.m32{=
+border-top:1px solid #d2d2d7}.n6 .m23.n10{border-bottom:0!important}.n6 .n7=
+,.n6 .n7 p,.n6 .m33 .m32{color:#6e6e73!important}.n6 .n7 p a,.n6 .m33 p,.n6=
+ .m33 p a,.n6 .m23 p span.m9{color:#424245!important}.n6 .m23 p .m9{color:#=
+424245!important;display:inline-block;width:100%}}</style><style type=3Dtex=
+t/css>.m0,.m1,td{font-size:17px;font-weight:400;line-height:25px;font-famil=
+y:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",He=
+lvetica,Arial,sans-serif,"SF Pro Icons"}.m1,.m1 div{box-sizing:border-box}.=
+m2,.m2 h1,.m2 h1 a,.m2 h1 a:hover,.m2 h1 a:visited,.m2 h2,.m2 h2 a,.m2 h2 a=
+:hover,.m2 h2 a:visited,.m2 h3,.m2 h3 a,.m2 h3 a:hover,.m2 h3 a:visited,.m2=
+ h4,.m2 h4 a,.m2 h4 a:hover,.m2 h4 a:visited{color:#1d1d1f}.m0,.m1,.m3,p,td=
+{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Helveti=
+ca Neue",Helvetica,Arial,sans-serif,"SF Pro Icons"}*{-webkit-font-smoothing=
+:antialiased;text-rendering:optimizelegibility}.m0,.m1{width:100%!important=
+}table{border-spacing:0}b{font-weight:600}.m1{display:none;margin:0 auto;ma=
+x-width:100%;width:100%}.m1 .m4{max-width:100%}.m1 .m4 .m5{max-width:414px;=
+margin:0 auto}.m1 .m6{font-size:0;line-height:0;margin:0 auto}.m1 .m7,.m1 .=
+m8{font-size:17px;line-height:25px}.m1 .m9 img,.m1 .m10 img{display:block}.=
+m1 .m11{font-size:0;line-height:0}.m12 img,.m9 img,.m10 img,.m13,.m1 .m11 .=
+m7{display:inline-block}.m14,.m15.m16 div,.m4,div.m11.m16{margin:0 auto}.m1=
+6{text-align:center}.m16 img,img.m16{margin-left:auto;margin-right:auto}.m1=
+7{text-align:left}.m17 img,div.m11.m17{margin-left:0;margin-right:auto}.m18=
+{text-align:right}.m18 img,.m15.m18 div,div.m11.m18{margin-left:auto;margin=
+-right:0}.m19 a,.m20 a{border:0;outline:0}.m20 .m6{font-size:12px;line-heig=
+ht:16px}.m2{border-color:#fff;background-color:#fff}.m2 a,.m2 a:hover,.m2 a=
+:visited{color:#06c}.m2.m19,.m2.m20{color:#86868b;background-color:#f5f5f7}=
+.m2.m19 .m12,.m2.m19 a,.m2.m19 a.m12,.m2.m20 .m12,.m2.m20 a,.m2.m20 a.m12{c=
+olor:#515154}.m21 .m2{color:#6e6e73;background-color:#f5f5f7}.m22 .m23 a,.m=
+21 .m2 .m12,.m21 .m2 a,.m21 .m2 a.m12,.m21 .m2 a:hover,.m21 .m2 a:visited{c=
+olor:#424245}.m2 .m15,.m2 .m15 td,.m2 .m15>div,.m2 td.m15{border-color:#d2d=
+2d7;color:#d2d2d7}.m24,.m25{white-space:nowrap}.m3 a,.m3 a:link,a,p a,p a:l=
+ink{cursor:pointer}.m26.m27 .m23,.m26.m27 .m28{padding:0!important}.m26.m27=
+ .m28 table.m29{width:100%!important;max-width:414px!important;padding-top:=
+0!important}.m26.m27 .m30{padding:0 6.25%!important}.m26.m27 .m28 table.m31=
+{width:100%!important;max-width:362px!important;padding-top:0!important}.m2=
+6.m27 .m23 p{font-size:12px!important;line-height:39px!important;padding:0!=
+important}.m26.m27 .m23 span.m32{font-size:0;line-height:0;display:block}.m=
+26.m27 .m33,.m26.m27 .m33 p{line-height:20px!important}.m26.m27 .m29 a[href=
+^=3D"tel:"]{color:inherit!important}.m1 .m8 p+*{margin-top:9px!important}a,=
+a:link{text-decoration:none;word-spacing:0!important}a:focus,a:hover,a:link=
+:focus,a:link:hover{text-decoration:underline!important}a:link[x-apple-data=
+-detectors],a[x-apple-data-detectors]{text-decoration:none!important}a:link=
+[x-apple-data-detectors]:hover,a[x-apple-data-detectors]:hover{text-decorat=
+ion:underline!important}a.m12,a:link.m12{text-decoration:none}a[x-apple-dat=
+a-detectors],a[x-apple-data-detectors]:hover,a[x-apple-data-detectors]:link=
+{color:inherit;text-decoration:underline}p a,p a:link{text-decoration:under=
+line}p a.m34,p a:link.m34{text-decoration:none!important}p a.m34:focus,p a.=
+m34:hover,p a:link.m34:focus,p a:link.m34:hover{text-decoration:underline!i=
+mportant}p .m24 a{color:inherit!important;text-decoration:none!important}im=
+g{display:block;max-width:100%}.m12+.m32,a img,h1,h2,h3,h4,h5,h6{display:in=
+line-block}img.m18{margin-right:0;margin-left:auto}img.m17{margin-right:aut=
+o;margin-left:0}a img{border:0;outline:0}.m1 .m35,.m36{vertical-align:top}.=
+m1 .m37,.m38{vertical-align:middle}.m1 .m39,.m40{vertical-align:bottom}.m3,=
+p{font-size:17px;font-weight:400;line-height:25px;margin:0}.m12.m15>div{bor=
+der-top-style:solid;border-top-width:1px}.m41,.m42{border-radius:18px;width=
+:100%}.m43{line-height:inherit}h1,h2,h3,h4,h5,h6{margin:0;font-family:syste=
+m-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica=
+,Arial,sans-serif}h1 p a,h1 p a:link,h2 p a,h2 p a:link,h3 p a,h3 p a:link,=
+h4 p a,h4 p a:link,h5 p a,h5 p a:link,h6 p a,h6 p a:link{color:inherit!impo=
+rtant;text-decoration:none}.m15.m16,h1.m16,h2.m16,h3.m16,h4.m16,h5.m16,h6.m=
+16{margin:0 auto;text-align:center}.m15.m18,h1.m18,h2.m18,h3.m18,h4.m18,h5.=
+m18,h6.m18{margin-left:auto;margin-right:0;text-align:right}.m1 .m44{font-s=
+ize:48px;line-height:1.08349;letter-spacing:0}.m1 .m10{font-size:32px;line-=
+height:1.125;letter-spacing:0}.m1 .m45{font-size:24px;line-height:1.16667;l=
+etter-spacing:0}.m1 .m46{font-size:21px;line-height:1.19048;letter-spacing:=
+0}.m1 .m47{font-size:17px;line-height:25px;letter-spacing:0}a{font-family:s=
+ystem-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helve=
+tica,Arial,sans-serif,"SF Pro Icons"}a>span{letter-spacing:inherit}.m12+.m3=
+2{font-size:12px;padding:0 4px}.m12.m15>div{height:0;line-height:0}.m20 .m1=
+2{display:inline}.m0,.m1{background-color:#fff}.m48{color:#86868b;padding-t=
+op:32px;padding-right:4%;padding-left:4%;font-size:14px;font-weight:900}.m4=
+9>p,.m50>p,.m48>p{font-size:14px;font-weight:900}.m48 a{color:#86868b;font-=
+size:14px}.m51{padding:8px 4% 24px}.m51 h2{color:#000!important;font-weight=
+:900}.m52{background-color:#f5f5f7}.m53 img,.m54 img,.m55 img,.m56 img,.m57=
+ img{border-top-left-radius:18px;border-top-right-radius:18px}.m58,.m59,.m6=
+0,.m61,.m62{padding-top:24px}.m63 h4,.m58 h4,.m64 h4,.m60 h4,.m65 h4,.m61 h=
+4,.m66 h4,.m62 h4{font-weight:700}.m67,.m68,.m69,.m70,.m71{padding-top:8px;=
+font-weight:400}.m67>p,.m72,.m73,.m73>p,.m74>p,.m75,.m68>p,.m76,.m77,.m69>p=
+,.m70>p,.m71>p,.m78>p{font-weight:400}.m79,.m80{padding-top:16px;font-weigh=
+t:400}.m81 img,.m82 img,.m72 img,.m83 img,.m84 img,.m85 img,.m86 img,.m87 i=
+mg,.m75 img,.m88 img,.m79 img,.m76 img,.m89 img,.m80 img,.m77 img,.m90 img,=
+.m91 img,.m92 img,.m93 img{width:12px;height:10px}.m94{padding-top:32px;pad=
+ding-bottom:32px}.m95 img{border-radius:8px}.m84{padding-top:18px;font-weig=
+ht:400}.m83{padding-top:6px;padding-bottom:32px;font-weight:400}.z1,.z1,.z1=
+,.z1{background-color:#fff!important;padding-top:0;padding-right:6%;padding=
+-left:6%;width:100%;border-bottom-left-radius:18px;border-bottom-right-radi=
+us:18px}.z2,.z2,.z2,.z2,.z2{width:100%}.z3,.z3,.z3,.z3{background-color:#f5=
+f5f7;padding-right:4%;padding-left:4%}.m53,.m54,.m57{padding-top:40px}.m86,=
+.m89,.m91{padding-top:16px;padding-bottom:32px;font-weight:400}.m63{padding=
+-top:8px}.m82,.m74,.m93{padding-top:12px;font-weight:400}.m81{padding-top:1=
+6px;padding-bottom:36px;font-weight:400}.m66{padding-right:6%;padding-left:=
+6%}.m78{padding-top:12px;padding-right:6%;padding-left:6%;font-weight:400}.=
+m87{font-weight:400;padding:16px 6% 12px}.m92{padding-right:6%;padding-bott=
+om:32px;padding-left:6%;font-weight:400}.m41{background-color:#fff!importan=
+t;padding-top:0}.m96,.m97{background-color:#f5f5f7;padding-top:40px;padding=
+-right:4%;padding-left:4%}.m98,.m42,body{background-color:#fff!important}.m=
+65{padding-top:12px;padding-bottom:0}.m99,.n1,.n2{padding-top:40px;padding-=
+bottom:40px}.m49{color:#686b70;padding-bottom:12px;font-size:14px;font-weig=
+ht:900}.m49 a,.m50 a{color:#686b70;font-size:14px}.n3{padding-bottom:24px}.=
+m50{color:#686b70;padding-top:0;padding-bottom:12px;font-size:14px;font-wei=
+ght:900}.m85,.m90{padding-bottom:12px;font-weight:400}.m88{padding-bottom:3=
+6px;font-weight:400;width:100%;max-width:100%}.m42{padding-top:0;padding-ri=
+ght:6%;padding-left:6%}.n4{padding-bottom:36px;width:100%}.m64{padding-bott=
+om:8px}.n5{padding-bottom:40px;font-size:14px;font-weight:400;line-height:2=
+4px}.n5>p{font-size:14px;line-height:24px;font-weight:400}.n5 a{font-size:1=
+4px}.n11.n11.n11{display:inline;margin:0}</style><!--[if gte mso 9]><style =
+type=3D"text/css">table,td,tr,a,span,b,sup{line-height:normal !important; m=
+so-line-height-rule: exactly;}sup{font-size:100% !important;}h1,h2,h3,h4,h5=
+,h6 {line-height: inherit !important; font-family:'Segoe UI SemiBold','Sego=
+e UI', Arial, sans-serif !important; font-weight: 400 !important; mso-line-=
+height-rule: exactly; mso-text-raise: 2px;}h1 sup,h2 sup,h3 sup,h4 sup,h5 s=
+up,h6 sup, .outSemiBold sup, .m43 sup{font-size:90% !important;}b,strong {l=
+ine-height: inherit !important; font-family:'Segoe UI SemiBold','Segoe UI',=
+ Arial, sans-serif !important; font-weight: 400 !important; mso-line-height=
+-rule: exactly; }.m43 { font-family: 'Segoe UI', Arial, sans-serif !importa=
+nt; font-weight: 600 !important; }.outSemiBold { font-family:'Segoe UI Semi=
+Bold','Segoe UI', Arial, sans-serif !important; font-weight: 400 !important=
+;line-height: inherit !important;mso-text-raise: 2px; }.m43 {overflow:visib=
+le;line-height: inherit !important;mso-line-height-rule: exactly;mso-text-r=
+aise: 2px; }.fallback { display: block !important}.animated, .m1, .nthretur=
+n, .return{ display: none !important}li {margin-bottom: 9px;}ol {margin-lef=
+t: 0 !important; }</style><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:Pi=
+xelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]-=
+-><!--[if gte mso 15]><style type=3D"text/css">   h1,h2,h3,h4,h5,h6 {mso-te=
+xt-raise: 2px;}</style><![endif]--><!--[if mso 15]><style type=3D"text/css"=
+>   h1 {mso-text-raise: 4px;}</style><![endif]--></head><body style=3Dmargi=
+n:0;padding:0><div style=3Ddisplay:none;max-height:0;overflow:hidden> In th=
+is edition: Catch the new design in the wild, and learn how to quickly and =
+easily bring it to your apps. Plus, get the latest on the Swift Student Cha=
+llenge 2026, and browse new developer videos available on demand. </div><di=
+v class=3Dm1 style=3Ddisplay:none;width:0;height:0;overflow:hidden><div cla=
+ss=3D"m4 m2 m98"><div class=3Dm5><div class=3D"m6 m52"><div class=3D"m7 m16=
+"><div class=3D"m8 m17 m48"><p class=3Dm3>NOVEMBER 2025</p></div><div class=
+=3D"m17 m51"><h2 class=3Dm10>Hello Developer</h2></div></div></div><div cla=
+ss=3D"m6 z3"><div class=3Dm7><div class=3Dm55><div class=3Dm16><img alt=3D"=
+A collage of elements that represent and illustrate the new design, includi=
+ng text input boxes and a search button. The collage appears over a gray gr=
+id background." src=3Dhttps://developer.apple.com/click/images/mcfly/hero-l=
+iquid-design_2x.jpg width=3D100% class=3Dm36></div></div><div class=3D"m11 =
+z2"><div class=3D"m7 z1"><div class=3D"m17 m60"><h4 class=3Dm45>Catch the n=
+ew design<br>in the wild</h4></div><div class=3D"m8 m69"><p class=3Dm3>Disc=
+over how teams of all sizes have incorporated the new=C2=A0design and Liqui=
+d=C2=A0Glass into their UIs =E2=80=94 and find out how their work can inspi=
+re yours.</p></div><div class=3D"m14 m79"><a href=3D"https://c.apple.com/r?=
+v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR0=
+5Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQCqr8w0E97jVg6%2FinokUr=
+njLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUY=
+B5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2=
+Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM81Ck9BKRJ5jaufX91ZG8=
+%2FZ0ZiJI9oaNPShno%3D" class=3Dm12>Browse <span class=3Dm25>examples<img al=
+t=3D" " src=3Dhttps://developer.apple.com/click/images/mcfly/17_chevron_006=
+6cc_2x.png width=3D12 height=3D10 class=3Dn11></span></a></div><div class=
+=3D"m16 m15 m94"><div class=3Dm15></div></div><div class=3Dm95><div class=
+=3Dm17><img alt=3D"A woman stands on a stage in front of a crowd in a darke=
+ned theater. Behind her is a screen showing elements of the new Apple desig=
+n. " src=3Dhttps://developer.apple.com/click/images/mcfly/nov25-hello-devce=
+nter_2x.jpg width=3D100% class=3Dm36></div></div><div class=3D"m17 m58"><h4=
+ class=3Dm46>The new design: <br>Ready for its close-up</h4></div><div clas=
+s=3D"m8 m68"><p class=3Dm3>Join us in Cupertino on November 18 to find out =
+how developers are embracing native design, expressing their brand identiti=
+es, and adopting the latest features.</p></div><div class=3D"m14 m84"><a hr=
+ef=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4=
+iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqz=
+ElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhY=
+Q%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3=
+qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjf=
+jmV5hnaM81Ck9BKRJ5jaufTROAjkrpWBSJtFPs28UxTY%3D" class=3Dm12>Request to joi=
+n in <span class=3Dm25>person<img alt=3D" " src=3Dhttps://developer.apple.c=
+om/click/images/mcfly/17_chevron_0066cc_2x.png width=3D12 height=3D10 class=
+=3Dn11></span></a></div><div class=3D"m14 m83"><a href=3D"https://c.apple.c=
+om/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqA=
+xWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQCqr8w0E97jVg6%2Fi=
+nokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH=
+6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE14ggicmqYxM=
+oLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM81Ck9BKRJ5jaufR=
+OjObnOpJDhDvsjhIporIU%3D" class=3Dm12>Sign up for the <span class=3Dm25>liv=
+estream<img alt=3D" " src=3Dhttps://developer.apple.com/click/images/mcfly/=
+17_chevron_0066cc_2x.png width=3D12 height=3D10 class=3Dn11></span></a></di=
+v></div></div></div></div><div class=3D"m6 z3"><div class=3Dm7><div class=
+=3Dm57><div class=3Dm16><img alt=3D"A large crowd of student developers gat=
+hers outside on a lawn in front of a colorful WWDC25 sign." src=3Dhttps://d=
+eveloper.apple.com/click/images/mcfly/nov25-hello-ssc26-hero_2x.jpg width=
+=3D100% class=3Dm36></div></div><div class=3D"m11 z2"><div class=3D"m7 z1">=
+<div class=3D"m17 m62"><h4 class=3Dm45>Announcing the Swift Student Challen=
+ge 2026</h4></div><div class=3D"m8 m71"><p class=3Dm3></p><p>Every year, th=
+e Challenge offers the next generation of developers an opportunity to show=
+case their creativity and learn app-building skills they can take into thei=
+r careers =E2=80=94 and beyond. </p> <p>Submissions will be open February=
+=C2=A06=E2=80=9328,=C2=A02026.</p> <p></p></div><div class=3D"m14 m86"><a h=
+ref=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB=
+4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsq=
+zElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7Xbh=
+YQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT=
+3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbj=
+fjmV5hnaM81Ck9BKRJ5jaufVCauMiDETiaiJTw11YjJwo%3D" class=3Dm12>Learn <span c=
+lass=3Dm25>more<img alt=3D" " src=3Dhttps://developer.apple.com/click/image=
+s/mcfly/17_chevron_0066cc_2x.png width=3D12 height=3D10 class=3Dn11></span>=
+</a></div></div></div></div></div><div class=3D"m6 z3"><div class=3Dm7><div=
+ class=3Dm54><div class=3Dm16><img alt=3D"A woman stands in a crowded theat=
+er in front of a large video screen showing a meditation experience on Appl=
+e Vision Pro." src=3Dhttps://developer.apple.com/click/images/mcfly/visiono=
+s-event-mwa_2x.jpg width=3D100% class=3Dm36></div></div><div class=3D"m11 z=
+2"><div class=3D"m7 z1"><div class=3D"m17 m61"><h4 class=3Dm45>Now playing:=
+ Developer activities on demand</h4></div><div class=3D"m8 m67"><p class=3D=
+m3>Meet with Apple activities are now available to stream anytime. Check ou=
+t the latest on immersive and interactive media for visionOS, HTTPS Live St=
+reaming, and optimizing power and performance.</p></div><div class=3D"m14 m=
+89"><a href=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1=
+J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH=
+6mavfnsqzElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F=
+85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyE=
+DD1zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKa=
+nDC3lIbjfjmV5hnaM81Ck9BKRJ5jaufWIo95Ae8ornghskQ3uF%2FXg%3D" class=3Dm12>Bro=
+wse the latest <span class=3Dm25>videos<img alt=3D" " src=3Dhttps://develop=
+er.apple.com/click/images/mcfly/17_chevron_0066cc_2x.png width=3D12 height=
+=3D10 class=3Dn11></span></a></div></div></div></div></div><div class=3D"m6=
+ z3"><div class=3Dm7><div class=3Dm53><div class=3Dm16><img alt=3D"A colorf=
+ul collage of icons of Apple's games-related apps and services, set horizon=
+tally against a white background." src=3Dhttps://developer.apple.com/click/=
+images/mcfly/nov25-hello-games-activity_2x.jpg width=3D100% class=3Dm36></d=
+iv></div><div class=3D"m11 z2"><div class=3D"m7 z1"><div class=3D"m17 m63">=
+<h4 class=3Dm46>Streaming today: Get in the=C2=A0game</h4></div><div class=
+=3D"m8 m74"><p class=3Dm3>Join us online from 10 a.m. to 5 p.m. PT to learn=
+ all about building great games for Apple platforms.</p></div><div class=3D=
+"m14 m81"><a href=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK=
+7nhbR1J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw=
+40epEH6mavfnsqzElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDE=
+CP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9Ni=
+viIKyEDD1zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2B=
+SvxPKanDC3lIbjfjmV5hnaM81Ck9BKRJ5jaufShb8%2BRCh41xTepZIA8qDNI%3D" class=3Dm=
+12>Watch <span class=3Dm25>live<img alt=3D" " src=3Dhttps://developer.apple=
+.com/click/images/mcfly/17_chevron_0066cc_2x.png width=3D12 height=3D10 cla=
+ss=3Dn11></span></a></div><div class=3D"m8 m73"><p class=3Dm3>Plus, browse =
+new Meet with Apple activities in Istanbul, Bangkok, Hanoi, Berlin, London,=
+ Jakarta, and more.</p></div><div class=3D"m14 m91"><a href=3D"https://c.ap=
+ple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrPkRVGspDLr=
+lnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQCqr8w0E97jVg=
+6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%2B=
+DTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE14ggic=
+mqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM81Ck9BKRJ5=
+jaufbL%2BRTezgcJ6qFrhy%2F%2FsmE8%3D" class=3Dm12>Find an activity near <spa=
+n class=3Dm25>you<img alt=3D" " src=3Dhttps://developer.apple.com/click/ima=
+ges/mcfly/17_chevron_0066cc_2x.png width=3D12 height=3D10 class=3Dn11></spa=
+n></a></div></div></div></div></div><div class=3D"m6 m96"><div class=3Dm7><=
+div class=3D"m11 z2"><div class=3D"m7 m41"><div class=3Dm56><div class=3Dm1=
+7><img alt=3D"The App Store Connect logo in blue against a white background=
+. On either side of it are icons of gifts in red and green." src=3Dhttps://=
+developer.apple.com/click/images/mcfly/nov25-hello-holiday-hero-small_2x.jp=
+g width=3D100% class=3Dm36></div></div><div class=3D"m17 m66"><h4 class=3Dm=
+45>Get your apps and games ready for the holidays</h4></div><div class=3D"m=
+8 m78"><p class=3Dm3>Make the most of your seasonal campaigns with App Stor=
+e features like In-App Events and custom product pages. Plus, it=E2=80=99s =
+easier to submit additional items =E2=80=94 like a holiday In-App Event =E2=
+=80=94 independent of an existing submission, giving you greater flexibilit=
+y when planning=C2=A0your campaigns.</p></div><div class=3D"m14 m87"><a hre=
+f=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4i=
+wAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzE=
+looGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ=
+%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3q=
+CQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfj=
+mV5hnaM81Ck9BKRJ5jaufbQkfqBy0cLLPRv3NtsHfao%3D" class=3Dm12>Learn about sub=
+mitting for <span class=3Dm25>review<img alt=3D" " src=3Dhttps://developer.=
+apple.com/click/images/mcfly/17_chevron_0066cc_2x.png width=3D12 height=3D1=
+0 class=3Dn11></span></a></div><div class=3D"m14 m92"><a href=3D"https://c.=
+apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrPkRVGspD=
+LrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQCqr8w0E97j=
+Vg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%=
+2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE14gg=
+icmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM81Ck9BKR=
+J5jaufdzoAXAr8BuvywlOYeh4vlU%3D" class=3Dm12>Read more about promoting your=
+ apps <span class=3Dm25>and=C2=A0games<img alt=3D" " src=3Dhttps://develope=
+r.apple.com/click/images/mcfly/17_chevron_0066cc_2x.png width=3D12 height=
+=3D10 class=3Dn11></span></a></div></div></div></div></div><div class=3D"m6=
+ m97"><div class=3Dm7><div class=3D"m11 n4"><div class=3D"m7 m42"><div clas=
+s=3Dm59><div class=3Dm17><img alt=3D"The App Store Connect logo in blue aga=
+inst a white background." src=3Dhttps://developer.apple.com/click/images/mc=
+fly/testflight_2x.png width=3D68 class=3Dm36></div></div><div class=3D"m17 =
+m65"><h4 class=3Dm45>TestFlight support for Managed Apple Accounts </h4></d=
+iv><div class=3D"m8 m70"><p class=3Dm3>Managed Apple Accounts can now acces=
+s TestFlight for beta testing, providing a seamless development experience =
+and enabling organizations to leverage the security and data management cap=
+abilities of Managed Apple Accounts.</p></div><div class=3D"m14 m80"><a hre=
+f=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4i=
+wAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzE=
+looGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ=
+%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3q=
+CQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfj=
+mV5hnaM81Ck9BKRJ5jaufUsXsajwytOGZh1H07jcERo%3D" class=3Dm12>Learn <span cla=
+ss=3Dm25>more<img alt=3D" " src=3Dhttps://developer.apple.com/click/images/=
+mcfly/17_chevron_0066cc_2x.png width=3D12 height=3D10 class=3Dn11></span></=
+a></div><div class=3D"m16 m15 m99"><div class=3Dm15></div></div><div class=
+=3D"m8 m17 m49"><p class=3Dm3>DOCUMENTATION</p></div><div class=3D"m14 m72"=
+><a href=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0O=
+tdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6ma=
+vfnsqzElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85s=
+H7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1=
+zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC=
+3lIbjfjmV5hnaM81Ck9BKRJ5jaufSeY2O%2Bn30j%2FkbsFvSY%2Byn0%3D" class=3Dm12>Si=
+gnificant Change API under <span class=3Dm25>PermissionKit<img alt=3D" " sr=
+c=3Dhttps://developer.apple.com/click/images/mcfly/17_chevron_0066cc_2x.png=
+ width=3D12 height=3D10 class=3Dn11></span></a></div><div class=3D"m14 m76"=
+><a href=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0O=
+tdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6ma=
+vfnsqzElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85s=
+H7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1=
+zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC=
+3lIbjfjmV5hnaM81Ck9BKRJ5jaufX9pmQp2IoTZtDCXm7HC7U4%3D" class=3Dm12>New age =
+rating property type in <span class=3Dm25>StoreKit<img alt=3D" " src=3Dhttp=
+s://developer.apple.com/click/images/mcfly/17_chevron_0066cc_2x.png width=
+=3D12 height=3D10 class=3Dn11></span></a></div><div class=3D"m14 m75"><a hr=
+ef=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4=
+iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqz=
+ElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhY=
+Q%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3=
+qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjf=
+jmV5hnaM81Ck9BKRJ5jaufXu3xcsmFc2Bo4Wdpj8yW9I%3D" class=3Dm12>Enabling enhan=
+ced security for your <span class=3Dm25>app<img alt=3D" " src=3Dhttps://dev=
+eloper.apple.com/click/images/mcfly/17_chevron_0066cc_2x.png width=3D12 hei=
+ght=3D10 class=3Dn11></span></a></div><div class=3D"m14 m93"><a href=3D"htt=
+ps://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrP=
+kRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQCqr=
+8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K=
+%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T=
+4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM8=
+1Ck9BKRJ5jaufWgu8PQqaPdpOzp2nsup9lg%3D" class=3Dm12>Downlink time differenc=
+e of arrival <span class=3Dm25>ranging<img alt=3D" " src=3Dhttps://develope=
+r.apple.com/click/images/mcfly/17_chevron_0066cc_2x.png width=3D12 height=
+=3D10 class=3Dn11></span></a></div><div class=3D"m14 m82"><a href=3D"https:=
+//c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrPkRV=
+GspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQCqr8w0=
+E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%2F=
+ot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE=
+14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM81Ck=
+9BKRJ5jauffbT54yuyvNeg8BjzM%2B%2F4uM%3D" class=3Dm12>Digital Credentials AP=
+I =E2=80=93 Mobile Document <span class=3Dm25>Provider<img alt=3D" " src=3D=
+https://developer.apple.com/click/images/mcfly/17_chevron_0066cc_2x.png wid=
+th=3D12 height=3D10 class=3Dn11></span></a></div><div class=3D"m16 m15 n2">=
+<div class=3Dm15></div></div><div class=3Dn3><div class=3Dm17><img alt=3D"A=
+ small Technotes icon, which shows an icon of a document with a code snippe=
+t in blue against a black background." src=3Dhttps://developer.apple.com/cl=
+ick/images/mcfly/technotes-icon-2x.png width=3D58 class=3Dm36></div></div><=
+div class=3D"m8 m17 m50"><p class=3Dm3>TECHNOTES</p></div><div class=3D"m14=
+ m90"><a href=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhb=
+R1J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40ep=
+EH6mavfnsqzElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%=
+2F85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIK=
+yEDD1zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxP=
+KanDC3lIbjfjmV5hnaM81Ck9BKRJ5jaufejo4o2YIyyJeE1UTpcZWAA%3D" class=3Dm12>Han=
+dling account deletions and revoking tokens for Sign in with <span class=3D=
+m25>Apple<img alt=3D" " src=3Dhttps://developer.apple.com/click/images/mcfl=
+y/17_chevron_0066cc_2x.png width=3D12 height=3D10 class=3Dn11></span></a></=
+div><div class=3D"m14 m85"><a href=3D"https://c.apple.com/r?v=3D2&a=3DJO1XY=
+JwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TC=
+a0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J=
+9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79=
+guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDV=
+YoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM81Ck9BKRJ5jaufRXRo40tSx1RLjEph%2BnY=
+55A%3D" class=3Dm12>Managing the on-device foundation model=E2=80=99s conte=
+xt <span class=3Dm25>window<img alt=3D" " src=3Dhttps://developer.apple.com=
+/click/images/mcfly/17_chevron_0066cc_2x.png width=3D12 height=3D10 class=
+=3Dn11></span></a></div><div class=3D"m14 m77"><a href=3D"https://c.apple.c=
+om/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqA=
+xWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQCqr8w0E97jVg6%2Fi=
+nokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH=
+6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE14ggicmqYxM=
+oLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM81Ck9BKRJ5jaufV=
+YcMNiWfUkIMkHIobeDWbg%3D" class=3Dm12>USB audio device design <span class=
+=3Dm25>considerations<img alt=3D" " src=3Dhttps://developer.apple.com/click=
+/images/mcfly/17_chevron_0066cc_2x.png width=3D12 height=3D10 class=3Dn11><=
+/span></a></div><div class=3D"m16 m15 n1"><div class=3Dm15></div></div><div=
+ class=3D"m14 m88"><a href=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCv=
+WbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8pi=
+Q3nPhOGvw40epEH6mavfnsqzElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvF=
+q7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7=
+J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2=
+VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM81Ck9BKRJ5jaufTLf9cCvmGPv0crXdY7U%2F10%3D" =
+class=3Dm12>View all Apple Developer <br> Documentation <span class=3Dm25>u=
+pdates<img alt=3D" " src=3Dhttps://developer.apple.com/click/images/mcfly/1=
+7_chevron_0066cc_2x.png width=3D12 height=3D10 class=3Dn11></span></a></div=
+></div></div><div class=3D"m17 m64"><h4 class=3Dm45>Share your thoughts</h4=
+></div><div class=3D"m8 m17 n5"><p class=3Dm3>We=E2=80=99d love to hear fro=
+m you. If you have suggestions for activities or stories, please <a href=3D=
+"https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UJR94mniF31x6BQ8mUoKnZ=
+VGdhMPez2mA%2FDwb9NtLPnk7QBa5O5wm2K0lwSzzbxwCpdb%2FlM5YKikdOgSKtzyfQm81psbe=
+b813wy4zYDqQVTVMhoe1UdXjhrTC8plgp2Y82dy1%2FbRGfeeLpen06Svl9F2ONUQcYzJknWqoI=
+ckp2F%2BORdXwGsy5gTSUC2oQUqQlEMkSpp44vojFX97apmx4Zx37A3mOnYvU76Oq4mgu%2F2Nc=
+MLjrP8CFYPKoU0Ir7E%2BMA%3D%3D" style=3Dcolor:#06c;font-style:normal;font-we=
+ight:400;text-decoration:none>let=C2=A0us=C2=A0know</a>.</p></div></div></d=
+iv></div></div></div><table border=3D0 cellpadding=3D0 cellspacing=3D0 role=
+=3Dpresentation width=3D100% align=3Dcenter><tr><td><div class=3Dm0><table =
+border=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation width=3D100%=
+ align=3Dcenter><tr><td style=3Dtext-align:center align=3Dcenter><table bor=
+der=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation width=3D100% al=
+ign=3Dcenter><tr class=3Dm4><td style=3Dbackground-color:#fff class=3Dm2 al=
+ign=3Dcenter><table border=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dprese=
+ntation width=3D700 align=3Dcenter><tr class=3Dm6><td><table border=3D0 cel=
+lpadding=3D0 cellspacing=3D0 role=3Dpresentation width=3D700 align=3Dcenter=
+ style=3Dbackground-color:#f5f5f7><tr><td style=3Dbackground-color:#f5f5f7;=
+vertical-align:top class=3Dm7 align=3Dcenter valign=3Dtop width=3D100%><tab=
+le border=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation width=3D1=
+00% align=3Dcenter class=3Dm7><tr><td style=3D"text-align:center;padding:32=
+px 50px 0" class=3Dm8><p class=3Dm43 style=3D"color:#86868b;font-size:16px;=
+font-weight:900;margin:0 auto">NOVEMBER 2025</p></td></tr><tr><td style=3D"=
+padding:2px 50px 24px;text-align:center;line-height:normal"><h2 style=3Dfon=
+t-size:40px;letter-spacing:0;line-height:44px;color:#000;font-weight:800>He=
+llo Developer</h2></td></tr></table></td></tr></table></td></tr><tr class=
+=3Dm6><td><table border=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresenta=
+tion width=3D700 align=3Dcenter style=3Dbackground-color:#f5f5f7><tr><td st=
+yle=3Dbackground-color:#f5f5f7;vertical-align:middle class=3Dm7 align=3Dcen=
+ter valign=3Dmiddle width=3D600 height=3D200><table border=3D0 cellpadding=
+=3D0 cellspacing=3D0 role=3Dpresentation width=3D600 align=3Dcenter class=
+=3Dm7><tr><td style=3Dpadding-top:0;text-align:center;vertical-align:middle=
+;font-size:0;margin:0;line-height:0 class=3Dm16 align=3Dcenter><picture><so=
+urce media=3D"(max-device-width: 568px)" srcset=3Ddata:><img alt=3D"A colla=
+ge of elements that represent and illustrate the new design, including text=
+ input boxes and a search button. The collage appears over a gray grid back=
+ground." src=3Dhttps://developer.apple.com/click/images/mcfly/hero-liquid-d=
+esign_2x.jpg width=3D600 height=3D300.15552099533437 border=3D0 style=3D"di=
+splay:block;border-radius:18px 18px 0 0" class=3Dm16></picture></td></tr><t=
+r><td style=3Dpadding-bottom:36px align=3Dcenter><table border=3D0 cellpadd=
+ing=3D0 cellspacing=3D0 role=3Dpresentation width=3D100% align=3Dcenter><tr=
+><td style=3Dbackground-color:#fff;padding-left:0;border-bottom-left-radius=
+:18px;border-bottom-right-radius:18px class=3Dm7 width=3D100%><table border=
+=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation width=3D100% class=
+=3Dm7><tr><td style=3D"padding:32px 32px 12px;text-align:center;line-height=
+:normal"><h4 style=3Dfont-size:40px;letter-spacing:0;line-height:44px;font-=
+weight:700;color:#1d1d1f>Catch the new design<br>in the wild</h4></td></tr>=
+<tr><td style=3D"text-align:center;padding:0 32px 24px" class=3Dm8><p style=
+=3D"font-weight:400;margin:0 auto;color:#1d1d1f">Discover how teams of all =
+sizes have incorporated the new=C2=A0design<br> and Liquid=C2=A0Glass into =
+their UIs =E2=80=94 and find out how their work<br> can inspire yours.</p><=
+/td></tr><tr><td style=3D"padding:0 32px;text-align:center;font-size:17px;l=
+ine-height:25px"><a href=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWb=
+plzNuaK7nhbR1J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3=
+nPhOGvw40epEH6mavfnsqzElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7=
+yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6=
+bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2Vh=
+jxDL%2BSvxPKanDC3lIbjfjmV5hnaM81Ck9BKRJ5jaufTqo8MGI8s8n9Ty3ZsWYto8%3D" clas=
+s=3D"m12 m3" style=3Dfont-size:17px;font-weight:400;line-height:25px;color:=
+#06c>Browse <span style=3Dwhite-space:nowrap>examples<img alt=3D" " src=3Dh=
+ttps://developer.apple.com/click/images/mcfly/17_chevron_0066cc_2x.png widt=
+h=3D12 height=3D10 border=3D0 style=3Dfont-size:0;display:inline-block;marg=
+in:0></span></a></td></tr><tr><td style=3D"padding:36px 40px"><table border=
+=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation align=3Dcenter><tr=
+><td style=3D"border-top-style:solid;border-top-width:1px;font-size:0;line-=
+height:0;margin:0 auto;border-color:#d2d2d7" class=3Dm15 align=3Dcenter val=
+ign=3Dtop width=3D712></td></tr></table></td></tr><tr><td style=3D"padding:=
+0 32px 24px;text-align:center;vertical-align:top;font-size:0;margin:0;line-=
+height:0" class=3Dm16 align=3Dcenter><picture><source media=3D"(max-device-=
+width: 568px)" srcset=3Ddata:><img alt=3D"A woman stands on a stage in fron=
+t of a crowd in a darkened theater. Behind her is a screen showing elements=
+ of the new Apple design. " src=3Dhttps://developer.apple.com/click/images/=
+mcfly/nov25-hello-devcenter_2x.jpg width=3D300 height=3D168.75 border=3D0 s=
+tyle=3Ddisplay:block;border-radius:10px class=3Dm16></picture></td></tr><tr=
+><td style=3D"padding:6px 32px 12px;text-align:center;line-height:normal"><=
+h4 style=3Dfont-size:21px;letter-spacing:0;line-height:25px;font-weight:700=
+;color:#1d1d1f>The new design: Ready for its close-up</h4></td></tr><tr><td=
+ style=3D"text-align:center;padding:0 32px 24px" class=3Dm8><p style=3D"fon=
+t-weight:400;margin:0 auto;color:#1d1d1f">Join us in Cupertino on November =
+18 to find out how developers are embracing native design, expressing their=
+ brand identities, and adopting the latest features.</p></td></tr><tr><td s=
+tyle=3D"padding:0 32px 6px;text-align:center;font-size:17px;line-height:25p=
+x"><a href=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J=
+0OtdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6=
+mavfnsqzElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F8=
+5sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyED=
+D1zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKan=
+DC3lIbjfjmV5hnaM81Ck9BKRJ5jauff6YN%2B0jG4vR79Cc7rPWY9s%3D" class=3D"m12 m3"=
+ style=3Dfont-size:17px;font-weight:400;line-height:25px;color:#06c>Request=
+ to join in <span style=3Dwhite-space:nowrap>person<img alt=3D" " src=3Dhtt=
+ps://developer.apple.com/click/images/mcfly/17_chevron_0066cc_2x.png width=
+=3D12 height=3D10 border=3D0 style=3Dfont-size:0;display:inline-block;margi=
+n:0></span></a></td></tr><tr><td style=3D"padding:0 32px 36px;text-align:ce=
+nter;font-size:17px;line-height:25px"><a href=3D"https://c.apple.com/r?v=3D=
+2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh=
+7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQCqr8w0E97jVg6%2FinokUrnjLJ=
+iqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cg=
+fb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2=
+%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM81Ck9BKRJ5jauffUg37XunIU=
+NK3N46ZSxvkY%3D" class=3D"m12 m3" style=3Dfont-size:17px;font-weight:400;li=
+ne-height:25px;color:#06c>Sign up for the <span style=3Dwhite-space:nowrap>=
+livestream<img alt=3D" " src=3Dhttps://developer.apple.com/click/images/mcf=
+ly/17_chevron_0066cc_2x.png width=3D12 height=3D10 border=3D0 style=3Dfont-=
+size:0;display:inline-block;margin:0></span></a></td></tr></table></td></tr=
+></table></td></tr></table></td></tr></table></td></tr><tr class=3Dm6><td><=
+table border=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation width=
+=3D700 align=3Dcenter style=3Dbackground-color:#f5f5f7><tr><td style=3Dback=
+ground-color:#f5f5f7;padding-top:0;vertical-align:middle class=3Dm7 align=
+=3Dcenter valign=3Dmiddle width=3D600 height=3D200><table border=3D0 cellpa=
+dding=3D0 cellspacing=3D0 role=3Dpresentation width=3D600 align=3Dcenter cl=
+ass=3Dm7 style=3Dtext-align:center><tr><td style=3Dpadding-top:0;padding-bo=
+ttom:0;text-align:center;vertical-align:middle;font-size:0;margin:0;line-he=
+ight:0 class=3Dm16 align=3Dcenter><picture><source media=3D"(max-device-wid=
+th: 568px)" srcset=3Ddata:><img alt=3D"A large crowd of student developers =
+gathers outside on a lawn in front of a colorful WWDC25 sign." src=3Dhttps:=
+//developer.apple.com/click/images/mcfly/nov25-hello-ssc26-hero_2x.jpg widt=
+h=3D600 height=3D287.57142857142856 border=3D0 style=3D"display:block;borde=
+r-radius:18px 18px 0 0" class=3Dm16></picture></td></tr><tr><td align=3Dcen=
+ter><table border=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation w=
+idth=3D100% align=3Dcenter><tr><td style=3Dbackground-color:#fff;padding-bo=
+ttom:36px;border-bottom-left-radius:18px;border-bottom-right-radius:18px cl=
+ass=3Dm7 width=3D100%><table border=3D0 cellpadding=3D0 cellspacing=3D0 rol=
+e=3Dpresentation width=3D100% class=3Dm7><tr><td style=3D"padding:28px 32px=
+ 12px;text-align:center;line-height:normal"><h3 style=3Dfont-size:32px;lett=
+er-spacing:0;line-height:36px;font-weight:700;color:#1d1d1f>Announcing the<=
+br> Swift Student Challenge 2026</h3></td></tr><tr><td style=3D"text-align:=
+center;padding:0 32px 24px" class=3Dm8><p style=3D"font-weight:400;margin:0=
+ auto;padding:0;color:#1d1d1f">Every year, the Challenge offers the next ge=
+neration of developers an opportunity to showcase their creativity and lear=
+n app-building skills they can take into their careers =E2=80=94 and beyond=
+. </p> <p style=3D"font-weight:400;margin:9px auto 0;padding:0;color:#1d1d1=
+f">Submissions will be open February=C2=A06=E2=80=9328,=C2=A02026.</p> </td=
+></tr><tr><td style=3D"padding:0 32px;text-align:center;font-size:17px;line=
+-height:25px"><a href=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplz=
+NuaK7nhbR1J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPh=
+OGvw40epEH6mavfnsqzElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGG=
+MrDECP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHK=
+T9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxD=
+L%2BSvxPKanDC3lIbjfjmV5hnaM81Ck9BKRJ5jaufeUNYGeIrLqldj%2B9gqLZhSQ%3D" class=
+=3D"m12 m3" style=3Dfont-size:17px;font-weight:400;line-height:25px;color:#=
+06c>Learn <span style=3Dwhite-space:nowrap>more<img alt=3D" " src=3Dhttps:/=
+/developer.apple.com/click/images/mcfly/17_chevron_0066cc_2x.png width=3D12=
+ height=3D10 border=3D0 style=3Dfont-size:0;display:inline-block;margin:0><=
+/span></a></td></tr></table></td></tr></table></td></tr></table></td></tr><=
+/table></td></tr><tr class=3Dm6><td><table border=3D0 cellpadding=3D0 cells=
+pacing=3D0 role=3Dpresentation width=3D700 align=3Dcenter style=3Dbackgroun=
+d-color:#f5f5f7><tr><td style=3Dbackground-color:#f5f5f7;padding-top:0;vert=
+ical-align:middle;border-top-left-radius:16px;border-top-right-radius:16px =
+class=3Dm7 align=3Dcenter valign=3Dmiddle width=3D600 height=3D200><table b=
+order=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation width=3D600 a=
+lign=3Dcenter class=3Dm7><tr><td style=3Dpadding-top:36px;text-align:center=
+;vertical-align:middle;font-size:0;margin:0;line-height:0 class=3Dm16 align=
+=3Dcenter><picture><source media=3D"(max-device-width: 568px)" srcset=3Ddat=
+a:><img alt=3D"A woman stands in a crowded theater in front of a large vide=
+o screen showing a meditation experience on Apple Vision Pro." src=3Dhttps:=
+//developer.apple.com/click/images/mcfly/visionos-event-mwa_2x.jpg width=3D=
+600 height=3D309.6875 border=3D0 style=3D"display:block;border-radius:18px =
+18px 0 0" class=3Dm16></picture></td></tr><tr><td align=3Dcenter><table bor=
+der=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation width=3D100% al=
+ign=3Dcenter><tr><td style=3Dbackground-color:#fff;padding-left:0;border-bo=
+ttom-left-radius:18px;border-bottom-right-radius:18px class=3Dm7 width=3D10=
+0%><table border=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation wi=
+dth=3D100% class=3Dm7><tr><td style=3D"padding:32px 32px 12px;text-align:ce=
+nter;line-height:normal"><h4 style=3Dfont-size:24px;letter-spacing:0;line-h=
+eight:28px;font-weight:700;color:#1d1d1f>Now playing: Developer activities =
+on demand</h4></td></tr><tr><td style=3D"text-align:center;padding:0 32px 2=
+4px" class=3Dm8><p style=3D"font-weight:400;margin:0 auto;color:#1d1d1f">Me=
+et with Apple activities are now available to stream anytime.<br> Check out=
+ the latest on immersive and interactive media for visionOS, HTTPS Live Str=
+eaming, and optimizing power and performance.</p></td></tr><tr><td style=3D=
+"padding:0 32px 36px;text-align:center;font-size:17px;line-height:25px"><a =
+href=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoS=
+B4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfns=
+qzElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7Xb=
+hYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJ=
+T3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIb=
+jfjmV5hnaM81Ck9BKRJ5jaufWUcypl9FqPt0JOQgQpfBtI%3D" class=3D"m12 m3" style=
+=3Dfont-size:17px;font-weight:400;line-height:25px;color:#06c>Browse the la=
+test <span style=3Dwhite-space:nowrap>videos<img alt=3D" " src=3Dhttps://de=
+veloper.apple.com/click/images/mcfly/17_chevron_0066cc_2x.png width=3D12 he=
+ight=3D10 border=3D0 style=3Dfont-size:0;display:inline-block;margin:0></sp=
+an></a></td></tr></table></td></tr></table></td></tr></table></td></tr></ta=
+ble></td></tr><tr class=3Dm6><td><table border=3D0 cellpadding=3D0 cellspac=
+ing=3D0 role=3Dpresentation width=3D700 align=3Dcenter style=3Dbackground-c=
+olor:#f5f5f7><tr><td style=3Dpadding-bottom:36px><table border=3D0 cellpadd=
+ing=3D0 cellspacing=3D0 role=3Dpresentation width=3D700 align=3Dcenter><tr>=
+<td style=3Dbackground-color:#f5f5f7;vertical-align:middle class=3Dm7 align=
+=3Dcenter valign=3Dmiddle width=3D600 height=3D200><table border=3D0 cellpa=
+dding=3D0 cellspacing=3D0 role=3Dpresentation width=3D600 align=3Dcenter cl=
+ass=3Dm7><tr><td style=3Dpadding-top:42px;text-align:center;vertical-align:=
+middle;font-size:0;margin:0;line-height:0 class=3Dm16 align=3Dcenter><pictu=
+re><source media=3D"(max-device-width: 568px)" srcset=3Ddata:><img alt=3D"A=
+ colorful collage of icons of Apple's games-related apps and services, set =
+horizontally against a white background." src=3Dhttps://developer.apple.com=
+/click/images/mcfly/nov25-hello-games-activity_2x.jpg width=3D600 height=3D=
+204.85714285714286 border=3D0 style=3D"display:block;border-radius:18px 18p=
+x 0 0" class=3Dm16></picture></td></tr><tr><td align=3Dcenter><table border=
+=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation width=3D100% align=
+=3Dcenter><tr><td style=3Dbackground-color:#fff;padding-left:0;border-botto=
+m-left-radius:18px;border-bottom-right-radius:18px class=3Dm7 width=3D100%>=
+<table border=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation width=
+=3D100% class=3Dm7><tr><td style=3D"padding:16px 32px 12px;text-align:cente=
+r;line-height:normal"><h4 style=3Dfont-size:24px;letter-spacing:0;line-heig=
+ht:28px;font-weight:700;color:#1d1d1f>Streaming today: Get in the=C2=A0game=
+</h4></td></tr><tr><td style=3D"text-align:center;padding:0 32px 12px" clas=
+s=3Dm8><p style=3D"font-weight:400;margin:0 auto;color:#1d1d1f">Join us onl=
+ine from 10 a.m. to 5 p.m. PT to learn all about building great games for A=
+pple platforms.</p></td></tr><tr><td style=3D"padding:0 32px 24px;text-alig=
+n:center;font-size:17px;line-height:25px"><a href=3D"https://c.apple.com/r?=
+v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR0=
+5Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQCqr8w0E97jVg6%2FinokUr=
+njLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUY=
+B5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2=
+Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM81Ck9BKRJ5jaufZXMz9j=
+kVdm%2Fe50XyezPtTE%3D" class=3D"m12 m3" style=3Dfont-size:17px;font-weight:=
+400;line-height:25px;color:#06c>Watch <span style=3Dwhite-space:nowrap>live=
+<img alt=3D" " src=3Dhttps://developer.apple.com/click/images/mcfly/17_chev=
+ron_0066cc_2x.png width=3D12 height=3D10 border=3D0 style=3Dfont-size:0;dis=
+play:inline-block;margin:0></span></a></td></tr><tr><td style=3D"text-align=
+:center;padding:0 32px 12px" class=3Dm8><p style=3D"font-weight:400;margin:=
+0 auto;color:#1d1d1f">Plus, browse new Meet with Apple activities in Istanb=
+ul, Bangkok, Hanoi, Berlin, London, Jakarta, and more.</p></td></tr><tr><td=
+ style=3D"padding:0 32px 36px;text-align:center;font-size:17px;line-height:=
+25px"><a href=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhb=
+R1J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40ep=
+EH6mavfnsqzElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%=
+2F85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIK=
+yEDD1zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxP=
+KanDC3lIbjfjmV5hnaM81Ck9BKRJ5jaufSyktirxe9%2BUCYI0cWB9hno%3D" class=3D"m12 =
+m3" style=3Dfont-size:17px;font-weight:400;line-height:25px;color:#06c>Find=
+ an activity near <span style=3Dwhite-space:nowrap>you<img alt=3D" " src=3D=
+https://developer.apple.com/click/images/mcfly/17_chevron_0066cc_2x.png wid=
+th=3D12 height=3D10 border=3D0 style=3Dfont-size:0;display:inline-block;mar=
+gin:0></span></a></td></tr></table></td></tr></table></td></tr></table></td=
+></tr></table></td></tr></table></td></tr><tr class=3Dm6><td><table border=
+=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation width=3D700 align=
+=3Dcenter style=3Dbackground-color:#f5f5f7><tr><td style=3Dpadding-bottom:3=
+6px><table border=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation w=
+idth=3D700 align=3Dcenter><tr><td style=3Dbackground-color:#f5f5f7;padding-=
+top:0;vertical-align:middle;border-top-left-radius:16px;border-top-right-ra=
+dius:16px class=3Dm7 align=3Dcenter valign=3Dmiddle width=3D600 height=3D20=
+0><table border=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation wid=
+th=3D600 align=3Dcenter class=3Dm7><tr><td align=3Dcenter><table border=3D0=
+ cellpadding=3D0 cellspacing=3D0 role=3Dpresentation width=3D100% align=3Dc=
+enter><tr><td style=3Dbackground-color:#fff;padding-left:0;border-radius:18=
+px class=3Dm7 width=3D100%><table border=3D0 cellpadding=3D0 cellspacing=3D=
+0 role=3Dpresentation width=3D100% class=3Dm7><tr><td style=3Dpadding-botto=
+m:0;text-align:center;vertical-align:middle;font-size:0;margin:0;line-heigh=
+t:0 class=3Dm16 align=3Dcenter><picture><source media=3D"(max-device-width:=
+ 568px)" srcset=3Ddata:><img alt=3D"The App Store Connect logo in blue agai=
+nst a white background. On either side of it are icons of gifts in red and =
+green." src=3Dhttps://developer.apple.com/click/images/mcfly/nov25-hello-ho=
+liday-hero_2x.jpg width=3D600 height=3D112.21945137157108 border=3D0 style=
+=3Ddisplay:block;border-top-left-radius:18px;border-top-right-radius:18px c=
+lass=3Dm16></picture></td></tr><tr><td style=3D"padding:12px 32px;text-alig=
+n:center;line-height:normal"><h4 style=3Dfont-size:19px;letter-spacing:0;li=
+ne-height:23px;font-weight:700;color:#1d1d1f>Get your apps and games ready =
+for the holidays</h4></td></tr><tr><td style=3D"text-align:center;padding:0=
+ 32px 24px" class=3Dm8><p style=3D"font-weight:400;margin:0 auto;color:#1d1=
+d1f">Make the most of your seasonal campaigns with App Store features like =
+In-App Events and custom product pages. Plus, it=E2=80=99s easier to submit=
+ additional items =E2=80=94 like a holiday In-App Event =E2=80=94 independe=
+nt of an existing submission, giving you greater flexibility when planning=
+=C2=A0your campaigns.</p></td></tr><tr><td style=3D"padding:0 32px 6px;text=
+-align:center;font-size:17px;line-height:25px"><a href=3D"https://c.apple.c=
+om/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqA=
+xWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQCqr8w0E97jVg6%2Fi=
+nokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH=
+6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE14ggicmqYxM=
+oLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM81Ck9BKRJ5jaufX=
+qV5llQkI8ftB%2BZXvmqvPk%3D" class=3D"m12 m3" style=3Dfont-size:17px;font-we=
+ight:400;line-height:25px;color:#06c>Learn about submitting for <span style=
+=3Dwhite-space:nowrap>review<img alt=3D" " src=3Dhttps://developer.apple.co=
+m/click/images/mcfly/17_chevron_0066cc_2x.png width=3D12 height=3D10 border=
+=3D0 style=3Dfont-size:0;display:inline-block;margin:0></span></a></td></tr=
+><tr><td style=3D"padding:0 32px 36px;text-align:center;font-size:17px;line=
+-height:25px"><a href=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplz=
+NuaK7nhbR1J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPh=
+OGvw40epEH6mavfnsqzElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGG=
+MrDECP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHK=
+T9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxD=
+L%2BSvxPKanDC3lIbjfjmV5hnaM81Ck9BKRJ5jaufTwb01Mxluc74%2FcrgxniimA%3D" class=
+=3D"m12 m3" style=3Dfont-size:17px;font-weight:400;line-height:25px;color:#=
+06c>Read more about promoting your apps <span style=3Dwhite-space:nowrap>an=
+d=C2=A0games<img alt=3D" " src=3Dhttps://developer.apple.com/click/images/m=
+cfly/17_chevron_0066cc_2x.png width=3D12 height=3D10 border=3D0 style=3Dfon=
+t-size:0;display:inline-block;margin:0></span></a></td></tr></table></td></=
+tr></table></td></tr></table></td></tr></table></td></tr></table></td></tr>=
+<tr class=3Dm6><td><table border=3D0 cellpadding=3D0 cellspacing=3D0 role=
+=3Dpresentation width=3D700 align=3Dcenter style=3Dbackground-color:#f5f5f7=
+><tr><td style=3Dbackground-color:#f5f5f7;vertical-align:middle;border-top-=
+left-radius:16px;border-top-right-radius:16px class=3Dm7 align=3Dcenter val=
+ign=3Dmiddle width=3D600 height=3D200><table border=3D0 cellpadding=3D0 cel=
+lspacing=3D0 role=3Dpresentation width=3D600 align=3Dcenter class=3Dm7><tr>=
+<td align=3Dcenter><table border=3D0 cellpadding=3D0 cellspacing=3D0 role=
+=3Dpresentation width=3D100% align=3Dcenter><tr><td style=3Dbackground-colo=
+r:#fff;padding-left:0;border-radius:18px class=3Dm7 width=3D100%><table bor=
+der=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation width=3D100% cl=
+ass=3Dm7><tr><td style=3D"padding:24px 32px 12px;text-align:center;vertical=
+-align:top;font-size:0;margin:0;line-height:0" class=3Dm16 align=3Dcenter><=
+picture><source media=3D"(max-device-width: 568px)" srcset=3Ddata:><img alt=
+=3D"The App Store Connect logo in blue against a white background." src=3Dh=
+ttps://developer.apple.com/click/images/mcfly/testflight_2x.png width=3D60 =
+height=3D60 border=3D0 style=3Ddisplay:block;border-top-left-radius:32px;bo=
+rder-top-right-radius:16px class=3Dm16></picture></td></tr><tr><td style=3D=
+"padding:0 32px 12px;text-align:center;line-height:normal"><h5 style=3Dfont=
+-size:19px;letter-spacing:0;line-height:23px;font-weight:700;color:#1d1d1f>=
+TestFlight support for Managed Apple Accounts </h5></td></tr><tr><td style=
+=3D"text-align:center;padding:0 32px 16px" class=3Dm8><p style=3D"font-weig=
+ht:400;margin:0 auto;color:#1d1d1f">Managed Apple Accounts can now access T=
+estFlight for beta testing, providing a seamless development experience and=
+ enabling organizations to leverage the security and data management capabi=
+lities of Managed Apple Accounts.</p></td></tr><tr><td style=3D"padding:0 3=
+2px 36px;text-align:center;font-size:17px;line-height:25px"><a href=3D"http=
+s://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrPk=
+RVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQCqr8=
+w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%=
+2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4=
+SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM81=
+Ck9BKRJ5jaufa%2Fv3rcpPfLs1LdE4xz1D9g%3D" class=3D"m12 m3" style=3Dfont-size=
+:17px;font-weight:400;line-height:25px;color:#06c>Learn <span style=3Dwhite=
+-space:nowrap>more<img alt=3D" " src=3Dhttps://developer.apple.com/click/im=
+ages/mcfly/17_chevron_0066cc_2x.png width=3D12 height=3D10 border=3D0 style=
+=3Dfont-size:0;display:inline-block;margin:0></span></a></td></tr><tr><td s=
+tyle=3D"padding:0 32px 36px"><table border=3D0 cellpadding=3D0 cellspacing=
+=3D0 role=3Dpresentation align=3Dcenter><tr><td style=3D"border-top-style:s=
+olid;border-top-width:1px;font-size:0;line-height:0;margin:0 auto;border-co=
+lor:#d2d2d7" class=3Dm15 align=3Dcenter valign=3Dtop width=3D712></td></tr>=
+</table></td></tr><tr><td style=3D"text-align:center;padding:0 32px 12px" c=
+lass=3Dm8><p class=3Dm43 style=3D"color:#86868b;font-size:16px;font-weight:=
+900;margin:0 auto">DOCUMENTATION</p></td></tr><tr><td style=3D"padding:0 32=
+px 8px;text-align:center;font-size:17px;line-height:25px"><a href=3D"https:=
+//c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrPkRV=
+GspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQCqr8w0=
+E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%2F=
+ot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE=
+14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM81Ck=
+9BKRJ5jaufQaWcm1WALluuLrT0gkgIhw%3D" class=3D"m12 m3" style=3Dfont-size:17p=
+x;font-weight:400;line-height:25px;color:#06c>Significant Change API under =
+<span style=3Dwhite-space:nowrap>PermissionKit<img alt=3D" " src=3Dhttps://=
+developer.apple.com/click/images/mcfly/17_chevron_0066cc_2x.png width=3D12 =
+height=3D10 border=3D0 style=3Dfont-size:0;display:inline-block;margin:0></=
+span></a></td></tr><tr><td style=3D"padding:0 32px 8px;text-align:center;fo=
+nt-size:17px;line-height:25px"><a href=3D"https://c.apple.com/r?v=3D2&a=3DJ=
+O1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ=
+48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t6=
+4L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLw=
+Ll79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ4=
+6dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM81Ck9BKRJ5jaufQI6RpPU5IxSIDjUDv=
+CB4YU%3D" class=3D"m12 m3" style=3Dfont-size:17px;font-weight:400;line-heig=
+ht:25px;color:#06c>New age rating property type in <span style=3Dwhite-spac=
+e:nowrap>StoreKit<img alt=3D" " src=3Dhttps://developer.apple.com/click/ima=
+ges/mcfly/17_chevron_0066cc_2x.png width=3D12 height=3D10 border=3D0 style=
+=3Dfont-size:0;display:inline-block;margin:0></span></a></td></tr><tr><td s=
+tyle=3D"padding:0 32px 8px;text-align:center;font-size:17px;line-height:25p=
+x"><a href=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J=
+0OtdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6=
+mavfnsqzElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F8=
+5sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyED=
+D1zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKan=
+DC3lIbjfjmV5hnaM81Ck9BKRJ5jaufWWQRsB7wZi6hZ4QBnOa4%2Bs%3D" class=3D"m12 m3"=
+ style=3Dfont-size:17px;font-weight:400;line-height:25px;color:#06c>Enablin=
+g enhanced security for your <span style=3Dwhite-space:nowrap>app<img alt=
+=3D" " src=3Dhttps://developer.apple.com/click/images/mcfly/17_chevron_0066=
+cc_2x.png width=3D12 height=3D10 border=3D0 style=3Dfont-size:0;display:inl=
+ine-block;margin:0></span></a></td></tr><tr><td style=3D"padding:0 32px 8px=
+;text-align:center;font-size:17px;line-height:25px"><a href=3D"https://c.ap=
+ple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrPkRVGspDLr=
+lnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQCqr8w0E97jVg=
+6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%2B=
+DTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE14ggic=
+mqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM81Ck9BKRJ5=
+jaufeE6enYJt7J3EN80VpDKfQk%3D" class=3D"m12 m3" style=3Dfont-size:17px;font=
+-weight:400;line-height:25px;color:#06c>Downlink time difference of arrival=
+ <span style=3Dwhite-space:nowrap>ranging<img alt=3D" " src=3Dhttps://devel=
+oper.apple.com/click/images/mcfly/17_chevron_0066cc_2x.png width=3D12 heigh=
+t=3D10 border=3D0 style=3Dfont-size:0;display:inline-block;margin:0></span>=
+</a></td></tr><tr><td style=3D"padding:0 28px 36px;text-align:center;font-s=
+ize:17px;line-height:25px"><a href=3D"https://c.apple.com/r?v=3D2&a=3DJO1XY=
+JwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TC=
+a0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J=
+9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79=
+guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDV=
+YoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hnaM81Ck9BKRJ5jaufbd6kUcPSGK77QcwF4kqhC=
+A%3D" class=3D"m12 m3" style=3Dfont-size:17px;font-weight:400;line-height:2=
+5px;color:#06c>Digital Credentials API =E2=80=93 Mobile Document <span styl=
+e=3Dwhite-space:nowrap>Provider<img alt=3D" " src=3Dhttps://developer.apple=
+.com/click/images/mcfly/17_chevron_0066cc_2x.png width=3D12 height=3D10 bor=
+der=3D0 style=3Dfont-size:0;display:inline-block;margin:0></span></a></td><=
+/tr><tr><td style=3D"padding:0 32px 36px"><table border=3D0 cellpadding=3D0=
+ cellspacing=3D0 role=3Dpresentation align=3Dcenter><tr><td style=3D"border=
+-top-style:solid;border-top-width:1px;font-size:0;line-height:0;margin:0 au=
+to;border-color:#d2d2d7" class=3Dm15 align=3Dcenter valign=3Dtop width=3D71=
+2></td></tr></table></td></tr><tr><td style=3Dpadding-top:0;padding-bottom:=
+12px;padding-left:0;text-align:center;font-size:0;margin:0;line-height:0;ve=
+rtical-align:top class=3Dm16 align=3Dcenter><picture><source media=3D"(max-=
+device-width: 568px)" srcset=3Ddata:><img alt=3D"A small Technotes icon, wh=
+ich shows an icon of a document with a code snippet in blue against a black=
+ background." src=3Dhttps://developer.apple.com/click/images/mcfly/technote=
+s-icon-2x.png width=3D45 height=3D45 border=3D0 style=3Ddisplay:block class=
+=3Dm16></picture></td></tr><tr><td style=3D"text-align:center;padding:0 32p=
+x 12px" class=3Dm8><p class=3Dm43 style=3D"color:#86868b;font-size:16px;fon=
+t-weight:900;margin:0 auto">TECHNOTES</p></td></tr><tr><td style=3D"padding=
+:0 32px 8px;text-align:center;font-size:17px;line-height:25px"><a href=3D"h=
+ttps://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%2F=
+rPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooGQC=
+qr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2BpLR=
+2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20Gy=
+9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5hna=
+M81Ck9BKRJ5jaufQG255l%2FjuAftg8oJ7fuyHc%3D" class=3D"m12 m3" style=3Dfont-s=
+ize:17px;font-weight:400;line-height:25px;color:#06c>Handling account delet=
+ions and revoking tokens for<br> Sign in with <span style=3Dwhite-space:now=
+rap>Apple<img alt=3D" " src=3Dhttps://developer.apple.com/click/images/mcfl=
+y/17_chevron_0066cc_2x.png width=3D12 height=3D10 border=3D0 style=3Dfont-s=
+ize:0;display:inline-block;margin:0></span></a></td></tr><tr><td style=3D"p=
+adding:0 32px 8px;text-align:center;font-size:17px;line-height:25px"><a hre=
+f=3D"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4i=
+wAr%2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzE=
+looGQCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ=
+%2BpLR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3q=
+CQ20Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfj=
+mV5hnaM81Ck9BKRJ5jaufZQFhAXIyb6OCdiHVpO0DwA%3D" class=3D"m12 m3" style=3Dfo=
+nt-size:17px;font-weight:400;line-height:25px;color:#06c>Managing the on-de=
+vice foundation model=E2=80=99s context <span style=3Dwhite-space:nowrap>wi=
+ndow<img alt=3D" " src=3Dhttps://developer.apple.com/click/images/mcfly/17_=
+chevron_0066cc_2x.png width=3D12 height=3D10 border=3D0 style=3Dfont-size:0=
+;display:inline-block;margin:0></span></a></td></tr><tr><td style=3D"paddin=
+g:0 32px 36px;text-align:center;font-size:17px;line-height:25px"><a href=3D=
+"https://c.apple.com/r?v=3D2&a=3DJO1XYJwWmbNCvWbplzNuaK7nhbR1J0OtdoSB4iwAr%=
+2FrPkRVGspDLrlnPqAxWwR05Ghh7D7BQeQ48TCa0v5i8piQ3nPhOGvw40epEH6mavfnsqzElooG=
+QCqr8w0E97jVg6%2FinokUrnjLJiqe97t64L9J9uA3tfvFq7yGGMrDECP0%2F85sH7XbhYQ%2Bp=
+LR2K%2Fot5%2BDTpIH6vxUYB5Cgfb4dLLwLl79guQFWbo7J6bHKT9NiviIKyEDD1zJLJT3qCQ20=
+Gy9T4SE14ggicmqYxMoLo%2Bsm2%2B0nQ46dDVYoH7xTd2VhjxDL%2BSvxPKanDC3lIbjfjmV5h=
+naM81Ck9BKRJ5jaufS3YzfU7fb9KHlo0lzmP06E%3D" class=3D"m12 m3" style=3Dfont-s=
+ize:17px;font-weight:400;line-height:25px;color:#06c>USB audio device desig=
+n <span style=3Dwhite-space:nowrap>considerations<img alt=3D" " src=3Dhttps=
+://developer.apple.com/click/images/mcfly/17_chevron_0066cc_2x.png width=3D=
+12 height=3D10 border=3D0 style=3Dfont-size:0;display:inline-block;margin:0=
+></span></a></td></tr><tr><td style=3D"padding:0 32px 36px"><table border=
+=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation align=3Dcenter><tr=
+><td style=3D"border-top-style:solid;border-top-width:1px;font-size:0;line-=
+height:0;margin:0 auto;border-color:#d2d2d7" class=3Dm15 align=3Dcenter val=
+ign=3Dtop width=3D712></td></tr></table></td></tr><tr><td style=3Dpadding-r=
+ight:32px;padding-bottom:36px;padding-left:32px;text-align:center;font-size=
+:17px;line-height:25px><a href=3D"https://c.apple.com/r?v=3D2&a=3Do2CKfLM8d=
+AL7lynfnyn7UJR94mniF31x6BQ8mUoKnZVGdhMPez2mA%2FDwb9NtLPnk7QBa5O5wm2K0lwSzzb=
+xwCpdb%2FlM5YKikdOgSKtzyfQm81psbeb813wy4zYDqQVTVMhoe1UdXjhrTC8plgp2Y82dy1%2=
+FbRGfeeLpen06Svl9F2ONUQcYzJknWqoIckp2F%2BORdXwGsy5gTSUC2oQUqQlEMkSpp44vojFX=
+97apmx4Zx37A3mOnYvU76Oq4mgu%2F2NGGDfsKLJJe3umjnfmNNcSg%3D%3D" class=3D"m12 =
+m3" style=3Dfont-size:17px;font-weight:600;line-height:25px;color:#06c>View=
+ all Apple Developer Documentation <span style=3Dwhite-space:nowrap>updates=
+<img alt=3D" " src=3Dhttps://developer.apple.com/click/images/mcfly/17_chev=
+ron_0066cc_2x.png width=3D12 height=3D10 border=3D0 style=3Dfont-size:0;dis=
+play:inline-block;margin:0></span></a></td></tr></table></td></tr></table><=
+/td></tr><tr><td style=3Dpadding-top:32px;padding-bottom:8px;text-align:cen=
+ter;line-height:normal><h6 style=3Dfont-size:19px;letter-spacing:0;line-hei=
+ght:23px;font-weight:700;color:#1d1d1f>Share your thoughts</h6></td></tr><t=
+r><td style=3D"text-align:center;padding:0 0 36px" class=3Dm8><p style=3D"f=
+ont-size:14px;font-weight:400;line-height:20px;margin:0 auto;color:#1d1d1f"=
+>We=E2=80=99d love to hear from you. If you have suggestions for activities=
+ or stories, <br>please <a href=3D"https://c.apple.com/r?v=3D2&a=3Do2CKfLM8=
+dAL7lynfnyn7UJR94mniF31x6BQ8mUoKnZVGdhMPez2mA%2FDwb9NtLPnk7QBa5O5wm2K0lwSzz=
+bxwCpdb%2FlM5YKikdOgSKtzyfQm81psbeb813wy4zYDqQVTVMhoe1UdXjhrTC8plgp2Y82dy1%=
+2FbRGfeeLpen06Svl9F2ONUQcYzJknWqoIckp2F%2BORdXwGsy5gTSUC2oQUqQlEMkSpp44vojF=
+X97apmx4Zx37A3mOnYvU76Oq4mgu%2F2NcMLjrP8CFYPKoU0Ir7E%2BMA%3D%3D" style=3Dco=
+lor:#06c;font-style:normal;font-weight:400;text-decoration:none>let=C2=A0us=
+=C2=A0know</a>.</p></td></tr></table></td></tr></table></td></tr></table></=
+td></tr></table></td></tr></table></div></td></tr><tr><td><table border=3D0=
+ cellpadding=3D0 cellspacing=3D0 role=3Dpresentation width=3D100% class=3D"=
+m22 m26 n6" bgcolor=3D#fff style=3Dbackground-color:#fff><tr class=3Dm4><td=
+ class=3Dm28><table border=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dprese=
+ntation width=3D736 align=3Dcenter class=3Dm29 bgcolor=3D#fff style=3Dbackg=
+round-color:#fff><tr><td style=3D"padding:0 20px" class=3Dm30><table border=
+=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation width=3D660 align=
+=3Dcenter class=3Dm31 bgcolor=3D#fff><tr><td style=3Dfont-size:12px;line-he=
+ight:16px;border-top-width:0;border-top-style:none;border-top-color:current=
+color class=3D"m23 n10" align=3Dcenter></td></tr><tr><td style=3D"padding:1=
+0px 0 9px;text-align:center" class=3D"n7 n8"><p class=3Dn9 style=3Dfont-siz=
+e:12px;line-height:16px;color:#6e6e73> Copyright =C2=A9 2025 Apple=C2=A0Inc=
+. One=C2=A0Apple=C2=A0Park=C2=A0Way,=C2=A0MS=C2=A0923=E2=80=914DEV, Cuperti=
+no,=C2=A0CA=C2=A095014 </p></td></tr><tr><td style=3D"padding:0 0 9px;font-=
+size:12px;line-height:16px;color:#424245;text-align:center" class=3Dm33><p =
+style=3D"color:#424245;margin:0 auto;font-size:12px;line-height:16px"><a hr=
+ef=3D"https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UJR94mniF31x6BQ8m=
+UoKnZVGdhMPez2mA%2FDwb9NtLPnk7QBa5O5wm2K0lwSzzbxwCpdb%2FlM5YKikdOgSKtzyfQm8=
+1psbeb813wy4zYDqQVTVMhoe1UdXjhrTC8plgp2Y82dy1%2FbRGfeeLpen06Svl9F2ONUQcYzJk=
+nWqoIckp2F%2BORdXwGsy5gTSUC2oQUqQlEMkSpp44vojFX97apmx4Zx37A3mOnYvU76Oq4mgu%=
+2F2Np%2FWyOTZZBU5L4bbxYNmEUQ%3D%3D" style=3Dborder:0;outline:0;text-decorat=
+ion:none;color:#424245>All Rights Reserved</a>=C2=A0=C2=A0<span class=3Dm32=
+ style=3Dcolor:#6e6e73>|</span>=C2=A0=C2=A0<a href=3D"https://c.apple.com/r=
+?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UJR94mniF31x6BQ8mUoKnZVGdhMPez2mA%2FDwb9NtLP=
+nk7QBa5O5wm2K0lwSzzbxwCpdb%2FlM5YKikdOgSKtzyfQm81psbeb813wy4zYDqQVTVMhoe1Ud=
+XjhrTC8plgp2Y82dy1%2FbRGfeeLpen06Svl9F2ONUQcYzJknWqoIckp2F%2BORdXwGsy5gTSUC=
+2oQUqQlEMkSpp44vojFX97apmx4Zx37A3mOnYvU76Oq4mgu%2F2N2iTbuAj%2Fiudu0Y%2Baexk=
+BZQ%3D%3D" style=3Dborder:0;outline:0;text-decoration:none;color:#424245>Pr=
+ivacy Policy</a>=C2=A0=C2=A0<span class=3Dm32 style=3Dcolor:#6e6e73>|</span=
+>=C2=A0=C2=A0<a href=3D"https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn=
+7UJR94mniF31x6BQ8mUoKnZVGdhMPez2mA%2FDwb9NtLPnk7QBa5O5wm2K0lwSzzbxwCpdb%2Fl=
+M5YKikdOgSKtzyfQm81psbeb813wy4zYDqQVTVMhoe1UdXjhrTC8plgp2Y82dy1%2FbRGfeeLpe=
+n06Svl9F2ONUQcYzJknWqoIckp2F%2BORdXwGsy5gTSUC2oQUqQlEMkSpp44vojFX97apmx4Zx3=
+7A3mOnYvU76Oq4mgu%2F2NWZ6azjil7aX7%2F7EJXgXJlQ%3D%3D" style=3Dborder:0;outl=
+ine:0;text-decoration:none;color:#424245>Account</a> </p></td></tr><tr><td =
+style=3D"padding:0 0 56px;text-align:center" class=3Dn7><p style=3Dfont-siz=
+e:12px;line-height:16px;color:#6e6e73>You can <a href=3Dhttps://developer.a=
+pple.com/account#EmailsCard style=3Dborder:0;outline:0;text-decoration:none=
+;color:#86868b>update your Apple Developer email preferences</a> or <a href=
+=3Dhttps://c.apple.com/r?v=3D2&a=3D8ps6Ok0qKWiF37xoxStPOmTNGs51zlivdjtcXTFj=
+pLlRuCwyddQ3iyYDv7lzbrRV0%2FsqmpE%2Bke0PNCs0kHZqlEj4m4LOo1Gsc6Jz%2B8V8%2Few=
+dx6TRpS5tMNnEgIDkZy8CSzP8paFJjKvSxt3GlDd8cxHUKJoIDoourUQT8f2LAsrvY6Q%2FGM5D=
+i5OM1z4%2FAjXqYafpCV%2FJ%2Bh9CdbCLjMGVtP7NsQLXPFeKwXtEJdRRqJxQ0mkKtc7x2Z1yL=
+0COYOAAyFRpam4IXKEbyTtT%2BipPWZPpdaMO1W1olZ0CdLkdXJ0rpxcwvVPmM6zVGZpg2x%2BS=
+AcZGR%2F6bjvQPFrw%2F%2FsYaCZwJeVMh189Fu3pgUVBJja2DEu7TQ0geY%2B6cTJppO36Xe5b=
+JwAZ3uxCgmmKsfQ33GE8NoK8h%2FMb5d69nDb%2F%2Fje7EZqiWS9l%2B1auO%2BdkiejUXM0Hl=
+lcty9zMDMEQXd1GU%2BhWJw4oyUU17QdY8xKeGOoI%3D style=3Dborder:0;outline:0;tex=
+t-decoration:none;color:#86868b>unsubscribe</a>.</p></td></tr></table></td>=
+</tr></table></td></tr></table></td></tr></table> </body></html>
+------=_Part_5074751_699418515.1762444835902--

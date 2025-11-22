@@ -1,0 +1,919 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:df93:b0:4ca:2b22:f54c with SMTP id ok19csp939876mdb;
+        Wed, 8 Oct 2025 07:12:51 -0700 (PDT)
+X-Received: by 2002:a05:6808:5191:b0:43f:6a3f:8684 with SMTP id 5614622812f47-4417b400c21mr1611317b6e.46.1759932771760;
+        Wed, 08 Oct 2025 07:12:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1759932771; cv=none;
+        d=google.com; s=arc-20240605;
+        b=PvzEjgfy6k0DmGVRXs7WGmAJPJe7MvcXV9kl7+x5EjqV39SEyV5V0g2mwrEGc+vKan
+         CunrlgBJOnlQsxBjxJgLHdyc3jLrGmUWKrCP2MfTT/YQow34oVNh3pQFzaJfmNKFUGF9
+         TnlFHkRXumoZ4cJBxcIYGuc/lJ231vsEYHhGVvFL8RO5WEb2ecHbbmIKWKn7E+D79SwB
+         b9kkmpq/hMA/LEQSvdQaJ01Q5x8AdQcrhfCOHiJegkaLHiRwmbNCsTvVdBA9dr/mBwqv
+         Wh6oNG8a3d7ZbnoEFEUtdWmoRVJpOFp6QAtqzSAYCWGv7fvYA5ffz9hBRGDpnNiKLfFU
+         Ef7g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:from:subject:date:message-id:mime-version:dkim-signature;
+        bh=/OqI0pQqur54HPza2gw+py9nYb2yFmT5Rg2ZdIa4M0Q=;
+        fh=XJfs/2LrlNG4j4XYtLRgCtEs8OeVLErLJzTr+xh53FQ=;
+        b=gKzTCRvtX/IPZY9ua+UBLhBbTtFMEtlR3NuWmAwCTGXV6PORdV15wSHYBKfTl1tpsO
+         qKFEtEmB1CXgrn98kBjHybNROkH0sMD/S1cnI5Fxg0+jzqTybXnlhN2HyTFVO34k9H+V
+         3/LGhHqrg5qk+pnRmlxgaMpPdeHaIdXBgXcF8v1AHecPZYyTadpMm9cjOsG85kh4TMMP
+         MLMFXFqInZhNZ/wVRtoBOmrp6qnb2Sj9WUoNrrAX5h31j1utS17llxNwponmkaMzAlvN
+         ESSP9ZOnB7fqn0ofCbDa9sKv9CKbHLF9CTSMUX0/V/5a/IbjlRcEkWHs5+v7vc0RK8eO
+         PyXQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=GsHxF6HT;
+       spf=pass (google.com: domain of 3y3hmaa8jbi4dkaekxqrsoeopptqwksv.myw52y7wz06u25.w86@maestro.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3Y3HmaA8JBi4dKaeKXQRSOeopptQWKSV.MYW52y7wz06u25.w86@maestro.bounces.google.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <3Y3HmaA8JBi4dKaeKXQRSOeopptQWKSV.MYW52y7wz06u25.w86@maestro.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id 5614622812f47-43ff0728f4csor1689985b6e.2.2025.10.08.07.12.51
+        for <LIENCF@gmail.com>
+        (Google Transport Security);
+        Wed, 08 Oct 2025 07:12:51 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 3y3hmaa8jbi4dkaekxqrsoeopptqwksv.myw52y7wz06u25.w86@maestro.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=GsHxF6HT;
+       spf=pass (google.com: domain of 3y3hmaa8jbi4dkaekxqrsoeopptqwksv.myw52y7wz06u25.w86@maestro.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3Y3HmaA8JBi4dKaeKXQRSOeopptQWKSV.MYW52y7wz06u25.w86@maestro.bounces.google.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759932771; x=1760537571; dara=google.com;
+        h=to:from:subject:date:message-id:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=/OqI0pQqur54HPza2gw+py9nYb2yFmT5Rg2ZdIa4M0Q=;
+        b=GsHxF6HTnU/CZpGJP0uc4XrfVCZjvQR1bWj1gxtowF2IBMflZDw6AnM/IRTaUMP3K2
+         sCwrTnxG6L0fRFv1c0EB1bdHsYSN+00dKtoeCKUYpeoGjEwBz/P1wM1ITU1osGjh69gA
+         WGZFAPV531U30j/cb31h50EZQ+3ZE6deD3LKzokYcYOFE/ukYWeg62aGMS11LDKTLcxh
+         8mCKN3UGCIR4EENmXtkEABNpy4VBKWgMeIQCK0qB5OkHFpkTaVR6gVslwEAUrtjdnOJO
+         uzXRX26FNdZgMQpPApgLUXy77isALwlbmEghZyr/zDHkHPGFUHV7s+KYMGXTl1BRm+76
+         ywfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759932771; x=1760537571;
+        h=to:from:subject:date:message-id:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/OqI0pQqur54HPza2gw+py9nYb2yFmT5Rg2ZdIa4M0Q=;
+        b=GGKW539ilZ+moeS6auP2HumjxcTHPOG5uq7Y7uXNcgLUGMr6Q4rp5kQOL80HzPgHAK
+         nYa1yhgWLFGQzLYne6Q5Q22oZtJ2sQuB09cwCRtfOGUhMqInPx++4PFFXy7u5/VUncNZ
+         WOIpmelKcUjv5X1NGJ93m5BQSXoFCbVwnDQMM6f5OOGyEEbL43WB8hCw/frUkGTnu0wH
+         d03CCKNlawdhOsM06aUAGJmxKO4AAEBdD0F67ZTulAIlgC02VTc6TjD3XwDbzQMv0xpq
+         FC2Zn2Ef42N7C7I9VkhGzCSEpxIUy2Zgl5uV42olaIwJZIR2YoPhOyetoILHuTvufRIJ
+         R26Q==
+X-Gm-Message-State: AOJu0Yx3baoWx/o4FrbqVWZAJWbauFzFKDh7u/BthMBlXLpKaoQgTC/R
+	DHuExbxRcEVozvxB1uQHwd//JrHJuD6lpnhi9/btyGucyVxfjGLmOKGAN5CmlQ7OhCXTDysMSNG
+	MqPY=
+X-Google-Smtp-Source: AGHT+IE4M8gN4cCjMpomznzotDMUEbXsctNkNToyuvCirTDLJCo0JqtjeuZ0G08Gn4VPlkx8nhZJOX+rhQ==
+MIME-Version: 1.0
+X-Received: by 2002:a05:6808:308c:b0:43b:5cee:137 with SMTP id
+ 5614622812f47-4417b2d1eb5mr1942446b6e.4.1759932771434; Wed, 08 Oct 2025
+ 07:12:51 -0700 (PDT)
+Message-ID: <autogen-java-a606e95e-12c4-4d6d-b557-31d881479b7f@google.com>
+Date: Wed, 08 Oct 2025 14:12:51 +0000
+Subject: LIENCF@GMAIL.COM, Smart People Don't Like Me T-Shirt
+From: taquanghieu4559@gmail.com
+To: LIENCF@GMAIL.COM
+Content-Type: multipart/alternative; boundary="000000000000ab8ec20640a6475a"
+
+--000000000000ab8ec20640a6475a
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+
+View online version
+
+
+
+
+
+Smart People Don't Like Me T-Shirt
+
+
+
+
+
+OUR BEST OFFER
+
+
+
+
+
+Smart People Don't Like Me Funny Saying Shirt For Men Women Smart People  
+Don't Like Me No We Don't Shirt Lightweight, Classic fit, Double-needle  
+sleeve and bottom hem
+
+
+
+
+SHOP NOW
+
+
+
+
+Tips on how to take care of cotton, briefly
+
+
+
+
+
+
+Keep cotton clothes in drawers, away from the Sun.
+
+Iron to kill the germs.
+
+
+
+
+Easy to remove stains. Sort your clothes.
+
+Check the label when washing.
+
+
+
+
+Don't overdry.
+Turn inside out when washing.
+Use less detergent.
+
+
+
+
+
+
+When It Comes...T-shirt
+
+
+
+
+
+
+
+Color one
+
+Color 2
+
+Color 3
+
+Color 4
+
+
+
+
+
+$21 $25
+
+
+BUY
+
+
+
+Quote Rooster Meme T-Shirt
+
+
+
+
+
+
+
+Color 1
+
+Color 2
+
+Color 3
+
+Color 4
+
+
+
+
+
+$21 $25
+
+
+BUY
+
+
+
+Ow Ow Ow Ow T-Shirt
+
+
+
+
+
+
+
+Color 1
+
+Color 2
+
+Color 3
+
+Color 4
+
+
+
+
+
+$21 $25
+
+
+BUY
+
+
+
+
+
+SHOP NOW
+
+
+
+
+
+FREE
+SHIPPING
+
+
+
+
+EASY
+PAYMENT
+
+
+
+
+QUICK
+RETURN
+
+
+
+
+QUALITY ASSURANCE
+
+
+
+
+
+Fb Tw Inst Yt
+
+
+
+
+Want to change how you receive these emails?
+You can unsubscribe
+
+
+
+
+
+No longer want to receive these emails? Unsubscribe.
+
+
+
+
+
+
+--000000000000ab8ec20640a6475a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html dir=3D"ltr" xmlns=3D"ht=
+tp://www.w3.org/1999/xhtml" xmlns:o=3D"urn:schemas-microsoft-com:office:off=
+ice" lang=3D"en"><head><meta charset=3D"UTF-8"><meta content=3D"width=3Ddev=
+ice-width, initial-scale=3D1" name=3D"viewport"><meta name=3D"x-apple-disab=
+le-message-reformatting"><meta http-equiv=3D"X-UA-Compatible" content=3D"IE=
+=3Dedge"><meta content=3D"telephone=3Dno" name=3D"format-detection"><title>=
+New Message</title><!--[if (mso 16)]><style type=3D"text/css">a {text-decor=
+ation: none;}</style><![endif]--><!--[if gte mso 9]><style>sup { font-size:=
+ 100% !important; }</style><![endif]--><!--[if gte mso 9]><noscript><xml><o=
+:OfficeDocumentSettings><o:AllowPNG></o:AllowPNG><o:PixelsPerInch>96</o:Pix=
+elsPerInch></o:OfficeDocumentSettings></xml></noscript><![endif]--><!--[if =
+mso]><xml><w:WordDocument xmlns:w=3D"urn:schemas-microsoft-com:office:word"=
+><w:DontUseAdvancedTypographyReadingMail/></w:WordDocument></xml><![endif]-=
+-><style type=3D"text/css">.rollover:hover .rollover-first {max-height:0px!=
+important;display:none!important;}.rollover:hover .rollover-second {max-hei=
+ght:none!important;display:block!important;}.rollover span {font-size:0px;}=
+u + .body img ~ div div {display:none;}#outlook a {padding:0;}span.MsoHyper=
+link,span.MsoHyperlinkFollowed {color:inherit;mso-style-priority:99;}a.es-b=
+utton {mso-style-priority:100!important;text-decoration:none!important;}a[x=
+-apple-data-detectors],#MessageViewBody a {color:inherit!important;text-dec=
+oration:none!important;font-size:inherit!important;font-family:inherit!impo=
+rtant;font-weight:inherit!important;line-height:inherit!important;}.es-desk=
+-hidden {display:none;float:left;overflow:hidden;width:0;max-height:0;line-=
+height:0;mso-hide:all;}@media only screen and (max-width:600px) {.es-m-p0r =
+{ padding-right:0px!important } .es-m-p5b { padding-bottom:5px!important } =
+.es-m-p20b { padding-bottom:20px!important } .es-p-default { } *[class=3D"g=
+mail-fix"] { display:none!important } p, a { line-height:150%!important } h=
+1, h1 a { line-height:120%!important } h2, h2 a { line-height:120%!importan=
+t } h3, h3 a { line-height:120%!important } h4, h4 a { line-height:120%!imp=
+ortant } h5, h5 a { line-height:120%!important } h6, h6 a { line-height:120=
+%!important } .es-header-body p { } .es-content-body p { } .es-footer-body =
+p { } .es-infoblock p { } h1 { font-size:36px!important; text-align:left } =
+h2 { font-size:26px!important; text-align:left } h3 { font-size:20px!import=
+ant; text-align:left } h4 { font-size:24px!important; text-align:left } h5 =
+{ font-size:20px!important; text-align:left } h6 { font-size:16px!important=
+; text-align:left } .es-header-body h1 a, .es-content-body h1 a, .es-footer=
+-body h1 a { font-size:36px!important } .es-header-body h2 a, .es-content-b=
+ody h2 a, .es-footer-body h2 a { font-size:26px!important } .es-header-body=
+ h3 a, .es-content-body h3 a, .es-footer-body h3 a { font-size:20px!importa=
+nt } .es-header-body h4 a, .es-content-body h4 a, .es-footer-body h4 a { fo=
+nt-size:24px!important } .es-header-body h5 a, .es-content-body h5 a, .es-f=
+ooter-body h5 a { font-size:20px!important } .es-header-body h6 a, .es-cont=
+ent-body h6 a, .es-footer-body h6 a { font-size:16px!important } .es-menu t=
+d a { font-size:12px!important } .es-header-body p, .es-header-body a { fon=
+t-size:14px!important } .es-content-body p, .es-content-body a { font-size:=
+14px!important } .es-footer-body p, .es-footer-body a { font-size:14px!impo=
+rtant } .es-infoblock p, .es-infoblock a { font-size:12px!important } .es-m=
+-txt-c, .es-m-txt-c h1, .es-m-txt-c h2, .es-m-txt-c h3, .es-m-txt-c h4, .es=
+-m-txt-c h5, .es-m-txt-c h6 { text-align:center!important } .es-m-txt-r, .e=
+s-m-txt-r h1, .es-m-txt-r h2, .es-m-txt-r h3, .es-m-txt-r h4, .es-m-txt-r h=
+5, .es-m-txt-r h6 { text-align:right!important } .es-m-txt-j, .es-m-txt-j h=
+1, .es-m-txt-j h2, .es-m-txt-j h3, .es-m-txt-j h4, .es-m-txt-j h5, .es-m-tx=
+t-j h6 { text-align:justify!important } .es-m-txt-l, .es-m-txt-l h1, .es-m-=
+txt-l h2, .es-m-txt-l h3, .es-m-txt-l h4, .es-m-txt-l h5, .es-m-txt-l h6 { =
+text-align:left!important } .es-m-txt-r img, .es-m-txt-c img, .es-m-txt-l i=
+mg { display:inline!important } .es-m-txt-r .rollover:hover .rollover-secon=
+d, .es-m-txt-c .rollover:hover .rollover-second, .es-m-txt-l .rollover:hove=
+r .rollover-second { display:inline!important } .es-m-txt-r .rollover span,=
+ .es-m-txt-c .rollover span, .es-m-txt-l .rollover span { line-height:0!imp=
+ortant; font-size:0!important; display:block } .es-spacer { display:inline-=
+table } a.es-button, button.es-button { font-size:20px!important; padding:1=
+0px 20px 10px 20px!important; line-height:120%!important } a.es-button, but=
+ton.es-button, .es-button-border { display:inline-block!important } .es-m-f=
+w, .es-m-fw.es-fw, .es-m-fw .es-button { display:block!important } .es-m-il=
+, .es-m-il .es-button, .es-social, .es-social td, .es-menu.es-table-not-ada=
+pt { display:inline-block!important } .es-adaptive table, .es-left, .es-rig=
+ht { width:100%!important } .es-content table, .es-header table, .es-footer=
+ table, .es-content, .es-footer, .es-header { width:100%!important; max-wid=
+th:600px!important } .adapt-img { width:100%!important; height:auto!importa=
+nt } .es-adapt-td { display:block!important; width:100%!important } .es-mob=
+ile-hidden, .es-hidden { display:none!important } .es-container-hidden { di=
+splay:none!important } .es-desk-hidden { width:auto!important; overflow:vis=
+ible!important; float:none!important; max-height:inherit!important; line-he=
+ight:inherit!important } tr.es-desk-hidden { display:table-row!important } =
+table.es-desk-hidden { display:table!important } td.es-desk-menu-hidden { d=
+isplay:table-cell!important } .es-menu td { width:1%!important } table.es-t=
+able-not-adapt, .esd-block-html table { width:auto!important } .h-auto { he=
+ight:auto!important } .es-text-3221 .es-text-mobile-size-24, .es-text-3221 =
+.es-text-mobile-size-24 * { font-size:24px!important; line-height:150%!impo=
+rtant } }@media screen and (max-width:384px) {.mail-message-content { width=
+:414px!important } }</style></head><body class=3D"body" style=3D"width:100%=
+;height:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;paddin=
+g:0;Margin:0"><div dir=3D"ltr" class=3D"es-wrapper-color" lang=3D"en" style=
+=3D"background-color:#FAFAFA"><!--[if gte mso 9]><v:background xmlns:v=3D"u=
+rn:schemas-microsoft-com:vml" fill=3D"t"><v:fill type=3D"tile" color=3D"#fa=
+fafa"></v:fill></v:background><![endif]--><table width=3D"100%" cellspacing=
+=3D"0" cellpadding=3D"0" class=3D"es-wrapper" role=3D"none" style=3D"mso-ta=
+ble-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing=
+:0px;padding:0;Margin:0;width:100%;height:100%;background-repeat:repeat;bac=
+kground-position:center top;background-color:#FAFAFA"><tr><td valign=3D"top=
+" style=3D"padding:0;Margin:0"><table cellpadding=3D"0" cellspacing=3D"0" a=
+lign=3D"center" class=3D"es-content" role=3D"none" style=3D"mso-table-lspac=
+e:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;widt=
+h:100%;table-layout:fixed !important"><tr><td align=3D"center" class=3D"es-=
+info-area" style=3D"padding:0;Margin:0"><table align=3D"center" cellpadding=
+=3D"0" cellspacing=3D"0" bgcolor=3D"#00000000" class=3D"es-content-body" st=
+yle=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;b=
+order-spacing:0px;background-color:transparent;width:600px" role=3D"none"><=
+tr><td align=3D"left" style=3D"padding:20px;Margin:0"><table cellpadding=3D=
+"0" cellspacing=3D"0" width=3D"100%" role=3D"none" style=3D"mso-table-lspac=
+e:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"><tr=
+><td align=3D"center" valign=3D"top" style=3D"padding:0;Margin:0;width:560p=
+x"><table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presen=
+tation" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:=
+collapse;border-spacing:0px"><tr><td align=3D"center" class=3D"es-infoblock=
+" style=3D"padding:0;Margin:0"><p style=3D"Margin:0;mso-line-height-rule:ex=
+actly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-heigh=
+t:18px;letter-spacing:0;color:#CCCCCC;font-size:12px"><a target=3D"_blank" =
+href=3D"" style=3D"mso-line-height-rule:exactly;text-decoration:underline;c=
+olor:#CCCCCC;font-size:12px">View online version</a></p></td></tr></table><=
+/td></tr></table></td></tr></table></td></tr></table><table cellpadding=3D"=
+0" cellspacing=3D"0" align=3D"center" class=3D"es-header" role=3D"none" sty=
+le=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;bo=
+rder-spacing:0px;width:100%;table-layout:fixed !important;background-color:=
+transparent;background-repeat:repeat;background-position:center top"><tr><t=
+d align=3D"center" style=3D"padding:0;Margin:0"><table bgcolor=3D"#ffffff" =
+align=3D"center" cellpadding=3D"0" cellspacing=3D"0" class=3D"es-header-bod=
+y" role=3D"none" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-=
+collapse:collapse;border-spacing:0px;background-color:transparent;width:600=
+px"><tr><td align=3D"left" style=3D"Margin:0;padding-top:10px;padding-right=
+:20px;padding-bottom:10px;padding-left:20px"><table cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"100%" role=3D"none" style=3D"mso-table-lspace:0pt;mso=
+-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"><tr><td alig=
+n=3D"center" valign=3D"top" class=3D"es-m-p0r" style=3D"padding:0;Margin:0;=
+width:560px"><table cellpadding=3D"0" cellspacing=3D"0" role=3D"presentatio=
+n" width=3D"100%" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border=
+-collapse:collapse;border-spacing:0px"><tr><td align=3D"center" class=3D"es=
+-text-3221" style=3D"padding:0;Margin:0"><p class=3D"es-text-mobile-size-24=
+" style=3D"Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvet=
+ica neue', helvetica, sans-serif;line-height:36px;letter-spacing:0;color:#3=
+33333;font-size:24px"><strong>Smart People Don't Like Me T-Shirt</strong></=
+p></td></tr></table></td></tr></table></td></tr></table></td></tr></table><=
+table cellpadding=3D"0" cellspacing=3D"0" align=3D"center" class=3D"es-cont=
+ent" role=3D"none" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;borde=
+r-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !impor=
+tant"><tr><td align=3D"center" style=3D"padding:0;Margin:0"><table bgcolor=
+=3D"#ffffff" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+es-content-body" role=3D"none" style=3D"mso-table-lspace:0pt;mso-table-rspa=
+ce:0pt;border-collapse:collapse;border-spacing:0px;background-color:#FFFFFF=
+;width:600px"><tr><td align=3D"left" style=3D"Margin:0;padding-right:20px;p=
+adding-bottom:10px;padding-left:20px;padding-top:20px"><table cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"none" style=3D"mso-table-ls=
+pace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">=
+<tr><td align=3D"center" valign=3D"top" style=3D"padding:0;Margin:0;width:5=
+60px"><table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"pre=
+sentation" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collap=
+se:collapse;border-spacing:0px"><tr><td align=3D"center" style=3D"padding:0=
+;Margin:0;font-size:0"><a target=3D"_blank" href=3D"https://edana.pro/vi/sm=
+art-people-don-t-like-me-t-shirt" style=3D"mso-line-height-rule:exactly;tex=
+t-decoration:underline;color:#5C68E2;font-size:14px"><img src=3D"https://ew=
+jrizb.stripocdn.email/content/guids/CABINET_8d84dfeda0438b606b9ce58add2f941=
+2acb0a672b94bba98bc263f29878de55b/images/screenshot_113.png" alt=3D"" width=
+=3D"560" class=3D"adapt-img" style=3D"display:block;font-size:14px;border:0=
+;outline:none;text-decoration:none;margin:0"></a></td></tr><tr><td align=3D=
+"center" style=3D"padding:0;Margin:0;padding-top:20px;padding-bottom:5px"><=
+h1 class=3D"es-m-txt-c" style=3D"Margin:0;font-family:arial, 'helvetica neu=
+e', helvetica, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;fon=
+t-size:46px;font-style:normal;font-weight:bold;line-height:55.2px;color:#33=
+3333">OUR BEST OFFER</h1></td></tr><tr><td align=3D"left" style=3D"padding:=
+0;Margin:0;padding-bottom:5px;padding-top:5px"><ul style=3D"font-family:ari=
+al, 'helvetica neue', helvetica, sans-serif;padding:0px 0px 0px 40px;margin=
+-top:15px;margin-bottom:15px"><li style=3D"color:#333333;margin:0px 0px 15p=
+x;font-size:14px"><p style=3D"Margin:0;mso-line-height-rule:exactly;mso-mar=
+gin-bottom-alt:15px;font-family:arial, 'helvetica neue', helvetica, sans-se=
+rif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px;mso-marg=
+in-top-alt:15px">Smart People Don't Like Me Funny Saying Shirt For Men Wome=
+n Smart People Don't Like Me No We Don't Shirt Lightweight, Classic fit, Do=
+uble-needle sleeve and bottom hem</p></li></ul></td></tr></table></td></tr>=
+</table></td></tr><tr><td align=3D"left" style=3D"padding:0;Margin:0;paddin=
+g-right:20px;padding-bottom:10px;padding-left:20px"><table cellpadding=3D"0=
+" cellspacing=3D"0" width=3D"100%" role=3D"none" style=3D"mso-table-lspace:=
+0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"><tr><=
+td align=3D"center" valign=3D"top" style=3D"padding:0;Margin:0;width:560px"=
+><table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presenta=
+tion" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:co=
+llapse;border-spacing:0px"><tr><td align=3D"center" style=3D"padding:0;Marg=
+in:0;padding-bottom:10px;padding-top:15px"><span class=3D"es-button-border"=
+ style=3D"border-style:solid;border-color:#5c68e2;background:#5c68e2;border=
+-width:2px;display:inline-block;border-radius:5px;width:auto"><a href=3D"ht=
+tps://edana.pro/vi/smart-people-don-t-like-me-t-shirt" target=3D"_blank" cl=
+ass=3D"es-button es-button-1621620532140" style=3D"mso-style-priority:100 !=
+important;text-decoration:none !important;mso-line-height-rule:exactly;colo=
+r:#FFFFFF;font-size:20px;padding:10px 30px;display:inline-block;background:=
+#5C68E2;border-radius:5px;font-family:arial, 'helvetica neue', helvetica, s=
+ans-serif;font-weight:normal;font-style:normal;line-height:24px;width:auto;=
+text-align:center;letter-spacing:0;mso-padding-alt:0;mso-border-alt:10px so=
+lid #5C68E2">SHOP NOW</a></span></td></tr></table></td></tr></table></td></=
+tr></table></td></tr></table><table cellpadding=3D"0" cellspacing=3D"0" ali=
+gn=3D"center" class=3D"es-content" role=3D"none" style=3D"mso-table-lspace:=
+0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:=
+100%;table-layout:fixed !important"><tr><td align=3D"center" style=3D"paddi=
+ng:0;Margin:0"><table bgcolor=3D"#ffffff" align=3D"center" cellpadding=3D"0=
+" cellspacing=3D"0" class=3D"es-content-body" role=3D"none" style=3D"mso-ta=
+ble-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing=
+:0px;background-color:#FFFFFF;width:600px"><tr><td align=3D"left" style=3D"=
+padding:0;Margin:0;padding-right:20px;padding-left:20px;padding-top:20px"><=
+table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"none" styl=
+e=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;bor=
+der-spacing:0px"><tr><td align=3D"center" valign=3D"top" style=3D"padding:0=
+;Margin:0;width:560px"><table cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" role=3D"presentation" style=3D"mso-table-lspace:0pt;mso-table-rspace:=
+0pt;border-collapse:collapse;border-spacing:0px"><tr><td align=3D"center" s=
+tyle=3D"Margin:0;padding-right:20px;padding-left:20px;padding-bottom:5px;pa=
+dding-top:15px"><h2 class=3D"es-m-txt-c" style=3D"Margin:0;font-family:aria=
+l, 'helvetica neue', helvetica, sans-serif;mso-line-height-rule:exactly;let=
+ter-spacing:0;font-size:26px;font-style:normal;font-weight:bold;line-height=
+:31.2px;color:#333333">Tips on how to take care of cotton, briefly</h2></td=
+></tr></table></td></tr></table></td></tr><tr><td align=3D"left" class=3D"e=
+s-m-p5b" style=3D"Margin:0;padding-top:10px;padding-right:20px;padding-left=
+:20px;padding-bottom:20px"><!--[if mso]><table style=3D"width:560px" cellpa=
+dding=3D"0" cellspacing=3D"0"><tr><td style=3D"width:197px" valign=3D"top">=
+<![endif]--><table cellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=
+=3D"es-left" role=3D"none" style=3D"mso-table-lspace:0pt;mso-table-rspace:0=
+pt;border-collapse:collapse;border-spacing:0px;float:left"><tr><td align=3D=
+"left" class=3D"es-m-p20b" style=3D"padding:0;Margin:0;width:167px"><table =
+cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" st=
+yle=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;b=
+order-spacing:0px"><tr><td align=3D"center" style=3D"padding:0;Margin:0;fon=
+t-size:0px"><img src=3D"https://ewjrizb.stripocdn.email/content/guids/CABIN=
+ET_1154ef987a3f887ce59a7fdb008c50d6/images/89671617970513094.png" alt=3D"" =
+width=3D"99" style=3D"display:block;font-size:14px;border:0;outline:none;te=
+xt-decoration:none;margin:0"></td></tr><tr><td align=3D"center" style=3D"pa=
+dding:0;Margin:0;padding-top:10px;padding-bottom:5px"><p style=3D"Margin:0;=
+mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica=
+, sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px=
+">Keep cotton clothes in drawers, away from the Sun.</p><p style=3D"Margin:=
+0;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helveti=
+ca, sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14=
+px">Iron to kill the germs.</p></td></tr></table></td><td class=3D"es-hidde=
+n" style=3D"padding:0;Margin:0;width:30px"></td></tr></table><!--[if mso]><=
+/td><td style=3D"width:167px" valign=3D"top"><![endif]--><table cellpadding=
+=3D"0" cellspacing=3D"0" align=3D"left" class=3D"es-left" role=3D"none" sty=
+le=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;bo=
+rder-spacing:0px;float:left"><tr><td align=3D"left" class=3D"es-m-p20b" sty=
+le=3D"padding:0;Margin:0;width:167px"><table cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" role=3D"presentation" style=3D"mso-table-lspace:0pt;m=
+so-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"><tr><td al=
+ign=3D"center" style=3D"padding:0;Margin:0;font-size:0px"><img src=3D"https=
+://ewjrizb.stripocdn.email/content/guids/CABINET_1154ef987a3f887ce59a7fdb00=
+8c50d6/images/80471617970513099.png" alt=3D"" height=3D"98" style=3D"displa=
+y:block;font-size:14px;border:0;outline:none;text-decoration:none;margin:0"=
+></td></tr><tr><td align=3D"center" style=3D"padding:0;Margin:0;padding-top=
+:10px;padding-bottom:5px"><p style=3D"Margin:0;mso-line-height-rule:exactly=
+;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21p=
+x;letter-spacing:0;color:#333333;font-size:14px">Easy to remove stains. Sor=
+t your clothes.</p><p style=3D"Margin:0;mso-line-height-rule:exactly;font-f=
+amily:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;lette=
+r-spacing:0;color:#333333;font-size:14px">Check the label when washing.</p>=
+</td></tr></table></td></tr></table><!--[if mso]></td><td style=3D"width:30=
+px"></td><td style=3D"width:166px" valign=3D"top"><![endif]--><table cellpa=
+dding=3D"0" cellspacing=3D"0" align=3D"right" class=3D"es-right" role=3D"no=
+ne" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:coll=
+apse;border-spacing:0px;float:right"><tr><td align=3D"left" style=3D"paddin=
+g:0;Margin:0;width:166px"><table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" role=3D"presentation" style=3D"mso-table-lspace:0pt;mso-table-rsp=
+ace:0pt;border-collapse:collapse;border-spacing:0px"><tr><td align=3D"cente=
+r" style=3D"padding:0;Margin:0;font-size:0px"><img src=3D"https://ewjrizb.s=
+tripocdn.email/content/guids/CABINET_1154ef987a3f887ce59a7fdb008c50d6/image=
+s/90971617970513096.png" alt=3D"" height=3D"98" style=3D"display:block;font=
+-size:14px;border:0;outline:none;text-decoration:none;margin:0"></td></tr><=
+tr><td align=3D"center" style=3D"padding:0;Margin:0;padding-top:10px;paddin=
+g-bottom:5px"><p style=3D"Margin:0;mso-line-height-rule:exactly;font-family=
+:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;letter-spa=
+cing:0;color:#333333;font-size:14px">Don't overdry.<br>Turn inside out when=
+ washing.<br>Use less detergent.</p></td></tr></table></td></tr></table><!-=
+-[if mso]></td></tr></table><![endif]--></td></tr><tr><td align=3D"left" st=
+yle=3D"Margin:0;padding-right:20px;padding-bottom:10px;padding-left:20px;pa=
+dding-top:20px"><!--[if mso]><table style=3D"width:560px" cellpadding=3D"0"=
+ cellspacing=3D"0"><tr><td style=3D"width:194px" valign=3D"top"><![endif]--=
+><table cellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"es-left=
+" role=3D"none" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-c=
+ollapse:collapse;border-spacing:0px;float:left"><tr><td align=3D"center" cl=
+ass=3D"es-m-p0r es-m-p20b" style=3D"padding:0;Margin:0;width:174px"><table =
+cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"mso-table-lspac=
+e:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;bord=
+er-left:1px solid #efefef;border-right:1px solid #efefef;border-top:1px sol=
+id #efefef;border-bottom:1px solid #efefef;border-radius:5px" role=3D"prese=
+ntation"><tr><td align=3D"center" style=3D"padding:5px;Margin:0;font-size:0=
+px"><img src=3D"https://ewjrizb.stripocdn.email/content/guids/CABINET_8d84d=
+feda0438b606b9ce58add2f9412acb0a672b94bba98bc263f29878de55b/images/screensh=
+ot_114.png" alt=3D"" width=3D"162" class=3D"adapt-img" style=3D"display:blo=
+ck;font-size:14px;border:0;outline:none;text-decoration:none;margin:0"></td=
+></tr><tr><td align=3D"center" style=3D"padding:0;Margin:0;padding-right:10=
+px;padding-left:10px"><h3 class=3D"es-m-txt-c" style=3D"Margin:0;font-famil=
+y:arial, 'helvetica neue', helvetica, sans-serif;mso-line-height-rule:exact=
+ly;letter-spacing:0;font-size:20px;font-style:normal;font-weight:bold;line-=
+height:24px;color:#333333">When It Comes...T-shirt</h3></td></tr><tr><td al=
+ign=3D"center" style=3D"padding:0;Margin:0;padding-top:5px;padding-right:10=
+px;padding-left:10px"><p style=3D"Margin:0;mso-line-height-rule:exactly;fon=
+t-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:18px;le=
+tter-spacing:0;color:#333333;font-size:12px"><br></p></td></tr><tr><td styl=
+e=3D"padding:0;Margin:0"><table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" class=3D"es-menu" role=3D"presentation" style=3D"mso-table-lspace=
+:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"><tr =
+class=3D"images"><td align=3D"center" valign=3D"top" width=3D"25%" id=3D"es=
+d-menu-id-0" style=3D"Margin:0;border:0;padding-top:5px;padding-bottom:5px;=
+padding-right:5px;padding-left:5px"><div style=3D"vertical-align:middle;dis=
+play:block"><img src=3D"https://ewjrizb.stripocdn.email/content/guids/CABIN=
+ET_8d84dfeda0438b606b9ce58add2f9412acb0a672b94bba98bc263f29878de55b/images/=
+image_V2B.png" alt=3D"Color one" title=3D"Color one" width=3D"15" style=3D"=
+display:block;font-size:14px;border:0;outline:none;text-decoration:none;mar=
+gin:0"></div></td><td align=3D"center" valign=3D"top" width=3D"25%" id=3D"e=
+sd-menu-id-1" style=3D"Margin:0;border:0;padding-top:5px;padding-bottom:5px=
+;padding-right:5px;padding-left:5px"><div style=3D"vertical-align:middle;di=
+splay:block"><img src=3D"https://ewjrizb.stripocdn.email/content/guids/CABI=
+NET_8d84dfeda0438b606b9ce58add2f9412acb0a672b94bba98bc263f29878de55b/images=
+/image.png" alt=3D"Color 2" title=3D"Color 2" width=3D"15" style=3D"display=
+:block;font-size:14px;border:0;outline:none;text-decoration:none;margin:0">=
+</div></td><td align=3D"center" valign=3D"top" width=3D"25%" id=3D"esd-menu=
+-id-2" style=3D"Margin:0;border:0;padding-top:5px;padding-bottom:5px;paddin=
+g-right:5px;padding-left:5px"><div style=3D"vertical-align:middle;display:b=
+lock"><img src=3D"https://ewjrizb.stripocdn.email/content/guids/CABINET_115=
+4ef987a3f887ce59a7fdb008c50d6/images/27291617972422659.png" alt=3D"Color 3"=
+ title=3D"Color 3" width=3D"15" style=3D"display:block;font-size:14px;borde=
+r:0;outline:none;text-decoration:none;margin:0"></div></td><td align=3D"cen=
+ter" valign=3D"top" width=3D"25%" id=3D"esd-menu-id-2" style=3D"Margin:0;bo=
+rder:0;padding-top:5px;padding-bottom:5px;padding-right:5px;padding-left:5p=
+x"><div style=3D"vertical-align:middle;display:block"><img src=3D"https://e=
+wjrizb.stripocdn.email/content/guids/CABINET_1154ef987a3f887ce59a7fdb008c50=
+d6/images/46851617972422027.png" alt=3D"Color 4" title=3D"Color 4" width=3D=
+"15" style=3D"display:block;font-size:14px;border:0;outline:none;text-decor=
+ation:none;margin:0"></div></td></tr></table></td></tr><tr><td align=3D"cen=
+ter" style=3D"Margin:0;padding-bottom:5px;padding-top:5px;padding-right:10p=
+x;padding-left:10px"><h2 class=3D"es-m-txt-c" style=3D"Margin:0;font-family=
+:arial, 'helvetica neue', helvetica, sans-serif;mso-line-height-rule:exactl=
+y;letter-spacing:0;font-size:26px;font-style:normal;font-weight:bold;line-h=
+eight:31.2px;color:#333333">$21 &nbsp;<span style=3D"color:#999999"><s styl=
+e=3D"text-decoration:line-through">$25</s></span></h2></td></tr><tr><td ali=
+gn=3D"center" style=3D"padding:0;Margin:0;padding-bottom:20px"><span class=
+=3D"es-button-border" style=3D"border-style:solid;border-color:#5c68e2;back=
+ground:#ffffff;border-width:2px;display:inline-block;border-radius:5px;widt=
+h:auto"><a href=3D"https://edana.pro/vi/when-it-comes-to-my-child-i-will-sm=
+ile-in-my-mugshot-on-back-t-shirt" target=3D"_blank" class=3D"es-button es-=
+button-1621620532155" style=3D"mso-style-priority:100 !important;text-decor=
+ation:none !important;mso-line-height-rule:exactly;color:#5c68e2;font-size:=
+20px;padding:5px 30px;display:inline-block;background:#ffffff;border-radius=
+:5px;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight=
+:normal;font-style:normal;line-height:24px;width:auto;text-align:center;let=
+ter-spacing:0;mso-padding-alt:0;mso-border-alt:10px solid #5C68E2;border-co=
+lor:#ffffff">BUY </a></span></td></tr></table></td><td class=3D"es-hidden" =
+style=3D"padding:0;Margin:0;width:20px"></td></tr></table><!--[if mso]></td=
+><td style=3D"width:173px" valign=3D"top"><![endif]--><table cellpadding=3D=
+"0" cellspacing=3D"0" align=3D"left" class=3D"es-left" role=3D"none" style=
+=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;bord=
+er-spacing:0px;float:left"><tr><td align=3D"center" class=3D"es-m-p20b" sty=
+le=3D"padding:0;Margin:0;width:173px"><table cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;bo=
+rder-collapse:separate;border-spacing:0px;border-left:1px solid #efefef;bor=
+der-right:1px solid #efefef;border-top:1px solid #efefef;border-bottom:1px =
+solid #efefef;border-radius:5px" role=3D"presentation"><tr><td align=3D"cen=
+ter" style=3D"padding:5px;Margin:0;font-size:0px"><img src=3D"https://ewjri=
+zb.stripocdn.email/content/guids/CABINET_8d84dfeda0438b606b9ce58add2f9412ac=
+b0a672b94bba98bc263f29878de55b/images/screenshot_115.png" alt=3D"" width=3D=
+"161" class=3D"adapt-img" style=3D"display:block;font-size:14px;border:0;ou=
+tline:none;text-decoration:none;margin:0"></td></tr><tr><td align=3D"center=
+" style=3D"padding:0;Margin:0;padding-right:10px;padding-left:10px"><h3 cla=
+ss=3D"es-m-txt-c" style=3D"Margin:0;font-family:arial, 'helvetica neue', he=
+lvetica, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size=
+:20px;font-style:normal;font-weight:bold;line-height:24px;color:#333333">Qu=
+ote Rooster Meme T-Shirt</h3></td></tr><tr><td align=3D"center" style=3D"pa=
+dding:0;Margin:0;padding-top:5px;padding-right:10px;padding-left:10px"><p s=
+tyle=3D"Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvetica=
+ neue', helvetica, sans-serif;line-height:18px;letter-spacing:0;color:#3333=
+33;font-size:12px"><br></p></td></tr><tr><td style=3D"padding:0;Margin:0"><=
+table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" class=3D"es-menu" =
+role=3D"presentation" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;bo=
+rder-collapse:collapse;border-spacing:0px"><tr class=3D"images"><td align=
+=3D"center" valign=3D"top" width=3D"25%" id=3D"esd-menu-id-0" style=3D"Marg=
+in:0;border:0;padding-top:5px;padding-bottom:5px;padding-right:5px;padding-=
+left:5px"><div style=3D"vertical-align:middle;display:block"><img src=3D"ht=
+tps://ewjrizb.stripocdn.email/content/guids/CABINET_1154ef987a3f887ce59a7fd=
+b008c50d6/images/6321617972423213.png" alt=3D"Color 1" title=3D"Color 1" wi=
+dth=3D"15" style=3D"display:block;font-size:14px;border:0;outline:none;text=
+-decoration:none;margin:0"></div></td><td align=3D"center" valign=3D"top" w=
+idth=3D"25%" id=3D"esd-menu-id-1" style=3D"Margin:0;border:0;padding-top:5p=
+x;padding-bottom:5px;padding-right:5px;padding-left:5px"><div style=3D"vert=
+ical-align:middle;display:block"><img src=3D"https://ewjrizb.stripocdn.emai=
+l/content/guids/CABINET_1154ef987a3f887ce59a7fdb008c50d6/images/86171617972=
+422570.png" alt=3D"Color 2" title=3D"Color 2" width=3D"15" style=3D"display=
+:block;font-size:14px;border:0;outline:none;text-decoration:none;margin:0">=
+</div></td><td align=3D"center" valign=3D"top" width=3D"25%" id=3D"esd-menu=
+-id-2" style=3D"Margin:0;border:0;padding-top:5px;padding-bottom:5px;paddin=
+g-right:5px;padding-left:5px"><div style=3D"vertical-align:middle;display:b=
+lock"><img src=3D"https://ewjrizb.stripocdn.email/content/guids/CABINET_115=
+4ef987a3f887ce59a7fdb008c50d6/images/27291617972422659.png" alt=3D"Color 3"=
+ title=3D"Color 3" width=3D"15" style=3D"display:block;font-size:14px;borde=
+r:0;outline:none;text-decoration:none;margin:0"></div></td><td align=3D"cen=
+ter" valign=3D"top" width=3D"25%" id=3D"esd-menu-id-2" style=3D"Margin:0;bo=
+rder:0;padding-top:5px;padding-bottom:5px;padding-right:5px;padding-left:5p=
+x"><div style=3D"vertical-align:middle;display:block"><img src=3D"https://e=
+wjrizb.stripocdn.email/content/guids/CABINET_1154ef987a3f887ce59a7fdb008c50=
+d6/images/46851617972422027.png" alt=3D"Color 4" title=3D"Color 4" width=3D=
+"15" style=3D"display:block;font-size:14px;border:0;outline:none;text-decor=
+ation:none;margin:0"></div></td></tr></table></td></tr><tr><td align=3D"cen=
+ter" style=3D"Margin:0;padding-bottom:5px;padding-top:5px;padding-right:10p=
+x;padding-left:10px"><h2 class=3D"es-m-txt-c" style=3D"Margin:0;font-family=
+:arial, 'helvetica neue', helvetica, sans-serif;mso-line-height-rule:exactl=
+y;letter-spacing:0;font-size:26px;font-style:normal;font-weight:bold;line-h=
+eight:31.2px;color:#333333">$21 &nbsp;<span style=3D"color:#999999"><s styl=
+e=3D"text-decoration:line-through">$25</s></span></h2></td></tr><tr><td ali=
+gn=3D"center" style=3D"padding:0;Margin:0;padding-bottom:20px"><span class=
+=3D"es-button-border" style=3D"border-style:solid;border-color:#5c68e2;back=
+ground:#ffffff;border-width:2px;display:inline-block;border-radius:5px;widt=
+h:auto"><a href=3D"https://edana.pro/vi/quote-rooster-meme-t-shirt" target=
+=3D"_blank" class=3D"es-button es-button-1621620532160" style=3D"mso-style-=
+priority:100 !important;text-decoration:none !important;mso-line-height-rul=
+e:exactly;color:#5c68e2;font-size:20px;padding:5px 30px;display:inline-bloc=
+k;background:#ffffff;border-radius:5px;font-family:arial, 'helvetica neue',=
+ helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:24p=
+x;width:auto;text-align:center;letter-spacing:0;mso-padding-alt:0;mso-borde=
+r-alt:10px solid #5C68E2;border-color:#ffffff">BUY </a></span></td></tr></t=
+able></td></tr></table><!--[if mso]></td><td style=3D"width:20px"></td><td =
+style=3D"width:173px" valign=3D"top"><![endif]--><table cellpadding=3D"0" c=
+ellspacing=3D"0" align=3D"right" class=3D"es-right" role=3D"none" style=3D"=
+mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-s=
+pacing:0px;float:right"><tr><td align=3D"center" style=3D"padding:0;Margin:=
+0;width:173px"><table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" st=
+yle=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;b=
+order-spacing:0px;border-left:1px solid #efefef;border-right:1px solid #efe=
+fef;border-top:1px solid #efefef;border-bottom:1px solid #efefef;border-rad=
+ius:5px" role=3D"presentation"><tr><td align=3D"center" style=3D"padding:5p=
+x;Margin:0;font-size:0px"><img src=3D"https://ewjrizb.stripocdn.email/conte=
+nt/guids/CABINET_8d84dfeda0438b606b9ce58add2f9412acb0a672b94bba98bc263f2987=
+8de55b/images/screenshot_112.png" alt=3D"" width=3D"161" class=3D"adapt-img=
+" style=3D"display:block;font-size:14px;border:0;outline:none;text-decorati=
+on:none;margin:0"></td></tr><tr><td align=3D"center" style=3D"padding:0;Mar=
+gin:0;padding-right:10px;padding-left:10px"><h3 class=3D"es-m-txt-c" style=
+=3D"Margin:0;font-family:arial, 'helvetica neue', helvetica, sans-serif;mso=
+-line-height-rule:exactly;letter-spacing:0;font-size:20px;font-style:normal=
+;font-weight:bold;line-height:24px;color:#333333">Ow Ow Ow Ow T-Shirt</h3><=
+/td></tr><tr><td align=3D"center" style=3D"padding:0;Margin:0;padding-top:5=
+px;padding-right:10px;padding-left:10px"><p style=3D"Margin:0;mso-line-heig=
+ht-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;=
+line-height:18px;letter-spacing:0;color:#333333;font-size:12px"><br></p></t=
+d></tr><tr><td style=3D"padding:0;Margin:0"><table cellpadding=3D"0" cellsp=
+acing=3D"0" width=3D"100%" class=3D"es-menu" role=3D"presentation" style=3D=
+"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-=
+spacing:0px"><tr class=3D"images"><td align=3D"center" valign=3D"top" width=
+=3D"25%" id=3D"esd-menu-id-0" style=3D"padding:0;Margin:0;border:0;padding-=
+top:5px;padding-bottom:5px;padding-left:5px"><div style=3D"vertical-align:m=
+iddle;display:block"><img src=3D"https://ewjrizb.stripocdn.email/content/gu=
+ids/CABINET_1154ef987a3f887ce59a7fdb008c50d6/images/6321617972423213.png" a=
+lt=3D"Color 1" title=3D"Color 1" width=3D"15" style=3D"display:block;font-s=
+ize:14px;border:0;outline:none;text-decoration:none;margin:0"></div></td><t=
+d align=3D"center" valign=3D"top" width=3D"25%" id=3D"esd-menu-id-1" style=
+=3D"Margin:0;border:0;padding-top:5px;padding-bottom:5px;padding-right:5px;=
+padding-left:5px"><div style=3D"vertical-align:middle;display:block"><img s=
+rc=3D"https://ewjrizb.stripocdn.email/content/guids/CABINET_1154ef987a3f887=
+ce59a7fdb008c50d6/images/86171617972422570.png" alt=3D"Color 2" title=3D"Co=
+lor 2" width=3D"15" style=3D"display:block;font-size:14px;border:0;outline:=
+none;text-decoration:none;margin:0"></div></td><td align=3D"center" valign=
+=3D"top" width=3D"25%" id=3D"esd-menu-id-2" style=3D"Margin:0;border:0;padd=
+ing-top:5px;padding-bottom:5px;padding-right:5px;padding-left:5px"><div sty=
+le=3D"vertical-align:middle;display:block"><img src=3D"https://ewjrizb.stri=
+pocdn.email/content/guids/CABINET_1154ef987a3f887ce59a7fdb008c50d6/images/2=
+7291617972422659.png" alt=3D"Color 3" title=3D"Color 3" width=3D"15" style=
+=3D"display:block;font-size:14px;border:0;outline:none;text-decoration:none=
+;margin:0"></div></td><td align=3D"center" valign=3D"top" width=3D"25%" id=
+=3D"esd-menu-id-3" style=3D"Margin:0;border:0;padding-top:5px;padding-botto=
+m:5px;padding-right:5px;padding-left:5px"><div style=3D"vertical-align:midd=
+le;display:block"><img src=3D"https://ewjrizb.stripocdn.email/content/guids=
+/CABINET_1154ef987a3f887ce59a7fdb008c50d6/images/46851617972422027.png" alt=
+=3D"Color 4" title=3D"Color 4" width=3D"15" style=3D"display:block;font-siz=
+e:14px;border:0;outline:none;text-decoration:none;margin:0"></div></td></tr=
+></table></td></tr><tr><td align=3D"center" style=3D"Margin:0;padding-botto=
+m:5px;padding-top:5px;padding-right:10px;padding-left:10px"><h2 class=3D"es=
+-m-txt-c" style=3D"Margin:0;font-family:arial, 'helvetica neue', helvetica,=
+ sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:26px;fo=
+nt-style:normal;font-weight:bold;line-height:31.2px;color:#333333">$21 &nbs=
+p;<span style=3D"color:#999999"><s style=3D"text-decoration:line-through">$=
+25</s></span></h2></td></tr><tr><td align=3D"center" style=3D"padding:0;Mar=
+gin:0;padding-bottom:20px"><span class=3D"es-button-border" style=3D"border=
+-style:solid;border-color:#5c68e2;background:#ffffff;border-width:2px;displ=
+ay:inline-block;border-radius:5px;width:auto"><a href=3D"https://edana.pro/=
+vi/ow-ow-ow-ow-ow-ow-ow-character-t-shirt-1" target=3D"_blank" class=3D"es-=
+button es-button-1621620532163" style=3D"mso-style-priority:100 !important;=
+text-decoration:none !important;mso-line-height-rule:exactly;color:#5c68e2;=
+font-size:20px;padding:5px 30px;display:inline-block;background:#ffffff;bor=
+der-radius:5px;font-family:arial, 'helvetica neue', helvetica, sans-serif;f=
+ont-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:=
+center;letter-spacing:0;mso-padding-alt:0;mso-border-alt:10px solid #5C68E2=
+;border-color:#ffffff">BUY </a></span></td></tr></table></td></tr></table><=
+!--[if mso]></td></tr></table><![endif]--></td></tr><tr><td align=3D"left" =
+style=3D"padding:0;Margin:0;padding-right:20px;padding-left:20px;padding-bo=
+ttom:30px"><table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=
+=3D"none" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collaps=
+e:collapse;border-spacing:0px"><tr><td align=3D"center" valign=3D"top" styl=
+e=3D"padding:0;Margin:0;width:560px"><table cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" role=3D"presentation" style=3D"mso-table-lspace:0pt;m=
+so-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"><tr><td al=
+ign=3D"center" style=3D"padding:0;Margin:0;padding-bottom:10px;padding-top:=
+15px"><span class=3D"es-button-border" style=3D"border-style:solid;border-c=
+olor:#5c68e2;background:#5c68e2;border-width:2px;display:inline-block;borde=
+r-radius:5px;width:auto"><a href=3D"https://edana.pro/" target=3D"_blank" c=
+lass=3D"es-button es-button-1621620532168" style=3D"mso-style-priority:100 =
+!important;text-decoration:none !important;mso-line-height-rule:exactly;col=
+or:#FFFFFF;font-size:20px;padding:10px 30px;display:inline-block;background=
+:#5C68E2;border-radius:5px;font-family:arial, 'helvetica neue', helvetica, =
+sans-serif;font-weight:normal;font-style:normal;line-height:24px;width:auto=
+;text-align:center;letter-spacing:0;mso-padding-alt:0;mso-border-alt:10px s=
+olid #5C68E2">SHOP NOW</a></span></td></tr></table></td></tr></table></td><=
+/tr><tr><td align=3D"left" style=3D"padding:0;Margin:0;padding-right:20px;p=
+adding-left:20px;padding-top:20px"><!--[if mso]><table style=3D"width:560px=
+" cellpadding=3D"0" cellspacing=3D"0"><tr><td style=3D"width:143px" valign=
+=3D"top"><![endif]--><table cellpadding=3D"0" cellspacing=3D"0" align=3D"le=
+ft" class=3D"es-left" role=3D"none" style=3D"mso-table-lspace:0pt;mso-table=
+-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left"><tr><td=
+ align=3D"center" class=3D"es-m-p0r es-m-p20b" style=3D"padding:0;Margin:0;=
+width:133px"><table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=
+=3D"presentation" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border=
+-collapse:collapse;border-spacing:0px"><tr><td align=3D"center" style=3D"pa=
+dding:0;Margin:0;font-size:0px"><img src=3D"https://ewjrizb.stripocdn.email=
+/content/guids/CABINET_1154ef987a3f887ce59a7fdb008c50d6/images/179716179746=
+47919.png" alt=3D"" width=3D"45" style=3D"display:block;font-size:14px;bord=
+er:0;outline:none;text-decoration:none;margin:0"></td></tr><tr><td align=3D=
+"center" style=3D"padding:0;Margin:0;padding-top:10px;padding-bottom:10px">=
+<p style=3D"Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helve=
+tica neue', helvetica, sans-serif;line-height:21px;letter-spacing:0;color:#=
+333333;font-size:14px">FREE <br>SHIPPING</p></td></tr></table></td><td clas=
+s=3D"es-hidden" style=3D"padding:0;Margin:0;width:10px"></td></tr></table><=
+!--[if mso]></td><td style=3D"width:133px" valign=3D"top"><![endif]--><tabl=
+e cellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"es-left" role=
+=3D"none" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collaps=
+e:collapse;border-spacing:0px;float:left"><tr><td align=3D"center" class=3D=
+"es-m-p20b" style=3D"padding:0;Margin:0;width:133px"><table cellpadding=3D"=
+0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" style=3D"mso-tabl=
+e-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0=
+px"><tr><td align=3D"center" style=3D"padding:0;Margin:0;font-size:0px"><im=
+g src=3D"https://ewjrizb.stripocdn.email/content/guids/CABINET_1154ef987a3f=
+887ce59a7fdb008c50d6/images/80801617974647921.png" alt=3D"" width=3D"45" st=
+yle=3D"display:block;font-size:14px;border:0;outline:none;text-decoration:n=
+one;margin:0"></td></tr><tr><td align=3D"center" style=3D"padding:0;Margin:=
+0;padding-top:10px;padding-bottom:10px"><p style=3D"Margin:0;mso-line-heigh=
+t-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;l=
+ine-height:21px;letter-spacing:0;color:#333333;font-size:14px">EASY <br>PAY=
+MENT</p></td></tr></table></td><td class=3D"es-hidden" style=3D"padding:0;M=
+argin:0;width:10px"></td></tr></table><!--[if mso]></td><td style=3D"width:=
+132px" valign=3D"top"><![endif]--><table cellpadding=3D"0" cellspacing=3D"0=
+" align=3D"left" class=3D"es-left" role=3D"none" style=3D"mso-table-lspace:=
+0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:=
+left"><tr><td align=3D"center" class=3D"es-m-p20b" style=3D"padding:0;Margi=
+n:0;width:132px"><table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" =
+role=3D"presentation" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;bo=
+rder-collapse:collapse;border-spacing:0px"><tr><td align=3D"center" style=
+=3D"padding:0;Margin:0;font-size:0px"><img src=3D"https://ewjrizb.stripocdn=
+.email/content/guids/CABINET_1154ef987a3f887ce59a7fdb008c50d6/images/778616=
+17974647919.png" alt=3D"" width=3D"45" style=3D"display:block;font-size:14p=
+x;border:0;outline:none;text-decoration:none;margin:0"></td></tr><tr><td al=
+ign=3D"center" style=3D"padding:0;Margin:0;padding-top:10px;padding-bottom:=
+10px"><p style=3D"Margin:0;mso-line-height-rule:exactly;font-family:arial, =
+'helvetica neue', helvetica, sans-serif;line-height:21px;letter-spacing:0;c=
+olor:#333333;font-size:14px">QUICK <br>RETURN</p></td></tr></table></td></t=
+r></table><!--[if mso]></td><td style=3D"width:10px"></td><td style=3D"widt=
+h:132px" valign=3D"top"><![endif]--><table cellpadding=3D"0" cellspacing=3D=
+"0" align=3D"right" class=3D"es-right" role=3D"none" style=3D"mso-table-lsp=
+ace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;fl=
+oat:right"><tr><td align=3D"center" style=3D"padding:0;Margin:0;width:132px=
+"><table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"present=
+ation" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:c=
+ollapse;border-spacing:0px"><tr><td align=3D"center" style=3D"padding:0;Mar=
+gin:0;font-size:0px"><img src=3D"https://ewjrizb.stripocdn.email/content/gu=
+ids/CABINET_1154ef987a3f887ce59a7fdb008c50d6/images/59831617975283573.png" =
+alt=3D"" width=3D"45" style=3D"display:block;font-size:14px;border:0;outlin=
+e:none;text-decoration:none;margin:0"></td></tr><tr><td align=3D"center" st=
+yle=3D"padding:0;Margin:0;padding-top:10px;padding-bottom:10px"><p style=3D=
+"Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue',=
+ helvetica, sans-serif;line-height:21px;letter-spacing:0;color:#333333;font=
+-size:14px">QUALITY ASSURANCE</p></td></tr></table></td></tr></table><!--[i=
+f mso]></td></tr></table><![endif]--></td></tr></table></td></tr></table><t=
+able cellpadding=3D"0" cellspacing=3D"0" align=3D"center" class=3D"es-foote=
+r" role=3D"none" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-=
+collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !importa=
+nt;background-color:transparent;background-repeat:repeat;background-positio=
+n:center top"><tr><td align=3D"center" style=3D"padding:0;Margin:0"><table =
+align=3D"center" cellpadding=3D"0" cellspacing=3D"0" class=3D"es-footer-bod=
+y" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:colla=
+pse;border-spacing:0px;background-color:transparent;width:600px" role=3D"no=
+ne"><tr><td align=3D"left" style=3D"padding:0;Margin:0;padding-right:20px;p=
+adding-left:20px;padding-top:20px"><table cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" role=3D"none" style=3D"mso-table-lspace:0pt;mso-table-rsp=
+ace:0pt;border-collapse:collapse;border-spacing:0px"><tr><td align=3D"left"=
+ style=3D"padding:0;Margin:0;width:560px"><table cellspacing=3D"0" width=3D=
+"100%" cellpadding=3D"0" role=3D"presentation" style=3D"mso-table-lspace:0p=
+t;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"><tr><td=
+ align=3D"center" style=3D"padding:0;Margin:0;padding-top:15px;padding-bott=
+om:15px;font-size:0"><table cellpadding=3D"0" cellspacing=3D"0" class=3D"es=
+-table-not-adapt es-social" role=3D"presentation" style=3D"mso-table-lspace=
+:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"><tr>=
+<td align=3D"center" valign=3D"top" style=3D"padding:0;Margin:0;padding-rig=
+ht:40px"><img width=3D"32" title=3D"Facebook" src=3D"https://ewjrizb.stripo=
+cdn.email/content/assets/img/social-icons/logo-black/facebook-logo-black.pn=
+g" alt=3D"Fb" style=3D"display:block;font-size:14px;border:0;outline:none;t=
+ext-decoration:none;margin:0"></td><td valign=3D"top" align=3D"center" styl=
+e=3D"padding:0;Margin:0;padding-right:40px"><img alt=3D"Tw" width=3D"32" ti=
+tle=3D"Twitter" src=3D"https://ewjrizb.stripocdn.email/content/assets/img/s=
+ocial-icons/logo-black/twitter-logo-black.png" style=3D"display:block;font-=
+size:14px;border:0;outline:none;text-decoration:none;margin:0"></td><td ali=
+gn=3D"center" valign=3D"top" style=3D"padding:0;Margin:0;padding-right:40px=
+"><img src=3D"https://ewjrizb.stripocdn.email/content/assets/img/social-ico=
+ns/logo-black/instagram-logo-black.png" alt=3D"Inst" width=3D"32" title=3D"=
+Instagram" style=3D"display:block;font-size:14px;border:0;outline:none;text=
+-decoration:none;margin:0"></td><td align=3D"center" valign=3D"top" style=
+=3D"padding:0;Margin:0"><img alt=3D"Yt" width=3D"32" title=3D"Youtube" src=
+=3D"https://ewjrizb.stripocdn.email/content/assets/img/social-icons/logo-bl=
+ack/youtube-logo-black.png" style=3D"display:block;font-size:14px;border:0;=
+outline:none;text-decoration:none;margin:0"></td></tr></table></td></tr><tr=
+><td align=3D"center" style=3D"padding:0;Margin:0;padding-bottom:35px"><p s=
+tyle=3D"Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvetica=
+ neue', helvetica, sans-serif;line-height:18px;letter-spacing:0;color:#3333=
+33;font-size:12px">Want to change how you receive these emails?<br>You can =
+<a href=3D"https://docs.google.com/forms/d/e/1FAIpQLSfk8nqFIfGOxivk8TiCJloN=
+216f3iWpl0kANhNnDW3VZsfqrA/viewform" target=3D"_blank" style=3D"mso-line-he=
+ight-rule:exactly;text-decoration:underline;color:#333333;font-size:12px">u=
+nsubscribe</a></p></td></tr></table></td></tr></table></td></tr></table></t=
+d></tr></table><table cellpadding=3D"0" cellspacing=3D"0" align=3D"center" =
+class=3D"es-content" role=3D"none" style=3D"mso-table-lspace:0pt;mso-table-=
+rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-lay=
+out:fixed !important"><tr><td align=3D"center" class=3D"es-info-area" style=
+=3D"padding:0;Margin:0"><table align=3D"center" cellpadding=3D"0" cellspaci=
+ng=3D"0" bgcolor=3D"#00000000" class=3D"es-content-body" style=3D"mso-table=
+-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0p=
+x;background-color:transparent;width:600px" role=3D"none"><tr><td align=3D"=
+left" style=3D"padding:0;Margin:0;padding-right:20px;padding-left:20px;padd=
+ing-top:20px"><table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" rol=
+e=3D"none" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collap=
+se:collapse;border-spacing:0px"><tr><td align=3D"center" valign=3D"top" sty=
+le=3D"padding:0;Margin:0;width:560px"><table cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" role=3D"presentation" style=3D"mso-table-lspace:0pt;m=
+so-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"><tr><td al=
+ign=3D"center" class=3D"es-infoblock" style=3D"padding:0;Margin:0"><p style=
+=3D"Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvetica neu=
+e', helvetica, sans-serif;line-height:18px;letter-spacing:0;color:#CCCCCC;f=
+ont-size:12px"><a target=3D"_blank" href=3D"" style=3D"mso-line-height-rule=
+:exactly;text-decoration:underline;color:#CCCCCC;font-size:12px"></a>No lon=
+ger want to receive these emails?&nbsp;<a href=3D"" target=3D"_blank" style=
+=3D"mso-line-height-rule:exactly;text-decoration:underline;color:#CCCCCC;fo=
+nt-size:12px">Unsubscribe</a>.<a target=3D"_blank" href=3D"" style=3D"mso-l=
+ine-height-rule:exactly;text-decoration:underline;color:#CCCCCC;font-size:1=
+2px"></a></p></td></tr></table></td></tr></table></td></tr></table></td></t=
+r></table></td></tr></table></div></body></html>
+--000000000000ab8ec20640a6475a--

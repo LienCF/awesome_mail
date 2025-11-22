@@ -1,0 +1,782 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:d209:b0:4d4:9739:2b92 with SMTP id ji9csp2397329mdb;
+        Tue, 28 Oct 2025 21:43:30 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEr4SeGxZbcrtJFxaIewxd2ATxxxUoa7P27SFEOWC+ntysZahNm7JcaihFrYzBAnkMT7qO/
+X-Received: by 2002:a05:6214:1c48:b0:72b:37ff:b877 with SMTP id 6a1803df08f44-88009bd3838mr19016426d6.42.1761713010613;
+        Tue, 28 Oct 2025 21:43:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761713010; cv=none;
+        d=google.com; s=arc-20240605;
+        b=jYTJcKAPErQGV9OCbn1Kz9Px0jUTJugdGGTRzd7EyyBeDXdk6F1LJka7oE97RjPXAN
+         jl05lMMfanoOWQWECobU6x+8g4G3kkr7Qhype+9HJDenummuSxroPlnUVjGBAMHsa0kk
+         DB/FDR2I4lo8xw3cte3TVpxm6N2z8XeneAMgp/V8zBmTMOFvAr4DMsvLc6t/ekNy89+G
+         4UnmBOFFIyP/lUZexZjx+IdBa1U+IN+Kw+voAH6NR6zVZgU5JqYFiPHIE+7pBfWvXH44
+         I307Jgu2TdAJvR67WwnJzkkeoj39bn6a4XQp04epl++b2XtOCXzvzZMHevMqGxKgHj9v
+         GlQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:message-id:to:reply-to:from:date
+         :dkim-signature;
+        bh=l/7+v86diGPpIL3+Yw/O25qjNDsgWODEjV+ytRAlh7M=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=HcN7ey0MW5r+JXS3B5jnCxzesBe2+S/ryCDQ1X8nQBmtTJA660Rz60QoOUJ1CEyVrr
+         9C/wKRJesZTEZOXjRQmcGiGOZ6WlEGEQsvqbR78psKggP3yn+C+7wN+sF4kWw7HubOpo
+         vqMII0MYo6+dn1Z/3Pjj+TU/y6PzB0ZJ5VC6SZz9kg+gcMDC6gVaA3JjeJ5qUMzd1zc7
+         0+EGqjDSEsfkJGHL7mbdMCk7BdFsfglUO2Y0bFGn1XFxMxyZTftbc8ySXqOb3HOlgH6U
+         2olIbgfMkBnqOlJeK+nOJxUZjnguANu7BnpRm18CblpvrQ1ecMM1CNlUoClfl9iuPjDJ
+         ZXuw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@apple.com header.s=apple0517 header.b=dsp3anBD;
+       spf=pass (google.com: domain of appstoreconnect-noreply@apple.com designates 17.23.6.78 as permitted sender) smtp.mailfrom=appstoreconnect-noreply@apple.com;
+       dmarc=pass (p=QUARANTINE sp=REJECT dis=NONE) header.from=apple.com
+Return-Path: <appstoreconnect-noreply@apple.com>
+Received: from st56p01nt-txnmsbadger002101.apple.com (st56p01nt-txnmsbadger002101.apple.com. [17.23.6.78])
+        by mx.google.com with ESMTPS id 6a1803df08f44-87fc6ba6f2dsi36700706d6.1298.2025.10.28.21.43.30
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 28 Oct 2025 21:43:30 -0700 (PDT)
+Received-SPF: pass (google.com: domain of appstoreconnect-noreply@apple.com designates 17.23.6.78 as permitted sender) client-ip=17.23.6.78;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@apple.com header.s=apple0517 header.b=dsp3anBD;
+       spf=pass (google.com: domain of appstoreconnect-noreply@apple.com designates 17.23.6.78 as permitted sender) smtp.mailfrom=appstoreconnect-noreply@apple.com;
+       dmarc=pass (p=QUARANTINE sp=REJECT dis=NONE) header.from=apple.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=apple.com;
+	s=apple0517; t=1761713010;
+	bh=l/7+v86diGPpIL3+Yw/O25qjNDsgWODEjV+ytRAlh7M=;
+	h=Date:From:To:Message-ID:Subject:Content-Type;
+	b=dsp3anBD/syPaStt0CKGMUAflpjURvOkqSd6P8GoDCH4/VhVLFBbrpSNtbBiKqzLg
+	 pm1Cg6tGAGP2gQHYFAALA2AwPBrYf5G259uE9sm8EOxRE7JVW26pgKIzYF+NpzFxnb
+	 ziW390Z1rYwPda9UDXnhgMwtAe26Lt3R/ohViMbh2/sOTEKutVufMlZXssHYnT/PeH
+	 dfoIKkb0Bhy17Pp236BP5ZEDMWBKk289liiVa0twW7F+wtpXOeoWHhLyxgBEOPTD/w
+	 2Gd0XBKQUKH6RTttIjz0JAmU6l98Ma0Lia0kqPi3X1uFumxHTdyFDc+rd59qtdMO1K
+	 4reOximDfOTmg==
+Date: Wed, 29 Oct 2025 04:43:30 +0000 (GMT)
+From: App Store Connect <appstoreconnect-noreply@apple.com>
+Reply-To: appstoreconnect-noreply@apple.com
+To: liencf@gmail.com
+Message-ID: <1188963671.981045.1761713010438@email.apple.com>
+Subject: App Store Connect: App Analytics Weekly Summary
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_981043_317150293.1761713010438"
+X-EmailType-Id: 1022701
+X-Broadcast-Id: 1022701
+X-Sent-To: liencf@gmail.com,2,lnuIbSbvu1GElvIc4kA%2F%2B%2BLgfASgcMMPsb1XlxEWVy1IUZNdkxlyJLn4BGgNXpxuYeTJo4vbIpavtcUfVpgxK7VGaokg0deot2ExtOm%2ByUNw7wUa4tl%2F%2FXOE5q2mP72rLOuNOcsiwiijpud2%2Fl11xE%2F1PTSmm1mxM9G8onqQqZgV5z5qQLvDP0wLcPFFHXP2Uc0X%2FdW%2FuXvuZchK64iJ53pv9Z7GmlH6fAhIMHX28%2FNr1zh7F5jMo7SayAXXa9d7%2F1K1hNEzlL6jUNd2L5DHh4%2BEXfML8BdQsp%2FMCnvYAR5X915DSB2Pf4t64Ib48O09D20mTrUcthcqKEgG7e9ddbHCCwYMmzupNTZTqA5rC2PiZRMMdH1C72JDClXbVaNhvWymPp8WUKxt4BJyUbdLU264m2Jc2PEqgMfmAGOF0AXLTjLR3XqDcrS3AZ%2BuCSXBJL7mjnF2eFpnwNpXkyz%2B5mPEax56AE34iUTTHldRxeMdoKd4Vunr7zm228mZFOcd
+X-COMMS-C: false
+X-Business-Group: AMP Mailer
+X-Attach-Flag: N
+X-TXN_ID: a5f6c7c0-fc0f-4255-9c1a-36966e455a82
+X-DKIM_SIGN_REQUIRED: YES
+
+------=_Part_981043_317150293.1761713010438
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Disposition: inline
+
+App Analytics Weekly Summary
+                                           =20
+                                       =20
+                                   =20
+                                   =20
+                                       =20
+                                           =20
+                                                Chih Feng Lien
+                                           =20
+                                       =20
+                                   =20
+                                   =20
+                                       =20
+                                            October 20-26, 2025
+                                       =20
+                                   =20
+                                   =20
+                                       =20
+                                           =20
+
+                                               =20
+                                                   =20
+                                                       =20
+                                                           =20
+                                                               =20
+                                                                   =20
+                                                                   =20
+                                                                       =20
+                                                                       =20
+                                                                           =
+ EventKeeper =E5=80=92=E6=95=B8=E8=A8=88=E6=97=A5=E5=99=A8
+                                                                           =
+ iOS
+                                                                       =20
+                                                                   =20
+                                                                   =20
+                                                               =20
+                                                           =20
+                                                       =20
+                                                            =20
+                                                                 Impression=
+s
+                                                                 41
+                                                                 -15%
+                                                           =20
+                                                           =20
+                                                                 App Units
+                                                                 2
+                                                                 +100%
+                                                           =20
+                                                           =20
+                                                                 Proceeds
+                                                                 0
+                                                                 -
+                                                           =20
+                                                           =20
+                                                               =20
+
+                                                                    Session=
+sOpt-in Only
+                                                                 8
+                                                                 -11%
+                                                           =20
+                                                           =20
+                                                               =20
+
+                                                                    Crashes=
+Opt-in Only
+                                                                 0
+                                                                 -
+                                                           =20
+
+                                                   =20
+                                               =20
+                                           =20
+                                       =20
+                                   =20
+                                   =20
+                               =20
+                           =20
+                       =20
+                   =20
+                   =20
+                       =20
+                       =20
+                           =20
+                               =20
+                                   =20
+                                   =20
+                                       =20
+                                            Contact Us=C2=A0|=C2=A0=C2=A0
+                                            App Store Connect=C2=A0|=C2=A0
+                                            Change Notification Settings=C2=
+=A0|=C2=A0
+                                            One=C2=A0Apple=C2=A0Park=C2=A0W=
+ay,=C2=A0Cupertino,=C2=A0CA=C2=A095014
+                                       =20
+                                   =20
+                                   =20
+                                       =20
+                                   =20
+                                   =20
+                                       =20
+                                            Privacy Policy=C2=A0|=C2=A0=C2=
+=A0
+                                             Terms of Service=C2=A0|=C2=A0=
+=C2=A0
+                                            Terms of Sale
+
+------=_Part_981043_317150293.1761713010438
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Disposition: inline
+
+<!DOCTYPE html>
+<html style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica=
+ Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: =
+200; margin: 0px; padding: 0px;"><body bgcolor=3D"#f7f7f7" style=3D"font-fa=
+mily: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helveti=
+ca Neue', Arial, Helvetica, sans-serif; font-weight: 200; margin: 0px; padd=
+ing: 0px;">
+
+<table bgcolor=3D"#F7F7F7" cellspacing=3D"0" cellpadding=3D"0" border=3D"0"=
+ width=3D"100%" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', =
+'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; fon=
+t-weight: 200; margin: 0px; padding: 0px;">
+    <tbody style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helv=
+etica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-wei=
+ght: 200; margin: 0px; padding: 0px;">
+    <tr style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helveti=
+ca Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight=
+: 200; margin: 0px; padding: 0px;">
+        <td style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Hel=
+vetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-we=
+ight: 200; margin: 0px; padding: 0px;">
+            <div style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light',=
+ 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; fo=
+nt-weight: 200; margin: 0px; padding: 0px;">
+                <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" sty=
+le=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Lig=
+ht', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; widt=
+h: 100%; margin: 0px; padding: 0px;">
+                    <tbody style=3D"font-family: 'SF UI Text', 'HelveticaNe=
+ue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans=
+-serif; font-weight: 200; margin: 0px; padding: 0px;">
+                    <tr style=3D"font-family: 'SF UI Text', 'HelveticaNeue-=
+Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-se=
+rif; font-weight: 200; margin: 0px; padding: 0px;">
+                        <td cellspacing=3D"0" cellpadding=3D"0" border=3D"0=
+" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neu=
+e Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200;=
+ margin: 0px; padding: 0px;"></td>
+                        <td cellspacing=3D"0" cellpadding=3D"0" border=3D"0=
+" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neu=
+e Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200;=
+ display: block !important; max-width: 700px !important; clear: both !impor=
+tant; margin: 0 auto; padding: 0px;">
+                            <div style=3D"font-family: 'SF UI Text', 'Helve=
+ticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica=
+, sans-serif; font-weight: 200; max-width: 700px; display: block; backgroun=
+d-color: #FFF; margin: 0 auto; padding: 0px 25px 15px;">
+                                <table style=3D"font-family: 'SF UI Text', =
+'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Hel=
+vetica, sans-serif; font-weight: 200; width: 100%; margin: 0px; padding: 0p=
+x;">
+                                    <tbody style=3D"font-family: 'SF UI Tex=
+t', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial,=
+ Helvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">
+                                    <tr style=3D"font-family: 'SF UI Text',=
+ 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, He=
+lvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">
+                                        <td style=3D"font-family: 'SF UI Te=
+xt', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial=
+, Helvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">
+                                            <div style=3D"font-family: 'SF =
+UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', =
+Arial, Helvetica, sans-serif; font-weight: 200; border-bottom-style: solid;=
+ border-bottom-width: 1px; border-bottom-color: #EFEFEF; margin: 0px; paddi=
+ng: 0px 0px 10px;"><img src=3D"https://itunesconnect.apple.com/itc/images/e=
+mail/email-asc-logo@2X.png" border=3D"0" alt=3D"App Store Connect" width=3D=
+"173" height=3D"45" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Ligh=
+t', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif;=
+ font-weight: 200; margin: 0px; padding: 0px;"></div>
+                                        </td>
+                                    </tr>
+                                    <tr style=3D"font-family: 'SF UI Text',=
+ 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, He=
+lvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">
+                                        <td style=3D"font-family: 'SF UI Te=
+xt', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial=
+, Helvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">
+                                            <div style=3D"font-family: 'Hel=
+vetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: 400; =
+color: #4C4C4C; font-size: 20px; margin: 0px; padding: 18px 0px 0px;">
+                                                <a href=3D"https://appstore=
+connect.apple.com/analytics/apps/w:20251020?eid=3Dws20251020" target=3D"_bl=
+ank" style=3D"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial,=
+ sans-serif; font-weight: 400; text-decoration: none !important; color: inh=
+erit !important; font-size: 20px; margin: 0px; padding: 18px 0px 0px;">App =
+Analytics Weekly Summary</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr style=3D"font-family: 'SF UI Text',=
+ 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, He=
+lvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">
+                                        <td style=3D"font-family: 'SF UI Te=
+xt', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial=
+, Helvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">
+                                            <div style=3D"font-family: 'SF =
+UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', =
+Arial, Helvetica, sans-serif; font-weight: 200; color: #4C4C4C; font-size: =
+15px; margin: 0px; padding: 5px 0px 0px;">
+                                                Chih Feng Lien
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr style=3D"font-family: 'SF UI Text',=
+ 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, He=
+lvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">
+                                        <td style=3D"font-family: 'SF UI Te=
+xt', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial=
+, Helvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">
+                                            <div style=3D"font-family: 'SF =
+UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', =
+Arial, Helvetica, sans-serif; font-weight: 200; color: #4C4C4C; font-size: =
+15px; margin: 0px; padding: 0px;">October 20-26, 2025</div>
+                                        </td>
+                                    </tr>
+                                    <tr style=3D"font-family: 'SF UI Text',=
+ 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, He=
+lvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">
+                                        <td style=3D"font-family: 'SF UI Te=
+xt', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial=
+, Helvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">
+                                            <div style=3D"font-family: 'SF =
+UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', =
+Arial, Helvetica, sans-serif; font-weight: 200; margin: 0px; padding: 10px =
+0px 0px;">
+
+                                                <table style=3D"font-family=
+: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica N=
+eue', Arial, Helvetica, sans-serif; font-weight: 200; width: 100%; margin: =
+0px; padding: 0px;">
+                                                    <tbody style=3D"font-fa=
+mily: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helveti=
+ca Neue', Arial, Helvetica, sans-serif; font-weight: 200; margin: 0px; padd=
+ing: 0px;">
+                                                        <tr style=3D"font-f=
+amily: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvet=
+ica Neue', Arial, Helvetica, sans-serif; font-weight: 200; margin: 0px; pad=
+ding: 0px;">
+                                                            <td colspan=3D"=
+3" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Ne=
+ue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200=
+; margin: 0px; padding: 50px 0px 8px;">
+                                                                <table styl=
+e=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Ligh=
+t', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; width=
+: 100%; margin: 0px; padding: 0px;">
+                                                                    <tbody =
+style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue =
+Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; m=
+argin: 0px; padding: 0px;">
+                                                                    <tr sty=
+le=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Lig=
+ht', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; marg=
+in: 0px; padding: 0px;">
+                                                                        <td=
+ width=3D"56px" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', =
+'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; fon=
+t-weight: 200; margin: 0px; padding: 0px;"><a href=3D"https://appstoreconne=
+ct.apple.com/analytics/app/w:20251020/6748804156/overview?eid=3Dws20251020"=
+ target=3D"_blank" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light=
+', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; =
+font-weight: 200; text-decoration: none !important; color: inherit !importa=
+nt; margin: 0px; padding: 0px;"><img src=3D"https://is1-ssl.mzstatic.com/im=
+age/thumb/Purple211/v4/1e/88/56/1e885619-a765-4822-3b49-d34f91f93655/AppIco=
+n-0-0-1x_U007emarketing-0-8-0-85-220.png/170x170bb.png" style=3D"font-famil=
+y: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica =
+Neue', Arial, Helvetica, sans-serif; font-weight: 200; height: 50px; border=
+-radius: 10px; margin: 0px 5px 0px -4px; padding: 0px; border: 1px solid rg=
+ba(128,128,128,0.2);"></a></td>
+                                                                        <td=
+ style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue=
+ Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; =
+margin: 0px; padding: 0px;">
+                                                                           =
+ <div style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica=
+ Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: =
+200; font-size: 20px; color: #5d6168; line-height: 21px; margin: 0px; paddi=
+ng: 0px;"><a href=3D"https://appstoreconnect.apple.com/analytics/app/w:2025=
+1020/6748804156/overview?eid=3Dws20251020" target=3D"_blank" style=3D"font-=
+family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helve=
+tica Neue', Arial, Helvetica, sans-serif; font-weight: 200; text-decoration=
+: none !important; color: inherit !important; margin: 0px; padding: 0px;">E=
+ventKeeper =E5=80=92=E6=95=B8=E8=A8=88=E6=97=A5=E5=99=A8</a></div>
+                                                                           =
+ <div style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica=
+ Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: =
+200; font-size: 14px; color: #A6aaa8; margin: 5px 0px 0px; padding: 0px;"><=
+a href=3D"https://appstoreconnect.apple.com/analytics/app/w:20251020/674880=
+4156/overview?eid=3Dws20251020" target=3D"_blank" style=3D"font-family: 'SF=
+ UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',=
+ Arial, Helvetica, sans-serif; font-weight: 200; text-decoration: none !imp=
+ortant; color: inherit !important; margin: 0px; padding: 0px;">iOS</a></div=
+>
+                                                                        </t=
+d>
+                                                                    </tr>
+                                                                    </tbody=
+>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                             <tr style=3D"f=
+ont-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'H=
+elvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; margin: 0px=
+; padding: 0px;">
+                                                                <td style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; font-s=
+ize: 15px; color: #4c4c4c; border-bottom-color: #EFEFEF; border-bottom-widt=
+h: 1px; border-bottom-style: solid; border-top-width: 1px; border-top-color=
+: #EFEFEF; border-top-style: solid; margin: 0px; padding: 15px 0px;"><a hre=
+f=3D"https://appstoreconnect.apple.com/analytics/app/w:20251020/6748804156/=
+metrics?measureKey=3DimpressionsTotal&zoomType=3Dday&chartType=3Dsingleaxis=
+&annotationsVisible=3Dtrue&eid=3Dws20251020" target=3D"_blank" style=3D"fon=
+t-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Hel=
+vetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; text-decorati=
+on: none !important; color: inherit !important; margin: 0px; padding: 0px;"=
+> Impressions</a></td>
+                                                                <td style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; font-s=
+ize: 15px; color: #4c4c4c; border-bottom-color: #EFEFEF; border-bottom-widt=
+h: 1px; border-bottom-style: solid; border-top-width: 1px; border-top-color=
+: #EFEFEF; border-top-style: solid; text-align: right; margin: 0px; padding=
+: 15px 0px;" align=3D"right"><a href=3D"https://appstoreconnect.apple.com/a=
+nalytics/app/w:20251020/6748804156/metrics?measureKey=3DimpressionsTotal&zo=
+omType=3Dday&chartType=3Dsingleaxis&annotationsVisible=3Dtrue&eid=3Dws20251=
+020" target=3D"_blank" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-L=
+ight', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-ser=
+if; font-weight: 200; text-decoration: none !important; color: inherit !imp=
+ortant; margin: 0px; padding: 0px;"> 41</a></td>
+                                                                <td style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; font-s=
+ize: 15px; color: #FC3A39; border-bottom-color: #EFEFEF; border-bottom-widt=
+h: 1px; border-bottom-style: solid; border-top-width: 1px; border-top-color=
+: #EFEFEF; border-top-style: solid; text-align: right; margin: 0px; padding=
+: 15px 0px;" align=3D"right"><a href=3D"https://appstoreconnect.apple.com/a=
+nalytics/app/w:20251020/6748804156/metrics?measureKey=3DimpressionsTotal&zo=
+omType=3Dday&chartType=3Dsingleaxis&annotationsVisible=3Dtrue&eid=3Dws20251=
+020" target=3D"_blank" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-L=
+ight', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-ser=
+if; font-weight: 200; text-decoration: none !important; color: inherit !imp=
+ortant; margin: 0px; padding: 0px;"> -15%</a></td>
+                                                            </tr>
+                                                            <tr style=3D"fo=
+nt-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'He=
+lvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; margin: 0px;=
+ padding: 0px;">
+                                                                <td style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; font-s=
+ize: 15px; color: #4c4c4c; border-bottom-color: #EFEFEF; border-bottom-widt=
+h: 1px; border-bottom-style: solid; margin: 0px; padding: 15px 0px;"><a hre=
+f=3D"https://appstoreconnect.apple.com/analytics/app/w:20251020/6748804156/=
+metrics?measureKey=3Dunits&zoomType=3Dday&chartType=3Dsingleaxis&annotation=
+sVisible=3Dtrue&eid=3Dws20251020" target=3D"_blank" style=3D"font-family: '=
+SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue=
+', Arial, Helvetica, sans-serif; font-weight: 200; text-decoration: none !i=
+mportant; color: inherit !important; margin: 0px; padding: 0px;"> App Units=
+</a></td>
+                                                                <td style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; font-s=
+ize: 15px; color: #4c4c4c; border-bottom-color: #EFEFEF; border-bottom-widt=
+h: 1px; border-bottom-style: solid; text-align: right; margin: 0px; padding=
+: 15px 0px;" align=3D"right"><a href=3D"https://appstoreconnect.apple.com/a=
+nalytics/app/w:20251020/6748804156/metrics?measureKey=3Dunits&zoomType=3Dda=
+y&chartType=3Dsingleaxis&annotationsVisible=3Dtrue&eid=3Dws20251020" target=
+=3D"_blank" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Hel=
+vetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-we=
+ight: 200; text-decoration: none !important; color: inherit !important; mar=
+gin: 0px; padding: 0px;"> 2</a></td>
+                                                                <td style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; font-s=
+ize: 15px; color: #4CC560; border-bottom-color: #EFEFEF; border-bottom-widt=
+h: 1px; border-bottom-style: solid; text-align: right; margin: 0px; padding=
+: 15px 0px;" align=3D"right"><a href=3D"https://appstoreconnect.apple.com/a=
+nalytics/app/w:20251020/6748804156/metrics?measureKey=3Dunits&zoomType=3Dda=
+y&chartType=3Dsingleaxis&annotationsVisible=3Dtrue&eid=3Dws20251020" target=
+=3D"_blank" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Hel=
+vetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-we=
+ight: 200; text-decoration: none !important; color: inherit !important; mar=
+gin: 0px; padding: 0px;"> +100%</a></td>
+                                                            </tr>
+                                                            <tr style=3D"fo=
+nt-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'He=
+lvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; margin: 0px;=
+ padding: 0px;">
+                                                                <td style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; font-s=
+ize: 15px; color: #4c4c4c; border-bottom-color: #EFEFEF; border-bottom-widt=
+h: 1px; border-bottom-style: solid; margin: 0px; padding: 15px 0px;"><a hre=
+f=3D"https://appstoreconnect.apple.com/analytics/app/w:20251020/6748804156/=
+metrics?measureKey=3Dproceeds&zoomType=3Dday&chartType=3Dsingleaxis&annotat=
+ionsVisible=3Dtrue&eid=3Dws20251020" target=3D"_blank" style=3D"font-family=
+: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica N=
+eue', Arial, Helvetica, sans-serif; font-weight: 200; text-decoration: none=
+ !important; color: inherit !important; margin: 0px; padding: 0px;"> Procee=
+ds</a></td>
+                                                                <td style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; font-s=
+ize: 15px; color: #4c4c4c; border-bottom-color: #EFEFEF; border-bottom-widt=
+h: 1px; border-bottom-style: solid; text-align: right; margin: 0px; padding=
+: 15px 0px;" align=3D"right"><a href=3D"https://appstoreconnect.apple.com/a=
+nalytics/app/w:20251020/6748804156/metrics?measureKey=3Dproceeds&zoomType=
+=3Dday&chartType=3Dsingleaxis&annotationsVisible=3Dtrue&eid=3Dws20251020}" =
+target=3D"_blank" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light'=
+, 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; f=
+ont-weight: 200; text-decoration: none !important; color: inherit !importan=
+t; margin: 0px; padding: 0px;"> 0</a></td>
+                                                                <td style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; font-s=
+ize: 15px; color: #666; border-bottom-color: #EFEFEF; border-bottom-width: =
+1px; border-bottom-style: solid; text-align: right; margin: 0px; padding: 1=
+5px 0px;" align=3D"right"><a href=3D"https://appstoreconnect.apple.com/anal=
+ytics/app/w:20251020/6748804156/metrics?measureKey=3Dproceeds&zoomType=3Dda=
+y&chartType=3Dsingleaxis&annotationsVisible=3Dtrue&eid=3Dws20251020}" targe=
+t=3D"_blank" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'He=
+lvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-w=
+eight: 200; text-decoration: none !important; color: inherit !important; ma=
+rgin: 0px; padding: 0px;"> -</a></td>
+                                                            </tr>
+                                                            <tr style=3D"fo=
+nt-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'He=
+lvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; margin: 0px;=
+ padding: 0px;">
+                                                                <td style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; font-s=
+ize: 15px; color: #4c4c4c; border-bottom-color: #EFEFEF; border-bottom-widt=
+h: 1px; border-bottom-style: solid; margin: 0px; padding: 15px 0px;"><a hre=
+f=3D"https://appstoreconnect.apple.com/analytics/app/w:20251020/6748804156/=
+metrics?measureKey=3Dsessions&zoomType=3Dday&chartType=3Dsingleaxis&annotat=
+ionsVisible=3Dtrue&eid=3Dws20251020" target=3D"_blank" style=3D"font-family=
+: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica N=
+eue', Arial, Helvetica, sans-serif; font-weight: 200; text-decoration: none=
+ !important; color: inherit !important; margin: 0px; padding: 0px;">
+
+                                                                    Session=
+s<span style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetic=
+a Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight:=
+ 200; font-size: 11px; color: #A6aaa8; -webkit-text-size-adjust: none !impo=
+rtant; margin: 0px; padding: 0px 0px 0px 5px;">Opt-in Only</span></a></td>
+                                                                <td style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; font-s=
+ize: 15px; color: #4c4c4c; border-bottom-color: #EFEFEF; border-bottom-widt=
+h: 1px; border-bottom-style: solid; text-align: right; margin: 0px; padding=
+: 15px 0px;" align=3D"right"><a href=3D"https://appstoreconnect.apple.com/a=
+nalytics/app/w:20251020/6748804156/metrics?measureKey=3Dsessions&zoomType=
+=3Dday&chartType=3Dsingleaxis&annotationsVisible=3Dtrue&eid=3Dws20251020" t=
+arget=3D"_blank" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light',=
+ 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; fo=
+nt-weight: 200; text-decoration: none !important; color: inherit !important=
+; margin: 0px; padding: 0px;"> 8</a></td>
+                                                                <td style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; font-s=
+ize: 15px; color: #FC3A39; border-bottom-color: #EFEFEF; border-bottom-widt=
+h: 1px; border-bottom-style: solid; text-align: right; margin: 0px; padding=
+: 15px 0px;" align=3D"right"><a href=3D"https://appstoreconnect.apple.com/a=
+nalytics/app/w:20251020/6748804156/metrics?measureKey=3Dsessions&zoomType=
+=3Dday&chartType=3Dsingleaxis&annotationsVisible=3Dtrue&eid=3Dws20251020" t=
+arget=3D"_blank" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light',=
+ 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; fo=
+nt-weight: 200; text-decoration: none !important; color: inherit !important=
+; margin: 0px; padding: 0px;"> -11%</a></td>
+                                                            </tr>
+                                                            <tr style=3D"fo=
+nt-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'He=
+lvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; margin: 0px;=
+ padding: 0px;">
+                                                                <td style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; font-s=
+ize: 15px; color: #4c4c4c; border-bottom-color: #EFEFEF; border-bottom-widt=
+h: 1px; border-bottom-style: solid; margin: 0px; padding: 15px 0px;"><a hre=
+f=3D"https://appstoreconnect.apple.com/analytics/app/w:20251020/6748804156/=
+metrics?measureKey=3Dcrashes&zoomType=3Dday&chartType=3Dsingleaxis&annotati=
+onsVisible=3Dtrue&eid=3Dws20251020" target=3D"_blank" style=3D"font-family:=
+ 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Ne=
+ue', Arial, Helvetica, sans-serif; font-weight: 200; text-decoration: none =
+!important; color: inherit !important; margin: 0px; padding: 0px;">
+
+                                                                    Crashes=
+<span style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica=
+ Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: =
+200; font-size: 11px; color: #A6aaa8; -webkit-text-size-adjust: none !impor=
+tant; margin: 0px; padding: 0px 0px 0px 5px;">Opt-in Only</span></a></td>
+                                                                <td style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; font-s=
+ize: 15px; color: #4c4c4c; border-bottom-color: #EFEFEF; border-bottom-widt=
+h: 1px; border-bottom-style: solid; text-align: right; margin: 0px; padding=
+: 15px 0px;" align=3D"right"><a href=3D"https://appstoreconnect.apple.com/a=
+nalytics/app/w:20251020/6748804156/metrics?measureKey=3Dcrashes&zoomType=3D=
+day&chartType=3Dsingleaxis&annotationsVisible=3Dtrue&eid=3Dws20251020" targ=
+et=3D"_blank" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'H=
+elvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-=
+weight: 200; text-decoration: none !important; color: inherit !important; m=
+argin: 0px; padding: 0px;"> 0</a></td>
+                                                                <td style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; font-s=
+ize: 15px; color: #666; border-bottom-color: #EFEFEF; border-bottom-width: =
+1px; border-bottom-style: solid; text-align: right; margin: 0px; padding: 1=
+5px 0px;" align=3D"right"><a href=3D"https://appstoreconnect.apple.com/anal=
+ytics/app/w:20251020/6748804156/metrics?measureKey=3Dcrashes&zoomType=3Dday=
+&chartType=3Dsingleaxis&annotationsVisible=3Dtrue&eid=3Dws20251020" target=
+=3D"_blank" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Hel=
+vetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-we=
+ight: 200; text-decoration: none !important; color: inherit !important; mar=
+gin: 0px; padding: 0px;"> -</a></td>
+                                                            </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style=3D"font-family: 'SF UI Text', 'HelveticaNeue-=
+Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-se=
+rif; font-weight: 200; margin: 0px; padding: 0px;">
+                        <td cellspacing=3D"0" cellpadding=3D"0" border=3D"0=
+" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neu=
+e Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200;=
+ margin: 0px; padding: 0px;"></td>
+                        <td cellspacing=3D"0" cellpadding=3D"0" border=3D"0=
+" style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neu=
+e Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200;=
+ display: block !important; max-width: 700px !important; clear: both !impor=
+tant; margin: 0 auto; padding: 0px;">
+                            <div style=3D"font-family: 'SF UI Text', 'Helve=
+ticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica=
+, sans-serif; font-weight: 200; max-width: 700px; display: block; backgroun=
+d-color: #FFF; margin: 0 auto; padding: 60px 25px 30px;">
+                                <table border=3D"0" cellspacing=3D"0" cellp=
+adding=3D"0" align=3D"center" style=3D"font-family: 'SF UI Text', 'Helvetic=
+aNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, s=
+ans-serif; font-weight: 200; width: 100%; margin: 0px; padding: 0px;">
+                                    <tbody style=3D"font-family: 'SF UI Tex=
+t', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial,=
+ Helvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">
+                                    <tr style=3D"font-family: 'SF UI Text',=
+ 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, He=
+lvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">
+                                        <td style=3D"font-family: 'SF UI Te=
+xt', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial=
+, Helvetica, sans-serif; font-weight: 200; font-size: 11px !important; -web=
+kit-text-size-adjust: none !important; line-height: 12px; color: rgb(159,15=
+9,159); text-align: center; margin: 0px; padding: 0px;" align=3D"center">
+                                            <a href=3D"https://developer.ap=
+ple.com/contact" target=3D"_blank" style=3D"font-family: 'SF UI Text', 'Hel=
+veticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helveti=
+ca, sans-serif; font-weight: 200; text-decoration: none !important; color: =
+#0088FF !important; font-size: 11px !important; -webkit-text-size-adjust: n=
+one !important; margin: 0px; padding: 0px;">Contact Us</a><span style=3D"fo=
+nt-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'He=
+lvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; margin: 0px;=
+ padding: 0px;">&nbsp;</span><span style=3D"font-family: 'SF UI Text', 'Hel=
+veticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helveti=
+ca, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">|</span><span=
+ style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue=
+ Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; =
+margin: 0px; padding: 0px;">&nbsp;</span><span style=3D"font-family: 'SF UI=
+ Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Ar=
+ial, Helvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">&=
+nbsp;</span>
+                                            <a href=3D"http://appstoreconne=
+ct.apple.com/" target=3D"_blank" style=3D"font-family: 'SF UI Text', 'Helve=
+ticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica=
+, sans-serif; font-weight: 200; text-decoration: none !important; color: #0=
+088FF !important; font-size: 11px !important; -webkit-text-size-adjust: non=
+e !important; margin: 0px; padding: 0px;">App Store Connect</a><span style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; margin=
+: 0px; padding: 0px;">&nbsp;</span><span style=3D"font-family: 'SF UI Text'=
+, 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, H=
+elvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">|</span=
+><span style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetic=
+a Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight:=
+ 200; margin: 0px; padding: 0px;">&nbsp;</span>
+                                            <a href=3D"https://appstoreconn=
+ect.apple.com/WebObjects/iTunesConnect.woa/ra/ng/users_roles/1320441372/not=
+ifications" target=3D"_blank" style=3D"font-family: 'SF UI Text', 'Helvetic=
+aNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, s=
+ans-serif; font-weight: 200; text-decoration: none !important; color: #0088=
+FF !important; font-size: 11px !important; -webkit-text-size-adjust: none !=
+important; margin: 0px; padding: 0px;">Change Notification Settings</a><spa=
+n style=3D"white-space:nowrap; font-family: 'SF UI Text', 'HelveticaNeue-Li=
+ght', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-seri=
+f; font-weight: 200; margin: 0px; padding: 0px;">&nbsp;</span><span style=
+=3D"white-space:nowrap; font-family: 'SF UI Text', 'HelveticaNeue-Light', '=
+Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font=
+-weight: 200; margin: 0px; padding: 0px;">|</span><span style=3D"white-spac=
+e:nowrap; font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue=
+ Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; =
+margin: 0px; padding: 0px;">&nbsp;</span>
+                                            <span style=3D"font-family: 'SF=
+ UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',=
+ Arial, Helvetica, sans-serif; font-weight: 200; text-decoration: none !imp=
+ortant; color: inherit !important; margin: 0px; padding: 0px; font-size: 11=
+px !important; ">One&nbsp;Apple&nbsp;Park&nbsp;Way,&nbsp;Cupertino,&nbsp;CA=
+&nbsp;95014</span>
+                                        </td>
+                                    </tr>
+                                    <tr style=3D"font-family: 'SF UI Text',=
+ 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, He=
+lvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">
+                                        <td style=3D"font-family: 'SF UI Te=
+xt', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial=
+, Helvetica, sans-serif; font-weight: 200; font-size: 11px !important; -web=
+kit-text-size-adjust: none !important; line-height: 12px; color: rgb(159,15=
+9,159); text-align: center; margin: 0px; padding: 0px;" align=3D"center"><i=
+mg src=3D"https://itc-mzstatic-origin.itunes.apple.com/itc/images/email/ema=
+il-hr.png" width=3D"90%" height=3D"18" style=3D"font-family: 'SF UI Text', =
+'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Hel=
+vetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;"></td>
+                                    </tr>
+                                    <tr style=3D"font-family: 'SF UI Text',=
+ 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, He=
+lvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">
+                                        <td style=3D"font-family: 'SF UI Te=
+xt', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial=
+, Helvetica, sans-serif; font-weight: 200; font-size: 11px !important; -web=
+kit-text-size-adjust: none !important; line-height: 12px; color: rgb(159,15=
+9,159); text-align: center; margin: 0px; padding: 0px;" align=3D"center">
+                                            <a href=3D"http://www.apple.com=
+/legal/privacy/" target=3D"_blank" style=3D"font-family: 'SF UI Text', 'Hel=
+veticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helveti=
+ca, sans-serif; font-weight: 200; text-decoration: none !important; color: =
+#0088FF !important; font-size: 11px !important; -webkit-text-size-adjust: n=
+one !important; margin: 0px; padding: 0px;">Privacy Policy</a><span style=
+=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light=
+', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; margin=
+: 0px; padding: 0px;">&nbsp;</span><span style=3D"font-family: 'SF UI Text'=
+, 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, H=
+elvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0px;">|</span=
+><span style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetic=
+a Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight:=
+ 200; margin: 0px; padding: 0px;">&nbsp;</span><span style=3D"font-family: =
+'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neu=
+e', Arial, Helvetica, sans-serif; font-weight: 200; margin: 0px; padding: 0=
+px;">&nbsp;</span>
+                                            <a href=3D"http://www.apple.com=
+/support/itunes/legal/terms.html" target=3D"_blank" style=3D"font-family: '=
+SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue=
+', Arial, Helvetica, sans-serif; font-weight: 200; text-decoration: none !i=
+mportant; color: #0088FF !important; font-size: 11px !important; -webkit-te=
+xt-size-adjust: none !important; margin: 0px; padding: 0px;"> Terms of Serv=
+ice</a><span style=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'He=
+lvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-w=
+eight: 200; margin: 0px; padding: 0px;">&nbsp;</span><span style=3D"font-fa=
+mily: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helveti=
+ca Neue', Arial, Helvetica, sans-serif; font-weight: 200; margin: 0px; padd=
+ing: 0px;">|</span><span style=3D"font-family: 'SF UI Text', 'HelveticaNeue=
+-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-s=
+erif; font-weight: 200; margin: 0px; padding: 0px;">&nbsp;</span><span styl=
+e=3D"font-family: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Ligh=
+t', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 200; margi=
+n: 0px; padding: 0px;">&nbsp;</span>
+                                            <a href=3D"http://www.apple.com=
+/support/itunes/legal/policies.html" target=3D"_blank" style=3D"font-family=
+: 'SF UI Text', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica N=
+eue', Arial, Helvetica, sans-serif; font-weight: 200; text-decoration: none=
+ !important; color: #0088FF !important; font-size: 11px !important; -webkit=
+-text-size-adjust: none !important; margin: 0px; padding: 0px;">Terms of Sa=
+le</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body></html>
+------=_Part_981043_317150293.1761713010438--

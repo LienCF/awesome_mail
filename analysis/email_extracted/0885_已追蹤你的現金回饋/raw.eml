@@ -1,0 +1,453 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:8da6:b0:4d4:9739:2b92 with SMTP id gr38csp2768402mdb;
+        Wed, 22 Oct 2025 21:20:50 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH/dirX0oUgUOIh/ecaU+fZnlFGm6X+Ve8f/ct48eulVipF74ZzPLnrts7jmtd7A/rObiyX
+X-Received: by 2002:a05:690c:4982:b0:784:8153:c61a with SMTP id 00721157ae682-7848153cf5fmr167355057b3.34.1761193250135;
+        Wed, 22 Oct 2025 21:20:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761193250; cv=none;
+        d=google.com; s=arc-20240605;
+        b=cTbfcxKsNXMMxCXN6soz8DnD/wILn5DyNQDjhgq491ajya6mOBEBDMII/f45Y/j8gn
+         9Efvw/G4iHYOsndsRKk4urjjcMit2tFR7bS/kLRVydcBd3sUsB7XvRwMoUlI8MaZixGD
+         Y2oZvHLuUz+9jZTOwzzwaQw3TLN7oR0JLBBE0Oeh7EHDcks0c96zCrmAti7qeeGo6R1K
+         6tZN1RUpp43KNRcBfL21D6KQzPlUQyqUTmjyaCakVuR90XxD0LToObS1g5OJRXgsMKnA
+         W3fiTshzWw5kfgmZQXE/a6KmtoLGGNisPIX7J0W48/ahEpyM3e77Zj5b9HuSrxIsiAYk
+         uskg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=from:subject:reply-to:mime-version:date:message-id:to
+         :dkim-signature;
+        bh=OZGq0jp31ZyxtlKsYTFR7nDhoa47mvBo32F7h5SeEb8=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=IfrPsHrjtjryvyytl4ey3vi/j6u/1j4uEjVI8Yp8Hi/kQhe4cIN3w9ryT6OL6uCQ1X
+         HN/mS77i9obRdSuEmdLLYLa+cE/pAXi1Mm7PPc17AwkXDNS09mvEoLURctqmBUSge+W3
+         FDrehtcFwXcBO3fng+DNstGepkgQ2GjhahIL9pRNDJSjYkUJT+MwM48uDM5kZln/GJ1I
+         MkkJBstgyCJMtjD/EkvEQU3Y16LQPNCM6tZI0rjPgp1tRxGlEbsrwnOEgos8oah6clEB
+         wNMBqnCQFPIr4JdPeITEKIeKyfT+KRnSC3fwsuz0k2oml+qCc7ClqNhyWi2rBzgAfEIv
+         TxPA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@info.shopback.com.tw header.s=scph1021 header.b=HIiuJ9tR;
+       spf=pass (google.com: domain of msprvs1=20391hjamt2sf=bounces-266693-320@info.shopback.com.tw designates 223.165.123.143 as permitted sender) smtp.mailfrom="msprvs1=20391HjaMT2sf=bounces-266693-320@info.shopback.com.tw";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=info.shopback.com.tw
+Return-Path: <msprvs1=20391HjaMT2sf=bounces-266693-320@info.shopback.com.tw>
+Received: from bz887.info.shopback.sg (bz887.info.shopback.sg. [223.165.123.143])
+        by mx.google.com with ESMTPS id 00721157ae682-785cd78da9csi8416947b3.717.2025.10.22.21.20.49
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 22 Oct 2025 21:20:50 -0700 (PDT)
+Received-SPF: pass (google.com: domain of msprvs1=20391hjamt2sf=bounces-266693-320@info.shopback.com.tw designates 223.165.123.143 as permitted sender) client-ip=223.165.123.143;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@info.shopback.com.tw header.s=scph1021 header.b=HIiuJ9tR;
+       spf=pass (google.com: domain of msprvs1=20391hjamt2sf=bounces-266693-320@info.shopback.com.tw designates 223.165.123.143 as permitted sender) smtp.mailfrom="msprvs1=20391HjaMT2sf=bounces-266693-320@info.shopback.com.tw";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=info.shopback.com.tw
+Return-Path: <msprvs1=20391HjaMT2sf=bounces-266693-320@info.shopback.com.tw>
+X-MSFBL: nMEwDhdf+3TKrgWaKNgrIhPMGmCnTQPVaQZFk0/tf3M=|eyJyIjoibGllbmNmQGd
+	tYWlsLmNvbSIsImN1c3RvbWVyX2lkIjoiMjY2NjkzIiwidGVuYW50X2lkIjoic3B
+	jIiwic3ViYWNjb3VudF9pZCI6IjMyMCIsIm1lc3NhZ2VfaWQiOiI2OGVlMjFhZGY
+	5NjhhZDQxNDgwYSJ9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=info.shopback.com.tw; s=scph1021; t=1761193249;
+	i=@info.shopback.com.tw;
+	bh=OZGq0jp31ZyxtlKsYTFR7nDhoa47mvBo32F7h5SeEb8=;
+	h=To:Message-ID:Date:Content-Type:Subject:From:From:To:Cc:Subject;
+	b=HIiuJ9tROXQRnckGpxbMldPYNL51L+tMYk6iwXe2pJtq0y1vltLure4uRHrM5akfC
+	 +x/lYvlBdPZp02W3sb+GDvfR+gZ/Ebar55mqIHjkXihs5B6c3iKboP5LIWeh6CJthF
+	 jz/uuJXGmrnzT+2thC4/rAXwhFNtulBaGVzssq8A=
+Received: from [10.90.45.101] ([10.90.45.101])
+	by i-02de6e9a9f739d5f2.mta1vrest.sd.prd.sparkpost (ecelerity 5.1.0.74632 r(msys-ecelerity:tags/5.1.0.14)) with REST
+	id A0/8C-48005-12DA9F86; Thu, 23 Oct 2025 04:20:49 +0000
+To: liencf@gmail.com
+Message-ID: <A0.8C.48005.12DA9F86@i-02de6e9a9f739d5f2.mta1vrest.sd.prd.sparkpost>
+Date: Thu, 23 Oct 2025 04:20:49 +0000
+Content-Type: multipart/alternative; boundary="_----rOCyMbQD1qVJahPKXbAwiw===_80/8C-48005-12DA9F86"
+MIME-Version: 1.0
+Reply-To: autoreply.tw@shopback.com
+Subject: =?utf-8?B?5bey6L+96Lmk5L2g55qE54++6YeR5Zue6aWL?=
+From: "ShopBack" <hello@info.shopback.com.tw>
+
+--_----rOCyMbQD1qVJahPKXbAwiw===_80/8C-48005-12DA9F86
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+
+=E6=9F=A5=E7=9C=8B=E4=BD=A0=E7=9A=84=E4=BA=A4=E6=98=93=E7=B8=BD=E8=A6=BD=0A=
+=E5=B7=B2=E8=BF=BD=E8=B9=A4=E7=8F=BE=E9=87=91=E5=9B=9E=E9=A5=8B=EF=BC=9A=0A=
+=0ANT$1.94 =E5=8D=B3=E5=B0=87=E5=85=A5=E5=B8=B3 Cashback tracked=0A=0A=0A=
+=0A=0A=0A=0A=0A=0A=0A  =E4=BE=86=E8=87=AA=0AYahoo=E8=B3=BC=E7=89=A9=E4=B8=
+=AD=E5=BF=83=0ANT$0.60  =E7=AC=A6=E5=90=88=E8=B3=87=E6=A0=BC=E7=9A=84=E8=B3=
+=BC=E7=89=A9=E9=87=91=E9=A1=8D=0ANT$249.00  =E7=8F=BE=E9=87=91=E5=9B=9E=E9=
+=A5=8B=E5=B1=A4=E7=B4=9A=0A  =E7=8F=BE=E9=87=91=E5=9B=9E=E9=A5=8B%=0A0.2%  =
+=E6=97=A5=E6=9C=9F:=0A2025-10-23=0A | ID:=0ARM2510210010938=0A=0A  =E4=BE=
+=86=E8=87=AA=0AYahoo=E8=B3=BC=E7=89=A9=E4=B8=AD=E5=BF=83=0ANT$0.95  =E7=AC=
+=A6=E5=90=88=E8=B3=87=E6=A0=BC=E7=9A=84=E8=B3=BC=E7=89=A9=E9=87=91=E9=A1=8D=
+=0ANT$373.00  =E7=8F=BE=E9=87=91=E5=9B=9E=E9=A5=8B=E5=B1=A4=E7=B4=9A=0A  =
+=E7=8F=BE=E9=87=91=E5=9B=9E=E9=A5=8B%=0A0.3%  =E6=97=A5=E6=9C=9F:=0A2025-10=
+-23=0A | ID:=0ARM2510210010937=0A=0A=0A  =E4=BE=86=E8=87=AA=0AYahoo=E8=B3=
+=BC=E7=89=A9=E4=B8=AD=E5=BF=83=0ANT$0.40  =E7=AC=A6=E5=90=88=E8=B3=87=E6=A0=
+=BC=E7=9A=84=E8=B3=BC=E7=89=A9=E9=87=91=E9=A1=8D=0ANT$161.00  =E7=8F=BE=E9=
+=87=91=E5=9B=9E=E9=A5=8B=E5=B1=A4=E7=B4=9A=0A  =E7=8F=BE=E9=87=91=E5=9B=9E=
+=E9=A5=8B%=0A0.2%  =E6=97=A5=E6=9C=9F:=0A2025-10-23=0A | ID:=0ARM2510210010=
+936=0A=0A=0A=0A=0A=0A=0A=0A=0A=0A=E5=B7=B2=E8=BF=BD=E8=B9=A4=E7=8F=BE=E9=87=
+=91=E5=9B=9E=E9=A5=8B=E7=B8=BD=E9=87=91=E9=A1=8D NT$1.94=0A=0A=0A =E4=BD=A0=
+=E5=A5=BD=0A=0A=0A=0A=0A=E9=80=A3=E5=BF=97=E5=B3=B0=0A,=0A=E6=88=91=E5=80=
+=91=E9=82=84=E5=9C=A8=E7=AD=89=E5=BE=85=E5=95=86=E5=AE=B6=E7=9A=84=E6=9C=80=
+=E7=B5=82=E7=A2=BA=E8=AA=8D=E3=80=82=E6=94=B6=E5=88=B0=E5=9B=9E=E8=A6=86=E5=
+=BE=8C=EF=BC=8C=E6=88=91=E5=80=91=E6=9C=83=E7=AB=8B=E5=8D=B3=E9=80=9A=E7=9F=
+=A5=E4=BD=A0=E7=8F=BE=E9=87=91=E5=9B=9E=E9=A5=8B=E9=87=91=E9=A1=8D=E7=9A=84=
+=E4=BB=BB=E4=BD=95=E8=AE=8A=E5=8B=95=E3=80=82=0A=E6=AA=A2=E8=A6=96=E7=8F=BE=
+=E9=87=91=E5=9B=9E=E9=A5=8B=E8=A9=B3=E7=B4=B0=E8=B3=87=E8=A8=8A =0A( https:=
+//ablink.shopback.com/f/a/RypzHbd1ysCrSjA7PBJdGA~~/AAQRxRA~/estrc4OFacwJ-KK=
+IYSau2--7sC83uJW7sMKmUrgmXUrVLsvv-eZUvPl3KWBZEUkrX72zaBAxhY2rhY-GujHV8TAYLh=
+781Cp_Ucp2UztM5s4Oa174D820TvdYSFwNP2Ial2J1nQdTUjnyamD0zr6MLg~~ )=0A=E9=9C=
+=80=E8=A6=81=E4=BB=BB=E4=BD=95=E5=8D=94=E5=8A=A9=EF=BC=9F=0A=E8=81=AF=E7=B9=
+=AB=E5=AE=A2=E6=9C=8D > ( https://ablink.shopback.com/f/a/FZBdGRaL04QMIKvMK=
+OWqVQ~~/AAQRxRA~/pOk0AhzF57_fhf-hUxHpt10XpZp4C-lFsB5pZBVHZ7SZqcl-Gor3H5itXV=
+bfHNmWBXyyFw1JMe7pwcwin_NBUmLq-tTKpwXuch3GbNhTtUpJFb6smM_j_iRPYF9okdlE )=0A=
+=E6=9B=B4=E6=96=B0=E8=A8=AD=E5=AE=9A > ( https://ablink.shopback.com/f/a/um=
+-zIchj4yvzIyrBUHsQ-g~~/AAQRxRA~/fsN7_VTprCzTxJ53qOSkKd3Wm7GG2mKhwCcd7fE9o6t=
+ehwjGKY8246Y4-YfwuDxwbw8v1k5Bb-yqLfoEXSZgWCYowkemJvwLY8DMgsb9aA2RBz6Kxytlyu=
+hi7TGTcbuO )=0A=E6=8F=90=E9=A0=98=E7=8F=BE=E9=87=91=E5=9B=9E=E9=A5=8B > ( h=
+ttps://ablink.shopback.com/f/a/mitNjedX8wMn-BZy1KNJeg~~/AAQRxRA~/IoSxxfsEI2=
+2LgtO4oSXR_1-vNBOmyMrTqzuadG8SuqiZ_bYjeV4NmkId55SDyu-b1mxq0IbwueZ0N_nkdQA5p=
+8Y5xt5DcRt0UvQ7U4FWv2-XuQ8De73TFRTrMRd487qj )=0A=E6=8F=90=E4=BA=A4=E7=8F=BE=
+=E9=87=91=E5=9B=9E=E9=A5=8B=E9=81=BA=E5=A4=B1=E7=94=B3=E8=AB=8B > ( https:/=
+/ablink.shopback.com/f/a/JsFoAVpz05ZKzAU28o48iw~~/AAQRxRA~/zOzbjJLR7YMprdud=
+CzDNp0LIcorGWkjdyeq8SNzydMIVIOInhwO3y9XIMQCP06HYfDQTxdh1QjfR4zI5jYK5C2oNeRK=
+GNTS-v2HMxWIAPvQ~ )              =E5=AE=A2=E6=9C=8D=E4=B8=AD=E5=BF=83 > =0A=
+( https://ablink.shopback.com/f/a/ZmRnHGz1NLG5u7RsHj7tlw~~/AAQRxRA~/fsN7_VT=
+prCzTxJ53qOSkKWu84q6a004ABAQO9VgJx2ag1ovLtN9pEQ17Nv8zwuydgphauAVZ_TTZwQXPPT=
+JeEQi3o0JbsmHDUI_-xr0uwYnj8rm0U9h08XkusZLiqGtW )        =E6=94=B6=E4=BB=B6=
+=E4=BA=BA=E7=82=BA=0Aliencf@gmail.com=0A=E4=BD=BF=E7=94=A8=E8=80=85=E6=A2=
+=9D=E6=AC=BE =0A( https://ablink.shopback.com/f/a/fPLHZmpCyF5G0lZ0KTcYhg~~/=
+AAQRxRA~/S3E061eoGcUblxiY-IwL8MhXfaWdSRegO-SJqG5SBJMBV0RcnJcvbrNOH7k60PuoVw=
+oCMWU-VVm0_kncZuVRQckKo2CFMfYoeLQ0rXRsWNh9y-J_IR3ayFzeqdnzHSWgQy8s2zeN88tux=
+UCkrSeEeFiGTb1XpWFLW1uEF2mMvaHtq6vf3pgKy6Uck3qgeTwQDqVMFlKaTolaTk-wyL47oA~~=
+ )=0A | =E9=9A=B1=E7=A7=81=E6=94=BF=E7=AD=96 =0A( https://ablink.shopback.c=
+om/f/a/TaGW5Wc4wFKMCJwwgmAyVw~~/AAQRxRA~/S3E061eoGcUblxiY-IwL8MhXfaWdSRegO-=
+SJqG5SBJMBV0RcnJcvbrNOH7k60PuoVwoCMWU-VVm0_kncZuVRQXTX8waIsNM0JuSYbseXeLFO8=
+Bql9MnS5nXPBX5add3XCOeSHP6jzcTqIWOB-8yXqc1p7n1AaLkdnvfsy1I4rH_YBA1BML1QeskT=
+ZV-Em0Iw8dbbtUV2Exmf8QjkJw2X0Q~~ )=0A=0A=0A=C2=A9=EF=B8=8F ShopBack 2025
+--_----rOCyMbQD1qVJahPKXbAwiw===_80/8C-48005-12DA9F86
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="UTF-8"
+
+<!DOCTYPE html>=0A<html lang=3D"en" xmlns=3D"http://www.w3.org/1999/xhtml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office">=0D=0A<head>=0A<meta ht=
+tp-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">=0D=0A  <m=
+eta charset=3D"utf-8">=0D=0A  <meta name=3D"viewport" content=3D"width=3Dde=
+vice-width,initial-scale=3D1">=0D=0A  <meta name=3D"x-apple-disable-message=
+-reformatting">=0D=0A  <title>ShopBack</title>=0D=0A=0D=0A</head>=0D=0A<bod=
+y>=0A<div style=3D"display:none !important;visibility:hidden;mso-hide:all;f=
+ont-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-width:0px;opa=
+city:0;overflow:hidden;">=E6=9F=A5=E7=9C=8B=E4=BD=A0=E7=9A=84=E4=BA=A4=E6=
+=98=93=E7=B8=BD=E8=A6=BD</div>=0D=0A  <!-- Header content block -->=0D=0A<t=
+able align=3D"center" cellpadding=3D"0" cellspacing=3D"0" width=3D"600" sty=
+le=3D"display: block;" bgcolor=3D"#000000">=0A  <tbody>=0A    <tr>=0A      =
+<td>=0A<a href=3D"https://ablink.shopback.com/f/a/PfHfB15mMRqJlo07brWHkw~~/=
+AAQRxRA~/EfrW5CZR4iDIouTzyKpw7SQkJFDAQWrQcK_FEeLOtnNnKsMvZuSlhv7aaUbKuDDpsP=
+XFyjUG0Zf-8U-ICgVCndqGe-SIdu89RaBkA4ISIwphhs4cKFHqu6ZC_Lmf_f8N" target=3D"_=
+blank" title=3D"" style=3D"text-decoration: none; color: #ffffff;">=0A<img =
+alt=3D"" src=3D"https://shopback-mailchimp.s3.ap-southeast-1.amazonaws.com/=
+rsys/rg/tx/header/Header_2024-07_01.png" style=3D"display: block;" width=3D=
+"600">=0A        </a>=0A      </td>=0A    </tr>=0A  </tbody>=0A</table>=0A=
+=0D=0A=0D=0A  <!-- CB tracked amount -->=0D=0A<table style=3D"" width=3D"60=
+0" align=3D"center" cellpadding=3D"0" cellspacing=3D"0">=0D=0A    <tr>=0D=
+=0A        <td align=3D"left" style=3D"font-family: Roboto, -apple-system, =
+BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, Noto Sans, sans-serif,=
+ Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji; font=
+-style: normal; font-weight: 400; font-size: 31px; line-height: 25px; color=
+: #232938; padding: 0px 20px 20px;">=0D=0A            <br>=E5=B7=B2=E8=BF=
+=BD=E8=B9=A4=E7=8F=BE=E9=87=91=E5=9B=9E=E9=A5=8B=EF=BC=9A=0D=0A            =
+<br><span style=3D"font-size: 55px; font-weight: 700;">=0D=0A             <=
+br>NT$1.94</span> =E5=8D=B3=E5=B0=87=E5=85=A5=E5=B8=B3=0D=0A            </t=
+d>=0D=0A    </tr>=0D=0A</table>=0D=0A=0D=0A<!-- CB tracked icon -->=0D=0A<t=
+able align=3D"center" cellpadding=3D"0" cellspacing=3D"0" width=3D"600" sty=
+le=3D"" bgcolor=3D"#FFFFFF">=0D=0A  <tbody>=0D=0A     <tr>=0D=0A      <td w=
+idth=3D"150" align=3D"center">&nbsp;</td>=0D=0A      <td width=3D"300" alig=
+n=3D"center"><img alt=3D"Cashback tracked" src=3D"https://static-mailchimp.=
+shopback.com/rsys/rg/tx/body/CVP/rgsb_tx_icon-cb-trackedv2.png" style=3D"di=
+splay: block;" width=3D"300"></td>=0D=0A      <td width=3D"150" align=3D"ce=
+nter">&nbsp;</td>=0D=0A     </tr>=0D=0A  </tbody>=0D=0A</table>=0D=0A=0D=0A=
+=0D=0A<!-- Assign cashback rate for roundup -->=0D=0A=0D=0A=0D=0A=0D=0A=0D=
+=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A<!-- Receipt - Merchant =
+1 (TW) -->=0D=0A<table align=3D"center" cellpadding=3D"0" cellspacing=3D"0"=
+ width=3D"600" style=3D"" bgcolor=3D"#FFFFFF">=0D=0A  <tbody>=0D=0A    <tr>=
+<td height=3D"25" align=3D"center">&nbsp;</td></tr>=0D=0A    <tr>=0D=0A    =
+  <td width=3D"35" align=3D"center">&nbsp;</td>=0D=0A      <td width=3D"530=
+" align=3D"left" style=3D"font-size: 14px; color: #6A717F;">=E4=BE=86=E8=87=
+=AA</td>=0D=0A      <td width=3D"35" align=3D"center">&nbsp;</td>=0D=0A    =
+</tr>=0D=0A    <tr>=0D=0A      <td width=3D"35" align=3D"center">&nbsp;</td=
+>=0D=0A      <td width=3D"265" align=3D"left" style=3D"font-weight: 700; fo=
+nt-size: 18px; color: #232938;">Yahoo=E8=B3=BC=E7=89=A9=E4=B8=AD=E5=BF=83</=
+td>=0D=0A      <td width=3D"265" align=3D"right" style=3D"font-weight: 700;=
+ font-size: 18px; color: #232938;">NT$0.60</td>=0D=0A      <td width=3D"35"=
+ align=3D"center">&nbsp;</td>=0D=0A    </tr>=0D=0A    <tr>=0D=0A      <td w=
+idth=3D"35" align=3D"center">&nbsp;</td>=0D=0A      <td width=3D"265" align=
+=3D"left" style=3D"font-size: 16px; color: #232938;">=E7=AC=A6=E5=90=88=E8=
+=B3=87=E6=A0=BC=E7=9A=84=E8=B3=BC=E7=89=A9=E9=87=91=E9=A1=8D</td>=0D=0A    =
+  <td width=3D"265" align=3D"right" style=3D"font-size: 16px; color: #23293=
+8;">NT$249.00</td>=0D=0A      <td width=3D"35" align=3D"center">&nbsp;</td>=
+=0D=0A    </tr>=0D=0A    <tr>=0D=0A      <td width=3D"35" align=3D"center">=
+&nbsp;</td>=0D=0A      <td width=3D"265" align=3D"left" style=3D"font-size:=
+ 16px; color: #232938;">=E7=8F=BE=E9=87=91=E5=9B=9E=E9=A5=8B=E5=B1=A4=E7=B4=
+=9A</td>=0D=0A      <td width=3D"265" align=3D"right" style=3D"font-size: 1=
+6px; color: #232938;"></td>=0D=0A      <td width=3D"35" align=3D"center">&n=
+bsp;</td>=0D=0A    </tr>=0D=0A    <tr>=0D=0A      <td width=3D"35" align=3D=
+"center">&nbsp;</td>=0D=0A      <td width=3D"265" align=3D"left" style=3D"f=
+ont-size: 16px; color: #232938;">=E7=8F=BE=E9=87=91=E5=9B=9E=E9=A5=8B%</td>=
+=0D=0A      <td width=3D"265" align=3D"right" style=3D"font-size: 16px; col=
+or: #232938;">0.2%</td>=0D=0A      <td width=3D"35" align=3D"center">&nbsp;=
+</td>=0D=0A    </tr>=0D=0A    <tr>=0D=0A      <td width=3D"35" align=3D"cen=
+ter">&nbsp;</td>=0D=0A      <td width=3D"530" align=3D"left" style=3D"font-=
+size: 14px; color: #6A717F;">=0D=0A        =E6=97=A5=E6=9C=9F: 2025-10-23=
+=0D=0A        =0D=0A        | ID: RM2510210010938=0D=0A        =0D=0A      =
+</td>=0D=0A      <td width=3D"35" align=3D"center">&nbsp;</td>=0D=0A    </t=
+r>=0D=0A  </tbody>=0D=0A</table>=0D=0A=0D=0A=0D=0A<!-- Receipt - Merchant 2=
+ (TW) -->=0D=0A=0D=0A<table align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"600" style=3D"" bgcolor=3D"#FFFFFF">=0D=0A  <tbody>=0D=0A  =
+  <tr><td height=3D"25" align=3D"center">&nbsp;</td></tr>=0D=0A    <tr>=0D=
+=0A      <td width=3D"35" align=3D"center">&nbsp;</td>=0D=0A      <td width=
+=3D"530" align=3D"left" style=3D"font-size: 14px; color: #6A717F;">=E4=BE=
+=86=E8=87=AA</td>=0D=0A      <td width=3D"35" align=3D"center">&nbsp;</td>=
+=0D=0A    </tr>=0D=0A    <tr>=0D=0A      <td width=3D"35" align=3D"center">=
+&nbsp;</td>=0D=0A      <td width=3D"265" align=3D"left" style=3D"font-weigh=
+t: 700; font-size: 18px; color: #232938;">Yahoo=E8=B3=BC=E7=89=A9=E4=B8=AD=
+=E5=BF=83</td>=0D=0A      <td width=3D"265" align=3D"right" style=3D"font-w=
+eight: 700; font-size: 18px; color: #232938;">NT$0.95</td>=0D=0A      <td w=
+idth=3D"35" align=3D"center">&nbsp;</td>=0D=0A    </tr>=0D=0A    <tr>=0D=0A=
+      <td width=3D"35" align=3D"center">&nbsp;</td>=0D=0A      <td width=3D=
+"265" align=3D"left" style=3D"font-size: 16px; color: #232938;">=E7=AC=A6=
+=E5=90=88=E8=B3=87=E6=A0=BC=E7=9A=84=E8=B3=BC=E7=89=A9=E9=87=91=E9=A1=8D</t=
+d>=0D=0A      <td width=3D"265" align=3D"right" style=3D"font-size: 16px; c=
+olor: #232938;">NT$373.00</td>=0D=0A      <td width=3D"35" align=3D"center"=
+>&nbsp;</td>=0D=0A    </tr>=0D=0A    <tr>=0D=0A      <td width=3D"35" align=
+=3D"center">&nbsp;</td>=0D=0A      <td width=3D"265" align=3D"left" style=
+=3D"font-size: 16px; color: #232938;">=E7=8F=BE=E9=87=91=E5=9B=9E=E9=A5=8B=
+=E5=B1=A4=E7=B4=9A</td>=0D=0A      <td width=3D"265" align=3D"right" style=
+=3D"font-size: 16px; color: #232938;"></td>=0D=0A      <td width=3D"35" ali=
+gn=3D"center">&nbsp;</td>=0D=0A    </tr>=0D=0A    <tr>=0D=0A      <td width=
+=3D"35" align=3D"center">&nbsp;</td>=0D=0A      <td width=3D"265" align=3D"=
+left" style=3D"font-size: 16px; color: #232938;">=E7=8F=BE=E9=87=91=E5=9B=
+=9E=E9=A5=8B%</td>=0D=0A      <td width=3D"265" align=3D"right" style=3D"fo=
+nt-size: 16px; color: #232938;">0.3%</td>=0D=0A      <td width=3D"35" align=
+=3D"center">&nbsp;</td>=0D=0A    </tr>=0D=0A    <tr>=0D=0A      <td width=
+=3D"35" align=3D"center">&nbsp;</td>=0D=0A      <td width=3D"530" align=3D"=
+left" style=3D"font-size: 14px; color: #6A717F;">=0D=0A        =E6=97=A5=E6=
+=9C=9F: 2025-10-23=0D=0A        =0D=0A        | ID: RM2510210010937=0D=0A  =
+      =0D=0A      </td>=0D=0A      <td width=3D"35" align=3D"center">&nbsp;=
+</td>=0D=0A    </tr>=0D=0A  </tbody>=0D=0A</table>=0D=0A=0D=0A=0D=0A=0D=0A=
+=0D=0A<!-- Receipt - Merchant 3 (TW) -->=0D=0A=0D=0A<table align=3D"center"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"600" style=3D"" bgcolor=3D"#F=
+FFFFF">=0D=0A  <tbody>=0D=0A    <tr><td height=3D"25" align=3D"center">&nbs=
+p;</td></tr>=0D=0A    <tr>=0D=0A      <td width=3D"35" align=3D"center">&nb=
+sp;</td>=0D=0A      <td width=3D"530" align=3D"left" style=3D"font-size: 14=
+px; color: #6A717F;">=E4=BE=86=E8=87=AA</td>=0D=0A      <td width=3D"35" al=
+ign=3D"center">&nbsp;</td>=0D=0A    </tr>=0D=0A    <tr>=0D=0A      <td widt=
+h=3D"35" align=3D"center">&nbsp;</td>=0D=0A      <td width=3D"265" align=3D=
+"left" style=3D"font-weight: 700; font-size: 18px; color: #232938;">Yahoo=
+=E8=B3=BC=E7=89=A9=E4=B8=AD=E5=BF=83</td>=0D=0A      <td width=3D"265" alig=
+n=3D"right" style=3D"font-weight: 700; font-size: 18px; color: #232938;">NT=
+$0.40</td>=0D=0A      <td width=3D"35" align=3D"center">&nbsp;</td>=0D=0A  =
+  </tr>=0D=0A    <tr>=0D=0A      <td width=3D"35" align=3D"center">&nbsp;</=
+td>=0D=0A      <td width=3D"265" align=3D"left" style=3D"font-size: 16px; c=
+olor: #232938;">=E7=AC=A6=E5=90=88=E8=B3=87=E6=A0=BC=E7=9A=84=E8=B3=BC=E7=
+=89=A9=E9=87=91=E9=A1=8D</td>=0D=0A      <td width=3D"265" align=3D"right" =
+style=3D"font-size: 16px; color: #232938;">NT$161.00</td>=0D=0A      <td wi=
+dth=3D"35" align=3D"center">&nbsp;</td>=0D=0A    </tr>=0D=0A    <tr>=0D=0A =
+     <td width=3D"35" align=3D"center">&nbsp;</td>=0D=0A      <td width=3D"=
+265" align=3D"left" style=3D"font-size: 16px; color: #232938;">=E7=8F=BE=E9=
+=87=91=E5=9B=9E=E9=A5=8B=E5=B1=A4=E7=B4=9A</td>=0D=0A      <td width=3D"265=
+" align=3D"right" style=3D"font-size: 16px; color: #232938;"></td>=0D=0A   =
+   <td width=3D"35" align=3D"center">&nbsp;</td>=0D=0A    </tr>=0D=0A    <t=
+r>=0D=0A      <td width=3D"35" align=3D"center">&nbsp;</td>=0D=0A      <td =
+width=3D"265" align=3D"left" style=3D"font-size: 16px; color: #232938;">=E7=
+=8F=BE=E9=87=91=E5=9B=9E=E9=A5=8B%</td>=0D=0A      <td width=3D"265" align=
+=3D"right" style=3D"font-size: 16px; color: #232938;">0.2%</td>=0D=0A      =
+<td width=3D"35" align=3D"center">&nbsp;</td>=0D=0A    </tr>=0D=0A    <tr>=
+=0D=0A      <td width=3D"35" align=3D"center">&nbsp;</td>=0D=0A      <td wi=
+dth=3D"530" align=3D"left" style=3D"font-size: 14px; color: #6A717F;">=0D=
+=0A        =E6=97=A5=E6=9C=9F: 2025-10-23=0D=0A        =0D=0A        | ID: =
+RM2510210010936=0D=0A        =0D=0A      </td>=0D=0A      <td width=3D"35" =
+align=3D"center">&nbsp;</td>=0D=0A    </tr>=0D=0A  </tbody>=0D=0A</table>=
+=0D=0A=0D=0A=0D=0A=0D=0A<!-- Receipt - Merchant 4 (TW) -->=0D=0A=0D=0A=0D=
+=0A=0D=0A<!-- Receipt - Merchant 5 (TW) -->=0D=0A=0D=0A=0D=0A=0D=0A<!-- Rec=
+eipt - Merchant 6 (TW) -->=0D=0A=0D=0A=0D=0A=0D=0A<!-- Receipt - Merchant 7=
+ (TW) -->=0D=0A=0D=0A=0D=0A=0D=0A<!-- Receipt - Merchant 8 (TW) -->=0D=0A=
+=0D=0A=0D=0A=0D=0A<!-- Receipt - Merchant 9 (TW) -->=0D=0A=0D=0A=0D=0A=0D=
+=0A<!-- Receipt - Merchant 10 (TW) -->=0D=0A=0D=0A=0D=0A      =0D=0A<!-- Li=
+ne for total CB rate-->=0D=0A<table align=3D"center" cellpadding=3D"0" cell=
+spacing=3D"0" width=3D"600" style=3D"" bgcolor=3D"#FFFFFF">=0D=0A  <tbody>=
+=0D=0A    <tr>=0D=0A      <td height=3D"25" align=3D"center">&nbsp;</td>=0D=
+=0A    </tr>=0D=0A    <tr>=0D=0A      <td width=3D"22" align=3D"left">&nbsp=
+;</td>=0D=0A      <td width=3D"556" align=3D"left" style=3D"border-bottom-w=
+idth: 1px; border-bottom-color: #DEE0E3; border-bottom-style: solid;">&nbsp=
+;</td>=0D=0A      <td width=3D"22" align=3D"left">&nbsp;</td>=0D=0A    </tr=
+>=0D=0A  </tbody>=0D=0A</table>=0D=0A=0D=0A<!-- total cb rate-->=0D=0A<tabl=
+e align=3D"center" cellpadding=3D"0" cellspacing=3D"0" width=3D"600" style=
+=3D"" bgcolor=3D"#FFFFFF">=0D=0A  <tbody>=0D=0A    <tr>=0D=0A      <td widt=
+h=3D"35" height=3D"25" align=3D"center">&nbsp;</td>=0D=0A      <td width=3D=
+"530" height=3D"25" align=3D"left" style=3D"font-family: Roboto, -apple-sys=
+tem, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, Noto Sans, sans-s=
+erif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;=
+ font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; =
+color: #6A717F;">&nbsp;</td>=0D=0A      <td width=3D"35" height=3D"25" alig=
+n=3D"center">&nbsp;</td>=0D=0A    </tr>=0D=0A    <tr>=0D=0A      <td width=
+=3D"35" align=3D"center">&nbsp;</td>=0D=0A      <td width=3D"265" align=3D"=
+left" style=3D"font-family: Roboto, -apple-system, BlinkMacSystemFont, Sego=
+e UI, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Sego=
+e UI Emoji, Segoe UI Symbol, Noto Color Emoji; font-style: normal; font-wei=
+ght: 700; font-size: 18px; line-height: 24px; color: #232938;">=E5=B7=B2=E8=
+=BF=BD=E8=B9=A4=E7=8F=BE=E9=87=91=E5=9B=9E=E9=A5=8B=E7=B8=BD=E9=87=91=E9=A1=
+=8D</td>=0D=0A      <td width=3D"265" align=3D"right" style=3D"font-family:=
+ Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial=
+, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol=
+, Noto Color Emoji; font-style: normal; font-weight: 700; font-size: 18px; =
+line-height: 24px; color: #232938;">NT$1.94</td>=0D=0A      <td width=3D"35=
+" align=3D"center">&nbsp;</td>=0D=0A     </tr>=0D=0A  </tbody>=0D=0A</table=
+>=0A<br><br>=0D=0A=0D=0A=0D=0A<!-- tooltips-->=0D=0A=0D=0A=0D=0A=0D=0A=0D=
+=0A<!-- Message-->=0D=0A<table align=3D"center" cellpadding=3D"0" cellspaci=
+ng=3D"0" width=3D"600" style=3D"" bgcolor=3D"#FFFFFF">=0D=0A    <tr>=0D=0A =
+     <td height=3D"25" align=3D"center">&nbsp;</td>=0D=0A    </tr>=0D=0A   =
+ <tr>=0D=0A      <td width=3D"25" align=3D"left"> &nbsp; </td>=0D=0A      <=
+td width=3D"530" align=3D"left" style=3D"font-family: Roboto, -apple-system=
+, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, Noto Sans, sans-seri=
+f, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji; fo=
+nt-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; col=
+or: #232938;">=0D=0A       =E4=BD=A0=E5=A5=BD     =E9=80=A3=E5=BF=97=E5=B3=
+=B0 , =E6=88=91=E5=80=91=E9=82=84=E5=9C=A8=E7=AD=89=E5=BE=85=E5=95=86=E5=AE=
+=B6=E7=9A=84=E6=9C=80=E7=B5=82=E7=A2=BA=E8=AA=8D=E3=80=82=E6=94=B6=E5=88=B0=
+=E5=9B=9E=E8=A6=86=E5=BE=8C=EF=BC=8C=E6=88=91=E5=80=91=E6=9C=83=E7=AB=8B=E5=
+=8D=B3=E9=80=9A=E7=9F=A5=E4=BD=A0=E7=8F=BE=E9=87=91=E5=9B=9E=E9=A5=8B=E9=87=
+=91=E9=A1=8D=E7=9A=84=E4=BB=BB=E4=BD=95=E8=AE=8A=E5=8B=95=E3=80=82</td>=0D=
+=0A      <td width=3D"35" align=3D"left"> &nbsp; </td>=0D=0A    </tr>=0D=0A=
+</table>=0D=0A=0D=0A<!-- CTA -->=0D=0A<table width=3D"600" align=3D"center"=
+ cellpadding=3D"0" cellspacing=3D"0">=0D=0A  <tr><td height=3D"25" align=3D=
+"center">&nbsp;</td></tr>=0D=0A  <tr>=0D=0A      <td width=3D"25" align=3D"=
+left">&nbsp;</td>=0D=0A      <td width=3D"550" height=3D"36" align=3D"cente=
+r" style=3D"color: #000000; font-family: -apple-system, BlinkMacSystemFont,=
+ Roboto, Segoe UI, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Colo=
+r Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji; font-style: nor=
+mal; font-weight: 700; font-size: 16px; border-radius: 24px; padding: 0px 1=
+0px; border: 1px solid #000000;" bgcolor=3D"#FFFFFF"><a href=3D"https://abl=
+ink.shopback.com/f/a/RypzHbd1ysCrSjA7PBJdGA~~/AAQRxRA~/estrc4OFacwJ-KKIYSau=
+2--7sC83uJW7sMKmUrgmXUrVLsvv-eZUvPl3KWBZEUkrX72zaBAxhY2rhY-GujHV8TAYLh781Cp=
+_Ucp2UztM5s4Oa174D820TvdYSFwNP2Ial2J1nQdTUjnyamD0zr6MLg~~" style=3D"text-de=
+coration: none; color: #000000;">=E6=AA=A2=E8=A6=96=E7=8F=BE=E9=87=91=E5=9B=
+=9E=E9=A5=8B=E8=A9=B3=E7=B4=B0=E8=B3=87=E8=A8=8A</a></td>=0D=0A      <td wi=
+dth=3D"25" align=3D"right">&nbsp;</td>=0D=0A    </tr>=0D=0A  <tr><td height=
+=3D"25" align=3D"center">&nbsp;</td></tr>=0D=0A</table>=0D=0A=0D=0A=0D=0A=
+=0D=0A<!-- Footer content block -->=0D=0A<!--Footer Start-->=0A<!--Blank Ro=
+w-->=0A<table align=3D"center" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0">=0A   <tr>=0A      <td align=3D"center" bgcolor=3D"#ffffff" width=3D=
+"20px"></td>=0A=09   <td align=3D"center" bgcolor=3D"#ffffff" width=3D"560p=
+x"></td>=0A=09   <td align=3D"center" bgcolor=3D"#ffffff" width=3D"20px"></=
+td>=0A   </tr>=0A</table>=0A        =0A<!--Connect with Us-->=0A<table alig=
+n=3D"center" cellpadding=3D"0" cellspacing=3D"0" width=3D"600">=0A=09<tbody=
+>=0A=09=09<tr>=0A=09=09=09<td align=3D"center" bgcolor=3D"#ffffff" width=3D=
+"20px"></td>=0A=09=09=09<td align=3D"center" bgcolor=3D"#ffffff" style=3D"f=
+ont-size: 20px; font-family: -apple-system, BlinkMacSystemFont, Roboto, Seg=
+oe UI, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Seg=
+oe UI Emoji, Segoe UI Symbol, Noto Color Emoji; color: #000000; padding: 20=
+px 0px;" width=3D"560px">=0A      =E9=9C=80=E8=A6=81=E4=BB=BB=E4=BD=95=E5=
+=8D=94=E5=8A=A9=EF=BC=9F<br>=0A      </td>=0A=09=09=09<td align=3D"center" =
+bgcolor=3D"#ffffff" width=3D"20px"></td>=0A=09</tr>=0A=0A=09=0A=09<tr>=0A=
+=09=09<td align=3D"center" bgcolor=3D"#ffffff" width=3D"20px"></td>=0A=09=
+=09<td align=3D"center" bgcolor=3D"#ffffff" style=3D"font-size: 15px; font-=
+family: -apple-system, BlinkMacSystemFont, Roboto, Segoe UI, Helvetica Neue=
+, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI=
+ Symbol, Noto Color Emoji; color: #000000; line-height: 1.3;" width=3D"560p=
+x">=0A<a href=3D"https://ablink.shopback.com/f/a/FZBdGRaL04QMIKvMKOWqVQ~~/A=
+AQRxRA~/pOk0AhzF57_fhf-hUxHpt10XpZp4C-lFsB5pZBVHZ7SZqcl-Gor3H5itXVbfHNmWBXy=
+yFw1JMe7pwcwin_NBUmLq-tTKpwXuch3GbNhTtUpJFb6smM_j_iRPYF9okdlE" target=3D"_b=
+lank" style=3D"text-decoration: none; color: #000000;">=E8=81=AF=E7=B9=AB=
+=E5=AE=A2=E6=9C=8D &gt;</a>=0A    </td>=0A=09=09=09<td align=3D"center" bgc=
+olor=3D"#ffffff" width=3D"20px"></td>=0A=09=09=0A      =0A=09</tr>=0A=0A<tr=
+>=0A=09=09=09<td align=3D"center" height=3D"10" bgcolor=3D"#ffffff" width=
+=3D"20px"></td>=0A=09=09<td align=3D"center" bgcolor=3D"#ffffff">=0A<hr sty=
+le=3D"height: 1.3px; width: 560; color: #DDDFE3; background-color: #DDDFE3;=
+ border-width: 0;">=0A=09=09=09</td>=0A=09=09=09<td align=3D"center" height=
+=3D"10" bgcolor=3D"#ffffff" width=3D"20px"></td>=0A=09</tr>=0A=0A=09=09<tr>=
+=0A=09=09=09<td align=3D"center" bgcolor=3D"#ffffff" width=3D"20px"></td>=
+=0A=09=09<td align=3D"center" bgcolor=3D"#ffffff" style=3D"font-size: 15px;=
+ font-family: -apple-system, BlinkMacSystemFont, Roboto, Segoe UI, Helvetic=
+a Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Se=
+goe UI Symbol, Noto Color Emoji; color: #000000; line-height: 1.3;" width=
+=3D"560px">=0A      <a href=3D"https://ablink.shopback.com/f/a/um-zIchj4yvz=
+IyrBUHsQ-g~~/AAQRxRA~/fsN7_VTprCzTxJ53qOSkKd3Wm7GG2mKhwCcd7fE9o6tehwjGKY824=
+6Y4-YfwuDxwbw8v1k5Bb-yqLfoEXSZgWCYowkemJvwLY8DMgsb9aA2RBz6Kxytlyuhi7TGTcbuO=
+" target=3D"_blank" style=3D"text-decoration: none; color: #000000;">=E6=9B=
+=B4=E6=96=B0=E8=A8=AD=E5=AE=9A &gt;</a>=0A      </td>=0A=09=09=09<td align=
+=3D"center" bgcolor=3D"#ffffff" width=3D"20px"></td>=0A=09</tr>=09=0A=0A=09=
+=09<tr>=0A=09=09=09<td align=3D"center" height=3D"10" bgcolor=3D"#ffffff" w=
+idth=3D"20px"></td>=0A=09=09<td align=3D"center" bgcolor=3D"#ffffff">=0A<hr=
+ style=3D"height: 1.3px; width: 560; color: #DDDFE3; background-color: #DDD=
+FE3; border-width: 0;">=0A=09=09=09</td>=0A=09=09=09<td align=3D"center" he=
+ight=3D"10" bgcolor=3D"#ffffff" width=3D"20px"></td>=0A=09</tr>=0A=0A=09=09=
+<tr>=0A=09=09=09<td align=3D"center" bgcolor=3D"#ffffff" width=3D"20px"></t=
+d>=0A=09=09<td align=3D"center" bgcolor=3D"#ffffff" style=3D"font-size: 15p=
+x; font-family: -apple-system, BlinkMacSystemFont, Roboto, Segoe UI, Helvet=
+ica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, =
+Segoe UI Symbol, Noto Color Emoji; color: #000000; line-height: 1.3;" width=
+=3D"560px">=0A=09=09=0A      <a href=3D"https://ablink.shopback.com/f/a/mit=
+NjedX8wMn-BZy1KNJeg~~/AAQRxRA~/IoSxxfsEI22LgtO4oSXR_1-vNBOmyMrTqzuadG8SuqiZ=
+_bYjeV4NmkId55SDyu-b1mxq0IbwueZ0N_nkdQA5p8Y5xt5DcRt0UvQ7U4FWv2-XuQ8De73TFRT=
+rMRd487qj" style=3D"text-decoration: none; color: #000000;">=E6=8F=90=E9=A0=
+=98=E7=8F=BE=E9=87=91=E5=9B=9E=E9=A5=8B &gt; </a>=0A      </td>=0A=09=09=09=
+<td align=3D"center" bgcolor=3D"#ffffff" width=3D"20px"></td>=0A=09</tr>=0A=
+=0A=09=09<tr>=0A=09=09=09<td align=3D"center" height=3D"10" bgcolor=3D"#fff=
+fff" width=3D"20px"></td>=0A=09=09<td align=3D"center" bgcolor=3D"#ffffff">=
+=0A<hr style=3D"height: 1.3px; width: 560; color: #DDDFE3; background-color=
+: #DDDFE3; border-width: 0;">=0A=09=09=09</td>=0A=09=09=09<td align=3D"cent=
+er" height=3D"10" bgcolor=3D"#ffffff" width=3D"20px"></td>=0A=09</tr>=0A=0A=
+=09=09=09<tr>=0A=09=09=09=09<td align=3D"center" bgcolor=3D"#ffffff" width=
+=3D"20px"></td>=0A=09=09<td align=3D"center" bgcolor=3D"#ffffff" style=3D"f=
+ont-size: 15px; font-family: -apple-system, BlinkMacSystemFont, Roboto, Seg=
+oe UI, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Seg=
+oe UI Emoji, Segoe UI Symbol, Noto Color Emoji; color: #ffffff; line-height=
+: 1.3;" width=3D"560px">=0A      <a href=3D"https://ablink.shopback.com/f/a=
+/JsFoAVpz05ZKzAU28o48iw~~/AAQRxRA~/zOzbjJLR7YMprdudCzDNp0LIcorGWkjdyeq8SNzy=
+dMIVIOInhwO3y9XIMQCP06HYfDQTxdh1QjfR4zI5jYK5C2oNeRKGNTS-v2HMxWIAPvQ~" targe=
+t=3D"_blank" style=3D"text-decoration: none; color: #000000;">=E6=8F=90=E4=
+=BA=A4=E7=8F=BE=E9=87=91=E5=9B=9E=E9=A5=8B=E9=81=BA=E5=A4=B1=E7=94=B3=E8=AB=
+=8B &gt; </a>=0A=09=09=09</td>=0A=09=09=09=09<td align=3D"center" bgcolor=
+=3D"#ffffff" width=3D"20px"></td>=0A=09</tr>=0A=0A=09=09<tr>=0A=09=09=09<td=
+ align=3D"center" height=3D"10" bgcolor=3D"#ffffff" width=3D"20px"></td>=0A=
+=09=09<td align=3D"center" bgcolor=3D"#ffffff">=0A<hr style=3D"height: 1.3p=
+x; width: 560; color: #DDDFE3; background-color: #DDDFE3; border-width: 0;"=
+>=0A=09=09=09</td>=0A=09=09=09<td align=3D"center" height=3D"10" bgcolor=3D=
+"#ffffff" width=3D"20px"></td>=0A=09</tr>=0A=0A=09=09<tr>=0A=09=09=09<td al=
+ign=3D"center" bgcolor=3D"#ffffff" width=3D"20px"></td>=0A=09=09<td align=
+=3D"center" bgcolor=3D"#ffffff" style=3D"font-size: 15px; font-family: -app=
+le-system, BlinkMacSystemFont, Roboto, Segoe UI, Helvetica Neue, Arial, Not=
+o Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Not=
+o Color Emoji; color: #000000; padding-bottom: 10px; line-height: 1.3;" wid=
+th=3D"560px">=0A      <a href=3D"https://ablink.shopback.com/f/a/ZmRnHGz1NL=
+G5u7RsHj7tlw~~/AAQRxRA~/fsN7_VTprCzTxJ53qOSkKWu84q6a004ABAQO9VgJx2ag1ovLtN9=
+pEQ17Nv8zwuydgphauAVZ_TTZwQXPPTJeEQi3o0JbsmHDUI_-xr0uwYnj8rm0U9h08XkusZLiqG=
+tW" target=3D"_blank" style=3D"text-decoration: none; color: #000000;">=E5=
+=AE=A2=E6=9C=8D=E4=B8=AD=E5=BF=83 &gt; </a> =0A=09=09=09</td>=0A=09=09=09<t=
+d align=3D"center" bgcolor=3D"#ffffff" width=3D"20px"></td>=0A=09</tr>=0A=
+=0A<!--This Email Was Sent To-->=0A=0A=09=09<tr>=0A<td align=3D"center" bgc=
+olor=3D"#ffffff" width=3D"20px"></td>=0A=09=09=09<td align=3D"center" bgcol=
+or=3D"#ffffff" style=3D"font-size: 13px; font-family: -apple-system, BlinkM=
+acSystemFont, Roboto, Segoe UI, Helvetica Neue, Arial, Noto Sans, sans-seri=
+f, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji; co=
+lor: #000000; padding-bottom: 20px; line-height: 1.4;" width=3D"560px">=0A =
+     =E6=94=B6=E4=BB=B6=E4=BA=BA=E7=82=BA <a style=3D"color: #000000; text-=
+decoration: underline;">liencf@gmail.com</a><br>=0A      =0A      <a href=
+=3D"https://ablink.shopback.com/f/a/fPLHZmpCyF5G0lZ0KTcYhg~~/AAQRxRA~/S3E06=
+1eoGcUblxiY-IwL8MhXfaWdSRegO-SJqG5SBJMBV0RcnJcvbrNOH7k60PuoVwoCMWU-VVm0_knc=
+ZuVRQckKo2CFMfYoeLQ0rXRsWNh9y-J_IR3ayFzeqdnzHSWgQy8s2zeN88tuxUCkrSeEeFiGTb1=
+XpWFLW1uEF2mMvaHtq6vf3pgKy6Uck3qgeTwQDqVMFlKaTolaTk-wyL47oA~~" style=3D"tex=
+t-decoration: underline; color: #000000;">=E4=BD=BF=E7=94=A8=E8=80=85=E6=A2=
+=9D=E6=AC=BE</a> | <a href=3D"https://ablink.shopback.com/f/a/TaGW5Wc4wFKMC=
+JwwgmAyVw~~/AAQRxRA~/S3E061eoGcUblxiY-IwL8MhXfaWdSRegO-SJqG5SBJMBV0RcnJcvbr=
+NOH7k60PuoVwoCMWU-VVm0_kncZuVRQXTX8waIsNM0JuSYbseXeLFO8Bql9MnS5nXPBX5add3XC=
+OeSHP6jzcTqIWOB-8yXqc1p7n1AaLkdnvfsy1I4rH_YBA1BML1QeskTZV-Em0Iw8dbbtUV2Exmf=
+8QjkJw2X0Q~~" target=3D"_blank" style=3D"text-decoration: underline; color:=
+ #000000;">=E9=9A=B1=E7=A7=81=E6=94=BF=E7=AD=96</a> <br> =0A      <br>=C2=
+=A9=EF=B8=8F ShopBack 2025=0A=09=09=09</td>=0A=09=09=09<td align=3D"center"=
+ bgcolor=3D"#ffffff" width=3D"20px"></td>=0A=09</tr>=0A</tbody>=0A</table>=
+=0A=0A<!--Footer End-->=0D=0A=0D=0A=0D=0A<img border=3D"0" width=3D"1" heig=
+ht=3D"1" alt=3D"" src=3D"https://ablink.shopback.com/q/OOMmrOUwMocfSliznEGU=
+eA~~/AAQRxRA~/-JfCmyan3zpKsc-UDDrSAPwi39hOE-TDnI9z4Hij0nMPVze4UFzumLcYy362N=
+LbMKnX6kjKy9CFsee_V-P6OWw~~">=0D=0A</body>=0D=0A=0D=0A</html>
+--_----rOCyMbQD1qVJahPKXbAwiw===_80/8C-48005-12DA9F86--

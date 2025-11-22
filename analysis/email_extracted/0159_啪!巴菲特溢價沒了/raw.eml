@@ -1,0 +1,483 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:8883:b0:4ec:41ca:fc70 with SMTP id ee3csp234619mdb;
+        Wed, 12 Nov 2025 08:07:33 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH84CCydyu900tam1pg7Wu8AAO2pJ/xgXw/JFVIJt5stYT5JuUqn1fiY2OyGwu9UNxTyfJ5
+X-Received: by 2002:a17:902:ea09:b0:24e:3cf2:2453 with SMTP id d9443c01a7336-2984ee04f44mr43816645ad.61.1762963652711;
+        Wed, 12 Nov 2025 08:07:32 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762963652; cv=none;
+        d=google.com; s=arc-20240605;
+        b=PW9sCkgNel2nqPumg/D3h75W5JshtE5WR36v6zJdjm3pIvD3NtIyzMZBc/wpERSP56
+         fJJaeMHFbiY2nmh0lNHx67ZBy5CF0rJj0uweOdURKpBqPWql+AFLWVM7qzbParrZy6Id
+         ldMZqfO1kyOstdNVqMvibBZ+TsnRaTeQuEw1sCtSuGAoAJC/9uMFRbJ5j9NSepvMpZb/
+         RYz3JU99XyYVyCovkO9as109N9v2GtJY0sz+Eh766Zo7+i2QWTYXVlUWKMMfmBAwTp3J
+         +NmMk6C+xZlC6nqE0RbvW5XAo8xYmQf/KUsH/klTVLjFx/zxPA2ioVXL4SwItgCTs8V2
+         SVrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:precedence:list-unsubscribe-post:list-unsubscribe:feedback-id
+         :subject:message-id:mime-version:from:date:dkim-signature
+         :dkim-signature;
+        bh=bbMXZ77CJpyGK9uknrRz4FBpQkMFL+8mpy1Nfn9OCGA=;
+        fh=t18Hh7XMeLE2pLeYU9STUjVGtDttHNFUig8dkLm7BmE=;
+        b=QCRE7ck37OUijje1T/EbJfaKKP0tK7ecNC0uH3w1iazfd3AVmysHjEk8fZVqujHEnA
+         ao56F8KK2x6fwF4Ch9eT3IyPGqMWNVQ+/IacRLdcKRy4aoXLojJIVfOnMO4sPe+SjH9x
+         w77ibfaR0gLA/1/sEmcvNC6OWFlbyS/2ZF0nkEqK7q877aeEc0P5PsOLqXeAOm1otA1H
+         4DbVhoz/bo+A52mhMlY6Lfo4zot1vc2be9z8Y8aKUbFXHY8bYwiowdr3yRggD/2Ji+Td
+         j/lwinG9B21eyjMEhtNwadum1h7XYtPtDF9MzifUNCPe0eruWoiWJtHbcCfjdd2QTzxS
+         WGzQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=tzZguaQJ;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=glW3h7AX;
+       spf=pass (google.com: domain of bounces+40048276-4a13-liencf=gmail.com@mail.n.convertkit.com designates 168.245.126.179 as permitted sender) smtp.mailfrom="bounces+40048276-4a13-liencf=gmail.com@mail.n.convertkit.com";
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=iampeterchou.com
+Return-Path: <bounces+40048276-4a13-liencf=gmail.com@mail.n.convertkit.com>
+Received: from o4.ck.m.convertkit.com (o4.ck.m.convertkit.com. [168.245.126.179])
+        by mx.google.com with ESMTPS id 41be03b00d2f7-bbf121f7f74si1690349a12.221.2025.11.12.08.07.32
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Nov 2025 08:07:32 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+40048276-4a13-liencf=gmail.com@mail.n.convertkit.com designates 168.245.126.179 as permitted sender) client-ip=168.245.126.179;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=tzZguaQJ;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=glW3h7AX;
+       spf=pass (google.com: domain of bounces+40048276-4a13-liencf=gmail.com@mail.n.convertkit.com designates 168.245.126.179 as permitted sender) smtp.mailfrom="bounces+40048276-4a13-liencf=gmail.com@mail.n.convertkit.com";
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=iampeterchou.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=n.convertkit.com;
+	h=content-type:date:from:mime-version:subject:feedback-id:
+	list-unsubscribe:list-unsubscribe-post:to:cc:content-type:date:feedback-id:from:
+	subject:to;
+	s=s1; bh=bbMXZ77CJpyGK9uknrRz4FBpQkMFL+8mpy1Nfn9OCGA=;
+	b=tzZguaQJqwPl0IDXozofn/xdZ48tDr4YT9CXWKSJleMPH+kshCQUqpC0h6PZfgbNyHM4
+	UKsvGE3RyuJBwj19G6awLZh/IMXCfZidMyn4Vq/whY+y4wYQ6JdEBqOgvfy8s9DRdw/Hug
+	1eDTV0INW5PWhDuX0+2uKugqQfEUMqlBPs0sHHJRbNgxeDr28GlfVWSjnxwOqO0A/dFHkg
+	EnWwl4Bw2RHSddddSmLu/eFWyLQMNcO+u5YiHl9Ks7NBE+X0ykKmm9hNv9OI/R7Scp5jl8
+	jw906jmZwmSMM4iWVm8BMNcuLNMWhcg2tkFTJXInuOyV89Q+9rEAu9s3CKExJh0A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:date:from:mime-version:subject:feedback-id:
+	list-unsubscribe:list-unsubscribe-post:to:cc:content-type:date:feedback-id:from:
+	subject:to;
+	s=smtpapi; bh=bbMXZ77CJpyGK9uknrRz4FBpQkMFL+8mpy1Nfn9OCGA=;
+	b=glW3h7AXykPdF8b08cY/47TUMA+NknRzbz1WvADeaeyt4tq+ePr4d4RAWYc3RC/n3Rvh
+	Y51L0SgMSYwG67ytGNiTwgf/FOMlOr33pQ3FiUYGV/Dbo41Dx5tXsC+nVCLZnpS2Fqp/7I
+	i6ArpMFRR9SWcFtXyBwVnBYqdbYm+Ahpc=
+Received: by recvd-7fd96f4944-vn5kr with SMTP id recvd-7fd96f4944-vn5kr-1-6914B0C3-1
+	2025-11-12 16:07:30.999994902 +0000 UTC m=+13908195.764666171
+Received: from NDAwNDgyNzY (unknown)
+	by geopod-ismtpd-17 (SG) with HTTP
+	id JzMKPy9mRO-c-SocXHYCSA
+	Wed, 12 Nov 2025 16:07:30.943 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=180d2f14c818c06eda4432a4925f4c645fede99b572d7c8d49201b24e7f8
+Date: Wed, 12 Nov 2025 16:07:31 +0000 (UTC)
+From: =?UTF-8?b?5ZGo5bKQ5Y6f?= <edm@iampeterchou.com>
+Mime-Version: 1.0
+Message-ID: <92uqlk3l2manh69g6gvs9hzod7d33hwh0qpgr@convertkit-mail2.com>
+Subject: =?UTF-8?B?5ZWq77yB5be06I+y54m55rqi5YO55rKS5LqG?=
+Feedback-ID: 19672890:1617469:broadcast:CK
+List-Unsubscribe: 
+ <mailto:unsub+92uqlk3l2manh69g6gvs9hzod7d33hwh0qpgr@convertkit-mail.com>,
+ <https://unsubscribe.kit.com/92uqlk3l2manh69g6gvs9hzod7d33hwh0qpgr>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Precedence: bulk
+X-Report-Abuse: <abuse@kit.com>
+X-Report-Spam: <abuse@kit.com>
+X-SG-EID: 
+ =?us-ascii?Q?u001=2Eadn9r3Enq8jLoe+HOwj+XaJGKn7WY0G7Rq89=2Fd1rBV4pdKiev+tjXq4Rw?=
+ =?us-ascii?Q?1QngTEbErFjfn4tiqMZvIG4wUP3PIo3edk5O31L?=
+ =?us-ascii?Q?z+=2F6IHH=2Fmj9EQ6xux9IN1s6Joc3D1lmao6BBoyD?=
+ =?us-ascii?Q?NjJpxzV2cDHQJ1Zh9mSb7fdm4IREOKKXUtxzPoj?=
+ =?us-ascii?Q?gduzBXCXk5aU8YnkEsozH+AnA4Gzt3gR4hMvZDk?=
+ =?us-ascii?Q?3iBpczlODNh8vojK6iuHU0=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BpTL9BgbK5wfSJMJGMsmprBTLquV1ImzFIrgT?=
+ =?us-ascii?Q?SaJ3+RZNJ0l+Qe+hcELBCq7jvRLz=2FX8xFruX9Yd?=
+ =?us-ascii?Q?oGf7mnvB5Pf=2FidAvnHiL3od4wvWQah1Tp4fvTcT?=
+ =?us-ascii?Q?ebufoJu=2FVBZifFrhyA5N9ImXewKWrFl5e538rQ4?=
+ =?us-ascii?Q?U=2Fp5Kx+dkuLKu3wwBXUoC+ji9vUYyJCoFxmrUBv?=
+ =?us-ascii?Q?sPevHAo6xUdS40KoQnslZAclp3v0bsIlIWpzkjC?=
+ =?us-ascii?Q?2AJjIr64K9Wnb6DeubB0bsXT22mtuNHU+uZL+4m?=
+ =?us-ascii?Q?yQ67qTvpLTGnlgcDTSZB1XQ2zGdyB8=2FZ0BIJTUB?=
+ =?us-ascii?Q?4Rub0Y4igcjgsNjaJJvCHW4hKGmFOPE=2FjOvwsuK?=
+ =?us-ascii?Q?lFR1cR93PAqcCW7?=
+To: ChihFeng Lien <liencf@gmail.com>
+X-Entity-ID: u001.Fd+db4wNT0K0+c18vmTNDg==
+
+--180d2f14c818c06eda4432a4925f4c645fede99b572d7c8d49201b24e7f8
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+=E6=99=9A=E5=AE=89=EF=BC=8C=E4=BD=A0=E5=A5=BD=EF=BC=9A
+
+=E6=98=A8=E5=A4=A9=E7=BF=BB=E8=AD=AF=E5=B7=B4=E8=8F=B2=E7=89=B9=E7=B5=A6=E8=
+=82=A1=E6=9D=B1=E7=9A=84=E4=BF=A1=EF=BC=8C=E9=A0=97=E5=A4=9A=E5=85=A7=E5=AE=
+=B9=E8=AE=93=E6=88=91=E6=84=9F=E5=8F=97=E6=B7=B1=E5=88=BB=EF=BC=8C=E5=B9=B3=
+=E5=8F=B0=E4=B8=8A=E4=B9=9F=E6=9C=89=E5=BE=88=E5=A4=9A=E4=BA=BA=E5=88=86=E4=
+=BA=AB=E4=BA=86=E8=87=AA=E8=A1=8C=E7=BF=BB=E8=AD=AF=E7=9A=84=E5=90=84=E5=BC=
+=8F=E7=89=88=E6=9C=AC=EF=BC=8C=E9=83=BD=E5=BE=88=E4=B8=8D=E9=8C=AF=E3=80=82=
+=E4=BD=86=E9=80=99=E4=BA=9B=E5=85=A7=E5=AE=B9=E9=83=BD=E6=98=AF=E5=87=BA=E8=
+=87=AA=E6=96=BC=E4=B8=80=E8=82=A1=E6=95=AC=E4=BD=A9=EF=BC=8C=E6=98=AF=E5=B0=
+=8D=E5=B7=B4=E8=8F=B2=E7=89=B9=E7=94=9F=E5=8B=95=E3=80=81=E5=85=85=E6=BB=BF=
+=E5=90=B8=E5=BC=95=E5=8A=9B=E7=9A=84=E4=BA=BA=E6=A0=BC=E7=89=B9=E8=B3=AA=E7=
+=9A=84=E6=95=AC=E4=BD=A9=EF=BC=8C=E6=98=AF=E6=84=9F=E6=80=A7=E7=9A=84=EF=BC=
+=8C=E8=80=8C=E4=B8=8D=E6=98=AF=E5=B0=8D=E6=B3=A2=E5=85=8B=E5=A4=8F=E9=80=99=
+=E5=AE=B6=E5=85=AC=E5=8F=B8=E6=88=96=E8=80=85=E8=A9=B2=E5=85=AC=E5=8F=B8=E6=
+=8A=95=E8=B3=87=E7=B8=BE=E6=95=88=E7=9A=84=E6=95=AC=E4=BD=A9=EF=BC=9B=E6=98=
+=A8=E5=A4=A9=E7=B5=95=E5=A4=A7=E5=A4=9A=E6=95=B8=E4=BA=BA=E5=9C=A8=E7=A4=BE=
+=E7=BE=A4=E5=B9=B3=E5=8F=B0=E4=B8=8A=E8=AE=80=E5=88=B0=E9=80=99=E5=89=87=E6=
+=B6=88=E6=81=AF=E5=BE=8C=EF=BC=8C=E7=94=A2=E7=94=9F=E7=9A=84=E6=98=AF=E4=B8=
+=80=E7=A8=AE=E6=84=9F=E6=80=A7=E6=83=85=E7=B7=92=EF=BC=8C=E8=80=8C=E4=B8=8D=
+=E6=98=AF=E4=B8=80=E7=A8=AE=E7=90=86=E6=80=A7=E5=88=A4=E8=AE=80=EF=BC=8C=E9=
+=80=99=E5=8D=B0=E8=AD=89=E4=BA=86=E4=B8=80=E4=BB=B6=E4=BA=8B=EF=BC=9A=E5=B7=
+=B4=E8=8F=B2=E7=89=B9=E6=BA=A2=E5=83=B9=E5=B0=8D=E6=B3=A2=E5=85=8B=E5=A4=8F=
+=E4=BE=86=E8=AA=AA=EF=BC=8C=E6=AD=A3=E5=BC=8F=E7=B5=90=E6=9D=9F=E4=BA=86=E3=
+=80=82
+
+=E5=B7=B4=E8=8F=B2=E7=89=B9=E6=98=AF=E4=B8=80=E4=BD=8D=E9=A2=A8=E8=B6=A3=E3=
+=80=81=E5=B9=BD=E9=BB=98=E3=80=81=E6=A5=B5=E6=9C=89=E8=A6=AA=E5=92=8C=E5=8A=
+=9B=E7=9A=84=E8=80=81=E7=88=BA=E7=88=BA=EF=BC=8C=E8=92=99=E6=A0=BC=E9=82=84=
+=E5=9C=A8=E7=9A=84=E6=99=82=E5=80=99=EF=BC=8C=E5=8A=A0=E4=B8=8A=E8=92=99=E6=
+=A0=BC=E5=86=B7=E5=B3=BB=E4=B8=94=E4=B8=8D=E8=8B=9F=E8=A8=80=E7=AC=91=E7=9A=
+=84=E5=B0=8D=E7=AD=94=E9=A2=A8=E6=A0=BC=EF=BC=8C=E9=80=99=E7=B5=84=E5=90=88=
+=E6=A0=B9=E6=9C=AC=E6=98=AF=E6=AF=8F=E5=B9=B4=E4=B8=96=E7=95=8C=E4=B8=8A=E6=
+=9C=80=E5=90=B8=E5=BC=95=E4=BA=BA=E7=9A=84=E8=82=A1=E6=9D=B1=E6=9C=83=E5=95=
+=8F=E7=AD=94=E9=9B=86=E3=80=82=E6=AD=A3=E5=9B=A0=E5=A6=82=E6=AD=A4=EF=BC=8C=
+=E6=88=91=E4=BB=A5=E5=BE=80=E5=B0=B1=E8=A6=BA=E5=BE=97=EF=BC=8C=E5=BE=88=E5=
+=A4=9A=E6=99=82=E5=80=99=EF=BC=8C=E4=BA=BA=E5=80=91=E8=B2=B7=E9=80=B2=E6=B3=
+=A2=E5=85=8B=E5=A4=8F=E8=82=A1=E7=A5=A8=EF=BC=8C=E5=87=BA=E8=87=AA=E6=96=BC=
+=E4=BB=96=E5=80=91=E6=84=9F=E5=88=B0=E9=A9=9A=E5=A5=87=E3=80=81=E5=9B=A0=E7=
+=82=BA=E5=85=AC=E5=8F=B8=E7=B8=BE=E6=95=88=E7=AB=9F=E9=80=99=E9=BA=BC=E9=A9=
+=9A=E4=BA=BA=EF=BC=8C=E8=80=8C=E4=B8=94=E6=93=8D=E7=9B=A4=E6=89=8B=E9=82=84=
+=E6=98=AF=E5=85=A9=E5=80=8B=E9=80=99=E9=BA=BC=E6=9C=89=E8=B6=A3=E7=9A=84=E8=
+=80=81=E7=88=BA=E7=88=BA=E3=80=82=E4=B8=8D=E9=83=BD=E8=AA=AA=E3=80=8C=E9=81=
+=B8=E8=82=A1=E5=B0=B1=E6=98=AF=E9=81=B8=E4=BA=BA=E3=80=8D=E5=97=8E=EF=BC=9F=
+=E6=B3=A2=E5=85=8B=E5=A4=8F=E6=AF=8F=E5=B9=B4=E8=82=A1=E6=9D=B1=E6=9C=83=E5=
+=90=B8=E5=BC=95=E6=95=B8=E8=90=AC=E5=90=8D=E6=8A=95=E8=B3=87=E4=BA=BA=E8=88=
+=87=E6=9C=83=E7=9A=84=E7=9B=9B=E6=B3=81=EF=BC=8C=E5=B0=B1=E6=98=AF=E9=80=99=
+=E7=A8=AE=E5=BF=83=E6=85=8B=E6=89=80=E9=80=A0=E5=B0=B1=E3=80=82
+
+=E2=80=8B
+
+-->=E8=A8=82=E9=96=B1=E5=91=A8=E5=B2=90=E5=8E=9F=E7=9A=84=E5=85=8D=E8=B2=BB=
+=E9=9B=BB=E5=AD=90=E5=A0=B1 (
+https://click.convertkit-mail2.com/92uqlk3l2manh69g6gvs9hzod7d33hwh0qpgr/z2=
+hghnhep6m86ecp/aHR0cHM6Ly9iaXQubHkvM1cyQ2Z1ZA=3D=3D
+)
+=E8=A8=82=E9=96=B1=E5=91=A8=E5=B2=90=E5=8E=9F=E7=9A=84=E5=85=8D=E8=B2=BB=E9=
+=9B=BB=E5=AD=90=E5=A0=B1 ( https://bit.ly/3W2Cfud )=E2=80=8B
+
+=E6=89=80=E4=BB=A5=E7=95=B6=E5=B7=B4=E8=8F=B2=E7=89=B9=E5=BC=95=E9=80=80=E3=
+=80=81=E8=92=99=E6=A0=BC=E9=81=8E=E4=B8=96=EF=BC=8C=E6=88=91=E6=B8=85=E6=A5=
+=9A=E7=9F=A5=E9=81=93=EF=BC=8C=E9=80=99=E7=A8=AE=E5=BF=83=E6=85=8B=E5=B0=B1=
+=E6=9C=83=E6=B6=88=E5=A4=B1=E5=A4=A7=E5=8D=8A=E3=80=82
+
+=E6=9E=9C=E7=84=B6=E4=B9=9F=E5=8F=8D=E6=98=A0=E5=9C=A8=E8=82=A1=E5=83=B9=E4=
+=B8=8A=E3=80=82=E5=A6=82=E6=9E=9C=E4=BD=A0=E7=9C=8B=E6=B3=A2=E5=85=8B=E5=A4=
+=8FA=E8=82=A1=E3=80=81B=E8=82=A1=EF=BC=8C=E9=81=8E=E5=8E=BB6=E5=80=8B=E6=9C=
+=88=E4=BB=A5=E4=BE=86=EF=BC=8C=E4=B9=9F=E5=B0=B1=E6=98=AF=E5=A4=A7=E6=A6=82=
+=E5=B7=B4=E8=8F=B2=E7=89=B9=E5=AE=A3=E5=B8=83=E5=B0=87=E4=BA=A4=E6=A3=92=E9=
+=80=99=E6=AE=B5=E6=99=82=E9=96=93=EF=BC=8C=E6=B3=A2=E5=85=8B=E5=A4=8F=E8=82=
+=A1=E5=83=B9=E6=98=AF=E5=B0=8F=E8=B7=8C2%=E7=9A=84=EF=BC=8C=E5=90=8C=E6=9C=
+=9F=E9=96=93=E6=A8=99=E6=99=AE500=E6=8C=87=E6=95=B8=E5=89=87=E6=98=AF=E5=A4=
+=A7=E6=BC=B217%=E3=80=82=E5=89=8D=E9=99=A3=E5=AD=90=EF=BC=8CWSJ=E4=B9=9F=E5=
+=A0=B1=E5=B0=8E=E4=BA=86=E9=80=99=E5=80=8B=E7=8F=BE=E8=B1=A1
+(
+https://click.convertkit-mail2.com/92uqlk3l2manh69g6gvs9hzod7d33hwh0qpgr/p8=
+heh9h4g6pl6gsq/aHR0cHM6Ly9jbi53c2ouY29tL2FydGljbGVzLyVFNiVCMyVBMiVFNSU4NSU4=
+QiVFNSVBNCU4RiVFNSU5MyU4OCVFOCU5NiVBOSVFNSVBOCU4MSVFNyU5QSU4NCVFNiU5NiVCMCV=
+FNSVCOCVCOCVFNiU4NSU4Qi0lRTYlQjIlOTIlRTYlOUMlODklRTUlQjclQjQlRTglOEYlQjIlRT=
+clODklQjklRTglODIlQTElRTYlOUQlQjElRTQlQkYlQTEtJUU0JUI5JTlGJUU2JUIyJTkyJUU2J=
+TlDJTg5LSVFNSVCNyVCNCVFOCU4RiVCMiVFNyU4OSVCOSVFNiVCQSVBMiVFNSU4MyVCOS02MjFi=
+YmJhMD9tb2Q9U2VhcmNocmVzdWx0c19wb3MxJnBhZ2U9MQ=3D=3D
+)=E3=80=82
+
+=E2=80=8B
+=E7=95=B6=E7=84=B6=EF=BC=8C=E9=95=B7=E6=9C=9F=E8=80=8C=E8=A8=80=EF=BC=8C=E6=
+=B3=A2=E5=85=8B=E5=A4=8F=E7=9A=84=E7=B8=BE=E6=95=88=E4=BB=8D=E6=98=AF=E4=B8=
+=8D=E6=8A=98=E4=B8=8D=E6=89=A3=E7=9A=84=E7=8E=8B=E8=80=85=EF=BC=8C=E5=8F=AA=
+=E6=98=AF=E6=88=91=E5=80=91=E9=83=BD=E7=9F=A5=E9=81=93=EF=BC=8C=E9=82=A3=E5=
+=B7=B2=E6=98=AF=E9=81=8E=E5=8E=BB=E5=BC=8F=EF=BC=8C=E5=BE=9E=E6=AD=A4=E4=BB=
+=A5=E5=BE=8C=E7=9A=84=E6=B3=A2=E5=85=8B=E5=A4=8F=EF=BC=8C=E5=86=8D=E4=B9=9F=
+=E6=B2=92=E6=9C=89CEO=E8=BA=AB=E5=85=BC=E6=B4=BB=E5=BB=A3=E5=91=8A=E7=9A=84=
+=E5=93=81=E7=89=8C=E6=BA=A2=E5=83=B9=E4=BA=86=E3=80=82
+
+=E2=80=8B
+
+=E8=81=AF=E7=B5=A1=E4=BF=A1=E7=AE=B1=EF=BC=9Aedm@iampeterchou.com
+
+=E5=A6=82=E6=9E=9C=E4=BD=A0=E5=96=9C=E6=AD=A1=E4=BB=8A=E5=A4=A9=E9=80=99=E5=
+=B0=81=E4=BF=A1=EF=BC=8C=E6=88=96=E8=80=85=E6=88=91=E6=AD=B7=E4=BE=86=E6=92=
+=B0=E5=AF=AB=E7=9A=84=E4=BB=BB=E4=BD=95=E5=85=A7=E5=AE=B9=EF=BC=8C=E6=AD=A1=
+=E8=BF=8E=E4=BD=A0=E8=BD=89=E5=AF=84=E7=B5=A6=E4=BD=A0=E7=9A=84=E6=9C=8B=E5=
+=8F=8B=EF=BC=8C=E4=BB=8B=E7=B4=B9=E6=88=91=E7=9A=84=E5=89=B5=E4=BD=9C=E7=B5=
+=A6=E6=9B=B4=E5=A4=9A=E4=BA=BA=E8=AA=8D=E8=AD=98=EF=BC=81
+
+=E5=A6=82=E6=9E=9C=E4=BD=A0=E4=B8=8D=E9=A1=98=E6=84=8F=E7=B9=BC=E7=BA=8C=E8=
+=AA=8D=E8=AD=98=E5=80=8B=E4=BA=BA=E7=90=86=E8=B2=A1=E8=88=87=E9=80=80=E4=BC=
+=91=E8=A6=8F=E5=8A=83=E3=80=81=E5=85=A8=E7=90=83=E8=B2=A1=E7=B6=93=E8=B6=A8=
+=E5=8B=A2=E3=80=81=E4=BA=BA=E7=89=A9=E8=A8=AA=E8=AB=87=E6=95=85=E4=BA=8B=E7=
+=9A=84=E8=A9=B1=EF=BC=8C=E8=AB=8B=E5=9C=A8=E6=AD=A4=E8=99=95=E6=8C=89=E4=B8=
+=8BUnsubscribe (
+https://unsubscribe.convertkit-mail2.com/92uqlk3l2manh69g6gvs9hzod7d33hwh0q=
+pgr
+)=EF=BC=8C=E9=80=99=E5=B0=87=E5=8F=96=E6=B6=88=E4=BD=A0=E7=9A=84=E8=A8=82=
+=E9=96=B1 | Update your profile (
+https://preferences.convertkit-mail2.com/92uqlk3l2manh69g6gvs9hzod7d33hwh0q=
+pgr
+) |
+
+=E6=8A=95=E8=B3=87=E9=A0=88=E8=80=83=E9=87=8F=E5=80=8B=E4=BA=BA=E8=B2=A1=E5=
+=8B=99=E7=8B=80=E6=B3=81=E3=80=81=E9=A2=A8=E9=9A=AA=E6=89=BF=E5=8F=97=E8=83=
+=BD=E5=8A=9B=E5=8F=8A=E7=9B=AE=E6=A8=99=EF=BC=8C=E6=9C=AC=E6=96=87=E9=9D=9E=
+=E4=BB=BB=E4=BD=95=E5=BD=A2=E5=BC=8F=E6=8A=95=E8=B3=87=E5=BB=BA=E8=AD=B0=EF=
+=BC=8C=E6=89=80=E6=9C=89=E8=B3=87=E8=A8=8A=E5=83=85=E4=BE=9B=E8=AE=80=E8=80=
+=85=E5=80=8B=E4=BA=BA=E5=8F=83=E8=80=83=E3=80=82
+
+(
+https://click.convertkit-mail2.com/92uqlk3l2manh69g6gvs9hzod7d33hwh0qpgr/x0=
+hph6he924l23a5/aHR0cHM6Ly9idWlsdHdpdGgua2l0LmNvbT91dG1fY2FtcGFpZ249cG93ZXJl=
+ZGJ5JnV0bV9jb250ZW50PWVtYWlsJnV0bV9tZWRpdW09cmVmZXJyYWwmdXRtX3NvdXJjZT1keW5=
+hbWlj
+)
+--180d2f14c818c06eda4432a4925f4c645fede99b572d7c8d49201b24e7f8
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>.ck-link { text-decoration: underline; }</style>
+<style>.ck-link { text-decoration: underline; }</style>
+<style>@media only screen { .email * { word-break: break-word; } }
+@media screen and (max-width: 384px) { .mail-message-content { width: 414px=
+ !important; } }
+@media only screen { .email * { word-break: break-word; } }
+@media screen and (max-width: 384px) { .mail-message-content { width: 414px=
+ !important; } }
+@media only screen and (max-width:600px) { .ck-mobile-font-size { font-size=
+:50px !important; }  }
+@media only screen and (max-width:600px) { .ck-mobile-font-size { font-size=
+:50px !important; }  }</style>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+</head>
+<body style=3D"margin:0;padding:0;-webkit-font-smoothing:antialiased;-ms-te=
+xt-size-adjust:100%;-webkit-text-size-adjust:100%">
+<div class=3D"email" style=3D"margin-left:18px;margin-right:18px">
+<!--[if mso]><style>.button-table { padding: 12px 0 }</style><![endif]--><t=
+able cellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse:separate;=
+mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;margin:0 auto"><tbody>=
+<tr><td style=3D"vertical-align:top">
+<p class=3D"" style=3D"margin:1em 0;font-family:-apple-system,BlinkMacSyste=
+mFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-=
+serif;color:#2d2d2f;font-size:16px;line-height:1.5">=E6=99=9A=E5=AE=89=EF=
+=BC=8C=E4=BD=A0=E5=A5=BD=EF=BC=9A</p>
+<p class=3D"" style=3D"margin:1em 0;font-family:-apple-system,BlinkMacSyste=
+mFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-=
+serif;color:#2d2d2f;font-size:16px;line-height:1.5">=E6=98=A8=E5=A4=A9=E7=
+=BF=BB=E8=AD=AF=E5=B7=B4=E8=8F=B2=E7=89=B9=E7=B5=A6=E8=82=A1=E6=9D=B1=E7=9A=
+=84=E4=BF=A1=EF=BC=8C=E9=A0=97=E5=A4=9A=E5=85=A7=E5=AE=B9=E8=AE=93=E6=88=91=
+=E6=84=9F=E5=8F=97=E6=B7=B1=E5=88=BB=EF=BC=8C=E5=B9=B3=E5=8F=B0=E4=B8=8A=E4=
+=B9=9F=E6=9C=89=E5=BE=88=E5=A4=9A=E4=BA=BA=E5=88=86=E4=BA=AB=E4=BA=86=E8=87=
+=AA=E8=A1=8C=E7=BF=BB=E8=AD=AF=E7=9A=84=E5=90=84=E5=BC=8F=E7=89=88=E6=9C=AC=
+=EF=BC=8C=E9=83=BD=E5=BE=88=E4=B8=8D=E9=8C=AF=E3=80=82=E4=BD=86=E9=80=99=E4=
+=BA=9B=E5=85=A7=E5=AE=B9=E9=83=BD=E6=98=AF=E5=87=BA=E8=87=AA=E6=96=BC=E4=B8=
+=80=E8=82=A1=E6=95=AC=E4=BD=A9=EF=BC=8C=E6=98=AF=E5=B0=8D=E5=B7=B4=E8=8F=B2=
+=E7=89=B9=E7=94=9F=E5=8B=95=E3=80=81=E5=85=85=E6=BB=BF=E5=90=B8=E5=BC=95=E5=
+=8A=9B=E7=9A=84=E4=BA=BA=E6=A0=BC=E7=89=B9=E8=B3=AA=E7=9A=84=E6=95=AC=E4=BD=
+=A9=EF=BC=8C=E6=98=AF=E6=84=9F=E6=80=A7=E7=9A=84=EF=BC=8C=E8=80=8C=E4=B8=8D=
+=E6=98=AF=E5=B0=8D=E6=B3=A2=E5=85=8B=E5=A4=8F=E9=80=99=E5=AE=B6=E5=85=AC=E5=
+=8F=B8=E6=88=96=E8=80=85=E8=A9=B2=E5=85=AC=E5=8F=B8=E6=8A=95=E8=B3=87=E7=B8=
+=BE=E6=95=88=E7=9A=84=E6=95=AC=E4=BD=A9=EF=BC=9B=E6=98=A8=E5=A4=A9=E7=B5=95=
+=E5=A4=A7=E5=A4=9A=E6=95=B8=E4=BA=BA=E5=9C=A8=E7=A4=BE=E7=BE=A4=E5=B9=B3=E5=
+=8F=B0=E4=B8=8A=E8=AE=80=E5=88=B0=E9=80=99=E5=89=87=E6=B6=88=E6=81=AF=E5=BE=
+=8C=EF=BC=8C=E7=94=A2=E7=94=9F=E7=9A=84=E6=98=AF=E4=B8=80=E7=A8=AE=E6=84=9F=
+=E6=80=A7=E6=83=85=E7=B7=92=EF=BC=8C=E8=80=8C=E4=B8=8D=E6=98=AF=E4=B8=80=E7=
+=A8=AE=E7=90=86=E6=80=A7=E5=88=A4=E8=AE=80=EF=BC=8C=E9=80=99=E5=8D=B0=E8=AD=
+=89=E4=BA=86=E4=B8=80=E4=BB=B6=E4=BA=8B=EF=BC=9A=E5=B7=B4=E8=8F=B2=E7=89=B9=
+=E6=BA=A2=E5=83=B9=E5=B0=8D=E6=B3=A2=E5=85=8B=E5=A4=8F=E4=BE=86=E8=AA=AA=EF=
+=BC=8C=E6=AD=A3=E5=BC=8F=E7=B5=90=E6=9D=9F=E4=BA=86=E3=80=82</p>
+<p class=3D"" style=3D"margin:1em 0;font-family:-apple-system,BlinkMacSyste=
+mFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-=
+serif;color:#2d2d2f;font-size:16px;line-height:1.5">=E5=B7=B4=E8=8F=B2=E7=
+=89=B9=E6=98=AF=E4=B8=80=E4=BD=8D=E9=A2=A8=E8=B6=A3=E3=80=81=E5=B9=BD=E9=BB=
+=98=E3=80=81=E6=A5=B5=E6=9C=89=E8=A6=AA=E5=92=8C=E5=8A=9B=E7=9A=84=E8=80=81=
+=E7=88=BA=E7=88=BA=EF=BC=8C=E8=92=99=E6=A0=BC=E9=82=84=E5=9C=A8=E7=9A=84=E6=
+=99=82=E5=80=99=EF=BC=8C=E5=8A=A0=E4=B8=8A=E8=92=99=E6=A0=BC=E5=86=B7=E5=B3=
+=BB=E4=B8=94=E4=B8=8D=E8=8B=9F=E8=A8=80=E7=AC=91=E7=9A=84=E5=B0=8D=E7=AD=94=
+=E9=A2=A8=E6=A0=BC=EF=BC=8C=E9=80=99=E7=B5=84=E5=90=88=E6=A0=B9=E6=9C=AC=E6=
+=98=AF=E6=AF=8F=E5=B9=B4=E4=B8=96=E7=95=8C=E4=B8=8A=E6=9C=80=E5=90=B8=E5=BC=
+=95=E4=BA=BA=E7=9A=84=E8=82=A1=E6=9D=B1=E6=9C=83=E5=95=8F=E7=AD=94=E9=9B=86=
+=E3=80=82=E6=AD=A3=E5=9B=A0=E5=A6=82=E6=AD=A4=EF=BC=8C=E6=88=91=E4=BB=A5=E5=
+=BE=80=E5=B0=B1=E8=A6=BA=E5=BE=97=EF=BC=8C=E5=BE=88=E5=A4=9A=E6=99=82=E5=80=
+=99=EF=BC=8C=E4=BA=BA=E5=80=91=E8=B2=B7=E9=80=B2=E6=B3=A2=E5=85=8B=E5=A4=8F=
+=E8=82=A1=E7=A5=A8=EF=BC=8C=E5=87=BA=E8=87=AA=E6=96=BC=E4=BB=96=E5=80=91=E6=
+=84=9F=E5=88=B0=E9=A9=9A=E5=A5=87=E3=80=81=E5=9B=A0=E7=82=BA=E5=85=AC=E5=8F=
+=B8=E7=B8=BE=E6=95=88=E7=AB=9F=E9=80=99=E9=BA=BC=E9=A9=9A=E4=BA=BA=EF=BC=8C=
+=E8=80=8C=E4=B8=94=E6=93=8D=E7=9B=A4=E6=89=8B=E9=82=84=E6=98=AF=E5=85=A9=E5=
+=80=8B=E9=80=99=E9=BA=BC=E6=9C=89=E8=B6=A3=E7=9A=84=E8=80=81=E7=88=BA=E7=88=
+=BA=E3=80=82=E4=B8=8D=E9=83=BD=E8=AA=AA=E3=80=8C=E9=81=B8=E8=82=A1=E5=B0=B1=
+=E6=98=AF=E9=81=B8=E4=BA=BA=E3=80=8D=E5=97=8E=EF=BC=9F=E6=B3=A2=E5=85=8B=E5=
+=A4=8F=E6=AF=8F=E5=B9=B4=E8=82=A1=E6=9D=B1=E6=9C=83=E5=90=B8=E5=BC=95=E6=95=
+=B8=E8=90=AC=E5=90=8D=E6=8A=95=E8=B3=87=E4=BA=BA=E8=88=87=E6=9C=83=E7=9A=84=
+=E7=9B=9B=E6=B3=81=EF=BC=8C=E5=B0=B1=E6=98=AF=E9=80=99=E7=A8=AE=E5=BF=83=E6=
+=85=8B=E6=89=80=E9=80=A0=E5=B0=B1=E3=80=82</p>
+<p class=3D"" style=3D"margin:1em 0;font-family:-apple-system,BlinkMacSyste=
+mFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-=
+serif;color:#2d2d2f;font-size:16px;line-height:1.5">=E2=80=8B</p>
+<!--[if !mso]>--><table width=3D"100%" style=3D"border-collapse:separate;ms=
+o-table-lspace:0pt;mso-table-rspace:0pt"><tbody><tr><td align=3D"center" st=
+yle=3D"vertical-align:top"><a class=3D"email-button" href=3D"https://click.=
+convertkit-mail2.com/92uqlk3l2manh69g6gvs9hzod7d33hwh0qpgr/z2hghnhep6m86ecp=
+/aHR0cHM6Ly9iaXQubHkvM1cyQ2Z1ZA=3D=3D" target=3D"_blank" rel=3D"noopener no=
+referrer" style=3D"color:#0875c1;border:0 none;margin-bottom:0.5em;font-siz=
+e:16px;line-height:1.5;background-color:#0875c1;color:#ffffff;border-radius=
+:4px;border-color:#0875c1;background-color:#0875c1;box-sizing:border-box;bo=
+rder-style:solid;color:#ffffff;display:inline-block;text-align:center;text-=
+decoration:none;padding:12px 20px;margin-top:8px;margin-bottom:8px;font-siz=
+e:16px;border-radius:4px 4px 4px 4px" url-id=3D"1804823217">=E8=A8=82=E9=96=
+=B1=E5=91=A8=E5=B2=90=E5=8E=9F=E7=9A=84=E5=85=8D=E8=B2=BB=E9=9B=BB=E5=AD=90=
+=E5=A0=B1</a></td></tr></tbody></table>
+<!--<![endif]--><!--[if mso]><table class=3D"button-table" width=3D"100%" b=
+order=3D"0" cellSpacing=3D"0" cellPadding=3D"0" style=3D"margin-top:8px;mar=
+gin-bottom:8px"><tr><td align=3D"center"><table border=3D"0" cellSpacing=3D=
+"0" cellPadding=3D"0"><tr><td align=3D"center" bgcolor=3D"#0875c1" style=3D=
+"background-color:#0875c1;overflow:hidden;padding:12px 20px"><a class=3D"em=
+ail-button" href=3D"https://bit.ly/3W2Cfud" target=3D"_blank" rel=3D"noopen=
+er noreferrer" style=3D"background-color:inherit;display:inline-block;text-=
+decoration:none;margin:0;color:#ffffff;font-size:16px" data-ck-element=3D"b=
+utton">=E8=A8=82=E9=96=B1=E5=91=A8=E5=B2=90=E5=8E=9F=E7=9A=84=E5=85=8D=E8=
+=B2=BB=E9=9B=BB=E5=AD=90=E5=A0=B1</a></td></tr></table></td></tr></table><!=
+[endif]--><p class=3D"" style=3D"margin:1em 0;font-family:-apple-system,Bli=
+nkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica N=
+eue',sans-serif;color:#2d2d2f;font-size:16px;line-height:1.5">=E2=80=8B</p>
+<p class=3D"" style=3D"margin:1em 0;font-family:-apple-system,BlinkMacSyste=
+mFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-=
+serif;color:#2d2d2f;font-size:16px;line-height:1.5">=E6=89=80=E4=BB=A5=E7=
+=95=B6=E5=B7=B4=E8=8F=B2=E7=89=B9=E5=BC=95=E9=80=80=E3=80=81=E8=92=99=E6=A0=
+=BC=E9=81=8E=E4=B8=96=EF=BC=8C=E6=88=91=E6=B8=85=E6=A5=9A=E7=9F=A5=E9=81=93=
+=EF=BC=8C=E9=80=99=E7=A8=AE=E5=BF=83=E6=85=8B=E5=B0=B1=E6=9C=83=E6=B6=88=E5=
+=A4=B1=E5=A4=A7=E5=8D=8A=E3=80=82</p>
+<p class=3D"" style=3D"margin:1em 0;font-family:-apple-system,BlinkMacSyste=
+mFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-=
+serif;color:#2d2d2f;font-size:16px;line-height:1.5">=E6=9E=9C=E7=84=B6=E4=
+=B9=9F=E5=8F=8D=E6=98=A0=E5=9C=A8=E8=82=A1=E5=83=B9=E4=B8=8A=E3=80=82<stron=
+g>=E5=A6=82=E6=9E=9C=E4=BD=A0=E7=9C=8B=E6=B3=A2=E5=85=8B=E5=A4=8FA=E8=82=A1=
+=E3=80=81B=E8=82=A1=EF=BC=8C=E9=81=8E=E5=8E=BB6=E5=80=8B=E6=9C=88=E4=BB=A5=
+=E4=BE=86=EF=BC=8C=E4=B9=9F=E5=B0=B1=E6=98=AF=E5=A4=A7=E6=A6=82=E5=B7=B4=E8=
+=8F=B2=E7=89=B9=E5=AE=A3=E5=B8=83=E5=B0=87=E4=BA=A4=E6=A3=92=E9=80=99=E6=AE=
+=B5=E6=99=82=E9=96=93=EF=BC=8C=E6=B3=A2=E5=85=8B=E5=A4=8F=E8=82=A1=E5=83=B9=
+=E6=98=AF=E5=B0=8F=E8=B7=8C2%=E7=9A=84=EF=BC=8C=E5=90=8C=E6=9C=9F=E9=96=93=
+=E6=A8=99=E6=99=AE500=E6=8C=87=E6=95=B8=E5=89=87=E6=98=AF=E5=A4=A7=E6=BC=B2=
+17%=E3=80=82</strong>=E5=89=8D=E9=99=A3=E5=AD=90=EF=BC=8C<a href=3D"https:/=
+/click.convertkit-mail2.com/92uqlk3l2manh69g6gvs9hzod7d33hwh0qpgr/p8heh9h4g=
+6pl6gsq/aHR0cHM6Ly9jbi53c2ouY29tL2FydGljbGVzLyVFNiVCMyVBMiVFNSU4NSU4QiVFNSV=
+BNCU4RiVFNSU5MyU4OCVFOCU5NiVBOSVFNSVBOCU4MSVFNyU5QSU4NCVFNiU5NiVCMCVFNSVCOC=
+VCOCVFNiU4NSU4Qi0lRTYlQjIlOTIlRTYlOUMlODklRTUlQjclQjQlRTglOEYlQjIlRTclODklQ=
+jklRTglODIlQTElRTYlOUQlQjElRTQlQkYlQTEtJUU0JUI5JTlGJUU2JUIyJTkyJUU2JTlDJTg5=
+LSVFNSVCNyVCNCVFOCU4RiVCMiVFNyU4OSVCOSVFNiVCQSVBMiVFNSU4MyVCOS02MjFiYmJhMD9=
+tb2Q9U2VhcmNocmVzdWx0c19wb3MxJnBhZ2U9MQ=3D=3D" target=3D"_blank" class=3D"c=
+k-link" rel=3D"noopener noreferrer" style=3D"color:#0875c1" url-id=3D"18048=
+23218">WSJ=E4=B9=9F=E5=A0=B1=E5=B0=8E=E4=BA=86=E9=80=99=E5=80=8B=E7=8F=BE=
+=E8=B1=A1</a>=E3=80=82</p>
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" styl=
+e=3D"border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;tex=
+t-align:center;table-layout:fixed;float:none" class=3D"email-image"><tbody>=
+<tr><td align=3D"center" style=3D"vertical-align:top"><figure style=3D"marg=
+in:1em 0;margin-top:12px;margin-bottom:12px;margin-left:0;margin-right:0;ma=
+x-width:690px;width:100%"><div style=3D"display:block"><img src=3D"https://=
+embed.filekitcdn.com/e/xyQ1kWR3W6QmtUFMT67bV4/wBn8CDRSULKfzPCjy95s5q/email"=
+ width=3D"690" height=3D"auto" style=3D"border:0 none;display:block;height:=
+auto;line-height:100%;outline:none;-webkit-text-decoration:none;text-decora=
+tion:none;max-width:100%;border-radius:4px 4px 4px 4px;width:690px;height:a=
+uto;object-fit:contain"></div>
+<figcaption style=3D"margin-top:0.4em;font-size:0.8em;text-align:center;dis=
+play:none">=E2=80=8B</figcaption></figure></td></tr></tbody></table>
+<p class=3D"" style=3D"margin:1em 0;font-family:-apple-system,BlinkMacSyste=
+mFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-=
+serif;color:#2d2d2f;font-size:16px;line-height:1.5">=E7=95=B6=E7=84=B6=EF=
+=BC=8C=E9=95=B7=E6=9C=9F=E8=80=8C=E8=A8=80=EF=BC=8C=E6=B3=A2=E5=85=8B=E5=A4=
+=8F=E7=9A=84=E7=B8=BE=E6=95=88=E4=BB=8D=E6=98=AF=E4=B8=8D=E6=8A=98=E4=B8=8D=
+=E6=89=A3=E7=9A=84=E7=8E=8B=E8=80=85=EF=BC=8C=E5=8F=AA=E6=98=AF=E6=88=91=E5=
+=80=91=E9=83=BD=E7=9F=A5=E9=81=93=EF=BC=8C=E9=82=A3=E5=B7=B2=E6=98=AF=E9=81=
+=8E=E5=8E=BB=E5=BC=8F=EF=BC=8C=E5=BE=9E=E6=AD=A4=E4=BB=A5=E5=BE=8C=E7=9A=84=
+=E6=B3=A2=E5=85=8B=E5=A4=8F=EF=BC=8C=E5=86=8D=E4=B9=9F=E6=B2=92=E6=9C=89CEO=
+=E8=BA=AB=E5=85=BC=E6=B4=BB=E5=BB=A3=E5=91=8A=E7=9A=84=E5=93=81=E7=89=8C=E6=
+=BA=A2=E5=83=B9=E4=BA=86=E3=80=82</p>
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" styl=
+e=3D"border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;tex=
+t-align:center;table-layout:fixed;float:none" class=3D"email-image"><tbody>=
+<tr><td align=3D"center" style=3D"vertical-align:top"><figure style=3D"marg=
+in:1em 0;margin-top:12px;margin-bottom:12px;margin-left:0;margin-right:0;ma=
+x-width:722px;width:100%"><div style=3D"display:block"><img src=3D"https://=
+embed.filekitcdn.com/e/xyQ1kWR3W6QmtUFMT67bV4/m9nEpf6jfmFAncG58r38Yu/email"=
+ width=3D"722" height=3D"auto" style=3D"border:0 none;display:block;height:=
+auto;line-height:100%;outline:none;-webkit-text-decoration:none;text-decora=
+tion:none;max-width:100%;border-radius:4px 4px 4px 4px;width:722px;height:a=
+uto;object-fit:contain"></div>
+<figcaption style=3D"margin-top:0.4em;font-size:0.8em;text-align:center;dis=
+play:none">=E2=80=8B</figcaption></figure></td></tr></tbody></table>
+</td></tr></tbody></table>
+<div class=3D"email-footer"><table cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;wid=
+th:100%;margin:0 auto"><tbody><tr><td style=3D"vertical-align:top">
+<p class=3D"" style=3D"margin:1em 0;font-family:-apple-system,BlinkMacSyste=
+mFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-=
+serif;color:#2d2d2f;font-size:16px;line-height:1.5">=E8=81=AF=E7=B5=A1=E4=
+=BF=A1=E7=AE=B1=EF=BC=9Aedm@iampeterchou.com</p>
+<p class=3D"" style=3D"margin:1em 0;font-family:-apple-system,BlinkMacSyste=
+mFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-=
+serif;color:#2d2d2f;font-size:16px;line-height:1.5">=E5=A6=82=E6=9E=9C=E4=
+=BD=A0=E5=96=9C=E6=AD=A1=E4=BB=8A=E5=A4=A9=E9=80=99=E5=B0=81=E4=BF=A1=EF=BC=
+=8C=E6=88=96=E8=80=85=E6=88=91=E6=AD=B7=E4=BE=86=E6=92=B0=E5=AF=AB=E7=9A=84=
+=E4=BB=BB=E4=BD=95=E5=85=A7=E5=AE=B9=EF=BC=8C=E6=AD=A1=E8=BF=8E=E4=BD=A0=E8=
+=BD=89=E5=AF=84=E7=B5=A6=E4=BD=A0=E7=9A=84=E6=9C=8B=E5=8F=8B=EF=BC=8C=E4=BB=
+=8B=E7=B4=B9=E6=88=91=E7=9A=84=E5=89=B5=E4=BD=9C=E7=B5=A6=E6=9B=B4=E5=A4=9A=
+=E4=BA=BA=E8=AA=8D=E8=AD=98=EF=BC=81</p>
+<p style=3D"margin:1em 0;font-family:-apple-system,BlinkMacSystemFont,'Sego=
+e UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;color=
+:#2d2d2f;font-size:16px;line-height:1.5;text-align:left" class=3D"">=E5=A6=
+=82=E6=9E=9C=E4=BD=A0=E4=B8=8D=E9=A1=98=E6=84=8F=E7=B9=BC=E7=BA=8C=E8=AA=8D=
+=E8=AD=98=E5=80=8B=E4=BA=BA=E7=90=86=E8=B2=A1=E8=88=87=E9=80=80=E4=BC=91=E8=
+=A6=8F=E5=8A=83=E3=80=81=E5=85=A8=E7=90=83=E8=B2=A1=E7=B6=93=E8=B6=A8=E5=8B=
+=A2=E3=80=81=E4=BA=BA=E7=89=A9=E8=A8=AA=E8=AB=87=E6=95=85=E4=BA=8B=E7=9A=84=
+=E8=A9=B1=EF=BC=8C=E8=AB=8B=E5=9C=A8=E6=AD=A4=E8=99=95=E6=8C=89=E4=B8=8B<a =
+href=3D"https://unsubscribe.convertkit-mail2.com/92uqlk3l2manh69g6gvs9hzod7=
+d33hwh0qpgr" target=3D"_blank" class=3D"ck-link" rel=3D"noopener noreferrer=
+" style=3D"color:#0875c1"><span style=3D"font-size:12">Unsubscribe</span></=
+a><span style=3D"font-size:12">=EF=BC=8C=E9=80=99=E5=B0=87=E5=8F=96=E6=B6=
+=88=E4=BD=A0=E7=9A=84=E8=A8=82=E9=96=B1 | </span><a href=3D"https://prefere=
+nces.convertkit-mail2.com/92uqlk3l2manh69g6gvs9hzod7d33hwh0qpgr" target=3D"=
+_blank" class=3D"ck-link" rel=3D"noopener noreferrer" style=3D"color:#0875c=
+1"><span style=3D"font-size:12">Update your profile</span></a><span style=
+=3D"font-size:12"> | </span></p>
+<p style=3D"margin:1em 0;font-family:-apple-system,BlinkMacSystemFont,'Sego=
+e UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;color=
+:#2d2d2f;font-size:16px;line-height:1.5;text-align:left" class=3D""><span s=
+tyle=3D"font-size:12">=E6=8A=95=E8=B3=87=E9=A0=88=E8=80=83=E9=87=8F=E5=80=
+=8B=E4=BA=BA=E8=B2=A1=E5=8B=99=E7=8B=80=E6=B3=81=E3=80=81=E9=A2=A8=E9=9A=AA=
+=E6=89=BF=E5=8F=97=E8=83=BD=E5=8A=9B=E5=8F=8A=E7=9B=AE=E6=A8=99=EF=BC=8C=E6=
+=9C=AC=E6=96=87=E9=9D=9E=E4=BB=BB=E4=BD=95=E5=BD=A2=E5=BC=8F=E6=8A=95=E8=B3=
+=87=E5=BB=BA=E8=AD=B0=EF=BC=8C=E6=89=80=E6=9C=89=E8=B3=87=E8=A8=8A=E5=83=85=
+=E4=BE=9B=E8=AE=80=E8=80=85=E5=80=8B=E4=BA=BA=E5=8F=83=E8=80=83=E3=80=82</s=
+pan></p>
+</td></tr></tbody></table></div>
+<div class=3D"built-with" style=3D"display:block;text-align:left;margin-top=
+:30px"><a href=3D"https://click.convertkit-mail2.com/92uqlk3l2manh69g6gvs9h=
+zod7d33hwh0qpgr/x0hph6he924l23a5/aHR0cHM6Ly9idWlsdHdpdGgua2l0LmNvbT91dG1fY2=
+FtcGFpZ249cG93ZXJlZGJ5JnV0bV9jb250ZW50PWVtYWlsJnV0bV9tZWRpdW09cmVmZXJyYWwmd=
+XRtX3NvdXJjZT1keW5hbWlj" target=3D"_blank" rel=3D"noopener noreferrer" styl=
+e=3D"color:#0875c1;display:inline-block;text-decoration:none" url-id=3D"180=
+4823219"><img src=3D"https://cdn.convertkit.com/assets/images/kit-badge-lig=
+ht.png" style=3D"display:block;height:auto;line-height:100%;outline:none;-w=
+ebkit-text-decoration:none;text-decoration:none;max-width:100%;border:0 non=
+e;width:157px;height:36px" alt=3D"Built with Kit"></a></div>
+</div>
+<!-- -->
+<img src=3D"https://open.convertkit-mail2.com/92uqlk3l2manh69g6gvs9hzod7d33=
+hwh0qpgr" alt=3D"" style=3D"border:0 none;display:block;height:auto;line-he=
+ight:100%;outline:none;-webkit-text-decoration:none;text-decoration:none;ma=
+x-width:100%">
+</body>
+</html>
+
+--180d2f14c818c06eda4432a4925f4c645fede99b572d7c8d49201b24e7f8--

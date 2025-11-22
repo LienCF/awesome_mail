@@ -1,0 +1,781 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:510d:b0:4ca:2b22:f54c with SMTP id k13csp4213872mdd;
+        Mon, 6 Oct 2025 18:17:52 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEBje/qPj8lQIk08geusiyy7jotrJb02LUIm3N/kPGxPQb/+SQcoW72PBTB9AAP09NfeVLq
+X-Received: by 2002:a53:e7c4:0:b0:63b:8ed2:de2d with SMTP id 956f58d0204a3-63cbe13f2fcmr1339628d50.24.1759799872577;
+        Mon, 06 Oct 2025 18:17:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1759799872; cv=none;
+        d=google.com; s=arc-20240605;
+        b=fO0ZQX9oSRLxC/3Uz4li+r8w6q+yMEUyB0qSZ2kuoxhx+WPAPUdmbqfcIKDL2QL+x/
+         KxBKYmNNqVyt+J+GWAp6NxqmEzRjYx87NSDDdcTVDXq2ZDtpcZ4EgSDTpJNnEJrPq4hE
+         D1sLTIhDWcEiBpIb6YlTCisIc/uU0zi6FYwUhn+4jfVADj/f4SKhUYdT3jpFXk0GPKAU
+         s/rROMhW1VURx89gGfsVV30wz6luT004JpbQpdBfHvWpjINmPxxB8uAIdicZA0iT8lHk
+         O74gy8CJkkzkVtto/ssksg6cNx8ghrvLCD4I2GXaiT7reWutFHB7leJBwABNSfWFa4BN
+         bCfQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=reply-to:mime-version:date:to:subject:message-id:from
+         :content-transfer-encoding:dkim-signature;
+        bh=VNGMFjAW6vXi0aMuQY6HwXtQ5+A4z8KY+tageQKdNZA=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=I9Kqp7DIUSiHhPRW+VGssz1CCJGRg3YJXPMwECpVb9tmUVH2cuTF62HSEubxkDAdSr
+         UODFFWSiiZhyUchwFMq82cmBRrEwLD47znGia2WF7C5wrOQMa03Qypeq3dZ7mXfiHRn7
+         3m7nYgW3pgQ/1IKbAjwj0e0yAJu8gB++1aDkX3NdvR2AH3Uo1dLKEYt4VeRfHBVjKZ2D
+         rgZJbPEoII0lAe+ejMV885mIskBBu1mCnfDlhBnoi6xwFRpwRVol3TO9jRpiPup3tH/9
+         +GzwjoKpgfgOM8FXVX0b7+fhQsqog3Bn8Q4SGRNPuZOq5QO4vibJH1t6YiL0Io432jc/
+         qG2Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@e.xbox.com header.s=scph0624 header.b=ZrLfnkcH;
+       spf=pass (google.com: domain of msprvs1=20375rvhetmhh=bounces-266693-1300@e.xbox.com designates 137.22.237.63 as permitted sender) smtp.mailfrom="msprvs1=20375RvhEtmhh=bounces-266693-1300@e.xbox.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=xbox.com
+Return-Path: <msprvs1=20375RvhEtmhh=bounces-266693-1300@e.xbox.com>
+Received: from rjut1sxg.e.xbox.com (rjut1sxg.e.xbox.com. [137.22.237.63])
+        by mx.google.com with ESMTPS id 00721157ae682-77f81ea8973si94299117b3.448.2025.10.06.18.17.52
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 06 Oct 2025 18:17:52 -0700 (PDT)
+Received-SPF: pass (google.com: domain of msprvs1=20375rvhetmhh=bounces-266693-1300@e.xbox.com designates 137.22.237.63 as permitted sender) client-ip=137.22.237.63;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@e.xbox.com header.s=scph0624 header.b=ZrLfnkcH;
+       spf=pass (google.com: domain of msprvs1=20375rvhetmhh=bounces-266693-1300@e.xbox.com designates 137.22.237.63 as permitted sender) smtp.mailfrom="msprvs1=20375RvhEtmhh=bounces-266693-1300@e.xbox.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=xbox.com
+Return-Path: <msprvs1=20375RvhEtmhh=bounces-266693-1300@e.xbox.com>
+X-MSFBL: sX/mRvSwdy4Iw4nY36+gvCdT3TGmWI3muLKPSE8zE7w=|eyJjdXN0b21lcl9pZCI
+	6IjI2NjY5MyIsInRlbmFudF9pZCI6InNwYyIsInN1YmFjY291bnRfaWQiOiIxMzA
+	wIiwiciI6ImxpZW5jZkBnbWFpbC5jb20iLCJtZXNzYWdlX2lkIjoiNjhlMTNmNmF
+	lNDY4NzhhNDE2MjAifQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=e.xbox.com;
+	s=scph0624; t=1759799871; i=@e.xbox.com;
+	bh=VNGMFjAW6vXi0aMuQY6HwXtQ5+A4z8KY+tageQKdNZA=;
+	h=Content-Type:From:Message-ID:Subject:To:Date:From:To:Cc:Subject;
+	b=ZrLfnkcHFgZtQHPJut2i1/+FWXyi2RHQzqC9MNUU8Y7vQmJb8q46KwK5evjmlx0f8
+	 v46Odz/wX3h8YrcXoOGIX1m/1r4tu2nEFkr66jfQv1qkdtJ3c486Y9oINbDhpJeyA5
+	 X5wI3AVtzOanLkbRfwzBH/iJBGLetlQNkOgpeo6c=
+Received: from [10.90.39.42] ([10.90.39.42])
+	by i-017a297e5f66cd3f6.mta1vrest.sd.prd.sparkpost (ecelerity 5.1.0.74619 r(msys-ecelerity:tags/5.1.0.13)) with REST
+	id 02/61-13407-F3A64E86; Tue, 07 Oct 2025 01:17:51 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="UTF-8"
+From: "Xbox" <xbox@e.xbox.com>
+Message-ID: <02.61.13407.F3A64E86@i-017a297e5f66cd3f6.mta1vrest.sd.prd.sparkpost>
+Subject: =?utf-8?B?5L2g55qEIFhib3ggR2FtZSBQYXNzIOiogumWseWDueagvOiuig==?=
+	=?utf-8?B?5pu0?=
+To: liencf@gmail.com
+Date: Tue, 07 Oct 2025 01:17:51 +0000
+MIME-Version: 1.0
+Reply-To: no-reply@e.xbox.com
+
+<!DOCTYPE html>=0A<html lang=3D"zh" xmlns=3D"http://www.w3.org/1999/xhtml" =
+xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-=
+com:office:office" style=3D"width: 100%; min-width: 100%;">=0D=0A<head>=0D=
+=0A<meta charset=3D"utf-8">=0D=0A<meta http-equiv=3D"cache-control" content=
+=3D"max-age=3D0">=0D=0A<meta http-equiv=3D"cache-control" content=3D"no-cac=
+he">=0D=0A<meta http-equiv=3D"Pragma" content=3D"no-cache">=0D=0A<meta http=
+-equiv=3D"Expires" content=3D"-1">=0D=0A<meta name=3D"color-scheme" content=
+=3D"light">=0D=0A<meta name=3D"supported-color-schemes" content=3D"light">=
+=0D=0A<meta http-equiv=3D"Content-Type" content=3D"text/html charset=3DUTF-=
+8">=0D=0A<title>Xbox</title>=0D=0A<meta name=3D"viewport" content=3D"width=
+=3Ddevice-width, initial scale=3D1.0">=0D=0A=0D=0A   =0D=0A  =0D=0A=0D=0A=
+=0D=0A<!--[if !mso]><!-->=0D=0A<meta http-equiv=3D"X-UA-Compatible" content=
+=3D"IE=3Dedge" style=3D"-webkit-font-smoothing: antialiased;">=0D=0A=0D=0A=
+=0D=0A<!--<![endif]-->=0D=0A<!--[if mso]>=0D=0A<noscript>=0D=0A  <xml>=0D=
+=0A    <o:OfficeDocumentSettings>=0D=0A      <o:PixelsPerInch>96</o:PixelsP=
+erInch>=0D=0A    </o:OfficeDocumentSettings>=0D=0A  </xml>=0D=0A</noscript>=
+=0D=0A<![endif]-->=0D=0A<style>body {=0Awidth: 100%; background-color: #252=
+525; margin: 0; padding: 0; -webkit-font-smoothing: antialiased;=0A}=0Abody=
+ a {=0Acolor: #ffffff; text-decoration: none;=0A}=0Abody a:hover {=0Acolor:=
+ #ffffff; text-decoration: none;=0A}=0Abody a:visited {=0Acolor: #ffffff; t=
+ext-decoration: none;=0A}=0Aimg {=0Aline-height: 100%; outline: none; text-=
+decoration: none; border: none; height: auto; -ms-interpolation-mode: bicub=
+ic;=0A}=0Abody {=0A-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 10=
+0%; text-size-adjust: 100%;=0A}=0A.ReadMsgBody {=0Awidth: 100%; background-=
+color: #252525;=0A}=0A.ExternalClass {=0Awidth: 100%; background-color: #25=
+2525;=0A}=0A.ExternalClass {=0Aline-height: 100%;=0A}=0A@font-face {=0Afont=
+-family: 'wf_segoe-ui_semibold'; src: url('http://i.s-microsoft.com/fonts/s=
+egoe-ui/west-european/semibold/latest.eot=3F#iefix') format('embedded-opent=
+ype'),url('http://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/l=
+atest.woff') format('woff'),url('http://i.s-microsoft.com/fonts/segoe-ui/we=
+st-european/semibold/latest.ttf') format('truetype'),url('http://i.s-micros=
+oft.com/fonts/segoe-ui/west-european/semibold/latest.svg#web') format('svg'=
+); font-weight: normal; font-style: normal;=0A}=0A@font-face {=0Afont-famil=
+y: 'wf_segoe-ui_semilight'; src: url('http://i.s-microsoft.com/fonts/segoe-=
+ui/west-european/semilight/latest.ttf') format('truetype'); font-weight: no=
+rmal; font-style: normal;=0A}=0A@media screen {=0A  @font-face {=0A    font=
+-family: 'wf_segoe-ui_bold'; src: url('http://i.s-microsoft.com/fonts/segoe=
+-ui/west-european/bold/latest.eot=3F#iefix') format('embedded-opentype'),ur=
+l('http://i.s-microsoft.com/fonts/segoe-ui/west-european/bold/latest.woff')=
+ format('woff'),url('http://i.s-microsoft.com/fonts/segoe-ui/west-european/=
+bold/latest.ttf') format('truetype'),url('http://i.s-microsoft.com/fonts/se=
+goe-ui/west-european/bold/latest.svg#web') format('svg'); font-weight: norm=
+al; font-style: normal;=0A  }=0A  @font-face {=0A    font-family: 'wf_segoe=
+-ui_normal'; src: url('http://i.s-microsoft.com/fonts/segoe-ui/west-europea=
+n/normal/latest.eot=3F#iefix') format('embedded-opentype'),url('http://i.s-=
+microsoft.com/fonts/segoe-ui/west-european/normal/latest.woff') format('wof=
+f'),url('http://i.s-microsoft.com/fonts/segoe-ui/west-european/normal/lates=
+t.ttf') format('truetype'),url('http://i.s-microsoft.com/fonts/segoe-ui/wes=
+t-european/normal/latest.svg#web') format('svg'); font-weight: normal; font=
+-style: normal;=0A  }=0A}=0A@media only screen and (min-width:640px) {=0A  =
+.full-hide {=0A    display: none !important;=0A  }=0A  .mobile-show {=0A  =
+  dislay: none;=0A  }=0A}=0A@media only screen and (min-width: 580px) and (=
+max-width: 640px) {=0A  .hero-bg {=0A    height: 826px !important;=0A  }=0A=
+  .hero-640-bg {=0A    height: 610px !important;=0A  }=0A  .rewards-bg {=0A=
+    height: 715px !important;=0A  }=0A}=0A@media only screen and (min-width=
+: 520px) and (max-width: 580px) {=0A  .hero-bg {=0A    height: 746px !impor=
+tant;=0A  }=0A  .hero-640-bg {=0A    height: 550px !important;=0A  }=0A  .r=
+ewards-bg {=0A    height: 665px !important;=0A  }=0A}=0A@media only screen =
+and (min-width: 480px) and (max-width: 520px) {=0A  .hero-bg {=0A    height=
+: 680px !important;=0A  }=0A  .hero-640-bg {=0A    height: 500px !important=
+;=0A  }=0A  .rewards-bg {=0A    height: 640px !important;=0A  }=0A}=0A@medi=
+a only screen and (min-width: 430px) and (max-width: 480px) {=0A  .hero-bg =
+{=0A    height: 610px !important;=0A  }=0A  .hero-640-bg {=0A    height: 45=
+0px !important;=0A  }=0A  .rewards-bg {=0A    height: 540px !important;=0A =
+ }=0A}=0A@media only screen and (min-width: 390px) and (max-width: 430px) {=
+=0A  .hero-bg {=0A    height: 550px !important;=0A  }=0A  .hero-640-bg {=0A=
+    height: 420px !important;=0A  }=0A  .rewards-bg {=0A    height: 480px !=
+important;=0A  }=0A}=0A@media only screen and (max-width: 389.98px) {=0A  .=
+hero-bg {=0A    height: 515px !important;=0A  }=0A  .hero-640-bg {=0A    he=
+ight: 390px !important;=0A  }=0A  .rewards-bg {=0A    height: 460px !import=
+ant;=0A  }=0A  .mobile-small-hide {=0A    display: none !important;=0A  }=
+=0A  .mobile-small-show {=0A    display: block !important;=0A  }=0A}=0A@med=
+ia only screen and (min-width:390px) {=0A  .desktop-small-hide {=0A    disp=
+lay: none !important;=0A  }=0A}=0A@media only screen and (min-width:480px) =
+{=0A  .desktop-hide {=0A    display: none !important;=0A  }=0A}=0A@media on=
+ly screen and (max-width:480px) {=0A  .mobile-show {=0A    display: block !=
+important;=0A  }=0A  .module-wrap {=0A    padding: 0px 22px 0px 22px !impor=
+tant;=0A  }=0A  .module-wrap-left {=0A    padding: 0px 0px 0px 22px !import=
+ant;=0A  }=0A  .module-wrap-right {=0A    padding: 0px 22px 0px 0px !import=
+ant;=0A  }=0A  .menu-padd-top {=0A    padding-top: 5px !important;=0A  }=0A=
+  .mobile-hide {=0A    display: none !important;=0A  }=0A  .eyebrow-text {=
+=0A    padding: 12px 22px 12px 22px !important; font-size: 16px !important;=
+ line-height: 22px !important;=0A  }=0A  .menu-item {=0A    font-size: 10px=
+ !important; line-height: 14px !important;=0A  }=0A  .menu-img {=0A    widt=
+h: 30px !important;=0A  }=0A  .badge {=0A    padding: 2px 6px !important;=
+=0A  }=0A  .header-66 {=0A    font-size: 46px !important; line-height: 46px=
+ !important;=0A  }=0A  .header-46 {=0A    font-size: 32px !important; line-=
+height: 32px !important;=0A  }=0A  .header-32 {=0A    font-size: 26px !impo=
+rtant; line-height: 26px !important;=0A  }=0A  .headline-1 {=0A    font-siz=
+e: 34px !important; line-height: 40px !important;=0A  }=0A  .headline-2 {=
+=0A    font-size: 26px !important; line-height: 32px !important;=0A  }=0A  =
+.headline-3 {=0A    font-size: 18px !important; line-height: 24px !importa=
+nt;=0A  }=0A  .cs-h-2 {=0A    font-size: 18px !important; line-height: 24px=
+ !important;=0A  }=0A  img.jump1 {=0A    width: 50px !important;=0A  }=0A  =
+img.jump2 {=0A    width: 39px !important;=0A  }=0A  img.jump3 {=0A    width=
+: 30px !important;=0A  }=0A  .b-1 {=0A    font-size: 16px !important; line-=
+height: 20px !important;=0A  }=0A  .b-2 {=0A    font-size: 16px !important;=
+ line-height: 20px !important;=0A  }=0A  .cs-h-3 {=0A    font-size: 16px !i=
+mportant; line-height: 20px !important;=0A  }=0A  .b-4 {=0A    font-size: 2=
+0px !important; line-height: 24px !important;=0A  }=0A  .cs-h-1 {=0A    fon=
+t-size: 20px !important; line-height: 24px !important;=0A  }=0A  .mobile-0 =
+{=0A    padding-bottom: 0px !important;=0A  }=0A  .mobile-5 {=0A    padding=
+-bottom: 5px !important;=0A  }=0A  .mobile-10 {=0A    padding-bottom: 10px =
+!important;=0A  }=0A  .mobile-15 {=0A    padding-bottom: 15px !important;=
+=0A  }=0A  .mobile-20 {=0A    padding-bottom: 20px !important;=0A  }=0A  .m=
+obile-30 {=0A    padding-bottom: 30px !important;=0A  }=0A  .mobile-40 {=0A=
+    padding-bottom: 40px !important;=0A  }=0A  .mobile-50 {=0A    padding-b=
+ottom: 50px !important;=0A  }=0A  .mobile-60 {=0A    padding-bottom: 60px !=
+important;=0A  }=0A  .standard {=0A    width: 70px;=0A  }=0A  .wide {=0A   =
+ width: 120px;=0A  }=0A  .footer-mslogo {=0A    width: 110px;=0A  }=0A  .ft=
+-center {=0A    text-align: center !important;=0A  }=0A}=0A@media only scre=
+en and (min-width:375px) {=0A  td.mobile {=0A    display: none;=0A  }=0A  .=
+desktop-hidden {=0A    display: none;=0A  }=0A}=0A@media only screen and (m=
+ax-width:375px) {=0A  .mobile-hidden {=0A    display: none;=0A  }=0A}=0A@me=
+dia only screen and (max-width:360px) {=0A  .hero-bg {=0A    height: 480px =
+!important;=0A  }=0A  .rewards-bg {=0A    height: 420px !important;=0A  }=
+=0A  .hero-640-bg {=0A    height: 360px !important;=0A  }=0A  .menu-img {=
+=0A    width: 26px !important;=0A  }=0A}=0A</style>=0A</head>=0D=0A  <body =
+id=3D"body" style=3D"width: 100%; -webkit-font-smoothing: antialiased; -ms-=
+text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 1=
+00%; margin: 0; padding: 0;" bgcolor=3D"#252525">=0D=0A    =0D=0A    =0D=0A=
+    =0D=0A=0D=0A=0D=0A=0D=0A    <!-- ADD MAIN CONTENT BLOCK HERE -->=0D=0A =
+   =0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=
+=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=
+=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A    =0D=0A=0D=0A=0D=0A=0D=0A=0D=0A    =0D=
+=0A    =0D=0A    <!--[if mso ]>=0D=0A    <table cellspacing=3D"0" cellpaddi=
+ng=3D"0" border=3D"0" role=3D"presentation" width=3D"100%" style=3D"border-=
+spacing: 0;" >=0D=0A    <tr>=0D=0A      <td align=3D"center" style=3D"backg=
+round-color:#252525;">=0D=0A        <table cellspacing=3D"0" cellpadding=3D=
+"0" border=3D"0" width=3D"640" style=3D"text-align:center;width:640px; bord=
+er-spacing: 0;" align=3D"center">=0D=0A          <tr>=0D=0A          <td st=
+yle=3D"padding: 0px;" align=3D"center" valign=3D"top" bgcolor=3D"#F2F6F7">=
+=0D=0A    <!--[endif]-->=0D=0A    <!--[if !mso]><!---->=0D=0A    <table rol=
+e=3D"presentation" class=3D"wrapper" cellpadding=3D"0" cellspacing=3D"0" bo=
+rder=3D"0" style=3D"border-collapse: collapse !important; width: 100% !impo=
+rtant; mso-table-lspace: 0pt; mso-table-rspace: 0pt; -ms-text-size-adjust: =
+100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; max-width: 64=
+0px !important; margin: 0 auto;"  bgcolor=3D"#F2F6F7">=0D=0A      <tr>=0D=
+=0A        <td style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; borde=
+r-collapse: collapse !important; -ms-text-size-adjust: 100%; -webkit-text-s=
+ize-adjust: 100%; text-size-adjust: 100%;">=0D=0A        <!--[endif]---->=
+=0D=0A        =0D=0A<header>=0D=0A<table bgcolor=3D"#000000" cellpadding=3D=
+"0" cellspacing=3D"0" border=3D"0" width=3D"100%" style=3D"border-collapse:=
+ collapse !important; direction: ltr; mso-table-lspace: 0pt; mso-table-rspa=
+ce: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-s=
+ize-adjust: 100%;" role=3D"presentation">=0D=0A  <tr>=0D=0A    <td border=
+=3D"0" valign=3D"top" align=3D"center" style=3D"font-family: 'Segoe UI Regu=
+lar','wf_segoe-ui_regular', sans-serif; color: #ffffff; font-size: 16px; li=
+ne-height: 20px; mso-line-height-rule: exactly; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; border-collapse: collapse !important; -ms-text-size-adju=
+st: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; padding: =
+16px 40px;">=0D=0A      =E4=BD=A0=E7=9A=84 Xbox Game Pass =E8=A8=82=E9=96=
+=B1=E5=83=B9=E6=A0=BC=E8=AE=8A=E6=9B=B4=0D=0A    </td>=0D=0A  </tr>=0D=0A</=
+table>=0D=0A<div style=3D"display: none; margin: 0px; padding: 0px;">&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=
+=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C</div>=
+=0D=0A</header>=0D=0A        =0D=0A        =0D=0A        =0D=0A        =0D=
+=0A        =0D=0A         =0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=
+=0D=0A=0D=0A<main>=0D=0A  <table cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" width=3D"100%" bgcolor=3D"#E6E6E6" style=3D"border-spacing: 0; mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !importa=
+nt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-a=
+djust: 100%;" role=3D"presentation">=0D=0A    <tr>=0D=0A      <td border=3D=
+"0" valign=3D"top" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; b=
+order-collapse: collapse !important; -ms-text-size-adjust: 100%; -webkit-te=
+xt-size-adjust: 100%; text-size-adjust: 100%; padding: 0;">=0D=0A      =0D=
+=0A=0D=0A<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" width=3D"1=
+00%" class=3D"menu" id=3D"menu" bgcolor=3D'#107C10' style=3D"border-spacing=
+: 0; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collaps=
+e !important; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; t=
+ext-size-adjust: 100%;" role=3D"presentation" dir=3D"ltr">=0D=0A  <tr><td b=
+order=3D"0" class=3D"mobile-5" valign=3D"top" style=3D"mso-table-lspace: 0p=
+t; mso-table-rspace: 0pt; border-collapse: collapse !important; -ms-text-si=
+ze-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; pa=
+dding: 0px 0px 10px;"></td></tr>=0D=0A  <tr>=0D=0A    <td border=3D"0" clas=
+s=3D"mobile-10" valign=3D"top" style=3D"mso-padding-alt: 0px 0px 16px; mso-=
+table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !import=
+ant; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-=
+adjust: 100%; padding: 0px 0px 10px;" align=3D"center">=0D=0A      <table c=
+ellspacing=3D"0" cellpadding=3D"0" border=3D"0" width=3D"100%" align=3D"cen=
+ter" style=3D"border-spacing: 0; max-width: 600px; mso-table-lspace: 0pt; m=
+so-table-rspace: 0pt; border-collapse: collapse !important; -ms-text-size-a=
+djust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%;" role=
+=3D"presentation">=0D=0A        <tr>=0D=0A          <!--[if mso]>=0D=0A    =
+      <td border=3D"0" width=3D"50%" valign=3D"top" height=3D"46" style=3D"=
+padding: 0;">=0D=0A          <!--[endif]-->=0D=0A          <!--[if !mso]><!=
+---->=0D=0A          <td border=3D"0" width=3D"50%" style=3D"mso-table-lspa=
+ce: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !important; -ms-t=
+ext-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 10=
+0%; padding: 0;">=0D=0A          <!--[endif]---->=0D=0A            =0D=0A  =
+          <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"=
+center" style=3D"border-spacing: 0; mso-table-lspace: 0pt; mso-table-rspace=
+: 0pt; border-collapse: collapse !important; -ms-text-size-adjust: 100%; -w=
+ebkit-text-size-adjust: 100%; text-size-adjust: 100%;" role=3D"presentation=
+">=0D=0A              <tr>=0D=0A                <td border=3D"0" style=3D"m=
+so-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !imp=
+ortant; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-si=
+ze-adjust: 100%; padding: 10px 0px;">=0D=0A                  <a class=3D"me=
+nu-item" href=3D"https://link.xbox.com/f/a/Xha4D1JpvuJBtHFw2U6ucg~~/AAQRxRA=
+~/JCJtBmu9a6afM-geJi4u7P02fuFu4sDzFnxIg-L3YLvdlrPEyZ1RaLkfyLQeKFDJTXuIrYnt6=
+7dnuc8O5k2THNmv8OeQ8qfYGXcRGurZZ2g2_Og5KG5PNTVnQmYrT1kUYrd71ANE9hsmk3nx2McP=
+rgObdQF9XPzo6gOpxdSh9UORjrytWoHsZPwMxO3m1CtF7wAAiVDlKnkrmhLBb-o49QWr2DjzbuB=
+-pr-OcZUBXik~" data-custom-attr=3D"HDR1_Games_Menu" style=3D"color: #FFFFFF=
+; font-size: 14px; line-height: 16px; font-family: 'Segoe UI', sans-serif; =
+font-weight: bold; text-decoration: none; -ms-text-size-adjust: 100%; -webk=
+it-text-size-adjust: 100%; text-size-adjust: 100%;">=E9=81=8A=E6=88=B2</a>=
+=0D=0A                </td>=0D=0A                <td border=3D"0" style=3D"=
+mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !im=
+portant; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-s=
+ize-adjust: 100%; padding: 10px 0px 10px 40px;" class=3D"module-wrap-left d=
+esktop">=0D=0A                  <a class=3D"menu-item" href=3D"https://link=
+.xbox.com/f/a/s2GeCIP7-pnPAISfGY5p4w~~/AAQRxRA~/JCJtBmu9a6afM-geJi4u7P02fu=
+Fu4sDzFnxIg-L3YLvdlrPEyZ1RaLkfyLQeKFDJYKCvpUqNV8MiJRaiYlT5NYaSFNRj5uO4xiKpQ=
+bCMHR3zExwkb8G0IWZK75NR3DyOfAl5I2t4MKhhJ5sFqbHy1pwjEXtKFWSVKlzMPdRWg6zJg-fJ=
+wW4atsIBB4NTutBk4ZKhXhTybWhUeHnGMaag69zZ0uyGYmG76ub5gwG8z2M~" data-custom-a=
+ttr=3D"HDR1_GamePass_Menu" style=3D"color: #FFFFFF; font-size: 14px; line-h=
+eight: 16px; font-family: 'Segoe UI', sans-serif; font-weight: bold; text-d=
+ecoration: none; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%=
+; text-size-adjust: 100%;">GAME PASS</a>=0D=0A                </td>=0D=0A  =
+            </tr>=0D=0A            </table>=0D=0A            =0D=0A        =
+  </td>=0D=0A=0D=0A          <!--[if mso]>=0D=0A          <td border=3D"0" =
+style=3D"padding: 4px 0px 2px 0px; padding: 0;" width=3D"60" height=3D"46" =
+align=3D"center">=0D=0A          <!--[endif]-->=0D=0A          <!--[if !mso=
+]><!---->=0D=0A          <td border=3D"0" style=3D"mso-table-lspace: 0pt; m=
+so-table-rspace: 0pt; border-collapse: collapse !important; -ms-text-size-a=
+djust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; paddin=
+g: 4px 10px 0px;" width=3D"40" class=3D"menu-img">=0D=0A          <!--[endi=
+f]---->=0D=0A            <a href=3D"https://link.xbox.com/f/a/KazOYQIBMaUef=
+qG9gonnWg~~/AAQRxRA~/JCJtBmu9a6afM-geJi4u7P02fuFu4sDzFnxIg-L3YLvdlrPEyZ1RaL=
+kfyLQeKFDJMsVx0Oq9DjUT7gVno67afKm_D-qsCHVM1chiwIlj9PZa9DWOE1b0A1Q2GjOoWw17v=
+ogU2qYPYqPPl9NpLv7ithOFlsK9IFzzZucQqMcwwn3LqUNu7G7ESp8GaZhJRJDfcV4Rbhr9qyDY=
+KaR98frN4vSKv4JLD5FNQIaTaQPIHbw~" data-custom-attr=3D"HDR1_XboxLogo_Menu" s=
+tyle=3D"color: #ffffff; text-decoration: none; -ms-text-size-adjust: 100%; =
+-webkit-text-size-adjust: 100%; text-size-adjust: 100%;">=0D=0A            =
+  <!--[if mso]>=0D=0A              <img width=3D"40" height=3D"40" src=3D"h=
+ttps://braze-images.com/appboy/communication/assets/image_assets/images/679=
+94229edad4100667bd84c/original.png=3F1738097193" alt=3D"Xbox =E6=A8=99=E8=
+=AA=8C=E3=80=82" title=3D"Xbox =E6=A8=99=E8=AA=8C=E3=80=82" />=0D=0A       =
+       <!--[endif]-->=0D=0A              <!--[if !mso]><!---->=0D=0A       =
+       <img width=3D"40" src=3D"https://braze-images.com/appboy/communicati=
+on/assets/image_assets/images/67994229edad4100667bd84c/original.png=3F17380=
+97193" alt=3D"Xbox =E6=A8=99=E8=AA=8C=E3=80=82" title=3D"Xbox =E6=A8=99=E8=
+=AA=8C=E3=80=82" class=3D"menu-img" style=3D"line-height: 100%; outline: no=
+ne; text-decoration: none; height: auto; -ms-interpolation-mode: bicubic; b=
+order-style: none;">=0D=0A              <!--[endif]---->=0D=0A            <=
+/a>=0D=0A          </td>=0D=0A=0D=0A          <!--[if mso]>=0D=0A          =
+<td border=3D"0" width=3D"50%" valign=3D"top" height=3D"46" style=3D"paddin=
+g: 0;">=0D=0A          <!--[endif]-->=0D=0A          <!--[if !mso]><!---->=
+=0D=0A          <td border=3D"0" width=3D"50%" style=3D"mso-table-lspace: 0=
+pt; mso-table-rspace: 0pt; border-collapse: collapse !important; -ms-text-s=
+ize-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; p=
+adding: 0;">=0D=0A          <!--[endif]---->=0D=0A            =0D=0A       =
+     <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"cente=
+r" style=3D"border-spacing: 0; border-bottom: ; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; border-collapse: collapse !important; -ms-text-size-adju=
+st: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%;" role=3D"=
+presentation">=0D=0A              <tr>=0D=0A                <td border=3D"0=
+" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: c=
+ollapse !important; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 1=
+00%; text-size-adjust: 100%; padding: 10px 40px 10px 0px;" class=3D"module-=
+wrap-right desktop">=0D=0A                  <a class=3D"menu-item" href=3D"=
+https://link.xbox.com/f/a/CyvLVHL2YJD2_ePKjNKp-g~~/AAQRxRA~/JCJtBmu9a6afM-g=
+eJi4u7P02fuFu4sDzFnxIg-L3YLvdlrPEyZ1RaLkfyLQeKFDJhw84AtwZd6EBiKUABDOS5AL3b0=
+USIesgJKIImw_qOHOQjSN7uC86pe1rZ4VTuBA4q2TpoOMdjF8ux7JuPLVLJJ7p5zQOIr9Rn7Wxr=
+nUOZxzWjjC5cpDawV294amSUXDDps9SDV0PoXB9fOp41WeVCKa6dZ7sez5Lh-z5xveijsM~" da=
+ta-custom-attr=3D"HDR1_Accessories_Menu" style=3D"color: #FFFFFF; font-size=
+: 14px; line-height: 16px; font-family: 'Segoe UI', sans-serif; font-weight=
+: bold; text-decoration: none; -ms-text-size-adjust: 100%; -webkit-text-siz=
+e-adjust: 100%; text-size-adjust: 100%;">=E9=85=8D=E4=BB=B6</a>=0D=0A      =
+          </td>=0D=0A                <td border=3D"0" style=3D"mso-table-ls=
+pace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !important; -ms=
+-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: =
+100%; padding: 10px 0px;">=0D=0A                  <a class=3D"menu-item" hr=
+ef=3D"https://link.xbox.com/f/a/nCXKkhl6WvknEfKd56dUKA~~/AAQRxRA~/JCJtBmu9a=
+6afM-geJi4u7P02fuFu4sDzFnxIg-L3YLvdlrPEyZ1RaLkfyLQeKFDJ5zk6rRLB7KsQq9mWxqQC=
+U2gv89y-GSJhG1CIJ74sMaAPfSdrgjk5lyCCok-4q3ORH-phZgwUFJByP4sCRElAF7NGz3Ch3x0=
+NqZKpjhs-1P0m7Md6q8uA5pFLuJCTLFda88AFx5qiIuhGV4YKo9KqYegQlMszaVNni9AXdft3wS=
+A~" data-custom-attr=3D"HDR1_Deals_Menu" style=3D"color: #FFFFFF; font-size=
+: 14px; line-height: 16px; font-family: 'Segoe UI', sans-serif; font-weight=
+: bold; text-decoration: none; -ms-text-size-adjust: 100%; -webkit-text-siz=
+e-adjust: 100%; text-size-adjust: 100%;">=E5=84=AA=E6=83=A0</a>=0D=0A      =
+          </td>=0D=0A              </tr>=0D=0A            </table>=0D=0A   =
+         =0D=0A          </td>=0D=0A        </tr>=0D=0A      </table>=0D=0A=
+    </td>=0D=0A  </tr>=0D=0A  =0D=0A</table>=0D=0A      </td>=0D=0A    </tr=
+>=0D=0A=0D=0A  <tr>=0D=0A    <td border=3D"0" valign=3D"top" class=3D"mobil=
+e-20" style=3D"mso-padding: 0px 0px 40px 0px; mso-table-lspace: 0pt; mso-ta=
+ble-rspace: 0pt; border-collapse: collapse !important; -ms-text-size-adjust=
+: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; padding: 0p=
+x 0px 40px;"></td>=0D=0A  </tr>=0D=0A=0D=0A=0D=0A  <tr>=0D=0A    <td border=
+=3D"0" valign=3D"top" style=3D"color: #1F2024; font-family: 'Segoe UI', 'wf=
+_segoe-ui_normal', sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt=
+; border-collapse: collapse !important; -ms-text-size-adjust: 100%; -webkit=
+-text-size-adjust: 100%; text-size-adjust: 100%; padding: 0px 40px;" class=
+=3D"module-wrap" align=3D"left">=0D=0A      <p class=3D"b-4" style=3D"font-=
+size: 23px; line-height: 37px; mso-line-height-rule: exactly; mso-hyphenate=
+: none; margin: 0;" align=3D"left">=0D=0A        =E6=84=9F=E8=AC=9D=E4=BD=
+=A0=E8=A8=82=E9=96=B1 Xbox Game Pass Ultimate=E3=80=82=E6=88=91=E5=80=91=E8=
+=A6=8F=E5=8A=83=E6=9B=B4=E6=96=B0=E5=83=B9=E6=A0=BC=EF=BC=8C=E4=BB=A5=E5=9B=
+=A0=E6=87=89=E4=B8=8D=E6=96=B7=E8=AE=8A=E5=8C=96=E7=9A=84=E5=B8=82=E5=A0=B4=
+=E6=A2=9D=E4=BB=B6=E3=80=82=E9=80=99=E9=A0=85=E5=83=B9=E6=A0=BC=E8=AA=BF=E6=
+=95=B4=E5=8F=AF=E8=AE=93=E6=88=91=E5=80=91=E6=8C=81=E7=BA=8C=E7=82=BA=E4=BD=
+=A0=E5=B8=B6=E4=BE=86=E6=9B=B4=E5=A4=9A=E5=83=B9=E5=80=BC=E5=92=8C=E5=84=AA=
+=E8=B3=AA=E9=81=8A=E6=88=B2=EF=BC=8C=E6=89=93=E9=80=A0=E6=9C=80=E9=A0=82=E7=
+=B4=9A=E7=9A=84=E9=81=8A=E6=88=B2=E9=AB=94=E9=A9=97=E3=80=82=E8=87=AA 2025 =
+=E5=B9=B4 11 =E6=9C=88 4 =E6=97=A5=E8=B5=B7=EF=BC=8C=E7=B3=BB=E7=B5=B1=E5=
+=B0=87=E5=9C=A8=E6=AF=8F=E5=80=8B=E7=BA=8C=E8=A8=82=E9=80=B1=E6=9C=9F=E5=90=
+=91=E4=BD=A0=E6=94=B6=E5=8F=96 NT$1,949 =E5=8F=8A=E9=81=A9=E7=94=A8=E7=A8=
+=85=E9=87=91=EF=BC=8C=E9=99=A4=E9=9D=9E=E4=BD=A0=E5=9C=A8=E4=B8=8B=E4=B8=80=
+=E6=AC=A1=E6=8E=92=E5=AE=9A=E4=BB=98=E6=AC=BE=E6=97=A5=E7=9A=84=E5=85=A9=E5=
+=A4=A9=E5=89=8D=E5=8F=96=E6=B6=88=E8=A8=82=E9=96=B1=E3=80=82=E4=BD=A0=E5=8F=
+=AF=E4=BB=A5=E9=BB=9E=E9=81=B8<a href=3D"https://link.xbox.com/f/a/Cfj6qixV=
+ov_nZHQgaMyJAg~~/AAQRxRA~/JCJtBmu9a6afM-geJi4u7P02fuFu4sDzFnxIg-L3YLvdlrPEy=
+Z1RaLkfyLQeKFDJv02GWXgiEE_t0TeSg0oXQXYRs9WY-d9yu1Putlyo4_QR4XfxLCvg-xhzpK6A=
+b9FUpSF5k5miBeN9ck5aLMEwOUI7DJe7AlCwGIMTD_EGjq3fTJMamXGfOkRZcOuSXsgSVFHpOD9=
+dmNb3Plb1OB2KJKVq6vVcNi0wUSSWvvSxbzs~" style=3D"color: #1F2024; font-weight=
+: normal; text-decoration: underline; text-decoration-color: #1F2024; -ms-t=
+ext-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 10=
+0%;" class=3D"phonefix" data-custom-attr=3D"HER_Here_TXT"><strong style=3D"=
+font-weight: 400; color: #1F2024;">=E9=80=99=E8=A3=A1</strong></a>=E9=80=B2=
+=E5=85=A5 Microsoft =E5=B8=B3=E6=88=B6=EF=BC=8C=E4=BB=A5=E7=AE=A1=E7=90=86=
+=E8=A8=82=E9=96=B1=E3=80=81=E4=BB=98=E6=AC=BE=E6=96=B9=E5=BC=8F=E6=88=96=E5=
+=8F=96=E6=B6=88=E8=A8=82=E9=96=B1=E3=80=82<br><br> =E4=BB=A5=E4=B8=8B=E6=98=
+=AF=E4=BD=A0=E7=9B=AE=E5=89=8D=E7=9A=84=E6=96=B9=E6=A1=88=EF=BC=9A <br> Xbo=
+x Game Pass Ultimate<br><br> =E4=BD=A0=E7=9A=84=E8=A8=82=E9=96=B1=E5=83=B9=
+=E6=A0=BC=E5=BE=9E NT$1,199 =E8=AE=8A=E6=9B=B4=E7=82=BA NT$1,949=E3=80=82<b=
+r><br> =E9=80=99=E5=85=B6=E4=B8=AD=E5=8C=85=E5=90=AB=E4=BB=A5=E4=B8=8B=E7=
+=A6=8F=E5=88=A9=EF=BC=9A=0D=0A      </p>=0D=0A    </td>=0D=0A  </tr>=0D=0A=
+=0D=0A=0D=0A=0D=0A<tr>=0D=0A<td border=3D"0" valign=3D"top" style=3D"color:=
+ #1F2024; font-family: 'Segoe UI', 'wf_segoe-ui_normal', sans-serif; mso-ta=
+ble-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !importan=
+t; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-ad=
+just: 100%; padding: 0px 40px 40px;" class=3D"module-wrap mobile-20" align=
+=3D"left">=0D=0A<table width=3D"100%" style=3D"border-spacing: 0; mso-table=
+-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !important; =
+-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adjus=
+t: 100%;" role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" border=
+=3D"0">=0D=0A<tr>=0D=0A<td border=3D"0" style=3D"mso-padding: 0px 0px 0px 1=
+0px; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collaps=
+e !important; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; padding: 0px 0px 0px 10px;">=0D=0A  <table width=3D"=
+100%" style=3D"border-spacing: 0; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt; border-collapse: collapse !important; -ms-text-size-adjust: 100%; -web=
+kit-text-size-adjust: 100%; text-size-adjust: 100%;" cellspacing=3D"0" cell=
+padding=3D"0" border=3D"0" role=3D"presentation">=0D=0A      <tr>=0D=0A    =
+    <td border=3D"0" align=3D"center" width=3D"4%" valign=3D"top" style=3D"=
+color: #1F2024; font-family: 'Segoe UI', 'wf_segoe-ui_normal', sans-serif; =
+mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !im=
+portant; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-s=
+ize-adjust: 100%; padding: 0px;" class=3D"">=0D=0A=09=09<p class=3D"b-4" st=
+yle=3D"font-size: 23px; line-height: 37px; mso-line-height-rule: exactly; m=
+so-hyphenate: none; margin: 0;" align=3D"left">=E2=80=A2</p>=0D=0A        <=
+/td>=0D=0A        <td border=3D"0" align=3D"left" valign=3D"top" style=3D"c=
+olor: #1F2024; font-family: 'Segoe UI', 'wf_segoe-ui_normal', sans-serif; m=
+so-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !imp=
+ortant; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-si=
+ze-adjust: 100%; padding: 0px;" class=3D"">=0D=0A=09=09<p class=3D"b-4" sty=
+le=3D"font-size: 23px; line-height: 37px; mso-line-height-rule: exactly; ms=
+o-hyphenate: none; margin: 0;" align=3D"left">=E6=96=B0=E9=81=8A=E6=88=B2=
+=E4=B8=8A=E5=B8=82=E9=A6=96=E6=97=A5=E6=9A=A2=E7=8E=A9=EF=BC=8C=E5=8C=85=E6=
+=8B=AC Xbox =E8=87=AA=E8=A3=BD=E9=81=8A=E6=88=B2=E5=8F=8A=E7=AC=AC=E4=B8=89=
+=E6=96=B9=E9=81=8A=E6=88=B2</p>=0D=0A=09=09</td>=0D=0A      </tr>=0D=0A=0D=
+=0A      <tr>=0D=0A        <td border=3D"0" align=3D"center" width=3D"4%" v=
+align=3D"top" style=3D"color: #1F2024; font-family: 'Segoe UI', 'wf_segoe-u=
+i_normal', sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border=
+-collapse: collapse !important; -ms-text-size-adjust: 100%; -webkit-text-si=
+ze-adjust: 100%; text-size-adjust: 100%; padding: 0px;" class=3D"">=0D=0A=
+=09=09<p class=3D"b-4" style=3D"font-size: 23px; line-height: 37px; mso-lin=
+e-height-rule: exactly; mso-hyphenate: none; margin: 0;" align=3D"left">=E2=
+=80=A2</p>=0D=0A        </td>=0D=0A        <td border=3D"0" align=3D"left" =
+valign=3D"top" style=3D"color: #1F2024; font-family: 'Segoe UI', 'wf_segoe-=
+ui_normal', sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; borde=
+r-collapse: collapse !important; -ms-text-size-adjust: 100%; -webkit-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; padding: 0px;" class=3D"">=0D=0A=
+=09=09<p class=3D"b-4" style=3D"font-size: 23px; line-height: 37px; mso-lin=
+e-height-rule: exactly; mso-hyphenate: none; margin: 0;" align=3D"left">=E8=
+=B6=85=E9=81=8E 400 =E6=AC=BE=E9=81=8A=E6=88=B2=E5=8F=AF=E5=9C=A8 Xbox =E4=
+=B8=BB=E6=A9=9F=E3=80=81=E9=9B=BB=E8=85=A6=E5=92=8C=E6=94=AF=E6=8F=B4=E7=9A=
+=84=E8=A3=9D=E7=BD=AE=E4=B8=8A=E6=9A=A2=E7=8E=A9</p>=0D=0A=09=09</td>=0D=0A=
+      </tr>=0D=0A=0D=0A=0D=0A=0D=0A      <tr>=0D=0A        <td border=3D"0"=
+ align=3D"center" width=3D"4%" valign=3D"top" style=3D"color: #1F2024; font=
+-family: 'Segoe UI', 'wf_segoe-ui_normal', sans-serif; mso-table-lspace: 0p=
+t; mso-table-rspace: 0pt; border-collapse: collapse !important; -ms-text-si=
+ze-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; pa=
+dding: 0px;" class=3D"">=0D=0A=09=09<p class=3D"b-4" style=3D"font-size: 23=
+px; line-height: 37px; mso-line-height-rule: exactly; mso-hyphenate: none; =
+margin: 0;" align=3D"left">=E2=80=A2</p>=0D=0A        </td>=0D=0A        <t=
+d border=3D"0" align=3D"left" valign=3D"top" style=3D"color: #1F2024; font-=
+family: 'Segoe UI', 'wf_segoe-ui_normal', sans-serif; mso-table-lspace: 0pt=
+; mso-table-rspace: 0pt; border-collapse: collapse !important; -ms-text-siz=
+e-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; pad=
+ding: 0px;" class=3D"">=0D=0A=09=09<p class=3D"b-4" style=3D"font-size: 23p=
+x; line-height: 37px; mso-line-height-rule: exactly; mso-hyphenate: none; m=
+argin: 0;" align=3D"left">=E9=80=8F=E9=81=8E EA Play =E6=9A=A2=E7=8E=A9=E3=
+=80=8AEA SPORTS FC=E3=80=8B=E3=80=81=E3=80=8AThe Sims=E3=80=8B=E3=80=81=E3=
+=80=8ASTAR WARS=E2=84=A2=E3=80=8B=E5=92=8C=E5=85=B6=E4=BB=96=E7=8E=A9=E5=AE=
+=B6=E6=9C=80=E6=84=9B=E7=9A=84=E9=81=8A=E6=88=B2</p>=0D=0A=09=09</td>=0D=0A=
+      </tr>=0D=0A=0D=0A=0D=0A      <tr>=0D=0A        <td border=3D"0" align=
+=3D"center" width=3D"4%" valign=3D"top" style=3D"color: #1F2024; font-famil=
+y: 'Segoe UI', 'wf_segoe-ui_normal', sans-serif; mso-table-lspace: 0pt; mso=
+-table-rspace: 0pt; border-collapse: collapse !important; -ms-text-size-adj=
+ust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; padding:=
+ 0px;" class=3D"">=0D=0A=09=09<p class=3D"b-4" style=3D"font-size: 23px; li=
+ne-height: 37px; mso-line-height-rule: exactly; mso-hyphenate: none; margin=
+: 0;" align=3D"left">=E2=80=A2</p>=0D=0A        </td>=0D=0A        <td bord=
+er=3D"0" align=3D"left" valign=3D"top" style=3D"color: #1F2024; font-family=
+: 'Segoe UI', 'wf_segoe-ui_normal', sans-serif; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; border-collapse: collapse !important; -ms-text-size-adju=
+st: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; padding: =
+0px;" class=3D"">=0D=0A=09=09<p class=3D"b-4" style=3D"font-size: 23px; lin=
+e-height: 37px; mso-line-height-rule: exactly; mso-hyphenate: none; margin:=
+ 0;" align=3D"left">=E6=9A=A2=E7=8E=A9 Ubisoft+ Classics =E6=8F=90=E4=BE=9B=
+=E7=9A=84 50 =E6=AC=BE=E4=BB=A5=E4=B8=8A=E7=B6=93=E5=85=B8=E9=81=8A=E6=88=
+=B2</p>=0D=0A=09=09</td>=0D=0A      </tr>=0D=0A=0D=0A=0D=0A=0D=0A      <tr>=
+=0D=0A        <td border=3D"0" align=3D"center" width=3D"4%" valign=3D"top"=
+ style=3D"color: #1F2024; font-family: 'Segoe UI', 'wf_segoe-ui_normal', sa=
+ns-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: co=
+llapse !important; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 10=
+0%; text-size-adjust: 100%; padding: 0px;" class=3D"">=0D=0A=09=09<p class=
+=3D"b-4" style=3D"font-size: 23px; line-height: 37px; mso-line-height-rule:=
+ exactly; mso-hyphenate: none; margin: 0;" align=3D"left">=E2=80=A2</p>=0D=
+=0A        </td>=0D=0A        <td border=3D"0" align=3D"left" valign=3D"top=
+" style=3D"color: #1F2024; font-family: 'Segoe UI', 'wf_segoe-ui_normal', s=
+ans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: c=
+ollapse !important; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 1=
+00%; text-size-adjust: 100%; padding: 0px;" class=3D"">=0D=0A=09=09<p class=
+=3D"b-4" style=3D"font-size: 23px; line-height: 37px; mso-line-height-rule:=
+ exactly; margin: 0;" align=3D"left">=E6=9A=A2=E4=BA=AB=E9=81=8A=E6=88=B2=
+=E5=85=A7=E7=9A=84=E7=A6=8F=E5=88=A9=EF=BC=8C=E5=8C=85=E6=8B=AC=E3=80=8ALea=
+gue of Legends=E3=80=8B=E3=80=81=E3=80=8ACall of Duty=C2=AE: Warzone=E2=84=
+=A2=E3=80=8B=E3=80=81=E3=80=8ARainbow Six Siege=E3=80=8B=E7=AD=89=E8=B6=85=
+=E4=BA=BA=E6=B0=A3=E9=81=8A=E6=88=B2=E7=9A=84=E5=B0=88=E5=B1=AC=E7=A6=8F=E5=
+=88=A9=E3=80=82</p>=0D=0A=09=09</td>=0D=0A      </tr>=0D=0A=0D=0A=0D=0A=0D=
+=0A      <tr>=0D=0A        <td border=3D"0" align=3D"center" width=3D"4%" v=
+align=3D"top" style=3D"color: #1F2024; font-family: 'Segoe UI', 'wf_segoe-u=
+i_normal', sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border=
+-collapse: collapse !important; -ms-text-size-adjust: 100%; -webkit-text-si=
+ze-adjust: 100%; text-size-adjust: 100%; padding: 0px;" class=3D"">=0D=0A=
+=09=09<p class=3D"b-4" style=3D"font-size: 23px; line-height: 37px; mso-lin=
+e-height-rule: exactly; mso-hyphenate: none; margin: 0;" align=3D"left">=E2=
+=80=A2</p>=0D=0A        </td>=0D=0A        <td border=3D"0" align=3D"left" =
+valign=3D"top" style=3D"color: #1F2024; font-family: 'Segoe UI', 'wf_segoe-=
+ui_normal', sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; borde=
+r-collapse: collapse !important; -ms-text-size-adjust: 100%; -webkit-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; padding: 0px;" class=3D"">=0D=0A=
+=09=09<p class=3D"b-4" style=3D"font-size: 23px; line-height: 37px; mso-lin=
+e-height-rule: exactly; margin: 0;" align=3D"left">=E5=8A=A0=E5=85=A5=E5=A5=
+=BD=E5=8F=8B=E7=9A=84=E8=A1=8C=E5=88=97=EF=BC=8C=E9=80=8F=E9=81=8E=E7=B7=9A=
+=E4=B8=8A=E4=B8=BB=E6=A9=9F=E5=A4=9A=E4=BA=BA=E9=81=8A=E6=88=B2=E4=B8=80=E5=
+=90=8C=E6=9A=A2=E7=8E=A9=E3=80=81=E8=81=8A=E5=A4=A9=E5=92=8C=E6=8E=A2=E7=B4=
+=A2 </p>=0D=0A=09=09</td>=0D=0A      </tr>=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A   =
+ </table>=0D=0A  </td>=0D=0A</tr>=0D=0A</table>=0D=0A</td>=0D=0A</tr>=0D=0A=
+=0D=0A=0D=0A=0D=0A  <tr>=0D=0A    <td border=3D"0" valign=3D"top" style=3D"=
+color: #1F2024; font-family: 'Segoe UI', 'wf_segoe-ui_normal', sans-serif; =
+mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !im=
+portant; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-s=
+ize-adjust: 100%; padding: 0px 40px;" class=3D"module-wrap" align=3D"left">=
+=0D=0A      <p class=3D"b-4" style=3D"font-size: 23px; line-height: 37px; m=
+so-line-height-rule: exactly; mso-hyphenate: none; margin: 0;" align=3D"lef=
+t">=0D=0A        =E6=88=91=E5=80=91=E6=8C=81=E7=BA=8C=E5=8A=AA=E5=8A=9B=E6=
+=94=B9=E5=96=84=E6=9C=8D=E5=8B=99=EF=BC=8C=E5=B8=8C=E6=9C=9B=E8=83=BD=E7=82=
+=BA=E4=BD=A0=E6=8F=90=E4=BE=9B=E5=A4=9A=E6=A8=A3=E5=8C=96=E7=9A=84=E9=81=B8=
+=E6=93=87=EF=BC=8C=E4=BB=A5=E7=9B=A1=E5=8A=9B=E7=AC=A6=E5=90=88=E4=BD=A0=E7=
+=9A=84=E9=81=8A=E6=88=B2=E9=9C=80=E6=B1=82=E5=92=8C=E9=A0=90=E7=AE=97=E3=80=
+=82<br><br> =E8=AB=8B=E9=80=A0=E8=A8=AA <a href=3D"https://link.xbox.com/f/=
+a/jd0FpNXxKk8IqrP0sqWWmg~~/AAQRxRA~/JCJtBmu9a6afM-geJi4u7P02fuFu4sDzFnxIg-L=
+3YLvdlrPEyZ1RaLkfyLQeKFDJGj8-H1AYO0I764Z6ER9JeabJCZTDEt33RFQYwBYdjvUjw37CtD=
+Fj13eFqOVlw929OVhTed0-00qHRc622pvR04swlR01jjtTZmgciue2A6JJi1N_muxWxegycjX9U=
+Jt-6hBJ2sLBa3jtMet-PkhuyuH8typFRJ-3L1DSdmQkn24~" style=3D"color: #1f2024; f=
+ont-weight: 400; text-decoration: underline; text-decoration-color: #1f2024=
+; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adj=
+ust: 100%;" class=3D"phonefix" data-custom-attr=3D"HER_XGP_TXT"><strong sty=
+le=3D"font-weight: 400;">xbox.com/gamepass</strong></a> =E4=BB=A5=E6=AA=A2=
+=E8=A6=96=E6=88=91=E5=80=91=E6=89=80=E6=9C=89=E7=9A=84=E6=96=B9=E6=A1=88=E3=
+=80=82<br><br> <a href=3D"https://link.xbox.com/f/a/FyDQVX_iqyLjhP_Ug4V6DA~=
+~/AAQRxRA~/JCJtBmu9a6afM-geJi4u7P02fuFu4sDzFnxIg-L3YLvdlrPEyZ1RaLkfyLQeKFDJ=
+pq-VA5XIK3YS3GQnWJO2FepWNjo6R_EL99uNZPcEj342WmBNzsnlkUgc4qUAVXukYAhFb4Zye4T=
+qpf-K0j7U5YbbJlFDuKf03HQ_OC5i5LKRZJFIvLFFStPZkVnhVpj9ks1hKt3zOB6cyooOc9xLt5=
+YmacUkfCFiZNjt-LyP8Mw~" style=3D"color: #1F2024; font-weight: normal; text-=
+decoration: underline; text-decoration-color: #1F2024; -ms-text-size-adjust=
+: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%;" class=3D"p=
+honefix" data-custom-attr=3D"HER_LearnMore_TXT"><strong style=3D"font-weigh=
+t: 400; color: #1F2024;">=E6=B7=B1=E5=85=A5=E4=BA=86=E8=A7=A3</strong></a>=
+=E5=A6=82=E4=BD=95=E5=8F=96=E6=B6=88=E4=BD=A0=E7=9A=84=E8=A8=82=E9=96=B1=E3=
+=80=82<br><br> =E5=86=8D=E6=AC=A1=E6=84=9F=E8=AC=9D=E4=BD=A0=E8=A8=82=E9=96=
+=B1 Xbox Game Pass=E3=80=82=E6=88=91=E5=80=91=E5=B0=87=E6=8C=81=E7=BA=8C=E5=
+=8A=AA=E5=8A=9B=E7=82=BA=E4=BD=A0=E5=B8=B6=E4=BE=86=E9=AB=98=E5=93=81=E8=B3=
+=AA=E9=81=8A=E6=88=B2=E3=80=81=E8=B6=85=E5=80=BC=E5=9B=9E=E9=A5=8B=EF=BC=8C=
+=E4=BB=A5=E5=8F=8A=E9=9D=9E=E5=87=A1=E7=9A=84=E9=81=8A=E6=88=B2=E9=AB=94=E9=
+=A9=97=E3=80=82=0D=0A      </p>=0D=0A    </td>=0D=0A  </tr>=0D=0A=0D=0A=0D=
+=0A=0D=0A=0D=0A  <tr>=0D=0A    <td border=3D"0" valign=3D"top" class=3D"mob=
+ile-20" style=3D"mso-padding: 0px 0px 60px 0px; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; border-collapse: collapse !important; -ms-text-size-adju=
+st: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; padding: =
+0px 0px 60px;"></td>=0D=0A  </tr>=0D=0A=0D=0A</table>=0D=0A</main>=0D=0A   =
+     =0D=0A        =0D=0A        <!-- ADD YOUR MODULES WITH POSITION HERE -=
+->=0D=0A=0D=0A        =0D=0A=0D=0A=0D=0A =0D=0A=0D=0A=0D=0A=0D=0A=0D=0A  <f=
+ooter>=0D=0A    <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" wid=
+th=3D"100%" bgcolor=3D"#171717" style=3D"width: 100%; max-width: 100%; min-=
+width: 100%; border-spacing: 0; direction: ltr; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; border-collapse: collapse !important; -ms-text-size-adju=
+st: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%;" role=3D"=
+presentation">=0D=0A      =0D=0A=0D=0A        <tr>=0D=0A          <td borde=
+r=3D"0" valign=3D"top" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0p=
+t; border-collapse: collapse !important; -ms-text-size-adjust: 100%; -webki=
+t-text-size-adjust: 100%; text-size-adjust: 100%; padding: 0px 0px 40px;"><=
+/td>=0D=0A        </tr>=0D=0A        =0D=0A        <tr>=0D=0A          <td =
+border=3D"0" valign=3D"top" style=3D"mso-table-lspace: 0pt; mso-table-rspac=
+e: 0pt; border-collapse: collapse !important; -ms-text-size-adjust: 100%; -=
+webkit-text-size-adjust: 100%; text-size-adjust: 100%; padding: 0px 0px 20p=
+x;"></td>=0D=0A        </tr>=0D=0A        <tr>=0D=0A          <td border=3D=
+"0" valign=3D"top" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; b=
+order-collapse: collapse !important; -ms-text-size-adjust: 100%; -webkit-te=
+xt-size-adjust: 100%; text-size-adjust: 100%; padding: 0px 20px 40px;">=0D=
+=0A            =0D=0A            =0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=
+=0D=0A=0D=0A=0D=0A=0D=0A<table width=3D"100%" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"width: 100%; max-width: 100%; min-width: 100%; border-spaci=
+ng: 0; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: colla=
+pse !important; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;=
+ text-size-adjust: 100%;" role=3D"presentation" dir=3D"ltr" class=3D"mobile=
+-hide">=0D=0A  <tr>=0D=0A    <td width=3D"50%" valign=3D"top" style=3D"mso-=
+table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !import=
+ant; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-=
+adjust: 100%; padding: 0px 10px 0px 0px;">=0D=0A      <table width=3D"100%"=
+ cellspacing=3D"0" cellpadding=3D"0" style=3D"border-spacing: 0; mso-table-=
+lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !important; -=
+ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust=
+: 100%;" role=3D"presentation">=0D=0A        <tr>=0D=0A          <td width=
+=3D"100%" align=3D"center" class=3D"cta" style=3D"font-size: 15px; line-hei=
+ght: 20px; font-family: 'Segoe UI Black', 'wf_segoe-ui_bold', sans-serif; f=
+ont-weight: 900 !important; color: #FFFFFF; mso-padding-alt: 5px 20px 6px 2=
+0px; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collaps=
+e !important; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; border: 2px solid #FFFFFF;" >=0D=0A            <a hr=
+ef=3D"https://link.xbox.com/f/a/lyCPRrAumFgUa2cyLNjVqw~~/AAQRxRA~/JCJtBmu9a=
+6afM-geJi4u7P02fuFu4sDzFnxIg-L3YLvdlrPEyZ1RaLkfyLQeKFDJ12cXPnu_LkmYNF9S4w2F=
+1rf1anhqio4y5hMp2vsapHf0g6W-ErPiYZJeDVFqogSg-A58vMGg5hA0Y2-Tp8GDLRZS3vN523L=
+SRrF7fn1lZ_KQsk6CiITetetjJ_lDsw6_L226_x_XMB_AwRbfhglkZUBWi8QwkpVPSuRY29Jb7O=
+Q~" style=3D"display: block; text-decoration: none; color: #FFFFFF; -ms-tex=
+t-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%=
+; padding: 6px 20px;" data-custom-attr=3D"FTR_MyAccount_BTN">=E6=88=91=E7=
+=9A=84=E5=B8=B3=E6=88=B6</a>=0D=0A          </td>=0D=0A        </tr>=0D=0A =
+     </table>=0D=0A    </td>=0D=0A    <td width=3D"50%" valign=3D"top" styl=
+e=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collaps=
+e !important; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; padding: 0px 0px 0px 10px;">=0D=0A      <table width=
+=3D"100%" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-spacing: 0; m=
+so-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !imp=
+ortant; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-si=
+ze-adjust: 100%;" role=3D"presentation">=0D=0A        <tr>=0D=0A          <=
+td width=3D"100%" align=3D"center" class=3D"cta" style=3D"font-size: 15px; =
+line-height: 20px; font-family: 'Segoe UI Black', 'wf_segoe-ui_bold', sans-=
+serif; font-weight: 900 !important; color: #FFFFFF; mso-padding-alt: 5px 20=
+px 6px 20px; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse:=
+ collapse !important; -ms-text-size-adjust: 100%; -webkit-text-size-adjust:=
+ 100%; text-size-adjust: 100%; border: 2px solid #FFFFFF;" >=0D=0A         =
+   <a href=3D"https://link.xbox.com/f/a/TIhYEmtNOhqme0jQbMZCIQ~~/AAQRxRA~/J=
+CJtBmu9a6afM-geJi4u7P02fuFu4sDzFnxIg-L3YLvdlrPEyZ1RaLkfyLQeKFDJiz_f4zhmUgKv=
+DSAEBBpxUlKNy5svUvJ6Mq9ffC923W3LV1weHcbjSAjdvVujKVwAw8FbpygGGhxjA02lOsa3e-i=
+eOKNxnNG0740iI1v8TADPESbju9LHcRGD-RSDaHX3rccK7IA1gPVJJhZwmiuA3Dxho22TznqFra=
+GKenHr94s~" style=3D"display: block; text-decoration: none; color: #FFFFFF;=
+ -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adju=
+st: 100%; padding: 6px 20px;" data-custom-attr=3D"FTR_Support_BTN">=E6=94=
+=AF=E6=8F=B4</a>=0D=0A          </td>=0D=0A        </tr>=0D=0A      </table=
+>=0D=0A    </td>=0D=0A  </tr>=0D=0A</table>=0D=0A<!--[if !mso]><!---->=0D=
+=0A<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" style=3D"width=
+: 100%; max-width: 100%; min-width: 100%; border-spacing: 0; mso-table-lspa=
+ce: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !important; -ms-t=
+ext-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 10=
+0%;" dir=3D"ltr" role=3D"presentation">=0D=0A  <tr>=0D=0A    <td width=3D"1=
+00%" valign=3D"top" style=3D"display: none; mso-table-lspace: 0pt; mso-tabl=
+e-rspace: 0pt; border-collapse: collapse !important; -ms-text-size-adjust: =
+100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; padding: 0px =
+0px 10px;" class=3D"mobile-show">=0D=0A      <table width=3D"100%" cellspac=
+ing=3D"0" cellpadding=3D"0" style=3D"border-spacing: 0; mso-table-lspace: 0=
+pt; mso-table-rspace: 0pt; border-collapse: collapse !important; -ms-text-s=
+ize-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%;" =
+role=3D"presentation">=0D=0A        <tr>=0D=0A          <td width=3D"100%" =
+align=3D"center" class=3D"cta" style=3D"font-size: 15px; line-height: 20px;=
+ font-family: 'Segoe UI Black', 'wf_segoe-ui_bold', sans-serif; font-weight=
+: 900 !important; color: #FFFFFF; mso-padding-alt: 5px 20px 6px 20px; mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !importa=
+nt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-a=
+djust: 100%; border: 2px solid #FFFFFF;" >=0D=0A            <a href=3D"http=
+s://link.xbox.com/f/a/lyCPRrAumFgUa2cyLNjVqw~~/AAQRxRA~/JCJtBmu9a6afM-geJi4=
+u7P02fuFu4sDzFnxIg-L3YLvdlrPEyZ1RaLkfyLQeKFDJ12cXPnu_LkmYNF9S4w2F1rf1anhqio=
+4y5hMp2vsapHf0g6W-ErPiYZJeDVFqogSg-A58vMGg5hA0Y2-Tp8GDLRZS3vN523LSRrF7fn1lZ=
+_KQsk6CiITetetjJ_lDsw6_L226_x_XMB_AwRbfhglkZUBWi8QwkpVPSuRY29Jb7OQ~" style=
+=3D"display: block; text-decoration: none; color: #FFFFFF; -ms-text-size-ad=
+just: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; padding=
+: 6px 20px;" data-custom-attr=3D"FTR_MyAccount_BTN">=E6=88=91=E7=9A=84=E5=
+=B8=B3=E6=88=B6</a>=0D=0A          </td>=0D=0A        </tr>=0D=0A      </ta=
+ble>=0D=0A    </td>=0D=0A  </tr>=0D=0A  <tr>=0D=0A    <td width=3D"100%" va=
+lign=3D"top" style=3D"display: none; mso-table-lspace: 0pt; mso-table-rspac=
+e: 0pt; border-collapse: collapse !important; -ms-text-size-adjust: 100%; -=
+webkit-text-size-adjust: 100%; text-size-adjust: 100%; padding: 0px;" class=
+=3D"mobile-show">=0D=0A      <table width=3D"100%" cellspacing=3D"0" cellpa=
+dding=3D"0" style=3D"border-spacing: 0; mso-table-lspace: 0pt; mso-table-rs=
+pace: 0pt; border-collapse: collapse !important; -ms-text-size-adjust: 100%=
+; -webkit-text-size-adjust: 100%; text-size-adjust: 100%;" role=3D"presenta=
+tion">=0D=0A        <tr>=0D=0A          <td width=3D"100%" align=3D"center"=
+ class=3D"cta" style=3D"font-size: 15px; line-height: 20px; font-family: 'S=
+egoe UI Black', 'wf_segoe-ui_bold', sans-serif; font-weight: 900 !important=
+; color: #FFFFFF; mso-padding-alt: 5px 20px 6px 20px; mso-table-lspace: 0pt=
+; mso-table-rspace: 0pt; border-collapse: collapse !important; -ms-text-siz=
+e-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; bor=
+der: 2px solid #FFFFFF;" >=0D=0A            <a href=3D"https://link.xbox.co=
+m/f/a/TIhYEmtNOhqme0jQbMZCIQ~~/AAQRxRA~/JCJtBmu9a6afM-geJi4u7P02fuFu4sDzFnx=
+Ig-L3YLvdlrPEyZ1RaLkfyLQeKFDJiz_f4zhmUgKvDSAEBBpxUlKNy5svUvJ6Mq9ffC923W3LV1=
+weHcbjSAjdvVujKVwAw8FbpygGGhxjA02lOsa3e-ieOKNxnNG0740iI1v8TADPESbju9LHcRGD-=
+RSDaHX3rccK7IA1gPVJJhZwmiuA3Dxho22TznqFraGKenHr94s~" style=3D"display: bloc=
+k; text-decoration: none; color: #FFFFFF; -ms-text-size-adjust: 100%; -webk=
+it-text-size-adjust: 100%; text-size-adjust: 100%; padding: 6px 20px;" data=
+-custom-attr=3D"FTR_Support_BTN">=E6=94=AF=E6=8F=B4</a>=0D=0A          </td=
+>=0D=0A        </tr>=0D=0A      </table>=0D=0A    </td>=0D=0A  </tr>=0D=0A<=
+/table>=0D=0A<!--[endif]---->=0D=0A=0D=0A=0D=0A          </td>=0D=0A       =
+ </tr>=0D=0A        =0D=0A=0D=0A        <tr>=0D=0A          <td border=3D"0=
+" valign=3D"top" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; bor=
+der-collapse: collapse !important; -ms-text-size-adjust: 100%; -webkit-text=
+-size-adjust: 100%; text-size-adjust: 100%; padding: 0px 40px 40px;" class=
+=3D"module-wrap mobile-40">=0D=0A            <table cellspacing=3D"0" cellp=
+adding=3D"0" border=3D"0" width=3D"100%" style=3D"border-spacing: 0; mso-ta=
+ble-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !importan=
+t; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-ad=
+just: 100%;" role=3D"presentation">=0D=0A              =0D=0A              =
+<tr><td border=3D"0" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt;=
+ border-collapse: collapse !important; -ms-text-size-adjust: 100%; -webkit-=
+text-size-adjust: 100%; text-size-adjust: 100%; padding: 0px 0px 30px;" cla=
+ss=3D"mobile-20"></td></tr>=0D=0A              =0D=0A              <tr>=0D=
+=0A                =0D=0A=0D=0A              =0D=0A              <td border=
+=3D"0" align=3D"center" valign=3D"top" style=3D"mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; border-collapse: collapse !important; -ms-text-size-adju=
+st: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; padding: =
+0px 0px 10px;">=0D=0A                <a href=3D"https://link.xbox.com/f/a/5=
+yQSUV1JzzeVvhElRP6L9Q~~/AAQRxRA~/JCJtBmu9a6afM-geJi4u7P02fuFu4sDzFnxIg-L3YL=
+vdlrPEyZ1RaLkfyLQeKFDJj0lmlsb3mFQQ1H_KBk6fXGOYkNWcIQyi6OHroyZGUzr4YVLqY7peS=
+zoY21u9AQubO8-SnFDQsZYPpb9CKTmvjC5XMxyZ1SQ2zgjyf5ptmrULHZmHJRM3URXr7SLhtIO2=
+6tN1rpuEiZ7xBElS8WNG4OQPYvtbT8miO4R6ZoS_7yA~" data-custom-attr=3D"FTR_MSFTL=
+ogo_IMG" style=3D"color: #ffffff; text-decoration: none; -ms-text-size-adju=
+st: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%;">=0D=0A  =
+                <img width=3D"185" src=3D"https://braze-images.com/appboy/c=
+ommunication/assets/image_assets/images/67ae4b85a40dfb0075848311/original.j=
+pg=3F1739475844" alt=3D"Microsoft =E6=A8=99=E8=AA=8C=E3=80=82" title=3D"Mic=
+rosoft =E6=A8=99=E8=AA=8C=E3=80=82" border=3D"0" style=3D"display: block; p=
+adding-top: 0px !important; line-height: 100%; outline: none; text-decorati=
+on: none; height: auto; -ms-interpolation-mode: bicubic; border-style: none=
+; border-width: 0;" class=3D"footer-mslogo">=0D=0A                </a>=0D=
+=0A              </td>=0D=0A              =0D=0A            </tr>=0D=0A    =
+      </table>=0D=0A        </td>=0D=0A      </tr>=0D=0A      =0D=0A=0D=0A =
+     =0D=0A=0D=0A      =0D=0A      =0D=0A      =0D=0A=0D=0A      =0D=0A=0D=
+=0A      =0D=0A=0D=0A      =0D=0A    =0D=0A      <tr>=0D=0A        <td bord=
+er=3D"0" valign=3D"top" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0=
+pt; border-collapse: collapse !important; -ms-text-size-adjust: 100%; -webk=
+it-text-size-adjust: 100%; text-size-adjust: 100%; padding: 0px 0px 40px;">=
+=0D=0A          =0D=0A            =0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=0D=
+=0A<table style=3D"text-align: center; width: 100%; min-width: 100%; mso-ta=
+ble-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !importan=
+t; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-ad=
+just: 100%; margin: 0 auto; padding: 0;" align=3D"center" border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%">=0D=0A=
+=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A    <tr>=0D=0A      <td align=3D"center" styl=
+e=3D"font-family: 'Segoe UI', wf_segoe-ui_normal, Arial, sans-serif; color:=
+ #ffffff; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: co=
+llapse !important; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 10=
+0%; text-size-adjust: 100%; padding: 0px 10px;" class=3D"footer-type">=0D=
+=0A        <a style=3D"color: #ffffff; text-decoration: underline !importan=
+t; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-ad=
+just: 100%;" alias=3D"footer_privacy" href=3D"https://link.xbox.com/f/a/BfP=
+SrFqb4c2Pm70O_eEyLA~~/AAQRxRA~/EdQs6w-vF8I7quPRnRdDHnnppD2g3oTXhXgHssdwc4E8=
+XI_LRjexQlJWRXfV866BMqd9wV5ut4A6mIewpOBPKqtnaayk8rAMqwvdPP9Mwx4h-84gughHhc9=
+uzAzMZe_wVTI6sDP_FbGbKsnzxUfnBj_V2Y6ow-m1ATJ0cs7rvR8~" data-custom-attr=3D"=
+FTR_Privacy_TXT"><span style=3D"text-decoration: underline !important; font=
+-weight: normal; font-size: 16px !important; line-height: 24px !important;"=
+>=E9=9A=B1=E7=A7=81=E6=AC=8A=E8=81=B2=E6=98=8E</span></a>=0D=0A        <br>=
+=0D=0A        <span class=3D"phonefix" margin=3D"0" style=3D"color: #ffffff=
+; text-decoration: none !important; font-size: 16px !important; line-height=
+: 24px !important; margin: 0px;">Microsoft&nbsp;Corporation<br>One&nbsp;Mic=
+rosoft&nbsp;Way<br>Redmond, WA&nbsp;98052=0D=0A        </span>=0D=0A      <=
+/td>=0D=0A    </tr>=0D=0A=09=0D=0A=09=0D=0A=09=0D=0A</table>=0D=0A         =
+ =0D=0A        </td>=0D=0A      </tr>=0D=0A      =0D=0A      <tr>=0D=0A    =
+    <td border=3D"0" valign=3D"top" style=3D"font-family: 'Segoe UI', wf_se=
+goe-ui_normal, Arial, sans-serif; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt; border-collapse: collapse !important; -ms-text-size-adjust: 100%; -web=
+kit-text-size-adjust: 100%; text-size-adjust: 100%; padding: 0px 40px 60px;=
+" class=3D"module-wrap mobile-40">=0D=0A          <p align=3D"center" class=
+=3D"disclaimer" style=3D"font-size: 16px; color: #FFFFFF; line-height: 24px=
+; mso-hyphenate: none; direction: ltr; margin: 0;" dir=3D"ltr">=0D=0A      =
+      =C2=A9 2025 Microsoft Corporation.=E8=91=97=E4=BD=9C=E6=AC=8A=E6=89=
+=80=E6=9C=89=EF=BC=8C=E4=B8=A6=E4=BF=9D=E7=95=99=E4=B8=80=E5=88=87=E6=AC=8A=
+=E5=88=A9=E3=80=82=E6=89=80=E6=9C=89=E5=95=86=E6=A8=99=E7=9A=86=E7=82=BA=E5=
+=80=8B=E5=88=A5=E6=93=81=E6=9C=89=E8=80=85=E7=9A=84=E8=B2=A1=E7=94=A2=E3=80=
+=82=0D=0A          </p>=0D=0A        </td>=0D=0A      </tr>=0D=0A    </tabl=
+e>=0D=0A  </footer>=0D=0A       <!--[if !mso]><!---->  =0D=0A        </td>=
+=0D=0A      </tr>=0D=0A    </table>=0D=0A    <!--[endif]---->  =0D=0A    <!=
+--[if mso ]>=0D=0A    </td></tr></table></td></tr></table>=0D=0A    <!--[en=
+dif]-->=0D=0A  =0D=0A<img border=3D"0" width=3D"1" height=3D"1" alt=3D"" sr=
+c=3D"https://link.xbox.com/q/L79L1ZfG5lW9KquxQgwIpA~~/AAQRxRA~/9KvDOXy7iNqY=
+hDTaenILvKPb3p0Z2xH0AQTSJHrYiJO4i3H4kkodPgrmshzynKphImxZzs6EuMK9BalFrlu-5g~=
+~">=0D=0A</body>=0D=0A</html>

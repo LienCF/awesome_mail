@@ -1,0 +1,1205 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:a80f:b0:4ec:41ca:fc70 with SMTP id cj15csp608593mdb;
+        Tue, 11 Nov 2025 19:36:56 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGI3IxiXHwvgGivELzOCoSKm0etLU6Bw56LYTuORZi7VigZ4TTnVyWEw6pFZkJOo8wCRpD7
+X-Received: by 2002:a05:6214:e6f:b0:880:4dd6:20c4 with SMTP id 6a1803df08f44-882719759edmr21738336d6.25.1762918616497;
+        Tue, 11 Nov 2025 19:36:56 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762918616; cv=none;
+        d=google.com; s=arc-20240605;
+        b=C3zsRJRb+kh/J185o12dXx8uqAyhk3nKSAOdDK9kkS2JC6tgWzuZ19LtPjnSpMn4//
+         HJCFfGZTvZ5qQG3H3/fQelTNDt0DIpLbPvjksDE5HwXmcEg44dWhdqoUHV6ZPFl5goyo
+         /PYoM+0HHGeuylWcoYeOHyY9xIvIwSKsr9aogwuAjg1oRHHEBbVDv3ShjNwPUfD+rUkq
+         VGAlxcOTFRVBTYC/qXHHtabIFSUJUrMF8puiIGszxvf4dvo5YAKkMtwk7xr8z7/lOH4P
+         Ta97qQCkB6+Cp0qzV2NXM6Uq7T78TAKOxJeGWjEQHOJbQ+RUtnNz7yAKgxghrpre+fuf
+         htxA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=list-unsubscribe-post:list-unsubscribe:to:subject:message-id
+         :mime-version:from:date:dkim-signature:dkim-signature;
+        bh=o818FJUwxKVPTsIPsyADWPA0N7gqc+iPW1BIu/W8s7Q=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=UXnYd8AAPRJ8/ABkxRz7W6te1ZWH9sFgi1p80PWaX34dpIPBW0FE5OOMpXRC0fsU06
+         qqhikNJXb+j1mnEmcNdkiDqQFwrvME9WAzE5YPTaq4QQO1iRNGP53O/vrA9I5d6qFEP+
+         D3PvpdhWj6Qn1S2ia8osy89/e5r3FnVFtgbd1qWEnCbjJY+x0f1jwH3lOnlUUyuiReRw
+         ljyqcDEei0L7JIbt96ftJAzUXzXKkou4Ryhl0V6ja6oXY4fOOn92aPzEJk/0P/TfqJQw
+         7E2CrhWC2winGFBgSAEted98Ntup8fDty46F0EcT0KHO3btFNvP++gswQAnn1XsRoDqb
+         NFyg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@spellar.ai header.s=s1 header.b="I/iLqdTz";
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=TDzfCQBi;
+       spf=pass (google.com: domain of bounces+40688117-d73e-liencf=gmail.com@em6526.spellar.ai designates 167.89.79.176 as permitted sender) smtp.mailfrom="bounces+40688117-d73e-liencf=gmail.com@em6526.spellar.ai";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=spellar.ai
+Return-Path: <bounces+40688117-d73e-liencf=gmail.com@em6526.spellar.ai>
+Received: from o1.ptr9173.spellar.ai (o1.ptr9173.spellar.ai. [167.89.79.176])
+        by mx.google.com with ESMTPS id 6a1803df08f44-88238c04c67si36857546d6.1526.2025.11.11.19.36.56
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Nov 2025 19:36:56 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+40688117-d73e-liencf=gmail.com@em6526.spellar.ai designates 167.89.79.176 as permitted sender) client-ip=167.89.79.176;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@spellar.ai header.s=s1 header.b="I/iLqdTz";
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=TDzfCQBi;
+       spf=pass (google.com: domain of bounces+40688117-d73e-liencf=gmail.com@em6526.spellar.ai designates 167.89.79.176 as permitted sender) smtp.mailfrom="bounces+40688117-d73e-liencf=gmail.com@em6526.spellar.ai";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=spellar.ai
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=spellar.ai;
+	h=content-type:date:from:mime-version:subject:to:list-unsubscribe:
+	list-unsubscribe-post:cc:content-type:date:feedback-id:from:subject:to;
+	s=s1; bh=o818FJUwxKVPTsIPsyADWPA0N7gqc+iPW1BIu/W8s7Q=;
+	b=I/iLqdTzw51ukJ/qPiWe3vPok2nAxv4TRWMoYQ1CBWm1kBwMHS3+Wniziubsx6v0nj4Q
+	WLshx3By3W2q+8O+fVlvtTfp4AATEt6XgyWbh91U39ljYnKzsAvltHkJBWJS13tfgnzKv4
+	FPUO08X819bW4tNDHxbWAfTj+t/5ipt+pbsGD0I7qBwzvw5p96Fzi9tNznmpYV5cXESXiK
+	riS3gDWdW+iAVTVFXqhI7az7Rz1yKmCZ9rTWp6NROMDt4QGxtie/XvTvF8nSIRzvpQFpGN
+	zHQoJzIDzA6cgp9b2n2Rz3rFQnt9kYaGA7khmpiC+L/HzH8syIadGsGptAZp8/vQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:date:from:mime-version:subject:to:list-unsubscribe:
+	list-unsubscribe-post:cc:content-type:date:feedback-id:from:subject:to;
+	s=smtpapi; bh=o818FJUwxKVPTsIPsyADWPA0N7gqc+iPW1BIu/W8s7Q=;
+	b=TDzfCQBiZ3sIlAFDoBcydcCdkAZ8qflLxInxpKiO+Z/FzdMQ/OLXsKvKe2TTbejO0OSV
+	1rAQGPeE6pcADe2N/hgAUYpdRykFT1I9S5wT1LLfzYDsdf3WL/uh2OOjZn0waF/NoHblZh
+	G3fEQawvJgoz9qPvoTw/7kYuwL95HoPOA=
+Received: by recvd-769f975875-jlzxk with SMTP id recvd-769f975875-jlzxk-1-691400D7-2
+	2025-11-12 03:36:55.808192067 +0000 UTC m=+6064380.033899364
+Received: from NDA2ODgxMTc (unknown)
+	by geopod-ismtpd-35 (SG) with HTTP
+	id NWD97IlKSNSQPb0NB1Rrgg
+	Wed, 12 Nov 2025 03:36:55.756 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=b03e057b29ad86df0c5e6826c419c0d94d7e6c2f1dee089032a122381c9a
+Date: Wed, 12 Nov 2025 03:36:55 +0000 (UTC)
+From: hi@spellar.ai
+Mime-Version: 1.0
+Message-ID: <NWD97IlKSNSQPb0NB1Rrgg@geopod-ismtpd-35>
+Subject: Spellar AI - Here Is Your Meeting Summary
+X-SG-EID: 
+ =?us-ascii?Q?u001=2E3o2tnQRu2PdlsFd5MFuTRMbg3ScjVnNL+RW=2FjVVUt5dj8QmP95j1B4kPr?=
+ =?us-ascii?Q?mxbSmd4dXFy16+rGl65GQ5FuOll4NrMBjWoAwKt?=
+ =?us-ascii?Q?RiDM41jDOXUrl9uy99K0SRCZRLEOnlcuG49+Q+3?=
+ =?us-ascii?Q?CvtFrqOec3SKyoDH8oG2DUiWskuHWmHb7EOPxiP?=
+ =?us-ascii?Q?+OJ5OLjRpxly5Xz9Ua?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BiMiW+ZUaaDoZonh1xKFny7iD2rV9eo5vkyJ7?=
+ =?us-ascii?Q?C1G11uSsIfTAjgHd0ggLPbr8FlEQS8+wsa4b62b?=
+ =?us-ascii?Q?QjjDtJHPxZ4hWwuC=2FAJLYwRltU0uUv8QDcLfB=2Fq?=
+ =?us-ascii?Q?2wo1+gTAJU8tmiaVQcBZR6wSnzj0hWKJtxtDxGW?=
+ =?us-ascii?Q?Boz8yG6J7LsI9jp83W74BuvYOlxi0Y1mu9a6d0L?=
+ =?us-ascii?Q?Q=3D=3D?=
+To: liencf@gmail.com
+X-Entity-ID: u001.suPxF1vNDoECBcy8PojQpA==
+List-Unsubscribe: 
+ =?us-ascii?Q?=3Chttps=3A=2F=2Fu40688117=2Ect=2Esendgrid=2Enet=2Flu=2Funsubscribe=3Foc=3Du001=2EF9-0?=
+ =?us-ascii?Q?3JKwnaedrGAi0gg5622OOI1aza7Eceokhanewom?=
+ =?us-ascii?Q?Ex6kOzarKJPvBneYHDY7jAncXdfU5NzpOnUw0I9?=
+ =?us-ascii?Q?7t-wNCPWLiiRh46TAq-W-6QQKK5Sp9Jq1yPubIe?=
+ =?us-ascii?Q?i=5Fj9-XCC9JF-C8gDGpuux8Zl0KVNvfnXMa-ffq4?=
+ =?us-ascii?Q?Ppwofyb1u-3eplxpL1ThzqiYy6-TNXuRsIYcvqU?=
+ =?us-ascii?Q?HwqO3Cy84RGHLSMTw9ZythgVZogB4l3-TlfmOxo?=
+ =?us-ascii?Q?3t5-qyNwprOmUsJneuyzRiODtn9zou168RrUA8X?=
+ =?us-ascii?Q?bu-Qtwovh8Dl-Ku50KhV3Q8e2FQz0H6JMhBNNqe?=
+ =?us-ascii?Q?odhAV218oHOcjxRqPOvHVfIHfgy0RoOj3eVlRyq?=
+ =?us-ascii?Q?qY4bNYvxJMGwS8cUiwYEEOJJ2GG1a7dW8ymJ3Nn?=
+ =?us-ascii?Q?M72z08duDXmPQMln3spAG0dgadblpaNwasbU2IS?=
+ =?us-ascii?Q?btNyu7klh6dr9Rb9OBtiBbgBSVq8qMofsmcLN2g?=
+ =?us-ascii?Q?PCFwL5VsowROwsuFJ7GJ=5FA5sPcFxkUrhG3IpGEO?=
+ =?us-ascii?Q?lm6R8oT8RLWaR55eOaVAmzPR35zQlDgRKSzRPcQ?=
+ =?us-ascii?Q?FpMBnKyNrafdGyfRWbC3FF7cA-CzVCaY-=5Fqkrgp?=
+ =?us-ascii?Q?Pk=5F=5FP2H0Ug8BGkb9ORw2PEifmcS5c7uKuldHh8V?=
+ =?us-ascii?Q?Hlt=5Fa8OHpK4zeIdGxlp=5Fl0cq=5Fz3v5ho7WfYLEE6?=
+ =?us-ascii?Q?K36R4-p6u5p9abwsLW1n7LpBESfvvfMfIs-yWLk?=
+ =?us-ascii?Q?FuhZMM9S6ZJzg4KCiDip5hi7gIM7Y26ifnOgvuR?=
+ =?us-ascii?Q?32ue=5F57qDk9re3L5cBngTI6fDvzJbhxBpwvN7UB?=
+ =?us-ascii?Q?-JaFy6LXeV9QLp3ut12r=5F7mkkq-1B08TAHh1tj1?=
+ =?us-ascii?Q?YY6MmNfm5LvfaK3DozWN32RnVkPjz-paa8LYiDw?=
+ =?us-ascii?Q?-BOD9gnyyZUDrKSUnWUbLJcfKHnig0TGYH=3E=2C=3Cma?=
+ =?us-ascii?Q?ilto=3Aunsubscribe=40em6526=2Espellar=2Eai=3Fsubj?=
+ =?us-ascii?Q?ect=3D40688117=2EhtAOR0-VHplVkz-cSfoNVPwxES?=
+ =?us-ascii?Q?RsCtV0326m0ZGBLt5oMDAwdTAwMBMv80ArsX8XJ?=
+ =?us-ascii?Q?NByhRAQoVtOp9J2nuuA5AfBiCKYTHfFME7X0che?=
+ =?us-ascii?Q?Uj6rhQ21LUKsnHt9v-ASatJW1sgzEbL9vKwAcng?=
+ =?us-ascii?Q?8iU99YB83Wn4jwcVO=2EMQdkSCiyZYX2rb8QCKosz?=
+ =?us-ascii?Q?P0TP4m=5FCPtI8GiBaLoXVL9oMDAwdTAwMLmw09hl?=
+ =?us-ascii?Q?NvvDP3EFY825UDlOfuaoRjGWddCJS40nGkHJFMs?=
+ =?us-ascii?Q?KcWpSE8jc4dAi3togq9CEMOh2gVphsyigK1wZNt?=
+ =?us-ascii?Q?QN7Ypp8YfWz1p9fouR=5F0gPWRJ5gKlWkKE0eJAJD?=
+ =?us-ascii?Q?Ubo4w205j9Cdf91EcUcpsBiuR=5Flk9oz0GXNIrJJ?=
+ =?us-ascii?Q?NfESKmgyx-yrtt61HBL51WGukzXjH-6h9dNd0Oy?=
+ =?us-ascii?Q?LHeowfudqZDXLHcKGwRejFWCjR-JFn7hjnPkBqN?=
+ =?us-ascii?Q?FN0kdlHFyqyP2VvVYiLA4B-ptaH7jPI3ATSBLMV?=
+ =?us-ascii?Q?9ene69114dyouEmLipAjHNPx6yuvsZ5SVMn3bR2?=
+ =?us-ascii?Q?mOZXXmbJAANluTuKABoatTk3VluF=5FthE4wsiQX-?=
+ =?us-ascii?Q?XiNTd=3E?=
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+
+--b03e057b29ad86df0c5e6826c419c0d94d7e6c2f1dee089032a122381c9a
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+( https://u40688117.ct.sendgrid.net/ls/click?upn=3Du001.BmPebfvuxBVhrOOyvZV=
+mEQ9cy-2BtLGO1kOhg2pIwBpaLhG-2BSFqi8Eg5PeCF7t2safLCfCnqaRyyGAOB1EuKdfstBkCE=
+81-2F9tnd6qyTR4CTBjMlQuUCXhIRhc8pQTssoG6x3Zkth2c218oJ-2B0Tt4f-2B6iJy1d-2FPd=
+-2B7BSMid1u7dd-2F2rcqhHGNgG207cxR8g4J5o5aQ0_NsZBigbiferOVfYn15JOBOqpzVc8svq=
+xw6JkhLGYp6v3EUYO5f1ASKP-2FRjTYfCIJhHMHoEGQvV4usfeXg6zi6SGtwALQLlX8UnhtvXhz=
+tmGS-2BSo-2F8FUz7FzcrIM7gecaWUffJBlLaSkGuuYBTHXtFrldB2jA0D2QkqnidRgItLEUIv1=
+WkLFWmRc5sB6-2FKthahphemZuk0gutzwhMBu0fAzqOHeFXJ9O60TjWwMGGAy15dK-2FvArYwOW=
+hPSf9Bg5dFoRLRUYXaHqT8f8RC4FnWYO2CWivMa9cPAc1q5UhTLYOQf-2Bza4yilHuHCEBlxrhz=
+yUbFJR4ZyuFQLsUzYQB1j3aL5A5eCsQEKHIHxEyAG2dJoDiUOh0xrgddN72P2ZIG-2FsUeSc0Yy=
+LwFsSAodglnfesyhmckOasC8EpmurfBtRas-3D )
+
+Hey =E9=80=A3=E5=BF=97=E5=B3=B0!
+
+The summary of your last meeting, =C2=AB *E2nova=E6=9E=B6=E6=A7=8B=E5=9C=96=
+=E8=A8=8E=E8=AB=96* =C2=BB , which lasted 39 minutes, is now ready =F0=9F=
+=8E=89
+
+Analyzed h ighlights : *7* discussed topics =E2=80=A2 *28* key points =E2=
+=80=A2 *14* tasks to follow. Check details up below=F0=9F=91=87
+
+Check Meeting Summary ( https://u40688117.ct.sendgrid.net/ls/click?upn=3Du0=
+01.BmPebfvuxBVhrOOyvZVmERgwUV8TGbC2ipfz-2Fg66EnHSg7EXHPk0Hy4G7DoEeUfE6d0w-2=
+FpxhvgEjoOvZuYtjf2JhFGq5zXVcIFPlqhfUWmrDBe1oatre7O7E-2FBNRzArX0-2FJECdDxEkS=
+yiZ-2F3KzdncG6TfxwFlO8pCZnuFwUFfXMP8CNOleRA1Mg-2FZyew9jW9ltUM2mclEhCsAHAxe-=
+2F0xLCkpMh2P2vI5FHdAOHbmsxM-3DVKLb_NsZBigbiferOVfYn15JOBOqpzVc8svqxw6JkhLGY=
+p6v3EUYO5f1ASKP-2FRjTYfCIJhHMHoEGQvV4usfeXg6zi6SGtwALQLlX8UnhtvXhztmGS-2BSo=
+-2F8FUz7FzcrIM7gecaWUffJBlLaSkGuuYBTHXtFrldB2jA0D2QkqnidRgItLEUIv1WkLFWmRc5=
+sB6-2FKthahphemZuk0gutzwhMBu0fAxh9kbErOYFUCWaTVbaWimM-2FcslPHx4JmDE-2FCO-2F=
+ykS16sok74Sr-2BQYp4Sjap-2Bqn-2Fjdxgbp0XeoTevBVqvSqOz6g3Oo3oODgWgf1UQAo9qiIk=
+kxoiVGj0dKFIQnXL4T6mEQh-2FyPZu9Vl0Ll0UT1Jz6MCA-2BOURuxcsFqdH1MEVym-2BBdC3u8=
+6unrjMhY883LLdnISI3EJoAaXTbF1HLFi9hYHA-3D )
+
+
+Also, your meeting has been exported to:
+
+    =20
+
+( https://u40688117.ct.sendgrid.net/ls/click?upn=3Du001.BmPebfvuxBVhrOOyvZV=
+mEcX6BxFn3FsnHUY0npyzgOTAw1HZL1xSVr-2FZUXyRiCXYWKe0PZOSSggJ4Z2JPSJgRRn-2FCc=
+T1BQOYeY-2Bb6DGOG1WJB-2BiJuzQtWfF8JpkJ7vWkwU0OQhyUV5FuGmW-2FWaFvvptun3wqbsp=
+XlBTyxLb4QDrbbLfTHA4FV1oOM8RSBvr9nhl__NsZBigbiferOVfYn15JOBOqpzVc8svqxw6Jkh=
+LGYp6v3EUYO5f1ASKP-2FRjTYfCIJhHMHoEGQvV4usfeXg6zi6SGtwALQLlX8UnhtvXhztmGS-2=
+BSo-2F8FUz7FzcrIM7gecaWUffJBlLaSkGuuYBTHXtFrldB2jA0D2QkqnidRgItLEUIv1WkLFWm=
+Rc5sB6-2FKthahphemZuk0gutzwhMBu0fA4pxtXmrN744wuCYkTncSdSdxH5bKyT6uDUTquy3QI=
+AN3nrM26q2CjFhU3KdpSh8g4-2BlBCqWs40KHCc-2BDuJE4fvV4p398ZLOQ1NUqk-2BvSDOOSBT=
+JAURsNPC7ctgDnKilodJs1XkypdoyK9jMb5U-2BFIz1dGoQl7sReyjmXOmI-2BUv-2FuwDDgM4r=
+vASOcsmEsjSXq-2FJUj-2BPA4U3B8mQQxsAmZp0-3D ) (  ) (  ) ( https://u40688117.=
+ct.sendgrid.net/ls/click?upn=3Du001.BmPebfvuxBVhrOOyvZVmEQgbr3XCHDxlwtX5Lv9=
+sldLoX7Bzcg2YHvti0Z9sIs94jD9GlAolmkcobgQkfCBLfGj8uByYZNxsNJY7ryPTfN89FlQwHp=
+PClVe-2F2KSm-2F-2Fn65rEPAXFS-2Bj9nvWJ5ryh3LPCzeWMXNV3ClrZGc36gOQM-3Dll2V_Ns=
+ZBigbiferOVfYn15JOBOqpzVc8svqxw6JkhLGYp6v3EUYO5f1ASKP-2FRjTYfCIJhHMHoEGQvV4=
+usfeXg6zi6SGtwALQLlX8UnhtvXhztmGS-2BSo-2F8FUz7FzcrIM7gecaWUffJBlLaSkGuuYBTH=
+XtFrldB2jA0D2QkqnidRgItLEUIv1WkLFWmRc5sB6-2FKthahphemZuk0gutzwhMBu0fA-2FdXA=
+OBHdFAATwjStcMz6MV52dhyQDQhiIoCInj9X-2BJcTMdEJAfI-2BKsKiigppP0BYABepoha26LD=
+npd1veCZrf3FtteZQ7tU3LSFfF9efQHnXyfD3qeQvUQT1mYcd17rovQWrtJ26t6AwbJOhYqbRe6=
+2tkYj-2BYDuCrQH1eZpYoUp0f8Lp0GB9pWLvwm-2F8QgHTBbxF6FpoCRhl-2B0lhV7jLuc-3D )
+
+
+Thank you for being an integral part of the *Spellar Community* ( https://u=
+40688117.ct.sendgrid.net/ls/click?upn=3Du001.BmPebfvuxBVhrOOyvZVmETqaAh3Ajx=
+q7YaVvsedBtOm0A4LJFZ7qqjCjGrNLGXinCkWzc99N9pYeSVKmdAnh7QEX7-2ByFD5oSLRgVPkM=
+Mp-2FOREspcj5yuts8WC7fAcFj8204Qo77cCDy034b-2B5QnhMw-3D-3DJMt8_NsZBigbiferOV=
+fYn15JOBOqpzVc8svqxw6JkhLGYp6v3EUYO5f1ASKP-2FRjTYfCIJhHMHoEGQvV4usfeXg6zi6S=
+GtwALQLlX8UnhtvXhztmGS-2BSo-2F8FUz7FzcrIM7gecaWUffJBlLaSkGuuYBTHXtFrldB2jA0=
+D2QkqnidRgItLEUIv1WkLFWmRc5sB6-2FKthahphemZuk0gutzwhMBu0fA2cGyKDVt7h9vn3OpX=
+NLk31Qrs3tqQ7Nu54Wa2uSchqHSn3ue3h18-2F87I-2BesPo116lSGd9wzYWi-2FbkS-2FQWG5h=
+zQ2hHnfaomhPdsx0Qbh7fJ7hBa3Vrudyck7TPgFkzmsjdohlXDO5K6aGT6uQ8KNc3UiTPOPezuA=
+hTMWlaH-2BiqcWVObB9eEGiHqO-2FgIfS7U98IFhoyZYjMrXgNN8XI4K4Uw-3D ) *=F0=9F=9A=
+=80*
+
+Warm regards,
+The Spellar Team
+
+( https://u40688117.ct.sendgrid.net/ls/click?upn=3Du001.BmPebfvuxBVhrOOyvZV=
+mEXAZn7RK0vb3FXLnZbQ-2BTsSx7gX7sREkhdfWB5IA57kenpz9-2BdrkPlJ5SIdejRfmn3nKFa=
+wwXmb39LosWH0JsnbF12hVS73T4k7pTEtPtcClFj-2FlseQHzJehzy0qt6J22w-3D-3DjKhX_Ns=
+ZBigbiferOVfYn15JOBOqpzVc8svqxw6JkhLGYp6v3EUYO5f1ASKP-2FRjTYfCIJhHMHoEGQvV4=
+usfeXg6zi6SGtwALQLlX8UnhtvXhztmGS-2BSo-2F8FUz7FzcrIM7gecaWUffJBlLaSkGuuYBTH=
+XtFrldB2jA0D2QkqnidRgItLEUIv1WkLFWmRc5sB6-2FKthahphemZuk0gutzwhMBu0fA8G-2FR=
+crhX1hU31b3348bmcZTqhWzzVjkuB7FQT-2FRdCB5ZcBGuUnbIvTL0AUVOQxF11gqWRNo22Vb1u=
+Bbgqt6Pxx36YNRTPvzJxNTLev-2FxuqFfaz5YB3sBweGoR49wCIxTBdXYt1yvcFNE-2BFV-2FyF=
+mRWIk-2Fxq8mupRLU3bRrlBOsNzNKacaisZ3TTk8v2da81heytIHSmuyVaRLahki22lUXU-3D )=
+ ( https://u40688117.ct.sendgrid.net/ls/click?upn=3Du001.BmPebfvuxBVhrOOyvZ=
+VmEdJC9v4NtI24k-2BwSdi3DKPg-2FnEb1o2eciHc1FT9nhYqpaIiFfeJKeMZc7B4DRqDinefey=
+yAOoTVrQDqlfkLYLamr9NWt9JRAW3qzmOb8LAGvZXwYGPRTKgGaOQKqA6U4hVQme2M6i1-2FkQq=
+mF0RhmaJ0-3DF9wp_NsZBigbiferOVfYn15JOBOqpzVc8svqxw6JkhLGYp6v3EUYO5f1ASKP-2F=
+RjTYfCIJhHMHoEGQvV4usfeXg6zi6SGtwALQLlX8UnhtvXhztmGS-2BSo-2F8FUz7FzcrIM7gec=
+aWUffJBlLaSkGuuYBTHXtFrldB2jA0D2QkqnidRgItLEUIv1WkLFWmRc5sB6-2FKthahphemZuk=
+0gutzwhMBu0fA-2FvlXIIqBy0-2Fb2lE5uRb-2FKJuObkCNDM7Jey0BaxZEbuZRjX-2FOj0EROx=
+h-2By0PnCHi0sx1W6OLQmkvYCTgvGsu9ahwsy3SJBl-2FUVMSkzgkEB-2F0ssrUr2efIvKvYBS9=
+gj6gXpiH03P-2BjJKfttMDifyi4fRETchLsoLexAF0XiqDQYbnVdjBl15w1cgNDYoddBpofMuWU=
+fpI8lKwblEQywR9QI8-3D )
+
+Copyright (C) 2025 Spellar AI. All rights reserved.
+
+Want to change how you receive these emails?
+
+Unsubscribe ( https://u40688117.ct.sendgrid.net/asm/unsubscribe/?user_id=3D=
+40688117&data=3DhvQVicH7Lj5f-ztiRFp46l8N673_4SKJrtTHeUGDdXhoMDAwdTAwMIPL0wd=
+19apx_UbfXy_fMiVZDHKT4DMWhTDqO_r2QkDZgqsWRI9F-t9CCaLoER90kDuSjxhNXc3YkRlVCW=
+afMm_hxP-We4gUNBYk9i8s7nNe_asmdrsILhTSOrn2QRqsKC_nn1ZCvYt-t_IUABPx8j16FQvKq=
+L00wsrJrdMQ6GzeaNoEd3vtthcJsUSdu2VzjDFEgfiTHQ-BVWCmAvSk1sCIB_ZTWi87DXaHksMg=
+j_i9fNzPI2eMMUUfKI5thWHPl2QkPGcNaI6l9TesBqWycKabPM8_0BABkqAWV8MVOG5U5K_5fzb=
+GdgtV7leTmauqCgmVEXwQnWQG6ED_iYjXapBS7C4y4C1KSpptTb19kUIw2cgYYI51hNlq6ks2HR=
+vym52Ygd7TixM-JeqqZPDTsP5SqV8aeue-AIxNo_6kOQphOclU1bQDlRYZezZ6F-6nBLq92Msn0=
+4AxdH_Ika27vWpaww9ZU3fQzo-i2BRX5i9X6kRZfdcnJiqP5H-9k9qWAjtRic-jnYGW0yDPk8Mx=
+UoE=3D ) - Unsubscribe Preferences ( https://u40688117.ct.sendgrid.net/asm/=
+?user_id=3D40688117&data=3DEtvrlMYp3nrKHU3HNr9c5d_ITg3oMzCdmEJ9bJgP_eVoMDAw=
+dTAwMK5H1F2hop6lZq74K7WtXz8isEYTnbx9u92DQaRmflVsKYRpvrU1ThmzRbpupYUv6N0l8xb=
+-RDCtHsOJ9YNz3QPNtimBM3MqpeUJtnTUtK-VXY-CGSwnbeRs7xZ4X_QbojCKMnW0dxySZgAd4c=
+kU7KXDZ0IGCU-T1OyzlEYW_zh5eRNdz6MV7V9LJKEtMfO0y3K9HwC8H43Nmr4raSilc0CKIubTg=
+MrhO6okHQV0kBiqEX8X-I3aDxcgG6YKoBUFDcaMV-_n_9O-6fy0iwp1q_cCyII1jcqONWo6XFX9=
+xsS0UXuI4ayK9mNL5kv7CoMJjjCeGNTFwQQpy6tZXFrW6NJQniI3qZGKsp0qdntipj3CjRFmNUr=
+3O-veLWXO-4e1XCXjuxabbIoK8xR4WcUvZiWgh61y2mAVs2xRHUdlC-1ZKYQIcC4NEfCPUwkMSO=
+UDqTPQGQwVB2GiS6boJhmEgMIPIZQ15qQfGabHjYUxDrM21nEOF_W_wK88dojgvrSgiA=3D=3D =
+)
+--b03e057b29ad86df0c5e6826c419c0d94d7e6c2f1dee089032a122381c9a
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org=
+/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html data-editor-version=3D"2" class=3D"sg-campaigns" xmlns=3D"http://www.=
+w3.org/1999/xhtml">
+    <head>
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8">
+      <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scal=
+e=3D1, minimum-scale=3D1, maximum-scale=3D1">
+      <!--[if !mso]><!-->
+      <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3DEdge">
+      <!--<![endif]-->
+      <!--[if (gte mso 9)|(IE)]>
+      <xml>
+        <o:OfficeDocumentSettings>
+          <o:AllowPNG/>
+          <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+      </xml>
+      <![endif]-->
+      <!--[if (gte mso 9)|(IE)]>
+  <style type=3D"text/css">
+    body {width: 600px;margin: 0 auto;}
+    table {border-collapse: collapse;}
+    table, td {mso-table-lspace: 0pt;mso-table-rspace: 0pt;}
+    img {-ms-interpolation-mode: bicubic;}
+  </style>
+<![endif]-->
+      <style type=3D"text/css">
+    body, p, div {
+      font-family: arial,helvetica,sans-serif;
+      font-size: 14px;
+    }
+    body {
+      color: #000000;
+    }
+    body a {
+      color: #1188E6;
+      text-decoration: none;
+    }
+    p { margin: 0; padding: 0; }
+    table.wrapper {
+      width:100% !important;
+      table-layout: fixed;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    img.max-width {
+      max-width: 100% !important;
+    }
+    .column.of-2 {
+      width: 50%;
+    }
+    .column.of-3 {
+      width: 33.333%;
+    }
+    .column.of-4 {
+      width: 25%;
+    }
+    ul ul ul ul  {
+      list-style-type: disc !important;
+    }
+    ol ol {
+      list-style-type: lower-roman !important;
+    }
+    ol ol ol {
+      list-style-type: lower-latin !important;
+    }
+    ol ol ol ol {
+      list-style-type: decimal !important;
+    }
+    @media screen and (max-width:480px) {
+      .preheader .rightColumnContent,
+      .footer .rightColumnContent {
+        text-align: left !important;
+      }
+      .preheader .rightColumnContent div,
+      .preheader .rightColumnContent span,
+      .footer .rightColumnContent div,
+      .footer .rightColumnContent span {
+        text-align: left !important;
+      }
+      .preheader .rightColumnContent,
+      .preheader .leftColumnContent {
+        font-size: 80% !important;
+        padding: 5px 0;
+      }
+      table.wrapper-mobile {
+        width: 100% !important;
+        table-layout: fixed;
+      }
+      img.max-width {
+        height: auto !important;
+        max-width: 100% !important;
+      }
+      a.bulletproof-button {
+        display: block !important;
+        width: auto !important;
+        font-size: 80%;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      .columns {
+        width: 100% !important;
+      }
+      .column {
+        display: block !important;
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      .social-icon-column {
+        display: inline-block !important;
+      }
+    }
+  </style>
+      <!--user entered Head Start--><style>
+    body {
+      background-color: #000000; /* specify the desired background color */
+    }
+  </style><!--End Head user entered-->
+    </head>
+    <body>
+      <center class=3D"wrapper" data-link-color=3D"#1188E6" data-body-style=
+=3D"font-size:14px; font-family:arial,helvetica,sans-serif; color:#000000; =
+background-color:#000000;">
+        <div class=3D"webkit">
+          <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"=
+100%" class=3D"wrapper" bgcolor=3D"#000000">
+            <tr>
+              <td valign=3D"top" bgcolor=3D"#000000" width=3D"100%">
+                <table width=3D"100%" role=3D"content-container" class=3D"o=
+uter" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+                  <tr>
+                    <td width=3D"100%">
+                      <table width=3D"100%" cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0">
+                        <tr>
+                          <td>
+                            <!--[if mso]>
+    <center>
+    <table><tr><td width=3D"600">
+  <![endif]-->
+                                    <table width=3D"100%" cellpadding=3D"0"=
+ cellspacing=3D"0" border=3D"0" style=3D"width:100%; max-width:600px;" alig=
+n=3D"center">
+                                      <tr>
+                                        <td role=3D"modules-container" styl=
+e=3D"padding:0px 10px 0px 10px; color:#000000; text-align:left;" bgcolor=3D=
+"#000000" width=3D"100%" align=3D"left"><table class=3D"module preheader pr=
+eheader-hide" role=3D"module" data-type=3D"preheader" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"display: none !importan=
+t; mso-hide: all; visibility: hidden; opacity: 0; color: transparent; heigh=
+t: 0; width: 0;">
+    <tr>
+      <td role=3D"module-content">
+        <p></p>
+      </td>
+    </tr>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"672288f6-72d1-4408-ae57-b22e2b04874f">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://u40688117.ct.sendgrid.net/ls/click?upn=3Du001.Bm=
+PebfvuxBVhrOOyvZVmEQ9cy-2BtLGO1kOhg2pIwBpaLhG-2BSFqi8Eg5PeCF7t2safLCfCnqaRy=
+yGAOB1EuKdfstBkCE81-2F9tnd6qyTR4CTBjMlQuUCXhIRhc8pQTssoG6x3Zkth2c218oJ-2B0T=
+t4f-2B6iJy1d-2FPd-2B7BSMid1u7dd-2F2rcqhHGNgG207cxR8g4J5odS8i_NsZBigbiferOVf=
+Yn15JOBOqpzVc8svqxw6JkhLGYp6v3EUYO5f1ASKP-2FRjTYfCIJhHMHoEGQvV4usfeXg6zi6SG=
+twALQLlX8UnhtvXhztmGS-2BSo-2F8FUz7FzcrIM7gecaWUffJBlLaSkGuuYBTHXtFrldB2jA0D=
+2QkqnidRgItLEUIv1WkLFWmRc5sB6-2FKthahphemZuk0gutzwhMBu0fAyQtL24-2FNEAWuhjDp=
+nfHBDDWO3JIVwRRhrEBFSHkvgsjcuF08KTFZ3AexM5L-2BMFQexeQAoUw4D6QSBFRg1OF-2Bm-2=
+BN6zA04tscTDqWq56cBOBBF6uUR1kBKD8i0KQ6y1oFdhPNYQr45PvycXgR42wMUhDzEQvXQEzlu=
+OokTF04VBSHlZpfiAK7d-2BWHWNLmpBMLSAiPknOtV9ZVq6KT-2BwaLFkg-3D"><img class=
+=3D"max-width" border=3D"0" style=3D"display:block; color:#000000; text-dec=
+oration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max=
+-width:100% !important; width:100%; height:auto !important;" width=3D"580" =
+alt=3D"" data-proportionally-constrained=3D"true" data-responsive=3D"true" =
+src=3D"http://cdn.mcauto-images-production.sendgrid.net/b307d26be97bbe1d/2f=
+d210d3-5985-44df-ab15-5bc202cc9418/1270x760.png"></a></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"97316fa1-48e5-498a-b3fe-c40ca4157f63" data-mc-mo=
+dule-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:18px 20px 18px 20px; line-height:22px; text-al=
+ign:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-co=
+ntent"><div><div style=3D"font-family: inherit; text-align: inherit"><span =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-lef=
+t: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-=
+left: 0px; word-break: break-word; font-family: &quot;Helvetica Neue&quot;,=
+ Helvetica, Arial, Verdana, sans-serif; font-size: 16px; font-weight: 400; =
+line-height: 1.5; text-align: left; letter-spacing: normal; direction: ltr;=
+ caret-color: rgb(184, 184, 184); font-style: normal; font-variant-caps: no=
+rmal; text-indent: 0px; text-transform: none; white-space-collapse: preserv=
+e; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-line:=
+ none; text-decoration-thickness: initial; text-decoration-style: initial; =
+text-decoration-color: initial; color: #ffffff">Hey =E9=80=A3=E5=BF=97=E5=
+=B3=B0!</span></div>
+<div style=3D"font-family: inherit; text-align: inherit"><br></div>
+<div style=3D"font-family: inherit; text-align: inherit"><span style=3D"box=
+-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: =
+0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: =
+0px; margin-left: 0px; font-style: inherit; font-variant-ligatures: inherit=
+; font-variant-caps: inherit; font-variant-alternates: inherit; font-varian=
+t-numeric: inherit; font-variant-east-asian: inherit; font-variant-position=
+: inherit; font-weight: inherit; font-stretch: inherit; line-height: inheri=
+t; font-family: inherit; font-optical-sizing: inherit; font-kerning: inheri=
+t; font-feature-settings: inherit; font-variation-settings: inherit; font-s=
+ize: 16px; vertical-align: baseline; border-top-width: 0px; border-right-wi=
+dth: 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-styl=
+e: initial; border-right-style: initial; border-bottom-style: initial; bord=
+er-left-style: initial; border-top-color: initial; border-right-color: init=
+ial; border-bottom-color: initial; border-left-color: initial; border-image=
+-source: initial; border-image-slice: initial; border-image-width: initial;=
+ border-image-outset: initial; border-image-repeat: initial; letter-spacing=
+: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; wo=
+rd-spacing: 0px; -webkit-text-stroke-width: 0px; white-space-collapse: pres=
+erve; text-wrap-mode: wrap; text-wrap-style: initial; text-decoration-line:=
+ none; text-decoration-thickness: initial; text-decoration-style: initial; =
+text-decoration-color: initial; color: #b8b8b8; text-align: left; backgroun=
+d-color: rgb(0, 0, 0); word-break: break-word; direction: ltr; caret-color:=
+ rgb(184, 184, 184)">The summary of your last meeting, </span><span style=
+=3D"color: #ffffff">=C2=AB</span><span style=3D"box-sizing: border-box; pad=
+ding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; =
+margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; f=
+ont-style: inherit; font-variant-ligatures: inherit; font-variant-caps: inh=
+erit; font-variant-alternates: inherit; font-variant-numeric: inherit; font=
+-variant-east-asian: inherit; font-variant-position: inherit; font-weight: =
+inherit; font-stretch: inherit; line-height: inherit; font-family: inherit;=
+ font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings=
+: inherit; font-variation-settings: inherit; font-size: 16px; vertical-alig=
+n: baseline; border-top-width: 0px; border-right-width: 0px; border-bottom-=
+width: 0px; border-left-width: 0px; border-top-style: initial; border-right=
+-style: initial; border-bottom-style: initial; border-left-style: initial; =
+border-top-color: initial; border-right-color: initial; border-bottom-color=
+: initial; border-left-color: initial; border-image-source: initial; border=
+-image-slice: initial; border-image-width: initial; border-image-outset: in=
+itial; border-image-repeat: initial; letter-spacing: normal; orphans: 2; te=
+xt-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit=
+-text-stroke-width: 0px; white-space-collapse: preserve; text-wrap-mode: wr=
+ap; text-wrap-style: initial; text-decoration-line: none; text-decoration-t=
+hickness: initial; text-decoration-style: initial; text-decoration-color: i=
+nitial; text-align: left; background-color: rgb(0, 0, 0); word-break: break=
+-word; direction: ltr; caret-color: rgb(184, 184, 184); color: #ffffff"><st=
+rong>E2nova=E6=9E=B6=E6=A7=8B=E5=9C=96=E8=A8=8E=E8=AB=96</strong></span><sp=
+an style=3D"color: #ffffff">=C2=BB</span><span style=3D"box-sizing: border-=
+box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-lef=
+t: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left=
+: 0px; font-style: inherit; font-variant-ligatures: inherit; font-variant-c=
+aps: inherit; font-variant-alternates: inherit; font-variant-numeric: inher=
+it; font-variant-east-asian: inherit; font-variant-position: inherit; font-=
+weight: inherit; font-stretch: inherit; line-height: inherit; font-family: =
+inherit; font-optical-sizing: inherit; font-kerning: inherit; font-feature-=
+settings: inherit; font-variation-settings: inherit; font-size: 16px; verti=
+cal-align: baseline; border-top-width: 0px; border-right-width: 0px; border=
+-bottom-width: 0px; border-left-width: 0px; border-top-style: initial; bord=
+er-right-style: initial; border-bottom-style: initial; border-left-style: i=
+nitial; border-top-color: initial; border-right-color: initial; border-bott=
+om-color: initial; border-left-color: initial; border-image-source: initial=
+; border-image-slice: initial; border-image-width: initial; border-image-ou=
+tset: initial; border-image-repeat: initial; letter-spacing: normal; orphan=
+s: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px;=
+ -webkit-text-stroke-width: 0px; white-space-collapse: preserve; text-wrap-=
+mode: wrap; text-wrap-style: initial; text-decoration-line: none; text-deco=
+ration-thickness: initial; text-decoration-style: initial; text-decoration-=
+color: initial; color: #b8b8b8; text-align: left; background-color: rgb(0, =
+0, 0); word-break: break-word; direction: ltr; caret-color: rgb(184, 184, 1=
+84)">, which lasted 39 minutes,</span> <span style=3D"box-sizing: border-bo=
+x; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left:=
+ 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: =
+0px; font-style: inherit; font-variant-ligatures: inherit; font-variant-cap=
+s: inherit; font-variant-alternates: inherit; font-variant-numeric: inherit=
+; font-variant-east-asian: inherit; font-variant-position: inherit; font-we=
+ight: inherit; font-stretch: inherit; line-height: inherit; font-family: in=
+herit; font-optical-sizing: inherit; font-kerning: inherit; font-feature-se=
+ttings: inherit; font-variation-settings: inherit; font-size: 16px; vertica=
+l-align: baseline; border-top-width: 0px; border-right-width: 0px; border-b=
+ottom-width: 0px; border-left-width: 0px; border-top-style: initial; border=
+-right-style: initial; border-bottom-style: initial; border-left-style: ini=
+tial; border-top-color: initial; border-right-color: initial; border-bottom=
+-color: initial; border-left-color: initial; border-image-source: initial; =
+border-image-slice: initial; border-image-width: initial; border-image-outs=
+et: initial; border-image-repeat: initial; letter-spacing: normal; orphans:=
+ 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -=
+webkit-text-stroke-width: 0px; white-space-collapse: preserve; text-wrap-mo=
+de: wrap; text-wrap-style: initial; text-decoration-line: none; text-decora=
+tion-thickness: initial; text-decoration-style: initial; text-decoration-co=
+lor: initial; color: #b8b8b8; text-align: left; background-color: rgb(0, 0,=
+ 0); word-break: break-word; direction: ltr; caret-color: rgb(184, 184, 184=
+)">is now ready </span><span style=3D"color: #b8b8b8; font-family: arial, h=
+elvetica, sans-serif; font-size: 16px; font-style: normal; font-variant-lig=
+atures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing=
+: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: n=
+one; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; caret-co=
+lor: rgb(184, 184, 184); white-space-collapse: preserve; text-wrap-mode: wr=
+ap; text-wrap-style: initial; background-color: rgb(0, 0, 0); text-decorati=
+on-thickness: initial; text-decoration-style: initial; text-decoration-colo=
+r: initial; float: none; display: inline">=F0=9F=8E=89</span></div>
+<div style=3D"font-family: inherit; text-align: inherit"><br></div>
+<div style=3D"font-family: inherit; text-align: inherit"><span style=3D"box=
+-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: =
+0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: =
+0px; margin-left: 0px; font-style: inherit; font-variant-ligatures: inherit=
+; font-variant-caps: inherit; font-variant-alternates: inherit; font-varian=
+t-numeric: inherit; font-variant-east-asian: inherit; font-variant-position=
+: inherit; font-weight: inherit; font-stretch: inherit; line-height: inheri=
+t; font-family: inherit; font-optical-sizing: inherit; font-kerning: inheri=
+t; font-feature-settings: inherit; font-variation-settings: inherit; vertic=
+al-align: baseline; border-top-width: 0px; border-right-width: 0px; border-=
+bottom-width: 0px; border-left-width: 0px; border-top-style: initial; borde=
+r-right-style: initial; border-bottom-style: initial; border-left-style: in=
+itial; border-top-color: initial; border-right-color: initial; border-botto=
+m-color: initial; border-left-color: initial; border-image-source: initial;=
+ border-image-slice: initial; border-image-width: initial; border-image-out=
+set: initial; border-image-repeat: initial; letter-spacing: normal; orphans=
+: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; white-space-collapse: preserve; text-wrap-m=
+ode: wrap; text-wrap-style: initial; text-decoration-line: none; text-decor=
+ation-thickness: initial; text-decoration-style: initial; text-decoration-c=
+olor: initial; text-align: left; background-color: rgb(0, 0, 0); word-break=
+: break-word; direction: ltr; caret-color: rgb(184, 184, 184); color: #b8b8=
+b8; font-size: 16px">Analyzed h</span><span style=3D"color: #b8b8b8; font-s=
+ize: 16px">ighlights</span><span style=3D"box-sizing: border-box; padding-t=
+op: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin=
+-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font-st=
+yle: inherit; font-variant-ligatures: inherit; font-variant-caps: inherit; =
+font-variant-alternates: inherit; font-variant-numeric: inherit; font-varia=
+nt-east-asian: inherit; font-variant-position: inherit; font-weight: inheri=
+t; font-stretch: inherit; line-height: inherit; font-family: inherit; font-=
+optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inhe=
+rit; font-variation-settings: inherit; font-size: 16px; vertical-align: bas=
+eline; border-top-width: 0px; border-right-width: 0px; border-bottom-width:=
+ 0px; border-left-width: 0px; border-top-style: initial; border-right-style=
+: initial; border-bottom-style: initial; border-left-style: initial; border=
+-top-color: initial; border-right-color: initial; border-bottom-color: init=
+ial; border-left-color: initial; border-image-source: initial; border-image=
+-slice: initial; border-image-width: initial; border-image-outset: initial;=
+ border-image-repeat: initial; letter-spacing: normal; orphans: 2; text-ind=
+ent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-=
+stroke-width: 0px; white-space-collapse: preserve; text-wrap-mode: wrap; te=
+xt-wrap-style: initial; text-decoration-line: none; text-decoration-thickne=
+ss: initial; text-decoration-style: initial; text-decoration-color: initial=
+; text-align: left; background-color: rgb(0, 0, 0); word-break: break-word;=
+ direction: ltr; caret-color: rgb(184, 184, 184); color: #b8b8b8">: </span>=
+<span style=3D"box-sizing: border-box; padding-top: 0px; padding-right: 0px=
+; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0p=
+x; margin-bottom: 0px; margin-left: 0px; font-style: inherit; font-variant-=
+ligatures: inherit; font-variant-caps: inherit; font-variant-alternates: in=
+herit; font-variant-numeric: inherit; font-variant-east-asian: inherit; fon=
+t-variant-position: inherit; font-weight: inherit; font-stretch: inherit; l=
+ine-height: inherit; font-family: inherit; font-optical-sizing: inherit; fo=
+nt-kerning: inherit; font-feature-settings: inherit; font-variation-setting=
+s: inherit; font-size: 16px; vertical-align: baseline; border-top-width: 0p=
+x; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0p=
+x; border-top-style: initial; border-right-style: initial; border-bottom-st=
+yle: initial; border-left-style: initial; border-top-color: initial; border=
+-right-color: initial; border-bottom-color: initial; border-left-color: ini=
+tial; border-image-source: initial; border-image-slice: initial; border-ima=
+ge-width: initial; border-image-outset: initial; border-image-repeat: initi=
+al; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: n=
+one; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-sp=
+ace-collapse: preserve; text-wrap-mode: wrap; text-wrap-style: initial; tex=
+t-decoration-line: none; text-decoration-thickness: initial; text-decoratio=
+n-style: initial; text-decoration-color: initial; text-align: left; backgro=
+und-color: rgb(0, 0, 0); word-break: break-word; direction: ltr; caret-colo=
+r: rgb(184, 184, 184); color: #b8b8b8"><strong>7 </strong></span><span styl=
+e=3D"box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-=
+bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-=
+bottom: 0px; margin-left: 0px; font-style: inherit; font-variant-ligatures:=
+ inherit; font-variant-caps: inherit; font-variant-alternates: inherit; fon=
+t-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-=
+position: inherit; font-weight: inherit; font-stretch: inherit; line-height=
+: inherit; font-family: inherit; font-optical-sizing: inherit; font-kerning=
+: inherit; font-feature-settings: inherit; font-variation-settings: inherit=
+; font-size: 16px; vertical-align: baseline; border-top-width: 0px; border-=
+right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-=
+top-style: initial; border-right-style: initial; border-bottom-style: initi=
+al; border-left-style: initial; border-top-color: initial; border-right-col=
+or: initial; border-bottom-color: initial; border-left-color: initial; bord=
+er-image-source: initial; border-image-slice: initial; border-image-width: =
+initial; border-image-outset: initial; border-image-repeat: initial; letter=
+-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widow=
+s: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space-collap=
+se: preserve; text-wrap-mode: wrap; text-wrap-style: initial; text-decorati=
+on-line: none; text-decoration-thickness: initial; text-decoration-style: i=
+nitial; text-decoration-color: initial; text-align: left; background-color:=
+ rgb(0, 0, 0); word-break: break-word; direction: ltr; caret-color: rgb(184=
+, 184, 184); color: #b8b8b8">discussed topics </span><span style=3D"box-siz=
+ing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;=
+ padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px;=
+ margin-left: 0px; font-style: inherit; font-variant-ligatures: inherit; fo=
+nt-variant-caps: inherit; font-variant-numeric: inherit; font-variant-east-=
+asian: inherit; font-variant-alternates: inherit; font-variant-position: in=
+herit; font-weight: inherit; font-stretch: inherit; line-height: inherit; f=
+ont-family: inherit; font-optical-sizing: inherit; font-kerning: inherit; f=
+ont-feature-settings: inherit; font-variation-settings: inherit; font-size:=
+ 16px; vertical-align: baseline; border-top-width: 0px; border-right-width:=
+ 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style: i=
+nitial; border-right-style: initial; border-bottom-style: initial; border-l=
+eft-style: initial; border-top-color: initial; border-right-color: initial;=
+ border-bottom-color: initial; border-left-color: initial; border-image-sou=
+rce: initial; border-image-slice: initial; border-image-width: initial; bor=
+der-image-outset: initial; border-image-repeat: initial; letter-spacing: no=
+rmal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none=
+; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space=
+-collapse: preserve; text-wrap-mode: wrap; text-wrap-style: initial; backgr=
+ound-color: rgb(0, 0, 0); text-decoration-thickness: initial; text-decorati=
+on-style: initial; text-decoration-color: initial; color: #b8b8b8">=E2=80=
+=A2 </span><span style=3D"box-sizing: border-box; padding-top: 0px; padding=
+-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margi=
+n-right: 0px; margin-bottom: 0px; margin-left: 0px; font-style: inherit; fo=
+nt-variant-ligatures: inherit; font-variant-caps: inherit; font-variant-num=
+eric: inherit; font-variant-east-asian: inherit; font-variant-alternates: i=
+nherit; font-variant-position: inherit; font-weight: inherit; font-stretch:=
+ inherit; line-height: inherit; font-family: inherit; font-optical-sizing: =
+inherit; font-kerning: inherit; font-feature-settings: inherit; font-variat=
+ion-settings: inherit; font-size: 16px; vertical-align: baseline; border-to=
+p-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-lef=
+t-width: 0px; border-top-style: initial; border-right-style: initial; borde=
+r-bottom-style: initial; border-left-style: initial; border-top-color: init=
+ial; border-right-color: initial; border-bottom-color: initial; border-left=
+-color: initial; border-image-source: initial; border-image-slice: initial;=
+ border-image-width: initial; border-image-outset: initial; border-image-re=
+peat: initial; letter-spacing: normal; orphans: 2; text-align: start; text-=
+indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-te=
+xt-stroke-width: 0px; white-space-collapse: preserve; text-wrap-mode: wrap;=
+ text-wrap-style: initial; background-color: rgb(0, 0, 0); text-decoration-=
+thickness: initial; text-decoration-style: initial; text-decoration-color: =
+initial; color: #b8b8b8"><strong>28 </strong></span><span style=3D"box-sizi=
+ng: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; =
+padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font-style: inherit; font-variant-ligatures: inherit; fon=
+t-variant-caps: inherit; font-variant-numeric: inherit; font-variant-east-a=
+sian: inherit; font-variant-alternates: inherit; font-variant-position: inh=
+erit; font-weight: inherit; font-stretch: inherit; line-height: inherit; fo=
+nt-family: inherit; font-optical-sizing: inherit; font-kerning: inherit; fo=
+nt-feature-settings: inherit; font-variation-settings: inherit; font-size: =
+16px; vertical-align: baseline; border-top-width: 0px; border-right-width: =
+0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style: in=
+itial; border-right-style: initial; border-bottom-style: initial; border-le=
+ft-style: initial; border-top-color: initial; border-right-color: initial; =
+border-bottom-color: initial; border-left-color: initial; border-image-sour=
+ce: initial; border-image-slice: initial; border-image-width: initial; bord=
+er-image-outset: initial; border-image-repeat: initial; letter-spacing: nor=
+mal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none;=
+ widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space-=
+collapse: preserve; text-wrap-mode: wrap; text-wrap-style: initial; backgro=
+und-color: rgb(0, 0, 0); text-decoration-thickness: initial; text-decoratio=
+n-style: initial; text-decoration-color: initial; color: #b8b8b8">key point=
+s </span><span style=3D"box-sizing: border-box; padding-top: 0px; padding-r=
+ight: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-=
+right: 0px; margin-bottom: 0px; margin-left: 0px; font-style: inherit; font=
+-variant-ligatures: inherit; font-variant-caps: inherit; font-variant-numer=
+ic: inherit; font-variant-east-asian: inherit; font-variant-alternates: inh=
+erit; font-variant-position: inherit; font-weight: inherit; font-stretch: i=
+nherit; line-height: inherit; font-family: inherit; font-optical-sizing: in=
+herit; font-kerning: inherit; font-feature-settings: inherit; font-variatio=
+n-settings: inherit; font-size: 16px; vertical-align: baseline; border-top-=
+width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-=
+width: 0px; border-top-style: initial; border-right-style: initial; border-=
+bottom-style: initial; border-left-style: initial; border-top-color: initia=
+l; border-right-color: initial; border-bottom-color: initial; border-left-c=
+olor: initial; border-image-source: initial; border-image-slice: initial; b=
+order-image-width: initial; border-image-outset: initial; border-image-repe=
+at: initial; letter-spacing: normal; orphans: 2; text-align: start; text-in=
+dent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text=
+-stroke-width: 0px; white-space-collapse: preserve; text-wrap-mode: wrap; t=
+ext-wrap-style: initial; text-decoration-thickness: initial; text-decoratio=
+n-style: initial; text-decoration-color: initial; color: #b8b8b8; backgroun=
+d-color: rgb(0, 0, 0); float: none; display: inline">=E2=80=A2 </span><span=
+ style=3D"box-sizing: border-box; padding-top: 0px; padding-right: 0px; pad=
+ding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; ma=
+rgin-bottom: 0px; margin-left: 0px; font-style: inherit; font-variant-ligat=
+ures: inherit; font-variant-caps: inherit; font-variant-numeric: inherit; f=
+ont-variant-east-asian: inherit; font-variant-alternates: inherit; font-var=
+iant-position: inherit; font-weight: inherit; font-stretch: inherit; line-h=
+eight: inherit; font-family: inherit; font-optical-sizing: inherit; font-ke=
+rning: inherit; font-feature-settings: inherit; font-variation-settings: in=
+herit; font-size: 16px; vertical-align: baseline; border-top-width: 0px; bo=
+rder-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; bo=
+rder-top-style: initial; border-right-style: initial; border-bottom-style: =
+initial; border-left-style: initial; border-top-color: initial; border-righ=
+t-color: initial; border-bottom-color: initial; border-left-color: initial;=
+ border-image-source: initial; border-image-slice: initial; border-image-wi=
+dth: initial; border-image-outset: initial; border-image-repeat: initial; l=
+etter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; tex=
+t-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width:=
+ 0px; white-space-collapse: preserve; text-wrap-mode: wrap; text-wrap-style=
+: initial; text-decoration-thickness: initial; text-decoration-style: initi=
+al; text-decoration-color: initial; color: #b8b8b8; background-color: rgb(0=
+, 0, 0); float: none; display: inline"><strong>14 </strong></span><span sty=
+le=3D"box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding=
+-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin=
+-bottom: 0px; margin-left: 0px; font-style: inherit; font-variant-ligatures=
+: inherit; font-variant-caps: inherit; font-variant-numeric: inherit; font-=
+variant-east-asian: inherit; font-variant-alternates: inherit; font-variant=
+-position: inherit; font-weight: inherit; font-stretch: inherit; line-heigh=
+t: inherit; font-family: inherit; font-optical-sizing: inherit; font-kernin=
+g: inherit; font-feature-settings: inherit; font-variation-settings: inheri=
+t; font-size: 16px; vertical-align: baseline; border-top-width: 0px; border=
+-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border=
+-top-style: initial; border-right-style: initial; border-bottom-style: init=
+ial; border-left-style: initial; border-top-color: initial; border-right-co=
+lor: initial; border-bottom-color: initial; border-left-color: initial; bor=
+der-image-source: initial; border-image-slice: initial; border-image-width:=
+ initial; border-image-outset: initial; border-image-repeat: initial; lette=
+r-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tr=
+ansform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px=
+; white-space-collapse: preserve; text-wrap-mode: wrap; text-wrap-style: in=
+itial; text-decoration-thickness: initial; text-decoration-style: initial; =
+text-decoration-color: initial; color: #b8b8b8; background-color: rgb(0, 0,=
+ 0); float: none; display: inline">tasks to follow. Check details up below=
+=F0=9F=91=87</span></div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"b9b1d9f7-1289-47db-=
+83e7-b1b2c82bebc8">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:10px 0px 0px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#ffffff" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"https://u40688117.ct.sendgrid.net/ls/click?upn=
+=3Du001.BmPebfvuxBVhrOOyvZVmERgwUV8TGbC2ipfz-2Fg66EnHSg7EXHPk0Hy4G7DoEeUfE6=
+d0w-2FpxhvgEjoOvZuYtjf2JhFGq5zXVcIFPlqhfUWmoEz6su0-2FU2dXZ0E7PN-2BRjTwfOxUd=
+Cpxj3m1CG6EUYsTXaqnAnFoD2K5Z8Uo8Wz5encOlTRN9J-2FvZ3-2FCb4xhiZrOP8MkgEh1MqN2=
+rsyT-2FopYAnZioDZRXeBz40vm3BOrHs-3D3Fqj_NsZBigbiferOVfYn15JOBOqpzVc8svqxw6J=
+khLGYp6v3EUYO5f1ASKP-2FRjTYfCIJhHMHoEGQvV4usfeXg6zi6SGtwALQLlX8UnhtvXhztmGS=
+-2BSo-2F8FUz7FzcrIM7gecaWUffJBlLaSkGuuYBTHXtFrldB2jA0D2QkqnidRgItLEUIv1WkLF=
+WmRc5sB6-2FKthahphemZuk0gutzwhMBu0fA1zQPRTX8NwphttMcB8-2FkT0S0l8VqJK-2F3BiJ=
+Wryb9OmtkaT2PCHIE43LqdQY4Z-2FvcPsBWmbhjwBn9mC4gH6sTrCkSD8iCmyL-2BhsJ6vzw-2B=
+EFsSSQcFJFNHJdTe0xyozEVdXdIvZ-2B9-2Bhvsg5GOCTWOCxP3Hp0CINWOXGLnRQbY50xjobAg=
+LnnfrpN-2FzVp9IuXpM-2FTCdN5sDTeBtfog2xebBGg-3D" style=3D"background-color:#=
+ffffff; border:1px solid #333333; border-color:#333333; border-radius:12px;=
+ border-width:1px; color:#000000; display:inline-block; font-weight:normal;=
+ letter-spacing:0px; line-height:30px; padding:12px 18px 12px 18px; text-al=
+ign:center; text-decoration:none; border-style:solid; width:232px; font-siz=
+e:16px;" target=3D"_blank">Check Meeting Summary</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table><table class=3D"module" role=3D"module" data-type=3D"code" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"372c0cba-6c27-415a-aa7a-840b51109dd2">
+    <tbody>
+      <tr>
+        <td height=3D"100%" valign=3D"top" role=3D"module-content"><!DOCTYP=
+E html>
+<html>
+<head>
+  <style>
+    .icon-container {
+      text-align: center;
+      margin: 20px 0; /* Adjust the margin as needed */
+    }
+    .icon-column {
+      padding: 10px; /* Adjust the padding as needed */
+    }
+    .icon {
+      width: 40px; /* Adjust the size of the icons as needed */
+      height: auto; /* Maintain aspect ratio */
+    }
+    .export-text {
+      color: white;
+      font-weight: bold;
+      font-size: 16px; /* Set the font size to 16 pixels */
+      margin-bottom: 10px; /* Add space between the text and icons */
+    }
+    @media (max-width: 600px) {
+      .icon-column {
+        display: inline-block;
+        margin: 5px; /* Adjust margin for better spacing on mobile */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class=3D"icon-container">
+    <p class=3D"export-text">Also, your meeting has been exported to:</p>
+    <table align=3D"center">
+      <tr>
+        <!-- Notion Icon -->
+        <td class=3D"icon-column">
+          <a href=3D"https://u40688117.ct.sendgrid.net/ls/click?upn=3Du001.=
+BmPebfvuxBVhrOOyvZVmEcX6BxFn3FsnHUY0npyzgOTAw1HZL1xSVr-2FZUXyRiCXYWKe0PZOSS=
+ggJ4Z2JPSJgRRn-2FCcT1BQOYeY-2Bb6DGOG1WJB-2BiJuzQtWfF8JpkJ7vWkwU0OQhyUV5FuGm=
+W-2FWaFvvptun3wqbspXlBTyxLb4QDrbbLfTHA4FV1oOM8RSBvr9Rpgh_NsZBigbiferOVfYn15=
+JOBOqpzVc8svqxw6JkhLGYp6v3EUYO5f1ASKP-2FRjTYfCIJhHMHoEGQvV4usfeXg6zi6SGtwAL=
+QLlX8UnhtvXhztmGS-2BSo-2F8FUz7FzcrIM7gecaWUffJBlLaSkGuuYBTHXtFrldB2jA0D2Qkq=
+nidRgItLEUIv1WkLFWmRc5sB6-2FKthahphemZuk0gutzwhMBu0fA7by-2FHjWRj-2BeS6m2jtA=
+dHB4alC0kvVU7n-2FZwIAIt8En30EHazFK0XqxRA5ILSslNFOlkGnhqfQ-2FoIKH0QQR0-2FubW=
+XwicGf9DqT8F63cgPoB6KK9XqVKBljgf-2FpAibGgM036dNBzMojAsJwSFWI1U4LsKfkeF9rZf-=
+2BUHgIVeYwBB59ovnWAjJydv2e4th42cRPTYqH6Nx9teKojwHxkFVnyE-3D">
+            <img src=3D"http://cdn.mcauto-images-production.sendgrid.net/b3=
+07d26be97bbe1d/53a6117d-4099-4e6d-8c65-3874705c057a/120x120.png" alt=3D"Not=
+ion" class=3D"icon">
+          </a>
+        </td>
+       =20
+       =20
+       =20
+         <!-- Confluent Icon -->
+        <td class=3D"icon-column">
+          <a href=3D"https://u40688117.ct.sendgrid.net/ls/click?upn=3Du001.=
+BmPebfvuxBVhrOOyvZVmEQgbr3XCHDxlwtX5Lv9sldLoX7Bzcg2YHvti0Z9sIs94jD9GlAolmkc=
+obgQkfCBLfGj8uByYZNxsNJY7ryPTfN89FlQwHpPClVe-2F2KSm-2F-2Fn65rEPAXFS-2Bj9nvW=
+J5ryh3LPCzeWMXNV3ClrZGc36gOQM-3DJZzF_NsZBigbiferOVfYn15JOBOqpzVc8svqxw6JkhL=
+GYp6v3EUYO5f1ASKP-2FRjTYfCIJhHMHoEGQvV4usfeXg6zi6SGtwALQLlX8UnhtvXhztmGS-2B=
+So-2F8FUz7FzcrIM7gecaWUffJBlLaSkGuuYBTHXtFrldB2jA0D2QkqnidRgItLEUIv1WkLFWmR=
+c5sB6-2FKthahphemZuk0gutzwhMBu0fAy2It2exVaGBicGEnZLInGJFzFB9HFb0aGTCUuEKevN=
+94Gh1pgvhmBBd2ubB5OsQTE4iXgA0KYGwklqAf9rnm-2BAD-2BfStzLxDelLAhSlR4a5zljI4pP=
+Me-2FizlEv-2FCKYitEI85KqMP124JW82LkYbAuR7snZLbRwZKptwmCQzxLUwdb2JLWo9zApTja=
+UKR5ygXdkALtu-2B79xnjD9gO7boul3I-3D">
+            <img src=3D"http://cdn.mcauto-images-production.sendgrid.net/b3=
+07d26be97bbe1d/be6d1a7e-addf-42af-8970-9a3d908f71fb/512x512.png" alt=3D"Con=
+fluence" class=3D"icon">
+          </a>
+        </td>
+
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
+</td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"0dd7f56c-ec4c-44ac-9eb9-a4e86bf9c8c3" data-mc-mo=
+dule-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:18px 20px 18px 20px; line-height:22px; text-al=
+ign:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-co=
+ntent"><div><div style=3D"font-family: inherit; text-align: left"><span sty=
+le=3D"color: #b8b8b8; font-family: arial, helvetica, sans-serif; font-size:=
+ 16px; font-style: normal; font-variant-ligatures: normal; font-variant-cap=
+s: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align=
+: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0p=
+x; -webkit-text-stroke-width: 0px; white-space-collapse: preserve; text-wra=
+p-mode: wrap; text-wrap-style: initial; background-color: rgb(0, 0, 0); tex=
+t-decoration-thickness: initial; text-decoration-style: initial; text-decor=
+ation-color: initial; float: none; display: inline">Thank you for being an =
+integral part of the </span><a href=3D"https://u40688117.ct.sendgrid.net/ls=
+/click?upn=3Du001.BmPebfvuxBVhrOOyvZVmETqaAh3Ajxq7YaVvsedBtOm0A4LJFZ7qqjCjG=
+rNLGXinCkWzc99N9pYeSVKmdAnh7QEX7-2ByFD5oSLRgVPkMMp-2FOREspcj5yuts8WC7fAcFj8=
+204Qo77cCDy034b-2B5QnhMw-3D-3Dy2QR_NsZBigbiferOVfYn15JOBOqpzVc8svqxw6JkhLGY=
+p6v3EUYO5f1ASKP-2FRjTYfCIJhHMHoEGQvV4usfeXg6zi6SGtwALQLlX8UnhtvXhztmGS-2BSo=
+-2F8FUz7FzcrIM7gecaWUffJBlLaSkGuuYBTHXtFrldB2jA0D2QkqnidRgItLEUIv1WkLFWmRc5=
+sB6-2FKthahphemZuk0gutzwhMBu0fA6nawc46N0Qd6d-2BANidnLM3clyLh8D-2FJfqcN9Xwfc=
+avEYxiWGYpGFmOOlKXVCZd9nB0TbTUjI3PJklRphGr0uLi85VtX4ilaeV19C7nMqyRtybWYl6sp=
+2D-2B4Rirnk4pwk-2B9LhTDbdZiVlvXqp2Gd8kGneX-2B2OCXzzc8RtaW1ouI1z4dR21wFDBqLq=
+4rc-2FJSHe8xyWrwrXZzp0VLfy9FUgKg-3D"><span style=3D"font-family: arial, hel=
+vetica, sans-serif; font-size: 16px; font-style: normal; font-variant-ligat=
+ures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: =
+normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: non=
+e; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-spac=
+e-collapse: preserve; text-wrap-mode: wrap; text-wrap-style: initial; backg=
+round-color: rgb(0, 0, 0); text-decoration-thickness: initial; text-decorat=
+ion-style: initial; text-decoration-color: initial; float: none; display: i=
+nline; color: #ffffff"><u><strong>Spellar Community</strong></u></span></a>=
+<span style=3D"font-family: arial, helvetica, sans-serif; font-size: 16px; =
+font-style: normal; font-variant-ligatures: normal; font-variant-caps: norm=
+al; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left;=
+ text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -web=
+kit-text-stroke-width: 0px; white-space-collapse: preserve; text-wrap-mode:=
+ wrap; text-wrap-style: initial; background-color: rgb(0, 0, 0); text-decor=
+ation-thickness: initial; text-decoration-style: initial; text-decoration-c=
+olor: initial; float: none; display: inline; color: #ffffff"><u><strong> =
+=F0=9F=9A=80</strong></u></span></div>
+<div style=3D"font-family: inherit; text-align: left">&nbsp;</div>
+<div style=3D"font-family: inherit; text-align: left"><span style=3D"margin=
+-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding=
+-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; word=
+-break: break-word; color: #b8b8b8; font-family: &quot;Helvetica Neue&quot;=
+, Helvetica, Arial, Verdana, sans-serif; font-size: 16px; font-weight: 400;=
+ line-height: 1.5; text-align: left; letter-spacing: normal; direction: ltr=
+; caret-color: rgb(184, 184, 184); font-style: normal; font-variant-caps: n=
+ormal; text-indent: 0px; text-transform: none; white-space-collapse: preser=
+ve; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-line=
+: none; text-decoration-thickness: initial; text-decoration-style: initial;=
+ text-decoration-color: initial">Warm regards,</span>&nbsp;</div>
+<div style=3D"font-family: inherit; text-align: left"><span style=3D"margin=
+-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding=
+-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; word=
+-break: break-word; color: #b8b8b8; font-family: &quot;Helvetica Neue&quot;=
+, Helvetica, Arial, Verdana, sans-serif; font-size: 16px; font-weight: 400;=
+ line-height: 1.5; text-align: left; letter-spacing: normal; direction: ltr=
+; caret-color: rgb(184, 184, 184); font-style: normal; font-variant-caps: n=
+ormal; text-indent: 0px; text-transform: none; white-space-collapse: preser=
+ve; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-line=
+: none; text-decoration-thickness: initial; text-decoration-style: initial;=
+ text-decoration-color: initial">The Spellar Team</span></div><div></div></=
+div></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"social" alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%=
+" style=3D"table-layout: fixed;" data-muid=3D"b12d26c8-9c66-449c-9e07-28903=
+5e5ee56">
+    <tbody>
+      <tr>
+        <td valign=3D"top" style=3D"padding:0px 0px 0px 0px; font-size:6px;=
+ line-height:10px;" align=3D"center">
+          <table align=3D"center" style=3D"-webkit-margin-start:auto;-webki=
+t-margin-end:auto;">
+            <tbody><tr align=3D"center"><td style=3D"padding: 0px 5px;" cla=
+ss=3D"social-icon-column">
+      <a role=3D"social-icon-link" href=3D"https://u40688117.ct.sendgrid.ne=
+t/ls/click?upn=3Du001.BmPebfvuxBVhrOOyvZVmEXAZn7RK0vb3FXLnZbQ-2BTsSx7gX7sRE=
+khdfWB5IA57kenpz9-2BdrkPlJ5SIdejRfmn3nKFawwXmb39LosWH0JsnbF12hVS73T4k7pTEtP=
+tcClFj-2FlseQHzJehzy0qt6J22w-3D-3DD1Wx_NsZBigbiferOVfYn15JOBOqpzVc8svqxw6Jk=
+hLGYp6v3EUYO5f1ASKP-2FRjTYfCIJhHMHoEGQvV4usfeXg6zi6SGtwALQLlX8UnhtvXhztmGS-=
+2BSo-2F8FUz7FzcrIM7gecaWUffJBlLaSkGuuYBTHXtFrldB2jA0D2QkqnidRgItLEUIv1WkLFW=
+mRc5sB6-2FKthahphemZuk0gutzwhMBu0fA5i-2Bd4-2B5OqdICuO2rfa97oRY4sYwKnEHFdmTz=
+IQWNKOuia7zMFgA4NK2R-2BBoT8bowrk65-2FWNlmaa4nHFRiSR56mpQEGZrHlEmJIYY5y8MtEv=
+pBIUWhVWyWu7-2Bm7X9LhMZhrBbCAAILDtPCq-2BOoehzSI9m11axdDo5BFPvfJ9jISLCbzFuVx=
+9W6IpTUIbTNl0g3AjdPtsd7tjxOqEsCFhJPg-3D" target=3D"_blank" alt=3D"Instagram=
+" title=3D"Instagram" style=3D"display:inline-block; background-color:#7AC4=
+F7; height:21px; width:21px;">
+        <img role=3D"social-icon" alt=3D"Instagram" title=3D"Instagram" src=
+=3D"https://mc.sendgrid.com/assets/social/white/instagram.png" style=3D"hei=
+ght:21px; width:21px;" height=3D"21" width=3D"21">
+      </a>
+    </td><td style=3D"padding: 0px 5px;" class=3D"social-icon-column">
+      <a role=3D"social-icon-link" href=3D"https://u40688117.ct.sendgrid.ne=
+t/ls/click?upn=3Du001.BmPebfvuxBVhrOOyvZVmEdJC9v4NtI24k-2BwSdi3DKPg-2FnEb1o=
+2eciHc1FT9nhYqpaIiFfeJKeMZc7B4DRqDinefeyyAOoTVrQDqlfkLYLamr9NWt9JRAW3qzmOb8=
+LAGvZXwYGPRTKgGaOQKqA6U4hVQme2M6i1-2FkQqmF0RhmaJ0-3DxgL-_NsZBigbiferOVfYn15=
+JOBOqpzVc8svqxw6JkhLGYp6v3EUYO5f1ASKP-2FRjTYfCIJhHMHoEGQvV4usfeXg6zi6SGtwAL=
+QLlX8UnhtvXhztmGS-2BSo-2F8FUz7FzcrIM7gecaWUffJBlLaSkGuuYBTHXtFrldB2jA0D2Qkq=
+nidRgItLEUIv1WkLFWmRc5sB6-2FKthahphemZuk0gutzwhMBu0fA7esGw9HNeWQV2yeK2oZF4V=
+uW8n6T-2BkZIEp1KeZfeAcwBD6zSud7ovQR4xMH-2FqGu30ualUsHJWGnSvuTm15ItzhR1GcF-2=
+FN7uUPL-2Fua76PuXdK8jrd83FBks2BjiMoJfkGr-2FRtHLJrfBR8Dhk9AKxJvt9ivn8KLi6wDV=
+9r4wFcHotLFJUXzsvndNqBCsKuGQQ4FkAQU0DDennZglOX4O-2Btkw-3D" target=3D"_blank=
+" alt=3D"LinkedIn" title=3D"LinkedIn" style=3D"display:inline-block; backgr=
+ound-color:#7AC4F7; height:21px; width:21px;">
+        <img role=3D"social-icon" alt=3D"LinkedIn" title=3D"LinkedIn" src=
+=3D"https://mc.sendgrid.com/assets/social/white/linkedin.png" style=3D"heig=
+ht:21px; width:21px;" height=3D"21" width=3D"21">
+      </a>
+    </td></tr></tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"4f000274-33c3-4adf-8c20-4cc7cec99c33" data-mc-mo=
+dule-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:18px 0px 18px 0px; line-height:22px; text-alig=
+n:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-cont=
+ent"><div><div style=3D"font-family: inherit; text-align: center"><br></div=
+>
+<div style=3D"font-family: inherit; text-align: center"><span style=3D"box-=
+sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0=
+px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0=
+px; margin-left: 0px; font-style: italic; font-variant-ligatures: inherit; =
+font-variant-caps: inherit; font-variant-numeric: inherit; font-variant-eas=
+t-asian: inherit; font-variant-alternates: inherit; font-variant-position: =
+inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit;=
+ font-family: inherit; font-optical-sizing: inherit; font-kerning: inherit;=
+ font-feature-settings: inherit; font-variation-settings: inherit; font-siz=
+e: 12px; vertical-align: baseline; border-top-width: 0px; border-right-widt=
+h: 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style:=
+ initial; border-right-style: initial; border-bottom-style: initial; border=
+-left-style: initial; border-top-color: initial; border-right-color: initia=
+l; border-bottom-color: initial; border-left-color: initial; border-image-s=
+ource: initial; border-image-slice: initial; border-image-width: initial; b=
+order-image-outset: initial; border-image-repeat: initial; text-align: cent=
+er; color: #b8b8b8; letter-spacing: normal; orphans: 2; text-indent: 0px; t=
+ext-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-widt=
+h: 0px; white-space-collapse: preserve; background-color: rgb(0, 0, 0); tex=
+t-decoration-thickness: initial; text-decoration-style: initial; text-decor=
+ation-color: initial">Copyright (C) 2025 </span><a href=3D"" title=3D"&lt;s=
+pan data-offset-key=3D&quot;7kp6s-1-0&quot; style=3D&quot;box-sizing: borde=
+r-box; padding: 0px; margin: 0px; font-style: normal; font-variant-ligature=
+s: inherit; font-variant-caps: normal; font-variant-numeric: inherit; font-=
+variant-east-asian: inherit; font-variant-alternates: inherit; font-variant=
+-position: inherit; font-weight: 400; font-stretch: inherit; line-height: i=
+nherit; font-family: &amp;quot;Helvetica Neue&amp;quot;, Helvetica, Arial, =
+Verdana, sans-serif; font-optical-sizing: inherit; font-kerning: inherit; f=
+ont-feature-settings: inherit; font-variation-settings: inherit; font-size:=
+ 12px; vertical-align: baseline; border: 0px; word-break: break-word; text-=
+decoration: underline; direction: ltr; letter-spacing: normal; text-align: =
+center; text-indent: 0px; text-transform: none; white-space: pre-wrap; word=
+-spacing: 0px; -webkit-text-stroke-width: 0px; color: rgb(184, 184, 184);&q=
+uot;&gt;&lt;span data-text=3D&quot;true&quot; style=3D&quot;box-sizing: bor=
+der-box; padding: 0px; margin: 0px; font-style: inherit; font-variant: inhe=
+rit; font-weight: inherit; font-stretch: inherit; line-height: inherit; fon=
+t-family: inherit; font-optical-sizing: inherit; font-kerning: inherit; fon=
+t-feature-settings: inherit; font-variation-settings: inherit; font-size: 1=
+2px; vertical-align: baseline; border: 0px;&quot;&gt;Spellar AI&lt;/span&gt=
+;&lt;/span&gt;"><span style=3D"box-sizing: border-box; padding-top: 0px; pa=
+dding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font-style: inheri=
+t; font-variant-ligatures: inherit; font-variant-caps: inherit; font-varian=
+t-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternat=
+es: inherit; font-variant-position: inherit; font-weight: inherit; font-str=
+etch: inherit; line-height: inherit; font-family: &quot;Helvetica Neue&quot=
+;, Helvetica, Arial, Verdana, sans-serif; font-optical-sizing: inherit; fon=
+t-kerning: inherit; font-feature-settings: inherit; font-variation-settings=
+: inherit; font-size: 12px; vertical-align: baseline; border-top-width: 0px=
+; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px=
+; border-top-style: initial; border-right-style: initial; border-bottom-sty=
+le: initial; border-left-style: initial; border-top-color: initial; border-=
+right-color: initial; border-bottom-color: initial; border-left-color: init=
+ial; border-image-source: initial; border-image-slice: initial; border-imag=
+e-width: initial; border-image-outset: initial; border-image-repeat: initia=
+l; text-align: center; color: #b8b8b8; letter-spacing: normal; orphans: 2; =
+text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webk=
+it-text-stroke-width: 0px; white-space-collapse: preserve; background-color=
+: rgb(0, 0, 0); text-decoration-thickness: initial; text-decoration-style: =
+initial; text-decoration-color: initial; outline-color: initial; outline-st=
+yle: none; outline-width: initial; text-decoration-line: underline; transit=
+ion-behavior: normal; transition-duration: 0.3s; transition-timing-function=
+: ease; transition-delay: 0s; transition-property: color; word-break: break=
+-word; direction: ltr">Spellar AI</span></a><span style=3D"box-sizing: bord=
+er-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-=
+left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-l=
+eft: 0px; font-style: italic; font-variant-ligatures: inherit; font-variant=
+-caps: inherit; font-variant-numeric: inherit; font-variant-east-asian: inh=
+erit; font-variant-alternates: inherit; font-variant-position: inherit; fon=
+t-weight: inherit; font-stretch: inherit; line-height: inherit; font-family=
+: inherit; font-optical-sizing: inherit; font-kerning: inherit; font-featur=
+e-settings: inherit; font-variation-settings: inherit; font-size: 12px; ver=
+tical-align: baseline; border-top-width: 0px; border-right-width: 0px; bord=
+er-bottom-width: 0px; border-left-width: 0px; border-top-style: initial; bo=
+rder-right-style: initial; border-bottom-style: initial; border-left-style:=
+ initial; border-top-color: initial; border-right-color: initial; border-bo=
+ttom-color: initial; border-left-color: initial; border-image-source: initi=
+al; border-image-slice: initial; border-image-width: initial; border-image-=
+outset: initial; border-image-repeat: initial; text-align: center; color: #=
+b8b8b8; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transfor=
+m: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; whit=
+e-space-collapse: preserve; background-color: rgb(0, 0, 0); text-decoration=
+-thickness: initial; text-decoration-style: initial; text-decoration-color:=
+ initial">. All rights reserved.</span></div>
+<div style=3D"font-family: inherit; text-align: center"><br></div>
+<div style=3D"font-family: inherit; text-align: center"><span style=3D"box-=
+sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0=
+px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0=
+px; margin-left: 0px; font-style: inherit; font-variant-ligatures: inherit;=
+ font-variant-caps: inherit; font-variant-numeric: inherit; font-variant-ea=
+st-asian: inherit; font-variant-alternates: inherit; font-variant-position:=
+ inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit=
+; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, Verdana, sans-=
+serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-se=
+ttings: inherit; font-variation-settings: inherit; font-size: 12px; vertica=
+l-align: baseline; border-top-width: 0px; border-right-width: 0px; border-b=
+ottom-width: 0px; border-left-width: 0px; border-top-style: initial; border=
+-right-style: initial; border-bottom-style: initial; border-left-style: ini=
+tial; border-top-color: initial; border-right-color: initial; border-bottom=
+-color: initial; border-left-color: initial; border-image-source: initial; =
+border-image-slice: initial; border-image-width: initial; border-image-outs=
+et: initial; border-image-repeat: initial; text-align: center; color: #b8b8=
+b8; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: n=
+one; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-sp=
+ace-collapse: preserve; background-color: rgb(0, 0, 0); text-decoration-thi=
+ckness: initial; text-decoration-style: initial; text-decoration-color: ini=
+tial; caret-color: rgb(184, 184, 184); text-decoration-line: none">Want to =
+change how you receive these emails?</span></div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><div data-role=3D"module-unsubscribe" class=3D"module" role=3D"mo=
+dule" data-type=3D"unsubscribe" style=3D"color:#444444; font-size:12px; lin=
+e-height:20px; padding:16px 16px 16px 16px; text-align:Center;" data-muid=
+=3D"4e838cf3-9892-4a6d-94d6-170e474d21e5"><div class=3D"Unsubscribe--addres=
+sLine"></div><p style=3D"font-size:12px; line-height:20px;"><a target=3D"_b=
+lank" class=3D"Unsubscribe--unsubscribeLink zzzzzzz" href=3D"https://u40688=
+117.ct.sendgrid.net/asm/unsubscribe/?user_id=3D40688117&amp;data=3DhvQVicH7=
+Lj5f-ztiRFp46l8N673_4SKJrtTHeUGDdXhoMDAwdTAwMIPL0wd19apx_UbfXy_fMiVZDHKT4DM=
+WhTDqO_r2QkDZgqsWRI9F-t9CCaLoER90kDuSjxhNXc3YkRlVCWafMm_hxP-We4gUNBYk9i8s7n=
+Ne_asmdrsILhTSOrn2QRqsKC_nn1ZCvYt-t_IUABPx8j16FQvKqL00wsrJrdMQ6GzeaNoEd3vtt=
+hcJsUSdu2VzjDFEgfiTHQ-BVWCmAvSk1sCIB_ZTWi87DXaHksMgj_i9fNzPI2eMMUUfKI5thWHP=
+l2QkPGcNaI6l9TesBqWycKabPM8_0BABkqAWV8MVOG5U5K_5fzbGdgtV7leTmauqCgmVEXwQnWQ=
+G6ED_iYjXapBS7C4y4C1KSpptTb19kUIw2cgYYI51hNlq6ks2HRvym52Ygd7TixM-JeqqZPDTsP=
+5SqV8aeue-AIxNo_6kOQphOclU1bQDlRYZezZ6F-6nBLq92Msn04AxdH_Ika27vWpaww9ZU3fQz=
+o-i2BRX5i9X6kRZfdcnJiqP5H-9k9qWAjtRic-jnYGW0yDPk8MxUoE=3D" style=3D"">Unsub=
+scribe</a> - <a href=3D"https://u40688117.ct.sendgrid.net/asm/?user_id=3D40=
+688117&amp;data=3DEtvrlMYp3nrKHU3HNr9c5d_ITg3oMzCdmEJ9bJgP_eVoMDAwdTAwMK5H1=
+F2hop6lZq74K7WtXz8isEYTnbx9u92DQaRmflVsKYRpvrU1ThmzRbpupYUv6N0l8xb-RDCtHsOJ=
+9YNz3QPNtimBM3MqpeUJtnTUtK-VXY-CGSwnbeRs7xZ4X_QbojCKMnW0dxySZgAd4ckU7KXDZ0I=
+GCU-T1OyzlEYW_zh5eRNdz6MV7V9LJKEtMfO0y3K9HwC8H43Nmr4raSilc0CKIubTgMrhO6okHQ=
+V0kBiqEX8X-I3aDxcgG6YKoBUFDcaMV-_n_9O-6fy0iwp1q_cCyII1jcqONWo6XFX9xsS0UXuI4=
+ayK9mNL5kv7CoMJjjCeGNTFwQQpy6tZXFrW6NJQniI3qZGKsp0qdntipj3CjRFmNUr3O-veLWXO=
+-4e1XCXjuxabbIoK8xR4WcUvZiWgh61y2mAVs2xRHUdlC-1ZKYQIcC4NEfCPUwkMSOUDqTPQGQw=
+VB2GiS6boJhmEgMIPIZQ15qQfGabHjYUxDrM21nEOF_W_wK88dojgvrSgiA=3D=3D" target=
+=3D"_blank" class=3D"Unsubscribe--unsubscribePreferences" style=3D"">Unsubs=
+cribe Preferences</a></p></div></td>
+                                      </tr>
+                                    </table>
+                                    <!--[if mso]>
+                                  </td>
+                                </tr>
+                              </table>
+                            </center>
+                            <![endif]-->
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </center>
+    <img src=3D"https://u40688117.ct.sendgrid.net/wf/open?upn=3Du001.JFvHvR=
+C-2FDCk3N-2B1tZqzlviL5X-2FTVtCMYaF1aTxHBS0BhhsRxqvNX9WWAtuEV39Hf4yVcOf473Ru=
+PDpZqPPuQRf0emlkTd4p75ZIZXfB2GU4EOI2MLJweK-2FCeJKY6-2FIM2Y7PxgRpoURRL2zGfX2=
+zO6vWcRQuyrsTsgAl0mUaoKdZp0-2B0nJ6EpKf40ycgFsTezGlUMkfvn5QyAvQG3spwr-2BcxVU=
+6bbd3XK12BZHZcOMvRSWSYjACkYasRXz2IFfEi95zPVZoMsHxojVRXEGH9yg2czRXxK4fQRoWww=
+8UQbHXz545zDzJbn3JxPXCBY3-2BWJ6fbyluwB68knOUHDHkH9AWXYLgmQe4BOviwf4w0V-2FyN=
+xze8wxIkA-2Bo5njxrtm15pO6Go54ppae4FgjuS9zF-2Fm65bKos6svQLBa66AA-2B490I-3D" =
+alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"height:1px !importa=
+nt;width:1px !important;border-width:0 !important;margin-top:0 !important;m=
+argin-bottom:0 !important;margin-right:0 !important;margin-left:0 !importan=
+t;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !imp=
+ortant;padding-left:0 !important;"/></body>
+  </html>
+--b03e057b29ad86df0c5e6826c419c0d94d7e6c2f1dee089032a122381c9a--

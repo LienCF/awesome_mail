@@ -582,3 +582,47 @@
 5. **🚀 推送到遠端** - 確保程式碼同步到儲存庫
 
 **絕對不允許跳過品質檢查步驟！** 這是確保專案品質和可維護性的關鍵流程。
+
+---
+
+## 🧠 AI 背景佇列與同步整合（2025-11）
+
+### 36. AI 背景佇列與同步整合
+
+- [x] 建立 `AiTaskQueueService`（lazySingleton）作為優先權佇列 + 持久化的背景工作者
+  - [x] 佇列表 `ai_task_queue` 與索引，支援 pending/running/completed/failed、attempts、last_error、scheduled_at
+  - [x] 指數退避重排（封頂 5 分鐘，最多 5 次）
+  - [x] 依賴偵測：若缺少 full content，自動下載後再執行（summary/security）
+  - [x] App 啟動時將遺留 running → pending 以便續跑
+- [x] 觸發點整合
+  - [x] Metadata 入庫：排 Title（medium）
+  - [x] Full content 完成：排 Title（low）+ Summary/Security（medium）
+  - [x] 點擊郵件（閱讀）：排 Title+Summary+Security（urgent）
+  - [x] AIBloc.ensureAllAIFields：改排佇列（高優先），不再同步處理
+- [x] UI 儀表
+  - [x] 「同步狀態」頁新增 AI 佇列儀表（pending/running/failed/completed）與最近錯誤清單
+- [x] 修復同步與手動 Refresh 的增量保護
+  - [x] 修復同步：僅在 beginCaptureWindow/endCaptureWindow 與刪除相位暫停增量
+  - [x] 手動 Refresh：僅刪除相位暫停增量
+- [x] 429/配額防護
+  - [x] 將 ID pageSize ↘ 30；metadata batchSize（reconcile=15、一般=25）；partial failure 保留 pageToken
+
+### 37. 修復同步內容保護與 UI 選取並發防護（2025-11）
+
+- [x] 修復期間不修改 hasFullContent（僅保留既有內容欄位）；非修復期間發現受損才標記 hasFullContent=false
+- [x] 開啟郵件時若內容缺失 → 立即下載 full content
+- [x] 遠端總量估算改用 users.getProfile(messagesTotal)（不再使用 messages.list 的 estimate）
+- [x] 避免 SelectionArea 巢狀：引入 MaybeSelectionArea，只在無祖先選取容器時包裹 SelectionArea，降低 ConcurrentModificationError
+
+驗收標準
+- [x] 修復同步後已下載的 full content 不會消失或降級
+- [x] 內容受損的郵件會在開啟時自動補齊
+- [x] 同步狀態頁顯示之遠端總量與頁數估計合理穩定
+- [x] 解除 ESC 清除選取時的併發錯誤，不再出現 ConcurrentModificationError
+
+驗收標準（連動 Requirements 12.1）
+- [x] 背景任務不中斷（重啟續跑），不阻塞 UI/同步
+- [x] 點擊郵件的 AI 任務優先完成
+- [x] 缺少 full content 的任務會自動補齊依賴
+- [x] 儀表能顯示狀態統計與最近錯誤
+- [x] 修復/Refresh 僅在指定窗口暫停增量，其他時間持續同步

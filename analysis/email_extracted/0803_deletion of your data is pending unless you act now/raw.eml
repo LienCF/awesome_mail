@@ -1,0 +1,206 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:d209:b0:4d4:9739:2b92 with SMTP id ji9csp322107mdb;
+        Sat, 25 Oct 2025 06:05:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGPmxZ7DnW+eJyvxQgogSEe2MyePLvU90p/CwMmtvF9/X0Bd/fcXZXGdIGc4P0kQASvV6jE
+X-Received: by 2002:a05:6a00:4fce:b0:7a2:7da6:bc02 with SMTP id d2e1a72fcca58-7a27da6beaamr9105773b3a.21.1761397513625;
+        Sat, 25 Oct 2025 06:05:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761397513; cv=none;
+        d=google.com; s=arc-20240605;
+        b=OHSXWD6NUllKgofQRbj1HfpZbuu3V/NFJbJX4WVQ92I1H5fQS1J8/Jv0AZsytHiedi
+         Mmy6rZki9hZKcRwFqDemYNw0UzUz8M8ZTiVLWLGzLzum6+FZJkN0DffrAPUG8BK/ZsM1
+         nco76SIXvAT3/Ddnj4cqpCSxknU28eG45aL/ut/RmRPJk482lPyG9mvaHXZ3sk3uLwY8
+         VXjGnRX1qC1EsYaHxkaC6oJOSce+tEyf0cqePmzVYzOSI7BYNUHi3jOiLIM445sfyShe
+         GaLAHWttDbJuvgaKpEd6WH3lFXNUO3/hlY0bzUJe27iCM9JcJd1Lk3e/ngcCp7GkMO3T
+         x4wA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:mime-version:subject:message-id:to:from
+         :date:sender:dkim-signature:dkim-signature;
+        bh=0fkC4Hn2g+naoF16pwz9gqd+MpybIZpUO8MSnEPw6xs=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=G2eL8nKIVA3iqyX1xhB9BKcqViS8auaUVlKAMX98xdR71/vLsa5QxRnnY96Ld5NHMf
+         9EBRRnr6IsImvSJABECAO8AkDLXM8UoIMjUPCKkM5v/vCt1aF/44u4B2A3PfbPksqgRu
+         XX9XJsjSGfPipSxrBVlaLLD/pCVZWlMkiNmy7oCHRMv6WT9eCnn6AnCvfVbQtJ3/dLXg
+         OISNp5nkJSf27RY1JdqTs52PgxqC+ADmg9XejtpFjUHB6Xc249LwrlLwaDR8oSi4WKub
+         splJDOjRgN9EfcXjnVpiyjRle96x5nWNYZbq7J4deEgSgRsuxbC0Qcjez/JJujedKXpV
+         E8Ug==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@heroku.com header.s=mx header.b=WA6HMTxV;
+       dkim=pass header.i=@mailgun.org header.s=mg header.b=ssmptY3S;
+       spf=pass (google.com: domain of bounce+96e61f.034c41-liencf=gmail.com@heroku.com designates 69.72.32.153 as permitted sender) smtp.mailfrom="bounce+96e61f.034c41-liencf=gmail.com@heroku.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=notifications.heroku.com
+Return-Path: <bounce+96e61f.034c41-liencf=gmail.com@heroku.com>
+Received: from m32-153.mailgun.net (m32-153.mailgun.net. [69.72.32.153])
+        by mx.google.com with UTF8SMTPS id d2e1a72fcca58-7a415522c9fsi1105224b3a.20.2025.10.25.06.05.13
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 25 Oct 2025 06:05:13 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce+96e61f.034c41-liencf=gmail.com@heroku.com designates 69.72.32.153 as permitted sender) client-ip=69.72.32.153;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@heroku.com header.s=mx header.b=WA6HMTxV;
+       dkim=pass header.i=@mailgun.org header.s=mg header.b=ssmptY3S;
+       spf=pass (google.com: domain of bounce+96e61f.034c41-liencf=gmail.com@heroku.com designates 69.72.32.153 as permitted sender) smtp.mailfrom="bounce+96e61f.034c41-liencf=gmail.com@heroku.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=notifications.heroku.com
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=heroku.com; q=dns/txt; s=mx; t=1761397512; x=1761404712;
+ h=Content-Transfer-Encoding: Content-Type: Mime-Version: Subject: Subject: Message-ID: To: To: From: From: Date: Sender: Sender: X-Feedback-Id;
+ bh=0fkC4Hn2g+naoF16pwz9gqd+MpybIZpUO8MSnEPw6xs=;
+ b=WA6HMTxVzSjFju7EJFqihqveAo/r3LPAcKCr9OOe9SUGFthnhtfuYpJmYj6b++bbnKaJRe4PQ98VisdcADGnyfrANUfCe6svr5eIkYE11OK4/OBST6ndMmXkrg9BJqPFlvq8rGHoMQ7qU9lYRWjevwjwzlX7odeHClBysSYDRVA=
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mailgun.org; q=dns/txt; s=mg; t=1761397512; x=1761404712;
+ h=Content-Transfer-Encoding: Content-Type: Mime-Version: Subject: Subject: Message-ID: To: To: From: From: Date: Sender: Sender: X-Feedback-Id;
+ bh=0fkC4Hn2g+naoF16pwz9gqd+MpybIZpUO8MSnEPw6xs=;
+ b=ssmptY3Sho5d+YnkWCxn388m2AiCGQhJe1eJX7Dby/6JRQid8Plsrg6XYsIBzOtQb7Yd326Wb21AXKwxliNHqmTd0CYzN07SnwzJxGjrVswQrPpJKlkkpFMLRR/Og2+XV8VgKSutPXpaf4892Forj1sFn3HsNb1JK+4mHcnPmRE=
+X-Mailgun-Sid: WyIxMDRjYiIsImxpZW5jZkBnbWFpbC5jb20iLCIwMzRjNDEiXQ==
+X-Feedback-Id: bot@notifications.heroku.com::5b80668dfa60950001f60ef0:mailgun
+Received: from localhost.localdomain (ec2-52-70-241-175.compute-1.amazonaws.com
+ [52.70.241.175]) by
+ 5e0266efbc0f648679a192b9fbc136f40c6e1cf584face8e79a778e3e1844525 with SMTP id
+ 68fccb05fed2734d8cd7a493 (version=TLS1.3, cipher=TLS_AES_128_GCM_SHA256);
+ Sat, 25 Oct 2025 13:05:09 GMT
+X-Mailgun-Sending-Ip: 69.72.32.153
+Sender: bot@notifications.heroku.com
+Date: Sat, 25 Oct 2025 13:05:09 +0000
+From: Heroku Notifications <bot@notifications.heroku.com>
+To: liencf@gmail.com
+Message-ID: <edfb84e9-299e-4b32-bc05-ffdf34c9036a@notifications.heroku.com>
+Subject: Deletion of your data is pending unless you act now
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_68fccb0591e7a_d31c870376f"
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_68fccb0591e7a_d31c870376f
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hello Heroku Customer,
+
+We are sending this second and **final notice** to inform you that data in your Heroku account will be deleted unless you log into your account as described below. There has been no activity on your Heroku account in the past year. To ensure that customer data remains safe at all times, it is our practice to delete accounts, apps and associated add-ons that have not been active for one year.
+
+You have 15 days to log back into [Heroku](https://id.heroku.com). If you log into Heroku within 15 days, then your account will remain active and your data on your Heroku account will not be deleted. **If you do not log into your Heroku account in the next 15 days, the following will be deleted:**
+
+* Data - your apps (listed in this email below) as well as any add-ons attached to those apps
+* Account - your Heroku account associated with the recipient email address in this message
+
+It is important to note that Heroku ended free product plans for Heroku Dynos, Heroku PostgreSQL and Heroku Data for Redis on November 28, 2022 (announced in this [Heroku blog post](https://blog.heroku.com/next-chapter)). Even after logging back into your account, you will now need to upgrade data resources and dynos using free plans to avoid any data loss or service interruptions.
+
+If you would like to keep your apps on Heroku, instructions on upgrading your apps and pricing can be found [here](https://help.heroku.com/81MBEG7L/how-do-i-upgrade-from-heroku-s-free-tier-and-begin-using-paid-resources). For additional information please visit our [FAQ on removal of free product plans](https://help.heroku.com/RSBRUH58/removal-of-heroku-free-product-plans-faq) that contains information on deletion of inactive accounts and data. 
+
+Inactive apps pending deletion:
+
+[penghulinebot](https://dashboard.heroku.com/apps/b9e86b19-9d0e-4f3a-9ce6-346f4df7a665)
+
+We do hope you will return to using Heroku to develop, deploy and run your apps and services. 
+
+Sincerely,
+The Heroku Team
+
+----==_mimepart_68fccb0591e7a_d31c870376f
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body style="width: 100% !important; -webkit-text-size-adjust: none; margin: 0; padding: 0;">
+      <script type="application/ld+json">{"@context":"http://schema.org","@type":"EmailMessage","potentialAction":{"@type":"ViewAction","target":"","name":""},"description":""}</script>
+    <center>
+      <table id="backgroundTable" style="border-spacing: 0; border-collapse: collapse; font-family: proxima-nova, 'helvetica neue', helvetica, arial, geneva, sans-serif; height: 100% !important; width: 100% !important; color: #4c4c4c; font-size: 15px; line-height: 150%; background: #ffffff; margin: 0; padding: 0; border: 0;">
+        <tr style="vertical-align: top; padding: 0;">
+          <td align="center" valign="top" style="vertical-align: top; padding: 0;">
+            <table id="templateContainer" style="border-spacing: 0; border-collapse: collapse; font-family: proxima-nova, 'helvetica neue', helvetica, arial, geneva, sans-serif; height: 100%; width: 600px; color: #4c4c4c; font-size: 15px; line-height: 150%; background: #ffffff; margin: 40px 0; padding: 0; border: 0;">
+              <tr style="vertical-align: top; padding: 0;">
+                <td class="templateContainerPadding" align="center" valign="top" style="vertical-align: top; padding: 0 40px;">
+                  <table id="templateContent" style="border-spacing: 0; border-collapse: collapse; font-family: proxima-nova, 'helvetica neue', helvetica, arial, geneva, sans-serif; height: 100%; width: 100%; background: #ffffff; margin: 0; padding: 0; border: 0;">
+                    <tr style="vertical-align: top; padding: 0;">
+                      <td style="vertical-align: top; text-align: left; padding: 0;" align="left" valign="top">
+                        <h1 id="logo" style="color: #6E5BAA; display: block; font-family: hybrea, proxima-nova, 'helvetica neue', helvetica, arial, geneva, sans-serif; font-size: 32px; font-weight: 200; text-align: left; margin: 0 0 40px;" align="left"><img src="https://s3.amazonaws.com/heroku.newsletter/heroku-logo.png" alt="heroku" width="120" height="42" style="outline: none; text-decoration: none; border: 0;" /></h1>
+
+                        <p style="margin: 20px 0;">
+
+                          <p>Hello Heroku Customer,</p>
+
+<p>We are sending this second and <strong>final notice</strong> to inform you that data in your Heroku account will be deleted unless you log into your account as described below. There has been no activity on your Heroku account in the past year. To ensure that customer data remains safe at all times, it is our practice to delete accounts, apps and associated add-ons that have not been active for one year.</p>
+
+<p>You have 15 days to log back into <a href="https://id.heroku.com">Heroku</a>. If you log into Heroku within 15 days, then your account will remain active and your data on your Heroku account will not be deleted. <strong>If you do not log into your Heroku account in the next 15 days, the following will be deleted:</strong></p>
+
+<ul>
+<li>Data - your apps (listed in this email below) as well as any add-ons attached to those apps</li>
+<li>Account - your Heroku account associated with the recipient email address in this message</li>
+</ul>
+
+<p>It is important to note that Heroku ended free product plans for Heroku Dynos, Heroku PostgreSQL and Heroku Data for Redis on November 28, 2022 (announced in this <a href="https://blog.heroku.com/next-chapter">Heroku blog post</a>). Even after logging back into your account, you will now need to upgrade data resources and dynos using free plans to avoid any data loss or service interruptions.</p>
+
+<p>If you would like to keep your apps on Heroku, instructions on upgrading your apps and pricing can be found <a href="https://help.heroku.com/81MBEG7L/how-do-i-upgrade-from-heroku-s-free-tier-and-begin-using-paid-resources">here</a>. For additional information please visit our <a href="https://help.heroku.com/RSBRUH58/removal-of-heroku-free-product-plans-faq">FAQ on removal of free product plans</a> that contains information on deletion of inactive accounts and data. </p>
+
+<p>Inactive apps pending deletion:</p>
+
+<p><a href="https://dashboard.heroku.com/apps/b9e86b19-9d0e-4f3a-9ce6-346f4df7a665">penghulinebot</a></p>
+
+<p>We do hope you will return to using Heroku to develop, deploy and run your apps and services. </p>
+
+<p>Sincerely,
+The Heroku Team</p>
+
+
+                        </p>
+
+                          <img src="https://telex.heroku.com/user/notifications/edfb84e9-299e-4b32-bc05-ffdf34c9036a/read.png" height="1" width="1">
+
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </center>
+
+<style type="text/css">
+body {
+width: 100% !important;
+}
+.ReadMsgBody {
+width: 100%;
+}
+.ExternalClass {
+width: 100%;
+}
+body {
+-webkit-text-size-adjust: none;
+}
+body {
+margin: 0; padding: 0;
+}
+code {
+white-space: pre-wrap;
+}
+img {
+border: 0; outline: none; text-decoration: none;
+}
+#backgroundTable {
+height: 100% !important; margin: 0; padding: 0; width: 100% !important;
+}
+#backgroundTable {
+color: #4c4c4c; background-color: #ffffff; font-family: proxima-nova, 'helvetica neue', helvetica, arial, geneva, sans-serif; font-size: 15px; line-height: 150%;
+}
+@media (max-width: 540px) {
+  #templateContainer {
+    width: 100% !important;
+  }
+  #templateContainer .templateContainerPadding {
+    padding: 0 5% !important;
+  }
+}
+</style>
+</body>
+</html>
+
+
+----==_mimepart_68fccb0591e7a_d31c870376f--

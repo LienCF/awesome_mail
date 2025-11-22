@@ -1,0 +1,2048 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:d209:b0:4d4:9739:2b92 with SMTP id ji9csp2051256mdb;
+        Tue, 28 Oct 2025 08:48:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFMwROcpgce4neUGLb4X4AZAgQZMPSLN7IYzx3hHmYqv0WVtWyMk6PV6ZVFbqLTRQnC06xh
+X-Received: by 2002:a05:6e02:1b04:b0:430:cad8:4610 with SMTP id e9e14a558f8ab-4320f844e11mr56627825ab.23.1761666517557;
+        Tue, 28 Oct 2025 08:48:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761666517; cv=none;
+        d=google.com; s=arc-20240605;
+        b=W3KVrXwG0N03uWo8tfX2FyeHaZDEsfwrhNolSM5vUDUQz2Agkgc3X9K1sGAY42lj0s
+         KWgBhOKTGbI19Cs04fy6ubY+1CDcKt+qcL4cK9c3XgHsAzJK3U2F6Up56g8WKYKv7WtH
+         n7MTquDCn5Rn7sBtv6BXoqvZfbdJbiCClxyFvnPwdWRot2785UPzdm1HCeq41AsJgh+1
+         hdaPc2+tJbY9AhCovjAAqc8s18RRITSTQ5c/p+bN6e0CVWdBaSfii4LAtSm/h3sBOE3F
+         eC6P4wqeZ3TVa71BHxF81XKUonCaquyRyCXTc6UfhNJ+2zvkh47idHoU0A5hEtpZXFZR
+         xPog==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:list-unsubscribe-post:list-unsubscribe:reply-to:subject
+         :message-id:mime-version:from:date:dkim-signature:dkim-signature;
+        bh=mzOSvZtiwhksxBESuObtGL8pizmHIp1xCMl2bmLp1bE=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=Zh6cjLgej0vNaeX9D6ErrRqhRBaQc0aeaW0fgOq7zsCYWd1Q9fY+9xiJMHWJy6Jm4b
+         /QGOk5HKgkjnpmVUkdrOHHFqPDKxmxjtmhtEWljSHe26v7ZfQxNTAQa3UouLi/q8unJb
+         hPKfLeoXeZXAtT6FypVyHH9KdWcG8wOdalxpMATk3cdpXxhcGJ66r5esjykX2DgEdMg8
+         mTfvVVEuuyulQifWeH/R1evkELdGQTPi92KAym/A8xCAO8n68SEgcng9aUed0QdJOeIe
+         JET3IV6roqxXE7qImKa5MxkWdz2BtqaW26E6MwBRJaFEidied4ppFU5OoMSFlx3TufBN
+         zSNw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@github.com header.s=smtpapi header.b=tqSEyq6l;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=oRsH5a6V;
+       spf=pass (google.com: domain of bounces+46701922-78ec-liencf=gmail.com@sgmail.github.com designates 167.89.101.201 as permitted sender) smtp.mailfrom="bounces+46701922-78ec-liencf=gmail.com@sgmail.github.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Return-Path: <bounces+46701922-78ec-liencf=gmail.com@sgmail.github.com>
+Received: from o10.sgmail.github.com (o10.sgmail.github.com. [167.89.101.201])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-431f7db0d88si100003275ab.60.2025.10.28.08.48.37
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Oct 2025 08:48:37 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+46701922-78ec-liencf=gmail.com@sgmail.github.com designates 167.89.101.201 as permitted sender) client-ip=167.89.101.201;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@github.com header.s=smtpapi header.b=tqSEyq6l;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=oRsH5a6V;
+       spf=pass (google.com: domain of bounces+46701922-78ec-liencf=gmail.com@sgmail.github.com designates 167.89.101.201 as permitted sender) smtp.mailfrom="bounces+46701922-78ec-liencf=gmail.com@sgmail.github.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	h=content-type:date:from:mime-version:subject:reply-to:list-unsubscribe:
+	list-unsubscribe-post:to:cc:content-type:date:feedback-id:from:subject:to;
+	s=smtpapi; bh=mzOSvZtiwhksxBESuObtGL8pizmHIp1xCMl2bmLp1bE=;
+	b=tqSEyq6l8Sy/WkvIDpnFMtEolF+5aKnLrJ2TKGGd4r9eiwx/1ClT+3YDY3b1ou9it3cV
+	FttQNdzws6MunTSYtMude4f5tkp9mA1nQmNhHYwIzXcA2bw6+6qPB/iL5qEyM6HE9zSxj5
+	+BDVzU2Ln3GJddpnDfzHG1pPfobD5fAAE=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:date:from:mime-version:subject:reply-to:list-unsubscribe:
+	list-unsubscribe-post:to:cc:content-type:date:feedback-id:from:subject:to;
+	s=smtpapi; bh=mzOSvZtiwhksxBESuObtGL8pizmHIp1xCMl2bmLp1bE=;
+	b=oRsH5a6V8wSj3J8eWDTfmaOS66EJ4ngYm0PueIAk0iukRHfEUBab4ZZU3u0BW+zQ8i3i
+	N2AAdY8hO27BCTleR13msHPjJnYWHseLZJrPldSxNkLtPbIyYiMr6iXCQYxkO0JFFvawzk
+	W0/ZUe3S1SkmR+rNAeEts0Fh4QZbv3DWc=
+Received: by recvd-67f5964c58-w62mv with SMTP id recvd-67f5964c58-w62mv-1-6900E5D2-2C
+	2025-10-28 15:48:34.329185506 +0000 UTC m=+12611044.732217537
+Received: from NDY3MDE5MjI (unknown)
+	by geopod-ismtpd-13 (SG) with HTTP
+	id 6x3CxguKRjyg98_ISdsaNg
+	Tue, 28 Oct 2025 15:48:34.312 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=eeae04d1440a3a2052c6e1e7d58b02f38762e6ce7de6610a5908b3e6183b
+Date: Tue, 28 Oct 2025 15:48:36 +0000 (UTC)
+From: GitHub Education <githubeducation@github.com>
+Mime-Version: 1.0
+Message-ID: <6x3CxguKRjyg98_ISdsaNg@geopod-ismtpd-13>
+Subject: GitHub Universe 2025 is live from San Francisco
+Reply-To: githubeducation@github.com
+List-Unsubscribe: 
+ =?us-ascii?Q?=3Chttps=3A=2F=2Fmailing=2Egithub=2Ecom=2Flu=2Funsubscribe=3Foc=3Du001=2Eor7q--1Ll4a?=
+ =?us-ascii?Q?IdZchoIagBoikICI9UYP7-OIYHjWc8OiS8-A52w?=
+ =?us-ascii?Q?d83kxwIRhFkwaTJslnEHa=5F1ie4YAfpFby4-a1px?=
+ =?us-ascii?Q?tvE73i0H6MBR8nCiTXzBJQmxoZs9lBoDQLJE=5Fkw?=
+ =?us-ascii?Q?nL-b1a9WAdFlPW8iB26aFpNaE-dEVRQ5AhQGGJb?=
+ =?us-ascii?Q?mhjstziXZpe64PCzoPP7aQ-eg4yhJxstg0ZvUlj?=
+ =?us-ascii?Q?UK30ggehJWeaaP9szsaMHe1hEyASAoAWtzezlYQ?=
+ =?us-ascii?Q?dEhE4wmjFuOXsFzPeZRtnHPPfrySGxxzRItVww9?=
+ =?us-ascii?Q?BFLN3DVYhwJ0ZHvfwExlKo47u-mOshjNb3pa48k?=
+ =?us-ascii?Q?uWx0=5FjAAbq8M0KIAh5t4R9wKmiQkHoP9b3LkqEL?=
+ =?us-ascii?Q?iqwc2g8431KDqb5GD3ekdHrgthkYpehhSFkp=5Fam?=
+ =?us-ascii?Q?J5CLGcP=5FeY=5FAFBS6bDrfs15yHimENNL8CP1R7L=5F?=
+ =?us-ascii?Q?BL07kNZBWOtUJIKpgfwQkJ=5FXQYjLeIHoXKb-2Mo?=
+ =?us-ascii?Q?scz4HgRSN3Oqq=5FEX0mFcYt=5FJUIYSeVioSnQPY5U?=
+ =?us-ascii?Q?PjiTSZ1IgthRHjFbJRUwpBrfh8NGv3qi7VgV5t5?=
+ =?us-ascii?Q?Ap5uXJPz7xLN57iQOXfZyd-ZYRLA0WCHWalrpHq?=
+ =?us-ascii?Q?7a-1rzH5QsvBWQJkKCNT=5F=5FRahn-ysjVxdZfTuBR?=
+ =?us-ascii?Q?bj2=5F5N0QpksKU=5FFo7=5F0J3ygTMD4WjuGWHKY3uGw?=
+ =?us-ascii?Q?j5DT878SF=5FmaRbe49HAPLcSqqEwpLVsAArnXfs2?=
+ =?us-ascii?Q?hAE0w36UG6vZt=5Fwj-XYlmGqgo5IS-A1Bqoyh9zI?=
+ =?us-ascii?Q?k-m8BJdocdEryeuokehr9AHCc9wN0j=5FjtRMWtWY?=
+ =?us-ascii?Q?yy525gsOCA2wz7RKpedxIO=5FrMw5jlW8hbv4bbJC?=
+ =?us-ascii?Q?OjY2E6SCSB=5Fu1jmfqMFOx9YxIo8Jumtb8QhYxgX?=
+ =?us-ascii?Q?YLP90nrOf8KxtPZn0YZhrViDf1gKtxfYogy62Ee?=
+ =?us-ascii?Q?ey9MYa5wvrtnDhP=5FXsewI46XFYAjsGmNTRWEvdK?=
+ =?us-ascii?Q?CA-WM45RK0AyqRu=5FU25wu=5Fm3xAIWBOdBcNt=5FOtc?=
+ =?us-ascii?Q?zCMngt8TI5YTEarhXsaH88A=5FEau4R=5FE-7l-Vhz-?=
+ =?us-ascii?Q?GykcfYU8KFymNs1Wn1cKYgYTtGP5DI9O1etkgRE?=
+ =?us-ascii?Q?=5FbAqn4W2r4Nx-rJcpc8LEf6=5FGzB5xA-7fApqfvk?=
+ =?us-ascii?Q?BQbW9O09VD-J=5FmrzI-1bYk7zgcNUCtH2aTP3j7n?=
+ =?us-ascii?Q?p6MQFH1I7-0vDWTK=5FrDVbXyCTIJl09JqzJzi3Ye?=
+ =?us-ascii?Q?GnYtKm55=5FxB144lSfT2SFuYnQ3PrjFYa3J-QSO8?=
+ =?us-ascii?Q?XItNaLL3CDAghzrl-BqtR2sNqrX6oCH0wdg622G?=
+ =?us-ascii?Q?zFss1Kj-VFHJJ=5FLLh484qcGUSdrWcVvwlLy9GiG?=
+ =?us-ascii?Q?Z0EmGktwAiMSdw0perb7snZIWXpKP6wZK8MgQa4?=
+ =?us-ascii?Q?thcEYMUBoAcOdNDjIOzlNOAp1Z3ESU0wJZK2BQj?=
+ =?us-ascii?Q?SriHqGsRUIKxtpau0UDiczEGA2XVIvjd=5FGseP9G?=
+ =?us-ascii?Q?x7cZUvoMqO06XrNZZ7uJHG0eOnKrN1Zzg-eHdNB?=
+ =?us-ascii?Q?9p9LGmF-LKdzlVleP74fwF1g3C4HbeRvV=5FL6RrT?=
+ =?us-ascii?Q?4=5FZiLwLfuQyD81VOoLpIDXVnAZCk1EYXH8ndViC?=
+ =?us-ascii?Q?XlaVhz1fVu4Dik3EczTuTRNCUg=3E=2C=3Cmailto=3Auns?=
+ =?us-ascii?Q?ubscribe=40sgmail=2Egithub=2Ecom=3Fsubject=3Dhttp?=
+ =?us-ascii?Q?s=3A=2F=2Fmailing=2Egithub=2Ecom=2Fmt=2Fu=2Fu001=2E4h9N=5Fu?=
+ =?us-ascii?Q?0nxMYgg1Exgy-UHx44kjaNvGGxgBlhYb3EvMo=2F4?=
+ =?us-ascii?Q?l4=2Fu001=2ECpjgZZHl=2Fu001=2Em9iegsxiwR0DJv8iS?=
+ =?us-ascii?Q?EKKxCHpYvGkS3IG8rRrCpAhajFg27jnpWdU3-2B?=
+ =?us-ascii?Q?SvODseCgTeMppFzTbWw-2BMQWR-2FGlscnxtase?=
+ =?us-ascii?Q?RYznSiPfPN7S0Gz3wt16z7IcouZIWisNR3XGfab?=
+ =?us-ascii?Q?1XDg-2FuuZRVw8lJBaN-2B56x2q4OwqAlT-2F-2?=
+ =?us-ascii?Q?FB5ArxNkdCyTMAI6rvCioTgChY8wCxwrNCw3lDC?=
+ =?us-ascii?Q?5Fd2gHtTsD7wlXWMHyJlQx8akmhTMrIRWhK2-2F?=
+ =?us-ascii?Q?Q-2Fkh7gmopJ4FGHrvwBMOgjtfe7qo50I96vbns?=
+ =?us-ascii?Q?SJhAUpZkY0jgQcjBEV7D7GikGmem2G-2FSSH047?=
+ =?us-ascii?Q?02D8IGpN8QymWdJ7GUuPDwQTKIDQRkvXQXPcBcb?=
+ =?us-ascii?Q?M8WiRYEwEEuh4w6gnB5QLiGxhBoc-2FUQWrvj1v?=
+ =?us-ascii?Q?z1LmoeD6g6-2F-2Bkq8CF3aBijkIzUpDVIoDaOi?=
+ =?us-ascii?Q?3J8zqAFv8pq9ujGOSSdT8oDpu9Ad8FVtO1glYlG?=
+ =?us-ascii?Q?ZCheOhhMl5tya1cV8Blyb6AZegb-2B3rLGBwVLd?=
+ =?us-ascii?Q?1ToNjSPYduB0O6g-2BgvwV17d-2BMkG3812canx?=
+ =?us-ascii?Q?YQ5UvXCODHAECueV1K8C0OHVTQQeIF-2Fw7hXNe?=
+ =?us-ascii?Q?gX-2FYq2EHHFQo314lyJJiHGcHo9XTFccK1uoAD?=
+ =?us-ascii?Q?mFxgLo9WksYtSx3v25MfOISJBk0ejs3ggeW-2Fk?=
+ =?us-ascii?Q?5S2MKqu2i1dyka0H1M-2FIjPteBIpA6Vra-2B5V?=
+ =?us-ascii?Q?z-2B2eBK2bcQH9OPlmYciC5-2Bti1u29Cg3MHoL?=
+ =?us-ascii?Q?K-2BicvYGNZxNOG4L4myNF8A84VSzTrJ8p-2FAF?=
+ =?us-ascii?Q?zSrCX5XV-2B2NjpP3haJyTFzqk4SXmS2soRQCbn?=
+ =?us-ascii?Q?t0HL-2BhsDW7kmA7Ii9BYkU7VD3CZpjwemG-2BJ?=
+ =?us-ascii?Q?HUhOT-2BAiaO2b-2BSBk8pGjq-2FOZ2kvRUxaEY?=
+ =?us-ascii?Q?gFfogw1d7YrKPPeYZm2D7xKIGgbkz640Sqz6BrC?=
+ =?us-ascii?Q?vjlT2T-2BPbCJptbUaQYEryXSd1lDSYvH8buQjW?=
+ =?us-ascii?Q?tE8pOvdyn2N8rbYN7Gu2LY9rf4c1LU0wmCIPgli?=
+ =?us-ascii?Q?TPG6mcN1U1QT-2FdA98se3WqT6njjPFiFhwt9wi?=
+ =?us-ascii?Q?WH9jf-2FrO7hSsgBOwmHvD=2Fu001=2EQgPiQyim=3E?=
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-SG-EID: 
+ =?us-ascii?Q?u001=2ElNcmDc+hNZCEz2pmfZvb7Xgb9JADEib7wUaiAfZvyvpnXoHDGKB+UZmxR?=
+ =?us-ascii?Q?cbcA6LEkHq3NVfZpL5Oyz47TDCdIRHDOHl0su=2FV?=
+ =?us-ascii?Q?Dv3LpTtk1TvULsxTbDyfWJykLiCvRfZjykIE+3m?=
+ =?us-ascii?Q?UVbwvySoW1gEF+uJdb2HyqlBjfoFRuSotWkTcFP?=
+ =?us-ascii?Q?K4ATi8QARl4fxInCvrpalildgi7lVhLdBNe9UsL?=
+ =?us-ascii?Q?83hFruXE3LE1E8x7Ai8ofbvun0VpOWVnRv0Oi1Q?= =?us-ascii?Q?0kLN?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2EXwhBPNhCejkv4+fVosb2QVfR16Qxp9CrA7PjDe5zzeI=2F0IZCBsPXtgHbA?=
+ =?us-ascii?Q?oGIj+RskLxA4N2rJjSWrHfgX07tLOm0v5BUQcd6?=
+ =?us-ascii?Q?w3knjorGi7Hwu0WCOA5AFSvy0=2FwlG32=2FtNcA2A8?=
+ =?us-ascii?Q?Z9gbxGufVvGf12qnHZTtOI5LehgMxoRDYYC4s=2Fr?=
+ =?us-ascii?Q?e1VjkS59djOHpTa8dODsHoVC3OLl4c1q2TgTmH0?=
+ =?us-ascii?Q?p5XBZ+Em+=2FjFapXXLPeZTLDbOsAhlb0SD1geOo9?=
+ =?us-ascii?Q?boqsPRmDkBLw3y4A2go8UyykrCBVYBPtntNOed1?=
+ =?us-ascii?Q?TLnl4mH4k4iqywvBMxiWNmHu3=2FsfneprdODaA3W?=
+ =?us-ascii?Q?cIf5TkFxnyLp4o4Ux8XK4YdpBGHXry8dTI4rBG2?=
+ =?us-ascii?Q?iGQ0RNYvQg3knmGEGhudUa5iilBKX6hrsHBaMkc?=
+ =?us-ascii?Q?NHi2NCx3Ui4Xjl3HwZpd7loNUbo0cnZqYr4mh4E?=
+ =?us-ascii?Q?IKyoG7Vf0eJpMREKOWWzJPRYr7bf3SE47vhPrSp?=
+ =?us-ascii?Q?8ZaIbFKH7GdntHhgnlJ3JbvfyxVMTr1R+fYr9qr?=
+ =?us-ascii?Q?dYdup7s0aOM1mziw2ll+Xey=2FHP7WPLfG=2FdtZK+6?=
+ =?us-ascii?Q?jvYo6EYUSpr+jmm5yQCgBFfxgaKBZrfLxbjyjoU?=
+ =?us-ascii?Q?QH=2FI2zSqTybtYPu1tWspnytNYY5GIBc8gTLYWIF?=
+ =?us-ascii?Q?INVfyvr+7u=2FGXzlwPis6bjejrEg3mZxpQ+lSXvZ?=
+ =?us-ascii?Q?mGNpa28jYXrDskp9osY9HEiZ=2FdFpOY=2FF7lq3ruh?=
+ =?us-ascii?Q?2icaFCd=2Fp3WDe1J=2F2mvmN3sazMfc=2FNC2jPxv3s+?=
+ =?us-ascii?Q?Yes96E0uTkqyiGP+qrZRQPTDBoG8Kb=2FzEZvgkNv?=
+ =?us-ascii?Q?qC1J+ucz0pGUfob2uaS5bDfC1zrdo=2F=2FJH5?=
+To: liencf@gmail.com
+X-Entity-ID: u001.B+egv976VsnFPzNwqP101Q==
+
+--eeae04d1440a3a2052c6e1e7d58b02f38762e6ce7de6610a5908b3e6183b
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+LienCF, Tune in for keynotes and explore select sessions on demand=E2=80=94=
+wherever you are.
+
+( https://github.com/education )
+
+( https://githubuniverse.com?utm_source=3Dedu-email-day-1-keynote&utm_mediu=
+m=3Demail&utm_campaign=3Duniverse25 )
+
+*************************************************************
+Universe is live! Here's your EDU plan for today and tomorrow
+*************************************************************
+
+Hey=C2=A0LienCF,
+
+GitHub Universe 2025 is underway at Fort Mason in San Francisco! We'd love =
+for you to tune in ( https://githubuniverse.com?utm_source=3Dedu-email-day-=
+1-keynote&utm_medium=3Demail&utm_campaign=3Duniverse25 ) and catch the acti=
+on. While only the keynotes stream live, a selection of sessions will be av=
+ailable on demand shortly after they happen. Head to the Universe homepage =
+and browse the session catalog ( https://reg.githubuniverse.com/flow/github=
+/universe25/attendee-portal/page/sessioncatalog?utm_source=3Dedu-email-sess=
+ions&utm_medium=3Demail&utm_campaign=3Duniverse25 ) to see what=E2=80=99s r=
+eady to watch.
+
+----------------------------------------
+*Watch live now =E2=80=94 Day 1 Opening Keynote*
+----------------------------------------
+
+A single free pass gives you access to live keynotes and recorded sessions =
+across both days. Share it with your students so they can follow along in r=
+eal time or replay highlights later in study groups. If you teach across ti=
+me zones, on-demand viewing makes it easy to integrate clips into lectures =
+or assignments.
+
++ Watch opening keynote live ( https://githubuniverse.com?utm_source=3Dedu-=
+email-day-1-keynote&utm_medium=3Demail&utm_campaign=3Duniverse25 )
+
+( https://githubuniverse.com?utm_source=3Dedu-email-day-1-keynote&utm_mediu=
+m=3Demail&utm_campaign=3Duniverse25 )
+
+------------------------------------------
+*Tomorrow=E2=80=99s EDU spotlight =E2=80=94 Day 2 keynote*
+------------------------------------------
+
+A single free pass gives you access to live keynotes and recorded sessions =
+across both days. Share it with your students so they can follow along in r=
+eal time or replay highlights later in study groups. If you teach across ti=
+me zones, on-demand viewing makes it easy to integrate clips into lectures =
+or assignments.
+
++ Watch day 2 keynote live ( https://githubuniverse.com?utm_source=3Dedu-em=
+ail-day-2-keynote&utm_medium=3Demail&utm_campaign=3Duniverse25 )
+
+( https://githubuniverse.com?utm_source=3Dedu-email-day-2-keynote&utm_mediu=
+m=3Demail&utm_campaign=3Duniverse25 )
+
+---------------------------------
+*Sessions on-demand (recordings)*
+---------------------------------
+
+*How it works:* Most talks publish *on-demand a few hours* after the IRL pr=
+esentation. Use the catalog filters (e.g., *Delivery format =3D Recorded, T=
+arget Audience =3D Educators & Students* ) to find what=E2=80=99s ready, th=
+en assign a short clip or demo for discussion.
+
++ Browse recorded sessions ( https://reg.githubuniverse.com/flow/github/uni=
+verse25/attendee-portal/page/sessioncatalog?utm_source=3Dedu-email-sessions=
+&utm_medium=3Demail&utm_campaign=3Duniverse25 )
+
+( https://reg.githubuniverse.com/flow/github/universe25/attendee-portal/pag=
+e/sessioncatalog?utm_source=3Dedu-email-sessions&utm_medium=3Demail&utm_cam=
+paign=3Duniverse25 )
+
+*On demand sessions to look out for:*
+
+*Securing the software supply chain with AI* (secrets, least privilege, gua=
+rdrails) =E2=80=94 concrete, end-to-end practices you can actually ship.
+
+*Copilot for Enterprise governance & model strategy* =E2=80=94 policy, data=
+ boundaries, and choosing/rolling out models at scale (real org playbooks).
+
+*Advanced Security: AI-assisted code scanning & code review* =E2=80=94 what=
+=E2=80=99s new, how it changes triage/MTTR, and where it beats legacy SAST.
+
+*Scaling Actions & Codespaces org-wide* =E2=80=94 patterns for monorepos, c=
+ache stragegies, cost control, and developer-velocity metrics.
+
+*Value Stream Management on GitHub* =E2=80=94 instrumenting flow metrics th=
+at leadership actually cares about (lead time, deployment freq, change fail=
+ rate).
+
+--------------------------------------------
+*EDU community highlights (image galleries)*
+--------------------------------------------
+
+Campus Experts kicked off Universe with a full community agenda=E2=80=94 *m=
+eeting GitHub COO Kyle Daigle* , touring the *Golden Gate Bridge* and San F=
+rancisco, getting a look inside the *GitHub office* , and joining *panels a=
+nd discussions with Hubbers* about what=E2=80=99s next on campus.
+
+The *Educator Lab Session* yesterday was hands-on and idea-dense=E2=80=94sh=
+aring ways to *improve education products* , *discussing AI in education* ,=
+ *collaborating on practical classroom workflows* , and capturing *take-hom=
+e ideas* for the next term.
+
+Behind the scenes, GitHub Education teamed up with volunteers to assemble t=
+his year=E2=80=99s *programmable badges* =E2=80=94a small, tangible example=
+ of the community effort that makes Universe run smoothly.
+
+Whether you joined us live or plan to catch up later, we hope these highlig=
+hts help you explore the latest in developer tools, security, and AI on Git=
+Hub. All sessions will be available on demand=E2=80=94so you can dive in wh=
+enever it works best for you.
+
+( https://github.com/education )
+
+( https://www.instagram.com/githubeducation/?hl=3Den ) ( https://www.facebo=
+ok.com/GitHubEducation/ ) ( https://www.threads.net/@githubeducation ) ( ht=
+tps://twitter.com/githubeducation ) ( https://bsky.app/profile/githubeducat=
+ion.bsky.social ) ( https://www.linkedin.com/showcase/github-education/ ) (=
+ https://www.youtube.com/@githubeducation4427 ) ( https://www.twitch.tv/git=
+hubeducation )
+
+Open this email in a web browser. ( https://cdn.mc-weblink.sg-mktg.com/webl=
+ink/MTc2MTY2NjUxNHxRWG5fN0IwLWliQUgwQXF0cU9XVG01blNNLTNQaW41NEw0ZkFFQzdMb25=
+lU1JIRXhZVUdYVEN1cnVCeDdtaDVLUlNNdGswaU0zRWRDY3BhN0xtazZnSmZkZ085cDZsdkM4bF=
+N4cGswb1owTmVyN0FwbFBNMUFhUUN1Szc1WEI3ZGNBNlNQRXBJZ21DeVZYYjVBXzZYUEVUcFJOb=
+kU2dUNjQ2VsY1k5RnZUMDFBX3B3M21WbElqdi1idlJiRWZkNERIZjA2MEV6ZC1rMlRta1hEdDl3=
+eUpHVzRJdTVSM0FhRjZvX2lObm5WSHV3bGVVQzNtaGc1ZHJocWVXREl1bXJFcGZYWURtd1E1TUx=
+CZEJxSlE2SXNKYklUaDYybEl4cUxkVTFRalhIbXBTQ2FvZmxnaU1xTks1ZU16WEtCNjU4UU1vc0=
+N1RFNITVhjSnNEX3ljMWpzR0JLZUI0Wmt80PJba6edhztnmZygzdou5CKjKic2jrrGlInkaInN4=
+f4=3D )
+
+GitHub Education
+
+88 Colin P Kelly Jr , San Francisco , CA 94107
+
+Unsubscribe ( https://mailing.github.com/wf/unsubscribe?upn=3Du001.JFvHvRC-=
+2FDCk3N-2B1tZqzlvi4-2BJREE1OhDEe1Ej2wnDlf4KNHZD-2B0RsSCCl-2BO9Jf6LQP5NnuFXR=
+XAK6n0GSKhjsQFGP5inYGfkm1tCi1C9p6ujkGnboeeNr85E7NppL3-2Bq3aEIuon3Q-2BKGbk1-=
+2FsfUwINt0NppBPn8KwJ6JJ-2BuDdqw7GJlZvDWgLUQ-2B5HaL6a8NChqjRA1-2BEKhL5nAqk3I=
+eDB3G-2F-2BeZvay269D8Et2bpq5l9GlZQXIJJ-2BTqYHVXm4Vgnhn1g6YLLjEJlqDuFQVOc7PH=
+shJ-2BmPZN9Z9S8gd2GCLMzsFO0U-2B-2B7JqUn59gF95zSs1VwqyQeMdgeu8TnBpzN3XO94rry=
+rItPATTkuqn7uRlIVuUJBRyB1DthF-2B0h1euqDlVnppa5MgLOPQddxFCuW2ndNDP2NiiTLqAac=
+YxGuyAf5BpAQxe7z2aIQ3WWUOOyuVwWcYcdsReq16z6dJxFmGDQBac2AOCRuWHuOcwuwVgeJeYw=
+JlUkEeUXrd8vQ9MCpoi-2BRVu6VIxwNG0QawdaROJ9f2v10zti3Ne8ivCAqDapGy-2FvGodeXWd=
+YnIWPNIDWkONCgCdKc7eYznqWrEUGbmwEzUhXDGFg0mpgKXQSU1kAd-2FIrNJWd-2FP8Nx7YeCU=
+alEhAlO-2B9uvmzkDkvWaJBZI7-2FNkiu4soh-2BrP2yYjZMz-2BWIzi1vnDuVO4p8Z03rpkfFT=
+MwciJ7fncossN5PKv2BSVzKtoMMLWFPZyLieHnymcirdCMv9f09Hntxc0EMnZgPsdjcWRPX-2F5=
+RgU4Yd-2B6nUtY23zISv-2FiRaUOWyqu0SCnMf4tp7a-2FslWrzN4M7hKWL-2BzIO7nN10fWzXe=
+wodp1wScyxz8HNcWwkwgDtLzMSjRWdybvYNOVgaTCQuB0F5gLMDCAmQgdqu8byRSfLJjHR0Ouls=
+2fSj7rKurD5lelDbGbPEoLW8sJX9-2F4VM9Ei7NS-2FuHUYRYihMRsCrIsQaiB4RMRNJy0eX7Lo=
+wvF5uAxfvlOezJuJvZTKrcdljSyIhWtS )
+--eeae04d1440a3a2052c6e1e7d58b02f38762e6ce7de6610a5908b3e6183b
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org=
+/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html data-editor-version=3D"2" class=3D"sg-campaigns" xmlns=3D"http://www.=
+w3.org/1999/xhtml">
+    <head>
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8">
+      <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scal=
+e=3D1, minimum-scale=3D1, maximum-scale=3D1">
+      <!--[if !mso]><!-->
+      <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3DEdge">
+      <!--<![endif]-->
+      <!--[if (gte mso 9)|(IE)]>
+      <xml>
+        <o:OfficeDocumentSettings>
+          <o:AllowPNG/>
+          <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+      </xml>
+      <![endif]-->
+      <!--[if (gte mso 9)|(IE)]>
+  <style type=3D"text/css">
+    body {width: 600px;margin: 0 auto;}
+    table {border-collapse: collapse;}
+    table, td {mso-table-lspace: 0pt;mso-table-rspace: 0pt;}
+    img {-ms-interpolation-mode: bicubic;}
+  </style>
+<![endif]-->
+      <style type=3D"text/css">
+    body, p, div {
+      font-family: arial,helvetica,sans-serif;
+      font-size: 16px;
+    }
+    body {
+      color: #212529;
+    }
+    body a {
+      color: #1A7F37;
+      text-decoration: none;
+    }
+    p { margin: 0; padding: 0; }
+    table.wrapper {
+      width:100% !important;
+      table-layout: fixed;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    img.max-width {
+      max-width: 100% !important;
+    }
+    .column.of-2 {
+      width: 50%;
+    }
+    .column.of-3 {
+      width: 33.333%;
+    }
+    .column.of-4 {
+      width: 25%;
+    }
+    ul ul ul ul  {
+      list-style-type: disc !important;
+    }
+    ol ol {
+      list-style-type: lower-roman !important;
+    }
+    ol ol ol {
+      list-style-type: lower-latin !important;
+    }
+    ol ol ol ol {
+      list-style-type: decimal !important;
+    }
+    @media screen and (max-width:480px) {
+      .preheader .rightColumnContent,
+      .footer .rightColumnContent {
+        text-align: left !important;
+      }
+      .preheader .rightColumnContent div,
+      .preheader .rightColumnContent span,
+      .footer .rightColumnContent div,
+      .footer .rightColumnContent span {
+        text-align: left !important;
+      }
+      .preheader .rightColumnContent,
+      .preheader .leftColumnContent {
+        font-size: 80% !important;
+        padding: 5px 0;
+      }
+      table.wrapper-mobile {
+        width: 100% !important;
+        table-layout: fixed;
+      }
+      img.max-width {
+        height: auto !important;
+        max-width: 100% !important;
+      }
+      a.bulletproof-button {
+        display: block !important;
+        width: auto !important;
+        font-size: 80%;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      .columns {
+        width: 100% !important;
+      }
+      .column {
+        display: block !important;
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      .social-icon-column {
+        display: inline-block !important;
+      }
+    }
+  </style>
+      <!--user entered Head Start--><style>
+        a.social-link { text-decoration: none !important; }
+        img { border-radius: 4px !important; }
+       =20
+        @media screen and (max-width: 520px) {
+            .social-links img { height: 16px !important; width: 16px !impor=
+tant; }
+        }
+    </style><!--End Head user entered-->
+    </head>
+    <body>
+      <center class=3D"wrapper" data-link-color=3D"#1A7F37" data-body-style=
+=3D"font-size:16px; font-family:arial,helvetica,sans-serif; color:#212529; =
+background-color:#FFFFFF;">
+        <div class=3D"webkit">
+          <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"=
+100%" class=3D"wrapper" bgcolor=3D"#FFFFFF">
+            <tr>
+              <td valign=3D"top" bgcolor=3D"#FFFFFF" width=3D"100%">
+                <table width=3D"100%" role=3D"content-container" class=3D"o=
+uter" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+                  <tr>
+                    <td width=3D"100%">
+                      <table width=3D"100%" cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0">
+                        <tr>
+                          <td>
+                            <!--[if mso]>
+    <center>
+    <table><tr><td width=3D"600">
+  <![endif]-->
+                                    <table width=3D"100%" cellpadding=3D"0"=
+ cellspacing=3D"0" border=3D"0" style=3D"width:100%; max-width:600px;" alig=
+n=3D"center">
+                                      <tr>
+                                        <td role=3D"modules-container" styl=
+e=3D"padding:0px 0px 0px 0px; color:#212529; text-align:left;" bgcolor=3D"#=
+FFFFFF" width=3D"100%" align=3D"left"><table class=3D"module preheader preh=
+eader-hide" role=3D"module" data-type=3D"preheader" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"display: none !important;=
+ mso-hide: all; visibility: hidden; opacity: 0; color: transparent; height:=
+ 0; width: 0;">
+    <tr>
+      <td role=3D"module-content">
+        <p>LienCF, Tune in for keynotes and explore select sessions on dema=
+nd=E2=80=94wherever you are.</p>
+      </td>
+    </tr>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"8cf028e3-340a-4f85-b625-f0121192b824">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:40px 0px 40px=
+ 0px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2Fae=
+MIVe5lSdMnGODo4Ud11AqjVhW6cg4WddgB2qsGjLhgfZy3MaBCWeS5iPNEfq8_NsZBigbiferOV=
+fYn15JOBAgOH14511H4OB5UXzX6zT8Z89Q7aO66QcJ-2FVxFOPWJR3Ls9aID-2BkYayaF62-2Bu=
+Ui2dyw67XYcW6K-2BLrmF0F1Ti38ryQNQCG2X7jSYsguksCBDrKkNzjDcnsRekav7eE10SBrO-2=
+FlM7VTxNk-2Fzzj6zuGTkLhCMEz1y-2FlfQIHmzJg4iMIx81vnMYUO4nbgD8IB8IxIj20TMfMti=
+UNWp7sa2oAbvIZn43i-2BVDhLah1lMBJfw-2F9Z88reAUFUaxvMe8EZDNkzN5PZ-2BqQ1N8bv9o=
+Lwlp3qWXyxUiRRK7yYHyEmdW7srW9bxu249C8UwB7T9GW5ROcW5pP6LyUG8zaxf5o-2FrbXIXto=
+Fr5I-2Fh4g2qeoEJQjEL9WCe1FRuBmQHsvITRsrpLKWMcxBQshXSUbGNfhTooSs5frDbLhxVWyy=
+9dNaLbP1ZM3HwGyxH7TGKbBJ672XFUodO56TbfKkeUoqs5mV7g-2Bi0-2FzWjOV2glC3rammBGf=
+KcpGFjvleYKNSyd1RiozYI7PbwcG8qgUKITXlAH-2BWTe6-2BqTxFWrc89jzz9lOPq4IivWZZMn=
+YI3Ha1uCnCNHaf-2Bi50MVd4x-2FYEkjn-2F1TsYHz3Y3qhZ5wUVNdhH-2Fozq2rb9ihPZFGBPI=
+Jj34Oi7vPjmBnaOukgDkC5xgDj38Cv-2F7yW-2FWPXvfwtsBdsR2QAQ-2BGmh3SGLR-2BOF0pdu=
+r6xwvvb-2Bbp4tgJpscMLYAg8y-2FArBTQ1rvPaLTUm85AR7jj37Cb4P0qRPAtTQ7P-2BgoKq9t=
+6lp5d7bwtRq0KsJ6PmEyoa90RFTIRaqLB-2F78uWWFSqeMt8osy-2BjcsJpeBDJ1MAGHTqjLnpj=
+tT-2B9bttxj6zu2malbDEtzBq8qP87VxZ3FWK0-2BrZOauDuM09Drz-2FpGic4-2FnjMUIYp7jk=
+N65UPayKCsPCXEHdIQnWW5bu7mWR-2BoUuHrhluUlEzF4GxxwmGDNDIRfeqX4oDekxSWiPbOj8U=
+9Zz5L-2BJY-3D"><img class=3D"max-width" border=3D"0" style=3D"display:block=
+; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-s=
+erif; font-size:16px;" width=3D"160" alt=3D"" data-proportionally-constrain=
+ed=3D"true" data-responsive=3D"false" src=3D"http://cdn.mcauto-images-produ=
+ction.sendgrid.net/cc8ddcf649afa5e0/4a97e3e6-9624-4355-8b46-00cf9f774528/10=
+92x200.png" height=3D"29"></a></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"8021e65c-f4ec-4b9b-9608-938dace05fe1">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:20px 0px 10px=
+ 0px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2Fae=
+MIVe5lSdMnGODo6XoDM9nj4BsWcIT-2FQV5Ht-2B-2BgAdjFaCIZi5Xp0NPgchz1BHHEtWPbNNF=
+z0XykLhdNe1FrwSpS2jVBXzzgCRWjB7tqIitDpFYSEbT8tDON7YXsNyMSEAjAeQB10ik5Su-2BJ=
+Q-3D-3Dm8Xb_NsZBigbiferOVfYn15JOBAgOH14511H4OB5UXzX6zT8Z89Q7aO66QcJ-2FVxFOP=
+WJR3Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF0F1Ti38ryQNQCG2X7jSYsguksCBDr=
+KkNzjDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTkLhCMEz1y-2FlfQIHmzJg4iMIx81vn=
+MYUO4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2BVDhLah1lMBJfw-2F9Z88reAUFUaxv=
+Me8EZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyEmdW7srW9bxu249C8UwB7T9GW5ROcW=
+5pP6LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9WCe1FRuBmQHsvITRsrpLKWMcxBQsh=
+XSUbGNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGKbBJ672XFUodO56TbfKkeUoqs5mV7g=
+-2Bi0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozYI7PbwcG8qgUKITXlAH-2BWTe6-2Bq=
+TxFWrc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50MVd4x-2FYEkjn-2F1TsYHz3Y3qhZ5w=
+UVNdhH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC5xgDj38Cv-2F7yW-2FWPXvfwtsBds=
+R2QAQ-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscMLYAg8y-2FArBTQ1rvPaLTUm85AR7jj=
+37Cb4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyoa90RFTIRaqLB-2F78uWWFSqeMt8os=
+y-2BjcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDEtQb-2BVLt6R18tddWlEljj7bCWic7=
+he7yf5s3VjqVjzwl2MLDI-2B8d-2BkTuS7DQyQcMYO4Kv7WusrdKkfFZmmgsezFEhAa9Q0gYFKA=
+bCw7ruGRCqp1x7JiCxYYN48ViVHBNXY-3D"><img class=3D"max-width" border=3D"0" s=
+tyle=3D"display:block; color:#000000; text-decoration:none; font-family:Hel=
+vetica, arial, sans-serif; font-size:16px; max-width:100% !important; width=
+:100%; height:auto !important;" width=3D"600" alt=3D"" data-proportionally-=
+constrained=3D"true" data-responsive=3D"true" src=3D"http://cdn.mcauto-imag=
+es-production.sendgrid.net/cc8ddcf649afa5e0/2c714b9b-f655-4055-807f-6451a8d=
+c02f6/3214x692.png"></a></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"628a2a7d-6db0-4036-84f4-f264401ccde4" data-mc-mo=
+dule-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:38px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: inherit">Universe is live! Here's your EDU=
+ plan for today and tomorrow&nbsp;</h1><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:20px 0px 20px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.1.1" data-m=
+c-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:12px 0px 12px 0px; line-height:24px; text-alig=
+n:inherit; background-color:#FFFFFF;" height=3D"100%" valign=3D"top" bgcolo=
+r=3D"#FFFFFF" role=3D"module-content"><div><div style=3D"font-family: inher=
+it; text-align: inherit">Hey&nbsp;LienCF,</div>
+<div style=3D"font-family: inherit; text-align: inherit"><br></div>
+<div style=3D"font-family: inherit; text-align: inherit">GitHub Universe 20=
+25 is underway at Fort Mason in San Francisco! We'd love for you to <a href=
+=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo6=
+XoDM9nj4BsWcIT-2FQV5Ht-2B-2BgAdjFaCIZi5Xp0NPgchz1BHHEtWPbNNFz0XykLhdNe1FrwS=
+pS2jVBXzzgCRWjB7tqIitDpFYSEbT8tDON7YXsNyMSEAjAeQB10ik5Su-2BJQ-3D-3DGo-e_NsZ=
+BigbiferOVfYn15JOBAgOH14511H4OB5UXzX6zT8Z89Q7aO66QcJ-2FVxFOPWJR3Ls9aID-2BkY=
+ayaF62-2BuUi2dyw67XYcW6K-2BLrmF0F1Ti38ryQNQCG2X7jSYsguksCBDrKkNzjDcnsRekav7=
+eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTkLhCMEz1y-2FlfQIHmzJg4iMIx81vnMYUO4nbgD8IB8Ix=
+Ij20TMfMtiUNWp7sa2oAbvIZn43i-2BVDhLah1lMBJfw-2F9Z88reAUFUaxvMe8EZDNkzN5PZ-2=
+BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyEmdW7srW9bxu249C8UwB7T9GW5ROcW5pP6LyUG8zaxf5o=
+-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9WCe1FRuBmQHsvITRsrpLKWMcxBQshXSUbGNfhTooSs5f=
+rDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGKbBJ672XFUodO56TbfKkeUoqs5mV7g-2Bi0-2FzWjOV2g=
+lC3rammBGfKcpGFjvleYKNSyd1RiozYI7PbwcG8qgUKITXlAH-2BWTe6-2BqTxFWrc89jzz9lOP=
+q4IivWZZMnYI3Ha1uCnCNHaf-2Bi50MVd4x-2FYEkjn-2F1TsYHz3Y3qhZ5wUVNdhH-2Fozq2rb=
+9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC5xgDj38Cv-2F7yW-2FWPXvfwtsBdsR2QAQ-2BGmh3SGL=
+R-2BOF0pdur6xwvvb-2Bbp4tgJpscMLYAg8y-2FArBTQ1rvPaLTUm85AR7jj37Cb4P0qRPAtTQ7=
+P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyoa90RFTIRaqLB-2F78uWWFSqeMt8osy-2BjcsJpeBDJ1M=
+AGHTqjLnpjtT-2B9bttxj6zu2malbDEv66q0XSUhXp08GvrEMdma8U1YQsqhCeJJF2voMZIZW4r=
+0LL9GOxkqbp-2BlUOzNg-2Bjizbnj-2FRWLFtk0exgS7qrv8Wv7CzzQ2V5Tx-2BsQiaG-2B2j8d=
+X2kyWUTkvDLLllwuUBnU-3D">tune in</a> and catch the action. While only the k=
+eynotes stream live, a selection of sessions will be available on demand sh=
+ortly after they happen. Head to the Universe homepage and browse the <a hr=
+ef=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGOD=
+oypuXceQLSRTVnIaaKHGKg5-2BUhBoYyBROiE48N1DN-2BOpaVhoNvdJ2C6yS6RBEue9MmJnsZv=
+-2FAcOL4LF0RjcFCu-2FgHYuMFrhz8ybiwmQbi17B4YK09SrrkovYF4Vk98xErsqX8R4LR3LqLF=
+MyuKFKbb8VS2j6JFRp3pxIqaANlpoM9RmliKzqJpJ6mmnWiqMNFWScbF2xrW-2FHnBteLTzXQOA=
+-3DhT90_NsZBigbiferOVfYn15JOBAgOH14511H4OB5UXzX6zT8Z89Q7aO66QcJ-2FVxFOPWJR3=
+Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF0F1Ti38ryQNQCG2X7jSYsguksCBDrKkNz=
+jDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTkLhCMEz1y-2FlfQIHmzJg4iMIx81vnMYUO=
+4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2BVDhLah1lMBJfw-2F9Z88reAUFUaxvMe8E=
+ZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyEmdW7srW9bxu249C8UwB7T9GW5ROcW5pP6=
+LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9WCe1FRuBmQHsvITRsrpLKWMcxBQshXSUb=
+GNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGKbBJ672XFUodO56TbfKkeUoqs5mV7g-2Bi=
+0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozYI7PbwcG8qgUKITXlAH-2BWTe6-2BqTxFW=
+rc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50MVd4x-2FYEkjn-2F1TsYHz3Y3qhZ5wUVNd=
+hH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC5xgDj38Cv-2F7yW-2FWPXvfwtsBdsR2QA=
+Q-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscMLYAg8y-2FArBTQ1rvPaLTUm85AR7jj37Cb=
+4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyoa90RFTIRaqLB-2F78uWWFSqeMt8osy-2B=
+jcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDEuJ8KwVQCVIFVrO5f7fRq-2FHucFCq-2BA=
+U9UYXxkxbGPnMKQGpqWa65ZCq-2F9Nl7MSFHfZQkDSrQ5fGMjYuq25b0LtRcNylI49f7rZKMAF-=
+2Brhoxcuud5WxOtZlHweMkbFtd6xE-3D">session catalog</a> to see what=E2=80=99s=
+ ready to watch.</div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.1.1.1.2" da=
+ta-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:12px 0px 12px 0px; line-height:30px; text-alig=
+n:inherit; background-color:#FFFFFF;" height=3D"100%" valign=3D"top" bgcolo=
+r=3D"#FFFFFF" role=3D"module-content"><div><h2 style=3D"text-align: inherit=
+"><span style=3D"color: #1a7f37"><strong>Watch live now =E2=80=94 Day 1 Ope=
+ning Keynote</strong></span></h2><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 0px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"2,1">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"386" style=3D"wi=
+dth:386px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.1.1.1.1.1" data-mc-module-ver=
+sion=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:12px 0px 18px 0px; line-height:24px; text-alig=
+n:inherit; background-color:#FFFFFF;" height=3D"100%" valign=3D"top" bgcolo=
+r=3D"#FFFFFF" role=3D"module-content"><div><div style=3D"font-family: inher=
+it; text-align: inherit">A single free pass gives you access to live keynot=
+es and recorded sessions across both days. Share it with your students so t=
+hey can follow along in real time or replay highlights later in study group=
+s. If you teach across time zones, on-demand viewing makes it easy to integ=
+rate clips into lectures or assignments.&nbsp;</div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"49e4d71e-df51-413f-=
+9b46-bfc78881fcb1">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:8px 0px 8px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#1A7F37" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"https://mailing.github.com/ls/click?upn=3Du001=
+.bO3G-2FaeMIVe5lSdMnGODo6XoDM9nj4BsWcIT-2FQV5Ht-2B-2BgAdjFaCIZi5Xp0NPgchz1B=
+HHEtWPbNNFz0XykLhdNe1FrwSpS2jVBXzzgCRWjB7tqIitDpFYSEbT8tDON7YXsNyMSEAjAeQB1=
+0ik5Su-2BJQ-3D-3DyO84_NsZBigbiferOVfYn15JOBAgOH14511H4OB5UXzX6zT8Z89Q7aO66Q=
+cJ-2FVxFOPWJR3Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF0F1Ti38ryQNQCG2X7jS=
+YsguksCBDrKkNzjDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTkLhCMEz1y-2FlfQIHmzJ=
+g4iMIx81vnMYUO4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2BVDhLah1lMBJfw-2F9Z8=
+8reAUFUaxvMe8EZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyEmdW7srW9bxu249C8UwB=
+7T9GW5ROcW5pP6LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9WCe1FRuBmQHsvITRsrp=
+LKWMcxBQshXSUbGNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGKbBJ672XFUodO56TbfKk=
+eUoqs5mV7g-2Bi0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozYI7PbwcG8qgUKITXlAH-=
+2BWTe6-2BqTxFWrc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50MVd4x-2FYEkjn-2F1TsY=
+Hz3Y3qhZ5wUVNdhH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC5xgDj38Cv-2F7yW-2FW=
+PXvfwtsBdsR2QAQ-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscMLYAg8y-2FArBTQ1rvPaL=
+TUm85AR7jj37Cb4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyoa90RFTIRaqLB-2F78uW=
+WFSqeMt8osy-2BjcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDEsiIArks9Z72dEKfEJMs=
+-2Be43l1JmmqSgNiY81p82qrD-2BNB2HzsTPaQgUVOMrXOL6dkKZWWloi-2BynBa5lPkPaixiwg=
+CwIu52G6YXC5mS8-2BTeq6ZRhhFqy7rhN-2FBENsFeL0w-3D" style=3D"background-color=
+:#1A7F37; border:1px solid #1A7F37; border-color:#1A7F37; border-radius:6px=
+; border-width:1px; color:#ffffff; display:inline-block; font-size:14px; fo=
+nt-weight:normal; letter-spacing:0px; line-height:normal; padding:18px 24px=
+ 18px 24px; text-align:center; text-decoration:none; border-style:solid;" t=
+arget=3D"_blank">+ Watch opening keynote live</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"193" style=3D"width:193px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"bc63376f-67ab-4a0b-a585-7e1e7bfa557f">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2Fae=
+MIVe5lSdMnGODo6XoDM9nj4BsWcIT-2FQV5Ht-2B-2BgAdjFaCIZi5Xp0NPgchz1BHHEtWPbNNF=
+z0XykLhdNe1FrwSpS2jVBXzzgCRWjB7tqIitDpFYSEbT8tDON7YXsNyMSEAjAeQB10ik5Su-2BJ=
+Q-3D-3DTM5h_NsZBigbiferOVfYn15JOBAgOH14511H4OB5UXzX6zT8Z89Q7aO66QcJ-2FVxFOP=
+WJR3Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF0F1Ti38ryQNQCG2X7jSYsguksCBDr=
+KkNzjDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTkLhCMEz1y-2FlfQIHmzJg4iMIx81vn=
+MYUO4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2BVDhLah1lMBJfw-2F9Z88reAUFUaxv=
+Me8EZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyEmdW7srW9bxu249C8UwB7T9GW5ROcW=
+5pP6LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9WCe1FRuBmQHsvITRsrpLKWMcxBQsh=
+XSUbGNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGKbBJ672XFUodO56TbfKkeUoqs5mV7g=
+-2Bi0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozYI7PbwcG8qgUKITXlAH-2BWTe6-2Bq=
+TxFWrc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50MVd4x-2FYEkjn-2F1TsYHz3Y3qhZ5w=
+UVNdhH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC5xgDj38Cv-2F7yW-2FWPXvfwtsBds=
+R2QAQ-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscMLYAg8y-2FArBTQ1rvPaLTUm85AR7jj=
+37Cb4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyoa90RFTIRaqLB-2F78uWWFSqeMt8os=
+y-2BjcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDEvisa76BWaq4d5aEmmb-2B3KhoTJEA=
+295PNgIAqVdODPMoV1A-2F-2FUXc2ByofahJo8BevJJR6Q0CHHOsZWRaWoIV6uM2C5MSd9-2Fa-=
+2BRnIRaiS8NeWYHq65uUKklw-2BzLVTE-2FvOeI-3D"><img class=3D"max-width" border=
+=3D"0" style=3D"display:block; color:#000000; text-decoration:none; font-fa=
+mily:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !importan=
+t; width:100%; height:auto !important;" width=3D"386" alt=3D"" data-proport=
+ionally-constrained=3D"true" data-responsive=3D"true" src=3D"http://cdn.mca=
+uto-images-production.sendgrid.net/cc8ddcf649afa5e0/950f4bf7-b7ba-470c-830a=
+-b96d2db89d44/1478x1248.png"></a></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.1.2.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:30px 0px 30px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.1.1.1.1" da=
+ta-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:12px 0px 12px 0px; line-height:30px; text-alig=
+n:inherit; background-color:#FFFFFF;" height=3D"100%" valign=3D"top" bgcolo=
+r=3D"#FFFFFF" role=3D"module-content"><div><h2 style=3D"text-align: inherit=
+"><span style=3D"color: #1a7f37"><strong>Tomorrow=E2=80=99s EDU spotlight =
+=E2=80=94 Day 2 keynote</strong></span></h2><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 0px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"2,1">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"386" style=3D"wi=
+dth:386px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.1.1.1.1.1.1" data-mc-module-v=
+ersion=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:12px 0px 18px 0px; line-height:24px; text-alig=
+n:inherit; background-color:#FFFFFF;" height=3D"100%" valign=3D"top" bgcolo=
+r=3D"#FFFFFF" role=3D"module-content"><div><div style=3D"font-family: inher=
+it; text-align: inherit">A single free pass gives you access to live keynot=
+es and recorded sessions across both days. Share it with your students so t=
+hey can follow along in real time or replay highlights later in study group=
+s. If you teach across time zones, on-demand viewing makes it easy to integ=
+rate clips into lectures or assignments.&nbsp;</div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"49e4d71e-df51-413f-=
+9b46-bfc78881fcb1.1">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:8px 0px 8px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#1A7F37" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"https://mailing.github.com/ls/click?upn=3Du001=
+.bO3G-2FaeMIVe5lSdMnGODo6XoDM9nj4BsWcIT-2FQV5Ht-2B-2BgAdjFaCIZi5Xp0NPgchzjs=
+g1llz2F19JZOwaHicH2Rt-2BP7T1R-2BXpOmLP3ZJAYRLi4Kxtj3KZmQZSn-2FKN8zrdmooA1yr=
+ShDJh-2Bl8Sp-2Fqa4w-3D-3Dg3XA_NsZBigbiferOVfYn15JOBAgOH14511H4OB5UXzX6zT8Z8=
+9Q7aO66QcJ-2FVxFOPWJR3Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF0F1Ti38ryQN=
+QCG2X7jSYsguksCBDrKkNzjDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTkLhCMEz1y-2F=
+lfQIHmzJg4iMIx81vnMYUO4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2BVDhLah1lMBJ=
+fw-2F9Z88reAUFUaxvMe8EZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyEmdW7srW9bxu=
+249C8UwB7T9GW5ROcW5pP6LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9WCe1FRuBmQH=
+svITRsrpLKWMcxBQshXSUbGNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGKbBJ672XFUod=
+O56TbfKkeUoqs5mV7g-2Bi0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozYI7PbwcG8qgU=
+KITXlAH-2BWTe6-2BqTxFWrc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50MVd4x-2FYEkj=
+n-2F1TsYHz3Y3qhZ5wUVNdhH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC5xgDj38Cv-2=
+F7yW-2FWPXvfwtsBdsR2QAQ-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscMLYAg8y-2FArB=
+TQ1rvPaLTUm85AR7jj37Cb4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyoa90RFTIRaqL=
+B-2F78uWWFSqeMt8osy-2BjcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDEuH0620GMDlf=
+Tn6K81xsX-2Fd7HjSAQS0buizCNeK0aFNlMepdeZjmRnlKYSeatO147PNcskjUw-2FgYvZcik2m=
+3HS7zF9iBQdcoBeRP28vdXYEi8S64haULqZYPkRRURhWKKM-3D" style=3D"background-col=
+or:#1A7F37; border:1px solid #1A7F37; border-color:#1A7F37; border-radius:6=
+px; border-width:1px; color:#ffffff; display:inline-block; font-size:14px; =
+font-weight:normal; letter-spacing:0px; line-height:normal; padding:18px 24=
+px 18px 24px; text-align:center; text-decoration:none; border-style:solid;"=
+ target=3D"_blank">+ Watch day 2 keynote live</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"193" style=3D"width:193px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"bc63376f-67ab-4a0b-a585-7e1e7bfa557f.1">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2Fae=
+MIVe5lSdMnGODo6XoDM9nj4BsWcIT-2FQV5Ht-2B-2BgAdjFaCIZi5Xp0NPgchzjsg1llz2F19J=
+ZOwaHicH2Rt-2BP7T1R-2BXpOmLP3ZJAYRLi4Kxtj3KZmQZSn-2FKN8zrdmooA1yrShDJh-2Bl8=
+Sp-2Fqa4w-3D-3DD9jG_NsZBigbiferOVfYn15JOBAgOH14511H4OB5UXzX6zT8Z89Q7aO66QcJ=
+-2FVxFOPWJR3Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF0F1Ti38ryQNQCG2X7jSYs=
+guksCBDrKkNzjDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTkLhCMEz1y-2FlfQIHmzJg4=
+iMIx81vnMYUO4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2BVDhLah1lMBJfw-2F9Z88r=
+eAUFUaxvMe8EZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyEmdW7srW9bxu249C8UwB7T=
+9GW5ROcW5pP6LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9WCe1FRuBmQHsvITRsrpLK=
+WMcxBQshXSUbGNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGKbBJ672XFUodO56TbfKkeU=
+oqs5mV7g-2Bi0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozYI7PbwcG8qgUKITXlAH-2B=
+WTe6-2BqTxFWrc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50MVd4x-2FYEkjn-2F1TsYHz=
+3Y3qhZ5wUVNdhH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC5xgDj38Cv-2F7yW-2FWPX=
+vfwtsBdsR2QAQ-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscMLYAg8y-2FArBTQ1rvPaLTU=
+m85AR7jj37Cb4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyoa90RFTIRaqLB-2F78uWWF=
+SqeMt8osy-2BjcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDEtgVTdKIUELNQoYusheXMn=
+pOJmcwvm993f2FHUyG9fL0GJ23fofvzhcJYbghgD3o2L7RuaYyzG1Hkjcv6GT7yHTOP9UsTGyjo=
+6-2BCSg-2B1VKgtvOAJzMw6n-2BtjfweeHvzqCM-3D"><img class=3D"max-width" border=
+=3D"0" style=3D"display:block; color:#000000; text-decoration:none; font-fa=
+mily:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !importan=
+t; width:100%; height:auto !important;" width=3D"386" alt=3D"" data-proport=
+ionally-constrained=3D"true" data-responsive=3D"true" src=3D"http://cdn.mca=
+uto-images-production.sendgrid.net/cc8ddcf649afa5e0/f4a7e6f1-0192-4f4d-8041=
+-b7babad3abca/1330x1362.png"></a></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.1.2.2">
+    <tbody>
+      <tr>
+        <td style=3D"padding:30px 0px 30px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.1.1.1.3" da=
+ta-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:12px 0px 12px 0px; line-height:30px; text-alig=
+n:inherit; background-color:#FFFFFF;" height=3D"100%" valign=3D"top" bgcolo=
+r=3D"#FFFFFF" role=3D"module-content"><div><h2 style=3D"text-align: inherit=
+"><span style=3D"color: #1a7f37"><strong>Sessions on-demand (recordings)</s=
+trong></span></h2><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 0px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"2,1">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"386" style=3D"wi=
+dth:386px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.1.1.1.1.1.1.1" data-mc-module=
+-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:12px 0px 18px 0px; line-height:24px; text-alig=
+n:inherit; background-color:#FFFFFF;" height=3D"100%" valign=3D"top" bgcolo=
+r=3D"#FFFFFF" role=3D"module-content"><div><div style=3D"font-family: inher=
+it; text-align: inherit"><strong>How it works:</strong> Most talks publish =
+<strong>on-demand a few hours</strong> after the IRL presentation. Use the =
+catalog filters (e.g., <strong>Delivery format =3D Recorded, Target Audienc=
+e =3D Educators &amp; Students</strong>) to find what=E2=80=99s ready, then=
+ assign a short clip or demo for discussion.&nbsp;</div><div></div></div></=
+td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"49e4d71e-df51-413f-=
+9b46-bfc78881fcb1.1.1">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:8px 0px 8px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#1A7F37" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"https://mailing.github.com/ls/click?upn=3Du001=
+.bO3G-2FaeMIVe5lSdMnGODoypuXceQLSRTVnIaaKHGKg5-2BUhBoYyBROiE48N1DN-2BOpaVho=
+NvdJ2C6yS6RBEue9MmJnsZv-2FAcOL4LF0RjcFCu-2FgHYuMFrhz8ybiwmQbi17B4YK09Srrkov=
+YF4Vk98xErsqX8R4LR3LqLFMyuKFKbb8VS2j6JFRp3pxIqaANlpoM9RmliKzqJpJ6mmnWiqMNFW=
+ScbF2xrW-2FHnBteLTzXQOA-3DSDSH_NsZBigbiferOVfYn15JOBAgOH14511H4OB5UXzX6zT8Z=
+89Q7aO66QcJ-2FVxFOPWJR3Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF0F1Ti38ryQ=
+NQCG2X7jSYsguksCBDrKkNzjDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTkLhCMEz1y-2=
+FlfQIHmzJg4iMIx81vnMYUO4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2BVDhLah1lMB=
+Jfw-2F9Z88reAUFUaxvMe8EZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyEmdW7srW9bx=
+u249C8UwB7T9GW5ROcW5pP6LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9WCe1FRuBmQ=
+HsvITRsrpLKWMcxBQshXSUbGNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGKbBJ672XFUo=
+dO56TbfKkeUoqs5mV7g-2Bi0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozYI7PbwcG8qg=
+UKITXlAH-2BWTe6-2BqTxFWrc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50MVd4x-2FYEk=
+jn-2F1TsYHz3Y3qhZ5wUVNdhH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC5xgDj38Cv-=
+2F7yW-2FWPXvfwtsBdsR2QAQ-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscMLYAg8y-2FAr=
+BTQ1rvPaLTUm85AR7jj37Cb4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyoa90RFTIRaq=
+LB-2F78uWWFSqeMt8osy-2BjcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDEvUc1Blg8s2=
+ayk5XLos5rNNUpWDk16BxvpaQHHkcbfX-2F3R-2B8U51qHxfFvbxjVZtN-2FCk9f9QrdBuDCKHj=
+4mYAHhsF0oVcJiUjUzyftJs91CJPenb5SmvNVHM5K5Up-2Bs6qMM-3D" style=3D"backgroun=
+d-color:#1A7F37; border:1px solid #1A7F37; border-color:#1A7F37; border-rad=
+ius:6px; border-width:1px; color:#ffffff; display:inline-block; font-size:1=
+4px; font-weight:normal; letter-spacing:0px; line-height:normal; padding:18=
+px 24px 18px 24px; text-align:center; text-decoration:none; border-style:so=
+lid;" target=3D"_blank">+ Browse recorded sessions</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"193" style=3D"width:193px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"bc63376f-67ab-4a0b-a585-7e1e7bfa557f.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2Fae=
+MIVe5lSdMnGODoypuXceQLSRTVnIaaKHGKg5-2BUhBoYyBROiE48N1DN-2BOpaVhoNvdJ2C6yS6=
+RBEue9MmJnsZv-2FAcOL4LF0RjcFCu-2FgHYuMFrhz8ybiwmQbi17B4YK09SrrkovYF4Vk98xEr=
+sqX8R4LR3LqLFMyuKFKbb8VS2j6JFRp3pxIqaANlpoM9RmliKzqJpJ6mmnWiqMNFWScbF2xrW-2=
+FHnBteLTzXQOA-3DnhcT_NsZBigbiferOVfYn15JOBAgOH14511H4OB5UXzX6zT8Z89Q7aO66Qc=
+J-2FVxFOPWJR3Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF0F1Ti38ryQNQCG2X7jSY=
+sguksCBDrKkNzjDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTkLhCMEz1y-2FlfQIHmzJg=
+4iMIx81vnMYUO4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2BVDhLah1lMBJfw-2F9Z88=
+reAUFUaxvMe8EZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyEmdW7srW9bxu249C8UwB7=
+T9GW5ROcW5pP6LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9WCe1FRuBmQHsvITRsrpL=
+KWMcxBQshXSUbGNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGKbBJ672XFUodO56TbfKke=
+Uoqs5mV7g-2Bi0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozYI7PbwcG8qgUKITXlAH-2=
+BWTe6-2BqTxFWrc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50MVd4x-2FYEkjn-2F1TsYH=
+z3Y3qhZ5wUVNdhH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC5xgDj38Cv-2F7yW-2FWP=
+XvfwtsBdsR2QAQ-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscMLYAg8y-2FArBTQ1rvPaLT=
+Um85AR7jj37Cb4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyoa90RFTIRaqLB-2F78uWW=
+FSqeMt8osy-2BjcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDEurpakPMH8-2BGRO9EeE8=
+7tnDERMfDZ6heOMUgSeDzD394fGkycjaj3PCW-2BMMgKvmNG9KmjFOQ5yCm-2FweZX3UzqkVaVg=
+7Jas-2B10dJa88Igyug9OlpB-2BtJW4-2BVmgo8O7xG6Ig-3D"><img class=3D"max-width"=
+ border=3D"0" style=3D"display:block; color:#000000; text-decoration:none; =
+font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !i=
+mportant; width:100%; height:auto !important;" width=3D"386" alt=3D"" data-=
+proportionally-constrained=3D"true" data-responsive=3D"true" src=3D"http://=
+cdn.mcauto-images-production.sendgrid.net/cc8ddcf649afa5e0/b80ff5f7-0381-47=
+31-b351-f5e37a6c2a66/628x506.png"></a></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"spacer" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"d9d74bda-b758-4847-ab50-58e042ff97ff">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 30px 0px;" role=3D"module-content" bgc=
+olor=3D"">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.1.1.1.1.1.1=
+.1.2" data-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:12px 0px 18px 0px; line-height:24px; text-alig=
+n:inherit; background-color:#FFFFFF;" height=3D"100%" valign=3D"top" bgcolo=
+r=3D"#FFFFFF" role=3D"module-content"><div><div style=3D"font-family: inher=
+it; text-align: inherit"><span style=3D"font-size: 18px; color: #1a7f37"><s=
+trong>On demand sessions to look out for:</strong></span></div>
+<div style=3D"font-family: inherit; text-align: inherit"><br></div>
+<div style=3D"font-family: inherit; text-align: inherit"><strong>Securing t=
+he software supply chain with AI </strong>(secrets, least privilege, guardr=
+ails) =E2=80=94 concrete, end-to-end practices you can actually ship.</div>
+<div style=3D"font-family: inherit; text-align: inherit"><br></div>
+<div style=3D"font-family: inherit; text-align: inherit"><strong>Copilot fo=
+r Enterprise governance &amp; model strategy</strong> =E2=80=94 policy, dat=
+a boundaries, and choosing/rolling out models at scale (real org playbooks)=
+.</div>
+<div style=3D"font-family: inherit; text-align: inherit"><br></div>
+<div style=3D"font-family: inherit; text-align: inherit"><strong>Advanced S=
+ecurity: AI-assisted code scanning &amp; code review</strong> =E2=80=94 wha=
+t=E2=80=99s new, how it changes triage/MTTR, and where it beats legacy SAST=
+.</div>
+<div style=3D"font-family: inherit; text-align: inherit"><br></div>
+<div style=3D"font-family: inherit; text-align: inherit"><strong>Scaling Ac=
+tions &amp; Codespaces org-wide</strong> =E2=80=94 patterns for monorepos, =
+cache stragegies, cost control, and developer-velocity metrics.</div>
+<div style=3D"font-family: inherit; text-align: inherit"><br></div>
+<div style=3D"font-family: inherit; text-align: inherit"><strong>Value Stre=
+am Management on GitHub</strong> =E2=80=94 instrumenting flow metrics that =
+leadership actually cares about (lead time, deployment freq, change fail ra=
+te).</div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.1.2">
+    <tbody>
+      <tr>
+        <td style=3D"padding:30px 0px 30px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.1.1.1" data=
+-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:12px 0px 12px 0px; line-height:30px; text-alig=
+n:inherit; background-color:#FFFFFF;" height=3D"100%" valign=3D"top" bgcolo=
+r=3D"#FFFFFF" role=3D"module-content"><div><h2 style=3D"text-align: inherit=
+"><span style=3D"color: #1a7f37"><strong>EDU community highlights (image ga=
+lleries)</strong></span></h2><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.1.1.1.1.1.1=
+.1.1.1" data-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:12px 0px 18px 0px; line-height:24px; text-alig=
+n:inherit; background-color:#FFFFFF;" height=3D"100%" valign=3D"top" bgcolo=
+r=3D"#FFFFFF" role=3D"module-content"><div><div style=3D"font-family: inher=
+it; text-align: inherit">Campus Experts kicked off Universe with a full com=
+munity agenda=E2=80=94<strong>meeting GitHub COO Kyle Daigle</strong>, tour=
+ing the <strong>Golden Gate Bridge</strong> and San Francisco, getting a lo=
+ok inside the <strong>GitHub office</strong>, and joining <strong>panels an=
+d discussions with Hubbers</strong> about what=E2=80=99s next on campus.</d=
+iv><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 0px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,1">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"290" style=3D"wi=
+dth:290px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"64882e39-039f-48fc-a1c5-a760cf458fd3">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+          <img class=3D"max-width" border=3D"0" style=3D"display:block; col=
+or:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif;=
+ font-size:16px; max-width:100% !important; width:100%; height:auto !import=
+ant;" width=3D"290" alt=3D"" data-proportionally-constrained=3D"false" data=
+-responsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.ne=
+t/cc8ddcf649afa5e0/b7096f61-d014-4dfc-a80a-ef6ae137d014/960x1280.JPG">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"spacer" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"2fe4bd76-e6d9-4531-8d34-a357f0767bfd">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 10px 0px;" role=3D"module-content" bgc=
+olor=3D"">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"0f658d2b-4129-4942-be49-4a383d3fb0a5">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+          <img class=3D"max-width" border=3D"0" style=3D"display:block; col=
+or:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif;=
+ font-size:16px; max-width:100% !important; width:100%; height:auto !import=
+ant;" width=3D"NaN" alt=3D"" data-proportionally-constrained=3D"true" data-=
+responsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.net=
+/cc8ddcf649afa5e0/f6f2f806-c553-48b4-8801-4151948d03b8/3024x4032.jpg">
+        </td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"290" style=3D"width:290px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"6de0edf6-0072-45b3-8034-906f1ef3ebe5">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+          <img class=3D"max-width" border=3D"0" style=3D"display:block; col=
+or:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif;=
+ font-size:16px; max-width:100% !important; width:100%; height:auto !import=
+ant;" width=3D"290" alt=3D"" data-proportionally-constrained=3D"true" data-=
+responsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.net=
+/cc8ddcf649afa5e0/83fe6a7d-044c-46df-bb27-c97a1738ad19/2268x4032.JPG">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"spacer" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"fc9c5100-2e03-4a8d-8e92-d91d0b88b3d9">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 10px 0px;" role=3D"module-content" bgc=
+olor=3D"">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"bd17c8c5-43e4-4d15-ac32-e42af15bab41">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+          <img class=3D"max-width" border=3D"0" style=3D"display:block; col=
+or:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif;=
+ font-size:16px; max-width:100% !important; width:100%; height:auto !import=
+ant;" width=3D"NaN" alt=3D"" data-proportionally-constrained=3D"true" data-=
+responsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.net=
+/cc8ddcf649afa5e0/ea74dda3-ec6f-44f4-a8cd-46adce480756/4032x3024.jpg">
+        </td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"spacer" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"4b2e783d-51a2-49ef-b785-08a1d02da02e">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 30px 0px;" role=3D"module-content" bgc=
+olor=3D"">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.1.1.1.1.1.1=
+.1.1" data-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:12px 0px 18px 0px; line-height:24px; text-alig=
+n:inherit; background-color:#FFFFFF;" height=3D"100%" valign=3D"top" bgcolo=
+r=3D"#FFFFFF" role=3D"module-content"><div><div style=3D"font-family: inher=
+it; text-align: inherit">The <strong>Educator Lab Session</strong> yesterda=
+y was hands-on and idea-dense=E2=80=94sharing ways to <strong>improve educa=
+tion products</strong>, <strong>discussing AI in education</strong>, <stron=
+g>collaborating on practical classroom workflows</strong>, and capturing <s=
+trong>take-home ideas</strong> for the next term.</div><div></div></div></t=
+d>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 0px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,1">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"290" style=3D"wi=
+dth:290px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"1da3474c-a20b-4ff7-b0c3-8538a37bab70">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+          <img class=3D"max-width" border=3D"0" style=3D"display:block; col=
+or:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif;=
+ font-size:16px; max-width:100% !important; width:100%; height:auto !import=
+ant;" width=3D"290" alt=3D"" data-proportionally-constrained=3D"true" data-=
+responsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.net=
+/cc8ddcf649afa5e0/d750811a-3c75-4bd7-80fc-862ee4900d2e/4032x2268.jpg">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"spacer" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"9e906311-e972-4012-b3b4-5388f50398b0">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 10px 0px;" role=3D"module-content" bgc=
+olor=3D"">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"7bf2a96c-00de-43f0-9dde-3200dac4bac2">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+          <img class=3D"max-width" border=3D"0" style=3D"display:block; col=
+or:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif;=
+ font-size:16px; max-width:100% !important; width:100%; height:auto !import=
+ant;" width=3D"NaN" alt=3D"" data-proportionally-constrained=3D"true" data-=
+responsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.net=
+/cc8ddcf649afa5e0/b7f83a21-9ae6-40ca-a43c-f5ff47550cf2/4032x2268.jpg">
+        </td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"290" style=3D"width:290px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"ef9d3c21-c66a-45ab-b455-5435a7fdc43e">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+          <img class=3D"max-width" border=3D"0" style=3D"display:block; col=
+or:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif;=
+ font-size:16px; max-width:100% !important; width:100%; height:auto !import=
+ant;" width=3D"290" alt=3D"" data-proportionally-constrained=3D"true" data-=
+responsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.net=
+/cc8ddcf649afa5e0/5c502157-5bc4-4052-80ad-95e6ec4e3bfc/4032x2268.jpg">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"spacer" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"20715672-bb14-435f-b21b-ec1017a21bc5">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 10px 0px;" role=3D"module-content" bgc=
+olor=3D"">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"5c88190d-f2cb-4892-b6f0-a7ae6f67e2a9">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+          <img class=3D"max-width" border=3D"0" style=3D"display:block; col=
+or:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif;=
+ font-size:16px; max-width:100% !important; width:100%; height:auto !import=
+ant;" width=3D"NaN" alt=3D"" data-proportionally-constrained=3D"true" data-=
+responsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.net=
+/cc8ddcf649afa5e0/01fbd6e0-a1fb-427f-aace-9cea786793ce/4032x2268.jpg">
+        </td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"spacer" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"a728c483-ab6d-44e3-ba4b-e6e55fce27ea">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 30px 0px;" role=3D"module-content" bgc=
+olor=3D"">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.1.1.1.1.1.1=
+.1.1.2.1" data-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:12px 0px 18px 0px; line-height:24px; text-alig=
+n:inherit; background-color:#FFFFFF;" height=3D"100%" valign=3D"top" bgcolo=
+r=3D"#FFFFFF" role=3D"module-content"><div><div style=3D"font-family: inher=
+it; text-align: inherit">Behind the scenes, GitHub Education teamed up with=
+ volunteers to assemble this year=E2=80=99s <strong>programmable badges</st=
+rong>=E2=80=94a small, tangible example of the community effort that makes =
+Universe run smoothly.&nbsp;&nbsp;</div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 0px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,1">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"290" style=3D"wi=
+dth:290px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"13bfb3ef-9f7e-46e4-99cb-2458a5c4a09b">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+          <img class=3D"max-width" border=3D"0" style=3D"display:block; col=
+or:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif;=
+ font-size:16px; max-width:100% !important; width:100%; height:auto !import=
+ant;" width=3D"290" alt=3D"" data-proportionally-constrained=3D"true" data-=
+responsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.net=
+/cc8ddcf649afa5e0/170a2d15-59b3-44ad-a9a3-46e6872b3dfd/4284x5712.jpg">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"spacer" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"9a09f7ed-a7cb-4875-83a9-b9a9abc8e06a">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 10px 0px;" role=3D"module-content" bgc=
+olor=3D"">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"e9c90faa-8bdd-4179-8125-9c47fccfd190">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+          <img class=3D"max-width" border=3D"0" style=3D"display:block; col=
+or:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif;=
+ font-size:16px; max-width:100% !important; width:100%; height:auto !import=
+ant;" width=3D"NaN" alt=3D"" data-proportionally-constrained=3D"true" data-=
+responsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.net=
+/cc8ddcf649afa5e0/8088dd7a-ef3b-413b-af72-3f3bda0d57b7/4284x5712.jpg">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"spacer" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"be5dee3b-60bd-4668-8e6c-b123d98ae243">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 10px 0px;" role=3D"module-content" bgc=
+olor=3D"">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"cff8ad50-6fe7-41c6-be63-0a7764c1efce">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+          <img class=3D"max-width" border=3D"0" style=3D"display:block; col=
+or:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif;=
+ font-size:16px; max-width:100% !important; width:100%; height:auto !import=
+ant;" width=3D"NaN" alt=3D"" data-proportionally-constrained=3D"true" data-=
+responsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.net=
+/cc8ddcf649afa5e0/27fbebab-e006-42f5-b75b-2d6a8524f4d2/4284x5712.jpg">
+        </td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"290" style=3D"width:290px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"672e8d86-73bd-44e4-bad1-34a51991a741">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+          <img class=3D"max-width" border=3D"0" style=3D"display:block; col=
+or:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif;=
+ font-size:16px; max-width:100% !important; width:100%; height:auto !import=
+ant;" width=3D"290" alt=3D"" data-proportionally-constrained=3D"true" data-=
+responsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.net=
+/cc8ddcf649afa5e0/870a180b-cc4a-4437-9efd-a294ef8807b2/4284x5712.jpg">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"spacer" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"8bd800da-c9d7-4d6a-b4eb-1ba23327ca29">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 10px 0px;" role=3D"module-content" bgc=
+olor=3D"">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"604f06e4-72f9-4179-a863-3c9d628c1437">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+          <img class=3D"max-width" border=3D"0" style=3D"display:block; col=
+or:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif;=
+ font-size:16px; max-width:100% !important; width:100%; height:auto !import=
+ant;" width=3D"NaN" alt=3D"" data-proportionally-constrained=3D"true" data-=
+responsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.net=
+/cc8ddcf649afa5e0/10a0da3b-7398-47e1-a625-f9631c15604c/4284x5712.jpg">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"spacer" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"26eb3939-31ac-46c1-b022-fa0da7d86cae">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 10px 0px;" role=3D"module-content" bgc=
+olor=3D"">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"aaf8c4a2-0c63-42ca-9ecf-6c005afa1564">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+          <img class=3D"max-width" border=3D"0" style=3D"display:block; col=
+or:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif;=
+ font-size:16px; max-width:100% !important; width:100%; height:auto !import=
+ant;" width=3D"NaN" alt=3D"" data-proportionally-constrained=3D"true" data-=
+responsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.net=
+/cc8ddcf649afa5e0/e3d402d8-79ae-4b44-8df2-fbcccc77670d/2370x2706.png">
+        </td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"spacer" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"82f791af-6ab8-436d-bc08-bf5a251c30ce">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 30px 0px;" role=3D"module-content" bgc=
+olor=3D"">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.1.1.1.1.1.1=
+.1.1.2" data-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:12px 0px 18px 0px; line-height:24px; text-alig=
+n:inherit; background-color:#FFFFFF;" height=3D"100%" valign=3D"top" bgcolo=
+r=3D"#FFFFFF" role=3D"module-content"><div><div style=3D"font-family: inher=
+it; text-align: inherit">Whether you joined us live or plan to catch up lat=
+er, we hope these highlights help you explore the latest in developer tools=
+, security, and AI on GitHub. All sessions will be available on demand=E2=
+=80=94so you can dive in whenever it works best for you.</div><div></div></=
+div></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:30px 0px 30px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"spacer" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"0aed3f6e-02a0-4704-be3c-6a103aa827cb">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 30px 0px;" role=3D"module-content" bgc=
+olor=3D"">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"49c77fba-d979-45f9-b773-ead0d05c72c9">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2Fae=
+MIVe5lSdMnGODo4Ud11AqjVhW6cg4WddgB2qsGjLhgfZy3MaBCWeS5iPN_h7l_NsZBigbiferOV=
+fYn15JOBAgOH14511H4OB5UXzX6zT8Z89Q7aO66QcJ-2FVxFOPWJR3Ls9aID-2BkYayaF62-2Bu=
+Ui2dyw67XYcW6K-2BLrmF0F1Ti38ryQNQCG2X7jSYsguksCBDrKkNzjDcnsRekav7eE10SBrO-2=
+FlM7VTxNk-2Fzzj6zuGTkLhCMEz1y-2FlfQIHmzJg4iMIx81vnMYUO4nbgD8IB8IxIj20TMfMti=
+UNWp7sa2oAbvIZn43i-2BVDhLah1lMBJfw-2F9Z88reAUFUaxvMe8EZDNkzN5PZ-2BqQ1N8bv9o=
+Lwlp3qWXyxUiRRK7yYHyEmdW7srW9bxu249C8UwB7T9GW5ROcW5pP6LyUG8zaxf5o-2FrbXIXto=
+Fr5I-2Fh4g2qeoEJQjEL9WCe1FRuBmQHsvITRsrpLKWMcxBQshXSUbGNfhTooSs5frDbLhxVWyy=
+9dNaLbP1ZM3HwGyxH7TGKbBJ672XFUodO56TbfKkeUoqs5mV7g-2Bi0-2FzWjOV2glC3rammBGf=
+KcpGFjvleYKNSyd1RiozYI7PbwcG8qgUKITXlAH-2BWTe6-2BqTxFWrc89jzz9lOPq4IivWZZMn=
+YI3Ha1uCnCNHaf-2Bi50MVd4x-2FYEkjn-2F1TsYHz3Y3qhZ5wUVNdhH-2Fozq2rb9ihPZFGBPI=
+Jj34Oi7vPjmBnaOukgDkC5xgDj38Cv-2F7yW-2FWPXvfwtsBdsR2QAQ-2BGmh3SGLR-2BOF0pdu=
+r6xwvvb-2Bbp4tgJpscMLYAg8y-2FArBTQ1rvPaLTUm85AR7jj37Cb4P0qRPAtTQ7P-2BgoKq9t=
+6lp5d7bwtRq0KsJ6PmEyoa90RFTIRaqLB-2F78uWWFSqeMt8osy-2BjcsJpeBDJ1MAGHTqjLnpj=
+tT-2B9bttxj6zu2malbDEsEoBxJL85QgZUlAp1H-2FcoEy-2B8sO3IwanB0EIqFY4rYPKzbHI-2=
+BndGvQIF7MTiu69kZt7rSci-2FRhvyw86OLdrPvXBre-2ByTHcOWvycAPkAySyqQ35flBvfh4H-=
+2BWkxmi6AAgo-3D"><img class=3D"max-width" border=3D"0" style=3D"display:blo=
+ck; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans=
+-serif; font-size:16px;" width=3D"160" alt=3D"" data-proportionally-constra=
+ined=3D"true" data-responsive=3D"false" src=3D"http://cdn.mcauto-images-pro=
+duction.sendgrid.net/cc8ddcf649afa5e0/4a97e3e6-9624-4355-8b46-00cf9f774528/=
+1092x200.png" height=3D"29"></a></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"code" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"b7cabdb9-0cdd-40ea-8672-c2be5d7de48b">
+    <tbody>
+      <tr>
+        <td height=3D"100%" valign=3D"top" role=3D"module-content"><p style=
+=3D"color: #999999; font-size: 1rem; margin: 2em 0 2em 0; text-align: cente=
+r;" class=3D"social-links">
+    <a class=3D"social-link" href=3D"https://mailing.github.com/ls/click?up=
+n=3Du001.bO3G-2FaeMIVe5lSdMnGODo4CwL8Dgg1QUklEBnHSTz8R3LMNKugae8Lgl20rNSNnC=
+8BIZ1Ecsp2FtIiQYH9MgRQ-3D-3DJ_FY_NsZBigbiferOVfYn15JOBAgOH14511H4OB5UXzX6zT=
+8Z89Q7aO66QcJ-2FVxFOPWJR3Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF0F1Ti38r=
+yQNQCG2X7jSYsguksCBDrKkNzjDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTkLhCMEz1y=
+-2FlfQIHmzJg4iMIx81vnMYUO4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2BVDhLah1l=
+MBJfw-2F9Z88reAUFUaxvMe8EZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyEmdW7srW9=
+bxu249C8UwB7T9GW5ROcW5pP6LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9WCe1FRuB=
+mQHsvITRsrpLKWMcxBQshXSUbGNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGKbBJ672XF=
+UodO56TbfKkeUoqs5mV7g-2Bi0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozYI7PbwcG8=
+qgUKITXlAH-2BWTe6-2BqTxFWrc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50MVd4x-2FY=
+Ekjn-2F1TsYHz3Y3qhZ5wUVNdhH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC5xgDj38C=
+v-2F7yW-2FWPXvfwtsBdsR2QAQ-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscMLYAg8y-2F=
+ArBTQ1rvPaLTUm85AR7jj37Cb4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyoa90RFTIR=
+aqLB-2F78uWWFSqeMt8osy-2BjcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDEuvIaOwRd=
+Bjk6fw0TySO5RfTgv-2FLootPhHudjSDtgpNiveRXk6-2BU2x-2BDw4q7n4R-2BvW-2F5ynnH73=
+-2BSGcuiuAFoVosB73Awxc3aWgLYeQtYFxuJrOO-2Bqj8DzLBQo5w7aVVdt4-3D">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/cca08ffd-683d-4e75-868c-999a3df27c9e/300x=
+300.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D"2=
+4">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://mailing.github.com/ls/click?up=
+n=3Du001.bO3G-2FaeMIVe5lSdMnGODozgoAQD6jwHlE9yz6w0v3-2FKBwgrTJU-2BtbBmk1-2B=
+2b2R-2Bjoa8pM71iL6ikgBAAClFPvA-3D-3D7_1o_NsZBigbiferOVfYn15JOBAgOH14511H4OB=
+5UXzX6zT8Z89Q7aO66QcJ-2FVxFOPWJR3Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF=
+0F1Ti38ryQNQCG2X7jSYsguksCBDrKkNzjDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTk=
+LhCMEz1y-2FlfQIHmzJg4iMIx81vnMYUO4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2B=
+VDhLah1lMBJfw-2F9Z88reAUFUaxvMe8EZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyE=
+mdW7srW9bxu249C8UwB7T9GW5ROcW5pP6LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9=
+WCe1FRuBmQHsvITRsrpLKWMcxBQshXSUbGNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGK=
+bBJ672XFUodO56TbfKkeUoqs5mV7g-2Bi0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozY=
+I7PbwcG8qgUKITXlAH-2BWTe6-2BqTxFWrc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50M=
+Vd4x-2FYEkjn-2F1TsYHz3Y3qhZ5wUVNdhH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC=
+5xgDj38Cv-2F7yW-2FWPXvfwtsBdsR2QAQ-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscML=
+YAg8y-2FArBTQ1rvPaLTUm85AR7jj37Cb4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyo=
+a90RFTIRaqLB-2F78uWWFSqeMt8osy-2BjcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDE=
+vrTmW6vAQlLwBJzlmwh0Ve8L7kEZrAsD2ONGWZs9cXXdPv753vAQ6gygTVZN69M4lQFoEYZrSNL=
+0qfllJj6AqygZiVEZmPD-2F2vTNpiv2ATuUu5jvp78JKIG1ePCLNlbBE-3D">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/7fbfa4f4-c42c-4596-8208-887bf53f41aa/512x=
+512.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D"2=
+4">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://mailing.github.com/ls/click?up=
+n=3Du001.bO3G-2FaeMIVe5lSdMnGODo1KxRZG7NRfCjR-2FG0wTxt0HlI-2FvKJRfwdCDHax9b=
+wtgmWyIJWvaLpL65i1CNotlPJQ-3D-3DQOty_NsZBigbiferOVfYn15JOBAgOH14511H4OB5UXz=
+X6zT8Z89Q7aO66QcJ-2FVxFOPWJR3Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF0F1T=
+i38ryQNQCG2X7jSYsguksCBDrKkNzjDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTkLhCM=
+Ez1y-2FlfQIHmzJg4iMIx81vnMYUO4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2BVDhL=
+ah1lMBJfw-2F9Z88reAUFUaxvMe8EZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyEmdW7=
+srW9bxu249C8UwB7T9GW5ROcW5pP6LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9WCe1=
+FRuBmQHsvITRsrpLKWMcxBQshXSUbGNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGKbBJ6=
+72XFUodO56TbfKkeUoqs5mV7g-2Bi0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozYI7Pb=
+wcG8qgUKITXlAH-2BWTe6-2BqTxFWrc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50MVd4x=
+-2FYEkjn-2F1TsYHz3Y3qhZ5wUVNdhH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC5xgD=
+j38Cv-2F7yW-2FWPXvfwtsBdsR2QAQ-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscMLYAg8=
+y-2FArBTQ1rvPaLTUm85AR7jj37Cb4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyoa90R=
+FTIRaqLB-2F78uWWFSqeMt8osy-2BjcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDEtsM8=
+-2B4fCbDnyESjDwG0YA1ttmEizqjVFZ-2FpfYA4gaG7Ki4jaqZFTxKPA1SHu4oe0xhlN5eEcs-2=
+B8MP-2Bm2GuXcgu-2Fkop07py9yLagsc18bbONdwv-2BojyfoB0NlszTq9fM14-3D">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/199b126a-2e9f-49b6-8a32-cc5ac3562cef/153x=
+178.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D"2=
+4">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://mailing.github.com/ls/click?up=
+n=3Du001.bO3G-2FaeMIVe5lSdMnGODo7OMy-2FrgUl7LaVtJwyMhyqR5AnWnQFQo-2BIze2sJ-=
+2Bb3W4krkV_NsZBigbiferOVfYn15JOBAgOH14511H4OB5UXzX6zT8Z89Q7aO66QcJ-2FVxFOPW=
+JR3Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF0F1Ti38ryQNQCG2X7jSYsguksCBDrK=
+kNzjDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTkLhCMEz1y-2FlfQIHmzJg4iMIx81vnM=
+YUO4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2BVDhLah1lMBJfw-2F9Z88reAUFUaxvM=
+e8EZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyEmdW7srW9bxu249C8UwB7T9GW5ROcW5=
+pP6LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9WCe1FRuBmQHsvITRsrpLKWMcxBQshX=
+SUbGNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGKbBJ672XFUodO56TbfKkeUoqs5mV7g-=
+2Bi0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozYI7PbwcG8qgUKITXlAH-2BWTe6-2BqT=
+xFWrc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50MVd4x-2FYEkjn-2F1TsYHz3Y3qhZ5wU=
+VNdhH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC5xgDj38Cv-2F7yW-2FWPXvfwtsBdsR=
+2QAQ-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscMLYAg8y-2FArBTQ1rvPaLTUm85AR7jj3=
+7Cb4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyoa90RFTIRaqLB-2F78uWWFSqeMt8osy=
+-2BjcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDEs156z-2BV-2B4jLVt5o8cBlWmoMBSl=
+yEoz4-2F2Hm5uokf6YSdhSarBuhWgkiJ-2BgFDjXFWeR2G2ceNX1-2BGOp5Zt0r1CV07fOdgicn=
+s6ngSh9YAJeezhbeYeDlwiany-2BNXf-2Fe-2B2A-3D">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/139d5afd-f635-4234-b6bd-cd44ff1d3d85/1184=
+x1184.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D=
+"24">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://mailing.github.com/ls/click?up=
+n=3Du001.bO3G-2FaeMIVe5lSdMnGODo2dVGx1b-2BEeSRYGdTRBAbKctIVR22mrkc3ehURL4mb=
+EFpr7Y26tGVfJNw5xoyaAKow-3D-3DBYSX_NsZBigbiferOVfYn15JOBAgOH14511H4OB5UXzX6=
+zT8Z89Q7aO66QcJ-2FVxFOPWJR3Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF0F1Ti3=
+8ryQNQCG2X7jSYsguksCBDrKkNzjDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTkLhCMEz=
+1y-2FlfQIHmzJg4iMIx81vnMYUO4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2BVDhLah=
+1lMBJfw-2F9Z88reAUFUaxvMe8EZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyEmdW7sr=
+W9bxu249C8UwB7T9GW5ROcW5pP6LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9WCe1FR=
+uBmQHsvITRsrpLKWMcxBQshXSUbGNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGKbBJ672=
+XFUodO56TbfKkeUoqs5mV7g-2Bi0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozYI7Pbwc=
+G8qgUKITXlAH-2BWTe6-2BqTxFWrc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50MVd4x-2=
+FYEkjn-2F1TsYHz3Y3qhZ5wUVNdhH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC5xgDj3=
+8Cv-2F7yW-2FWPXvfwtsBdsR2QAQ-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscMLYAg8y-=
+2FArBTQ1rvPaLTUm85AR7jj37Cb4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyoa90RFT=
+IRaqLB-2F78uWWFSqeMt8osy-2BjcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDEu3LXFl=
+50NYD2Fu6GrjSl5xooXXVTO0uoh-2B0XINsWycaJVuS61wFjH2TdbOYS40rr2h6B81wSMWjaaJy=
+vjn32xkuYsToIJxvstTczFbHjo2huGqEX0Ii-2FVbgY6LADLFm9U-3D">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/69dc9ddb-b05f-4371-bb0a-ff395594725a/2319=
+x2049.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D=
+"24">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://mailing.github.com/ls/click?up=
+n=3Du001.bO3G-2FaeMIVe5lSdMnGODo5kXsF-2BAY3pqNDPNf3FfJxAWN2WDKCotnbDDLNWq9E=
+pF1A-2B0xG-2FtooK9-2BbaH4r9wFQ-3D-3DBAWi_NsZBigbiferOVfYn15JOBAgOH14511H4OB=
+5UXzX6zT8Z89Q7aO66QcJ-2FVxFOPWJR3Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF=
+0F1Ti38ryQNQCG2X7jSYsguksCBDrKkNzjDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTk=
+LhCMEz1y-2FlfQIHmzJg4iMIx81vnMYUO4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2B=
+VDhLah1lMBJfw-2F9Z88reAUFUaxvMe8EZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyE=
+mdW7srW9bxu249C8UwB7T9GW5ROcW5pP6LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9=
+WCe1FRuBmQHsvITRsrpLKWMcxBQshXSUbGNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGK=
+bBJ672XFUodO56TbfKkeUoqs5mV7g-2Bi0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozY=
+I7PbwcG8qgUKITXlAH-2BWTe6-2BqTxFWrc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50M=
+Vd4x-2FYEkjn-2F1TsYHz3Y3qhZ5wUVNdhH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC=
+5xgDj38Cv-2F7yW-2FWPXvfwtsBdsR2QAQ-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscML=
+YAg8y-2FArBTQ1rvPaLTUm85AR7jj37Cb4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyo=
+a90RFTIRaqLB-2F78uWWFSqeMt8osy-2BjcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDE=
+vPqM50EwEcvXlIjOcggy9bJXgQaErZmHNKE7iXxbhTE8FVbx3SXf-2BvQhLiEpgIELHnGWlGZhL=
+JZRs5hGsxXB-2FMVnTb5MfRmg-2BI-2F64GIxCGv54UFUScEC1o7DicMv4CBHk-3D">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/2fb6c833-4f48-4a08-beda-4cad2082a3ed/512x=
+512.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D"2=
+4">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://mailing.github.com/ls/click?up=
+n=3Du001.bO3G-2FaeMIVe5lSdMnGODo3-2FQ6ALJoZReZPpMLK6cEoUG2KBCa8E4ucxjcmXFCY=
+mk9lLyMyqioFLdmyTjj6xj7Q-3D-3DzF8C_NsZBigbiferOVfYn15JOBAgOH14511H4OB5UXzX6=
+zT8Z89Q7aO66QcJ-2FVxFOPWJR3Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF0F1Ti3=
+8ryQNQCG2X7jSYsguksCBDrKkNzjDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTkLhCMEz=
+1y-2FlfQIHmzJg4iMIx81vnMYUO4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2BVDhLah=
+1lMBJfw-2F9Z88reAUFUaxvMe8EZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyEmdW7sr=
+W9bxu249C8UwB7T9GW5ROcW5pP6LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9WCe1FR=
+uBmQHsvITRsrpLKWMcxBQshXSUbGNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGKbBJ672=
+XFUodO56TbfKkeUoqs5mV7g-2Bi0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozYI7Pbwc=
+G8qgUKITXlAH-2BWTe6-2BqTxFWrc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50MVd4x-2=
+FYEkjn-2F1TsYHz3Y3qhZ5wUVNdhH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC5xgDj3=
+8Cv-2F7yW-2FWPXvfwtsBdsR2QAQ-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscMLYAg8y-=
+2FArBTQ1rvPaLTUm85AR7jj37Cb4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyoa90RFT=
+IRaqLB-2F78uWWFSqeMt8osy-2BjcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDEsIGU0-=
+2FsdwIu1qQ80-2Fw6zXVjDFCBLiK-2Bx3LFbb-2B96NqwpdtOUsaTNwG4hAHImp-2F8qH9OHRmS=
+UUzv0Q4hz8pSjo9rHbjgoVykimgRM-2BKUuWIpj1HcgNAgW-2B-2FgToYdOLhNog-3D">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/e2e3632e-d2ab-415a-a61d-072743569784/512x=
+512.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D"2=
+4">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://mailing.github.com/ls/click?up=
+n=3Du001.bO3G-2FaeMIVe5lSdMnGODo2gvddZ8656ATSl5-2BTEB98YabS5KKljl5Ypv-2Bi-2=
+FJC05yRNLL_NsZBigbiferOVfYn15JOBAgOH14511H4OB5UXzX6zT8Z89Q7aO66QcJ-2FVxFOPW=
+JR3Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF0F1Ti38ryQNQCG2X7jSYsguksCBDrK=
+kNzjDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTkLhCMEz1y-2FlfQIHmzJg4iMIx81vnM=
+YUO4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2BVDhLah1lMBJfw-2F9Z88reAUFUaxvM=
+e8EZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyEmdW7srW9bxu249C8UwB7T9GW5ROcW5=
+pP6LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9WCe1FRuBmQHsvITRsrpLKWMcxBQshX=
+SUbGNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGKbBJ672XFUodO56TbfKkeUoqs5mV7g-=
+2Bi0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozYI7PbwcG8qgUKITXlAH-2BWTe6-2BqT=
+xFWrc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50MVd4x-2FYEkjn-2F1TsYHz3Y3qhZ5wU=
+VNdhH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC5xgDj38Cv-2F7yW-2FWPXvfwtsBdsR=
+2QAQ-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscMLYAg8y-2FArBTQ1rvPaLTUm85AR7jj3=
+7Cb4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyoa90RFTIRaqLB-2F78uWWFSqeMt8osy=
+-2BjcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDEuEmvtGIxplbTB67lXn3g2N9YmKp6hg=
+uSjYicrZTL-2F7d2-2Fon8Y6TsNL4YiGfmbdJa8hC1IwW1u-2FfcRjDdZUN7n-2BQCA96AJlu0h=
+BJZEhyDM5ZmKgiNYXKVk6AHIw0B7-2FOvQ-3D">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/8681d38e-9b91-4930-ae9c-10afb1dd1e53/3000=
+x3000.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D=
+"24">
+    </a>=20
+</p></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"8f790d63-410c-4a52-bba8-fbea1cd299d2" data-mc-mo=
+dule-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:18px 0px 18px 0px; line-height:20px; text-alig=
+n:inherit; background-color:#FFFFFF;" height=3D"100%" valign=3D"top" bgcolo=
+r=3D"#FFFFFF" role=3D"module-content"><div><div style=3D"font-family: inher=
+it; text-align: center"><a href=3D"https://mailing.github.com/ls/click?upn=
+=3Du001.bO3G-2FaeMIVe5lSdMnGODo09vcCl7PPqDILZt-2FGoACYbV4L-2FcOcvMOi5mEz0MD=
+uAdvr1cQuO9mRy20Qykhb-2F7ykYZZX16ALUC-2BtWgkiqbAUEaE-2BeRQxxzkqqLx-2BKfjQyt=
+lH0hCfgzEijZ-2BS87HyONw9-2F96A8gBwqvmKWl8LpaBn8RP6GLn66lVzAqE0VlwtVU0X5ADOX=
+EOPGGA8qxX4iNcwih1Xn-2BPSVHxFjuCJNfF0PAUGzAorljPw1xNQ4h12gheFIkviHTHpJozU3r=
+OROlZe0rKMWcsXFAw8VEuuJRGkodJUoo-2FnCQZ2wLCVCj9VSj0VQI-2BSp5yuPO011uEPW1jmD=
+tIbW-2FESLErFH8fm7B3w5cBzlK0urBT3TxLJA95-2Foj4zvr1Ji7Ac9iy35dd7jyDOa46jclnQ=
+8nvpM2-2FJtrAGe1md6G3LYjrraJdqghSxutso9pU7zjseCe0KzII4yaN60CYPTBWpSZvbUkIjX=
+4OjvgmRcafV0HKrNAuRBEtFSc78JPS7OlNcCw-2B6-2FDMMMRZzKHLwqOmpiAYL2D843rJcwgaV=
+baZnSf3dybYBf18WOOpAcju5-2Fw8casZKPfD-2FeHXODFreQ9iYDb3iIx1SDopMKLupFPF2yDF=
+XW-2FWxPK-2Bw8ue8Ydi7EcQn89qEWJtSKv9Tc5SxPucaVGmLtVD5xa5xGecFTETgYvVvcNEb1K=
+STwueNXnMov21YlOy8FaBzNgwhVyBbBT2UN9lALdBe9vHgF0pMJCl-2F5wmKI4pYgRXGNhXvXdd=
+E7UVgD-2FI-2BDB0RwsWw-3D-3DPKyf_NsZBigbiferOVfYn15JOBAgOH14511H4OB5UXzX6zT8=
+Z89Q7aO66QcJ-2FVxFOPWJR3Ls9aID-2BkYayaF62-2BuUi2dyw67XYcW6K-2BLrmF0F1Ti38ry=
+QNQCG2X7jSYsguksCBDrKkNzjDcnsRekav7eE10SBrO-2FlM7VTxNk-2Fzzj6zuGTkLhCMEz1y-=
+2FlfQIHmzJg4iMIx81vnMYUO4nbgD8IB8IxIj20TMfMtiUNWp7sa2oAbvIZn43i-2BVDhLah1lM=
+BJfw-2F9Z88reAUFUaxvMe8EZDNkzN5PZ-2BqQ1N8bv9oLwlp3qWXyxUiRRK7yYHyEmdW7srW9b=
+xu249C8UwB7T9GW5ROcW5pP6LyUG8zaxf5o-2FrbXIXtoFr5I-2Fh4g2qeoEJQjEL9WCe1FRuBm=
+QHsvITRsrpLKWMcxBQshXSUbGNfhTooSs5frDbLhxVWyy9dNaLbP1ZM3HwGyxH7TGKbBJ672XFU=
+odO56TbfKkeUoqs5mV7g-2Bi0-2FzWjOV2glC3rammBGfKcpGFjvleYKNSyd1RiozYI7PbwcG8q=
+gUKITXlAH-2BWTe6-2BqTxFWrc89jzz9lOPq4IivWZZMnYI3Ha1uCnCNHaf-2Bi50MVd4x-2FYE=
+kjn-2F1TsYHz3Y3qhZ5wUVNdhH-2Fozq2rb9ihPZFGBPIJj34Oi7vPjmBnaOukgDkC5xgDj38Cv=
+-2F7yW-2FWPXvfwtsBdsR2QAQ-2BGmh3SGLR-2BOF0pdur6xwvvb-2Bbp4tgJpscMLYAg8y-2FA=
+rBTQ1rvPaLTUm85AR7jj37Cb4P0qRPAtTQ7P-2BgoKq9t6lp5d7bwtRq0KsJ6PmEyoa90RFTIRa=
+qLB-2F78uWWFSqeMt8osy-2BjcsJpeBDJ1MAGHTqjLnpjtT-2B9bttxj6zu2malbDEuCGllth7Y=
+Kd5kS-2BRAm3R8pVX8hX8Aok1JzV53agF7jLtstkonbjy6c0TcOWuou8XD5ET0ZQAnlOgS-2F2S=
+WCL98-2Fe5PRA1OTfIjgGFs51uuaB0cFgyFVmfO48eQy06tgzu4-3D"><span style=3D"font=
+-size: 12px">Open this email in a web browser.</span></a></div><div></div><=
+/div></td>
+      </tr>
+    </tbody>
+  </table><div data-role=3D"module-unsubscribe" class=3D"module" role=3D"mo=
+dule" data-type=3D"unsubscribe" style=3D"font-size:12px; line-height:20px; =
+padding:16px 16px 16px 16px; text-align:Center;" data-muid=3D"4e838cf3-9892=
+-4a6d-94d6-170e474d21e5"><div class=3D"Unsubscribe--addressLine"><p class=
+=3D"Unsubscribe--senderName" style=3D"font-family:arial,helvetica,sans-seri=
+f; font-size:12px; line-height:20px;">GitHub Education</p><p style=3D"font-=
+family:arial,helvetica,sans-serif; font-size:12px; line-height:20px;"><span=
+ class=3D"Unsubscribe--senderAddress">88 Colin P Kelly Jr</span>, <span cla=
+ss=3D"Unsubscribe--senderCity">San Francisco</span>, <span class=3D"Unsubsc=
+ribe--senderState">CA</span> <span class=3D"Unsubscribe--senderZip">94107</=
+span></p></div><p style=3D"font-family:arial,helvetica,sans-serif; font-siz=
+e:12px; line-height:20px;"><a class=3D"Unsubscribe--unsubscribeLink" href=
+=3D"https://mailing.github.com/wf/unsubscribe?upn=3Du001.JFvHvRC-2FDCk3N-2B=
+1tZqzlvi4-2BJREE1OhDEe1Ej2wnDlf4KNHZD-2B0RsSCCl-2BO9Jf6LQP5NnuFXRXAK6n0GSKh=
+jsQFGP5inYGfkm1tCi1C9p6ujkGnboeeNr85E7NppL3-2Bq3aEIuon3Q-2BKGbk1-2FsfUwINt0=
+NppBPn8KwJ6JJ-2BuDdqw7GJlZvDWgLUQ-2B5HaL6a8NChqjRA1-2BEKhL5nAqk3IeDB3G-2F-2=
+BeZvay269D8Et2bpq5l9GlZQXIJJ-2BTqYHVXm4Vgnhn1g6YLLjEJlqDuFQVOc7PHshJ-2BmPZN=
+9Z9S8gd2GCLMzsFO0U-2B-2B7JqUn59gF95zSs1VwqyQeMdgeu8TnBpzN3XO94rryrItPATTkuq=
+n7uRlIVuUJBRyB1DthF-2B0h1euqDlVnppa5MgLOPQddxFCuW2ndNDP2NiiTLqAacYxGuyAf5Bp=
+AQxe7z2aIQ3WWUOOyuVwWcYcdsReq16z6dJxFmGDQBac2AOCRuWHuOcwuwVgeJeYwJlUkEeUXrd=
+8vQ9MCpoi-2BRVu6VIxwNG0QawdaROJ9f2v10zti3Ne8ivCAqDapGy-2FvGodeXWdYnIWPNIDWk=
+ONCgCdKc7eYznqWrEUGbmwEzUhXDGFg0mpgKXQSU1kAd-2FIrNJWd-2FP8Nx7YeCUalEhAlO-2B=
+9uvmzkDkvWaJBZI7-2FNkiu4soh-2BrP2yYjZMz-2BWIzi1vnDuVO4p8Z03rpkfFTMwciJ7fnco=
+ssN5PKv2BSVzKtoMMLWFPZyLieHnymcirdCMv9f09Hntxc0EMnZgPsdjcWRPX-2F5RgU4Yd-2B6=
+nUtY23zISv-2FiRaUOWyqu0SCnMf4tp7a-2FslWrzN4M7hKWL-2BzIO7nN10fWzXewodp1wScyx=
+z8HNcWwkwgDtLzMSjRWHk9jGFh6-2BF8zYI8tpTk2K2-2B0zvsvHyw7KBOHCkvofU4KluLzp1cg=
+4brp-2BdO78ZUCQTkngADn-2FTVe6ouP5MxLi-2BLmpIVL3xk409Pp8Gq4uYJcwDSqjeGw5wK-2=
+BpH2vlZUwYQCbQQipo4Q8xfYue5Wne" target=3D"_blank" style=3D"">Unsubscribe</a=
+></p></div></td>
+                                      </tr>
+                                    </table>
+                                    <!--[if mso]>
+                                  </td>
+                                </tr>
+                              </table>
+                            </center>
+                            <![endif]-->
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </center>
+    <img src=3D"https://mailing.github.com/wf/open?upn=3Du001.JFvHvRC-2FDCk=
+3N-2B1tZqzlvi4-2BJREE1OhDEe1Ej2wnDlf4KNHZD-2B0RsSCCl-2BO9Jf6LQP5NnuFXRXAK6n=
+0GSKhjsQFGP5inYGfkm1tCi1C9p6ujkGnboeeNr85E7NppL3-2Bq3aEIuon3Q-2BKGbk1-2FsfU=
+wINt0NppBPn8KwJ6JJ-2BuDdqw7GJlZvDWgLUQ-2B5HaL6a8NChqjRA1-2BEKhL5nAqk3IeDB3G=
+-2F-2BeZvay269D8Et2bpq5l9GlZQXIJJ-2BTqYHVXm4Vgnhn1g6YLLjEJlqDuFQVOc7PHshJ-2=
+BmPZN9Z9S8gd2GCLMzsFO0U-2B-2B7JqUn59gF95zSs1VwqyQeMdgeu8TnBpzN3XO94rryrItPA=
+TTkuqn7uRlIVuUJBRyB1DthF-2B0h1euqDlVnppa5MgLOPQddxFCuW2ndNDP2NiiTLqAacYxGuy=
+Af5BpAQxe7z2aIQ3WWUOOyuVwWcYcdsReq16z6dJxFmGDQBac2AOCRuWHuOcwuwVgeJeYwJlUkE=
+eUXrd8vQ9MCpoi-2BRVu6VIxwNG0QawdaROJ9f2v10zti3Ne8ivCAqDapGy-2FvGodeXWdYnIWP=
+NIDWkONCgCdKc7eYznqWrEUGbmwEzUhXDGFg0mpgKXQSU1kAd-2FIrNJWd-2FP8Nx7YeCUalEhA=
+lO-2B9uvmzkDkvWaJBZI7-2FNkiu4soh-2BrP2yYjZMz-2BWIzi1vnDuVO4p8Z03rpkfFTMwciJ=
+7fncossN5PKv2BSVzKtoMMLWFPZyLieHnymcirdCMv9f09Hntxc0EMnZgPsdjcWRPX-2F5RgU4Y=
+d-2B6nUtY23zISv-2FiRaUOWyqu0SCnMf4tp7a-2FslWrzN4M7hKWL-2BzIO7nN10fWzXewodp1=
+wSfoanwFHOagl2wlgjrKH8xLQzntXTj0sWPd1VLNJ1FAQ9n3HH42f20OPDFcBwtp2zNbYWCPLIh=
+HEmKEqE-2BqytElpm5Q-2BRC7Nz-2FLxRZYz5iAavvqxe8g4FEq-2B1xSKTv4jgYklKHsQvdVbR=
+gU4swN2AQuhuQpehdjR9z7tdIG59b4G" alt=3D"" width=3D"1" height=3D"1" border=
+=3D"0" style=3D"height:1px !important;width:1px !important;border-width:0 !=
+important;margin-top:0 !important;margin-bottom:0 !important;margin-right:0=
+ !important;margin-left:0 !important;padding-top:0 !important;padding-botto=
+m:0 !important;padding-right:0 !important;padding-left:0 !important;"/></bo=
+dy>
+  </html>
+--eeae04d1440a3a2052c6e1e7d58b02f38762e6ce7de6610a5908b3e6183b--

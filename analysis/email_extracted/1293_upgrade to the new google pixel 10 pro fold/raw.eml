@@ -1,0 +1,3423 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:df93:b0:4ca:2b22:f54c with SMTP id ok19csp1760157mdb;
+        Thu, 9 Oct 2025 10:25:52 -0700 (PDT)
+X-Received: by 2002:ac8:7d4e:0:b0:4c3:a0ef:9060 with SMTP id d75a77b69052e-4e6eacf3e4cmr103333801cf.26.1760030752606;
+        Thu, 09 Oct 2025 10:25:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1760030752; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Ct1K1nKF8pbRheL2EChEEpMFnL0FTFlHHGiqvAJlGr5q/tnv040Xc2i8uM4G7zzL8X
+         Zbu35VAVANY0HKNcwv5oS+O/86PZgjFa4v8ppWywgPedpZsI8F6K8zQkfSkhzQUnv7fp
+         QMrsFKJFF/2Q+wTljKvqPLwiEl/dj2izDuzFSV1v4C7NoKn8yzEaeQZ7hkeLqgFNmfag
+         Z3Co1qikmdnLcA3X9sxNqQumoXXClo6FVl4z23bHU8K2n2nS3zdBHA3gGSLRQoiDx/aP
+         I9V5EkUPwcgJFO89J1WoQrP5B1PLq6EG0YJVTTr2LgMusiV1JTPDMpZTfOHPsPldLJY3
+         Ub5g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:from:subject:message-id:list-id:feedback-id:precedence
+         :list-unsubscribe:list-unsubscribe-post:reply-to:date:mime-version
+         :dkim-signature;
+        bh=y7Ysfshm0t5USrwTl95uOxRGYji+k3YBllv160lLStk=;
+        fh=xaPyPzmcA1bm/04STfhenhR0drOiM8ZrqPvDv4paeEQ=;
+        b=I2BG0oMqHvg10tZ0I91g1P7o0yaCZZ5UIPEP+cDr8zFdd0VY1hXQIop+VKBAfw6MZ5
+         VcJYH9gY37kLtDo1AkGVrETfc1PmgvwEY3HdIFJ9qWN23WkDX8DEks/6y7NrCcbikSnJ
+         /KXZNYiZr02ys4Nf3iiFPJSdDeYk77CFf0BuGq6ZKofK6LSUJg246d7kISmeVfdbxnMx
+         /ZDiiCuQ2NSSv18BEWdi5fqKX6mrufuqRd03JTVozHDe+op2X6I6Liin5SPj+bsrgxmQ
+         +yHUoXP0Gq1Fq/XoIWzSfFPoIs4uaNZj7x1e2CYrYgc8V87UMwqM1a0x8F4HxLavopRJ
+         dRCw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=r2XHwPg2;
+       spf=pass (google.com: domain of 3ipdnabmkbu0vddvathidgt-cdgteanvddvat.rdbaxtc14vbpxa.rdb@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3IPDnaBMKBu0VddVaThidgT-cdgTeanVddVaT.RdbAXTc14VbPXa.Rdb@scoutcamp.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <3IPDnaBMKBu0VddVaThidgT-cdgTeanVddVaT.RdbAXTc14VbPXa.Rdb@scoutcamp.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id af79cd13be357-8849ff7add0sor368250085a.4.2025.10.09.10.25.52
+        for <LienCF@gmail.com>
+        (Google Transport Security);
+        Thu, 09 Oct 2025 10:25:52 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 3ipdnabmkbu0vddvathidgt-cdgteanvddvat.rdbaxtc14vbpxa.rdb@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=r2XHwPg2;
+       spf=pass (google.com: domain of 3ipdnabmkbu0vddvathidgt-cdgteanvddvat.rdbaxtc14vbpxa.rdb@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3IPDnaBMKBu0VddVaThidgT-cdgTeanVddVaT.RdbAXTc14VbPXa.Rdb@scoutcamp.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1760030752; x=1760635552; dara=google.com;
+        h=to:from:subject:message-id:list-id:feedback-id:precedence
+         :list-unsubscribe:list-unsubscribe-post:reply-to:date:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=y7Ysfshm0t5USrwTl95uOxRGYji+k3YBllv160lLStk=;
+        b=r2XHwPg2a98EBBNN7MquVyevZKSpBwrjOLNKOf8uC8DvOs7+56fHbS8+gx1pzFGvUC
+         o2Zx75Q8LVskyPhAVJnUk7IS6QQdTVwA4hLZO6txWjB4ca/FRsYqETQkXWyxt2f39FEC
+         Kc/FdegoanoHx5KO9JXmRV9QuDpOXGgDxJWvILu3zVkCqW0CgSQgMJ7SZZu1wsczB62D
+         0i/yeEDkcEpnUtHVGadD4Hf91wxE/OwyJKQKAFBqx/uqXZCJ/tLxOhe1YY6pTUsY5PRq
+         EOquF9fX+sq7LtLjJCChc3BoUeuCpyG/FtglDE1oNOee/yFYaGUFtN6tUaI4C9mULVMk
+         tYSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760030752; x=1760635552;
+        h=to:from:subject:message-id:list-id:feedback-id:precedence
+         :list-unsubscribe:list-unsubscribe-post:reply-to:date:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=y7Ysfshm0t5USrwTl95uOxRGYji+k3YBllv160lLStk=;
+        b=g4dnTWnQF5PyNgU0fHYpgWnVF9pTejnnRRwkgX7GjJAlvUKd3IYR+6Fbk60eEIqskE
+         U+ftxEDU/ggqPjEXSd+AhMT+avHJpy3Wav7ZWv+T7qNgSQbsIEErLcu+xIbcqghUyRH5
+         CXSsp9s1ZVuIky0I+a62Rzk8cvpbM2hOFgGOl7+kn3SxY+2qMP7UJA4CHJ0L3lkho/xp
+         0nq0Ee65xmLSHTPyuIvDW9Kwz0YS/V3awSua9Hj05CvWI1gBn31ACMkuaETc0+jIisbU
+         vmksUnOcEUU8+BvhfrRfmiGmiC7pxNQWiY6IbbVAf6ik6hSRYe6YAXKjbwTzweFaHH0s
+         0YKQ==
+X-Gm-Message-State: AOJu0Ywtb8H/N9dyQ0JFT6am+IsBmPuQ54se0wjAzWgLgdE9JssnBsKQ
+	2NkO3APKmd71dSDXKz4PUuhVE0bgLKijKSNL4N1F6FvzRvvSBRuHThJXmamm
+X-Google-Smtp-Source: AGHT+IGXzgBhXkZl8iucHMipH/wFBFgxwKXQs/gz7p737SEbXjR9TtsPE5RZH04toC9bgFm2MRfT6oY=
+MIME-Version: 1.0
+X-Received: by 2002:a05:620a:4891:b0:85e:24c3:a612 with SMTP id
+ af79cd13be357-88350a7d40fmr1237469785a.32.1760030752288; Thu, 09 Oct 2025
+ 10:25:52 -0700 (PDT)
+Date: Thu, 09 Oct 2025 10:25:52 -0700
+Reply-To: googlestore-noreply@google.com
+X-Google-Id: 4425691
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Unsubscribe: <https://myaccount.google.com/communication-preferences/auto/unsubscribe/gt/AF5yWjBSstBhshvebTjkV5M29OtcqItmxz34ROascdg_OmPsmY4iKortleiEyax8GaaRNvvzJjlFcWM9nPiXH2w67Am-BJ9ejjbzImvLdQ4VIYMi5-W7TFlEQ7KtU9UHe3YWrI9DLdadt6XtQUBHP7gXcsvYHfYvGUnduJ4VTyXVkH2NUX0lyDn2P3WvnaU2xyewwH_VZ2rxGRVZxO0wDU0CPcabezu21eYb449jmm-TjtkObuAZibMU2FjXqvCfoxHLC72LTUlwceQEh5ndl0ZrMALZ6X1Nkw?utm_source=gm_header&utm_medium=email>
+Precedence: bulk
+Feedback-ID: P-522599190-4021:C20360744:M110980130-zh-TW:gamma
+List-Id: <019709108c5a5a76b2d015dd3d4db4262827bf3f.google.com>
+X-Notifications: 86581058c0fa0000
+X-Notifications-Bounce-Info: AeTnV4FXM8a7n0TYX8_408F9C9O4WqfL2MhPTPajnQoQk61m3Q9s6hJrB0Rr_MS8Xy4T5bM5PCIx5gtaqoOluNEZ5fKrUpJWp6bViZ5IUkjLHh1TgWHcF1RmIHvVkswhLQT3ckObgwxaKRKavbzu_4iR9azOqFzo-5Wg4FpVJEdTj_XcX79pPwuIWRAJi2Rzx4wF45610poMOeWYozZbA9znOlULu4CrV8Y4wjzNp_kRVV1No_b24ery-Psctfe5ciZDP7VolJ9N83uXbPUmP6OyRdQ1Ze2GMRfxcgppGfnRiMhbfXPUmjTR-vIlMJ3wMWYPmb2MfXSp4hO8kKldD66vjFJS5cqC5hQuG1__9c_6s1JPw-Dx2kOWDzY2VfDWUZLdxB5UH1ubIl-COhcJK27D5XzGtXRST1_0f2yrIxPP4sxsp2x2IB9gfHS_n2EPcD-X1kbC8SUciB_CWXPZ5milfHHxTiHqUwRUtI2cgpAIEQ8lJwPNt1SN4nnwYU2ZkT1XR-HW4X3ilwnrYqN0jd2S4GVEv0JhB2Rm0jdqQVGAke4Kk7r0HPZDj3V_eIF5RjuJUdCLDHAOvj8DVdpzNjAwNjA0MDQxNTM1NTk2OTMzMg
+Message-ID: <dea36d5e3de5c20559694871be4ac7b13dbe91bc-20360744-111747924@google.com>
+Subject: Upgrade to the new Google Pixel 10 Pro Fold
+From: Google Store <googlestore-noreply@google.com>
+To: LienCF@gmail.com
+Content-Type: multipart/alternative; boundary="000000000000c8bf050640bd17ed"
+
+--000000000000c8bf050640bd17ed
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: base64
+
+VGhlIGFtYXppbmcgUGl4ZWwgY2FtZXJhLiBBZHZhbmNlZCBBSSBlZGl0aW5nLg0K4oCMIOKAjCDi
+gIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKA
+jCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCM
+IOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCAgDQrigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDi
+gIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKA
+jCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCM
+IOKAjCDigIwg4oCMICANCuKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDi
+gIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKA
+jCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwgIA0K
+4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwNCg0KDQpHb29n
+bGUgUGl4ZWwgMTAgUHJvIEZvbGQNCg0KDQoNCg0KVW5mb2xkIGV4dHJhb3JkaW5hcnkuDQoNCg0K
+DQoNCiBGcm9tICQxLDc5OQ0KDQoNCg0KDQpTaG9wIG5vdw0KDQoNClVubG9jayBzcGVjaWFsIG9m
+ZmVycyBvbiBQaXhlbCAxMCBQcm8gRm9sZC4NCg0KDQoNCg0KU2VlIGFsbCBvZmZlcnMg4oC6DQoN
+Cg0KR2V0ICQ4MDAgb2ZmIFBpeGVsIDEwIFBybyBGb2xkIHdpdGggJDMwMCBvZmYgaW5zdGFudGx5
+IGFuZCAkNTAwIGJhY2sgb3ZlciAgDQoyNCBtb250aGx5IGJpbGwgY3JlZGl0cyB3aGVuIHlvdSBq
+b2luIEdvb2dsZSBGaSBXaXJlbGVzcy4g4oCgDQoNCg0KDQpHZXQgMSB5ZWFyIG9mIEdvb2dsZSBB
+SSBQcm8gb24gdXMgKCQyMzkgdmFsdWUpLCBwbHVzIGFkZGl0aW9uYWwgcHJlbWl1bSAgDQpHb29n
+bGUgc2VydmljZXMgd2l0aCBhbnkgdW5sb2NrZWQgb3IgY2FycmllciBwaG9uZS4g4oChDQoNCg0K
+DQoNCkdldCAkODAwIG9mZiBQaXhlbCAxMCBQcm8gRm9sZCB3aXRoICQzMDAgb2ZmIGluc3RhbnRs
+eSBhbmQgJDUwMCBiYWNrIG92ZXIgIA0KMjQgbW9udGhseSBiaWxsIGNyZWRpdHMgd2hlbiB5b3Ug
+am9pbiBHb29nbGUgRmkgV2lyZWxlc3MuIOKAoA0KDQoNCg0KR2V0IDEgeWVhciBvZiBHb29nbGUg
+QUkgUHJvIG9uIHVzICgkMjM5IHZhbHVlKSwgcGx1cyBhZGRpdGlvbmFsIHByZW1pdW0gIA0KR29v
+Z2xlIHNlcnZpY2VzIHdpdGggYW55IHVubG9ja2VkIG9yIGNhcnJpZXIgcGhvbmUuIOKAoQ0KDQoN
+Cg0KR2V0IHVwIHRvICQ3OTkgYmFjayB3aXRoIHF1YWxpZnlpbmcgaVBob25lIMKuIG9yIG90aGVy
+IGVsaWdpYmxlIHRyYWRlLWluLg0KDQoNCg0KDQpUcmFkZS1pbiB2YWx1ZSBpcyBiYXNlZCBvbiB0
+cmFkZS1pbiBkZXZpY2UgYW5kIHNwZWNpZmljIHN1YnNpZHkgZm9yICANCnNlbGVjdGVkIFBpeGVs
+IG1vZGVsLiBUZXJtcyBhcHBseS7igIwg4oCg4oCgDQoNCg0KaVBob25lIDE2IFBybyBNYXgNCg0K
+dXAgdG8gJDc5OSBiYWNrDQoNCg0KDQoNCg0KaVBob25lIDE1IFBybw0KDQp1cCB0byAkNTAwIGJh
+Y2sNCg0KDQoNCg0KDQppUGhvbmUgMTQgUHJvIE1heA0KDQp1cCB0byAkNTUwIGJhY2sNCg0KDQoN
+Cg0KDQppUGhvbmUgMTMgUHJvDQoNCnVwIHRvICQ0MzAgYmFjaw0KDQoNCg0KDQoNCmlQaG9uZSAx
+Mg0KDQp1cCB0byAkMjY1IGJhY2sNCg0KDQoNCg0KDQppUGhvbmUgMTENCg0KdXAgdG8gJDIzMCBi
+YWNrDQoNCg0KDQoNCg0KU3RhcnQgdHJhZGUtaW4NCg0KDQpHZXQgbW9yZSB3aGVuIHlvdSBzaG9w
+IG9uIHRoZSBHb29nbGUgU3RvcmUuDQoNCg0KDQoNCg0KU2hvcCBpbiBzdG9yZQ0KDQpHZXQgaGFu
+ZHMtb24gd2l0aCB0aGUgbGF0ZXN0IEdvb2dsZSBwcm9kdWN0cywgY2hhdCB3aXRoIG91ciBleHBl
+cnRzLCBhbmQgIA0KcGljayB1cCB5b3VyIG9ubGluZSBvcmRlcnMgaW4gcGVyc29uLg0KDQoNCg0K
+U2VlIHN0b3JlIGRldGFpbHMg4oC6DQoNCg0KDQpGaW5hbmNpbmcNCg0KTWFrZSBzaG9wcGluZyBz
+aW1wbGUuIEdldCBzcGVjaWFsIGZpbmFuY2luZyBvbiBxdWFsaWZ5aW5nIHB1cmNoYXNlcy4NCg0K
+DQoNCkxlYXJuIG1vcmUg4oC6DQoNCg0KDQpQaXhlbCBDYXJlKw0KDQpHZXQgcGVhY2Ugb2YgbWlu
+ZCBmb3IgeW91ciBQaXhlbCBkZXZpY2VzIHdpdGggdW5saW1pdGVkICQwIHNjcmVlbiByZXBhaXJz
+IDEgIA0KYW5kIGJhdHRlcnkgcmVwbGFjZW1lbnRzIDIgdXNpbmcgR29vZ2xlLWNlcnRpZmllZCBw
+YXJ0cy4NCg0KDQoNCkxlYXJuIG1vcmUg4oC6DQoNCg0KDQpGb2xsb3cgTWFkZSBieSBHb29nbGUg
+b24gWW91VHViZQ0KDQoNCg0KRm9sbG93IE1hZGUgYnkgR29vZ2xlIG9uIEZhY2Vib29rDQoNCg0K
+DQpGb2xsb3cgTWFkZSBieSBHb29nbGUgb24gVHdpdHRlcg0KDQoNCg0KRm9sbG93IE1hZGUgYnkg
+R29vZ2xlIG9uIEluc3RhZ3JhbQ0KDQoNCg0KDQrigKAgR2V0IGEgZGlzY291bnQgb2YgJDMwMCBh
+dCBjaGVja291dCBhbmQgJDUwMCBiYWNrIG92ZXIgMjQgbW9udGhseSBiaWxsICANCmNyZWRpdHMg
+Zm9yIHB1cmNoYXNlIG9mIGEgUGl4ZWwgMTAgUHJvIEZvbGQsIGF0IHN0b3JlLmdvb2dsZS5jb20g
+YW5kIEdvb2dsZSAgDQpyZXRhaWwgc3RvcmVzIChuZXcgdXNlcnMgb25seSksIGVuZGluZyAxMi81
+LzI1IGF0IDk6NTlhbSBQVCwgb3Igd2hpbGUgIA0Kc3VwcGxpZXMgbGFzdC4gTXVzdCBzZWxlY3Qg
+J0dvb2dsZSBGaScgaW4gdGhlICdDaG9vc2UgYSBjYXJyaWVyJyBzdGVwIG9mICANCnRoZSBwdXJj
+aGFzZSBwcm9jZXNzLiBQaG9uZSBhY3RpdmF0aW9uIHJlcXVpcmVkIGJ5IDMwIGRheXMgb2Ygc2hp
+cG1lbnQgIA0KY29uZmlybWF0aW9uLiBCaWxsIGNyZWRpdHMgYXJlIGFwcGxpZWQgdG8gcGxhbiBj
+aGFyZ2VzIChlZyBkYXRhLCBjYWxscywgIA0KdGV4dHMpLCB0YXhlcyBhbmQgZmVlcywgZmluYW5j
+aW5nIGNvc3RzLCBhbmQgaW50ZXJuYXRpb25hbCBjaGFyZ2VzLCBhbmQgIA0KZXhjbHVkZSBkZXZp
+Y2UgcHJvdGVjdGlvbi4gVW51c2VkIG1vbnRobHkgY3JlZGl0IGRvZXNuJ3Qgcm9sbCBvdmVyIHRv
+IHRoZSAgDQpmb2xsb3dpbmcgbW9udGguIENoYW5naW5nIGRldmljZXMgYmVmb3JlIDEyMCBkYXlz
+IGludmFsaWRhdGVzICQzMDAgaW5zdGFudCAgDQpkaXNjb3VudCwgcmVzdWx0aW5nIGluIGNoYXJn
+ZXMsIGFuZCBjYW5jZWxsYXRpb24sIHBhdXNlLCBvciBjaGFuZ2Ugb2YgRmkgIA0KcGxhbiBiZWZv
+cmUgMjQgbW9udGhzIHdpbGwgdGVybWluYXRlIHByb21vdGlvbiBhbmQgYmlsbCBjcmVkaXRzIHdp
+bGwgc3RvcC4gIA0KUHJvbW90aW9ucyBhcmUgbm9uLXRyYW5zZmVyYWJsZSwgbm90IHZhbGlkIGZv
+ciBjYXNoIG9yIGNhc2ggZXF1aXZhbGVudC4gVVMgIA0KcmVzaWRlbnRzIHdpdGggVVMgc2hpcHBp
+bmcgYWRkcmVzc2VzIG9ubHkuIE11c3QgYmUgMTggeWVhcnMgb3Igb2xkZXIsIHdpdGggIA0KR29v
+Z2xlIFBheSBhbmQgR29vZ2xlIEZpIFdpcmVsZXNzIGFjY291bnRzLiBMaW1pdCAxIHBlciBjdXN0
+b21lciBvciBncm91cCAgDQpwbGFuIG1lbWJlci4gVGF4ZXMgcGF5YWJsZSBhdCBjaGVja291dC4g
+T2ZmZXIgY2Fubm90IGJlIGNvbWJpbmVkIHdpdGggb3RoZXIgIA0Kb2ZmZXJzLiBWb2lkIHdoZXJl
+IHByb2hpYml0ZWQuDQoNCuKAoSBCeSBzdWJzY3JpYmluZywgeW91IGFncmVlIHRvIHRlcm1zIGZv
+ciBHb29nbGUgT25lLCBhdmFpbGFibGUgYXQgIA0Kb25lLmdvb2dsZS5jb20vdGVybXMtb2Ytc2Vy
+dmljZSwgYW5kIGZvciBvZmZlcnMsIGF2YWlsYWJsZSBhdCAgDQpvbmUuZ29vZ2xlLmNvbS9vZmZl
+ci9mcmVldHJpYWwuIFNlZSBob3cgR29vZ2xlIGhhbmRsZXMgZGF0YSBhdCAgDQp3d3cuZ29vZ2xl
+LmNvbS9wb2xpY2llcy9wcml2YWN5LiBHZW1pbmkgaW4gR29vZ2xlIEFJIFBybyBhbmQgR2VtaW5p
+IGZvciAgDQpHbWFpbCwgRG9jcywgYW5kIG1vcmUgYXJlIG9ubHkgYXZhaWxhYmxlIGZvciBhZ2Vz
+IDE4Ky4gR2VtaW5pIGZvciBHbWFpbCwgIA0KRG9jcywgYW5kIG1vcmUgaXMgb25seSBhdmFpbGFi
+bGUgaW4gc2VsZWN0IGxhbmd1YWdlcy4gQWN0dWFsIHZhbHVlIGlzICANCiQyMzkuODguIFRoZSBH
+b29nbGUgQUkgUHJvIHBsYW4gb2ZmZXIgaXMgYXZhaWxhYmxlIHRvIHVzZXJzIHdpdGggdGhlICAN
+CnB1cmNoYXNlIGFuZCBhY3RpdmF0aW9uIG9mIGEgUGl4ZWwgMTAgUHJvLCBQaXhlbCAxMCBQcm8g
+WEwgb3IgUGl4ZWwgMTAgUHJvICANCkZvbGQuIE9mZmVyIGlzIG5vdCBhdmFpbGFibGUgdG86IEdv
+b2dsZSBPbmUgdXNlcnMgc3Vic2NyaWJlZCB0byBhbiBhZGQtb24sICANCkdvb2dsZSBPbmUgdXNl
+cnMgc3Vic2NyaWJlZCB0byBhIGhpZ2hlciB0aWVyIHBsYW4gdGhhbiB0aGUgb25lIGJlaW5nICAN
+Cm9mZmVyZWQsIEdvb2dsZSBPbmUgdXNlcnMgb24gYSBmYW1pbHkgcGxhbiB3aG8gYXJlIG5vdCB0
+aGUgcGxhbiBtYW5hZ2VyLCAgDQphbmQgR29vZ2xlIE9uZSB1c2VycyB3aG8gaGF2ZSBhIHN1YnNj
+cmlwdGlvbiB0aHJvdWdoIGEgdGhpcmQgcGFydHkgb3IgIA0KYWZmaWxpYXRlLiBSZWRlZW0gdGhl
+IG9mZmVyIGJ5IE9jdG9iZXIgMzEsIDIwMjYgYXQgMTE6NTlwbSBQVC4gVmFsaWQgZm9ybSAgDQpv
+ZiBwYXltZW50IHJlcXVpcmVkIGF0IHNpZ24tdXAsIGJ1dCB5b3Ugd2lsbCBub3QgYmUgY2hhcmdl
+ZCB1bnRpbCB0aGUgdHJpYWwgIA0KcGVyaW9kIGV4cGlyZXMuIFVubGVzcyBjYW5jZWxlZCBlYXJs
+aWVyLCBHb29nbGUgQUkgUHJvIHdpbGwgY2hhcmdlICQxOS45OSAgDQphZnRlciB0aGUgdHJpYWwg
+ZW5kcywgYmlsbGVkIG9uIGEgcmVjdXJyaW5nIG1vbnRobHkgYmFzaXMuIENhbmNlbCBhbnl0aW1l
+LiAgDQpObyByZWZ1bmRzIGZvciBwYXJ0aWFsIGJpbGxpbmcgcGVyaW9kcywgZXhjZXB0IGFzIHJl
+cXVpcmVkIGJ5IGFwcGxpY2FibGUgIA0KbGF3LiBSZXR1cm4gb2YgcHVyY2hhc2VkIGRldmljZSBt
+YXkgcmVzdWx0IGluIGNhbmNlbGxhdGlvbiBvZiBzdWJzY3JpcHRpb24uICANClNlZSBnLmNvL3Bp
+eGVsL2dvb2dsZS1haS0xMC1wcm8tMTItbW9udGgtb2ZmZXIgZm9yIG1vcmUgZGV0YWlscy4NCg0K
+4oCg4oCgIEJ1eSBQaXhlbCAxMCBQcm8gRm9sZCAoVW5sb2NrZWQsIFZlcml6b24gb3IgQVQmVCBk
+ZXZpY2VzKSBhbmQgZ2V0IHVwIHRvICANCiQ3OTkgYmFjayB3aXRoIGFuIGVsaWdpYmxlIGlQaG9u
+ZSB0cmFkZS1pbi4gU3RhcnRzIFNlcHRlbWJlciAyOSwgMjAyNSBhdCAgDQoxMjowMCBhbSBQVCBh
+bmQgZW5kcyBPY3RvYmVyIDEyLCAyMDI1IGF0IDExOjU5IHBtIFBULiBVUyByZXNpZGVudHMgd2l0
+aCBVUyAgDQpzaGlwcGluZyBhZGRyZXNzZXMgb25seS4gTXVzdCBiZSAxOCB5ZWFycyBvciBvbGRl
+ci4gVHJhZGUtaW4gdmFsdWVzIHZhcnkgIA0KYmFzZWQgb24gbW9kZWwsIGNvbmRpdGlvbiwgeWVh
+ciwgYW5kIGNvbmZpZ3VyYXRpb24gb2YgdGhlIHRyYWRlLWluIGRldmljZSAgDQphbmQgYXJlIHN1
+YmplY3QgdG8gY2hhbmdlIHVwb24gaW5zcGVjdGlvbi4gVHJhZGUtaW4gdmFsdWUgbWF5IGFsc28g
+aW5jbHVkZSAgDQphbiBhZGRpdGlvbmFsIHN1YnNpZHkgdGhhdCBtYXkgdmFyeSBiYXNlZCBvbiB0
+aGUgbW9kZWwgb2YgeW91ciBwdXJjaGFzZWQgIA0KZGV2aWNlLiBSZXByZXNlbnRhdGl2ZSB0cmFk
+ZS1pbiBkZXZpY2UocykgZm9yIG1heGltdW0gdHJhZGUtaW4gYW1vdW50OiAkNzk5ICANCmZvciBp
+UGhvbmUgMTYgUHJvIE1heC4gVHJhZGUtaW4gZGV2aWNlIG11c3QgYmUgcmVjZWl2ZWQgd2l0aGlu
+IDMwIGRheXMgZnJvbSAgDQp0aGUgaW5pdGlhdGlvbiBvZiB0aGUgdHJhZGUtaW4gcHJvY2Vzcy4g
+QWZ0ZXIgdHJhZGUtaW4gZGV2aWNlIGluc3BlY3Rpb24sICANCnRyYWRlLWluIGNyZWRpdCB3aWxs
+IGJlIGlzc3VlZCB0byB0aGUgZm9ybSBvZiBwYXltZW50IHVzZWQgZm9yIHB1cmNoYXNlLCBvciAg
+DQppbiB0aGUgZm9ybSBvZiBTdG9yZSBDcmVkaXQgaWYgdGhlIHB1cmNoYXNlZCBkZXZpY2UgaGFz
+IGFscmVhZHkgYmVlbiAgDQpyZXR1cm5lZCBvciBHb29nbGUgU3RvcmUgY2Fubm90IHJlZnVuZCB5
+b3VyIHBheW1lbnQgbWV0aG9kLiBJZiB0aGUgdmFsdWUgb2YgIA0KdGhlIHRyYWRlLWluIGRldmlj
+ZSBpcyBncmVhdGVyIHRoYW4gdGhlIHZhbHVlIG9mIHRoZSBuZXcgZGV2aWNlLCBhbnkgIA0KZGlm
+ZmVyZW5jZSB3aWxsIGJlIHBhaWQgYnkgaXNzdWFuY2Ugb2YgU3RvcmUgQ3JlZGl0LiBVbmxlc3Mg
+b3RoZXJ3aXNlICANCnN0YXRlZCwgb2ZmZXIgY2Fubm90IGJlIGNvbWJpbmVkIHdpdGggb3RoZXIg
+b2ZmZXJzIGFuZCBpcyBub3QgdHJhbnNmZXJhYmxlLiAgDQpQdXJjaGFzZSBtdXN0IGJlIG1hZGUg
+b24gR29vZ2xlIFN0b3JlIFVTLiBWb2lkIHdoZXJlIHByb2hpYml0ZWQuIEFkZGl0aW9uYWwgIA0K
+dHJhZGUtaW4gdGVybXMgYXJlIGxvY2F0ZWQgaGVyZS4NCg0KaVBob25lwq4gaXMgYSByZWdpc3Rl
+cmVkIHRyYWRlbWFyayBvZiBBcHBsZSBJbmMuDQoNCjEgJDAgc2NyZWVuIHJlcGFpciBpcyBvbmx5
+IGF2YWlsYWJsZSBmb3IgZnJvbnQgc2NyZWVuIGFuZCBiYWNrIGdsYXNzIG9mICANClBpeGVsIHBo
+b25lczsgbm90IGF2YWlsYWJsZSBmb3IgaW5uZXIgc2NyZWVucyBvZiBQaXhlbCBGb2xkIHBob25l
+cy4gRm9yICANCmNvbXBsZXRlIGRldGFpbHMsIHNlZSB0aGUgUGl4ZWwgQ2FyZSsgVGVybXMgYW5k
+IENvbmRpdGlvbnMuDQoNCjIgQ292ZXJhZ2UgaXMgYXZhaWxhYmxlIG9ubHkgZm9yIGJhdHRlcmll
+cyB0aGF0IHJldGFpbiBsZXNzIHRoYW4gODAlIG9mICANCm9yaWdpbmFsIGNoYXJnZSBjYXBhY2l0
+eS4NCg0KDQoNCg0KDQrCqSAyMDI1IEdvb2dsZSBMTEMsIDE2MDAgQW1waGl0aGVhdHJlIFBhcmt3
+YXksIE1vdW50YWluIFZpZXcsIENBIDk0MDQzLCAgDQpVbml0ZWQgU3RhdGVzDQoNCg0KDQoNCg0K
+VGhpcyBlbWFpbCB3YXMgc2VudCB0byBMaWVuQ0ZAZ21haWwuY29tIGJlY2F1c2UgeW91IGFza2Vk
+IHRvIHJlY2VpdmUgIA0Kb2ZmZXJzLCB1cGRhdGVzIGFuZCBtb3JlIGFib3V0IGRldmljZXMgZnJv
+bSBHb29nbGUgb24gc3RvcmUuZ29vZ2xlLmNvbS4gSWYgIA0KeW91J2QgbGlrZSB0byB1bnN1YnNj
+cmliZSwgY2xpY2sgaGVyZS4NCg0KDQoNCg0KDQpQcml2YWN5IHBvbGljeSB8IFRlcm1zIG9mIFNl
+cnZpY2UNCg0KDQoNCg==
+--000000000000c8bf050640bd17ed
+Content-Type: text/x-amp-html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!doctype html>
+<html =E2=9A=A14email data-css-strict lang=3Den>
+<head>
+<meta charset=3Dutf-8>
+<script async src=3Dhttps://cdn.ampproject.org/v0.js></script>
+<script async custom-element=3Damp-bind src=3Dhttps://cdn.ampproject.org/v0=
+/amp-bind-0.1.js></script>
+<script async custom-element=3Damp-form src=3Dhttps://cdn.ampproject.org/v0=
+/amp-form-0.1.js></script>
+<script async custom-element=3Damp-selector src=3Dhttps://cdn.ampproject.or=
+g/v0/amp-selector-0.1.js></script>
+<script async custom-element=3Damp-list src=3Dhttps://cdn.ampproject.org/v0=
+/amp-list-0.1.js></script>
+<script async custom-template=3Damp-mustache src=3Dhttps://cdn.ampproject.o=
+rg/v0/amp-mustache-0.2.js></script>
+<style amp4email-boilerplate>body{visibility:hidden}</style>
+<style amp-custom>
+* {
+border: none;
+margin: 0;
+padding: 0;
+font-family: "Google Sans", Arial, sans-serif;
+text-decoration: none; }
+table {
+border-collapse: collapse; }
+table td {
+border-collapse: collapse; }
+a {
+border: none; }
+a img {
+outline: none;
+text-decoration: none; }
+.preheader {
+display: none; }
+sup {
+line-height: 1.5;
+font-size: 65%;
+vertical-align: top; }
+img {
+display: block;
+max-width: 100%; }
+.shell__backdrop {
+background-color: #ffffff;
+padding-top: 16px;
+padding-bottom: 24px; }
+.shell__body {
+background-color: #ffffff;
+width: 720px;
+margin: 0 auto; }
+@media (max-width: 720px) {
+.shell__body {
+width: 100%;
+max-width: 500px; } }
+@media screen {
+body {
+color: #3C4043;
+font-family: "Google Sans", Arial, sans-serif;
+font-weight: 400;
+font-size: 14px;
+line-height: 21px;
+}
+a {
+font-family: "Google Sans", Arial, sans-serif;
+color: #1967D2;
+text-decoration: none;
+}
+td {
+font-family: inherit;
+}
+p,
+h3,
+h6 {
+margin: 0;
+}
+.h3,
+.h6,
+.headline,
+.copy {
+font-family: "Google Sans", Arial, sans-serif;
+color: #3C4043;
+}
+p {
+font-size: 14px;
+line-height: 21px;
+letter-spacing: 0.2px;
+}
+.bold,
+.h3,
+.h6,
+.subhead-1 {
+font-weight: 700;
+}
+.h3 {
+font-size: 32px;
+line-height: 1.2;
+}
+.h6 {
+font-size: 20px;
+line-height: 1.5;
+}
+.subhead-1 {
+font-size: 16px;
+line-height: 1.5;
+letter-spacing: 0.1px;
+}
+.copy-lockup {
+margin: 0 auto;
+box-sizing: border-box;
+width: 100%;
+}
+.copy-lockup.center {
+text-align: center;
+}
+.copy-lockup .headline {
+margin: 0;
+}
+.preheader {
+display: none;
+display: none;
+}
+body {
+margin: 0 auto;
+padding: 0;
+}
+table {
+border-collapse: collapse;
+margin: 0 auto;
+box-sizing: border-box;
+}
+td {
+box-sizing: border-box;
+border-collapse: collapse;
+}
+td.empty {
+font-size: 0px;
+line-height: 0px;
+}
+div.center {
+margin: 0 auto;
+}
+img {
+border: none;
+outline: none;
+display: block;
+max-width: 720px;
+margin: 0 auto;
+}
+img.img-fluid {
+width: 100%;
+}
+sup {
+vertical-align: top;
+font-size: 70%;
+line-height: 1.2;
+}
+}
+@media only screen {
+sup {
+vertical-align: top;
+font-size: 70%;
+line-height: 1.2;
+}
+}
+@media screen {
+.nowrap,
+.no-wrap {
+white-space: nowrap;
+}
+.mobile {
+display: none;
+}
+.br-20 {
+border-radius: 20px;
+overflow: hidden;
+}
+.pad-16 {
+padding: 0px 16px;
+}
+.h3,
+.h6,
+.headline,
+.copy {
+color: #202124;
+}
+.mod-hero {
+background-color: #E7ECF3;
+overflow: hidden;
+}
+.mod-promo {
+color: #202124;
+}
+.mod-promo .pill-box .pill {
+background-color: #E7ECF3;
+padding: 20px 12px;
+width: 688px;
+}
+.mod-promo .two-pill-box {
+padding: 0px 16px;
+}
+.mod-promo .two-pill-box .pill-col {
+max-width: 226px;
+}
+.mod-promo .two-pill-box .pill {
+background-color: #E7ECF3;
+padding: 20px 12px;
+}
+.mod-promo .pill-box .col-icon img,
+.mod-promo .two-pill-box .col-icon img {
+width: 24px;
+}
+.mod-promo .pill-box .col-icon,
+.mod-promo .two-pill-box .col-icon {
+vertical-align: top;
+}
+.mod-promo .two-pill-box .pill-col {
+max-width: 342px;
+}
+.mod-ksp .three-pill-box {
+padding: 0px 16px;
+}
+.mod-ksp .three-pill-box .pill {
+max-width: 222px;
+}
+.mod-ksp .three-pill-box .pill .inner-pill {
+padding: 0px 16px;
+}
+.mod-ksp .three-pill-box .pill .inner-pill p {
+font-size: 16px;
+line-height: 24px;
+letter-spacing: 0.1px;
+text-align: center;
+color: #202124;
+}
+.mod-compare .pad-comp {
+padding: 0 48px;
+}
+.mod-pixelsnap .sbs {
+background-color: #E7ECF3;
+}
+.shell__backdrop {
+background-color: #ffffff;
+padding-top: 16px;
+padding-bottom: 24px;
+}
+.shell__body {
+background-color: #ffffff;
+width: 720px;
+margin: 0 auto;
+}
+}
+@media screen and (max-width: 720px) {
+.shell__body {
+width: 100%;
+max-width: 500px;
+}
+}
+@media screen {
+.br-20 {
+border-radius: 20px;
+overflow: hidden;
+}
+amp-selector[role=3Dtablist].tabs-with-selector {
+display: flex;
+}
+amp-selector[role=3Dtablist].tabs-with-selector [role=3Dtab][selected] {
+outline: none;
+color: #3c4043;
+}
+amp-selector[role=3Dtablist].tabs-with-selector {
+display: flex;
+}
+amp-selector[role=3Dtablist].tabs-with-selector [role=3Dtab] {
+width: 100%;
+text-align: center;
+padding: 0 12px;
+color: #A6A6A6;
+}
+amp-selector.tabpanels.img-panels {
+padding: 0 14px;
+}
+amp-selector.tabpanels [role=3Dtabpanel] {
+display: none;
+}
+amp-selector.tabpanels [role=3Dtabpanel][selected] {
+outline: none;
+display: block;
+}
+.selector-text-container {
+padding: 0 16px;
+}
+.mod-compare p.subhead-1 {
+font-size: 20px;
+line-height: 30px;
+}
+}
+@media screen and (max-width: 720px) {
+.h3 {
+font-size: 28px;
+}
+}
+@media screen and (max-width: 720px) {
+.copy-lockup {
+width: 80%;
+padding: 0;
+}
+}
+@media screen and (max-width: 720px) {
+img {
+max-width: 720px;
+}
+.desktop {
+display: none;
+height: 0;
+font-size: 0;
+line-height: 0;
+}
+.mobile {
+display: initial;
+}
+amp-img.mobile {
+display: block;
+}
+img.mobile {
+display: block;
+height: auto;
+}
+table.mobile {
+display: table;
+}
+.stack {
+width: 100%;
+display: block;
+}
+}
+@media screen and (max-width: 720px) {
+span {
+font-size: 100%;
+line-height: normal;
+}
+.pad-16 {
+padding: 0px 6px;
+}
+.mod-promo .col-icon img {
+width: 24px;
+}
+.mod-promo .pill-box,
+.mod-promo .two-pill-box {
+padding: 0px 6px;
+}
+.mod-promo .pill-box .pill,
+.mod-promo .two-pill-box .pill {
+background-color: #E7ECF3;
+margin: 0 auto;
+max-width: 348px;
+padding: 20px 12px;
+width: 92%;
+}
+.mod-compare .pad-comp {
+padding: 0 36px;
+}
+.mod-ksp .three-pill-box {
+padding: 0px 16px;
+}
+.mod-ksp .three-pill-box .pill {
+max-width: 316px;
+}
+.mod-ksp .three-pill-box .inner-pill {
+margin: 0 auto;
+max-width: 348px;
+padding: 20px 16px 0px;
+}
+.mod-ksp .three-pill-box .inner-pill p {
+font-size: 16px;
+line-height: 24px;
+letter-spacing: 0.1px;
+text-align: center;
+}
+.mod-cross-sell {
+margin: 0 auto;
+max-width: 360px;
+}
+}
+@media screen and (max-width: 720px) {
+* div.copy-lockup {
+width: 80%;
+}
+.three-pill-box {
+max-width: 348px;
+}
+.carousel {
+padding: 0 16px;
+}
+.carousel-button-prev {
+background-image: url("https://services.google.com/fh/files/emails/arrow_ba=
+ck_2x_16x16.png");
+}
+.carousel-button-prev.disabled {
+background-image: url("https://services.google.com/fh/files/emails/arrow_ba=
+ck_disabled_2x_16x16.png");
+}
+.carousel-button-next {
+background-image: url("https://services.google.com/fh/files/emails/arrow_fo=
+rward_2x_16x16.png");
+}
+.carousel-button-next.disabled {
+background-image: url("https://services.google.com/fh/files/emails/arrow_fo=
+rward_disabled_2x_16x16.png");
+}
+.carousel-button {
+border-radius: 50%;
+border: 1px solid #f1f3f4;
+background-color: #DADEE7;
+background-size: 16px 16px;
+background-position: center;
+background-repeat: no-repeat;
+width: 48px;
+height: 48px;
+padding: 4px;
+box-sizing: border-box;
+}
+.carousel-button.disabled {
+background-color: #F5F6F7;
+}
+.carousel-button:active {
+background-color: #bdc1c6;
+}
+.dots {
+text-align: center;
+}
+.dots span {
+display: inline-block;
+background: #80868b;
+border-radius: 6px;
+width: 6px;
+height: 6px;
+margin: 8px;
+}
+.dots span.current {
+background: #3c4043;
+}
+.caption {
+margin: 0 auto;
+text-align: center;
+}
+}
+.masthead, .masthead amp-img { margin: auto; display: block; }
+.masthead .id-1 { background-color: #FFFFFF; padding: 26px 0; }
+.masthead .id-1 amp-img { height: 20px; width: 110px; }
+.footer { width: 100% ; text-align: center; padding: 0px 48px 28px 48px; ba=
+ckground-color: #ffffff; border-collapse: separate; }
+.footer img { box-sizing: content-box; display: inline-block; max-width: no=
+ne; }
+.footer tr { padding: 0; }
+.footer table { margin: auto; width:100%; text-align:center; border-collaps=
+e: separate; border-spacing: 0; }
+.footer .footer__text--primary, .footer .footer__text--secondary{ color: #4=
+23F3F ; font-family: Google Sans, Arial, sans-serif; font-weight: regular; =
+text-decoration: none; }
+.footer .footer__text--primary, .footer .footer__text--primary a{ font-size=
+: 14px; line-height: 21px; }
+.footer .footer__text--secondary, .footer .footer__text--secondary a{ font-=
+size: 12px; line-height: 20px; }
+.footer .footer__text--bold { font-weight: 600; }
+.footer .footer__text--standout-link { text-decoration: underline; color: #=
+1c5ac9; }
+.footer__divider { padding: 0 0 0 0; border-collapse: collapse; border-top:=
+ 1px solid #80868B; font-size: 0px; line-height: 0px; }
+.footer__social-media-container { padding: 24px 0 24px 0 }
+.footer__disclaimer-container { padding: 24px 0 0 0; }
+.footer__diclaimer-row { padding-bottom: 16px; }
+.footer__diclaimer-row a{ text-decoration: underline; color: #1c5ac9; font-=
+size: 12px; line-height: 20px; }
+.footer__entity-and-address-container { padding: 32px 0 16px 0; }
+.footer__rationale-container { padding: 0 0 16px 0; }
+.footer__links-container { padding: 0; }
+.compact_1 { margin: auto; }
+.compact_1 .id-2 { background-color: #E7ECF3; padding: 40px 48px 36px; text=
+-align: center; }
+.eds__heading_1, .eds__heading_2, .eds__heading_3, .eds__heading_4, .eds__h=
+eading_5, .eds__heading_6, .eds__subheading_1, .eds__subheading_2, .eds__ey=
+ebrow, .eds__body, .eds__footnote { color: #202124; margin: 0; }
+.eds__eyebrow { font-weight: 500; font-size: 14px; line-height: 1.5; letter=
+-spacing: 0.25px; }
+.compact_1 .id-2 .compact_1__eyebrow { color: #202124; }
+.eds__heading_1 { font-weight: 700; font-size: 48px; line-height: 1.2; lett=
+er-spacing: -1.4px; }
+.compact_1 .id-2 .compact_1__heading { color: #202124; }
+.eds__body { font-weight: 400; font-size: 14px; line-height: 1.5; letter-sp=
+acing: 0.2px; }
+.compact_1 .id-2 .compact_1__body { color: #202124; }
+.cta { font-family: "Google Sans", Arial, sans-serif; font-weight: 500; mar=
+gin: auto; display: inline-block; width: max-content; text-align: center; }
+.cta a { text-decoration: none; cursor: pointer; display: inline-block; }
+.cta .cta-caret { font-size: 24px; line-height: 18px; font-weight: 400; }
+.cta .high_light { background-color: #1967D2; border: 2px solid #1967D2; bo=
+rder-radius: 100px; color: #FFFFFF; font-size: 16px; line-height: 24px; }
+.cta .medium { margin: auto; padding: 10px 22px; }
+.cta a:hover .high_light { background-color: #174EA6; border: 2px solid #17=
+4EA6; color: #FFFFFF; }
+.spacer-8-height { font-size: 8px; line-height: 8px; }
+.spacer-6-height { font-size: 6px; line-height: 6px; }
+.spacer-16-height { font-size: 16px; line-height: 16px; }
+.compact_1 .id-3 { background-color: #FFFFFF; padding: 48px 48px 28px; text=
+-align: center; }
+.eds__heading_4 { font-weight: 700; font-size: 28px; line-height: 1.2; }
+.compact_1 .id-3 .compact_1__heading { color: #202124; }
+.cta .low_light_inline { background-color: transparent; border: 0; border-r=
+adius: 0; color: #1967D2; font-size: 14px; line-height: 21px; }
+.cta a:hover .low_light_inline .cta-text, .cta a:hover .low_light_inline .c=
+ta-caret { background-color: transparent; border: 0; color: #174EA6; }
+.cta .low_light_inline .cta-text { color: #1967D2; font-size: 14px; line-he=
+ight: 21px; vertical-align: top; }
+.compact_1 .id-5 { background-color: #EEF3F9; padding: 48px 48px 28px; text=
+-align: center; }
+.eds__footnote { font-family: "Roboto", "Google Sans", Arial, sans-serif; f=
+ont-weight: 400; font-size: 12px; line-height: 20px; }
+.eds__heading_6 { font-weight: 700; font-size: 20px; line-height: 1.5; }
+.eds__subheading_1 { font-weight: 700; font-size: 16px; line-height: 1.5; l=
+etter-spacing: 0.1px; }
+.cta .medium_light_alt { background-color: transparent; border: 2px solid #=
+202124; border-radius: 100px; color: #202124; font-size: 16px; line-height:=
+ 24px; }
+.cta a:hover .medium_light_alt { background-color: #202124; border: 2px sol=
+id #202124; color: #FFFFFF; }
+.divider { width: 100%; }
+.divider .container-full_width { padding-left: 22px; padding-right: 22px; }
+.divider_line { font-size: 0; line-height: 0; border-top: 1px solid; }
+.divider_line--gray_300 { border-color: #DADCE0; }
+.spacer-28-height { font-size: 28px; line-height: 28px; }
+.spacer-24-height { font-size: 24px; line-height: 24px; }
+.spacer-36-height { font-size: 36px; line-height: 36px; }
+.spacer-12-height { font-size: 12px; line-height: 12px; }
+.trade_in_interactive { width: 100%; }
+.trade_in_interactive .id-4 { background-color: #EEF3F9; border-radius: 20p=
+x; overflow: hidden; }
+.trade_in_interactive .italic { font-style: italic; }
+.trade_in_interactive .interactive { width: 100%; text-align: center; paddi=
+ng: 40px 48px; box-sizing: border-box; }
+.trade_in_interactive .id-4 .interactive { margin-bottom: 0; margin-top: 0;=
+ }
+.trade_in_interactive .up_to { color: #80868B; display: inline; }
+.trade_in_interactive .max_value { color: #1E8E3E; display: inline; }
+.trade_in_interactive .disclaimer_value { color: #80868B; display: inline; =
+}
+.trade_in_interactive select.dropdown { -moz-appearance:none; -webkit-appea=
+rance:none; width:100%; height:56px; padding-left:24px; padding-right:24px;=
+ border-radius: 8px; border: 2px solid #DADCE0; color: #80868B; font-weight=
+: bold; font-size: 16px; letter-spacing: 0.1px; position: relative; backgro=
+und:transparent }
+.trade_in_interactive .dropdown-container { position: relative; background-=
+color: #FFFFFF; border-radius: 12px; }
+.trade_in_interactive .dropdown-container:hover .dropdown, .trade_in_intera=
+ctive .dropdown:hover, .trade_in_interactive .dropdown.active { color: #202=
+124; border-color: #202124 }
+.trade_in_interactive .dropdown-image-container{ position: absolute; width:=
+ 48px; height: 48px; background-color:transparent; right:0px; top:4px; }
+.trade_in_interactive .reveal-text-container{ width:100%; text-align:start =
+}
+.trade_in_interactive .image amp-img { display:inline-block }
+.disclaimer_placeholder { height: 160px; }
+.interactive_placeholder { height:1000px; }
+.trade_in_interactive .divider-no-padding .container-full_width{ padding: 0=
+; }
+.trade_in_interactive .id-4 .static { margin: 0 0 0 0; }
+.trade_in_interactive .static-table { width:100% }
+.trade_in_interactive .image-desktop-hide { display: none; }
+.trade_in_interactive .trade-in-value-line { height: 40px; }
+.trade_in_interactive .trade-in-value-line-device { text-align: left; paddi=
+ng: 8px 0; }
+.trade_in_interactive .trade-in-value-value { width: 144px; text-align: rig=
+ht; }
+.trade_in_interactive .trade-in-content-container { text-align:left; paddin=
+g: 48px; }
+.trade_in_interactive .left-side-width { width: 418px; }
+.evp { height: 1px; width: 720px; background-color: #F8F9FA; border-radius:=
+ 20px; }
+.evp .heading { font-size: 20px; line-height: 30px; text-align: center; fon=
+t-family: 'Google Sans', Arial, sans-serif; font-weight: 700; padding: 40px=
+ 48px 24px; color: #202124; }
+.evp .h-spacer-outer { width: 22px; }
+.evp .h-spacer-inner { width: 20px; }
+.evp .height-100-p { height: 100%; }
+.evp .width-100-p { width: 100%; }
+.evp .card .card-table { background-color: #FFFFFF; border-radius: 12px; }
+.evp .card-6 { width: 208px; }
+.evp .card-6 .card-padding { width: 16px; }
+.evp .icon { padding-top: 24px; padding-bottom: 16px; float: left; }
+.evp .icon amp-img { height: 48px; width: 48px; }
+.evp .icon-partner { padding-bottom: 16px; float: left; }
+.evp .icon-partner amp-img { width: 64px; height: 32px; float: none; }
+.evp .card-heading { font-size: 16px; line-height: 24px; font-weight: 700; =
+padding-bottom: 6px; font-family: 'Google Sans', Arial, sans-serif; color: =
+#202124; }
+.evp .card-body { font-size: 14px; line-height: 21px; padding-bottom: 16px;=
+ font-family: 'Google Sans', Arial, sans-serif; color: #202124; }
+.evp .card-cta, .evp .card-cta a { font-size: 14px; line-height: 21px; padd=
+ing-bottom: 24px; font-family: 'Google Sans', Arial, sans-serif; text-decor=
+ation: none; font-weight: 500; color: #1967D2; }
+.evp .card-cta:hover, .evp .card-cta a:hover { color: #174EA6; }
+.evp .cta-caret { font-size: 24px; line-height: 18px; font-weight: 400; ver=
+tical-align: top; }
+.evp .v-spacer { height: 20px; font-size: 20px; line-height: 20px; backgrou=
+nd-color: #F8F9FA; border-bottom-right-radius: 20px; border-bottom-left-rad=
+ius: 20px; }
+.evp .v-spacer-mobile { display: none; }
+.mod-hero { border-radius: 20px; }
+* sup, .compact_1 sup { vertical-align: top; font-size: 70%; line-height: 1=
+.2; }
+.mod-pixelsnap .id-8 { padding: 0px 20px 0px; }
+@media screen and (max-width: 720px) { .footer { padding: 0px 16px 28px 16p=
+x; } .footer__disclaimer-container { padding: 24px 0 0 0; } .footer__entity=
+-and-address-container { padding: 32px 0 8px 0; } .compact_1 .id-2 { paddin=
+g-left: 10%; padding-right: 10%; padding-bottom: 32px; } .compact_1 .id-3 {=
+ padding-left: 10%; padding-right: 10%; } .compact_1 .id-5 { padding-left: =
+10%; padding-right: 10%; padding-bottom: 20px; } .divider .container-full_w=
+idth { padding-left: 16px; padding-right: 16px; } .trade_in_interactive .in=
+teractive { padding: 40px 36px; } .disclaimer_placeholder { height: 330px; =
+} .interactive_placeholder { height:540px; } .shell { height: 575px; overfl=
+ow-y: scroll; } .trade_in_interactive .trade-in-content-container { text-al=
+ign:center; padding: 0 48px 40px; } .trade_in_interactive .left-side-width =
+{ width: 100%; display: block; } .trade_in_interactive .right-side-width { =
+width: 100%; display: block; } .trade_in_interactive .image-mobile-hide { d=
+isplay: none; } .trade_in_interactive .static-cta { width: auto } .evp { wi=
+dth: 100%; } .evp .stack { width: 100%; display: block; } .evp .heading { p=
+adding: 32px 36px; } .evp .v-spacer { display: none; } .evp .v-spacer-mobil=
+e { display: table-cell; height: 16px; font-size: 16px; line-height: 16px; =
+background-color: #F8F9FA; } .evp .card-heading, .evp .card-body, .evp .car=
+d-cta { text-align: center; } .evp .icon, .evp .icon-partner { float: none;=
+ } .evp .height-auto { height: auto; } .evp .m-fluid { width: 100%; } .evp =
+.m-hide { display: none; } .evp .h-spacer-outer { width: 16px; } .support .=
+bauble { width: 80px; min-width: 80px; } .footer__diclaimer-row a { word-br=
+eak: break-all; } .mod-cross-sell h6 { font-size: 16px; line-height: 24px; =
+} * sup, .compact_1 sup { vertical-align: top; font-size: 70%; line-height:=
+ 1.2; } }
+@media only screen and (max-width: 720px) { .footer__social-media-container=
+ { padding: 24px 0 24px 0; } .footer__rationale-container { padding: 0 0 8p=
+x 0; } }
+@media (max-width: 720px) { .eds__heading_1 { font-size: 34px; letter-spaci=
+ng: -1px; } .eds__heading_4 { font-size: 24px; line-height: 1.5; } }
+</style></head>
+<body style=3D"visibility: hidden;">
+<div class=3Dshell>
+<div class=3Dshell__backdrop style=3D"background-color: #ffffff;">
+<div class=3Dshell__body style=3D"background-color: #ffffff;">
+<div class=3Dmasthead>
+<div class=3D"id-1 " [class]=3D&#39;id-1&#39;>
+<!--[if mso]>
+<table align=3D"center" style=3D"background-color: #FFFFFF; width: 100%;"><=
+tr><td align=3D"center" style=3D"padding:26px 0;">
+<!--<![endif]--><!---->
+<amp-img src=3Dhttps://services.google.com/fh/files/emails/google_store_log=
+o_2x.png class=3D"logo " alt=3D"" aria-hidden=3Dhidden height=3D20px width=
+=3D110px></amp-img>
+<!--[if mso]>
+</tr></table>
+<!--<![endif]--><!---->
+</div>
+</div>
+<div class=3D"mod-hero ">
+<div class=3Dcompact_1>
+<div class=3Did-2>
+<div class=3Deyebrow-row>
+<p class=3D"eds__eyebrow compact_1__eyebrow">Google Pixel 10 Pro=C2=A0Fold<=
+/p>
+</div>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-8-height>
+=C2=A0
+</td>
+</tr>
+</table>
+<div class=3Dheading-row>
+<h1 class=3D"eds__heading_1 compact_1__heading">Unfold=C2=A0extraordinary.<=
+/h1>
+</div>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-6-height>
+=C2=A0
+</td>
+</tr>
+</table>
+<div class=3Dbody-row>
+<p class=3D"eds__body compact_1__body"><span class=3Dbold>From=C2=A0$1,799<=
+/span></p>
+</div>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-16-height>
+=C2=A0
+</td>
+</tr>
+</table>
+<div class=3Dcta-row>
+<div class=3D"cta compact_1__cta_1">
+<a href=3Dhttps://c.gle/AF5yWjDauVnWiruweip_IxZg0hXxroBI5MWgE6qtyFtwEl8DXOq=
+udGT8tlLo-m-0KOcUk3LaN8DG3bTgZeZikiDgWy6utiF3_60IRgtJdLTfZf4BWqyhZH-5gMjcWP=
+mTDWJ6UnfEyfD8DW6hKea9QDAeAIV3irrYZ4vGw0VT1Fwj2WsaErJjh86ubhA87GbpB1LUUOMF4=
+FWR4JYIlI8JoIb29byP6PvLY3uflJiIaWWK_Vx4GpiRtxsi54iDN6yZ9b6Zl6Ln4Jv_DWqST3KS=
+7WxENVu06CeAN5g4eYNY7ePi8z2SWAMC818kBIlhxg>
+<div class=3D"high_light medium">
+Shop now
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<amp-img src=3Dhttps://lh3.googleusercontent.com/Pt7c5Xr5GO6Qt0rDw2fXcXlTrg=
+VJXrHrYLVeNQqpHUDmNO94nmagJEv0tCpjYXkk6rQp-M97NTPlQATuRm8sL4njon5XZ_7hWQ=3D=
+w360-h344 alt width=3D360 height=3D344 layout=3Dresponsive aria-hidden=3Dtr=
+ue class=3D"mobile img ">
+</amp-img>
+<amp-img src=3Dhttps://lh3.googleusercontent.com/y3hgB9MHj_Gv0I3Nag5Q4hmAN3=
+aGAc0MlTCmzXcTCdMRKbpWiGzETGfc8CcVy_E5s_Xg-OSxkYXVKtkT0JTGIxIzt7z-xD8LMg=3D=
+w720-h436 alt width=3D720 height=3D436 layout=3Dresponsive aria-hidden=3Dtr=
+ue class=3D"desktop img ">
+</amp-img>
+</div> <div class=3Dmod-promo>
+<div class=3Dcompact_1>
+<div class=3Did-3>
+<div class=3Dheading-row>
+<h4 class=3D"eds__heading_4 compact_1__heading">Unlock special offers on <s=
+pan style=3D"white-space: nowrap">Pixel 10 Pro=C2=A0Fold.</span></h4>
+</div>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-16-height>
+=C2=A0
+</td>
+</tr>
+</table>
+<div class=3Dcta-row>
+<div class=3D"cta compact_1__cta_1">
+<a href=3Dhttps://c.gle/AF5yWjBzDudsVrSZ-DHvL1BTbFHIQeEwL9L8gqcKbR97wBO0Po9=
+DTLEXRaT9t36SqMRwQ2Daji0GWW-aQRYkXG86N6iCGeY_vjq-Q5tdwH_7pTlRIHeC68nEDPmrp6=
+GlNJ_gtg1iFOHKHGm2qkHBy1PnuqkIY2QlP4rYK2Du4TvydPDo6M2eO2mpyh6EbnZXEthhX6yi2=
+M2aSWHbXyCKyDQZEVBWtur1BdcGjyAsoSHTU5HuJtIyWEpMWi8ocIyvBS57FLoSGNqHP_qR1H4-=
+CbmwqNG9cfU7taDSCSzNE6M7cdIyW1MXMTnQMVa5uOpx>
+<div class=3D"low_light_inline ">
+<span class=3Dcta-text>See all offers</span><span class=3Dcta-caret>=C2=A0=
+=E2=80=BA</span>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class=3Dtwo-pill-box>
+<table class=3Ddesktop role=3Dpresentation style=3D"border-collapse: collap=
+se; margin: 0 auto; box-sizing: border-box;" cellpadding=3D0 cellspacing=3D=
+0 border=3D0>
+<tr>
+<td class=3D"pill-col br-20 pill" valign=3Dtop>
+<div>
+<table role=3Dpresentation style=3D"border-collapse: collapse; margin: 0 au=
+to; box-sizing: border-box;" cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dcol-icon style=3D"font-family: inherit; box-sizing: border-box;=
+ border-collapse: collapse;">
+<amp-img src=3Dhttps://lh3.googleusercontent.com/hlRNlkhvh-FAl9Lm-lJOkYTChN=
+6nDWlCCZeufY0JjVG5BziczPc_E2uM2f-cw-5pjKzGsM0wGPouqjVqXsHJ4HIoHvARbog2I3OC=
+=3Dw48-h48 alt width=3D24 height=3D24 layout=3Dfixed aria-hidden=3Dtrue cla=
+ss=3D"img ">
+</amp-img>
+</td>
+<td width=3D8 class=3D" h-spacer">=C2=A0</td> <td class=3Dcol-text style=3D=
+"font-family: inherit; box-sizing: border-box; border-collapse: collapse;">
+<p>
+Get $800 off Pixel 10 Pro Fold with $300 off instantly and $500 back over 2=
+4 monthly bill credits when you join Google Fi Wireless.<sup>=E2=80=A0</sup=
+> </p>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td width=3D4 class=3D"desktop h-spacer">=C2=A0</td> <td class=3D"pill-col =
+br-20 pill" valign=3Dtop>
+<div>
+<table role=3Dpresentation style=3D"border-collapse: collapse; margin: 0 au=
+to; box-sizing: border-box;" cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dcol-icon style=3D"font-family: inherit; box-sizing: border-box;=
+ border-collapse: collapse;">
+<amp-img src=3Dhttps://lh3.googleusercontent.com/5OwPrNElvO6l-xYwtGG298dzBS=
+VgtFwYeqog4Oi5SOt7-J2Bkv4k76QqkZh47AySvqZexM4sKad0qRzMrgg5PYyYQtDLiGJsRw=3D=
+w48-h48 alt width=3D24 height=3D24 layout=3Dfixed aria-hidden=3Dtrue class=
+=3D"img ">
+</amp-img>
+</td>
+<td width=3D8 class=3D" h-spacer">=C2=A0</td> <td class=3Dcol-text style=3D=
+"font-family: inherit; box-sizing: border-box; border-collapse: collapse;">
+<p>
+Get 1 year of Google AI Pro on us ($239 value), plus additional premium Goo=
+gle services with any unlocked or carrier phone.<sup>=E2=80=A1</sup> </p>
+</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<div class=3Dmobile>
+<div class=3D"br-20 pill">
+<table role=3Dpresentation style=3D"border-collapse: collapse; margin: 0 au=
+to; box-sizing: border-box;" cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dcol-icon style=3D"font-family: inherit; box-sizing: border-box;=
+ border-collapse: collapse;">
+<amp-img src=3Dhttps://lh3.googleusercontent.com/hlRNlkhvh-FAl9Lm-lJOkYTChN=
+6nDWlCCZeufY0JjVG5BziczPc_E2uM2f-cw-5pjKzGsM0wGPouqjVqXsHJ4HIoHvARbog2I3OC=
+=3Dw48-h48 alt width=3D24 height=3D24 layout=3Dfixed aria-hidden=3Dtrue cla=
+ss=3D"img ">
+</amp-img>
+</td>
+<td width=3D8 class=3D" h-spacer">=C2=A0</td> <td class=3Dcol-text style=3D=
+"font-family: inherit; box-sizing: border-box; border-collapse: collapse;">
+<p>
+Get $800 off Pixel 10 Pro Fold with $300 off instantly and $500 back over 2=
+4 monthly bill credits when you join Google Fi Wireless.<sup>=E2=80=A0</sup=
+> </p>
+</td>
+</tr>
+</table>
+</div>
+<table class=3D"spacer mobile" width=3D100% role=3Dpresentation cellpadding=
+=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dempty style=3D"font-size: 4px; line-height:4px" height=3D4px>=
+=C2=A0</td>
+</tr>
+</table> <div class=3D"br-20 pill">
+<table role=3Dpresentation style=3D"border-collapse: collapse; margin: 0 au=
+to; box-sizing: border-box;" cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dcol-icon style=3D"font-family: inherit; box-sizing: border-box;=
+ border-collapse: collapse;">
+<amp-img src=3Dhttps://lh3.googleusercontent.com/5OwPrNElvO6l-xYwtGG298dzBS=
+VgtFwYeqog4Oi5SOt7-J2Bkv4k76QqkZh47AySvqZexM4sKad0qRzMrgg5PYyYQtDLiGJsRw=3D=
+w48-h48 alt width=3D24 height=3D24 layout=3Dfixed aria-hidden=3Dtrue class=
+=3D"img ">
+</amp-img>
+</td>
+<td width=3D8 class=3D" h-spacer">=C2=A0</td> <td class=3Dcol-text style=3D=
+"font-family: inherit; box-sizing: border-box; border-collapse: collapse;">
+<p>
+Get 1 year of Google AI Pro on us ($239 value), plus additional premium Goo=
+gle services with any unlocked or carrier phone.<sup>=E2=80=A1</sup> </p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<table class=3D"spacer " width=3D100% role=3Dpresentation cellpadding=3D0 c=
+ellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dempty style=3D"font-size: 60px; line-height:60px" height=3D60px=
+>=C2=A0</td>
+</tr>
+</table>
+</div>
+<div class=3D"mod-trade-in pad-16">
+<div class=3Dtrade_in_interactive>
+<div class=3Did-4>
+<amp-state id=3Dstate>
+<script type=3Dapplication/json>
+{
+"manufacturer": "default",
+"target_device": "Pixel 10 Pro Fold",
+"model": "default",
+"prepopulated": false,
+"display_error_message": false,
+"show_value": false
+}
+</script>
+</amp-state>
+<amp-list layout=3Dcontainer src=3Dhttps://us-central1-countdown-gifs.cloud=
+functions.net/get-trade-in-info?query=3Dmanufacturer&amp;target_device=3Db9=
+a5cee0-8c56-4988-8317-f798cfd14b4b&amp;target_device_docid=3Dpixel_10_pro_f=
+old&amp;country=3DUS&amp;language_preference=3Den-us&amp;utm_content=3D1109=
+80130&amp;utm_campaign=3DGS205141&amp;utm_term=3Dtrade-in_cta_otherOS_0&amp=
+;utm_medium=3Demail_crm&amp;utm_source=3Dpromo binding=3Dalways single-item=
+>
+<div placeholder><div class=3Dinteractive_placeholder></div></div>
+<div fallback> <div class=3Dstatic>
+<div class=3Dcompact_1>
+<div class=3Did-5>
+<div class=3Dheading-row>
+<h4 class=3D"eds__heading_4 compact_1__heading">Get up to $799 back with qu=
+alifying iPhone<sup>=C2=AE</sup> or other eligible <span class=3Dno-wrap>tr=
+ade-in.</span></h4>
+</div>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-6-height>
+=C2=A0
+</td>
+</tr>
+</table>
+<div class=3Dbody-row>
+<p class=3D"eds__body compact_1__body"> <i>Trade-in value is based on trade=
+-in device and specific subsidy for selected Pixel model. Terms=C2=A0apply.=
+=E2=80=8C<sup>=E2=80=A0=E2=80=A0</sup>
+</i>
+</p>
+</div>
+</div>
+</div>
+<table role=3Dpresentation cellpadding=3D0 cellspacing=3D0 class=3Dstatic-t=
+able>
+<tr>
+<td class=3D"left-side-width col-bottom">
+<div class=3Dtrade-in-content-container>
+<table role=3Dpresentation width=3D100% class=3Dtrade-in-value-lines-contai=
+ner>
+<tr class=3Dtrade-in-value-line>
+<td>
+<table role=3Dpresentation width=3D100%>
+<tr>
+<td class=3Dtrade-in-value-line-device>
+<p class=3D"eds__subheading_1 " aria-level=3D7 role=3Dheading>iPhone 16 Pro=
+ Max</p>
+</td>
+<td class=3Dtrade-in-value-value>
+<p class=3D"eds__body "> up to $799 back
+</p>
+</td>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width=3D100% role=3Dpresentation class=3D"divider divider-no-padding=
+">
+<tr>
+<td class=3Dcontainer-full_width>
+<table width=3D100%>
+<tr>
+<td class=3D"divider_line divider_line--gray_300"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class=3Dtrade-in-value-line>
+<td>
+<table role=3Dpresentation width=3D100%>
+<tr>
+<td class=3Dtrade-in-value-line-device>
+<p class=3D"eds__subheading_1 " aria-level=3D7 role=3Dheading>iPhone 15 Pro=
+</p>
+</td>
+<td class=3Dtrade-in-value-value>
+<p class=3D"eds__body "> up to $500 back
+</p>
+</td>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width=3D100% role=3Dpresentation class=3D"divider divider-no-padding=
+">
+<tr>
+<td class=3Dcontainer-full_width>
+<table width=3D100%>
+<tr>
+<td class=3D"divider_line divider_line--gray_300"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class=3Dtrade-in-value-line>
+<td>
+<table role=3Dpresentation width=3D100%>
+<tr>
+<td class=3Dtrade-in-value-line-device>
+<p class=3D"eds__subheading_1 " aria-level=3D7 role=3Dheading>iPhone 14 Pro=
+ Max</p>
+</td>
+<td class=3Dtrade-in-value-value>
+<p class=3D"eds__body "> up to $550 back
+</p>
+</td>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width=3D100% role=3Dpresentation class=3D"divider divider-no-padding=
+">
+<tr>
+<td class=3Dcontainer-full_width>
+<table width=3D100%>
+<tr>
+<td class=3D"divider_line divider_line--gray_300"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class=3Dtrade-in-value-line>
+<td>
+<table role=3Dpresentation width=3D100%>
+<tr>
+<td class=3Dtrade-in-value-line-device>
+<p class=3D"eds__subheading_1 " aria-level=3D7 role=3Dheading>iPhone 13 Pro=
+</p>
+</td>
+<td class=3Dtrade-in-value-value>
+<p class=3D"eds__body "> up to $430 back
+</p>
+</td>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width=3D100% role=3Dpresentation class=3D"divider divider-no-padding=
+">
+<tr>
+<td class=3Dcontainer-full_width>
+<table width=3D100%>
+<tr>
+<td class=3D"divider_line divider_line--gray_300"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class=3Dtrade-in-value-line>
+<td>
+<table role=3Dpresentation width=3D100%>
+<tr>
+<td class=3Dtrade-in-value-line-device>
+<p class=3D"eds__subheading_1 " aria-level=3D7 role=3Dheading>iPhone 12</p>
+</td>
+<td class=3Dtrade-in-value-value>
+<p class=3D"eds__body "> up to $265 back
+</p>
+</td>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width=3D100% role=3Dpresentation class=3D"divider divider-no-padding=
+">
+<tr>
+<td class=3Dcontainer-full_width>
+<table width=3D100%>
+<tr>
+<td class=3D"divider_line divider_line--gray_300"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class=3Dtrade-in-value-line>
+<td>
+<table role=3Dpresentation width=3D100%>
+<tr>
+<td class=3Dtrade-in-value-line-device>
+<p class=3D"eds__subheading_1 " aria-level=3D7 role=3Dheading>iPhone 11</p>
+</td>
+<td class=3Dtrade-in-value-value>
+<p class=3D"eds__body "> up to $230 back
+</p>
+</td>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+</tr>
+</table>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-24-height>
+=C2=A0
+</td>
+</tr>
+</table>
+<div class=3D"cta static-cta">
+<a href=3Dhttps://c.gle/AF5yWjDyF3y2lKVW9KYgNOD4ZW4sQEy54AxaCVAoBW8Du5_9hII=
+8Gt2ZfJkb_Qs4aLcD2_HIjmiqnOZoGa1lY0NQQySZaLgiwj6RY-myjsZ92Kf_F-UR-PSvl3vZ8h=
+mfmQrs4AnRsytOPBIEG-JMaOPB-VZjdpfC9236EgpyD22uyIt7Pd5F84Q_LXJ63pIKV0B82awlB=
+IVg8aWRcYwELH1UbxS3n54tZ1kgpHRM1b3smSrQZvp0Ifo9GPQQ6qG6twmDvJtD5FbHhN3lQ2Hs=
+HkKZGSU99diLrDXC970B1iazw3k-dMIfBzJByb0-X2gp0Q>
+<div class=3D"medium_light_alt medium">
+Start trade-in
+</div>
+</a>
+</div>
+</div>
+</td>
+<td class=3D"right-side-width col-top">
+<div class=3D"image image_radius_right image-mobile-hide">
+<amp-img width=3D288px height=3D372px src=3Dhttps://lh3.googleusercontent.c=
+om/FZ9BlOhK8TE7UXu9n7PnYtoJD6DHZ_bfexT37hVUzioD1fjiUyK06iYkSGWrMYKe3zf3WqPE=
+eqkBPXM6sbSbcPikyC8iRx-w6Q=3Dw576-h744 alt=3D"" layout=3Dintrinsic></amp-im=
+g>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<template type=3Damp-mustache>
+<div class=3Dinteractive>
+<div class=3D"image ">
+<amp-img width=3D44px height=3D44px src=3Dhttps://services.google.com/fh/fi=
+les/emails/ti-icon.png alt=3D""></amp-img>
+</div>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-16-height>
+=C2=A0
+</td>
+</tr>
+</table>
+<h4 class=3D"eds__heading_4 ">Get up to $799 back with qualifying iPhone<su=
+p>=C2=AE</sup> or other eligible <span class=3Dno-wrap>trade-in.</span></h4=
+>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-6-height>
+=C2=A0
+</td>
+</tr>
+</table>
+<p class=3D"eds__footnote italic">Trade-in value is based on trade-in devic=
+e and specific subsidy for selected Pixel model. Terms=C2=A0apply.=E2=80=8C=
+<sup>=E2=80=A0=E2=80=A0</sup>
+</p>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-28-height>
+=C2=A0
+</td>
+</tr>
+</table>
+<div class=3Ddropdown-container>
+<div class=3Ddropdown-image-container>
+<amp-img layout=3Dresponsive width=3D48px height=3D48px src=3Dhttps://servi=
+ces.google.com/fh/files/emails/drawer.png>
+</amp-img>
+</div>
+<select class=3Ddropdown [class]=3D"&#39;dropdown &#39;+ (state.manufacture=
+r=3D=3D&#39;default&#39;?&#39;&#39;:&#39;active&#39;)" name=3Dmanufacturer =
+on=3D"change:AMP.setState({&#39;state&#39;:{&#39;manufacturer&#39;: event.v=
+alue,&#39;prepopulated&#39;:false, &#39;model&#39;:&#39;default&#39;,&#39;s=
+how_value&#39;:false}})">
+<option hidden selected value=3Dplaceholder disabled [selected]=3D"state.ma=
+nufacturer =3D=3D &#39;default&#39;">
+Select manufacturer
+</option>
+{{#options}}
+<option value=3D{{manufacturer}} [selected]=3D"state.manufacturer =3D=3D &#=
+39;{{manufacturer}}&#39;">
+{{manufacturer}}
+</option>
+{{/options}}
+</select>
+</div>
+<div hidden [hidden]=3Dstate.manufacturer=3D=3D&#39;default&#39;>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-16-height>
+=C2=A0
+</td>
+</tr>
+</table>
+{{#options}}
+<div class=3Ddropdown-container [hidden]=3Dstate.manufacturer!=3D&#39;{{man=
+ufacturer}}&#39;>
+<div class=3Ddropdown-image-container>
+<amp-img layout=3Dresponsive width=3D48px height=3D48px src=3Dhttps://servi=
+ces.google.com/fh/files/emails/drawer.png>
+</amp-img>
+</div>
+<select class=3Ddropdown [class]=3D"&#39;dropdown &#39;+ (state.model=3D=3D=
+&#39;default&#39;?&#39;&#39;:&#39;active&#39;)" disabled [disabled]=3Dstate=
+.manufacturer!=3D&#39;{{manufacturer}}&#39; name=3Dmodel on=3D"change: AMP.=
+setState({&#39;state&#39;:{&#39;model&#39;:event.value, &#39;prepopulated&#=
+39;:false,&#39;show_value&#39;:true}})">
+<option hidden selected disabled value=3Dplaceholder [selected]=3D"state.mo=
+del =3D=3D &#39;default&#39;">
+Select model
+</option>
+{{#device_details}}
+<option value=3D{{name}}>
+{{display_name}}
+</option>
+{{/device_details}}
+</select>
+</div>
+{{/options}}
+<div class=3Dreveal-text-container hidden [hidden]=3D"!state.show_value || =
+state.display_error_message=3D=3Dtrue ">
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-24-height>
+=C2=A0
+</td>
+</tr>
+</table>
+<div>
+<h6 class=3D"eds__heading_6 "> Estimated trade-in value: <br>
+<span class=3Dup_to>up to </span>
+{{#options}}
+{{#device_details}}
+<span class=3Dmax_value [hidden]=3Dstate.model!=3D&#39;{{name}}&#39;>{{max_=
+value_with_currency}}</span>
+{{/device_details}}
+{{/options}}
+<span class=3Ddisclaimer_value><sup>=E2=80=A0=E2=80=A0</sup></span>
+</h6>
+</div>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-36-height>
+=C2=A0
+</td>
+</tr>
+</table>
+{{#options}}
+<div hidden [hidden]=3Dstate.manufacturer!=3D&#39;{{manufacturer}}&#39;>
+<div class=3D"cta ">
+<a href=3D{{special_url}}>
+<div class=3D"high_light medium">
+Start trade-in
+</div>
+</a>
+</div>
+</div>
+{{/options}}
+</div>
+</div>
+</div>
+</template>
+</amp-list>
+</div>
+</div>
+</div>
+<table class=3D"spacer " width=3D100% role=3Dpresentation cellpadding=3D0 c=
+ellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dempty style=3D"font-size: 80px; line-height:80px" height=3D80px=
+>=C2=A0</td>
+</tr>
+</table>
+<table class=3Devp role=3Dpresentation cellpadding=3D0 cellspacing=3D0 bord=
+er=3D0 align=3Dcenter>
+<tr>
+<td class=3Dheading colspan=3D7 align=3Dcenter>
+Get more when you shop on the Google=C2=A0Store.
+</td>
+</tr>
+<tr>
+<td class=3Dh-spacer-outer>=C2=A0</td>
+<td class=3D"card card-6 stack height-auto height-100-p" valign=3Dtop>
+<table class=3D"height-auto height-100-p width-100-p card-table" role=3Dpre=
+sentation cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dcard-padding>=C2=A0</td>
+<td valign=3Dtop class=3D"height-auto height-100-p">
+<table class=3D"height-auto height-100-p width-100-p" align=3Dcenter role=
+=3Dpresentation cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td valign=3Dtop>
+<table class=3Dwidth-100-p role=3Dpresentation cellpadding=3D0 cellspacing=
+=3D0 border=3D0>
+<tr>
+<td class=3Dicon align=3Dcenter>
+<amp-img src=3Dhttps://services.google.com/fh/files/emails/icon_evergreen_v=
+alues_in_store_dsk2x.png alt=3D"" height=3D1 width=3D1 layout=3Dresponsive>=
+</amp-img>
+</td>
+</tr>
+<tr>
+<td class=3Dcard-heading>
+Shop in=C2=A0store
+</td>
+</tr>
+<tr>
+<td class=3Dcard-body>
+Get hands-on with the latest Google products, chat with our experts, and pi=
+ck up your online orders in=C2=A0person.
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class=3Dcard-cta valign=3Dbottom>
+<a href=3Dhttps://c.gle/AF5yWjCgnYP8k1qq2t98Vm6NmWqieAqH9HGudPVtPjJ6BQJyu-E=
+IhODyn6LrEEmBBdM7IsRjqq_on-wp75pKZzX_EQVzo636Ta9l1j_32Csk3b6qcBupvqSPempxeR=
+5yAY7fcaIir3S_I7iLg966xb5Keh6FdZEZDcie1i-XV8Skg1FPhlSVDrMrZ7BCLs-QbalpaMIWi=
+2E5r6R4AR9_Ym7u7MXVSbI9a_Fs9eQXOiuJIhrFhFFRocx7bNyJC_tRw-A7zMoc18lIWAiT2Y5t=
+aFBSiNB-R_jOqr-qRBOSY4YESDrwA3D2_Y-QHccxC6QNOC_XJH57K8Y aria-label=3D"See s=
+tore details: Shop in=C2=A0store">See store details<span class=3Dcta-caret>=
+=C2=A0=E2=80=BA</span></a>
+</td>
+</tr>
+</table>
+</td>
+<td class=3Dcard-padding>=C2=A0</td>
+</tr>
+</table>
+<table role=3Dpresentation cellpadding=3D0 cellspacing=3D0 border=3D0 style=
+=3D"width: 100%">
+<tr>
+<td class=3Dv-spacer-mobile>=C2=A0</td>
+</tr>
+</table>
+</td>
+<td class=3D"h-spacer-inner m-hide">=C2=A0</td>
+<td class=3D"card card-6 stack height-auto height-100-p" valign=3Dtop>
+<table class=3D"height-auto height-100-p width-100-p card-table" role=3Dpre=
+sentation cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dcard-padding>=C2=A0</td>
+<td valign=3Dtop class=3D"height-auto height-100-p">
+<table class=3D"height-auto height-100-p width-100-p" align=3Dcenter role=
+=3Dpresentation cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td valign=3Dtop>
+<table class=3Dwidth-100-p role=3Dpresentation cellpadding=3D0 cellspacing=
+=3D0 border=3D0>
+<tr>
+<td class=3Dicon align=3Dcenter>
+<amp-img src=3Dhttps://services.google.com/fh/files/emails/icon_evergreen_v=
+alues_finance_dsk2x.png alt=3D"" height=3D1 width=3D1 layout=3Dresponsive><=
+/amp-img>
+</td>
+</tr>
+<tr>
+<td class=3Dcard-heading>
+Financing
+</td>
+</tr>
+<tr>
+<td class=3Dcard-body>
+Make shopping simple. Get special financing on qualifying purchases.
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class=3Dcard-cta valign=3Dbottom>
+<a href=3Dhttps://c.gle/AF5yWjC88qUCyzlBCR_cifDgLADSA9cyaTE1iiaEwcYpBmj46y6=
+n-33I5tJGAwAeEZ2xYp_7JAOS3eznqp3zeumWSz8iqmYa8NfsX5mYw6r2GKOt9vYjRKGVaRk0-p=
+EBEpajRobQNF2V7W6hsIZQjm9swoOH13Jyv120J_oadtwkHLaWsSXe6xpKjsRpKsaSh4ZBYOq4M=
+aEt8by4CSbRWLuDO5xVrzHYgygKVRdhdbocKwnRlD9cDNa0YFY4a2xfQXvLHY1X8joNnIby5bVE=
+qjh3dSeWtNu0qMooeLjRbJQ1qWbru__F aria-label=3D"Learn=C2=A0more: Financing">=
+Learn=C2=A0more<span class=3Dcta-caret>=C2=A0=E2=80=BA</span></a>
+</td>
+</tr>
+</table>
+</td>
+<td class=3Dcard-padding>=C2=A0</td>
+</tr>
+</table>
+<table role=3Dpresentation cellpadding=3D0 cellspacing=3D0 border=3D0 style=
+=3D"width: 100%">
+<tr>
+<td class=3Dv-spacer-mobile>=C2=A0</td>
+</tr>
+</table>
+</td>
+<td class=3D"h-spacer-inner m-hide">=C2=A0</td>
+<td class=3D"card card-6 stack height-auto height-100-p" valign=3Dtop>
+<table class=3D"height-auto height-100-p width-100-p card-table" role=3Dpre=
+sentation cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dcard-padding>=C2=A0</td>
+<td valign=3Dtop class=3D"height-auto height-100-p">
+<table class=3D"height-auto height-100-p width-100-p" align=3Dcenter role=
+=3Dpresentation cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td valign=3Dtop>
+<table class=3Dwidth-100-p role=3Dpresentation cellpadding=3D0 cellspacing=
+=3D0 border=3D0>
+<tr>
+<td class=3Dicon align=3Dcenter>
+<amp-img src=3Dhttps://services.google.com/fh/files/emails/icon_evergreen_v=
+alues_pixel_care_plus_dsk2x.png alt=3D"" height=3D1 width=3D1 layout=3Dresp=
+onsive></amp-img>
+</td>
+</tr>
+<tr>
+<td class=3Dcard-heading>
+Pixel=C2=A0Care+
+</td>
+</tr>
+<tr>
+<td class=3Dcard-body>
+Get peace of mind for your Pixel devices with unlimited $0 screen repairs<s=
+up>1</sup> and battery replacements<sup>2</sup> using Google-certified part=
+s.
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class=3Dcard-cta valign=3Dbottom>
+<a href=3Dhttps://c.gle/AF5yWjAtMaj8VEBj75KLgCsVE5xEHEevq-PlFME-3M-eQxuoK2B=
+PEMZx89UNGlcyYGKsdzKXNAoS9qahVVVc_UCbP2KRNnnZdgufXWv5fytw5TwR4NevZCsyQjqWxz=
+UphV0IC8SRq0bOAi4VVJztqVRkogL3bKhVC7CfL4MUMu4b0QqXdaqhQM3kKovYV7LmjJrPOiB4K=
+v3fkJ5n1WijkMZl4Xb46H8Xuc7cpT2SMWkVOb6lN3KLCn4G9de2Ubno9P8MICMQU0D91YZb3i2x=
+jBWlZ7JE_-rk3TwJaD83dBobtHL2ptBHUw aria-label=3D"Learn=C2=A0more: Pixel=C2=
+=A0Care+">Learn=C2=A0more<span class=3Dcta-caret>=C2=A0=E2=80=BA</span></a>
+</td>
+</tr>
+</table>
+</td>
+<td class=3Dcard-padding>=C2=A0</td>
+</tr>
+</table>
+<table role=3Dpresentation cellpadding=3D0 cellspacing=3D0 border=3D0 style=
+=3D"width: 100%">
+<tr>
+<td class=3Dv-spacer-mobile>=C2=A0</td>
+</tr>
+</table>
+</td>
+<td class=3Dh-spacer-outer>=C2=A0</td>
+</tr>
+<tr>
+<td colspan=3D7 class=3Dv-spacer>=C2=A0</td>
+</tr>
+</table>
+<table class=3Dfooter cellpadding=3D0>
+<tr>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td class=3Dfooter__social-media-container>
+<table role=3Dpresentation class=3Dfooter__table style=3Dwidth:auto align=
+=3Dcenter cellpadding=3D0>
+<tr>
+<td height=3D48 width=3Dauto></td>
+<td align=3Dcenter height=3D48 width=3D48 style=3D"padding-left: 4px; paddi=
+ng-right:4px">
+<a href=3Dhttps://c.gle/AF5yWjAlTvfFSd7PJO2mqyWDrCmlpFPfJmb0073duilv3msjWdo=
+mgqY19tzIPGa_VGmIJw6ZbqjNfW_puxi1h_wOMysjBUAJdJdNvO5YzTqWgqdLmIHa-32xiZks-C=
+hdMQ>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td valign=3Dcenter style=3D"height:48px; width:48px">
+<amp-img src=3Dhttps://services.google.com/fh/files/emails/footer_social_ic=
+on_youtube_gray_48_x2.png width=3D48 alt=3D" Follow Made by Google on YouTu=
+be" style=3D"border: none;" height=3D48></amp-img></td>
+</tr>
+</table>
+</a>
+</td>
+<td align=3Dcenter height=3D48 width=3D48 style=3D"padding-left: 4px; paddi=
+ng-right:4px">
+<a href=3Dhttps://c.gle/AF5yWjBLdVGDqkeuRVFzVKrusuTAxavPgDPIV-GUgGDiv3LYfHW=
+K-P4B07bo_RFC3K8SmmLYbiVRpM6JQU--vtS3OFUZXipsDVoVG-LiEOwbikg7c8ygrwbb8aX8RD=
+O148A>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td valign=3Dcenter style=3D"height:48px; width:48px">
+<amp-img src=3Dhttps://services.google.com/fh/files/emails/footer_social_ic=
+on_facebook_gray_48_x2.png width=3D48 alt=3D" Follow Made by Google on Face=
+book" style=3D"border: none;" height=3D48></amp-img></td>
+</tr>
+</table>
+</a>
+</td>
+<td align=3Dcenter height=3D48 width=3D48 style=3D"padding-left: 4px; paddi=
+ng-right:4px">
+<a href=3Dhttps://c.gle/AF5yWjC3hBoAwYkTElelJh-PfrOk6I_aQymKHw6TrbJwaKZM5aR=
+pS_K9LbiU9hIJDix6Urf77TRvVOAUCHjI2ZbwK44gW-5V9lcHCT2HXRNH9MGJ9NkL_Aiw5TcpQx=
+GMNw>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td valign=3Dcenter style=3D"height:48px; width:48px">
+<amp-img src=3Dhttps://services.google.com/fh/files/emails/footer_social_ic=
+on_twitter_gray_48_x2.png width=3D48 alt=3D" Follow Made by Google on Twitt=
+er" style=3D"border: none;" height=3D48></amp-img></td>
+</tr>
+</table>
+</a>
+</td>
+<td align=3Dcenter height=3D48 width=3D48 style=3D"padding-left: 4px; paddi=
+ng-right:4px">
+<a href=3Dhttps://c.gle/AF5yWjCN3D-PyKXoqByMvZynM2wbiWQP82Cm3gHZF6ehrUV9gND=
+Xk9_nOFqYds2ArSlDo3GWUFnkHcBLjmoCAGlNbkfoxtYU3-e1N0WGfcQR77pP7WSNexS4GRFG96=
+M9Z1dKuxcfsw>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td valign=3Dcenter style=3D"height:48px; width:48px">
+<amp-img src=3Dhttps://services.google.com/fh/files/emails/footer_social_ic=
+on_instagram_gray_48_x2.png width=3D48 alt=3D" Follow Made by Google on Ins=
+tagram" style=3D"border: none;" height=3D48></amp-img></td>
+</tr>
+</table>
+</a>
+</td>
+<td height=3D48 width=3Dauto></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table role=3Dpresentation width=3D100%>
+<tr>
+<td class=3Dfooter__divider>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td class=3Dfooter__disclaimer-container>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td class=3Dfooter__text--secondary style=3D"width:10px; text-align:center;=
+ font-size:8px;vertical-align:top"> =E2=80=A0</td> <td style=3Dwidth:4px> <=
+/td>
+<td class=3D"footer__diclaimer-row footer__text--secondary" style=3D"text-a=
+lign: left">
+Get a discount of $300 at checkout and $500 back over 24 monthly bill credi=
+ts for purchase of a Pixel 10 Pro Fold, at <a href=3Dhttps://c.gle/AF5yWjCA=
+nuU_JCg4_ADDSDiWfaWr_1GN08vLKRznECvDjUiYJEYYvA5C4O25ziVxs9wUPmlGF8HPvMa8YNn=
+hreAZG4YFk4DD9zovuavIL3kRkHIJTZV33-52j0ugTmInllV6I1DCzxy4AerjLuM9qeE7c60jr_=
+UpyY63tw79eHEZVZq_iaPwrvbri7vTi5diAT7aJ5qN597n3KsoH0o2uuno7FPgTKTrbg37SaYAx=
+wUXWr7xqlxUKFoRis85eQ>store.google.com</a> and Google retail stores (new us=
+ers only), ending 12/5/25 at 9:59am PT, or while supplies last. Must select=
+ &#39;Google Fi&#39; in the &#39;Choose a carrier&#39; step of the purchase=
+ process. Phone activation required by 30 days of shipment confirmation. Bi=
+ll credits are applied to plan charges (e.g. data, calls, texts), taxes and=
+ fees, financing costs, and international charges, and exclude device prote=
+ction. Unused monthly credit doesn&#39;t roll over to the following month. =
+Changing devices before 120 days invalidates $300 instant discount, resulti=
+ng in charges, and cancellation, pause, or change of Fi plan before 24 mont=
+hs will terminate promotion and bill credits will stop. Promotions are non-=
+transferable, not valid for cash or cash equivalent. US residents with US s=
+hipping addresses only. Must be 18 years or older, with Google Pay and Goog=
+le Fi Wireless accounts. Limit 1 per customer or group plan member. Taxes p=
+ayable at checkout. Offer cannot be combined with other offers. Void where =
+prohibited.
+</td>
+</tr>
+<tr>
+<td class=3Dfooter__text--secondary style=3D"width:10px; text-align:center;=
+ font-size:8px;vertical-align:top"> =E2=80=A1</td> <td style=3Dwidth:4px> <=
+/td>
+<td class=3D"footer__diclaimer-row footer__text--secondary" style=3D"text-a=
+lign: left">
+By subscribing, you agree to terms for Google One, available at <a href=3Dh=
+ttps://c.gle/AF5yWjDtR_UUx4HgiPsUDnpg-fpw9UsT-I13cQE5U8xcZRMYk6X6scHcK_kEdc=
+XKE7l-I5QbJa4TZtopMa0AtFssiT0Q9_IXJ6bp8nJW-HpDGAJvEv9dCZuZDZLCYUZXSgQr2JIvu=
+LrOKjxO7H3L7-StG726XtVYmG2WLDz3CCjR0oWGbk8mLuvBEL7tbuDXLK_idHI5fgkmH3sOUQTi=
+eKPfHU2c9wGEfLO1eZ24RekeeHnIBcy6V4Z1znDVyw9eQI7jEHmxqB7woaPJAvs>one.google.=
+com/terms-of-service</a>, and for offers, available at <a href=3Dhttps://c.=
+gle/AF5yWjD5XC_g1d0Chu2psvrjdlm_MGQnFyy_LeFmvuqnwbNQDRASwrlFL04lIZVHsD5NFt1=
+eeTNa_JjjrbtsEoIjQdvtQnp-AZNKBeFkyP4ZqYgtEKodcnTFA33fxkvP5pPKomk_ktpNP_DarY=
+1TuiEdo22aYwWa6UJZTrATeTUrCbZ6XHrlpBCWrrOpMhbwDEQ1FPNWHdMhV1q4QW41T0awvxd9j=
+E5_gr_-5exiVtzqLGyBawwJLeofxNVDbOdKor4d4MsOaDkS-Udwdw>one.google.com/offer/=
+freetrial</a>. See how Google handles data at <a href=3Dhttps://c.gle/AF5yW=
+jCwojZCwkZBR1FCdwn6mEaIGuIkT0xZryXOSgXd4l7ktOTSrGzmJ-JegMl2Zf4Vuo9NrgMMVc0g=
+cVlAZIFYWSiF-bg8brKDDgtOYx7QPtU5eJbSSJKoHxFbiE70Q6V8UE6xf0UUJIEfRwT4xTYre4F=
+oNEyaKagEmduX3wSLIp5PnV7U6bVeiXwJCgmeQcxAEcuBApuwEHYOG2NOtyoyoot_H-ubEIOpAp=
+9FHp7bcCDsJDsUJ46mojJWQy3Fw36QTEjdCyJatmTmvbs>www.google.com/policies/priva=
+cy</a>. Gemini in Google AI Pro and Gemini for Gmail, Docs, and more are on=
+ly available for ages 18+. Gemini for Gmail, Docs, and more is only availab=
+le in select languages. Actual value is $239.88. The Google AI Pro plan off=
+er is available to users with the purchase and activation of a Pixel 10 Pro=
+, Pixel 10 Pro XL or Pixel 10 Pro Fold. Offer is not available to: Google O=
+ne users subscribed to an add-on, Google One users subscribed to a higher t=
+ier plan than the one being offered, Google One users on a family plan who =
+are not the plan manager, and Google One users who have a subscription thro=
+ugh a third party or affiliate. Redeem the offer by October 31, 2026 at 11:=
+59pm PT. Valid form of payment required at sign-up, but you will not be cha=
+rged until the trial period expires. Unless canceled earlier, Google AI Pro=
+ will charge $19.99 after the trial ends, billed on a recurring monthly bas=
+is. Cancel anytime. No refunds for partial billing periods, except as requi=
+red by applicable law. Return of purchased device may result in cancellatio=
+n of subscription. See <a href=3Dhttps://c.gle/AF5yWjCxWnVRO80TdgRygFvB5FXd=
+SC5t8mI0mD9MGhK4ec259_afzorGsmKgWj-gK2zyK2e4anaXcWSevRiLnwl25GShcKbMfo7zeoX=
+-GiWjuXntd4Vg7GSBE1jQm2Ml2bNRxHzZuFlFX4a50ympE7bmjB5jtvb7A74eFUoO1LOldEmNzs=
+Uj1R-b4j2MPiwHDlYfM6JPjewNGCzTK8qDhOmXmbRd3EvgcB1efyhF6xFUn-0RUpSh7aBugNk4j=
+UgcTAmnirBAeGfzwizeyuaJOpIMK0tFYs_Q6Q>g.co/pixel/google-ai-10-pro-12-month-=
+offer for more details</a>.
+</td>
+</tr>
+<tr>
+<td class=3Dfooter__text--secondary style=3D"width:10px; text-align:center;=
+ font-size:8px;vertical-align:top"> =E2=80=A0=E2=80=A0</td> <td style=3Dwid=
+th:4px> </td>
+<td class=3D"footer__diclaimer-row footer__text--secondary" style=3D"text-a=
+lign: left">
+Buy Pixel 10 Pro Fold (Unlocked, Verizon or AT&amp;T devices) and get up to=
+ $799 back with an eligible iPhone trade-in. Starts September 29, 2025 at 1=
+2:00 am PT and ends October 12, 2025 at 11:59 pm PT. US residents with US s=
+hipping addresses only. Must be 18 years or older. Trade-in values vary bas=
+ed on model, condition, year, and configuration of the trade-in device and =
+are subject to change upon inspection. Trade-in value may also include an a=
+dditional subsidy that may vary based on the model of your purchased device=
+. Representative trade-in device(s) for maximum trade-in amount: $799 for i=
+Phone 16 Pro Max. Trade-in device must be received within 30 days from the =
+initiation of the trade-in process. After trade-in device inspection, trade=
+-in credit will be issued to the form of payment used for purchase, or in t=
+he form of Store Credit if the purchased device has already been returned o=
+r Google Store cannot refund your payment method. If the value of the trade=
+-in device is greater than the value of the new device, any difference will=
+ be paid by issuance of Store Credit. Unless otherwise stated, offer cannot=
+ be combined with other offers and is not transferable. Purchase must be ma=
+de on Google Store US. Void where prohibited. Additional trade-in terms are=
+ located <a href=3Dhttps://c.gle/AF5yWjC3KjngCSTYdByLFRF7Bh_OZdrsHZghYtlExk=
+HhqFlDGPZ40h9KCJD2OyT6k8_-jJswZSUxjJ-MbE2VyKZ4JwGe2FF22qmf2SqOcJoGp6I9N_QX-=
+hz3e22mm3ovL1qAYtD9KC9zlZqAsn3J6AlNOLat22CidhhOwApcrOP1hL-AN6kFapBJKeElQtvx=
+t1wphNLJy_hHY4FOzWca1gzRwPf5YvqL5rdqcmyAmAjzJvAL0ps5rXggxjCDwdiXj52B57audvr=
+-UwlNEs4zyyIiFWy2nFeJNV7f9X-YQsCp>here</a>.<br><br>iPhone=C2=AE is a regist=
+ered trademark of Apple Inc.
+</td>
+</tr>
+<tr>
+<td class=3Dfooter__text--secondary style=3D"width:10px; text-align:center;=
+ font-size:8px;vertical-align:top"> 1</td> <td style=3Dwidth:4px> </td>
+<td class=3D"footer__diclaimer-row footer__text--secondary" style=3D"text-a=
+lign: left">
+$0 screen repair is only available for front screen and back glass of Pixel=
+ phones; not available for inner screens of Pixel Fold phones. For complete=
+ details, see the Pixel Care+ <a href=3Dhttps://c.gle/AF5yWjDG-kGqONBmcPLBf=
+NX9efWaPOXWBiggXUiTEcqZznsZvW6F4hefhDIBi3KFhfqszV97KveDaWuuVj2JKzulRokCHgQ_=
+PKVYC7JliDXX5E4CuzS-iauUeS6HzE-_Lv0NG5xNP2rMjABYqivkt6HPd3SDcLztQ1LKj8n1YqW=
+-orSH9H-3mix8wy9UJGz5mkreg-bz7BPPSbyiiCXw8htkahnJ0koOMcZtgghPiG7CEjkIyGtA6r=
+beXarG2BL32ZJT74qgtpPPxMRtAzkCSrE style=3D"color: #1967D2; text-decoration:=
+ underline;">Terms and Conditions</a>.
+</td>
+</tr>
+<tr>
+<td class=3Dfooter__text--secondary style=3D"width:10px; text-align:center;=
+ font-size:8px;vertical-align:top"> 2</td> <td style=3Dwidth:4px> </td>
+<td class=3D"footer__diclaimer-row footer__text--secondary" style=3D"paddin=
+g-bottom: 0px;text-align: left">
+Coverage is available only for batteries that retain less than 80% of origi=
+nal charge capacity.
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td class=3D"footer__entity-and-address-container footer__text--secondary f=
+ooter__text--bold">
+=C2=A9 2025
+Google LLC,
+<a class=3D"footer__text--secondary footer__text--bold">
+1600 Amphitheatre Parkway, Mountain View, CA 94043, United States </a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td class=3D"footer__rationale-container footer__text--secondary">
+This email was sent to <a style=3D"word-break: break-all" class=3Dfooter__t=
+ext--secondary>
+LienCF@gmail.com</a> because you asked to receive offers, updates and more =
+about devices from Google on <a href=3Dhttps://c.gle/AF5yWjA4lnnWsmD5rOE6TO=
+Nwxz9636oDaKU9-x5V9FpjLV91BD__LKBtXEG50vgNdPMY7DbULAnZeuKzqmC3El8rcvzPF9HvA=
+6gOFFzXlmZgosbsHuw4dXci9rU class=3Dfooter__text--standout-link>store.google=
+.com</a>. If you=E2=80=99d like to unsubscribe, click <a href=3Dhttps://mya=
+ccount.google.com/communication-preferences/unsubscribe/gt/AF5yWjCjo2M2vMN3=
+W2C0I1ksKQt5v3TxLkvtdCDLHPCF-VzH_-V2bV-SfHEG4o7idrg7rVB2n4rsWnLhfc8W29Hw4l8=
+LcNVJMNgyqe09AdpvZ12POb1QNskrI37Jm4Dvy11XuJu3gU3RXoNnfBNeUxg-Uh_oHuUOo_0kun=
+yk0Chg9fHWjQUxcMAgMNyVxfOZ50KTf4u5k0hyFnKYUmnlW0kzyrJVS5OBdQP9HH6qgVbTbpIIH=
+b4dgt_r5xtcg6VAAn6kG-BlYNxXi2aco2nxIC5vltw1HVwcdg?utm_source=3Dgm&amp;utm_m=
+edium=3Demail&amp;auto=3Dtrue class=3Dfooter__text--standout-link>here</a>.
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td align=3Dcenter class=3D"footer__text--secondary footer__links-container=
+">
+<a href=3Dhttps://c.gle/AF5yWjBnC8-QYKb18z-cv7qXP00OE6ZCV4oGi5zF0ktSchnW7Yc=
+-voOhWxLO_8nxX447xNCs8yJblUEn4AW6AMX5b-JqtCzBHy1KrORz6BAWtLu91w7lDonuQgttlX=
+2V68noBNsOHvVKQG2rExAI-sc5iCf9rbwg5i2ApQS3NSzOEhf7ocLc8E13l5HnVDbngHl3CVQpV=
+CZpVWca4LEy8ZTz7Jk8S9bHMfk_-sg751sU6NMeYPbchL11sx0h-zfD6W8wfV1ZzLn2fxaxtMN4=
+MmNakFl1CBze1jaJLk9Dv0Vy173ITBk class=3Dfooter__text--secondary>
+Privacy policy
+</a>
+=C2=A0=C2=A0|=C2=A0=C2=A0
+<a href=3Dhttps://c.gle/AF5yWjCiOGPI4pIbRwIOX2HP6vSP44wLN0FnprJb9ukCCfrlvw7=
+a5HBmOi5r8ZbGmrTaMdjODidwwCiOWQhN_lBmN6KvuPxeS_mNpVdvMaRyxYtfrBcrs2910iT8F_=
+WOvyWFhN41Cs-9M2l-RQphljhvNi5S9xM9PosjMwi6jLiDLGH31dj6RkAMP81QmfkO_s7D3jZls=
+RBALX83SPA88ce9fTzRQnH3zzv8baPPn6CPAUSZlw_UzAK6LuwzDbRsc5-8qi1nJMfci4eeBrVU=
+WoDUXK62Ba1dk0sHiZRPESo class=3Dfooter__text--secondary>
+Terms of Service
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<amp-img alt=3D"" height=3D1 width=3D3 src=3Dhttps://notifications.google.c=
+om/g/img/AF5yWjB85jAiYKqigyH8LPzXvqC7sWGwapDVgEiH0wt2ZUWwR83hoTHJdKsGuIlbLy=
+rdspYTfie4gRR55WwAa-tEMyWwlZSO_u9p-AUuMmA6mzD6eDFIZeBy2FjqZ7ZOu6d4kRbPag.gi=
+f></body>
+</html>
+
+--000000000000c8bf050640bd17ed
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+
+<!doctype html>
+<html xmlns:o=3Durn:schemas-microsoft-com:office:office lang=3Den>
+<head><!-- Yahoo App Android will strip this --></head>
+<head>
+<title>Buy the new Google Pixel 10 Pro Fold</title>
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8">
+<meta name=3Dviewport content=3D"width=3Ddevice-width, initial-scale=3D1">
+<meta name=3Dformat-detection content=3Dtelephone=3Dno>
+<style type=3Dtext/css>
+* {
+border: none;
+margin: 0;
+padding: 0;
+font-family: "Google Sans", Arial, sans-serif;
+text-decoration: none; }
+table {
+border-collapse: collapse; }
+table td {
+border-collapse: collapse; }
+a {
+border: none; }
+a img {
+outline: none;
+text-decoration: none; }
+.preheader {
+display: none; }
+sup {
+line-height: 1.5;
+font-size: 65%;
+vertical-align: top; }
+img {
+display: block;
+max-width: 100%; }
+.shell__backdrop {
+background-color: #ffffff;
+padding-top: 16px;
+padding-bottom: 24px; }
+.shell__body {
+background-color: #ffffff;
+width: 720px;
+margin: 0 auto; }
+@media (max-width: 720px) {
+.shell__body {
+width: 100%;
+max-width: 500px; } }
+table {
+mso-table-lspace: 0pt;
+mso-table-rspace: 0pt; }
+table td {
+border-collapse: collapse; }
+a img {
+-ms-interpolation-mode: bicubic; }
+html {
+-webkit-text-size-adjust: none !important; }
+.preheader {
+display: none !important; }
+sup {
+mso-ansi-font-size: 100%; }
+@media yahoo {
+.preheader {
+display: none;
+display: none !important; } }
+</style>
+<!--[if gte mso 9]>
+<xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml>
+<![endif]-->
+<style>
+.masthead, .masthead img { margin: auto; display: block; }
+.masthead .id-1 { background-color: #FFFFFF; padding: 26px 0; }
+.masthead .id-1 img { height: 20px; width: 110px; }
+.footer { width: 100% !important; text-align: center; padding: 0px 48px 28p=
+x 48px; background-color: #ffffff; border-collapse: separate; }
+.footer img { box-sizing: content-box; display: inline-block; max-width: no=
+ne; }
+.footer tr { padding: 0; }
+.footer table { margin: auto; width:100%; text-align:center; border-collaps=
+e: separate; border-spacing: 0; }
+.footer .footer__text--primary, .footer .footer__text--secondary{ color: #4=
+23F3F ; font-family: Google Sans, Arial, sans-serif; font-weight: regular; =
+text-decoration: none; }
+.footer .footer__text--primary, .footer .footer__text--primary a{ font-size=
+: 14px; line-height: 21px; }
+.footer .footer__text--secondary, .footer .footer__text--secondary a{ font-=
+size: 12px; line-height: 20px; }
+.footer .footer__text--bold { font-weight: 600; }
+.footer .footer__text--standout-link { text-decoration: underline; color: #=
+1c5ac9; }
+.footer__divider { padding: 0 0 0 0; border-collapse: collapse; border-top:=
+ 1px solid #80868B; font-size: 0px; line-height: 0px; }
+.footer__social-media-container { padding: 24px 0 24px 0 }
+.footer__disclaimer-container { padding: 24px 0 0 0; }
+.footer__diclaimer-row { padding-bottom: 16px; }
+.footer__diclaimer-row a{ text-decoration: underline; color: #1c5ac9; font-=
+size: 12px; line-height: 20px; }
+.footer__entity-and-address-container { padding: 32px 0 16px 0; }
+.footer__rationale-container { padding: 0 0 16px 0; }
+.footer__links-container { padding: 0; }
+.compact_1 { margin: auto; }
+.compact_1 .id-2 { background-color: #E7ECF3; padding: 40px 48px 36px; text=
+-align: center; }
+.eds__heading_1, .eds__heading_2, .eds__heading_3, .eds__heading_4, .eds__h=
+eading_5, .eds__heading_6, .eds__subheading_1, .eds__subheading_2, .eds__ey=
+ebrow, .eds__body, .eds__footnote { color: #202124; margin: 0; }
+.eds__eyebrow { font-weight: 500; font-size: 14px; line-height: 1.5; letter=
+-spacing: 0.25px; }
+.compact_1 .id-2 .compact_1__eyebrow { color: #202124; }
+.eds__heading_1 { font-weight: 700; font-size: 48px; line-height: 1.2; lett=
+er-spacing: -1.4px; }
+.compact_1 .id-2 .compact_1__heading { color: #202124; }
+.eds__body { font-weight: 400; font-size: 14px; line-height: 1.5; letter-sp=
+acing: 0.2px; }
+.compact_1 .id-2 .compact_1__body { color: #202124; }
+.cta { font-family: "Google Sans", Arial, sans-serif; font-weight: 500; mar=
+gin: auto; display: inline-block; width: max-content; text-align: center; }
+.cta a { text-decoration: none; cursor: pointer; display: inline-block; }
+.cta .cta-caret { font-size: 24px; line-height: 18px; font-weight: 400; }
+.cta .high_light { background-color: #1967D2; border: 2px solid #1967D2; bo=
+rder-radius: 100px; color: #FFFFFF; font-size: 16px; line-height: 24px; }
+.cta .medium { margin: auto; padding: 10px 22px; }
+.cta a:hover .high_light { background-color: #174EA6; border: 2px solid #17=
+4EA6; color: #FFFFFF; }
+.spacer-8-height { font-size: 8px; line-height: 8px; }
+.spacer-6-height { font-size: 6px; line-height: 6px; }
+.spacer-16-height { font-size: 16px; line-height: 16px; }
+.compact_1 .id-3 { background-color: #FFFFFF; padding: 48px 48px 28px; text=
+-align: center; }
+.eds__heading_4 { font-weight: 700; font-size: 28px; line-height: 1.2; }
+.compact_1 .id-3 .compact_1__heading { color: #202124; }
+.cta .low_light_inline { background-color: transparent; border: 0; border-r=
+adius: 0; color: #1967D2; font-size: 14px; line-height: 21px; }
+.cta a:hover .low_light_inline .cta-text, .cta a:hover .low_light_inline .c=
+ta-caret { background-color: transparent; border: 0; color: #174EA6; }
+.cta .low_light_inline .cta-text { color: #1967D2; font-size: 14px; line-he=
+ight: 21px; vertical-align: top; }
+.compact_1 .id-5 { background-color: #EEF3F9; padding: 48px 48px 28px; text=
+-align: center; }
+.eds__footnote { font-family: "Roboto", "Google Sans", Arial, sans-serif; f=
+ont-weight: 400; font-size: 12px; line-height: 20px; }
+.eds__heading_6 { font-weight: 700; font-size: 20px; line-height: 1.5; }
+.eds__subheading_1 { font-weight: 700; font-size: 16px; line-height: 1.5; l=
+etter-spacing: 0.1px; }
+.cta .medium_light_alt { background-color: transparent; border: 2px solid #=
+202124; border-radius: 100px; color: #202124; font-size: 16px; line-height:=
+ 24px; }
+.cta a:hover .medium_light_alt { background-color: #202124; border: 2px sol=
+id #202124; color: #FFFFFF; }
+.divider { width: 100%; }
+.divider .container-full_width { padding-left: 22px; padding-right: 22px; }
+.divider_line { font-size: 0; line-height: 0; border-top: 1px solid; }
+.divider_line--gray_300 { border-color: #DADCE0; }
+.spacer-28-height { font-size: 28px; line-height: 28px; }
+.spacer-24-height { font-size: 24px; line-height: 24px; }
+.spacer-36-height { font-size: 36px; line-height: 36px; }
+.spacer-12-height { font-size: 12px; line-height: 12px; }
+.trade_in_interactive { width: 100%; }
+.trade_in_interactive .id-4 { background-color: #EEF3F9; border-radius: 20p=
+x; overflow: hidden; }
+.trade_in_interactive .italic { font-style: italic; }
+.trade_in_interactive .divider-no-padding .container-full_width{ padding: 0=
+; }
+.trade_in_interactive .id-4 .static { margin: 0 0 0 0; }
+.trade_in_interactive .static-table { width:100% }
+.trade_in_interactive .image-desktop-hide { display: none; }
+.trade_in_interactive .trade-in-value-line { height: 40px; }
+.trade_in_interactive .trade-in-value-line-device { text-align: left; paddi=
+ng: 8px 0; }
+.trade_in_interactive .trade-in-value-value { width: 144px; text-align: rig=
+ht; }
+.trade_in_interactive .trade-in-content-container { text-align:left; paddin=
+g: 48px; }
+.trade_in_interactive .left-side-width { width: 418px; }
+.evp { height: 1px; width: 720px; background-color: #F8F9FA; border-radius:=
+ 20px; }
+.evp .heading { font-size: 20px; line-height: 30px; text-align: center; fon=
+t-family: 'Google Sans', Arial, sans-serif; font-weight: 700; padding: 40px=
+ 48px 24px; color: #202124; }
+.evp .h-spacer-outer { width: 22px; }
+.evp .h-spacer-inner { width: 20px; }
+.evp .height-100-p { height: 100%; }
+.evp .width-100-p { width: 100%; }
+.evp .card .card-table { background-color: #FFFFFF; border-radius: 12px; }
+.evp .card-6 { width: 208px; }
+.evp .card-6 .card-padding { width: 16px; }
+.evp .icon { padding-top: 24px; padding-bottom: 16px; float: left; }
+.evp .icon img { height: 48px; width: 48px; }
+.evp .icon-partner { padding-bottom: 16px; float: left; }
+.evp .icon-partner img { width: 64px; height: 32px; float: none; }
+.evp .card-heading { font-size: 16px; line-height: 24px; font-weight: 700; =
+padding-bottom: 6px; font-family: 'Google Sans', Arial, sans-serif; color: =
+#202124; }
+.evp .card-body { font-size: 14px; line-height: 21px; padding-bottom: 16px;=
+ font-family: 'Google Sans', Arial, sans-serif; color: #202124; }
+.evp .card-cta, .evp .card-cta a { font-size: 14px; line-height: 21px; padd=
+ing-bottom: 24px; font-family: 'Google Sans', Arial, sans-serif; text-decor=
+ation: none; font-weight: 500; color: #1967D2; }
+.evp .card-cta:hover, .evp .card-cta a:hover { color: #174EA6; }
+.evp .cta-caret { font-size: 24px; line-height: 18px; font-weight: 400; ver=
+tical-align: top; }
+.evp .v-spacer { height: 20px; font-size: 20px; line-height: 20px; backgrou=
+nd-color: #F8F9FA; border-bottom-right-radius: 20px; border-bottom-left-rad=
+ius: 20px; }
+.evp .v-spacer-mobile { display: none; }
+.mod-hero { border-radius: 20px; }
+* sup, .compact_1 sup { vertical-align: top; font-size: 70%; line-height: 1=
+.2; }
+.mod-pixelsnap .id-8 { padding: 0px 20px 0px; }
+@media screen and (max-width: 720px) { .footer { padding: 0px 16px 28px 16p=
+x; } .footer__disclaimer-container { padding: 24px 0 0 0; } .footer__entity=
+-and-address-container { padding: 32px 0 8px 0; } .compact_1 .id-2 { paddin=
+g-left: 10%; padding-right: 10%; padding-bottom: 32px; } .compact_1 .id-3 {=
+ padding-left: 10%; padding-right: 10%; } .compact_1 .id-5 { padding-left: =
+10%; padding-right: 10%; padding-bottom: 20px; } .divider .container-full_w=
+idth { padding-left: 16px; padding-right: 16px; } .trade_in_interactive .tr=
+ade-in-content-container { text-align:center; padding: 0 48px 40px; } .trad=
+e_in_interactive .left-side-width { width: 100%; display: block; } .trade_i=
+n_interactive .right-side-width { width: 100%; display: block; } .trade_in_=
+interactive .image-mobile-hide { display: none; } .trade_in_interactive .st=
+atic-cta { width: auto } .evp { width: 100%; } .evp .stack { width: 100%; d=
+isplay: block; } .evp .heading { padding: 32px 36px; } .evp .v-spacer { dis=
+play: none; } .evp .v-spacer-mobile { display: table-cell; height: 16px; fo=
+nt-size: 16px; line-height: 16px; background-color: #F8F9FA; } .evp .card-h=
+eading, .evp .card-body, .evp .card-cta { text-align: center; } .evp .icon,=
+ .evp .icon-partner { float: none; } .evp .height-auto { height: auto; } .e=
+vp .m-fluid { width: 100%; } .evp .m-hide { display: none; } .evp .h-spacer=
+-outer { width: 16px; } .support .bauble { width: 80px !important; min-widt=
+h: 80px !important; } .footer__diclaimer-row a { word-break: break-all !imp=
+ortant; } .mod-cross-sell h6 { font-size: 16px !important; line-height: 24p=
+x !important; } * sup, .compact_1 sup { vertical-align: top !important; fon=
+t-size: 70% !important; line-height: 1.2 !important; } }
+@media only screen and (max-width: 720px) { .footer__social-media-container=
+ { padding: 24px 0 24px 0; } .footer__rationale-container { padding: 0 0 8p=
+x 0; } }
+@media (max-width: 720px) { .eds__heading_1 { font-size: 34px; letter-spaci=
+ng: -1px; } .eds__heading_4 { font-size: 24px; line-height: 1.5; } }
+</style> <style type=3Dtext/css>
+@media only screen {
+sup {
+vertical-align: top !important;
+font-size: 70% !important;
+line-height: 1.2 !important;
+}
+}
+@media screen and (max-width: 720px) {
+.h3 {
+font-size: 28px !important;
+}
+}
+@media screen and (max-width: 720px) {
+.copy-lockup {
+width: 80% !important;
+padding: 0 !important;
+}
+}
+@media screen and (max-width: 720px) {
+img {
+max-width: 720px !important;
+}
+.desktop {
+display: none !important;
+height: 0 !important;
+font-size: 0 !important;
+line-height: 0 !important;
+}
+.mobile {
+display: initial !important;
+}
+amp-img.mobile {
+display: block;
+}
+img.mobile {
+display: block !important;
+height: auto !important;
+}
+table.mobile {
+display: table !important;
+}
+.stack {
+width: 100% !important;
+display: block !important;
+}
+}
+@media screen and (max-width: 720px) {
+span {
+font-size: 100% !important;
+line-height: normal !important;
+}
+.pad-16 {
+padding: 0px 6px !important;
+}
+.mod-promo .col-icon img {
+width: 24px !important;
+}
+.mod-promo .pill-box,
+.mod-promo .two-pill-box {
+padding: 0px 6px !important;
+}
+.mod-promo .pill-box .pill,
+.mod-promo .two-pill-box .pill {
+background-color: #E7ECF3 !important;
+margin: 0 auto !important;
+max-width: 348px !important;
+padding: 20px 12px !important;
+width: 92% !important;
+}
+.mod-compare .pad-comp {
+padding: 0 36px !important;
+}
+.mod-ksp .three-pill-box {
+padding: 0px 16px !important;
+}
+.mod-ksp .three-pill-box .pill {
+max-width: 316px !important;
+}
+.mod-ksp .three-pill-box .inner-pill {
+margin: 0 auto !important;
+max-width: 348px !important;
+padding: 20px 16px 0px !important;
+}
+.mod-ksp .three-pill-box .inner-pill p {
+font-size: 16px !important;
+line-height: 24px !important;
+letter-spacing: 0.1px !important;
+text-align: center !important;
+}
+.mod-cross-sell {
+margin: 0 auto !important;
+max-width: 360px !important;
+}
+}
+</style>
+<style>@media screen {
+@font-face {
+font-family: "Google Sans";
+src: url("https://www.emailimagecdn4htg.com/shared/fonts/GoogleSans-Italic.=
+woff2") format("woff2");
+font-weight: normal;
+font-style: italic;
+}
+@font-face {
+font-family: "Google Sans";
+src: url("https://www.emailimagecdn4htg.com/shared/fonts/GoogleSans-Regular=
+.woff2") format("woff2");
+font-weight: normal;
+font-style: normal;
+}
+@font-face {
+font-family: "Google Sans";
+src: url("https://www.emailimagecdn4htg.com/shared/fonts/GoogleSans-Medium.=
+woff2") format("woff2");
+font-weight: 500;
+font-style: normal;
+}
+@font-face {
+font-family: "Google Sans";
+src: url("https://www.emailimagecdn4htg.com/shared/fonts/GoogleSans-MediumI=
+talic.woff2") format("woff2");
+font-weight: 500;
+font-style: italic;
+}
+@font-face {
+font-family: "Google Sans";
+src: url("https://www.emailimagecdn4htg.com/shared/fonts/GoogleSans-Bold.wo=
+ff2") format("woff2");
+font-weight: bold;
+font-style: normal;
+}
+@font-face {
+font-family: "Google Sans";
+src: url("https://www.emailimagecdn4htg.com/shared/fonts/GoogleSans-BoldIta=
+lic.woff2") format("woff2");
+font-weight: bold;
+font-style: italic;
+}
+}</style></head>
+<body style=3D"color: #3C4043; font-family: &#39;Google Sans&#39;, Arial, s=
+ans-serif; font-weight: 400; font-size: 14px; line-height: 21px; margin: 0 =
+auto; padding: 0;">
+<div class=3Dpreheader style=3D"display: none; display: none !important;">
+<div class=3Dpreheader style=3D"display: none; display: none !important;">T=
+he amazing Pixel camera. Advanced AI editing.<div style=3D"display: none; m=
+ax-height: 0px; overflow: hidden;">=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C</div></div>
+</div> <div itemscope itemtype=3Dhttp://schema.org/EmailMessage>
+<div itemprop=3Daction itemscope itemtype=3Dhttp://schema.org/ViewAction>
+<link itemprop=3Dtarget href=3Dhttps://store.google.com/US/product/pixel_10=
+_pro_fold?hl=3Den-US&amp;utm_campaign=3DGS205141&amp;utm_source=3Dpromo&amp=
+;utm_medium=3Demail_crm&amp;utm_content=3D110980130&amp;utm_term=3Dquickact=
+ion_cta>
+<meta itemprop=3Dname content=3D"Shop now">
+</div>
+</div>
+<div class=3Dshell>
+<div class=3Dshell__backdrop style=3D"background-color: #ffffff;">
+<div class=3Dshell__body style=3D"background-color: #ffffff;">
+<div class=3Dmasthead>
+<div class=3Did-1>
+<!--[if mso]>
+<table align=3D"center" style=3D"background-color: #FFFFFF; width: 100%;"><=
+tr><td align=3D"center" style=3D"padding:26px 0;">
+<!--<![endif]--><!---->
+<!--[if mso]>
+<table align=3D"center"><tr><td align=3D"center">
+<img src=3D'https://services.google.com/fh/files/emails/google_store_logo_2=
+x.png' class=3D'logo ' alt=3D'' aria-hidden=3D'hidden' width=3D"110" height=
+=3D"20"/>
+</td></tr></table>
+</td>
+<!--<![endif]--><!---->
+<!--[if !mso]><!-->
+<img src=3Dhttps://services.google.com/fh/files/emails/google_store_logo_2x=
+.png class=3D"logo " alt=3D"" aria-hidden=3Dhidden>
+<!--<![endif]-->
+<!--[if mso]>
+</tr></table>
+<!--<![endif]--><!---->
+</div>
+</div>
+<div class=3D"mod-hero " style=3D"background-color: #E7ECF3; overflow: hidd=
+en;">
+<div class=3Dcompact_1>
+<div class=3Did-2>
+<div class=3Deyebrow-row>
+<p class=3D"eds__eyebrow compact_1__eyebrow">Google Pixel 10 Pro=C2=A0Fold<=
+/p>
+</div>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-8-height>
+=C2=A0
+</td>
+</tr>
+</table>
+<div class=3Dheading-row>
+<h1 class=3D"eds__heading_1 compact_1__heading">Unfold=C2=A0extraordinary.<=
+/h1>
+</div>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-6-height>
+=C2=A0
+</td>
+</tr>
+</table>
+<div class=3Dbody-row>
+<p class=3D"eds__body compact_1__body"><span class=3Dbold style=3D"font-wei=
+ght: 700;">From=C2=A0$1,799</span></p>
+</div>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-16-height>
+=C2=A0
+</td>
+</tr>
+</table>
+<div class=3Dcta-row>
+<div class=3D"cta compact_1__cta_1">
+<a href=3Dhttps://c.gle/AF5yWjARnEHe0f1YTXggwb98SnIc_8JQt2kF2gbJNY5XFPn6SuA=
+M0zxvZLJIRtvrzanUr_hPNQX4vZFPkbOZmDyUkwtXy7yovAQZ5Qwb3R_aPyLEwO9S3t6hpD71Sr=
+gOlMt-8lZ53fg96zIv1_UKWHk4ITrxYvAwBnkPZjDqUgaOZsukJS-786afWn8aqlbw-Y4SfaZwM=
+DWVsU803s6h7OceTUYufd8PGvnV7hj9MyGyDFmx9WRJwkNgBxjIjjggR0gHY7jPd0DudZQlpPK4=
+I6lNSo3VvL2172kMVFdFcEfQodqFSRQlXWo7GqIg5Q>
+<div class=3D"high_light medium">
+Shop now
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<a href=3D# aria-hidden=3Dtrue style=3D"font-family: &#39;Google Sans&#39;,=
+ Arial, sans-serif; color: #1967D2; text-decoration: none;">
+<img src=3Dhttps://lh3.googleusercontent.com/Pt7c5Xr5GO6Qt0rDw2fXcXlTrgVJXr=
+HrYLVeNQqpHUDmNO94nmagJEv0tCpjYXkk6rQp-M97NTPlQATuRm8sL4njon5XZ_7hWQ=3Dw360=
+-h344 alt width=3D360 height=3D344 aria-hidden=3Dtrue class=3D" mobile img-=
+fluid img" style=3D"border: none; outline: none; margin: 0 auto; display: n=
+one; width: 100%; max-width: 360px;" border=3D0>
+<img src=3Dhttps://lh3.googleusercontent.com/y3hgB9MHj_Gv0I3Nag5Q4hmAN3aGAc=
+0MlTCmzXcTCdMRKbpWiGzETGfc8CcVy_E5s_Xg-OSxkYXVKtkT0JTGIxIzt7z-xD8LMg=3Dw720=
+-h436 alt width=3D720 height=3D436 aria-hidden=3Dtrue class=3D" desktop img=
+ img-fluid" style=3D"border: none; outline: none; display: block; margin: 0=
+ auto; width: 100%; max-width: 720px;" border=3D0>
+</a>
+</div> <div class=3Dmod-promo style=3D"color: #202124;">
+<div class=3Dcompact_1>
+<div class=3Did-3>
+<div class=3Dheading-row>
+<h4 class=3D"eds__heading_4 compact_1__heading">Unlock special offers on <s=
+pan style=3D"white-space: nowrap">Pixel 10 Pro=C2=A0Fold.</span></h4>
+</div>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-16-height>
+=C2=A0
+</td>
+</tr>
+</table>
+<div class=3Dcta-row>
+<div class=3D"cta compact_1__cta_1">
+<a href=3Dhttps://c.gle/AF5yWjC7Ne5mB83wJIetasb7x9FDjA27h86rqKFGm_2g9jyPH7s=
+aPA0z4VruR-MljmljWKTI04OOHe7O966LwpV2CanmMpAT1YoBLMguK2MXoJB_ujQVFKZ6q0_r0H=
+eFdBD8X0S1bUL99dgoN6BgCPiI6sFUi-DnujNwoydK-P5yLoF95eNqqKu_GTF4O3PfsPNEjITLH=
+llEdq_hzrchnbGTU5li21JXJbUZuPG2vIYLjjx92krwxSVLl4-MwkHHmCEBjbJtMGD9RyuRqtOf=
+hWCv3pajgQTIdRvxVzc1XS20EXe0k61W4Y5NJkpFY4y->
+<div class=3D"low_light_inline ">
+<span class=3Dcta-text>See all offers</span><span class=3Dcta-caret>=C2=A0=
+=E2=80=BA</span>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class=3Dtwo-pill-box style=3D"padding: 0px 16px;">
+<table class=3Ddesktop role=3Dpresentation style=3D"border-collapse: collap=
+se; margin: 0 auto; box-sizing: border-box;" cellpadding=3D0 cellspacing=3D=
+0 border=3D0>
+<tr>
+<td class=3D"pill-col br-20 pill" valign=3Dtop style=3D"font-family: inheri=
+t; box-sizing: border-box; border-collapse: collapse; border-radius: 20px; =
+overflow: hidden; background-color: #E7ECF3; padding: 20px 12px; max-width:=
+ 342px;" bgcolor=3D#E7ECF3>
+<div>
+<table role=3Dpresentation style=3D"border-collapse: collapse; margin: 0 au=
+to; box-sizing: border-box;" cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dcol-icon style=3D"vertical-align: top; font-family: inherit; bo=
+x-sizing: border-box; border-collapse: collapse;" valign=3Dtop>
+<a href=3D# aria-hidden=3Dtrue style=3D"font-family: &#39;Google Sans&#39;,=
+ Arial, sans-serif; color: #1967D2; text-decoration: none;">
+<img src=3Dhttps://lh3.googleusercontent.com/hlRNlkhvh-FAl9Lm-lJOkYTChN6nDW=
+lCCZeufY0JjVG5BziczPc_E2uM2f-cw-5pjKzGsM0wGPouqjVqXsHJ4HIoHvARbog2I3OC=3Dw4=
+8-h48 alt width=3D24 height=3D24 aria-hidden=3Dtrue class=3D" img img-fluid=
+" style=3D"border: none; outline: none; display: block; margin: 0 auto; wid=
+th: 24px; max-width: 24px;" border=3D0>
+</a>
+</td>
+<td width=3D8 class=3D" h-spacer" style=3D"font-family: inherit; box-sizing=
+: border-box; border-collapse: collapse;">=C2=A0</td> <td class=3Dcol-text =
+style=3D"font-family: inherit; box-sizing: border-box; border-collapse: col=
+lapse;">
+<p style=3D"margin: 0; font-size: 14px; line-height: 21px; letter-spacing: =
+0.2px;">
+Get $800 off Pixel 10 Pro Fold with $300 off instantly and $500 back over 2=
+4 monthly bill credits when you join Google Fi Wireless.<sup>=E2=80=A0</sup=
+> </p>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td width=3D4 class=3D"desktop h-spacer" style=3D"font-family: inherit; box=
+-sizing: border-box; border-collapse: collapse;">=C2=A0</td> <td class=3D"p=
+ill-col br-20 pill" valign=3Dtop style=3D"font-family: inherit; box-sizing:=
+ border-box; border-collapse: collapse; border-radius: 20px; overflow: hidd=
+en; background-color: #E7ECF3; padding: 20px 12px; max-width: 342px;" bgcol=
+or=3D#E7ECF3>
+<div>
+<table role=3Dpresentation style=3D"border-collapse: collapse; margin: 0 au=
+to; box-sizing: border-box;" cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dcol-icon style=3D"vertical-align: top; font-family: inherit; bo=
+x-sizing: border-box; border-collapse: collapse;" valign=3Dtop>
+<a href=3D# aria-hidden=3Dtrue style=3D"font-family: &#39;Google Sans&#39;,=
+ Arial, sans-serif; color: #1967D2; text-decoration: none;">
+<img src=3Dhttps://lh3.googleusercontent.com/5OwPrNElvO6l-xYwtGG298dzBSVgtF=
+wYeqog4Oi5SOt7-J2Bkv4k76QqkZh47AySvqZexM4sKad0qRzMrgg5PYyYQtDLiGJsRw=3Dw48-=
+h48 alt width=3D24 height=3D24 aria-hidden=3Dtrue class=3D" img img-fluid" =
+style=3D"border: none; outline: none; display: block; margin: 0 auto; width=
+: 24px; max-width: 24px;" border=3D0>
+</a>
+</td>
+<td width=3D8 class=3D" h-spacer" style=3D"font-family: inherit; box-sizing=
+: border-box; border-collapse: collapse;">=C2=A0</td> <td class=3Dcol-text =
+style=3D"font-family: inherit; box-sizing: border-box; border-collapse: col=
+lapse;">
+<p style=3D"margin: 0; font-size: 14px; line-height: 21px; letter-spacing: =
+0.2px;">
+Get 1 year of Google AI Pro on us ($239 value), plus additional premium Goo=
+gle services with any unlocked or carrier phone.<sup>=E2=80=A1</sup> </p>
+</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<div class=3Dmobile style=3D"display: none;">
+<div class=3D"br-20 pill" style=3D"border-radius: 20px; overflow: hidden; b=
+ackground-color: #E7ECF3; padding: 20px 12px;">
+<table role=3Dpresentation style=3D"border-collapse: collapse; margin: 0 au=
+to; box-sizing: border-box;" cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dcol-icon style=3D"vertical-align: top; font-family: inherit; bo=
+x-sizing: border-box; border-collapse: collapse;" valign=3Dtop>
+<a href=3D# aria-hidden=3Dtrue style=3D"font-family: &#39;Google Sans&#39;,=
+ Arial, sans-serif; color: #1967D2; text-decoration: none;">
+<img src=3Dhttps://lh3.googleusercontent.com/hlRNlkhvh-FAl9Lm-lJOkYTChN6nDW=
+lCCZeufY0JjVG5BziczPc_E2uM2f-cw-5pjKzGsM0wGPouqjVqXsHJ4HIoHvARbog2I3OC=3Dw4=
+8-h48 alt width=3D24 height=3D24 aria-hidden=3Dtrue class=3D" img img-fluid=
+" style=3D"border: none; outline: none; display: block; margin: 0 auto; wid=
+th: 24px; max-width: 24px;" border=3D0>
+</a>
+</td>
+<td width=3D8 class=3D" h-spacer" style=3D"font-family: inherit; box-sizing=
+: border-box; border-collapse: collapse;">=C2=A0</td> <td class=3Dcol-text =
+style=3D"font-family: inherit; box-sizing: border-box; border-collapse: col=
+lapse;">
+<p style=3D"margin: 0; font-size: 14px; line-height: 21px; letter-spacing: =
+0.2px;">
+Get $800 off Pixel 10 Pro Fold with $300 off instantly and $500 back over 2=
+4 monthly bill credits when you join Google Fi Wireless.<sup>=E2=80=A0</sup=
+> </p>
+</td>
+</tr>
+</table>
+</div>
+<table class=3D"spacer mobile" width=3D100% style=3D"border-collapse: colla=
+pse; margin: 0 auto; box-sizing: border-box; display: none;" role=3Dpresent=
+ation cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dempty style=3D"font-family: inherit; box-sizing: border-box; bo=
+rder-collapse: collapse; font-size: 4px; line-height: 4px;" height=3D4px>=
+=C2=A0</td>
+</tr>
+</table> <div class=3D"br-20 pill" style=3D"border-radius: 20px; overflow: =
+hidden; background-color: #E7ECF3; padding: 20px 12px;">
+<table role=3Dpresentation style=3D"border-collapse: collapse; margin: 0 au=
+to; box-sizing: border-box;" cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dcol-icon style=3D"vertical-align: top; font-family: inherit; bo=
+x-sizing: border-box; border-collapse: collapse;" valign=3Dtop>
+<a href=3D# aria-hidden=3Dtrue style=3D"font-family: &#39;Google Sans&#39;,=
+ Arial, sans-serif; color: #1967D2; text-decoration: none;">
+<img src=3Dhttps://lh3.googleusercontent.com/5OwPrNElvO6l-xYwtGG298dzBSVgtF=
+wYeqog4Oi5SOt7-J2Bkv4k76QqkZh47AySvqZexM4sKad0qRzMrgg5PYyYQtDLiGJsRw=3Dw48-=
+h48 alt width=3D24 height=3D24 aria-hidden=3Dtrue class=3D" img img-fluid" =
+style=3D"border: none; outline: none; display: block; margin: 0 auto; width=
+: 24px; max-width: 24px;" border=3D0>
+</a>
+</td>
+<td width=3D8 class=3D" h-spacer" style=3D"font-family: inherit; box-sizing=
+: border-box; border-collapse: collapse;">=C2=A0</td> <td class=3Dcol-text =
+style=3D"font-family: inherit; box-sizing: border-box; border-collapse: col=
+lapse;">
+<p style=3D"margin: 0; font-size: 14px; line-height: 21px; letter-spacing: =
+0.2px;">
+Get 1 year of Google AI Pro on us ($239 value), plus additional premium Goo=
+gle services with any unlocked or carrier phone.<sup>=E2=80=A1</sup> </p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<table class=3D"spacer " width=3D100% style=3D"border-collapse: collapse; m=
+argin: 0 auto; box-sizing: border-box;" role=3Dpresentation cellpadding=3D0=
+ cellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dempty style=3D"font-family: inherit; box-sizing: border-box; bo=
+rder-collapse: collapse; font-size: 60px; line-height: 60px;" height=3D60px=
+>=C2=A0</td>
+</tr>
+</table>
+</div>
+<div class=3D"mod-trade-in pad-16" style=3D"padding: 0px 16px;">
+<div class=3Dtrade_in_interactive>
+<div class=3Did-4>
+<div class=3Dstatic>
+<div class=3Dcompact_1>
+<div class=3Did-5>
+<div class=3Dheading-row>
+<h4 class=3D"eds__heading_4 compact_1__heading">Get up to $799 back with qu=
+alifying iPhone<sup style=3D"vertical-align: top; font-size: 70%; line-heig=
+ht: 1.2;">=C2=AE</sup> or other eligible <span class=3Dno-wrap style=3D"whi=
+te-space: nowrap;">trade-in.</span></h4>
+</div>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-6-height>
+=C2=A0
+</td>
+</tr>
+</table>
+<div class=3Dbody-row>
+<p class=3D"eds__body compact_1__body"> <i>Trade-in value is based on trade=
+-in device and specific subsidy for selected Pixel model. Terms=C2=A0apply.=
+=E2=80=8C<sup>=E2=80=A0=E2=80=A0</sup>
+</i>
+</p>
+</div>
+</div>
+</div>
+<table role=3Dpresentation cellpadding=3D0 cellspacing=3D0 class=3Dstatic-t=
+able>
+<tr>
+<td class=3D"left-side-width col-bottom">
+<div class=3Dtrade-in-content-container>
+<table role=3Dpresentation width=3D100% class=3Dtrade-in-value-lines-contai=
+ner>
+<tr class=3Dtrade-in-value-line>
+<td>
+<table role=3Dpresentation width=3D100%>
+<tr>
+<td class=3Dtrade-in-value-line-device>
+<p class=3D"eds__subheading_1 " aria-level=3D7 role=3Dheading>iPhone 16 Pro=
+ Max</p>
+</td>
+<td class=3Dtrade-in-value-value>
+<p class=3D"eds__body "> up to $799 back
+</p>
+</td>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width=3D100% role=3Dpresentation class=3D"divider divider-no-padding=
+">
+<tr>
+<td class=3Dcontainer-full_width>
+<table width=3D100%>
+<tr>
+<td class=3D"divider_line divider_line--gray_300"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class=3Dtrade-in-value-line>
+<td>
+<table role=3Dpresentation width=3D100%>
+<tr>
+<td class=3Dtrade-in-value-line-device>
+<p class=3D"eds__subheading_1 " aria-level=3D7 role=3Dheading>iPhone 15 Pro=
+</p>
+</td>
+<td class=3Dtrade-in-value-value>
+<p class=3D"eds__body "> up to $500 back
+</p>
+</td>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width=3D100% role=3Dpresentation class=3D"divider divider-no-padding=
+">
+<tr>
+<td class=3Dcontainer-full_width>
+<table width=3D100%>
+<tr>
+<td class=3D"divider_line divider_line--gray_300"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class=3Dtrade-in-value-line>
+<td>
+<table role=3Dpresentation width=3D100%>
+<tr>
+<td class=3Dtrade-in-value-line-device>
+<p class=3D"eds__subheading_1 " aria-level=3D7 role=3Dheading>iPhone 14 Pro=
+ Max</p>
+</td>
+<td class=3Dtrade-in-value-value>
+<p class=3D"eds__body "> up to $550 back
+</p>
+</td>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width=3D100% role=3Dpresentation class=3D"divider divider-no-padding=
+">
+<tr>
+<td class=3Dcontainer-full_width>
+<table width=3D100%>
+<tr>
+<td class=3D"divider_line divider_line--gray_300"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class=3Dtrade-in-value-line>
+<td>
+<table role=3Dpresentation width=3D100%>
+<tr>
+<td class=3Dtrade-in-value-line-device>
+<p class=3D"eds__subheading_1 " aria-level=3D7 role=3Dheading>iPhone 13 Pro=
+</p>
+</td>
+<td class=3Dtrade-in-value-value>
+<p class=3D"eds__body "> up to $430 back
+</p>
+</td>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width=3D100% role=3Dpresentation class=3D"divider divider-no-padding=
+">
+<tr>
+<td class=3Dcontainer-full_width>
+<table width=3D100%>
+<tr>
+<td class=3D"divider_line divider_line--gray_300"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class=3Dtrade-in-value-line>
+<td>
+<table role=3Dpresentation width=3D100%>
+<tr>
+<td class=3Dtrade-in-value-line-device>
+<p class=3D"eds__subheading_1 " aria-level=3D7 role=3Dheading>iPhone 12</p>
+</td>
+<td class=3Dtrade-in-value-value>
+<p class=3D"eds__body "> up to $265 back
+</p>
+</td>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width=3D100% role=3Dpresentation class=3D"divider divider-no-padding=
+">
+<tr>
+<td class=3Dcontainer-full_width>
+<table width=3D100%>
+<tr>
+<td class=3D"divider_line divider_line--gray_300"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class=3Dtrade-in-value-line>
+<td>
+<table role=3Dpresentation width=3D100%>
+<tr>
+<td class=3Dtrade-in-value-line-device>
+<p class=3D"eds__subheading_1 " aria-level=3D7 role=3Dheading>iPhone 11</p>
+</td>
+<td class=3Dtrade-in-value-value>
+<p class=3D"eds__body "> up to $230 back
+</p>
+</td>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+</tr>
+</table>
+<table width=3D100% role=3Dpresentation class=3D"spacer ">
+<tr>
+<td class=3Dspacer-24-height>
+=C2=A0
+</td>
+</tr>
+</table>
+<div class=3D"cta static-cta">
+<a href=3Dhttps://c.gle/AF5yWjADva7_TsHuIyGkYChLyJtiQBDlhCvY6zPF4_TevAxQoJM=
+YoF3LRCYzytGnj4VVl6XvtnKNqj52w5kqJStqlkMLnt7dA9E26hNPqAX9ZcdenrpbF29Qo5nfy7=
+gJuAxgApXFeLahWA7ubONQFX4izomHLyYRZnZXK76DRpkItdX-cWtkoA1ivJh6ykHytN3qZrNlW=
+eatuQ5l_pMdhdhvYOzkEh6kbcjkbVZ0PoOAG6azKjvp8nffSlRE4-DQ4zlZG5UhDJw6-_CBcVry=
+uU32hHFF_hCMGHjwP2bb67oU0ZNDcwThE9Vv9yFfwycLRw>
+<div class=3D"medium_light_alt medium">
+Start trade-in
+</div>
+</a>
+</div>
+</div>
+</td>
+<td class=3D"right-side-width col-top">
+<div class=3D"image image_radius_right image-mobile-hide">
+<a href=3D# aria-hidden=3Dtrue tabindex=3D-1>
+<img src=3Dhttps://lh3.googleusercontent.com/FZ9BlOhK8TE7UXu9n7PnYtoJD6DHZ_=
+bfexT37hVUzioD1fjiUyK06iYkSGWrMYKe3zf3WqPEeqkBPXM6sbSbcPikyC8iRx-w6Q=3Dw576=
+-h744 alt=3D"">
+</a>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<table class=3D"spacer " width=3D100% style=3D"border-collapse: collapse; m=
+argin: 0 auto; box-sizing: border-box;" role=3Dpresentation cellpadding=3D0=
+ cellspacing=3D0 border=3D0>
+<tr>
+<td class=3Dempty style=3D"font-family: inherit; box-sizing: border-box; bo=
+rder-collapse: collapse; font-size: 80px; line-height: 80px;" height=3D80px=
+>=C2=A0</td>
+</tr>
+</table>
+<table class=3Devp role=3Dpresentation cellpadding=3D0 cellspacing=3D0 bord=
+er=3D0 align=3Dcenter height=3D100%>
+<tr>
+<td class=3Dheading colspan=3D7 align=3Dcenter>
+Get more when you shop on the Google=C2=A0Store.
+</td>
+</tr>
+<tr>
+<td class=3Dh-spacer-outer>=C2=A0</td>
+<td class=3D"card card-6 stack height-auto height-100-p" valign=3Dtop>
+<table class=3D"height-auto height-100-p width-100-p card-table" role=3Dpre=
+sentation cellpadding=3D0 cellspacing=3D0 border=3D0 height=3D100%>
+<tr>
+<td class=3Dcard-padding>=C2=A0</td>
+<td valign=3Dtop class=3D"height-auto height-100-p">
+<table class=3D"height-auto height-100-p width-100-p" align=3Dcenter role=
+=3Dpresentation cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td valign=3Dtop>
+<table class=3Dwidth-100-p role=3Dpresentation cellpadding=3D0 cellspacing=
+=3D0 border=3D0>
+<tr>
+<td class=3Dicon align=3Dcenter>
+<img src=3Dhttps://services.google.com/fh/files/emails/icon_evergreen_value=
+s_in_store_dsk2x.png alt=3D"" style=3D"border: none; display: block;" borde=
+r=3D0>
+</td>
+</tr>
+<tr>
+<td class=3Dcard-heading>
+Shop in=C2=A0store
+</td>
+</tr>
+<tr>
+<td class=3Dcard-body>
+Get hands-on with the latest Google products, chat with our experts, and pi=
+ck up your online orders in=C2=A0person.
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class=3Dcard-cta valign=3Dbottom>
+<a href=3Dhttps://c.gle/AF5yWjACBhJKR9l0tXKAj64uDNOnia7cRTF0BFQMs03-lm0gVuq=
+b9facnfN7JyGyW3L5DcpySp4TuY5ChX_BM2GXHsJ626VqoMF4EzrbWYTuSW9ZGQYEmigGeduM3H=
+8klXxL_ZiA50mqZQ_LN7I8AJreJnVBkqvZVOkmuObskUAj597KHy4Rlosk0yVm3eA6c-HvOjh3D=
+WnEU5_eHvdoGAoHMtoYDPe-OJJGwMiOT8skrNTsnYcnr5ELScqTlb_MvQNuk4QkIbcV9oeMnYFO=
+KczYIGrloeUjIvv_0a6EVosUVTQjQ7ItwodLqEI8mnmceHYsFASa0Fw aria-label=3D"See s=
+tore details: Shop in=C2=A0store">See store details<span class=3Dcta-caret>=
+=C2=A0=E2=80=BA</span></a>
+</td>
+</tr>
+</table>
+</td>
+<td class=3Dcard-padding>=C2=A0</td>
+</tr>
+</table>
+<table role=3Dpresentation cellpadding=3D0 cellspacing=3D0 border=3D0 style=
+=3D"width: 100%">
+<tr>
+<td class=3Dv-spacer-mobile>=C2=A0</td>
+</tr>
+</table>
+</td>
+<td class=3D"h-spacer-inner m-hide">=C2=A0</td>
+<td class=3D"card card-6 stack height-auto height-100-p" valign=3Dtop>
+<table class=3D"height-auto height-100-p width-100-p card-table" role=3Dpre=
+sentation cellpadding=3D0 cellspacing=3D0 border=3D0 height=3D100%>
+<tr>
+<td class=3Dcard-padding>=C2=A0</td>
+<td valign=3Dtop class=3D"height-auto height-100-p">
+<table class=3D"height-auto height-100-p width-100-p" align=3Dcenter role=
+=3Dpresentation cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td valign=3Dtop>
+<table class=3Dwidth-100-p role=3Dpresentation cellpadding=3D0 cellspacing=
+=3D0 border=3D0>
+<tr>
+<td class=3Dicon align=3Dcenter>
+<img src=3Dhttps://services.google.com/fh/files/emails/icon_evergreen_value=
+s_finance_dsk2x.png alt=3D"" style=3D"border: none; display: block;" border=
+=3D0>
+</td>
+</tr>
+<tr>
+<td class=3Dcard-heading>
+Financing
+</td>
+</tr>
+<tr>
+<td class=3Dcard-body>
+Make shopping simple. Get special financing on qualifying purchases.
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class=3Dcard-cta valign=3Dbottom>
+<a href=3Dhttps://c.gle/AF5yWjBEW-NtmMFzWKDxBvKdsqyvQd_TcaFZq_Rm_dPKmcXGq-1=
+3Sx1gArdiMkWai3DN0nzeWVW_nXgqCtb6ghE9Az4aBrzTC5zgAuP07KOdUEKTXN4e3EZ1f8F7I2=
+ZtBqFk699FzZ902SGMrTPTgZD3BbMxd_uOC48oegOLhIsiLQZbyIVcYncLW-dieC-NrrhJCy6XS=
+iE4q6PY_hTqpRcuycWgOQLU1S3d3QNlhjHcuAk_S1Ot5AoSeJHn9N-fdrJlqJly17f66ytcu-ky=
+sn749PxI4ca_afbXuZZBv6cKEw_2Ocj2 aria-label=3D"Learn=C2=A0more: Financing">=
+Learn=C2=A0more<span class=3Dcta-caret>=C2=A0=E2=80=BA</span></a>
+</td>
+</tr>
+</table>
+</td>
+<td class=3Dcard-padding>=C2=A0</td>
+</tr>
+</table>
+<table role=3Dpresentation cellpadding=3D0 cellspacing=3D0 border=3D0 style=
+=3D"width: 100%">
+<tr>
+<td class=3Dv-spacer-mobile>=C2=A0</td>
+</tr>
+</table>
+</td>
+<td class=3D"h-spacer-inner m-hide">=C2=A0</td>
+<td class=3D"card card-6 stack height-auto height-100-p" valign=3Dtop>
+<table class=3D"height-auto height-100-p width-100-p card-table" role=3Dpre=
+sentation cellpadding=3D0 cellspacing=3D0 border=3D0 height=3D100%>
+<tr>
+<td class=3Dcard-padding>=C2=A0</td>
+<td valign=3Dtop class=3D"height-auto height-100-p">
+<table class=3D"height-auto height-100-p width-100-p" align=3Dcenter role=
+=3Dpresentation cellpadding=3D0 cellspacing=3D0 border=3D0>
+<tr>
+<td valign=3Dtop>
+<table class=3Dwidth-100-p role=3Dpresentation cellpadding=3D0 cellspacing=
+=3D0 border=3D0>
+<tr>
+<td class=3Dicon align=3Dcenter>
+<img src=3Dhttps://services.google.com/fh/files/emails/icon_evergreen_value=
+s_pixel_care_plus_dsk2x.png alt=3D"" style=3D"border: none; display: block;=
+" border=3D0>
+</td>
+</tr>
+<tr>
+<td class=3Dcard-heading>
+Pixel=C2=A0Care+
+</td>
+</tr>
+<tr>
+<td class=3Dcard-body>
+Get peace of mind for your Pixel devices with unlimited $0 screen repairs<s=
+up>1</sup> and battery replacements<sup>2</sup> using Google-certified part=
+s.
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class=3Dcard-cta valign=3Dbottom>
+<a href=3Dhttps://c.gle/AF5yWjBhMSIqS0ID1VobpzR1RclR53TgySoxDEaEQL2bafjtf1z=
+XDUZ0CiR2lthlUxj7rFfLqGuaRrF7nwfMcWwMPi2NZOrhv2skhagSxi7hZTRDRokjamuqp14DX4=
+Op4Q6wwSlpfnV25dIF_TWeekjy0EtAJvsF75r-f-hQGxgXpNB8LDvDSH1ELG3U3TiUZlS15J3Ws=
+sYXGtCTIlW_1Zh5q4RYxaLqtA9sERBX9bK-9cPQq9alxoLk0wsFMSuacisD7U-NecQ1dEuMXZD9=
+5TIII8iTn1QuSc69_CJJLKQEpsm28G2Mlw aria-label=3D"Learn=C2=A0more: Pixel=C2=
+=A0Care+">Learn=C2=A0more<span class=3Dcta-caret>=C2=A0=E2=80=BA</span></a>
+</td>
+</tr>
+</table>
+</td>
+<td class=3Dcard-padding>=C2=A0</td>
+</tr>
+</table>
+<table role=3Dpresentation cellpadding=3D0 cellspacing=3D0 border=3D0 style=
+=3D"width: 100%">
+<tr>
+<td class=3Dv-spacer-mobile>=C2=A0</td>
+</tr>
+</table>
+</td>
+<td class=3Dh-spacer-outer>=C2=A0</td>
+</tr>
+<tr>
+<td colspan=3D7 class=3Dv-spacer>=C2=A0</td>
+</tr>
+</table>
+<table class=3Dfooter cellpadding=3D0>
+<tr>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td class=3Dfooter__social-media-container>
+<table role=3Dpresentation class=3Dfooter__table style=3Dwidth:auto align=
+=3Dcenter cellpadding=3D0>
+<tr>
+<td height=3D48 width=3Dauto></td>
+<td align=3Dcenter height=3D48 width=3D48 style=3D"padding-left: 4px; paddi=
+ng-right:4px">
+<a href=3Dhttps://c.gle/AF5yWjCH2TVRajb25JTRtvCPLp5gsvK6vjGgFinnBnS5cY5jOVs=
+ilxpCEEjvtfg9XJlQeV3r0Mq-UDf9eJqhK-ePwVtC8B0q3dT9gnnsbIpUC0UTwqjK-HzlV0a4dQ=
+3dKQ>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td valign=3Dcenter style=3D"height:48px; width:48px">
+<img src=3Dhttps://services.google.com/fh/files/emails/footer_social_icon_y=
+outube_gray_48_x2.png width=3D48 alt=3D" Follow Made by Google on YouTube" =
+style=3D"border: none;" height=3D48></td>
+</tr>
+</table>
+</a>
+</td>
+<td align=3Dcenter height=3D48 width=3D48 style=3D"padding-left: 4px; paddi=
+ng-right:4px">
+<a href=3Dhttps://c.gle/AF5yWjCHbViPg3HOEVy69g3b0daShCqA_8UP7xqiceHRnzFR1PX=
+C_O4T0VSLI0QBdJkDrIwof_v6ZyO9-0wPOctWRYHvhLEL4kBpAcujJSQv2ctUMDVr5DPLCWTVQI=
+Oo_Z0>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td valign=3Dcenter style=3D"height:48px; width:48px">
+<img src=3Dhttps://services.google.com/fh/files/emails/footer_social_icon_f=
+acebook_gray_48_x2.png width=3D48 alt=3D" Follow Made by Google on Facebook=
+" style=3D"border: none;" height=3D48></td>
+</tr>
+</table>
+</a>
+</td>
+<td align=3Dcenter height=3D48 width=3D48 style=3D"padding-left: 4px; paddi=
+ng-right:4px">
+<a href=3Dhttps://c.gle/AF5yWjBXcgjuyge6ncGs0zTFTM-2tGxjjyCLE-WpWKNs7WImseT=
+lmo1S6ZhOLiFAL-bDl6aQaxxXCull1e-jjKjT9MQwJnBGDSDiiJawDbFIagNG5Mz90Ih8L58m-O=
+dgwQ>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td valign=3Dcenter style=3D"height:48px; width:48px">
+<img src=3Dhttps://services.google.com/fh/files/emails/footer_social_icon_t=
+witter_gray_48_x2.png width=3D48 alt=3D" Follow Made by Google on Twitter" =
+style=3D"border: none;" height=3D48></td>
+</tr>
+</table>
+</a>
+</td>
+<td align=3Dcenter height=3D48 width=3D48 style=3D"padding-left: 4px; paddi=
+ng-right:4px">
+<a href=3Dhttps://c.gle/AF5yWjDpdNRrrsKpU3ne6LC2QpS--h7O73leoGAa9ov-hsIvwlY=
+517YzJLSrmHrWSBsNw8fDPDMBCMB-LXwSXw63-dz3PLlxasjtqBSLgPc6S3CPH2AlT0EqdOlNUy=
+8iP9ZOku0h-A>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td valign=3Dcenter style=3D"height:48px; width:48px">
+<img src=3Dhttps://services.google.com/fh/files/emails/footer_social_icon_i=
+nstagram_gray_48_x2.png width=3D48 alt=3D" Follow Made by Google on Instagr=
+am" style=3D"border: none;" height=3D48></td>
+</tr>
+</table>
+</a>
+</td>
+<td height=3D48 width=3Dauto></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table role=3Dpresentation width=3D100%>
+<tr>
+<td class=3Dfooter__divider>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td class=3Dfooter__disclaimer-container>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td class=3Dfooter__text--secondary style=3D"width:10px; text-align:center;=
+ font-size:8px;vertical-align:top"> =E2=80=A0</td> <td style=3Dwidth:4px> <=
+/td>
+<td class=3D"footer__diclaimer-row footer__text--secondary" style=3D"text-a=
+lign: left">
+Get a discount of $300 at checkout and $500 back over 24 monthly bill credi=
+ts for purchase of a Pixel 10 Pro Fold, at <a href=3Dhttps://c.gle/AF5yWjAC=
+fjUZfCUK_I9u28W3S6pbY_axKXqWwdtS7efx9Sf8D7mXCGLjpEtVGIJWkXfXZBx7lwDAFAsTUVk=
+x2quAlcHUQ2EpTHPaEGDQfyhu2qaKS7YuuK65tnLC1RW9j5kfESDBEBo2pX2HXv0kNwAyF4gct_=
+_K8hQZRf4WhOja0k4qkAMcL0Pzc82aV42OxZDHx3h19i5FQ3zRoNbp7Hp_mcshzmIbClUL4Todi=
+NXFirbem0r7YHMA6Mu7DQ style=3D"font-family: &#39;Google Sans&#39;, Arial, s=
+ans-serif; color: #1967D2; text-decoration: none;">store.google.com</a> and=
+ Google retail stores (new users only), ending 12/5/25 at 9:59am PT, or whi=
+le supplies last. Must select &#39;Google Fi&#39; in the &#39;Choose a carr=
+ier&#39; step of the purchase process. Phone activation required by 30 days=
+ of shipment confirmation. Bill credits are applied to plan charges (e.g. d=
+ata, calls, texts), taxes and fees, financing costs, and international char=
+ges, and exclude device protection. Unused monthly credit doesn&#39;t roll =
+over to the following month. Changing devices before 120 days invalidates $=
+300 instant discount, resulting in charges, and cancellation, pause, or cha=
+nge of Fi plan before 24 months will terminate promotion and bill credits w=
+ill stop. Promotions are non-transferable, not valid for cash or cash equiv=
+alent. US residents with US shipping addresses only. Must be 18 years or ol=
+der, with Google Pay and Google Fi Wireless accounts. Limit 1 per customer =
+or group plan member. Taxes payable at checkout. Offer cannot be combined w=
+ith other offers. Void where prohibited.
+</td>
+</tr>
+<tr>
+<td class=3Dfooter__text--secondary style=3D"width:10px; text-align:center;=
+ font-size:8px;vertical-align:top"> =E2=80=A1</td> <td style=3Dwidth:4px> <=
+/td>
+<td class=3D"footer__diclaimer-row footer__text--secondary" style=3D"text-a=
+lign: left">
+By subscribing, you agree to terms for Google One, available at <a href=3Dh=
+ttps://c.gle/AF5yWjAaa-HSCsmdXafqws6_LBoDtNh7hQyWlrOr3D2WTNJuAoLJm41EWk1Us6=
+e6b-pU26zgONllRTxQ1KjxzMvV3Ve2FoC0F9hydeWly2xckGguk5xsPDxb5OCVG25cxs7u6XkNz=
+tNYSxu0l3zmem4xTL-e9gDjPLc_GycSpCy3AVtFW4qeOlafOSiukKOQ30CLhfJJFkVCI2WvGjp1=
+If_kRvoLuE8jCCT833m2xi95z6SX9XNfW7nGYL8BB76xYfQqpEb0vjudYVyry7U style=3D"fo=
+nt-family: &#39;Google Sans&#39;, Arial, sans-serif; color: #1967D2; text-d=
+ecoration: none;">one.google.com/terms-of-service</a>, and for offers, avai=
+lable at <a href=3Dhttps://c.gle/AF5yWjDL8_5W2n_SmHJEfPtX_0M1WexqEWGZMRc9Cd=
+YYj9x7Yz2D8XBN-0n9E6wAXk0jb5KIFMg7MwSqX4zB-3Y5lFZXo0h64c6I-tfkUq2HODBc2mtCT=
+PMCo2R3_glOpFvRUz4Y6br4QNzhhAVlUYBBgyOUPYP4OzIZbO25rh2z8GcJebD_NDSPXG4oKSlU=
+iXFLkCg83Nq9WEkT_UBkFYXFZ755dOKsba3LXnWJ-BOl3DRH7QQtiNTrSuG_0o2xfXEqqvLvgFp=
+m8DW2ng style=3D"font-family: &#39;Google Sans&#39;, Arial, sans-serif; col=
+or: #1967D2; text-decoration: none;">one.google.com/offer/freetrial</a>. Se=
+e how Google handles data at <a href=3Dhttps://c.gle/AF5yWjBMqMaUVpKHglV3im=
+RSRG7Ie1n0EmX8wgvC4V4XJC-VyCCZ3jjqeZ-zSa3GWVm5EOpb2bArYrSi_aKAWWaqNhqddgspL=
+A3Ab0e2J0X65VrpCaPZ6usxvXScJ31Ojk4TeJP467eheWOS8HcBtOJDYmHTj-b2IBggN-1Y_evu=
+bYFtSh3iQT9dQUiG5JLD1kg-d5Kx4ZP07XEO5YzwwoTmTxniah_Hs85-J7Fc7QtIqV4SkMXsX7i=
+NyITMiB_pSnOurq-5T5iaKc-LR_Y style=3D"font-family: &#39;Google Sans&#39;, A=
+rial, sans-serif; color: #1967D2; text-decoration: none;">www.google.com/po=
+licies/privacy</a>. Gemini in Google AI Pro and Gemini for Gmail, Docs, and=
+ more are only available for ages 18+. Gemini for Gmail, Docs, and more is =
+only available in select languages. Actual value is $239.88. The Google AI =
+Pro plan offer is available to users with the purchase and activation of a =
+Pixel 10 Pro, Pixel 10 Pro XL or Pixel 10 Pro Fold. Offer is not available =
+to: Google One users subscribed to an add-on, Google One users subscribed t=
+o a higher tier plan than the one being offered, Google One users on a fami=
+ly plan who are not the plan manager, and Google One users who have a subsc=
+ription through a third party or affiliate. Redeem the offer by October 31,=
+ 2026 at 11:59pm PT. Valid form of payment required at sign-up, but you wil=
+l not be charged until the trial period expires. Unless canceled earlier, G=
+oogle AI Pro will charge $19.99 after the trial ends, billed on a recurring=
+ monthly basis. Cancel anytime. No refunds for partial billing periods, exc=
+ept as required by applicable law. Return of purchased device may result in=
+ cancellation of subscription. See <a href=3Dhttps://c.gle/AF5yWjBxTMkUgQPI=
+rWaJOZkke6z_bB9doprKk8zQi2dy9JTm212quSFVNVgDgeHXEtQPTQocPiDZmJ0AIhyoMs0gr5J=
+EagHMThPJcN-3YErkGzh6c_JvEdl8TbpzR2E0c9eozlAhEPBD_uVVrVt7vpiD2Hj3qr2_RV52El=
+Dhx8SqSjIYelEKxT2OgeMmCopMyd0GxAY_T0SU3TCFBUQQrNEtFDWC5VwbrdNaC01RCpva77dYV=
+9wxFH2AvhSWtYI7MT5RiECA5ENrpqzYOSut9yIcnA2lJDxFoA style=3D"font-family: &#3=
+9;Google Sans&#39;, Arial, sans-serif; color: #1967D2; text-decoration: non=
+e;">g.co/pixel/google-ai-10-pro-12-month-offer for more details</a>.
+</td>
+</tr>
+<tr>
+<td class=3Dfooter__text--secondary style=3D"width:10px; text-align:center;=
+ font-size:8px;vertical-align:top"> =E2=80=A0=E2=80=A0</td> <td style=3Dwid=
+th:4px> </td>
+<td class=3D"footer__diclaimer-row footer__text--secondary" style=3D"text-a=
+lign: left">
+Buy Pixel 10 Pro Fold (Unlocked, Verizon or AT&amp;T devices) and get up to=
+ $799 back with an eligible iPhone trade-in. Starts September 29, 2025 at 1=
+2:00 am PT and ends October 12, 2025 at 11:59 pm PT. US residents with US s=
+hipping addresses only. Must be 18 years or older. Trade-in values vary bas=
+ed on model, condition, year, and configuration of the trade-in device and =
+are subject to change upon inspection. Trade-in value may also include an a=
+dditional subsidy that may vary based on the model of your purchased device=
+. Representative trade-in device(s) for maximum trade-in amount: $799 for i=
+Phone 16 Pro Max. Trade-in device must be received within 30 days from the =
+initiation of the trade-in process. After trade-in device inspection, trade=
+-in credit will be issued to the form of payment used for purchase, or in t=
+he form of Store Credit if the purchased device has already been returned o=
+r Google Store cannot refund your payment method. If the value of the trade=
+-in device is greater than the value of the new device, any difference will=
+ be paid by issuance of Store Credit. Unless otherwise stated, offer cannot=
+ be combined with other offers and is not transferable. Purchase must be ma=
+de on Google Store US. Void where prohibited. Additional trade-in terms are=
+ located <a href=3Dhttps://c.gle/AF5yWjDool6ba5PVcpoX4M0fy-0fHIDlrJ3r8wtDmQ=
+0_eqKNFxpq84QXCmNInnZ5uaLLO-4sbQTt7QpQHoaWSMqiTXUlGkg0TbBxSDv1r__QQmcMUwqGi=
+1OwdVzndvdGNHXEdYD9AtvAJrCei50T87ENr0Y2tVyP5TQ_mSwFOw_0tkl7RWs75Qy8gMnfXfdy=
+MlqWbM2v6VdDM1CUdYUzG_oHHkV9C9-4KkXqZBUGp0NnyB7zf1O6TZHUqNTobxOjs3k9SWg71B-=
+9Q3ysYScxIOd8tVoqBDaqBnOVeoJULrq4 style=3D"font-family: &#39;Google Sans&#3=
+9;, Arial, sans-serif; color: #1967D2; text-decoration: none;">here</a>.<br=
+><br>iPhone=C2=AE is a registered trademark of Apple Inc.
+</td>
+</tr>
+<tr>
+<td class=3Dfooter__text--secondary style=3D"width:10px; text-align:center;=
+ font-size:8px;vertical-align:top"> 1</td> <td style=3Dwidth:4px> </td>
+<td class=3D"footer__diclaimer-row footer__text--secondary" style=3D"text-a=
+lign: left">
+$0 screen repair is only available for front screen and back glass of Pixel=
+ phones; not available for inner screens of Pixel Fold phones. For complete=
+ details, see the Pixel Care+ <a href=3Dhttps://c.gle/AF5yWjCAqS0zTZ9q75g1i=
+8ssx1Y6YEwl-AaK7_JHvuVezSTHGkT-tSB1-0WzYrBMTD3NlFN5IjNe-_AmOYbP8xXOews3z0jV=
+43mEihCl0lzliIyoQUdY4RmygV0wWqEgrnmscU7i1nlggxqKkEUnpG624Z3CUPl-dYEyNp3oDrU=
+c-6ritsA71IYHZk3fYRpxlegfye396YdGJgSd1dYcz6kI_VFhu4TfxlvFM5SxGydfQBeV2taJQx=
+7y1L6mvgdVf2NcpiKcFV_N_Fk6EGgNkD8 style=3D"color: #1967D2; text-decoration:=
+ underline;">Terms and Conditions</a>.
+</td>
+</tr>
+<tr>
+<td class=3Dfooter__text--secondary style=3D"width:10px; text-align:center;=
+ font-size:8px;vertical-align:top"> 2</td> <td style=3Dwidth:4px> </td>
+<td class=3D"footer__diclaimer-row footer__text--secondary" style=3D"paddin=
+g-bottom: 0px;text-align: left">
+Coverage is available only for batteries that retain less than 80% of origi=
+nal charge capacity.
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td class=3D"footer__entity-and-address-container footer__text--secondary f=
+ooter__text--bold">
+=C2=A9 2025
+Google LLC,
+<a href=3D# class=3D"footer__text--secondary footer__text--bold">
+1600 Amphitheatre Parkway, Mountain View, CA 94043, United States </a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td class=3D"footer__rationale-container footer__text--secondary">
+This email was sent to <a href=3D# style=3D"word-break: break-all" class=3D=
+footer__text--secondary>
+LienCF@gmail.com</a> because you asked to receive offers, updates and more =
+about devices from Google on <a href=3Dhttps://c.gle/AF5yWjBL34XYvqlYmKrRJu=
+wgwIo8fFwcVUF2RlLuyzpzfThyoczgxOXvuFYZOkSU7M3pOoL9L_WzKsqy2yjHkIvBhI6zkvcG5=
+f91Vk75KThirewVczk5wEgP0MY class=3Dfooter__text--standout-link>store.google=
+.com</a>. If you=E2=80=99d like to unsubscribe, click <a href=3Dhttps://mya=
+ccount.google.com/communication-preferences/unsubscribe/gt/AF5yWjBSstBhshve=
+bTjkV5M29OtcqItmxz34ROascdg_OmPsmY4iKortleiEyax8GaaRNvvzJjlFcWM9nPiXH2w67Am=
+-BJ9ejjbzImvLdQ4VIYMi5-W7TFlEQ7KtU9UHe3YWrI9DLdadt6XtQUBHP7gXcsvYHfYvGUnduJ=
+4VTyXVkH2NUX0lyDn2P3WvnaU2xyewwH_VZ2rxGRVZxO0wDU0CPcabezu21eYb449jmm-TjtkOb=
+uAZibMU2FjXqvCfoxHLC72LTUlwceQEh5ndl0ZrMALZ6X1Nkw?utm_source=3Dgm&amp;utm_m=
+edium=3Demail&amp;auto=3Dtrue class=3Dfooter__text--standout-link>here</a>.
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table role=3Dpresentation cellpadding=3D0>
+<tr>
+<td align=3Dcenter class=3D"footer__text--secondary footer__links-container=
+">
+<a href=3Dhttps://c.gle/AF5yWjDfLi7SUGh9yIyLPB6xXi3GcYSxdMxtOPTmzoXuJQLIfs0=
+NyJsmiaLN8UtigZFZ1jMVB9gLVKtIlQpUlJ8ZWRUs7ISoFrS60RSt409QrduXqY7M7DtJgZBuT_=
+Z4oXfkmAqv7Cw_IWyW4O6QBCDWqCykiJU6YXSbzpv7gqxZ-p-qGPazoKCixPFUW_Ktj9M2KRkoc=
+7DDJkvqjpmkRz3U5sItm5wR1UOWKJ7Qb2G-p_GrK0cZBcEBl2q30vqfd24sLSvYXqhnkaLPlPhf=
+eDcEviXLzTSotY5w8woodEs3dWJ6Kng class=3Dfooter__text--secondary>
+Privacy policy
+</a>
+=C2=A0=C2=A0|=C2=A0=C2=A0
+<a href=3Dhttps://c.gle/AF5yWjAKJZQn-IFbAF1_TgkDLsM9q-JFcyOD5cQNgBsF487oCjX=
+gwKzMRYZTuEq4vZ0DduTGpOkp_1AEFRXAHTwdnJDKiJr3_eaPyooG9oaEGtfd0iEEy4CLXxeuKs=
+aTdMjEYErrCQnOJcLGlEvgj1fBJjmW2rUeOH7-5lqp2M3JrWLH6Yf7vg3Z7mYH4pTwROF3r5Up5=
+_cBIlYlEj87LXi2MroVBk19Ymqck8XPaMHono4JLHriVJBZXQ0N__vi_ZOlsl0iTDzbeLtzmUib=
+_pT4BACi_TwrYqly1IqtHfk class=3Dfooter__text--secondary>
+Terms of Service
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<img alt=3D"" height=3D1 width=3D3 src=3Dhttps://notifications.google.com/g=
+/img/AF5yWjBhy6gKAczZ10l3RcL-32KbsBiCjeZPBE7nkrlHcTny0GQUyV1AoSFg-I5IuPZLnL=
+Y6J5Mf2BEUwmaoxIkRQWv4Zhmc1T28Jxk0fI1shdxOjZaVKVMjcdzdap4Fg17IvhiZIA.gif></=
+body>
+</html>
+
+--000000000000c8bf050640bd17ed--

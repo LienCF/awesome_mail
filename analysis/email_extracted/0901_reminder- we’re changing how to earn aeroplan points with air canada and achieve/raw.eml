@@ -1,0 +1,2350 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:8da6:b0:4d4:9739:2b92 with SMTP id gr38csp2497827mdb;
+        Wed, 22 Oct 2025 10:29:33 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHQioAxUPFW6sbl6dsCSUAju974ETJ4Lo2yeP4Vmhw2MLRXP6h1yGnQtMMa4vxeVSZnVyqR
+X-Received: by 2002:a05:6a00:3d51:b0:7a1:8ab4:dd5 with SMTP id d2e1a72fcca58-7a220b1078bmr27865148b3a.29.1761154172904;
+        Wed, 22 Oct 2025 10:29:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761154172; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ORcoPviuKr1iMbaY0R75+vDudlm1eEsLeALJfNAttUbeUl1SlTmcFvs9GPOhe+zhT2
+         9KxgaabtpZ+pKhAXjNrkNnB/S/+638k6pZLPoxAXWU4eSjkFnh7EXGV9cXHRRQ11lUcb
+         mbrX1TKbHfTOTdrwXxT6ijCIVElb09zEJuBNxDFWZoI/HGYzG95eatYrH0AB/h8SVLU1
+         NquMU77A5dVhTD4PZvR7yGQOzeLmXVcjIdRXyHaHIOpxUS/oENMV2xpyWrf+5KGzW0PY
+         niURRWVuenCEDQhUf2bWeL6fqZp8R150grcwxpQI4qptM7a2bPYdwixofGWJPabNj70A
+         b1GQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:message-id:mime-version:reply-to:to:date
+         :subject:from:dkim-signature;
+        bh=dZGAvsyPGlmonaoifsMzw1fCEEHR3asn+QBEQJNeFKo=;
+        fh=AuRPPJxWT3oDWns/IAyV12DuHusfebFT2kEqOaRmmSo=;
+        b=fVHgkDhtbiYvX6wUDKVBza08RnoeArZQyrhY3rVYJmJ8K69PM5eqkQWnBD4832XA9U
+         wI1N3pt3rYrSrH+2wkZOqWYGs6Rb/vjYUqwEeD3QQkJX70ibXhnWh/Vc+6GOZXTqctIE
+         utMRw+po/8SmLt02O5U9YBNYV/ThALvDYtq1TI/XNGTxwkLnSr8tHFBtDeDjJLwi8JI7
+         ewHFyngt43CjFwLcT/cZFfRNg5sEzb/HA178qL+IAl0jGDPy4o80xX366+ASqCHm8Xr+
+         Pvbt7Or1r29kvty4Sj4flQRVcZ8AbbNKbKMfFPqcm1i/Ku8o0c0VVogrcN/341tyeIjd
+         cotg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@mail.aircanada.com header.s=aircanada header.b="vSbarf/1";
+       spf=pass (google.com: domain of bounce@mail.aircanada.com designates 172.82.216.116 as permitted sender) smtp.mailfrom=bounce@mail.aircanada.com;
+       dmarc=pass (p=REJECT sp=NONE dis=NONE) header.from=mail.aircanada.com
+Return-Path: <bounce@mail.aircanada.com>
+Received: from r116.mail.aircanada.com (r116.mail.aircanada.com. [172.82.216.116])
+        by mx.google.com with ESMTPS id d2e1a72fcca58-7a22ff15c39si9046859b3a.107.2025.10.22.10.29.32
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 22 Oct 2025 10:29:32 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce@mail.aircanada.com designates 172.82.216.116 as permitted sender) client-ip=172.82.216.116;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@mail.aircanada.com header.s=aircanada header.b="vSbarf/1";
+       spf=pass (google.com: domain of bounce@mail.aircanada.com designates 172.82.216.116 as permitted sender) smtp.mailfrom=bounce@mail.aircanada.com;
+       dmarc=pass (p=REJECT sp=NONE dis=NONE) header.from=mail.aircanada.com
+Return-Path: <bounce@mail.aircanada.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mail.aircanada.com;
+	s=aircanada; t=1761154170;
+	bh=dZGAvsyPGlmonaoifsMzw1fCEEHR3asn+QBEQJNeFKo=;
+	h=From:Subject:Date:To:MIME-Version:Message-ID:Content-Type;
+	b=vSbarf/100/o/Ckm1JoqJwysSpG2aUAtSINolRrZiWTH2IMTcvVmC3detmRtyHIRt
+	 XKKK2jubY3YRH1CC8Wl18UepcuUCuCepdFDgRupvAPN3swFJc3c7Iw5eNCTALXynIO
+	 nR4Vbaa6tW8bA3ptkFa6RB0Fx2xOpiHxz2QZKpxIs+ofHbX8iO+8ecMBsrx1xIswTi
+	 YC+Q6hxHDTnXEFYVc2O+fSTCNdyKeaxfPkB/wi4UrFUpjtM1n3FtQm47Ue051Qgp5C
+	 HEBy15/a6l0p+YCMLLhibIurCg+DbXhRJyo52bX77y6pICbc+lHtJ6AU+2zB1Ee+x2
+	 tvtcZ+bEexelw==
+X-MSFBL: cd9ZDT9SDdYh61x0k1nZXKxCx7A/tHk26D860jS33zM=|eyJyIjoibGllbmNmQGd
+	tYWlsLmNvbSIsImciOiJkZWZhdWx0X2NiZWE3MzZlLTZmYTctNDdjZS1hMTE1LTg
+	4YmY2ZTA4ZTA1YyIsImluYm91bmRfdGxzX2NpcGhlciI6IlRMU3YxLjI6REhFLVJ
+	TQS1BRVMyNTYtR0NNLVNIQTM4NCIsImIiOiJhaXJjYW5hZGFfMTcyLjgyLjIxNi4
+	xMTZfZGVmYXVsdF9jYmVhNzM2ZS02ZmE3LTQ3Y2UtYTExNS04OGJmNmUwOGUwNWM
+	iLCJyY3B0X21ldGEiOnsgIm0iOiAiLTExMzk1OTcyNzYiLCAiZCI6ICI1NzM1Nzk
+	wNDQiLCAiaW4iOiAiYWlyY2FuYV9ta3RfcHJvZDMiLCAiciI6ICJsaWVuY2ZAZ21
+	haWwuY29tIiB9fQ==
+Received: from [10.1.1.213] ([10.1.1.213:34465] helo=r115.mail.aircanada.com) by or2-prod1-mta-b-i-06dc65b8c12c587f7 (envelope-from <bounce@mail.aircanada.com>) (ecelerity 4.4.1.20033 r(msys-ecelerity:tags/4.4.1.0^0)) with ESMTPS (cipher=DHE-RSA-AES256-GCM-SHA384)  id 0B/28-20929-97419F86; Wed, 22 Oct 2025 17:29:30 +0000
+From: "Aeroplan" <communications@Mail.aircanada.com>
+Subject: =?windows-1252?Q?Reminder:_We=92re_changing_how_to_earn_Aeroplan?=
+ =?windows-1252?Q?_points_with_Air_Canada_and_achieve_Aeroplan_Elite_stat?=
+ =?windows-1252?Q?us?=
+Date: Wed, 22 Oct 2025 19:29:23 +0200
+To: <liencf@gmail.com>
+Reply-To: "Aeroplan" <communications@Mail.aircanada.com>
+MIME-Version: 1.0
+X-mailer: nlserver, Build 6.7.0
+Message-ID: <NM6BC13202422301F24aircana_mkt_prod3@mail.aircanada.com>
+Content-Type: text/html;
+	charset="windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.=
+w3.org/TR/html4/loose.dtd">
+<html lang=3D"en">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+<meta name=3D"viewport" content=3D"initial-scale=3D1.0">
+<meta name=3D"format-detection" content=3D"telephone=3Dno">
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<title>Take a moment to review the changes coming January 1, 2026</title>
+
+<meta name=3D"CUST_NB" content=3D"989743489">
+<meta name=3D"TYPE" content=3D"EMAIL">
+<meta name=3D"SOURCE" content=3D"SYSTEM">
+<meta name=3D"CAMPAIGN_CODE" content=3D"PRJAER40000056">
+<meta name=3D"CELL" content=3D"C002">
+<meta name=3D"DELIVERY_CODE" content=3D"PRJAER40000056_C002_EN_Elite_RBA_Re=
+m">
+<meta name=3D"SUBJECT_LINE" content=3D"Reminder: We=92re changing how to ea=
+rn Aeroplan points with Air Canada and achieve Aeroplan Elite status">
+<meta name=3D"DATE_SENT" content=3D"2025-10-22 17:00:00">
+<meta name=3D"EMAIL_ADDRESS" content=3D"liencf@gmail.com">
+
+<link href=3D"https://fonts.googleapis.com/css=3Ffamily=3DOpen+Sans:400,600=
+,700&display=3Dswap" rel=3D"stylesheet">
+
+<!--[if gte mso 16]>
+<style>
+=2Emso16-divider {
+mso-margin-top-alt: 2px !important;
+}
+</style>
+<![endif]-->
+<!--[if gte mso 9]>
+<style type=3D"text/css">
+body, th, td, span, p, h1, h2, a {
+font-family: Verdana !important;
+mso-line-height-rule: exactly !important;
+}
+</style>
+<![endif]-->
+
+<style>
+=2EReadMsgBody {
+width: 100%;
+background-color: #ffffff;
+}
+
+=2EExternalClass {
+width: 100%;
+background-color: #ffffff;
+}
+
+=2EExternalClass,
+=2EExternalClass p,
+=2EExternalClass span,
+=2EExternalClass font,
+=2EExternalClass td,
+=2EExternalClass div {
+line-height: 100%;
+}
+
+body {
+-webkit-text-size-adjust: none;
+-ms-text-size-adjust: none;
+}
+
+table {
+border-spacing: 0;
+border-collapse: collapse;
+mso-table-lspace: 0pt;
+mso-table-rspace: 0pt;
+}
+
+table td {
+border-collapse: collapse;
+mso-table-lspace: 0pt;
+mso-table-rspace: 0pt;
+}
+
+=2Eyshortcuts a {
+border-bottom: none !important;
+}
+
+span.MsoHyperlink {
+mso-style-priority: 99;
+color: inherit;
+}
+
+span.MsoHyperlinkFollowed {
+mso-style-priority: 99;
+color: inherit;
+}
+
+a[x-apple-data-detectors] {
+color: inherit !important;
+text-decoration: none !important;
+font-size: inherit !important;
+font-family: inherit !important;
+font-weight: inherit !important;
+line-height: inherit !important;
+}
+
+=2Eshow-mobile-new {
+display: none;
+}
+
+@media screen and (max-width: 639px) {
+table[class=3D"container"] {
+width: 100% !important;
+}
+
+=2Econtainer2 {
+width: 100% !important;
+max-width: 100% !important;
+}
+
+img[class=3D"image-resize"] {
+width: 100% !important;
+}
+
+img[class=3D"rball-mobile"] {
+width: 10px !important;
+height: auto !important;
+}
+
+td[class=3D"force-col"] {
+display: block;
+padding-right: 0 !important;
+padding-left: 0 !important;
+width: 100% !important;
+}
+
+table[class=3D"col"] {
+float: none !important;
+width: 100% !important;
+}
+
+td[class=3D"mobile-width-auto"] {
+width: auto !important;
+}
+
+td[id=3D"mobile-height-171"] {
+width: 100% !important;
+height: 171px !important;
+}
+
+table[class=3D"mobile-width-100"] {
+width: 100% !important;
+}
+
+td[class=3D"mobile-padding-20px"] {
+padding-left: 20px !important;
+padding-top: 20px !important;
+padding-right: 20px !important;
+padding-bottom: 20px !important;
+}
+
+td[class=3D"mobile-padding-v15-h8"] {
+padding-left: 8px !important;
+padding-right: 8px !important;
+}
+
+td[class=3D"mobile-main-padding"] {
+padding-left: 20px !important;
+padding-right: 20px !important;
+}
+
+td[class=3D"mobile-main-padding-2"] {
+padding-left: 15px !important;
+padding-right: 20px !important;
+}
+
+td[class=3D"mobile-main-padding-3"] {
+padding-left: 15px !important;
+padding-right: 15px !important;
+}
+
+td[class=3D"mobile-padding-30px"] {
+padding-left: 30px !important;
+padding-right: 30px !important;
+}
+
+td[class=3D"mobile-padding-all-30px"] {
+padding-top: 30px !important;
+padding-left: 30px !important;
+padding-bottom: 30px !important;
+padding-right: 30px !important;
+}
+
+td[class=3D"mobile-main-padding-4"] {
+padding-left: 10px !important;
+padding-right: 10px !important;
+}
+
+td[class=3D"mobile-no-padding"] {
+padding-left: 0 !important;
+padding-right: 0 !important;
+}
+
+tr[class=3D"show-mobile"] {
+display: block !important;
+}
+
+tr[class=3D"show-mobile-tr"] {
+display: table-row !important;
+width: auto !important;
+max-height: inherit !important;
+overflow: visible !important;
+float: none !important;
+}
+
+tr[class=3D"hide-mobile"] {
+display: none;
+}
+
+td[class=3D"hide-mobile"] {
+display: none;
+}
+
+=2Ehide-mobile2 {
+display: none !important;
+}
+
+td[class=3D"show-mobile"] {
+display: block !important;
+width: auto !important;
+max-height: inherit !important;
+overflow: visible !important;
+float: none !important;
+border-width: 1px !important;
+}
+
+td[class=3D"show-mobile-table-cell"] {
+display: table-cell !important;
+width: auto !important;
+max-height: inherit !important;
+overflow: visible !important;
+float: none !important;
+border-width: 1px !important;
+}
+
+table[class=3D"mobile-border-none"] {
+border: none !important;
+}
+
+td[id=3D"text-left"] {
+text-align: left !important;
+}
+
+td[id=3D"text-center"] {
+text-align: center !important;
+}
+
+td[id=3D"text-right"] {
+text-align: right !important;
+}
+
+td[id=3D"remove-border"] {
+border: none !important;
+}
+/* ADDED 04.04.2016 for Tables Alignment */
+td[id=3D"mobile-table-cell-padding"] {
+padding-left: 10px !important;
+padding-right: 10px !important;
+}
+/* _______________________________________ */
+td[id=3D"padding-left-12"] {
+padding-left: 12px !important;
+}
+
+td[id=3D"padding-right-12"] {
+padding-right: 12px !important;
+}
+
+td[id=3D"image-padding-8-15"] {
+padding: 0 8px !important;
+}
+
+td[id=3D"image-padding-all"] {
+padding: 7px 7px 7px 7px !important;
+}
+
+td[id=3D"image-padding-no-bottom"] {
+padding: 7px 7px 0 7px !important;
+}
+
+td[id=3D"image-padding-all-2"] {
+padding: 15px 15px 15px 15px !important;
+}
+
+td[id=3D"image-padding-no-bottom-2"] {
+padding: 15px 15px 0 15px !important;
+}
+
+td[id=3D"cell-no-padding"] {
+padding: 0 !important;
+}
+
+td[id=3D"mobile-offer-destination"] {
+width: 50% !important;
+}
+
+td[id=3D"mobile-offer-price"] {
+width: 5% !important;
+}
+
+td[id=3D"padding-left-20"] {
+padding-left: 20px !important;
+}
+
+td[id=3D"padding-left-30"] {
+padding-left: 30px !important;
+}
+
+td[id=3D"padding-left-8px"] {
+padding-left: 8px !important;
+}
+
+td[id=3D"padding-right-8px"] {
+padding-right: 8px !important;
+}
+
+td[id=3D"border-fix"] {
+display: table-cell !important;
+}
+
+td[class=3D"mobile-60-percent"] {
+width: 60% !important;
+}
+
+td[class=3D"mobile-paddding-20-bottom-0"] {
+padding: 20px !important;
+padding-bottom: 0 !important;
+}
+
+td[class=3D"button-padding-20"] {
+padding-top: 20px !important;
+}
+
+td[class=3D"mobile-line-height-normal"] {
+line-height: normal !important;
+}
+
+td[class=3D"mobile-font-7"] {
+font-size: 7px !important;
+}
+
+td[class=3D"mobile-font-9"] {
+font-size: 9px !important;
+}
+
+td[class=3D"mobile-font-10"] {
+font-size: 10px !important;
+}
+
+td[class=3D"mobile-font-11"] {
+font-size: 11px !important;
+}
+
+td[class=3D"mobile-font-12"] {
+font-size: 12px !important;
+}
+
+td[class=3D"mobile-font-15"] {
+font-size: 15px !important;
+}
+
+td[class=3D"mobile-font-17"] {
+font-size: 17px !important;
+}
+
+td[class=3D"show-border"] {
+border-width: 1px !important;
+}
+
+td[class=3D"reset-padding"] {
+padding: 0 !important;
+}
+
+td[class=3D"image-bg-1"] {
+width: 100% !important;
+background: #cccccc no-repeat !important;
+background-size: 100% !important;
+}
+
+span[class=3D"mobile-center-text"] {
+display: block !important;
+width: 100% !important;
+text-align: center !important;
+}
+
+td[class=3D"table-mobile-padding"] {
+padding: 10px !important;
+}
+
+td[id=3D"table-mobile-headline"] {
+height: 25px !important;
+padding-bottom: 2px !important;
+}
+
+=2Eflight-bullet {
+padding-right: 8px !important;
+font-size: 10px !important;
+}
+
+#mobile-padding-bottom {
+padding-bottom: 20px !important;
+}
+
+th[class=3D"force-col"] {
+display: block;
+padding-right: 0 !important;
+padding-left: 0 !important;
+width: 100% !important;
+}
+
+=2Eshow-mobile-new {
+display: table-row !important;
+}
+
+=2Emobile-padding {
+padding-left: 20px !important;
+padding-right: 20px !important;
+}
+
+=2Emobile-padding40 {
+padding-left: 40px !important;
+padding-right: 40px !important;
+}
+
+=2Eshow-mobile-td {
+display: table-cell !important;
+}
+
+=2Eforce-row {
+display: block !important;
+padding-right: 0 !important;
+padding-left: 0 !important;
+width: 100% !important;
+}
+
+=2EheightAuto {
+height: auto !important;
+}
+
+=2EbuttonMobile {
+width: 250px !important;
+}
+
+=2EbuttonMobile2 {
+width: 200px !important;
+}
+
+=2Epadding13 {
+padding: 13px !important;
+}
+
+=2Eimage-resize2 {
+width: 100% !important;
+}
+
+=2Etiercopy-m {
+font-size: 20px !important;
+line-height: 20px !important;
+}
+
+=2EresetHeight {
+height: auto !important;
+}
+}
+
+@media screen and (max-width: 359px) {
+=2Epointcopy-m {
+font-size: 16px !important;
+line-height: 16px !important;
+}
+
+=2Etiercopy-m {
+font-size: 16px !important;
+line-height: 16px !important;
+}
+}
+</style>
+
+
+<!--[if gte mso 16]>
+<style>
+=2Emso16-divider {
+mso-margin-top-alt: 2px !important;
+}
+</style>
+<![endif]-->
+
+</head>
+
+
+
+
+<!-- ************************ BEGIN RENDER CommonTemplate STRING **********=
+************** -->
+
+
+
+<body style=3D"margin:0; padding:0;" bgcolor=3D"#ffffff" leftmargin=3D"0" t=
+opmargin=3D"0" marginwidth=3D"0" marginheight=3D"0">                       =
+     <div style=3D"display:none !important; mso-hide:all; width: 0; max-hei=
+ght: 0; overflow: hidden; font-size:0; mso-line-height-alt:0; mso-margin-to=
+p-alt:1px;">Take a moment to review the changes coming January 1, 2026</div=
+>                            <table id=3D"content" role=3D"presentation" bo=
+rder=3D"0" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#f=
+fffff">
+<!-- ************************ END RENDER CommonTemplate STRING ************=
+************ -->
+
+<!-- ************************ BEGIN RENDER HEADER ************************ =
+-->
+
+<!-- ************************ END RENDER HEADER ************************ --=
+>
+
+<!-- ######################################################################=
+################# -->
+
+<!-- ************************ BEGIN RENDER BODY ************************ --=
+>
+
+
+
+<tr>
+<td align=3D"center" valign=3D"top">
+<table border=3D"0" width=3D"640" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"container" bgcolor=3D"#ffffff">
+<tr>
+<td align=3D"left" valign=3D"top">
+<!-- Content Table -->
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+<tr>
+<td align=3D"center" valign=3D"top" style=3D"font-family:'Open Sans', Verda=
+na, sans-serif; font-size:15px; color:#4b4f54;">
+<!--- AE_Header_Snippet_Top --->
+
+<!-- MODULE - SNIPPET & MIRROR PAGE - BG COLOR - BG COLOR -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100% !important; background-color:#FEFEFE;=
+">
+    <tr>
+        <td valign=3D"top" width=3D"640" style=3D"padding:18px 20px">
+        <center>
+        <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" width=3D"100%" style=3D"width:100% !important;">
+            <tr>
+                <td align=3D"left" valign=3D"top" style=3D"font-family:'Ope=
+n Sans', Verdana, sans-serif; margin:0; color:#000000; font-size:12px; font=
+-weight:normal; text-align:left;">
+Take a moment to review the changes coming January&nbsp;1,&nbsp;2026
+<!--- AE_Header_Snippet_Bottom_EN --->
+
+                </td>
+                
+                <td align=3D"right" valign=3D"top" style=3D"font-family:'Op=
+en Sans', Verdana, sans-serif; margin:0; padding:0; font-size:12px; font-we=
+ight:normal; text-align:right; width:100px;">
+                <a href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dhbc132024=
+,22301f24,10dd9be1&p1=3D%40AYtheg69JNRiEZehrTQ2DGF9Ky4vgBC56D1ITMSFkn4%3D" =
+_label=3D"H_AE_WebVersion" _type=3D"mirrorPage" target=3D"_blank" style=3D"=
+color:#000000; text-decoration:underline;">Web version</a>
+                </td>
+                
+            </tr>
+        </table>
+        </center>
+        </td>
+    </tr>
+</table>
+<!-- /MODULE - SNIPPET & MIRROR PAGE - BG COLOR -->
+
+
+<!--- AE_Header_Tier_Script_2025 --->
+
+
+
+<style>
+    .font-size-tiername {
+        font-size: 28px !important; /* Default font-size */
+        line-height: 32px !important;
+    }
+
+    @media (max-width: 600px) {
+        .font-size-pointsbalance {
+            width: 100% !important;
+        }
+        
+        .font-size-tiername {
+            width: 100% !important;
+            font-size: 20px !important; /* Adjusted font-size for mobile de=
+vices with 600px and less */
+            line-height: 24px !important;
+        }
+    }
+</style>
+
+
+    
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100% !important; max-width:100% !important=
+; background-color:#FEFEFE;">
+<tr>
+    <td valign=3D"top" style=3D"padding:0 15px 30px 15px;">
+    <center>
+        
+    <!-- HEADER TOP IMAGE -->
+    <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"100%" style=3D"width:100% !important; max-width:100% !impor=
+tant">
+    <tr>
+        <td valign=3D"bottom">
+        <!--- TOP IMAGE --->
+        <center>
+        <img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_prod3/AE_=
+Header_Top.png" border=3D"0" width=3D"100%" height=3D"17" style=3D"width:10=
+0% !important; display:block;" alt=3D"">
+        </center>
+        <!--- /TOP IMAGE --->
+        </td>
+    </tr>
+    </table>
+    <!-- /HEADER TOP IMAGE -->
+
+
+    <!-- HEADER AE LOGO -->
+    <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"600" style=3D"width:100%; background-color:#EFEFEF; padding=
+:0; margin:0;" class=3D"mobile-main-padding">
+    <tr>
+        <td align=3D"left" valign=3D"top" width=3D"600" style=3D"padding-to=
+p:10px; padding-left:25px;">
+        <!--- TOP IMAGE --->
+        <img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_prod3/AE_=
+Header_Logo_Aeroplan_Grey.png" border=3D"0" width=3D"194" alt=3D"AEROPLAN L=
+ogo">
+        <!--- /TOP IMAGE --->
+        </td>
+    </tr>
+    </table>
+    <!-- /HEADER AE LOGO -->
+
+
+    <!-- HEADER - AE POINTS BALANCE + TIER STATUS -->
+    <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"600" style=3D"width:100%; background-color:#EFEFEF;">
+    <tr>
+          <!-- COL 1 -->    
+          <td valign=3D"top" width=3D"35%" style=3D"width:35% !important;">
+          <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellp=
+adding=3D"0" width=3D"100%">
+
+          <!--- NEVER DELETE THIS PART --->
+          <tr>
+            <td valign=3D"top">
+            <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" width=3D"100" height=3D"15">
+            <tr><td valign=3D"top">&nbsp;</td></tr>
+            </table>
+            </td>
+          </tr>
+          <!--- /NEVER DELETE THIS PART --->
+
+          <!--- AE POINTS BALANCE --->
+          <tr>
+            <td align=3D"left" valign=3D"top" style=3D"padding:0 0 0 25px;"=
+>
+            <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" width=3D"100%">        
+            <!-- BODY TEXT 1 -->
+            <tr>
+              <td valign=3D"top" class=3D"font-size-pointsbalance" style=3D=
+"font-family:'Open Sans', Verdana, sans-serif; color:#000000; font-size:20p=
+x; line-height:24px; text-align:left; font-weight:bold;">
+              0&nbsp;pts<sup style=3D"font-size: 0.8em !important; line-hei=
+ght:0; vertical-align:0.4em">+</sup>
+              </td>
+            </tr>
+            <!-- /BODY TEXT 1 -->
+            </table>
+            </td>
+          </tr>
+          <!--- /AE POINTS BALANCE --->
+
+          </table>
+          </td>
+          <!-- / COL 1 -->
+
+          <td width=3D"2" align=3D"left" valign=3D"top">&nbsp;</td>
+
+          <!-- COL 2 -->    
+          <td valign=3D"top" width=3D"65%" style=3D"width:65% !important;">
+          <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellp=
+adding=3D"0" width=3D"100%">
+
+          <!--- NEVER DELETE THIS PART --->
+          <tr>
+            <td valign=3D"top">
+            <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" width=3D"250" height=3D"15">
+            <tr><td valign=3D"top">&nbsp;</td></tr>
+            </table>
+            </td>
+          </tr>
+          <!--- /NEVER DELETE THIS PART --->
+
+          <!--- TIER STATUS --->
+          <tr>
+            <td align=3D"left" valign=3D"top" style=3D"padding:0 25px 0 0;"=
+>
+            <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" width=3D"100%">        
+            <!-- BODY TEXT 2 -->
+            <tr>
+              <td align=3D"right" valign=3D"top" class=3D"font-size-tiernam=
+e" width=3D"340" style=3D"font-family:'Open Sans', Verdana, sans-serif; col=
+or:#000000; text-align:right; font-weight:bold; font-size:20px;">
+                
+
+              
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+              </td>
+            </tr>
+            <!-- /BODY TEXT 2 -->
+            </table>
+            </td>
+          </tr>
+          <!--- /TIER STATUS --->
+
+          </table>
+          </td>
+          <!-- / COL 2 -->
+
+        </tr>
+        <tr><td colspan=3D"3">&nbsp;</td></tr>
+    </table>
+    <!-- /HEADER - AE POINTS BALANCE + TIER STATUS -->
+
+
+    
+    <!-- HEADER TIER BOTTOM IMAGE -->
+    <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"600" style=3D"width:100%; background-color:#EFEFEF;">
+    <tr>
+        <td valign=3D"top">
+        <!--- TIER IMAGE --->
+        <center>
+        <img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_prod3/AE_=
+Header_Tier_BASE_bottom2.png" border=3D"0" width=3D"100%" height=3D"17" sty=
+le=3D"width:100% !important; display:block;" alt=3D"">
+        </center>
+        <!--- /TIER IMAGE --->
+        </td>
+    </tr>
+    </table>
+    <!-- /HEADER TIER BOTTOM IMAGE -->
+    
+        
+    </center>   
+    </td>
+</tr>        
+</table>
+</td>
+</tr>
+</table>
+<!-- END Content Table -->
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+
+
+
+
+
+<tr>
+<td align=3D"center" valign=3D"top">
+<table border=3D"0" width=3D"640" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"container" bgcolor=3D"#ffffff">
+<tr>
+<td align=3D"left" valign=3D"top">
+<!-- Content Table -->
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+<tr>
+<td align=3D"center" valign=3D"top" style=3D"font-family:'Open Sans', Verda=
+na, sans-serif; font-size:15px; color:#4b4f54;">
+<!-- MODULE NOT RESPONSIVE - BLOCK AE INTRO Headline - BG COLOR -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; max-width:640px; background-color:#F=
+EFEFE;">
+<tr><td>&nbsp;</td></tr>
+    
+<!-- GREETING -->
+<tr>
+  <td style=3D"width:640px; font-family:'Open Sans', Verdana, sans-serif; p=
+adding:0 0 0 20px; margin:0; color:#000000; font-size:16px; line-height:20p=
+x; text-align:left;">
+   Hello Chihfeng,   
+      
+    
+  </td>
+</tr>
+<!-- /GREETING -->
+    
+<tr><td>&nbsp;</td></tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - BLOCK AE INTRO Headline - BG COLOR -->
+
+<!-- MODULE NOT RESPONSIVE - HEADLINE - BG COLOR -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#d7d9e3;">
+<tr><td>&nbsp;</td></tr>
+<tr>
+    <td valign=3D"top" style=3D"width:640px; padding:0 30px;">
+    <!-- h2 | h3 | h4 | h5 | h6 -->
+    <h2 style=3D"font-family:'Open Sans', Verdana, sans-serif !important; p=
+adding:0 !important; margin:0 !important; font-weight:bold; color:#000000; =
+font-size:30px; line-height:39px; text-align:center;">We=92re changing how =
+to earn Aeroplan points with Air&nbsp;Canada and achieve Aeroplan&nbsp;Elit=
+e&nbsp;status</h2>
+    </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - HEADLINE - BG COLOR -->
+
+
+<!-- MODULE NOT RESPONSIVE - SPLIT 30/70 FULL WIDTH - ICON LEFT - BG COLOR =
+-->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#d7d9e3;">
+<tr><td colspan=3D"3" width=3D"640">&nbsp;</td></tr>
+<tr>
+      <!-- COL 1 --> 
+      <td align=3D"right" valign=3D"top" style=3D"padding-left:15px">
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0">
+          
+      <!-- ICON -->
+      <tr>
+        <td valign=3D"top">
+        <table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" wi=
+dth=3D"100%">
+        <tr>
+          <td><img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_pro=
+d3/b14d1d00a0730700924df4d6cf0f0dda8e8eadde0456d515cd4cfd92a162bc49.png" wi=
+dth=3D"55" height=3D"55" border=3D"0" style=3D"border:none; text-decoration=
+:none; outline:none; display:block;" alt=3D"Vertical stabilizer of an Air C=
+anada plane."></td>
+        </tr>
+        </table>
+        </td>
+      </tr>
+      <!-- /ICON -->
+
+      </table>
+      </td>
+      <!-- / COL 1 -->
+      
+      <!-- COL 2 -->
+      <!-- The width of the "td" must stay within the table's total width o=
+f 640px, including images and padding. -->
+      <td width=3D"20" align=3D"left" valign=3D"top">&nbsp;</td>
+      <!-- / COL 2 -->
+
+      <!-- COL 3 -->    
+      <td valign=3D"top">
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" style=3D"100% !important;">
+       
+      <tr>
+        <td align=3D"left" valign=3D"top" style=3D"padding:0 15px 0 0;">
+        <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" width=3D"100%" style=3D"100% !important;">
+        
+        <!-- BODY TEXT -->
+        <tr>
+          <!-- The width of the "td" must stay within the table's total wid=
+th of 640px, including images and padding. -->
+          <td valign=3D"top" width=3D"515" style=3D"font-family:'Open Sans'=
+, Verdana, sans-serif; color:#000000; font-size:15px; line-height:25px; tex=
+t-align:left;" >For travel on or after January&nbsp;1,&nbsp;2026, earn Aero=
+plan points based on how much is spent on eligible flights with Air&nbsp;Ca=
+nada<sup style=3D"font-size: 0.8em !important; line-height:0; vertical-alig=
+n:0.4em">&reg;</sup> rather than the distance flown. <a role=3D"button" hre=
+f=3D"https://t.mail.aircanada.com/r/=3Fid=3Dhbc132024,22301f24,10dd9be2&p1=
+=3D327703905&p2=3D573579044" _label=3D"B_URL3653" aria-label=3D"" target=3D=
+"_blank" style=3D"color:#005078; text-decoration:underline;">Learn&nbsp;mor=
+e</a>
+
+
+          </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <!-- /BODY TEXT -->
+            
+        </table>
+        </td>
+      </tr>
+
+      </table>
+      </td>
+      <!-- / COL 3 -->
+          
+    </tr>
+    <tr><td colspan=3D"3">&nbsp;</td></tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - SPLIT 30/70 FULL WIDTH - ICON LEFT - BG COLOR=
+ -->
+
+
+<!-- MODULE NOT RESPONSIVE - SPLIT 30/70 FULL WIDTH - ICON LEFT - BG COLOR =
+-->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#d7d9e3;">
+<tr><td colspan=3D"3" width=3D"640">&nbsp;</td></tr>
+<tr>
+      <!-- COL 1 --> 
+      <td align=3D"right" valign=3D"top" style=3D"padding-left:15px">
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0">
+          
+      <!-- ICON -->
+      <tr>
+        <td valign=3D"top">
+        <table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" wi=
+dth=3D"100%">
+        <tr>
+          <td>
+            
+              <img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_pro=
+d3/fcb13e98800be797a7c65a0e7dada5d572fdb3bdd13f9f1e1b7ff598e451bfe6.png" wi=
+dth=3D"55" height=3D"55" border=3D"0" style=3D"border:none; text-decoration=
+:none; outline:none; display:block;" alt=3D"Status Qualification Credits ic=
+on.">
+            
+        </td>
+        </tr>
+        </table>
+        </td>
+      </tr>
+      <!-- /ICON -->
+
+      </table>
+      </td>
+      <!-- / COL 1 -->
+      
+      <!-- COL 2 -->
+      <!-- The width of the "td" must stay within the table's total width o=
+f 640px, including images and padding. -->
+      <td width=3D"20" align=3D"left" valign=3D"top">&nbsp;</td>
+      <!-- / COL 2 -->
+
+      <!-- COL 3 -->    
+      <td valign=3D"top">
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" style=3D"100% !important;">
+       
+      <tr>
+        <td align=3D"left" valign=3D"top" style=3D"padding:0 15px 0 0;">
+        <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" width=3D"100%" style=3D"100% !important;">
+        
+        <!-- BODY TEXT -->
+        <tr>
+            
+          <!-- The width of the "td" must stay within the table's total wid=
+th of 640px, including images and padding. -->
+          <td valign=3D"top" width=3D"515" style=3D"font-family:'Open Sans'=
+, Verdana, sans-serif; color:#000000; font-size:15px; line-height:25px; tex=
+t-align:left;">
+          Also, effective January&nbsp;1,&nbsp;2026, we=92re changing how t=
+o qualify for Aeroplan&nbsp;Elite<sup style=3D"font-size: 0.8em !important;=
+ line-height:0; vertical-align:0.4em">&reg;</sup>&nbsp;status in 2027 and b=
+eyond. 
+              
+        
+
+        <a role=3D"button" href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dh=
+bc132024,22301f24,10dd9be3&p1=3D327703905&p2=3D573579044" _label=3D"B_URL36=
+52" aria-label=3D"" target=3D"_blank" style=3D"color:#005078; text-decorati=
+on:underline;">Learn&nbsp;more</a>
+
+        
+        
+          </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <!-- /BODY TEXT -->
+            
+        </table>
+        </td>
+      </tr>
+
+      </table>
+      </td>
+      <!-- / COL 3 -->
+          
+    </tr>
+    <tr><td colspan=3D"3">&nbsp;</td></tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - SPLIT 30/70 FULL WIDTH - ICON LEFT - BG COLOR=
+ -->
+
+
+<!-- MODULE NOT RESPONSIVE - 1 HERO IMAGE FLUSH -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%;">
+<tr>
+    <td valign=3D"top" width=3D"640">
+    <center>
+    <!-- The image width must be at least 640 pixels or bigger -->
+    <img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_prod3/d5482e5=
+3c057a8a123245cda1ea6344ac2c5b7aee536f17a1429d613a617b22f.png" border=3D"0"=
+ width=3D"640" style=3D"width:100%; display:block;" alt=3D"Air Canada airpl=
+ane flying through the sky at sunset.">
+    </center>
+    </td>
+</tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - 1 HERO IMAGE FLUSH -->
+
+
+<!-- MODULE NOT RESPONSIVE - HEADLINE - BG COLOR -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#FEFEFE;">
+<tr><td>&nbsp;</td></tr>
+<tr>
+    <td valign=3D"top" style=3D"width:640px; padding:0 30px;">
+    <!-- h2 | h3 | h4 | h5 | h6 -->
+    <h2 style=3D"font-family:'Open Sans', Verdana, sans-serif !important; p=
+adding:0 !important; margin:0 !important; font-weight:bold; color:#000000; =
+font-size:24px; line-height:33px; text-align:center;">Here=92s how to earn =
+Aeroplan points with Air&nbsp;Canada</h2>
+    </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - HEADLINE - BG COLOR -->
+
+<!-- MODULE NOT RESPONSIVE - BODY TEXT - BG COLOR -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#FEFEFE;">
+<tr>
+    <td valign=3D"top" style=3D"width:640px; padding:0 30px; font-family:'O=
+pen Sans', Verdana, sans-serif; color:#000000; font-size:12px; text-align:c=
+enter;">
+    These updates will apply for travel starting on or after January&nbsp;1=
+,&nbsp;2026.  
+    </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - BODY TEXT - BG COLOR -->
+          
+
+<!-- MODULE NOT RESPONSIVE - SPLIT 30/70 FULL WIDTH - ICON LEFT - BG COLOR =
+-->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#FEFEFE;">
+<tr><td colspan=3D"3" width=3D"640">&nbsp;</td></tr>
+<tr>
+      <!-- COL 1 --> 
+      <td align=3D"right" valign=3D"top" style=3D"padding-left:15px">
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0">
+          
+      <!-- ICON -->
+      <tr>
+        <td valign=3D"top">
+        <table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" wi=
+dth=3D"100%">
+        <tr>
+          <td><img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_pro=
+d3/050b81eb1e58fcf6d76ffbb0e0ac529594047a9a8db984f4ae514e3daf17969b.png" wi=
+dth=3D"75" height=3D"75" border=3D"0" style=3D"border:none; text-decoration=
+:none; outline:none; display:block;" alt=3D"Coin depicting a 1 point per 1 =
+dollar ratio."></td>
+        </tr>
+        </table>
+        </td>
+      </tr>
+      <!-- /ICON -->
+
+      </table>
+      </td>
+      <!-- / COL 1 -->
+      
+      <!-- COL 2 -->
+      <!-- The width of the "td" must stay within the table's total width o=
+f 640px, including images and padding. -->
+      <td width=3D"20" align=3D"left" valign=3D"top">&nbsp;</td>
+      <!-- / COL 2 -->
+
+      <!-- COL 3 -->    
+      <td valign=3D"top">
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" style=3D"100% !important;">
+       
+      <tr>
+        <td align=3D"left" valign=3D"top" style=3D"padding:0 15px 0 0;">
+        <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" width=3D"100%" style=3D"100% !important;">
+        
+        <!-- HEADLINE -->
+        <tr>
+          <!-- The width of the "td" must stay within the table's total wid=
+th of 640px, including images and padding. -->
+          <td valign=3D"top" width=3D"515">
+            <!-- h2 | h3 | h4 | h5 | h6 -->
+            <h3 style=3D"font-family:'Open Sans', Verdana, sans-serif !impo=
+rtant; padding:0 !important; margin:0 !important; font-weight:bold; color:#=
+000000; font-size:15px; line-height:22px; text-align:left;">Earn 1pt/$1 spe=
+nt on Air&nbsp;Canada&nbsp;flights*</h3>
+            </td>
+        </tr>
+        <!-- /HEADLINE -->
+        
+        <!-- BODY TEXT -->
+        <tr>
+          <!-- The width of the "td" must stay within the table's total wid=
+th of 640px, including images and padding. -->
+          <td valign=3D"top" width=3D"515" style=3D"font-family:'Open Sans'=
+, Verdana, sans-serif; color:#000000; font-size:15px; text-align:left;">
+          Earn points based on how much is spent on eligible Air&nbsp;Canad=
+a&nbsp;flights.
+            <br>
+            <br>
+            <p style=3D"font-size:12px;">*Points are earned based on the ba=
+se fare and carrier surcharges, excluding applicable taxes, fees and third&=
+#8209;party&nbsp;charges on eligible Air&nbsp;Canada&nbsp;flights.</p>
+          </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <!-- /BODY TEXT -->
+            
+        </table>
+        </td>
+      </tr>
+
+      </table>
+      </td>
+      <!-- / COL 3 -->
+          
+    </tr>
+   
+</table>
+<!-- /MODULE NOT RESPONSIVE - SPLIT 30/70 FULL WIDTH - ICON LEFT - BG COLOR=
+ -->
+
+
+<!-- MODULE NOT RESPONSIVE - SPLIT 30/70 FULL WIDTH - ICON LEFT - BG COLOR =
+-->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#FEFEFE;">
+<tr><td colspan=3D"3" width=3D"640">&nbsp;</td></tr>
+<tr>
+      <!-- COL 1 --> 
+      <td align=3D"right" valign=3D"top" style=3D"padding-left:15px">
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0">
+          
+      <!-- ICON -->
+      <tr>
+        <td valign=3D"top">
+        <table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" wi=
+dth=3D"100%">
+        <tr>
+          <td><img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_pro=
+d3/38998e8899daf5dff9b33e7900930df021d6478566f608019fed4d8c3e9d35b3.png" wi=
+dth=3D"75" height=3D"75" border=3D"0" style=3D"border:none; text-decoration=
+:none; outline:none; display:block;" alt=3D"Lightning bolt with upward arro=
+w."></td>
+        </tr>
+        </table>
+        </td>
+      </tr>
+      <!-- /ICON -->
+
+      </table>
+      </td>
+      <!-- / COL 1 -->
+      
+      <!-- COL 2 -->
+      <!-- The width of the "td" must stay within the table's total width o=
+f 640px, including images and padding. -->
+      <td width=3D"20" align=3D"left" valign=3D"top">&nbsp;</td>
+      <!-- / COL 2 -->
+
+      <!-- COL 3 -->    
+      <td valign=3D"top">
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" style=3D"100% !important;">
+       
+      <tr>
+        <td align=3D"left" valign=3D"top" style=3D"padding:0 15px 0 0;">
+        <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" width=3D"100%" style=3D"100% !important;">
+        
+        <!-- HEADLINE -->
+        <tr>
+          <!-- The width of the "td" must stay within the table's total wid=
+th of 640px, including images and padding. -->
+          <td valign=3D"top" width=3D"515">
+            <!-- h2 | h3 | h4 | h5 | h6 -->
+            <h3 style=3D"font-family:'Open Sans', Verdana, sans-serif !impo=
+rtant; padding:0 !important; margin:0 !important; font-weight:bold; color:#=
+000000; font-size:15px; line-height:22px; text-align:left;">More ways to ea=
+rn points</h3>
+            </td>
+        </tr>
+       
+        <!-- /HEADLINE -->
+        
+        <!-- BODY TEXT -->
+        <tr>
+          <!-- The width of the "td" must stay within the table's total wid=
+th of 640px, including images and padding. -->
+          <td valign=3D"top" width=3D"515" style=3D"font-family:'Open Sans'=
+, Verdana, sans-serif; color:#000000; font-size:15px; text-align:left;">
+          Members will benefit from a broader range of bonus point&nbsp;off=
+ers.
+          </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <!-- /BODY TEXT -->
+            
+        </table>
+        </td>
+      </tr>
+
+      </table>
+      </td>
+      <!-- / COL 3 -->
+          
+    </tr>
+   
+</table>
+<!-- /MODULE NOT RESPONSIVE - SPLIT 30/70 FULL WIDTH - ICON LEFT - BG COLOR=
+ -->
+
+
+<!-- MODULE NOT RESPONSIVE - SPLIT 30/70 FULL WIDTH - ICON LEFT - BG COLOR =
+-->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#FEFEFE;">
+<tr><td colspan=3D"3" width=3D"640">&nbsp;</td></tr>
+<tr>
+      <!-- COL 1 --> 
+      <td align=3D"right" valign=3D"top" style=3D"padding-left:15px">
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0">
+          
+      <!-- ICON -->
+      <tr>
+        <td valign=3D"top">
+        <table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" wi=
+dth=3D"100%">
+        <tr>
+          <td><img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_pro=
+d3/35565131e682f11af8c7bceeb1a3b5aa25a8beaf2371bcb9ec1ec29e49fb1cde.png" wi=
+dth=3D"75" height=3D"75" border=3D"0" style=3D"border:none; text-decoration=
+:none; outline:none; display:block;" alt=3D"Surfboard under umbrella."></td=
+>
+        </tr>
+        </table>
+        </td>
+      </tr>
+      <!-- /ICON -->
+
+      </table>
+      </td>
+      <!-- / COL 1 -->
+      
+      <!-- COL 2 -->
+      <!-- The width of the "td" must stay within the table's total width o=
+f 640px, including images and padding. -->
+      <td width=3D"20" align=3D"left" valign=3D"top">&nbsp;</td>
+      <!-- / COL 2 -->
+
+      <!-- COL 3 -->    
+      <td valign=3D"top">
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" style=3D"100% !important;">
+       
+      <tr>
+        <td align=3D"left" valign=3D"top" style=3D"padding:0 15px 0 0;">
+        <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" width=3D"100%" style=3D"100% !important;">
+        
+        <!-- HEADLINE -->
+        <tr>
+          <!-- The width of the "td" must stay within the table's total wid=
+th of 640px, including images and padding. -->
+          <td valign=3D"top" width=3D"515">
+            <!-- h2 | h3 | h4 | h5 | h6 -->
+            <h3 style=3D"font-family:'Open Sans', Verdana, sans-serif !impo=
+rtant; padding:0 !important; margin:0 !important; font-weight:bold; color:#=
+000000; font-size:15px; line-height:22px; text-align:left;">Earn on Air&nbs=
+p;Canada Vacations<sup style=3D"font-size: 0.8em !important; line-height:0;=
+ vertical-align:0.4em">&reg;</sup> packages</h3>
+            </td>
+        </tr>
+    
+        <!-- /HEADLINE -->
+        
+        <!-- BODY TEXT -->
+        <tr>
+          <!-- The width of the "td" must stay within the table's total wid=
+th of 640px, including images and padding. -->
+          <td valign=3D"top" width=3D"515" style=3D"font-family:'Open Sans'=
+, Verdana, sans-serif; color:#000000; font-size:15px; text-align:left;">
+          Earn a fixed amount of Aeroplan points based on cabin selection a=
+nd&nbsp;destination.
+          </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <!-- /BODY TEXT -->
+            
+        </table>
+        </td>
+      </tr>
+
+      </table>
+      </td>
+      <!-- / COL 3 -->
+          
+    </tr>
+    <tr><td colspan=3D"3">&nbsp;</td></tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - SPLIT 30/70 FULL WIDTH - ICON LEFT - BG COLOR=
+ -->
+
+<!-- MODULE NOT RESPONSIVE - SPLIT 30/70 FULL WIDTH - ICON LEFT - BG COLOR =
+-->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#FEFEFE;">
+<tr><td colspan=3D"3" width=3D"640">&nbsp;</td></tr>
+<tr>
+      <!-- COL 1 --> 
+      <td align=3D"right" valign=3D"top" style=3D"padding-left:15px">
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0">
+          
+      <!-- ICON -->
+      <tr>
+        <td valign=3D"top">
+        <table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" wi=
+dth=3D"100%">
+        <tr>
+          <td><img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_pro=
+d3/8f6c47646e1288de12b2e5cb3a1eee2dc7f4c97cc3a951cf69790a851189a0f1.png" wi=
+dth=3D"75" height=3D"75" border=3D"0" style=3D"border:none; text-decoration=
+:none; outline:none; display:block;" alt=3D"Upward arrow with Status Qualif=
+ication Credits icon."></td>
+        </tr>
+        </table>
+        </td>
+      </tr>
+      <!-- /ICON -->
+
+      </table>
+      </td>
+      <!-- / COL 1 -->
+      
+      <!-- COL 2 -->
+      <!-- The width of the "td" must stay within the table's total width o=
+f 640px, including images and padding. -->
+      <td width=3D"20" align=3D"left" valign=3D"top">&nbsp;</td>
+      <!-- / COL 2 -->
+
+      <!-- COL 3 -->    
+      <td valign=3D"top">
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" style=3D"100% !important;">
+       
+      <tr>
+        <td align=3D"left" valign=3D"top" style=3D"padding:0 15px 0 0;">
+        <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" width=3D"100%" style=3D"100% !important;">
+        
+        <!-- HEADLINE -->
+        <tr>
+          <!-- The width of the "td" must stay within the table's total wid=
+th of 640px, including images and padding. -->
+          <td valign=3D"top" width=3D"515">
+            <!-- h2 | h3 | h4 | h5 | h6 -->
+            <h3 style=3D"font-family:'Open Sans', Verdana, sans-serif !impo=
+rtant; padding:0 !important; margin:0 !important; font-weight:bold; color:#=
+000000; font-size:15px; line-height:22px; text-align:left;">Boost earnings =
+with Aeroplan Elite&nbsp;status</h3>
+            </td>
+        </tr>
+        
+        <!-- /HEADLINE -->
+        
+        <!-- BODY TEXT -->
+        <tr>
+          <!-- The width of the "td" must stay within the table's total wid=
+th of 640px, including images and padding. -->
+          <td valign=3D"top" width=3D"515" style=3D"font-family:'Open Sans'=
+, Verdana, sans-serif; color:#000000; font-size:15px; text-align:left;">
+          Elite members will earn between 2X and 6X the Aeroplan points on =
+eligible Air&nbsp;Canada flights, depending on their Status at the time of&=
+nbsp;travel.
+          </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <!-- /BODY TEXT -->
+            
+        </table>
+        </td>
+      </tr>
+
+      </table>
+      </td>
+      <!-- / COL 3 -->
+          
+    </tr>
+    <tr><td colspan=3D"3">&nbsp;</td></tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - SPLIT 30/70 FULL WIDTH - ICON LEFT - BG COLOR=
+ -->
+
+<!-- MODULE NOT RESPONSIVE - BODY TEXT - BG COLOR -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#FEFEFE;">
+<tr>
+    <td valign=3D"top" style=3D"width:640px; padding:0 30px; font-family:'O=
+pen Sans', Verdana, sans-serif; color:#000000; font-size:15px; text-align:c=
+enter;">
+    Explore all the upcoming changes to Aeroplan point&nbsp;earnings:
+    </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - BODY TEXT - BG COLOR -->
+
+
+<!-- MODULE NOT RESPONSIVE - CTA BUTTON - BG COLOR -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#FEFEFE;">
+<tr>
+    <td valign=3D"top" style=3D"width:640px; padding:0 30px;">
+    <center>
+    <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0">
+    <tr>
+        <!-- BLUE=3D"#005078" | RED=3D"#D8292F" -->
+        <td bgcolor=3D"#005078" style=3D"font-family:'Open Sans', Verdana, =
+sans-serif; padding:10px 35px 10px 35px; font-weight:bold; font-size:16px; =
+line-height:1.1; mso-line-height-rule:exactly;">
+        <a role=3D"button" href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dh=
+bc132024,22301f24,10dd9be5&p1=3D327703905&p2=3D573579044" _label=3D"B_URL36=
+53" aria-label=3D"" target=3D"_blank" style=3D"color:#FFFFFF; text-decorati=
+on:none; display:inline-block;">Learn more</a>
+        </td>
+    </tr>
+    </table>
+    </center>
+    </td>
+</tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - CTA BUTTON - BG COLOR -->
+
+<!-- MODULE NOT RESPONSIVE - 1 HERO IMAGE FLUSH -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%;">
+<tr>
+    <td valign=3D"top" width=3D"640">
+    <center>
+    <!-- The image width must be at least 640 pixels or bigger -->
+    <img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_prod3/3f620d0=
+0fd6f76ac5d4d5f79b51ec60592cc4a15ec2bc04c0a25049b3aa6f728.png" border=3D"0"=
+ width=3D"640" style=3D"width:100%; display:block;" alt=3D"Divider">
+    </center>
+    </td>
+</tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - 1 HERO IMAGE FLUSH -->
+
+
+<!-- MODULE NOT RESPONSIVE - HEADLINE - BG COLOR -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#f6f4f0;">
+<tr>
+    <td valign=3D"top" style=3D"width:640px; padding:0 30px;">
+    <!-- h2 | h3 | h4 | h5 | h6 -->
+    <h2 style=3D"font-family:'Open Sans', Verdana, sans-serif !important; p=
+adding:0 !important; margin:0 !important; font-weight:bold; color:#000000; =
+font-size:24px; line-height:33px; text-align:center;">Here=92s how to quali=
+fy for Aeroplan&nbsp;Elite&nbsp;status in 2027 and beyond &#8211;&nbsp;plus=
+, introducing SQC&nbsp;Milestones</h2>
+    </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - HEADLINE - BG COLOR -->
+
+<!-- MODULE NOT RESPONSIVE - BODY TEXT - BG COLOR -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#f6f4f0;">
+<tr>
+    <td valign=3D"top" style=3D"width:640px; padding:0 30px; font-family:'O=
+pen Sans', Verdana, sans-serif; color:#000000; font-size:15px; text-align:c=
+enter;">
+    On January&nbsp;1,&nbsp;2026, we=92re introducing <b>Status Qualifying =
+Credits (SQC)<sup style=3D"font-size: 0.8em !important; line-height:0; vert=
+ical-align:0.4em">&Dagger;</sup></b>=97the new way to qualify for Aeroplan&=
+nbsp;Elite&nbsp;status. 
+    <br>
+    <br>
+    With these changes, SQC with Air&nbsp;Canada will be based on how much =
+is spent:
+    
+    <ul>
+        <li><p style=3D"text-align:left;">Get <b>4&nbsp;SQC per dollar</b> =
+spent<sup style=3D"font-size: 0.8em !important; line-height:0; vertical-ali=
+gn:0.4em">=B1</sup> on eligible fares that are Economy Flex or&nbsp;higher<=
+/p>
+        </li>
+        <li><p style=3D"text-align:left;">Get <b>2&nbsp;SQC per dollar</b> =
+spent<sup style=3D"font-size: 0.8em !important; line-height:0; vertical-ali=
+gn:0.4em">=B1</sup> on eligible Economy Standard fares and eUpgrade add&#82=
+09;ons
+        </p>
+        </li>
+    </ul> 
+
+    
+    <br>
+   Members can also accumulate up to <b>25,000&nbsp;SQC with our Aeroplan p=
+artners</b> and up to <b>25,000&nbsp;SQC with an Aeroplan credit&nbsp;card<=
+/b>. 
+    
+    <br>
+    
+        
+    </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - BODY TEXT - BG COLOR -->
+
+
+
+<!-- MODULE NOT RESPONSIVE - 1 HERO IMAGE FLUSH -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%;">
+<tr>
+    <td valign=3D"top" width=3D"640">
+    <center>
+    <!-- The image width must be at least 640 pixels or bigger -->
+    <img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_prod3/2b8b7d3=
+53d63288f58150d1d2d6b3ad048035e7e89bb9469547d04a984ae6c29.png" border=3D"0"=
+ width=3D"640" style=3D"width:100%; display:block;" alt=3D"Illustration of =
+a woman with red luggage in front of a Status Qualification Credits icon an=
+d outlines of famous landmarks.">
+    </center>
+    </td>
+</tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - 1 HERO IMAGE FLUSH -->
+
+<!-- MODULE NOT RESPONSIVE - SPLIT 30/70 FULL WIDTH - ICON LEFT - BG COLOR =
+-->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#f6f4f0;">
+<tr><td colspan=3D"3" width=3D"640">&nbsp;</td></tr>
+<tr><td colspan=3D"3" width=3D"640">&nbsp;</td></tr>
+<tr>
+      <!-- COL 1 --> 
+      <td align=3D"right" valign=3D"top" style=3D"padding-left:15px">
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0">
+          
+      <!-- ICON -->
+      <tr>
+        <td valign=3D"top">
+        <table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" wi=
+dth=3D"100%">
+        <tr>
+          <td><img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_pro=
+d3/e571a8f8b9f8bf6728037c4ecff096b7e4a8be3695dd15d94634b43bd1e606e5.png" wi=
+dth=3D"75" height=3D"75" border=3D"0" style=3D"border:none; text-decoration=
+:none; outline:none; display:block;" alt=3D"Status Qualification Credits ic=
+on."></td>
+        </tr>
+        </table>
+        </td>
+      </tr>
+      <!-- /ICON -->
+
+      </table>
+      </td>
+      <!-- / COL 1 -->
+      
+      <!-- COL 2 -->
+      <!-- The width of the "td" must stay within the table's total width o=
+f 640px, including images and padding. -->
+      <td width=3D"20" align=3D"left" valign=3D"top">&nbsp;</td>
+      <!-- / COL 2 -->
+
+      <!-- COL 3 -->    
+      <td valign=3D"top">
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" style=3D"100% !important;">
+       
+      <tr>
+        <td align=3D"left" valign=3D"top" style=3D"padding:0 15px 0 0;">
+        <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" width=3D"100%" style=3D"100% !important;">
+        
+        <!-- HEADLINE -->
+        <tr>
+          <!-- The width of the "td" must stay within the table's total wid=
+th of 640px, including images and padding. -->
+          <td valign=3D"top" width=3D"515">
+            <!-- h2 | h3 | h4 | h5 | h6 -->
+            <h3 style=3D"font-family:'Open Sans', Verdana, sans-serif !impo=
+rtant; padding:0 !important; margin:0 !important; font-weight:bold; color:#=
+000000; font-size:15px; line-height:22px; text-align:left;">Introducing SQC=
+ Milestones</h3>
+            </td>
+        </tr>
+       
+        <!-- /HEADLINE -->
+        
+        <!-- BODY TEXT -->
+        <tr>
+          <!-- The width of the "td" must stay within the table's total wid=
+th of 640px, including images and padding. -->
+          <td valign=3D"top" width=3D"515" style=3D"font-family:'Open Sans'=
+, Verdana, sans-serif; color:#000000; font-size:15px; text-align:left;">
+          For every 10,000&nbsp;SQC accumulated, Milestones will be unlocke=
+d. Some will award benefits automatically, while others will offer a choice=
+ to members. Milestone benefits include bonus SQC, Priority&nbsp;Rewards, S=
+tatus&nbsp;Passes&nbsp;and&nbsp;more. 
+          </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <!-- /BODY TEXT -->
+            
+        </table>
+        </td>
+      </tr>
+
+      </table>
+      </td>
+      <!-- / COL 3 -->
+          
+    </tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - SPLIT 30/70 FULL WIDTH - ICON LEFT - BG COLOR=
+ -->
+
+
+
+<!-- MODULE NOT RESPONSIVE - BODY TEXT - BG COLOR -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#f6f4f0;">
+<tr>
+    <td valign=3D"top" style=3D"width:640px; padding:0 30px; font-family:'O=
+pen Sans', Verdana, sans-serif; color:#000000; font-size:15px; text-align:c=
+enter;">
+    For details on the upcoming changes to Aeroplan&nbsp;Elite&nbsp;Status =
+and&nbsp;benefits: 
+    </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - BODY TEXT - BG COLOR -->
+
+
+<!-- MODULE NOT RESPONSIVE - CTA BUTTON - BG COLOR -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#f6f4f0;">
+<tr>
+    <td valign=3D"top" style=3D"width:640px; padding:0 30px;">
+    <center>
+    <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0">
+    <tr>
+        <!-- BLUE=3D"#005078" | RED=3D"#D8292F" -->
+        <td bgcolor=3D"#005078" style=3D"font-family:'Open Sans', Verdana, =
+sans-serif; padding:10px 35px 10px 35px; font-weight:bold; font-size:16px; =
+line-height:1.1; mso-line-height-rule:exactly;">
+        
+        
+            
+        <a role=3D"button" href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dh=
+bc132024,22301f24,10dd9be6&p1=3D327703905&p2=3D573579044" _label=3D"B_URL36=
+52" aria-label=3D"" target=3D"_blank" style=3D"color:#FFFFFF; text-decorati=
+on:none; display:inline-block;">Learn more</a>
+        
+        
+            
+        </td>
+    </tr>
+    </table>
+    </center>
+    </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - CTA BUTTON - BG COLOR -->
+    
+<!-- MODULE NOT RESPONSIVE - BODY TEXT - BG COLOR -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#f6f4f0;">
+<tr>
+    <td valign=3D"top" style=3D"width:640px; padding:0 30px; font-family:'O=
+pen Sans', Verdana, sans-serif; color:#000000; font-size:12px; text-align:c=
+enter;">
+    <sup style=3D"font-size: 0.8em !important; line-height:0; vertical-alig=
+n:0.4em">&plusmn;</sup>SQC are accumulated based on the base fare and carri=
+er surcharges, excluding applicable taxes, fees, and third&#8209;party&nbsp=
+;charges on eligible Air&nbsp;Canada&nbsp;flights.  
+    </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - BODY TEXT - BG COLOR -->
+
+
+<!-- MODULE NOT RESPONSIVE - 1 HERO IMAGE FLUSH -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%;">
+<tr>
+    <td valign=3D"top" width=3D"640">
+    <center>
+    <!-- The image width must be at least 640 pixels or bigger -->
+    <img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_prod3/7ba53c7=
+76f806fa0a703d3f8b6179bf04c5329fb3357dca7239086c6d36fd711.png" border=3D"0"=
+ width=3D"640" style=3D"width:100%; display:block;" alt=3D"Woman with a lap=
+top sitting on a chair.">
+    </center>
+    </td>
+</tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - 1 HERO IMAGE FLUSH -->
+
+
+<!-- MODULE NOT RESPONSIVE - HEADLINE - BG COLOR -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#FEFEFE;">
+<tr><td>&nbsp;</td></tr>
+<tr>
+    <td valign=3D"top" style=3D"width:640px; padding:0 30px;">
+    <!-- h2 | h3 | h4 | h5 | h6 -->
+    <h2 style=3D"font-family:'Open Sans', Verdana, sans-serif !important; p=
+adding:0 !important; margin:0 !important; font-weight:bold; color:#000000; =
+font-size:24px; line-height:33px; text-align:center;">We=92re listening=97a=
+nd making meaningful&nbsp;updates</h2>
+    </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - HEADLINE - BG COLOR -->
+
+
+<!-- MODULE NOT RESPONSIVE - BODY TEXT - BG COLOR -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#FEFEFE;">
+<tr>
+    <td valign=3D"top" style=3D"width:640px; padding:0 30px; font-family:'O=
+pen Sans', Verdana, sans-serif; color:#000000; font-size:15px; text-align:c=
+enter;">
+    Your feedback continues to shape the Aeroplan Elite experience. Since a=
+nnouncing these updates, we've made further refinements based on what you'v=
+e shared with&nbsp;us:
+    
+    <ul>
+        <li><p style=3D"text-align:left;"><b>Inclusion of Star&nbsp;Allianc=
+e flights ticketed by Air&nbsp;Canada:<br>
+        </b> The &nbsp;Elite Points Multiplier will apply to Star&nbsp;Alli=
+ance flights ticketed by Air&nbsp;Canada (014&nbsp;tickets). 
+        
+        <a role=3D"button" href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dh=
+bc132024,22301f24,10dd9be8" _label=3D"F_URL3652" aria-label=3D"" style=3D"c=
+olor:#005078; font-weight:bold;" target=3D"_blank">Learn more</a>
+        </p>
+        </li>
+        <li><p style=3D"text-align:justify;"><b>Extension of 2025 Status fo=
+r a Friend:</b> If you requalify for your Aeroplan&nbsp;75K or Super&nbsp;E=
+lite&nbsp;status for 2026, your nominated friend=92s status will automatica=
+lly be extended through 2026. This ensures a smooth transition to the Miles=
+tone Benefits in&nbsp;2026.
+        
+        
+            
+        <a role=3D"button" href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dh=
+bc132024,22301f24,10dd9be9" _label=3D"F_URL3652" aria-label=3D"" style=3D"c=
+olor:#005078; font-weight:bold;" target=3D"_blank">Learn more</a>
+        
+        
+        </p>
+        </li>
+        <li><p style=3D"text-align:justify;"><b>Million Mile updates:</b> L=
+ifetime Qualifying Miles&nbsp;(LQM) will maintain a cabin bonus for Premium=
+ Economy and Business Class fares, plus new annual benefits will be introdu=
+ced for Million Mile&nbsp;members.
+        
+        
+            
+        <a role=3D"button" href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dh=
+bc132024,22301f24,10dd9beb" _label=3D"F_URL3652" aria-label=3D"" style=3D"c=
+olor:#005078; font-weight:bold;" target=3D"_blank">Learn more</a>
+        
+        
+        </p>
+        </li>
+    </ul>   
+
+    </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+<!-- /MODULE NOT RESPONSIVE - BODY TEXT - BG COLOR -->
+
+
+
+</td>
+</tr>
+</table>
+<!-- END Content Table -->
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+
+
+
+
+
+<tr>
+<td align=3D"center" valign=3D"top">
+<table border=3D"0" width=3D"640" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"container" bgcolor=3D"#ffffff">
+<tr>
+<td align=3D"left" valign=3D"top">
+<!-- Content Table -->
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+<tr>
+<td align=3D"center" valign=3D"top" style=3D"font-family:'Open Sans', Verda=
+na, sans-serif; font-size:15px; color:#4b4f54;">
+<!-- MODULE FOOTER NAVIGATION EN  -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; border-top:4px solid #D8292F; backgr=
+ound-color:#F5F5F5; clear:both;">
+  <tr>
+    <td valign=3D"top" style=3D"width:640px; padding:auto 0;">
+        <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" width=3D"100%">
+        <tr>
+          <td style=3D"width:640px; padding:20px 30px 0 30px;">
+              <center>
+              <table role=3D"presentation" border=3D"0" cellspacing=3D"0" c=
+ellpadding=3D"0">
+              <tr>
+                <td align=3D"left" valign=3D"bottom" style=3D"padding-right=
+:10px;"><a href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dhbc132024,22301f2=
+4,10dd9bed" _label=3D"F_ACnav_Youtube" target=3D"_blank" style=3D"text-deco=
+ration:none;"><img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_pro=
+d3/Icon_FullSocialMedia_YouTube_MB_Outline.png" class=3D"light-mode-image" =
+alt=3D"Air Canada Youtube" border=3D"0" height=3D"20" style=3D"height:20px;=
+"></a></td>
+                
+                <td align=3D"left" valign=3D"bottom" style=3D"padding-right=
+:10px;"><a href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dhbc132024,22301f2=
+4,10dd9bee" _label=3D"F_ACnav_X" target=3D"_blank" style=3D"text-decoration=
+:none;"><img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_prod3/Ico=
+n_2024_Social_X_Black_36X36_Outline.png" class=3D"light-mode-image" alt=3D"=
+Air Canada X" border=3D"0" height=3D"20" style=3D"height:20px;"></a></td>
+                
+                <td align=3D"left" valign=3D"bottom" style=3D"padding-right=
+:10px;"><a href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dhbc132024,22301f2=
+4,10dd9bef" _label=3D"F_ACnav_Facebook" target=3D"_blank" style=3D"text-dec=
+oration:none;"><img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_pr=
+od3/Icon_FullSocialMedia_Facebook_MB_Outline.png" class=3D"light-mode-image=
+" alt=3D"Air Canada Facebook" border=3D"0" height=3D"20" style=3D"height:20=
+px;"></a></td>
+                
+                <td align=3D"left" valign=3D"bottom" style=3D"padding-right=
+:10px;"><a href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dhbc132024,22301f2=
+4,10dd9bf0" _label=3D"F_ACnav_Instagram" target=3D"_blank" style=3D" text-d=
+ecoration:none;"><img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_=
+prod3/Icon_FullSocialMedia_Instagram_MB_Outline.png" class=3D"light-mode-im=
+age" alt=3D"Air Canada Instagram" border=3D"0" height=3D"20" style=3D"heigh=
+t:20px;"></a></td>
+                
+                <td align=3D"left" valign=3D"top" style=3D"padding-top:4px;=
+"><a href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dhbc132024,22301f24,10dd=
+9bf1" _label=3D"F_ACnav_enRoute" target=3D"_blank" style=3D"text-decoration=
+:none;"><img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_prod3/Ico=
+n_FullSocialMedia_enRoute_MB_Outline.png" class=3D"light-mode-image" alt=3D=
+"Air Canada enRoute" border=3D"0" height=3D"12" style=3D"height:12px;"></a>=
+</td>
+              </tr>
+            </table>
+            </center>
+            </td>
+        </tr>
+        
+        <tr>
+          <td valign=3D"top">
+              <table role=3D"presentation" border=3D"0" cellspacing=3D"0" c=
+ellpadding=3D"0" width=3D"100%">
+              <tr>
+                <td style=3D"width:640px; padding:20px 30px 0 30px;">
+                    <center>
+                    <table role=3D"presentation" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0" width=3D"100%">
+                    <tr>
+                      <td style=3D"font-family:'Open Sans', Verdana, sans-s=
+erif !important; padding:0 10px !important; margin:0 !important; font-weigh=
+t:bold; color:#000000; font-size:12px; line-height:16px; text-align:center;=
+"><a href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dhbc132024,22301f24,10dd=
+9bf2" _label=3D"F_ACnav_ProfilUpdate" target=3D"_blank" style=3D"color:#000=
+000; text-decoration:none;">Update&nbsp;Profile</a> | <a href=3D"https://t.=
+mail.aircanada.com/r/=3Fid=3Dhbc132024,22301f24,10dd9bf3" _label=3D"F_ACnav=
+_FAQ" target=3D"_blank" style=3D"color:#000000; text-decoration:none;">FAQ<=
+/a> | <a href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dhbc132024,22301f24,=
+10dd9bf4" _label=3D"F_ACnav_AEtermsAndConditions" target=3D"_blank" style=
+=3D"color:#000000; text-decoration:none;">Terms&nbsp;and Conditions</a></td=
+>
+                    </tr>
+                  </table>
+                  </center>
+                  </td>
+              </tr>
+              <tr>
+                <td style=3D"width:640px; padding:5px 30px 0 30px;">
+                    <center>
+                    <table role=3D"presentation" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0" width=3D"100%">
+                    <tr>
+                      <td valign=3D"middle" style=3D"font-family:'Open Sans=
+', Verdana, sans-serif !important; padding:0 10px !important; margin:0 !imp=
+ortant; font-weight:bold; color:#000000; font-size:12px; line-height:16px; =
+text-align:center;"><a href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dhbc13=
+2024,22301f24,10dd9bf5" _label=3D"F_ACnav_CustomerSupport" target=3D"_blank=
+" style=3D"color:#000000; text-decoration:none;">Contact&nbsp;us</a> | <a h=
+ref=3D"https://t.mail.aircanada.com/r/=3Fid=3Dhbc132024,22301f24,10dd9bf6" =
+_label=3D"F_ACnav_AEprivacyPolicy" target=3D"_blank" style=3D"color:#000000=
+; text-decoration:none;">Privacy&nbsp;Policy</a> | <a href=3D"https://t.mai=
+l.aircanada.com/r/=3Fid=3Dhbc132024,22301f24,10dd9bf7&p1=3D%40AYtheg69JNRiE=
+ZehrTQ2DGF9Ky4vgBC56D1ITMSFkn4%3D" _label=3D"F_ACnav_WebVersion" target=3D"=
+_blank" style=3D"color:#000000; text-decoration:none;">Web&nbsp;version</a>=
+</td>
+                    </tr>
+                  </table>
+                  </center>
+                  </td>
+              </tr>
+            </table>
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+      </table>
+      </td>
+  </tr>
+</table>
+<!-- /MODULE FOOTER NAVIGATION EN  -->
+<!-- MODULE LEGAL TOP -->
+<table border=3D"0" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"clear:both;" bgcolor=3D"#F5F5F5">
+  <tbody>
+    <tr>
+      <td align=3D"left" valign=3D"top" style=3D"padding-left:30px; padding=
+-right:30px;" class=3D"mobile-main-padding"><table border=3D"0" width=3D"10=
+0%" cellpadding=3D"0" cellspacing=3D"0">
+        <tbody>
+          <tr>
+            <td align=3D"left" valign=3D" top" style=3D"font-family:'Open S=
+ans', Verdana, sans-serif; font-size:10px; color:#000000;">
+<!-- /MODULE LEGAL TOP -->
+<!--- FooterTop_AE_ANF_LegalOptOut_CA_EN --->
+
+You have received this email because it is an important communication about=
+ the Aeroplan product or service. You cannot&nbsp;unsubscribe from this com=
+munication or other administrative or transactional communications. If you =
+do not want to receive Aeroplan promotional communications and&nbsp;offers,=
+ <a href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dhbc132024,22301f24,10dd9=
+bf8&p1=3Dbcda25a4965e45a78c5439431a83422d" _label=3D"optGig" target=3D"_bla=
+nk" style=3D"color:#D8292F;text-decoration:none;">unsubscribe</a>.
+<br><br> <!-- ANF  -->
+<!--- Footer2_AE_General_PointsBalance_CA_EN --->
+
+<sup style=3D"font-size: 1.2em !important; line-height:0; vertical-align:0.=
+4em">+</sup>The Aeroplan&nbsp;points balance displayed in this email may no=
+t accurately reflect your current points balance. To view your points balan=
+ce, account activity and more, please visit your Aeroplan&nbsp;dashboard.
+<br /><br /> <!-- Remove this line to exclude Points Balance reference. -->
+<!--- Footer2_AE_General_LegalOptOut_CA_EN --->
+
+<b>Please do not reply to this&nbsp;email.</b>
+<br><br>
+Mailing address: Aeroplan&nbsp;Centre, P.O. Box&nbsp;24000, Station Pointe&=
+#8209;Claire Dorval, Pointe&#8209;Claire (Quebec)&nbsp;Canada H4Y&nbsp;1K4.
+<br><br>    
+Learn more about Aeroplan's 18&#8209;month inactivity policy on our website=
+ at <a href=3D"https://t.mail.aircanada.com/r/=3Fid=3Dhbc132024,22301f24,10=
+dd9bf9" _label=3D"inactPol" target=3D"_blank" style=3D"color:#D8292F;text-d=
+ecoration:none;">aircanada.com/aeroplan&#8209;inactivitypolicy</a>.
+<br><br>
+Trademark ownership details at <a href=3D"https://t.mail.aircanada.com/r/=
+=3Fid=3Dhbc132024,22301f24,10dd9bfa" _label=3D"tradeMark" target=3D"_blank"=
+ style=3D"color:#D8292F;text-decoration:none;">aircanada.com/trademarks</a>=
+.
+<!-- Footer3_Legal_Top -->
+
+
+            <!-- /BODY TEXT -->
+            </td>
+          </tr>
+          <tr><td align=3D"left" valign=3D"top">&nbsp;</td></tr>
+          <tr><td align=3D"left" valign=3D"top">&nbsp;</td></tr>
+      </table></td>
+    </tr>
+</table>
+<!-- /SUBSCRIBER LIST -->
+
+
+<!-- MODULE LEGAL TOP -->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; background-color:#F5F5F5; clear:both=
+;">
+    <tr>
+      <td align=3D"left" valign=3D"top" style=3D"width:640px; padding-left:=
+30px; padding-right:30px;">
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" width=3D"100%">
+          <tr>
+            <td align=3D"left" valign=3D"top" style=3D"font-family:'Open Sa=
+ns', Verdana, sans-serif; font-size:10px; color:#000000;">
+<!-- /MODULE LEGAL TOP -->
+
+<sup style=3D"font-size: 0.8em !important; line-height:0; vertical-align:0.=
+4em">&Dagger;</sup>As of January&nbsp;1,&nbsp;2026, Status Qualifying Credi=
+ts&nbsp;(SQC) will be the sole metric used to qualify for Aeroplan Elite St=
+atus. Members will no longer accumulate Status Qualifying Miles&nbsp;(SQM),=
+ Status Qualifying Segments&nbsp;(SQS), or Status Qualifying Dollars&nbsp;(=
+SQD).
+<br>
+<br>
+As always, if you are not satisfied with these changes, you are able to ref=
+use them by closing your Aeroplan account with us at any time without costs=
+, penalty or cancellation&nbsp;indemnity. 
+
+
+
+
+<!-- Footer2_Legal_Bottom -->
+
+<!-- MODULE LEGAL BOTTOM -->
+            </td>
+          </tr>
+          <tr><td align=3D"left" valign=3D"top">&nbsp;</td></tr>
+          <tr><td align=3D"left" valign=3D"top">&nbsp;</td></tr>
+      </table>
+      </td>
+    </tr>
+</table>
+<!-- /MODULE LEGAL BOTTOM -->
+<!--- Footer2_Logo_Corporate_CA_EN --->
+
+<!--- MODULE RESPONSIVE - 2 COLUMNS ICONS - BG COLOR --->
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"width:100%; clear:both; background-color:#F5F5F5=
+;">
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td valign=3D"top">
+  <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%">
+  <tr>
+    <td>
+    <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%">
+    <tr>
+      <!-- COL 1 -->    
+      <td class=3D"force-col" valign=3D"top" width=3D"50%">
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" class=3D"col">
+      <!-- ICON 1 - DESKTOP -->
+      <tr class=3D"hide-mobile">
+        <td align=3D"left" valign=3D"top">
+        <table role=3D"presentation">
+        <tr>
+            <!--- The sum for the width should be 318px-319px in total --->
+            <td width=3D"30">&nbsp;</td>
+            <td><a role=3D"button" href=3D"https://t.mail.aircanada.com/r/=
+=3Fid=3Dhbc132024,22301f24,10dd9bfb" _label=3D"F_Logo_Skytrax" aria-label=
+=3D"Visit Skytrax" target=3D"_blank" style=3D"text-decoration:none;"><img s=
+rc=3D"http://res.mail.aircanada.com/res/aircana_mkt_prod3/Skytrax_4Star_420=
+x152_March2025_EN.png" border=3D"0" style=3D"display:block;" width=3D"200" =
+alt=3D"Skytrax | The only Four-Star internatonal network carrier in North A=
+merica"></a></td>
+            <td width=3D"88">&nbsp;</td>
+        </tr>
+        </table>
+        </td>
+      </tr>
+      <!-- /ICON 1 - DESKTOP -->
+            
+      <!-- ICON 1 - MOBILE -->
+      <!--[if !mso]><!-->
+      <tr style=3D"display:none;" class=3D"show-mobile">
+        <td valign=3D"top" class=3D"show-mobile" style=3D"display:none; wid=
+th:0; max-height:0; overflow:hidden; float:left;">
+        <center>
+        <table role=3D"presentation">
+        <tr>
+            <!--- The sum for the width should be 320px in total --->
+            <td width=3D"60">&nbsp;</td>
+            <td><a role=3D"button" href=3D"https://t.mail.aircanada.com/r/=
+=3Fid=3Dhbc132024,22301f24,10dd9bfc" _label=3D"F_Logo_StarAlliance" aria-la=
+bel=3D"Visit Star Alliance" target=3D"_blank" style=3D"text-decoration:none=
+;"><img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_prod3/Logo_Cor=
+porateLogo_StarAlliance_600x57_en_v3.png" border=3D"0" style=3D"display:blo=
+ck;" width=3D"200" alt=3D"A Star Alliance Member"></a></td>
+            <td width=3D"60">&nbsp;</td>
+        </tr>
+        </table>
+        </center>
+        </td>
+      </tr>
+      <!--<![endif]-->
+      <!-- /ICON - MOBILE -->
+      
+      <!--- NEVER DELETE THIS PART --->
+      <tr>
+        <td valign=3D"top" style=3D"padding:0 15px 0 15px" class=3D"mobile-=
+main-padding">
+        <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" width=3D"280">
+        <tr><td valign=3D"top">&nbsp;</td></tr>
+        </table>
+        </td>
+      </tr>
+      <!--- /NEVER DELETE THIS PART ---> 
+      </table>
+      </td>
+      <!-- / COL 1 -->
+
+      <td width=3D"2" align=3D"left" valign=3D"top" class=3D"show-mobile">&=
+nbsp;</td>
+
+      <!-- COL 2 -->    
+      <td class=3D"force-col" valign=3D"top" width=3D"50%">
+      <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" class=3D"col">
+      <!-- ICON 2 - DESKTOP -->
+      <tr class=3D"hide-mobile">
+        <td align=3D"right" valign=3D"top">
+        <table role=3D"presentation">
+    <tr>
+            <!--- The sum for the width should be 318px-319px in total --->
+            <td width=3D"88">&nbsp;</td>
+      <td><a role=3D"button" href=3D"https://t.mail.aircanada.com/r/=3Fid=
+=3Dhbc132024,22301f24,10dd9bfd" _label=3D"F_Logo_StarAlliance" aria-label=
+=3D"Visit Star Alliance" target=3D"_blank" style=3D"text-decoration:none;">=
+<img src=3D"http://res.mail.aircanada.com/res/aircana_mkt_prod3/Logo_Corpor=
+ateLogo_StarAlliance_600x57_en_v3.png" border=3D"0" style=3D"display:block;=
+" width=3D"200" alt=3D"A Star Alliance Member"></a></td>
+             <td width=3D"30">&nbsp;</td>
+    </tr>
+    </table>
+        </td>
+      </tr>
+      <!-- /ICON 2 - DESKTOP -->
+          
+      <!-- ICON 2 - MOBILE -->
+      <!--[if !mso]><!-->
+      <tr style=3D"display:none;" class=3D"show-mobile">
+        <td valign=3D"top" class=3D"show-mobile" style=3D"display:none; wid=
+th:0; max-height:0; overflow:hidden; float:left;">
+        <center>
+        <table role=3D"presentation">
+    <tr>
+            <!--- The sum for the width should be 320px in total --->
+            <td width=3D"60">&nbsp;</td>
+      <td><a role=3D"button" href=3D"https://t.mail.aircanada.com/r/=3Fid=
+=3Dhbc132024,22301f24,10dd9bfe" _label=3D"F_Logo_Skytrax" aria-label=3D"Vis=
+it Skytrax" target=3D"_blank" style=3D"text-decoration:none;"><img src=3D"h=
+ttp://res.mail.aircanada.com/res/aircana_mkt_prod3/Skytrax_4Star_420x152_Ma=
+rch2025_EN.png" border=3D"0" style=3D"display:block;" width=3D"200" alt=3D"=
+Skytrax | The only Four-Star internatonal network carrier in North America"=
+></a></td>
+            <td width=3D"60">&nbsp;</td>
+    </tr>
+    </table>
+        </center>
+        </td>
+      </tr>
+      <!--<![endif]-->
+      <!-- /ICON 2 - MOBILE -->
+          
+      <!--- NEVER DELETE THIS PART --->
+      <tr>
+        <td valign=3D"top" style=3D"padding:0 15px 0 15px" class=3D"mobile-=
+main-padding">
+        <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" width=3D"280">
+        <tr><td valign=3D"top">&nbsp;</td></tr>
+        </table>
+        </td>
+      </tr>
+      <!--- /NEVER DELETE THIS PART --->
+      </table>
+      </td>
+      <!-- / COL 2 -->
+          
+    </tr>
+    </table>
+    </td>
+  </tr>
+  </table>
+  </td>
+</tr>
+</table>
+<!--- /MODULE RESPONSIVE - 2 COLUMNS ICONS - BG COLOR --->
+</td>
+</tr>
+</table>
+<!-- END Content Table -->
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+
+
+
+
+<!-- ************************ END RENDER BODY ************************ -->
+
+<!-- ######################################################################=
+################# -->
+
+<!-- ************************ BEGIN RENDER FOOTER ************************ =
+-->
+
+<!-- ************************ END RENDER FOOTER ************************ --=
+>
+</table>
+
+<!-- ************************ BEGIN Pixel tag ************************ -->
+
+<!-- ************************ END Pixel tag ************************ -->
+<img height=3D'0' width=3D'0' alt=3D'' src=3D'https://t.mail.aircanada.com/=
+r/=3Fid=3Dhbc132024,22301f24,1'/></body>
+</html>

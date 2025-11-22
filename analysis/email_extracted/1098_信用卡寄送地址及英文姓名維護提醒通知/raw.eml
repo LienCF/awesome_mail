@@ -1,0 +1,712 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:df93:b0:4ca:2b22:f54c with SMTP id ok19csp6409125mdb;
+        Fri, 17 Oct 2025 01:16:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGNzEfoU84dqf8Qn9ICieneBOCbba8e+pBS5l89PWYd3JwaZeELKqaLGIcR8eBpTdPAoAFG
+X-Received: by 2002:a05:6a20:e212:b0:334:871e:897 with SMTP id adf61e73a8af0-334a85260acmr3876178637.24.1760688978811;
+        Fri, 17 Oct 2025 01:16:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1760688978; cv=none;
+        d=google.com; s=arc-20240605;
+        b=X9F/B0V8ihRdpwnWw+B03wMTRpNse2BRrnDJsuUYsO7uE5vOMss4RZsJva52CRZRcb
+         acxa3aukuhLmvrsSul+ssvDC/JFXsdb/Sh3n45ORB+Z/gBVM1+0QmKaU4pTVlvNHcMZB
+         o9S8Oztje15WxKQRp7C8HbF90OOfnvV1qPwEypLvQHlSKbEsyWZac8BEAcZoLNty8Ts0
+         mihqZ4hy3XwHMHtG4KycoJyAfixNVDtLdBZtafSbk+U8OOiTzG00FrrTm6TbGhbMXBM6
+         WOXChh2KSxespasYlPF13CDc/+DtOv33Md7Yxn6WlRAYWE1wPgs0KSG8wt+d5KpwWb5t
+         YJ6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=list-unsubscribe:mime-version:reply-to:to:from:subject:message-id
+         :date:precedence:dkim-signature;
+        bh=HGupWCQ2CaPAQL6WV3cWGQ8KBbDtULdBoI+BWfufsmY=;
+        fh=AuRPPJxWT3oDWns/IAyV12DuHusfebFT2kEqOaRmmSo=;
+        b=BsWqme1NRGwP/ja8Tk7FRVqCzMPD5B14OOOmSkbhFurvuwaidh7K9xrfdtcst860Bg
+         iIqmK/OMJwc1cxTzmgXA5IBzIo3ToWU+c2sxbehuUdqRz5ahv/hJFMVojYhPIMqzdtc8
+         u9UjdfeQ2pcoOncbiRjSYbuOuPoC7n0udm97B0RM0cMu8mNDlZN5cUksb5wN4hdBDADK
+         zLzQz7phstfWKL7TF2ynSn8kvg4AhZYXwKkTxfOCIEQBjSDcrqSZq6Fcivtoyum3ShCt
+         aDUSN+KZ5i+at6UOu6yL7sVOZVSyhUFrM8l5rV6jenAPuX57Awp1NKWNZhq5NmjWE+ME
+         /63w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@inib.ctbcbank.com header.s=s1024 header.b=FSvPGnA1;
+       spf=pass (google.com: domain of return+eid93762+liencf@inib.ctbcbank.com designates 175.184.240.233 as permitted sender) smtp.mailfrom=Return+EID93762+liencf@inib.ctbcbank.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=inib.ctbcbank.com
+Return-Path: <Return+EID93762+liencf@inib.ctbcbank.com>
+Received: from sd27.inib.ctbcbank.com (sd27.inib.ctbcbank.com. [175.184.240.233])
+        by mx.google.com with ESMTPS id 41be03b00d2f7-b6a22b60a50si2608727a12.770.2025.10.17.01.16.18
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Fri, 17 Oct 2025 01:16:18 -0700 (PDT)
+Received-SPF: pass (google.com: domain of return+eid93762+liencf@inib.ctbcbank.com designates 175.184.240.233 as permitted sender) client-ip=175.184.240.233;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@inib.ctbcbank.com header.s=s1024 header.b=FSvPGnA1;
+       spf=pass (google.com: domain of return+eid93762+liencf@inib.ctbcbank.com designates 175.184.240.233 as permitted sender) smtp.mailfrom=Return+EID93762+liencf@inib.ctbcbank.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=inib.ctbcbank.com
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; q=dns/txt;
+ d=inib.ctbcbank.com; s=s1024;
+ h=From:Message-ID:MIME-Version;
+ bh=M8Fql5+rlJjiStsp61BTqW6BiQQ=;
+ b=FSvPGnA1yF1jRG5YLZjVuhaKYB4sZR+9TSBs8HwYfFgJDg+bqKCWmn4BWiYUKcZjqfNM
+ XszQonA4hVbhxz8P9P5OjefLe8AobBgEiquUeDd+6Cxuwk60uicgDJq7DeDjYJfub5yAVJ
+ V/9YVa2DlRTtwDPLrkUfRL4m7mEztIJCw=
+Precedence: bulk
+Date: Fri, 17 Oct 2025 16:16:15 +0800
+Message-ID: <0Q93762Q0Qc8da873Q7522d0Q7845dcQ9Q1311.0Q93762Q@inib.ctbcbank.com>
+Subject: =?utf-8?B?5L+h55So5Y2h5a+E6YCB5Zyw5Z2A5Y+K6Iux5paH5aeT5ZCN57at6K235o+Q6YaS6YCa55+l?=
+From: "=?utf-8?B?5Lit5ZyL5L+h6KiX6YqA6KGM?="<bank.csc@inib.ctbcbank.com>
+To: <liencf@gmail.com>
+Reply-To: <bank.csc@inib.ctbcbank.com>
+MIME-Version: 1.0
+List-Unsubscribe: <mailto:Unsubscribe@inibt.ctbcbank.com?subject=ECode%3D0Q93762Q0Qc8da873Q7522d0Q7845dcQ9>,
+	<http://inib.ctbcbank.com/AspWeb/Unsubscribe/AutoUnsubscribe.asp?ECode=0Q93762Q0Qc8da873Q7522d0Q7845dcQ9Q1311>
+Content-Type: multipart/signed; boundary="----=_NextPart_60d_3a87_29a14b30.f27dd1c7";
+ protocol="application/x-pkcs7-signature";
+ micalg=sha256
+
+------=_NextPart_60d_3a87_29a14b30.f27dd1c7
+Precedence: bulk
+Date: Fri, 17 Oct 2025 16:16:15 +0800
+Message-ID: <0Q93762Q0Qc8da873Q7522d0Q7845dcQ9Q1311.0Q93762Q@inib.ctbcbank.com>
+Subject: =?utf-8?B?5L+h55So5Y2h5a+E6YCB5Zyw5Z2A5Y+K6Iux5paH5aeT5ZCN57at6K235o+Q6YaS6YCa55+l?=
+From: "=?utf-8?B?5Lit5ZyL5L+h6KiX6YqA6KGM?="<bank.csc@inib.ctbcbank.com>
+To: <liencf@gmail.com>
+Reply-To: <bank.csc@inib.ctbcbank.com>
+MIME-Version: 1.0
+List-Unsubscribe: <mailto:Unsubscribe@inibt.ctbcbank.com?subject=ECode%3D0Q93762Q0Qc8da873Q7522d0Q7845dcQ9>,	<http://inib.ctbcbank.com/AspWeb/Unsubscribe/AutoUnsubscribe.asp?ECode=0Q93762Q0Qc8da873Q7522d0Q7845dcQ9Q1311>
+Content-Type: multipart/alternative; boundary="0006147f2b5-faae-425b-b1cb-5a8c68e9266e"
+
+--0006147f2b5-faae-425b-b1cb-5a8c68e9266e
+Content-Type: text/plain; charset=big5
+Content-Transfer-Encoding: quoted-printable
+
+            =ABH=A5=CE=A5d=B4=A3=BF=F4=B3q=AA=BE                           =
+                                                                           =
+                                          =ABH=A5=CE=A5d=B4=A3=BF=F4=B3q=AA=
+=BE Credit Card Notice                                        =ABH=A5=CE=A5=
+d=B1H=B0e=A6a=A7}=A4=CE=AD^=A4=E5=A9m=A6W=BA=FB=C5@=B4=A3=BF=F4=B3q=AA=BE  =
+                                       =A4=A4=ABH=AB=C8=A4=E1=B1z=A6n=A1G  =
+                                                                           =
+                                                                   =ABH=A5=
+=CE=A5d=A5=BD=A5|=BDX 5493 =B1N=A8=EC=B4=C1=A1A=B7=C7=B3=C6=B4=AB=A5d=B6l=
+=B1H=A1A=A6p=BB=DD=C5=DC=A7=F3=AD^=A4=E5=A9m=A6W=BBP=B1H=B0e=A6a=A7}=A1A=BD=
+=D0=A5=DF=A7Y=C2I=BF=EF https://ctbc.tw/UgVvfF  <https://inib.ctbcbank.com/=
+HL/1558477/93762/0/c8da873/7522d0/7845dc/9/1311/800.htm> =C5=DC=A7=F3=A1A=
+=C5=DC=A7=F3=A5d=A4=F9=B8=EA=B0T=ABD=A7Y=AE=C9=A5=CD=AE=C4=A1A=B9=EA=BB=DA=
+=A7=F3=B7s=A7=B9=A6=A8=A5H=A8t   =B2=CE=B8=EA=AE=C6=A7=F3=B7s=AE=C9=B6=A1=
+=AC=B0=B7=C7=A1C                                                           =
+     =A4=A4=B0=EA=ABH=B0U=BB=C8=A6=E6
+
+                                                                           =
+                                                                           =
+                                                          =AC=DB=C3=F6=B3s=
+=B5=B2                                                                     =
+                                                                           =
+                                                                    =B3=CC=
+=B7s=C0u=B4f/=AAA=B0=C8 <https://www.ctbcbank.com/CTCBPortalWeb/toPage?id=
+=3DTW_RB_CM_common_090001>                                                 =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                     <#>                   =
+                                                             =B3s=B5=B8=B4=
+=BC=AF=E0=AB=C8=AAA <https://www.ctbcbank.com/CTCBPortalWeb/toPage?id=3DTW_=
+MRB_CM_mobile_000002&Channel=3DMBILL&Skill=3Dc_gen&KeywordEnabled=3DY&FromP=
+ageId=3DTW_RB_EBILL09>                                                     =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                  =ABH=A5=
+=CE=A5d=A4p=BE=C7=B0=F3FAQ <http://www.ctbccsc.com/info.php?id=3D67&t=3D1> =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                   =B3=C6=B5=F9=A1G    =A5=BB=ABH=A5=F3=AC=B0=A8t=B2=CE=A6=
+=DB=B0=CA=B5o=B0e=BD=D0=A4=C5=AA=BD=B1=B5=A6^=C2=D0=A1A=A6p=A6=B3=BA=C3=B0=
+=DD=BD=D0=C2I=BF=EF=BBP=A7=DA=C1p=B5=B8 <https://csccontact.ctbcbank.com/co=
+ntactme>=A1C    =ADY=B1z=ADn=C5=DC=A7=F3=B9q=A4l=B1b=B3=E6=ABH=BDc=A1A=BD=
+=D0=C0H=AE=C9=A7Q=A5=CE=BA=F4=B8=F4=BB=C8=A6=E6=B6i=A6=E6=C5=DC=A7=F3=A1=F7=
+=C5=DC=A7=F3=B9q=A4l=B1b=B3=E6=ABH=BDc <https://www.ctbcbank.com/CTCBPortal=
+Web/toPage?id=3DTW_RB_TX_ebank_830008>=A1C    =A5=BB=B4=A3=BF=F4=B0T=AE=A7=
+=A5=D1=A4=A4=B0=EA=ABH=B0U=BA=F4=B8=F4=BB=C8=A6=E6/=A6=E6=B0=CA=BB=C8=A6=E6=
+APP <https://www.ctbcbank.com/>=B4=A3=A8=D1=A1C                            =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+        =20
+--0006147f2b5-faae-425b-b1cb-5a8c68e9266e
+Content-Type: text/html; charset=big5
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html lang=3D"en">
+
+<head><base href=3D"https://inib.ctbcbank.com/Var/Elite/2025/10/0c4dce46-c7=
+58-49e8-981f-9d2609ecbd2e/EXTRA/">
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dbig5"=
+>
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width" />
+    <title>=ABH=A5=CE=A5d=B4=A3=BF=F4=B3q=AA=BE</title>
+    <style type=3D"text/css">
+    /* ~~ Reset ~~ */
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+   =20
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+        display: block;
+    }
+   =20
+    body {
+        line-height: 1;
+    }
+   =20
+    ol,
+    ul {
+        list-style: none;
+    }
+   =20
+    blockquote,
+    q {
+        quotes: none;
+    }
+   =20
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+        content: '';
+        content: none;
+    }
+   =20
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+   =20
+    #outlook a {
+        padding: 0;
+    }
+   =20
+    body,
+    table.body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    td {
+        color: #222222;
+        font-family: "Helvetica", "Arial", sans-serif, =B7L=B3n=A5=BF=B6=C2=
+=C5=E9;
+        font-weight: normal;
+        padding: 0;
+        margin: 0;
+        line-height: 1.3;
+    }
+   =20
+    body {
+        width: 100%!important;
+        min-width: 100%;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        margin: 0;
+        padding: 0;
+    }
+   =20
+    body,
+    table.body,
+    p,
+    td {
+        font-size: 14px;
+        line-height: 18px;
+    }
+   =20
+    img {
+        outline: none;
+        text-decoration: none;
+        -ms-interpolation-mode: bicubic;
+        width: auto;
+        max-width: 100%;
+        clear: both;
+        display: block;
+    }
+   =20
+    a img {
+        border: none;
+    }
+   =20
+    a {
+        color: #00827a;
+        text-decoration: none;
+    }
+   =20
+    a:hover {
+        color: #00827a!important;
+    }
+   =20
+    a:active {
+        color: #00827a!important;
+    }
+   =20
+    a:visited {
+        color: #00827a!important;
+    }
+   =20
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+   =20
+    h1 {
+        font-size: 40px;
+    }
+   =20
+    h2 {
+        font-size: 36px;
+    }
+   =20
+    h3 {
+        font-size: 32px;
+    }
+   =20
+    h4 {
+        font-size: 28px;
+    }
+   =20
+    h5 {
+        font-size: 16px;
+    }
+   =20
+    h6 {
+        font-size: 20px;
+    }
+      =20
+    #wrapper {
+        width: 600px;
+        margin: 0 auto;
+    }
+   =20
+    #header {
+        padding: 5px;
+    }
+   =20
+    #title {
+        color: #FFF;
+    }
+   =20
+    .green {
+        background-color: #2b877a;
+    }
+   =20
+    .red {
+        background-color: #aa0e12;
+    }
+   =20
+    td#title h5 {
+        text-align: left;
+        color: #FFF;
+    }
+   =20
+    td#title h4 {
+        color: #fff;
+        text-align: center
+    }
+   =20
+    td#title hr {
+        width: 100%;
+        margin-bottom: 20px;
+        color: #FFF;
+        background-color: #FFF
+    }
+   =20
+    #container {
+        width: 390px;
+        margin-right: 10px;
+        background: #f9f9f9;
+        border: 1px solid #d9d9d9;
+        margin-top: 0px;
+    }
+   =20
+    #container ul {
+        margin-left: 25px;
+        padding-left: 0;
+    }
+   =20
+    #container li {
+        list-style: decimal;
+    }
+
+    table.list {
+        width: 100%;
+    }
+   =20
+    table.list th {
+        border-bottom: 1px dotted #CCCCCC;
+        padding: 3px;
+        color: #00827a;
+        font-weight: bold;
+        vertical-align: middle;
+        width: 40%;
+        text-align: left;
+    }
+   =20
+    table.list td {
+        border-bottom: 1px dotted #CCCCCC;
+        padding: 3px;
+        vertical-align: middle;
+        width: 60%;
+    }
+   =20
+    #sidebar {
+        width: 190px;
+        margin-top: 0px;
+    }
+   =20
+    table.link {
+        width: 100%;
+    }
+   =20
+    table.link td {
+        vertical-align: middle;
+        padding-left: 5px;
+        text-align: left;
+        font-size: 14px;
+    }
+   =20
+    hr {
+        color: #d9d9d9;
+        background-color: #d9d9d9;
+        height: 1px;
+        border: none;
+    }
+   =20
+    .banner {
+        width: 100%;
+    }
+   =20
+    #note ul {
+        margin-left: 25px;
+        padding-left: 0;
+    }
+   =20
+    #note li {
+        list-style: disc;
+    }
+
+    @media only screen and (max-width: 600px) {
+        #wrapper {
+            width: 100%;
+        }
+        #main {
+            display: block;
+            padding: 0 10px;
+        }
+        #container {
+            width: 100%;
+        }
+        #main_side {
+            display: block;
+            padding: 10px;
+        }
+        #sidebar {
+            width: 100%;
+        }
+    }
+    </style>
+
+    <body><Div><img src=3D"https://inib.ctbcbank.com/HL/0/93762/0/c8da873/7=
+522d0/7845dc/9/1311.jpg" style=3D'display:none' ></Div>
+        <table border=3D"0" align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0" id=3D"wrapper">
+            <tr>
+                <td colspan=3D"2" bgcolor=3D"#007c7d" id=3D"header"><img bo=
+rder=3D"0" src=3D"images/logo.png"></td>
+            </tr>
+            <tr>
+                <td colspan=3D"2" style=3D"background-color:#FFF; height:5p=
+x"><img border=3D"0" src=3D"images/spacer.gif"></td>
+            </tr>
+            <tr>
+                <td colspan=3D"2" class=3D"green" id=3D"title" style=3D"pad=
+ding:20px">
+                    <h5>=ABH=A5=CE=A5d=B4=A3=BF=F4=B3q=AA=BE Credit Card No=
+tice</h5>
+                    <hr>
+                    <h4>=ABH=A5=CE=A5d=B1H=B0e=A6a=A7}=A4=CE=AD^=A4=E5=A9m=
+=A6W=BA=FB=C5@=B4=A3=BF=F4=B3q=AA=BE</h4></td>
+            </tr>
+            <tr>
+                <td colspan=3D"2" style=3D" padding:10px;"> =A4=A4=ABH=AB=
+=C8=A4=E1=B1z=A6n=A1G</td>
+            </tr>
+            <tr>
+                <td valign=3D"top" id=3D"main">
+                    <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ id=3D"container">
+                        <tr>
+                            <td style=3D"padding: 10px;">
+                                =ABH=A5=CE=A5d=A5=BD=A5|=BDX 5493 =B1N=A8=
+=EC=B4=C1=A1A=B7=C7=B3=C6=B4=AB=A5d=B6l=B1H=A1A=A6p=BB=DD=C5=DC=A7=F3=AD^=
+=A4=E5=A9m=A6W=BBP=B1H=B0e=A6a=A7}=A1A=BD=D0=A5=DF=A7Y=C2I=BF=EF<a href=3D'=
+https://inib.ctbcbank.com/HL/1558477/93762/0/c8da873/7522d0/7845dc/9/1311/8=
+00.htm'> https://ctbc.tw/UgVvfF </a> =C5=DC=A7=F3=A1A=C5=DC=A7=F3=A5d=A4=F9=
+=B8=EA=B0T=ABD=A7Y=AE=C9=A5=CD=AE=C4=A1A=B9=EA=BB=DA=A7=F3=B7s=A7=B9=A6=A8=
+=A5H=A8t   =B2=CE=B8=EA=AE=C6=A7=F3=B7s=AE=C9=B6=A1=AC=B0=B7=C7=A1C
+                                <br />
+                                <p style=3D"text-align: right; color: #0082=
+7a">=A4=A4=B0=EA=ABH=B0U=BB=C8=A6=E6</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td id=3D"main_side" valign=3D"top">
+                    <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ id=3D"sidebar">
+                        <tr>
+                            <td>
+                                <h6 style=3D"color:#25857a">=AC=DB=C3=F6=B3=
+s=B5=B2</h6>
+                                <!--ITP_BEGIN_MSG=3D51-->
+                                <hr>
+                                <table class=3D"link">
+                                    <tr>
+                                        <td width=3D"30"><img border=3D"0" =
+src=3D"images/gift.png" alt=3D"" /></td>
+                                        <td><a href=3D"https://www.ctbcbank=
+=2Ecom/CTCBPortalWeb/toPage?id=3DTW_RB_CM_common_090001">=B3=CC=B7s=C0u=B4f=
+/=AAA=B0=C8</a></td>
+                                    </tr>
+                                </table>
+                                <!--ITP_END_MSG=3D51-->
+                               =20
+                               =20
+                               =20
+                               =20
+                               =20
+                                <!--ITP_BEGIN_MSG=3D57-->
+                                <hr>
+                                <table class=3D"link">
+                                    <tr>
+                                        <td width=3D"30">
+                                            <a href=3D"#"><img border=3D"0"=
+ src=3D"images/contact.png" alt=3D"" /></a>
+                                        </td>
+                                        <td><a href=3D"https://www.ctbcbank=
+=2Ecom/CTCBPortalWeb/toPage?id=3DTW_MRB_CM_mobile_000002&Channel=3DMBILL&Sk=
+ill=3Dc_gen&KeywordEnabled=3DY&FromPageId=3DTW_RB_EBILL09">=B3s=B5=B8=B4=BC=
+=AF=E0=AB=C8=AAA</a></td>
+                                    </tr>
+                                </table>
+                                <!--ITP_END_MSG=3D57-->
+                               =20
+                                <!--ITP_BEGIN_MSG=3D59-->
+                                <hr>
+                                <table class=3D"link">
+                                    <tr>
+                                        <td width=3D"30"><img border=3D"0" =
+src=3D"images/non.png" alt=3D"" /></td>
+                                        <td><a href=3D"http://www.ctbccsc.c=
+om/info.php?id=3D67&t=3D1">=ABH=A5=CE=A5d=A4p=BE=C7=B0=F3FAQ</a></td>
+                                    </tr>
+                                </table>
+                                <!--ITP_END_MSG=3D59-->
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan=3D"2" id=3D"note" style=3D"padding:10px;">
+                    <!--ITP_BEGIN_MSG=3D1-->
+                    <table width=3D"100%">
+                        <tr>
+                            <td>=B3=C6=B5=F9=A1G
+<ul>
+    <li>=A5=BB=ABH=A5=F3=AC=B0=A8t=B2=CE=A6=DB=B0=CA=B5o=B0e=BD=D0=A4=C5=AA=
+=BD=B1=B5=A6^=C2=D0=A1A=A6p=A6=B3=BA=C3=B0=DD=BD=D0=C2I=BF=EF<a href=3D"htt=
+ps://csccontact.ctbcbank.com/contactme">=BBP=A7=DA=C1p=B5=B8</a>=A1C</li>
+    <li>=ADY=B1z=ADn=C5=DC=A7=F3=B9q=A4l=B1b=B3=E6=ABH=BDc=A1A=BD=D0=C0H=AE=
+=C9=A7Q=A5=CE=BA=F4=B8=F4=BB=C8=A6=E6=B6i=A6=E6=C5=DC=A7=F3=A1=F7<a href=3D=
+"https://www.ctbcbank.com/CTCBPortalWeb/toPage?id=3DTW_RB_TX_ebank_830008">=
+=C5=DC=A7=F3=B9q=A4l=B1b=B3=E6=ABH=BDc</a>=A1C</li>
+    <li>=A5=BB=B4=A3=BF=F4=B0T=AE=A7=A5=D1<a href=3D"https://www.ctbcbank.c=
+om/">=A4=A4=B0=EA=ABH=B0U=BA=F4=B8=F4=BB=C8=A6=E6/=A6=E6=B0=CA=BB=C8=A6=E6A=
+PP</a>=B4=A3=A8=D1=A1C</li>
+</ul></td>
+                        </tr>
+                    </table>
+                    <!--ITP_END_MSG=3D1-->
+                   =20
+                   =20
+                   =20
+                   =20
+                </td>
+            </tr>
+            <tr>
+                <td colspan=3D"2" align=3D"center">
+                   =20
+                </td>
+            </tr>
+            <tr>
+                <td colspan=3D"2" align=3D"center">
+                   =20
+                </td>
+            </tr>
+            <tr>
+                <td colspan=3D"2" align=3D"center">
+                   =20
+                </td>
+            </tr>
+        </table>
+    </body>
+
+</html>
+
+--0006147f2b5-faae-425b-b1cb-5a8c68e9266e--
+
+------=_NextPart_60d_3a87_29a14b30.f27dd1c7
+Content-Transfer-Encoding: base64
+Content-Type: application/x-pkcs7-signature; name="smime.p7s"
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIIH7gYJKoZIhvcNAQcCoIIH3zCCB9sCAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
+ggTxMIIE7TCCA9WgAwIBAgIQR+gAAAAewING6qhApBN6xjANBgkqhkiG9w0BAQsFADBXMQswCQYD
+VQQGEwJUVzEXMBUGA1UEChMOVEFJV0FOLUNBIEluYy4xEDAOBgNVBAsTB1VzZXIgQ0ExHTAbBgNV
+BAMTFFRXQ0EgSW5mb1NlYyBVc2VyIENBMB4XDTI0MDkxNjAzMTE0M1oXDTI2MDkxNjE1NTk1OVow
+aTELMAkGA1UEBhMCVFcxHDAaBgNVBAoTE0NUQkMgQmFuayBDby4sIEx0ZC4xIzAhBgNVBAMUGmJh
+bmsuY3NjQGluaWIuY3RiY2JhbmsuY29tMRcwFQYDVQRhEw5WQVRUVy0wMzA3NzIwODCCASIwDQYJ
+KoZIhvcNAQEBBQADggEPADCCAQoCggEBAO8AMNn4+rPL5GeeNiEI1eaSKw3LU4jnWH5t5s0PhTzK
+ergfeGx/3g1bJ9IVZf37qipqdpoaIHmceMkezC3Rgn3/YisDL+VQbVuAnxF1gXUXkbDHUZkawWUY
+DFqNByJHzgQcKEDwC0bQbnFr7N2AnppmNcAxjx5CUBCDjofv3C6GR+q/JvkHOBf+mgQEZ15/FKRF
+x3Vs3wUlEoHlJDktRa2+SHybzs7sTvNdgSTMrzNeDPUcQhMQIrfOCNnGUG7q8Zz36cGDL0w+DzDx
+iR9CnyYP4Wue/k0FppG05dxSL+EH0SD11IzWj/wqUnhMy+oiJZI68zS9U3+ZsSkSj04vbrUCAwEA
+AaOCAaEwggGdMB8GA1UdIwQYMBaAFCXAOuuuhv8b6PrsfyN9DszVaUIDMCkGA1UdDgQiBCDYD0tZ
+EYkNA+O/9egVEF2KXgu55r94bln5OOshIFPImTBLBgNVHR8ERDBCMECgPqA8hjpodHRwOi8vaXRh
+eC50d2NhLmNvbS50dy9jcmwvVFdDQV9JbmZvU2VjX1VDQV8yMDI0X3NoYTIuY3JsMCUGA1UdEQQe
+MByBGmJhbmsuY3NjQGluaWIuY3RiY2JhbmsuY29tMHwGCCsGAQUFBwEBBHAwbjBDBggrBgEFBQcw
+AoY3aHR0cDovL3NzbHNlcnZlci50d2NhLmNvbS50dy9jYWNlcnQvSW5mb1NlYzIwMjRzaGEyLmNy
+dDAnBggrBgEFBQcwAYYbaHR0cDovL3NzbG9jc3AudHdjYS5jb20udHcvMCMGA1UdIAQcMBowDQYL
+KwYBBAGCvyUBARwwCQYHZ4EMAQUCATAJBgNVHRMEAjAAMA4GA1UdDwEB/wQEAwIE8DAdBgNVHSUE
+FjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwDQYJKoZIhvcNAQELBQADggEBAGKwjiKuIzzDt09rVUmy
+6fXKrMylHOhSC1A7JiuS1rkEUx3F4pJTv4wyCk5Lgz0cLf0EXfO14AjLto/x5rxkKjwbcvYQJAD0
+XkY4rqZ9tQfoupVkfoU+4+E5mdgnCePO1UZndu6A0LCP3hHEMbJM4gGkCGifL047VwChQS/0QwGP
+01AvPuIP/ezO1j2fOaSOSKOq2NaA/NE1qj0b1Y08AP484N1dCz/xng/OMDUCGxP6Y6kFmA2IS0XW
++voSx7XbQUIEZYBowiGpJ8ViUKhGJMKFIIsDnmUoZh1eZzdNIoSc/yynRRfq4oWW9bNzyN1Iek5u
+xaGXlGPwWFG5axn7TSsxggLBMIICvQIBATBrMFcxCzAJBgNVBAYTAlRXMRcwFQYDVQQKEw5UQUlX
+QU4tQ0EgSW5jLjEQMA4GA1UECxMHVXNlciBDQTEdMBsGA1UEAxMUVFdDQSBJbmZvU2VjIFVzZXIg
+Q0ECEEfoAAAAHsCDRuqoQKQTesYwDQYJYIZIAWUDBAIBBQCgggEnMBgGCSqGSIb3DQEJAzELBgkq
+hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI1MTAxNzA4MTYxNVowLwYJKoZIhvcNAQkEMSIEIJA9
+2JlXV0QShVqq+6YF0QIrjSxwIJbgMaX2iNFVC8PRMIG7BgsqhkiG9w0BCRACLzGBqzCBqDCBpTCB
+ojANBglghkgBZQMEAgEFAAQgBpZyOzz72TKdytxnyEdYsMpTNSgGtgJTGONMYRKzk3IwbzBbpFkw
+VzELMAkGA1UEBhMCVFcxFzAVBgNVBAoTDlRBSVdBTi1DQSBJbmMuMRAwDgYDVQQLEwdVc2VyIENB
+MR0wGwYDVQQDExRUV0NBIEluZm9TZWMgVXNlciBDQQIQR+gAAAAewING6qhApBN6xjANBgkqhkiG
+9w0BAQsFAASCAQBZtBGMmtjnpCzN4a3WhsktxUwwdZv5cDcXCkUeSpFA7+QcY0lcCSlvWYn4N6xQ
+WuKXo0+k4iVAaLvkaxGubE4ZCAzl6VgeEfuhsKwixy7hB8sQRFrbdhec7s8K86HE6PMkfdYEAZHC
+hcNw/gxcAgJJe/Z7LwDFZqNloYs0QNcdRZpXPpDx+X0VXZF5musqCT3lb659jA8N9t2p0OwM2FPd
+A5JqGVlfbz8b5vetsdDQ5SgD/NawTyWEOlxGjtxSpAt3eTZ1hqZCUP+FWWgDJvuP1j+Ygi+J/IqE
+OvQCXsR0AC/Vamhf4Mhq8Xv4Qot5mkOICDZax5GrMF4RAialkk/1
+
+------=_NextPart_60d_3a87_29a14b30.f27dd1c7--
+

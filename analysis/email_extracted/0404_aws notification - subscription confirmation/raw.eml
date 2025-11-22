@@ -1,0 +1,79 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:d801:b0:4d4:9739:2b92 with SMTP id of1csp1014500mdb;
+        Wed, 5 Nov 2025 22:13:15 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGmFCMbECzoAc48fJqIaw8AjSl+sJ5MYBwA1HbEShfcqwN/VpVqJ6HLBs2igEUgEy5TgnMu
+X-Received: by 2002:ac8:5844:0:b0:4ed:1455:f420 with SMTP id d75a77b69052e-4ed807eb8a8mr28659431cf.2.1762409595482;
+        Wed, 05 Nov 2025 22:13:15 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762409595; cv=none;
+        d=google.com; s=arc-20240605;
+        b=LIj/+3+WWTV81X6vQKML1JG/oegotaTMT698XCZRt0UyCWKi40sSOiAVnv2WrsUza1
+         rPspvTe7AILUtkNQIN0cEW1B1rvYxRVY32cr3ZL25awksnMlK9Qc+LIem3egYq4DNxbA
+         gZB7bj9V1QUYAjecMefnuOsMa3GsNA8GtKN+/CfBc8DBmQVk/LnWhrupGOB2dP7Myxx0
+         Sgi4y/5h5xdJqaPwa0HNgMootKTmY6KQ2voVm7w/Asv8fBDGVOMSxWcT6xWDhqKmPtUG
+         zySstI3BeKXgfkKGxnzmvf4HRilteBQB3GZguaH5ihPb5Ha5pihC7bVcbjhyFRJPFGKB
+         2UUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:content-transfer-encoding:mime-version:subject
+         :message-id:to:from:date:dkim-signature:dkim-signature;
+        bh=b+1OGCvIgp/+TbJdceI8Je/5S1BzVv0I3HxBYZ+aj3w=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=DVEER7+/lpNOZiY1Wa9SKpkMUqd1Gam4/ifAYIcb9N58tHPo6WFKjB5pMBXSbWqLgW
+         SftbLtqK6mv+P3DUwtvVvjLleNzh6qFniQFl3rhlghqMlYSjj58VqSfshgcgo8EJi0Pj
+         iiSt6w5xYyKG0E/YSXPOE5O67ZYGrhwxNfjfuprGfxltVF1VHzkgN0uB+N8gOUQ5yJb7
+         tC+0YvIj8nCMbQvWvzs3Ng0C618CycF9S1ps3Z/PeLbTBuWjHWPOooyHBLB1zhWUZqBd
+         Ptcb18PUAmpHBAqEo9sUZaxTlQ5RQsxSMgrqyYTKOYjNOztNtHY58KfSciZvUiHHTmDP
+         0P9w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@sns.amazonaws.com header.s=ynpxk332ompudjhq6oyfigjxlukl4vxo header.b=QpVm+si2;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b="RlEl/ycp";
+       spf=pass (google.com: domain of 0100019a57cc410a-4834505e-41c6-4647-a390-edd7ba278e89-000000@amazonses.com designates 54.240.48.235 as permitted sender) smtp.mailfrom=0100019a57cc410a-4834505e-41c6-4647-a390-edd7ba278e89-000000@amazonses.com;
+       dmarc=pass (p=QUARANTINE sp=NONE dis=NONE) header.from=amazonaws.com
+Return-Path: <0100019a57cc410a-4834505e-41c6-4647-a390-edd7ba278e89-000000@amazonses.com>
+Received: from a48-235.smtp-out.amazonses.com (a48-235.smtp-out.amazonses.com. [54.240.48.235])
+        by mx.google.com with ESMTPS id d75a77b69052e-4ed8135db9asi5219701cf.119.2025.11.05.22.13.15
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Nov 2025 22:13:15 -0800 (PST)
+Received-SPF: pass (google.com: domain of 0100019a57cc410a-4834505e-41c6-4647-a390-edd7ba278e89-000000@amazonses.com designates 54.240.48.235 as permitted sender) client-ip=54.240.48.235;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@sns.amazonaws.com header.s=ynpxk332ompudjhq6oyfigjxlukl4vxo header.b=QpVm+si2;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b="RlEl/ycp";
+       spf=pass (google.com: domain of 0100019a57cc410a-4834505e-41c6-4647-a390-edd7ba278e89-000000@amazonses.com designates 54.240.48.235 as permitted sender) smtp.mailfrom=0100019a57cc410a-4834505e-41c6-4647-a390-edd7ba278e89-000000@amazonses.com;
+       dmarc=pass (p=QUARANTINE sp=NONE dis=NONE) header.from=amazonaws.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ynpxk332ompudjhq6oyfigjxlukl4vxo; d=sns.amazonaws.com;
+	t=1762409595;
+	h=Date:From:To:Message-ID:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding;
+	bh=kAXFoNbLuaNL2ys9KWnLaKU37UyqDEKI0zymhWMn6LY=;
+	b=QpVm+si2IPWX2aGpsGdSDIHpBYT4Mqy+UwOjeE3STrCL4idwOLsAniWx0dOIb/y0
+	nY8kvaedCzWc5BoWw8JTLVE0yhMWWoBR9U7AGsiV/kBPE1aIowNpq2J3iK7f+Tyy72F
+	O96+rmESn88JtfrhtCYHNZJBRhb1yDjwj7pRwpYk=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw; d=amazonses.com; t=1762409595;
+	h=Date:From:To:Message-ID:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Feedback-ID;
+	bh=kAXFoNbLuaNL2ys9KWnLaKU37UyqDEKI0zymhWMn6LY=;
+	b=RlEl/ycpK84acaOIhsPllyE5NJ0m7DDhZHEHY+pz+r+XDpBshY6fE8LBNtyPhT9I
+	c72sLBN5Kprch1mGfKeT1coqZ+A88AND+CkwwBV3Ohsx+joCteMeN01oh3U+pCh7tPv
+	3faACXv9J7PiEwFUyhVAfSocZuFE5KveuxRavrmk=
+Date: Thu, 6 Nov 2025 06:13:15 +0000
+From: AWS Notifications <no-reply@sns.amazonaws.com>
+To: liencf@gmail.com
+Message-ID: <0100019a57cc410a-4834505e-41c6-4647-a390-edd7ba278e89-000000@email.amazonses.com>
+Subject: AWS Notification - Subscription Confirmation
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+x-amz-sns-message-id: b671e7ce-37fd-463b-b168-a62e8d919e7a
+Feedback-ID: ::1.us-east-1.rLk2FYYR7ms1BvCiYXCIqXvY3U/J1vVW0G3YrYLy0pk=:AmazonSES
+X-SES-Outgoing: 2025.11.06-54.240.48.235
+
+<html>
+	<body>
+		<p>You have chosen to subscribe to the topic:
+		<br /><b>arn:aws:sns:us-east-1:905418192493:RootAccountUseTopic</b></p>
+		<p>To confirm this subscription, click or visit the link below (If this was in error no action is necessary):
+		<br /><a href="https://sns.us-east-1.amazonaws.com/confirmation.html?TopicArn=arn:aws:sns:us-east-1:905418192493:RootAccountUseTopic&Token=2336412f37fb687f5d51e6e2425a8a59700540d7ffdaf0f9e444d19ec3f55869f2d469d1b796cbd40df43531c33dde947b43355ba23cb914b413489bbd2a98c5d5bc75281be1da830ec0eaa59e836511c32c0039b57f08d6bd6774ec7fe6d8067953c207915d1e34d84657876484684a93f26663a6e70ab380f7b655459d4db8&Endpoint=liencf@gmail.com">Confirm subscription</a></p>
+		<p><small>Please do not reply directly to this email. If you wish to remove yourself from receiving all future SNS subscription confirmation requests please send an email to <a href="mailto:sns-opt-out@amazon.com">sns-opt-out</a></small></p>
+	</body>
+</html>

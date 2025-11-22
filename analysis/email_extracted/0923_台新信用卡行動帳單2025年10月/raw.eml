@@ -1,0 +1,295 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:8da6:b0:4d4:9739:2b92 with SMTP id gr38csp2200106mdb;
+        Wed, 22 Oct 2025 01:15:38 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHT5cV33XbA/EZILLypycoJcWU72RwvOIstVOFieH1pHSLs8WaUbAjtENf1qP753Qf2tzUR
+X-Received: by 2002:a17:902:ce12:b0:24c:7b94:2f53 with SMTP id d9443c01a7336-290c9c8a765mr221272565ad.6.1761120938759;
+        Wed, 22 Oct 2025 01:15:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761120938; cv=none;
+        d=google.com; s=arc-20240605;
+        b=JkJ1mtqQgDx/4eSnaKEGr9/y+qepU7IcteAFaCRpSworOIro1QxBGfkxDX5kFKZuDs
+         6ESjfnrrBfUrMUtJsMCZyAFOIVvQb4LWf4DaKXB6yu9JWUUu9vPfpC7J9++XqSsFPus/
+         mbY8G2gNUyNWwb0jie9kFWAhfpRz8CstDs+IDEv1dTpmR/UxFL44MPECw0Op98PY2APf
+         B8kRKtJeLsoRUbzW1VtnAycyQ/q0EcNInLIjNRnS8L5SM5Ce0GL0aeLsdzIdj+7QJNVS
+         Fg6NxrNyQMNmLAHwDFoJkclfgnc1zPyMqHM8vO6zT7lc6tVZ2HZdlk4IwdC7krbyc06D
+         mMhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:thread-index:precedence:subject:reply-to
+         :to:from:date:message-id:mime-version:dkim-signature;
+        bh=L1B1ULfeuRfsr0pamQMR8RpWFVmq3NWe9UpdcDnEmyc=;
+        fh=KUG9u+JkIZ/6LNNAxu5VUstgOa2JrvMFVjux87MGpD0=;
+        b=aagwo60QAR9abs80OsTVtedqYVPObeGq/ujFlnROoxVMbf7YyFnMen9f1E9ixR29xt
+         PYrHDnrbn/LZEyio4ghddPoPT7+N0ND+sPRJZLuuO1W9boco5E5pORwGXcVOKXTZs8dQ
+         A8B2DVy7lVmEbbisV/cmY2pNBz0cNLyYyiqP04KB+J+C5B5XlRaH/TwJ0Ri07vQT1NIX
+         MYy1FPNDWMl5aHfulY4PrStq0QjB8FsO4/hQJKP176ZKZDa10Q7YCeGDa+kXgn2oUm0x
+         jZd7eV/STp/uhfRvoc+MHl29bhUWC3iAjtQUs8QjUo25dURUwn7R4YX/3LZmleDZMG84
+         t4hg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@bhurecv.taishinbank.com.tw header.s=bhu header.b=FUk0NG8X;
+       spf=pass (google.com: domain of webmaster@bhurecv.taishinbank.com.tw designates 122.146.23.206 as permitted sender) smtp.mailfrom=webmaster@bhurecv.taishinbank.com.tw;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=bhurecv.taishinbank.com.tw
+Return-Path: <webmaster@bhurecv.taishinbank.com.tw>
+Received: from bhusend1.taishinbank.com.tw (bhusend1.taishinbank.com.tw. [122.146.23.206])
+        by mx.google.com with ESMTPS id d9443c01a7336-292472360desi79705045ad.645.2025.10.22.01.15.37
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 22 Oct 2025 01:15:38 -0700 (PDT)
+Received-SPF: pass (google.com: domain of webmaster@bhurecv.taishinbank.com.tw designates 122.146.23.206 as permitted sender) client-ip=122.146.23.206;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@bhurecv.taishinbank.com.tw header.s=bhu header.b=FUk0NG8X;
+       spf=pass (google.com: domain of webmaster@bhurecv.taishinbank.com.tw designates 122.146.23.206 as permitted sender) smtp.mailfrom=webmaster@bhurecv.taishinbank.com.tw;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=bhurecv.taishinbank.com.tw
+DKIM-Signature: v=1; a=rsa-sha1; c=simple/simple; d=bhurecv.taishinbank.com.tw; h=From:To:Subject; q=dns/txt; s=bhu; t=1761116549; bh=03UPjW9DtScc07vIXa6VY6JddoA=; b=FUk0NG8XjuYGwVyocBn6fZ0iVsD/FxnEk94UJntMl/+YFrtJYiTMKi8+7Yo5YdMAGALYzycB4difCPyPoTk8yK48KLJsZQQY4bJCu/lW+emJdzGe0atdlPn9itW6r/7WtwOkBLNjQstGnmj/xntK1Mh4QMdsSRT1KGaDIc6dM+tJwqmKWQldls8ya27pUQNvanBLA6qaKC29t4kyOIW/+8+UChyvTJjqtBmIEmRPG4txfdJDp+uEqr9GYsM4FB1rY6ckJ+gcakZ/Rp3m+sOmqkgoNAGEIRJYkDdOX/uL3HUJIaqYr9ouiaaf9pkyuOJBagjoDky+Tbw73Gl7n4QkWw==
+MIME-Version: 1.0
+Message-ID: <910e8a4ad8613c50@a3afea2110458da7>
+Date: Wed, 22 Oct 2025 15:02:29 +0800
+From: =?utf-8?B?5Y+w5paw6YqA6KGM?= <webmaster@bhurecv.taishinbank.com.tw>
+To: =?utf-8?B?6YCj5b+X5bOw?= <liencf@gmail.com>
+Reply-To: automail@taishinbank.com.tw
+Subject: =?utf-8?B?5Y+w5paw5L+h55So5Y2h6KGM5YuV5biz5ZauMjAyNeW5tDEw5pyI?=
+X-AssuranceSys-BulkMail: 1
+Precedence: bulk
+thread-index: NTE2OTk4XzUzNzY0NzU0
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+=0d=0a=0d=0a<!DOCTYPE=20html=20PUBLIC=20"-//W3C//DTD=20XHTML=201.0=20Transi=
+tional//EN"=20"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">=0d=
+=0a<html>=0d=0a=09<head>=0d=0a=09=09<title>TSB1_zip</title>=0d=0a=09=09=0d=
+=0a=09=09<meta=20content=3d"text/html;=20charset=3dutf-8"=20http-equiv=3d"C=
+ontent-Type">=0d=0a=09=09<style=20type=3d"text/css">=20=0d=0a=09=09=20=20=
+=20=20a=20img=20{=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20border:=20=
+none;=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20}=20=0d=0a=09=09=20=20=20=20=
+=0d=0a=09=20=20=20=20=20=20=20=20body=20{=20background-color:=20#FFFFFF;=20=
+}=09=0d=0a=09=20=20=20=20=20=20=20=20td{font-family:=20=e6=96=b0=e7=b4=b0=
+=e6=98=8e=e9=ab=94,=20Arial;=20line-height=20:23px;}=0d=0a=09=20=20=20=20=
+=20=20=20=20a:link=20{=20color:=20#0033FF;=20}=0d=0a=09=20=20=20=20=20=20=
+=20=20a:visited=20{=20color:=20#0033FF;=20}=0d=0a=09=20=20=20=20=20=20=20=
+=20a:hover=20{=20color:=20#0033FF;=20}=0d=0a=09=20=20=20=20=20=20=20=20a:ac=
+tive=20{=20color:=20#0033FF;=20}=09=0d=0a=09</style>=0d=0a=09</head>=0d=0a=
+=09<body>=0d=0a=09=09<table=20border=3d"0"=20cellSpacing=3d"0"=20cellPaddin=
+g=3d"0"=20width=3d"800"=20align=3d"center">=0d=0a=09=09=09<tr>=0d=0a=09=09=
+=09=09<td><table=20border=3d'0'=20cellpadding=3d'0'=20cellspacing=3d'0'=20w=
+idth=3d'800'=20height=3d'20'><tr><td><p><img=20src=3d"https://bhurecv.taish=
+inbank.com.tw/taishin_ba/uploadimg/20140917093433e4a4.jpg"=20alt=3d""=20wid=
+th=3d"800"=20height=3d"50"=20/></p></td></tr></table></td>=0d=0a=09=09=09</=
+tr>=0d=0a=09=09</table>=0d=0a=09=09<table=20border=3d"0"=20cellspacing=3d"0=
+"=20cellpadding=3d"0"=20width=3d"800"=20bgColor=3d"#ffffff"=20align=3d"cent=
+er">=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20<tr>=0d=0a=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20<td>=e6=ad=a4=e7=82=ba=e7=b3=bb=e7=b5=b1=e4=
+=b8=bb=e5=8b=95=e7=99=bc=e9=80=81=e4=bf=a1=e5=87=bd=ef=bc=8c=e8=ab=8b=e5=8b=
+=bf=e7=9b=b4=e6=8e=a5=e5=9b=9e=e8=a6=86=e6=ad=a4=e5=b0=81=e4=bf=a1=e4=bb=b6=
+=e3=80=82</td>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20</tr>=0d=0a=20=20=
+=20=20=20=20=20=20=20=20=20=20<tr>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20<td>=e8=8b=a5=e6=82=a8=e6=9c=89=e4=bb=bb=e4=bd=95=e5=95=8f=
+=e9=a1=8c=ef=bc=8c=e8=ab=8b=e8=87=b4=e9=9b=bb02-2655-3355/=e5=85=8d=e4=bb=
+=98=e8=b2=bb=e5=b0=88=e7=b7=9a0800-023-123=e5=90=91=e5=ae=a2=e6=9c=8d=e4=ba=
+=ba=e5=93=a1=e6=9f=a5=e8=a9=a2=e6=88=96=e5=8f=b0=e6=96=b0=e9=8a=80=e8=a1=8c=
+=e7=b6=b2=e7=ab=99<a=20href=3d"https://www.taishinbank.com.tw/TSB/customer-=
+service-center/sendMsg/"><span=20style=3d"text-decoration:underline;">=e7=
+=b7=9a=e4=b8=8a=e7=95=99=e8=a8=80=e6=9c=8d=e5=8b=99</span></a>=e8=88=87=e6=
+=88=91=e5=80=91=e8=81=af=e7=b5=a1=e3=80=82</td>=0d=0a=20=20=20=20=20=20=20=
+=20=20=20=20=20</tr>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20<tr>=0d=0a=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20<td>&nbsp;</td>=0d=0a=20=20=20=
+=20=20=20=20=20=20=20=20=20</tr>=0d=0a=09=09=09<tr>=0d=0a=09=09=09=09<td>=
+=e8=a6=aa=e6=84=9b=e7=9a=84=e9=80=a3*=e5=b3=b0=0d=0a=09=09=09=09=09=e5=ae=
+=a2=e6=88=b6=e6=82=a8=e5=a5=bd=ef=bc=8c=e6=82=a810=e6=9c=88=e7=9a=84=e5=8f=
+=b0=e6=96=b0=e4=bf=a1=e7=94=a8=e5=8d=a1=e8=a1=8c=e5=8b=95=e5=b8=b3=e5=96=ae=
+=e8=a1=8c=e5=8b=95=e5=b8=b3=e5=96=ae=e9=80=a3=e7=b5=90=e5=a6=82=e4=b8=8b=e3=
+=80=82</td>=0d=0a=09=09=09</tr>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20<t=
+r>=0d=0a=09=09=09=09<td><a=20id=3d"linkBill"=20href=3d"https://bhurecv.tais=
+hinbank.com.tw/taishin_ba/OnlineBill.aspx?v=3dr42Sxrzsitjlldv6Ch40egMDkSNb4=
+M0RnWk7ygXTj3EwFe1rdtN9uBn8B2652SL%2b2xMx%2b6&amp;u=3dEIhMyifRcBN5haqNHobbs=
+n1wNAgubmwEBmHL%2bbZ4gyVtPNHxiON%2b%2bS1KPTQA%3d%3d&amp;n=3doKzGKzKUd4Dcvxi=
+uG5d1dIY43yN29M4wTuC%2bMugTfCf5e1sik%3d">=e8=a1=8c=e5=8b=95=e5=b8=b3=e5=96=
+=ae=e9=80=a3=e7=b5=90=e8=ab=8b=e6=8c=89=e6=ad=a4</a></td>=0d=0a=09=09=09</t=
+r>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20<tr>=0d=0a=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20<td>&nbsp;</td>=0d=0a=20=20=20=20=20=20=20=20=20=
+=20=20=20</tr>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20<tr>=0d=0a=09=09=09=
+=09<td>*=e8=8b=a5=e6=82=a8=e6=83=b3=e8=ae=8a=e6=9b=b4=e5=b8=b3=e5=96=ae=e5=
+=af=84=e9=80=81=e6=96=b9=e5=bc=8f=ef=bc=8c=e5=bb=ba=e8=ad=b0=e5=8f=af=e7=99=
+=bb=e5=85=a5<a=20href=3d"https://my.taishinbank.com.tw/TIBNetBank/"><span=
+=20style=3d"text-decoration:underline;">=e7=b6=b2=e8=b7=af=e9=8a=80=e8=a1=
+=8c</span></a>=e8=be=a6=e7=90=86=e3=80=82</td>=0d=0a=09=09=09</tr>=0d=0a=09=
+=09</table>=09=0d=0a=20=20=20=20=20=20=20=20<br=20/>=09=0d=0a=09=09<table=
+=20border=3d"0"=20cellspacing=3d"0"=20cellpadding=3d"0"=20width=3d"800"=20b=
+gColor=3d"#ffffff"=20align=3d"center">=0d=0a=09=09=09<tr>=0d=0a=09=09=09=09=
+<td><table=20border=3d'0'=20cellpadding=3d'0'=20cellspacing=3d'0'=20width=
+=3d'800'=20height=3d'20'><tr><td><p><span=20style=3d"background-color:=20#f=
+fff99;=20font-family:=20=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=bb=91=e9=ab=94;"><sp=
+an=20style=3d"font-size:=2016px;"><strong><span=20style=3d"color:=20#cc0000=
+;"><span=20style=3d"color:=20#dc143c;"><span=20style=3d"font-size:=2016px;"=
+>=e3=80=8a=20=e6=95=ac=e8=ab=8b=e7=95=99=e6=84=8f=20=e3=80=8b=e8=87=aa113=
+=e5=b9=b412=e6=9c=88=e5=b8=b3=e5=96=ae=e8=b5=b7=e8=ae=8a=e6=9b=b4=e9=96=8b=
+=e5=95=9f=e5=af=86=e7=a2=bc=e3=80=82</span><br=20/></span></span></strong><=
+/span>=e2=96=93=20=e6=9c=ac=e5=9c=8b=e4=ba=ba=e8=bc=b8=e5=85=a5=e5=af=86=e7=
+=a2=bc=e7=82=ba=e3=80=90<span=20style=3d"color:=20#dc143c;"><strong=20style=
+=3d"font-family:=20=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=bb=91=e9=ab=94;"><span=20=
+style=3d"text-decoration-line:=20underline;">=e8=ba=ab=e5=88=86=e8=ad=89=e5=
+=ad=97=e8=99=9f=e5=be=8c2=e7=a2=bc</span></strong></span>+<strong=20style=
+=3d"font-family:=20=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=bb=91=e9=ab=94;"><span=20=
+style=3d"text-decoration-line:=20underline;=20color:=20#dc143c;">=e7=94=9f=
+=e6=97=a5=e4=b9=8b=e6=9c=88=e6=97=a54=e7=a2=bc</span></strong>=e3=80=91=ef=
+=bc=8c=e5=85=b1<span=20style=3d"color:=20#dc143c;">6</span>=e7=a2=bc=e3=80=
+=82<br=20/>=e2=96=93=20=e5=a4=96=e7=b1=8d=e4=ba=ba=e5=a3=ab=e8=bc=b8=e5=85=
+=a5=e5=af=86=e7=a2=bc=e7=82=ba=e3=80=90<strong=20style=3d"font-family:=20=
+=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=bb=91=e9=ab=94;"><span=20style=3d"text-decor=
+ation-line:=20underline;=20color:=20#dc143c;">=e5=b1=85=e7=95=99=e8=ad=89=
+=e8=99=9f/=e6=96=b0=e5=bc=8f=e7=b5=b1=e4=b8=80=e8=ad=89=e8=99=9f=e5=be=8c2=
+=e7=a2=bc</span></strong>+<strong=20style=3d"font-family:=20=e5=be=ae=e8=bb=
+=9f=e6=ad=a3=e9=bb=91=e9=ab=94;"><span=20style=3d"text-decoration-line:=20u=
+nderline;=20color:=20#dc143c;">=e7=94=9f=e6=97=a5=e4=b9=8b=e6=9c=88=e6=97=
+=a54=e7=a2=bc</span></strong>=e3=80=91=ef=bc=8c=e5=85=b1<span=20style=3d"co=
+lor:=20#dc143c;">6</span>=e7=a2=bc=e3=80=82<br=20/>=e2=96=93=20=e4=bc=81=e6=
+=a5=ad=e6=88=b6=e8=bc=b8=e5=85=a5=e5=af=86=e7=a2=bc=e7=82=ba=e3=80=90=e7=b5=
+=b1=e4=b8=80=e7=b7=a8=e8=99=9f=e3=80=91<br=20/></span><span=20style=3d"font=
+-family:=20=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=bb=91=e9=ab=94;">*=e5=a6=82=e6=ac=
+=b2=e9=96=8b=e5=95=9f113=e5=b9=b411=e6=9c=88=e4=bb=a5=e5=89=8d=e4=b9=8b=e5=
+=b8=b3=e5=96=ae=ef=bc=8c=e5=89=87=e7=b6=ad=e6=8c=81=e6=9c=ac=e5=9c=8b=e4=ba=
+=ba=e8=bc=b8=e5=85=a5=e3=80=8e=e8=ba=ab=e5=88=86=e8=ad=89=e5=ad=97=e8=99=9f=
+=e3=80=8f=ef=bc=8c=e5=a4=96=e7=b1=8d=e4=ba=ba=e5=a3=ab=e8=ab=8b=e8=bc=b8=e5=
+=85=a5=e3=80=8e=e8=a5=bf=e5=85=83=e5=87=ba=e7=94=9f=e5=b9=b4=e6=9c=88=e6=97=
+=a5+=e8=ad=b7=e7=85=a7=e8=8b=b1=e6=96=87=e5=90=8d=e5=89=8d2=e7=a2=bc=e3=80=
+=8f=e6=88=96=e3=80=8e=e5=b1=85=e7=95=99=e8=ad=89=e8=99=9f=e3=80=8f=ef=bc=8c=
+=e5=85=b110=e7=a2=bc=20=ef=bc=8c=e8=8b=b1=e6=96=87=e5=ad=97=e6=af=8d=e9=a0=
+=88=e5=a4=a7=e5=af=ab=e3=80=82</span></p></td></tr></table></td>=0d=0a=09=
+=09=09</tr>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20<tr>=0d=0a=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20<td><table=20width=3d"100%"=20border=3d"0"=20=
+cellspacing=3d"10"=20cellpadding=3d"0">=0d=0a=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20<tbody>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20<tr>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20<td=20align=3d"center"=20valign=3d"top"><a=20href=3d"https://mkp.t=
+aishinbank.com.tw/TsCms/marketing/expose/WM_20240227092041958/index.html"=
+=20target=3d"_blank"><img=20src=3d"https://bhurecv.taishinbank.com.tw/taish=
+in_ba/images/CreditCard/btn01.jpg"/></a></td>=0d=0a=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20<td=20align=3d"center"=20valign=3d"top"=
+><a=20href=3d"https://www.taishinbank.com.tw/TSB/personal/credit/pay-credit=
+-card-bill/TSBankGridPage-000065/"=20target=3d"_blank"><img=20src=3d"https:=
+//bhurecv.taishinbank.com.tw/taishin_ba/images/CreditCard/btn02.jpg"/></a><=
+/td>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20<td=
+=20align=3d"center"=20valign=3d"top"><a=20href=3d"https://www.taishinbank.c=
+om.tw/eService/withholding/"=20target=3d"_blank"><img=20src=3d"https://bhur=
+ecv.taishinbank.com.tw/taishin_ba/images/CreditCard/btn03.jpg"/></a></td>=
+=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20</tr>=0d=0a=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20</tbody>=0d=0a=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20</table></td>=0d=0a=20=20=20=20=20=20=20=20=20=
+=20=20=20</tr>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20<tr>=0d=0a=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20<td=20align=3d"left"=20valign=3d"top=
+"><img=20src=3d"https://bhurecv.taishinbank.com.tw/taishin_ba/images/Credit=
+Card/tab01.jpg"/></td>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20</tr>=0d=0a=
+=20=20=20=20=20=20=20=20=20=20=20=20<tr>=0d=0a=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20<td=20align=3d"left"=20valign=3d"top"><table=20width=3d"100%=
+"=20border=3d"0"=20cellspacing=3d"10"=20cellpadding=3d"0">=0d=0a=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20<tbody>=0d=0a=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20<tr>=0d=0a=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20<td><table=20border=3d'0'=20cellpadding=3d'0'=
+=20cellspacing=3d'0'=20width=3d'365'=20height=3d'10'><tr><td><p><a=20href=
+=3d"https://bhurecv.taishinbank.com.tw/taishin_ba/click.aspx?url=3de3QTiPni=
+CwZ17y40hQH-VgfMUP3l6YqDhbnePtcZqsz9ODDNcTx4qihuoiqTL9vYWri1WkKCaK1z-eumT2_=
+0Xz1jIGicW8afzrxuXdN5vQUiH8PYiVnHKYUyCXTS3YMR&project_id=3d516998&user_id=
+=3d1206326&link_id=3d1004085"><img=20src=3d"https://bhurecv.taishinbank.com=
+.tw/taishin_ba/uploadimg/202508200849433b17.jpg"=20alt=3d""=20width=3d"365"=
+=20height=3d"150"=20/></a></p></td></tr></table></td>=0d=0a=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20<td><table=20border=3d'0'=20ce=
+llpadding=3d'0'=20cellspacing=3d'0'=20width=3d'365'=20height=3d'10'><tr><td=
+><p><a=20href=3d"https://mkpcard.taishinbank.com.tw/tscccms/promotion/detai=
+l/WM_20230313141741890=20"><img=20src=3d"https://bhurecv.taishinbank.com.tw=
+/taishin_ba/uploadimg/20240620031337dfca.jpg"=20alt=3d""=20width=3d"365"=20=
+height=3d"150"=20/></a></p></td></tr></table></td>=0d=0a=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20</tr>=0d=0a=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20<tr>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20<td><table=20border=3d'0'=20cellpadding=3d'0'=20cel=
+lspacing=3d'0'=20width=3d'365'=20height=3d'10'><tr><td><p><a=20href=3d"http=
+s://bhurecv.taishinbank.com.tw/taishin_ba/click.aspx?url=3dFXYKFcdGsiO-H1NS=
+-mIA2yz3tUkgY-gUPPIwVANI3GaLESW4GF_TVH_CBCpQ9qz9sW-HciOw4lIBgkkXO-03TQ&proj=
+ect_id=3d516998&user_id=3d1206326&link_id=3d1004087"></a></p></td></tr></ta=
+ble></td>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+<td><table=20border=3d'0'=20cellpadding=3d'0'=20cellspacing=3d'0'=20width=
+=3d'365'=20height=3d'10'><tr><td><p><a=20href=3d"https://bhurecv.taishinban=
+k.com.tw/taishin_ba/click.aspx?url=3de3QTiPniCwZ17y40hQH-VpXFftiJhNCscKPIfg=
+0UxOP6P2zmZcDwFwewv2NhRguss__qw1ZnyPG1aUD4yVdPBhVBSJIb5hTXH1EAHVSptAefEKIII=
+aYqG0-zh0fpoZve&project_id=3d516998&user_id=3d1206326&link_id=3d1004088"></=
+a></p></td></tr></table></td>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20</tr>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20<tr>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20<td><table=20border=3d'0'=20cellpadding=3d'0'=20cellspacing=3d'0'=20widt=
+h=3d'365'=20height=3d'10'><tr><td><p><a=20href=3d"https://bhurecv.taishinba=
+nk.com.tw/taishin_ba/click.aspx?url=3de3QTiPniCwbrenhkPZ3KEd9fDcNCvTYEbKBTv=
+yheFwX7BkMwbqKYigV8FKvEbQ2EKTPx09bfFdUAegO45KUfjOa45g8JbdzuJe5FhKBp7Lw0nBoQ=
+aSUqnlQw9K6uPltZFcG7vFTIvWoCa2ipZ_mFjyQgR08tGfyDaFIGUP-SDzYapahyZ6O22Tq9Xxs=
+xxSnn&project_id=3d516998&user_id=3d1206326&link_id=3d1004089"=20target=3d"=
+_blank"></a></p></td></tr></table></td>=0d=0a=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20<td><table=20border=3d'0'=20cellpadding=3d'0'=
+=20cellspacing=3d'0'=20width=3d'365'=20height=3d'10'><tr><td><p><a=20href=
+=3d"https://bhurecv.taishinbank.com.tw/taishin_ba/click.aspx?url=3de3QTiPni=
+CwZ17y40hQH-ViCjOc_xkIEUkVIxd6Yd476a4cSF8iD3e8UVz1q-MNCSO3QPXTnyRvwoKeJV0AL=
+s3wgAy2NfNQDR2naAwOPYVDOy4Sj8kbYSzXO4BcxlEy4zyj5FbQR-vXg&project_id=3d51699=
+8&user_id=3d1206326&link_id=3d1004090"=20target=3d"_blank"></a></p></td></t=
+r></table></td>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+</tr>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20</tbody>=0d=0a=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20</table></td>=0d=0a=20=20=20=20=
+=20=20=20=20=20=20=20=20</tr>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20<tr>=
+=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20<td><img=20src=3d"https://b=
+hurecv.taishinbank.com.tw/taishin_ba/images/CreditCard/tab02.jpg"/></td>=0d=
+=0a=20=20=20=20=20=20=20=20=20=20=20=20</tr>=0d=0a=20=20=20=20=20=20=20=20=
+=20=20=20=20<tr><td=20align=3d"left"=20valign=3d"top"><table=20width=3d"100=
+%"=20border=3d"0"=20cellspacing=3d"10"=20cellpadding=3d"0">=0d=0a=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20<tr><td=20><table=20border=3d'0'=20c=
+ellpadding=3d'0'=20cellspacing=3d'0'=20width=3d'780'=20height=3d'20'><tr><t=
+d><table=20border=3d"0"=20cellspacing=3d"10"=20cellpadding=3d"0"=20width=3d=
+"100%">=0d=0a<tbody>=0d=0a<tr>=0d=0a<td=20style=3d"font-family:=20'=e5=be=
+=ae=e8=bb=9f=e6=ad=a3=e9=bb=91=e9=ab=94',=20Arial;=20font-size:=2016px;"=20=
+align=3d"center"=20valign=3d"top">=ef=bf=ad</td>=0d=0a<td=20align=3d"left"=
+=20valign=3d"middle"><span=20style=3d"color:=20#333333;=20font-family:=20=
+=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=bb=91=e9=ab=94,=20Arial;"><a=20href=3d"https=
+://bhurecv.taishinbank.com.tw/taishin_ba/click.aspx?url=3de3QTiPniCwZ17y40h=
+QH-VgfMUP3l6YqDhbnePtcZqsz9ODDNcTx4qihuoiqTL9vYWri1WkKCaK1z-eumT2_0Xz1jIGic=
+W8afzrxuXdN5vQXU9AADf746gU6W1K-PuR_m&project_id=3d516998&user_id=3d1206326&=
+link_id=3d1004091">=e8=b5=b0!=e5=8f=b0=e6=96=b0=e5=b8=b6=e4=bd=a0=e7=8e=a9=
+=e4=b8=96=e7=95=8c=20=e6=97=a5=e6=9c=ac=e5=a4=a7=e4=b8=b8=e7=99=be=e8=b2=a8=
+=e7=a6=8f=e5=b2=a1=e5=a4=a9=e7=a5=9e=e5=ba=97=e6=9c=80=e9=ab=9823.3%=e5=84=
+=aa=e6=83=a0</a></span></td>=0d=0a</tr>=0d=0a<tr>=0d=0a<td=20style=3d"font-=
+family:=20'=e5=be=ae=e8=bb=9f=e6=ad=a3=e9=bb=91=e9=ab=94',=20Arial;=20font-=
+size:=2016px;"=20align=3d"center"=20valign=3d"top">&nbsp;=ef=bf=ad</td>=0d=
+=0a<td=20align=3d"left"=20valign=3d"middle"><a=20href=3d"https://bhurecv.ta=
+ishinbank.com.tw/taishin_ba/click.aspx?url=3de3QTiPniCwZ17y40hQH-VgfMUP3l6Y=
+qDhbnePtcZqsz9ODDNcTx4qihuoiqTL9vYWri1WkKCaK1z-eumT2_0Xz1jIGicW8afzrxuXdN5v=
+QVK8d2UgdpTYW6Jq8ObGwV8&project_id=3d516998&user_id=3d1206326&link_id=3d100=
+4092">=e5=85=a8=e8=87=ba=e6=8c=87=e5=ae=9a=e6=a8=82=e5=9c=92=e5=88=b7=e5=8f=
+=b0=e6=96=b0=e5=8d=a1=ef=bc=8c=e4=ba=ab=e6=9c=80=e4=bd=8e61=e6=8a=98=e8=b5=
+=b7=e5=84=aa=e6=83=a0</a><br=20/></td>=0d=0a</tr>=0d=0a</tbody>=0d=0a</tabl=
+e></td></tr></table></td></tr>=0d=0a=09=09=09=09</table></td>=0d=0a=09=09=
+=09</tr>=0d=0a=09=09</table>=09=09=0d=0a=09=09<table=20border=3d"0"=20cells=
+pacing=3d"0"=20cellpadding=3d"0"=20width=3d"800"=20align=3d"center">=0d=0a=
+=20=20=20=20=20=20=20=20=20=20=20=20<tr>=0d=0a=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20<td><table=20width=3d"100%"=20border=3d"0"=20cellspacing=3d"=
+10"=20cellpadding=3d"0">=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20<tbody>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20<tr>=
+=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20<td><span=
+=20style=3d"font-size:18px;=20">=e8=ac=b9=e6=85=8e=e7=90=86=e8=b2=a1=20=e4=
+=bf=a1=e7=94=a8=e8=87=b3=e4=b8=8a</span><span=20style=3d"font-size:14px;">=
+=e2=88=99=e5=b7=ae=e5=88=a5=e5=be=aa=e7=92=b0=e4=bf=a1=e7=94=a8=e5=88=a9=e7=
+=8e=87=ef=bc=9a=e4=b8=80=e8=88=ac=e6=b6=88=e8=b2=bb=e5=8f=8a=e9=a0=90=e5=80=
+=9f=e7=8f=be=e9=87=91=e7=82=ba6.75%~15%,=e4=be=9d=e9=9b=bb=e8=85=a6=e8=a9=
+=95=e7=ad=89=e8=80=8c=e5=ae=9a=e2=88=99=e5=be=aa=e7=92=b0=e5=88=a9=e7=8e=87=
+=e4=b9=8b=e5=9f=ba=e6=ba=96=e6=97=a5=e7=82=ba104=e5=b9=b409=e6=9c=8801=e6=
+=97=a5=e2=88=99=e9=a0=90=e5=80=9f=e7=8f=be=e9=87=91=e6=89=8b=e7=ba=8c=e8=b2=
+=bb=ef=bc=9a=e9=a0=90=e5=80=9f=e7=8f=be=e9=87=91=e9=87=91=e9=a1=8dX=203.5%+=
+=20NT=20150=e5=85=83=e2=88=99=e7=89=b9=e5=ba=97=e5=88=86=e6=9c=9f=e5=bb=a3=
+=e5=91=8a=e5=b7=b2=e6=8f=ad=e9=9c=b2=e5=90=84=e9=a0=85=e7=9b=b8=e9=97=9c=e8=
+=b2=bb=e7=94=a8=e7=b8=bd=e9=87=91=e9=a1=8d=e4=b8=94=e7=84=a1=e5=85=b6=e4=bb=
+=96=e6=87=89=e7=b9=b3=e8=b2=bb=e7=94=a8=ef=bc=8c=e5=90=84=e6=9c=9f=e5=88=86=
+=e6=9c=9f=e5=88=a9=e7=8e=87=e6=8f=9b=e7=ae=97=e7=b8=bd=e8=b2=bb=e7=94=a8=e5=
+=b9=b4=e7=99=be=e5=88=86=e7=8e=87=e7=82=ba0%</span></td>=0d=0a=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20</tr>=0d=0a=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20</tbody>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20</table></td>=0d=0a=20=20=20=20=20=20=20=20=20=20=20=20</tr>=0d=0a=
+=09=09=09<tr>=0d=0a=09=09=09=09<td><table=20border=3d'0'=20cellpadding=3d'0=
+'=20cellspacing=3d'0'=20width=3d'800'=20height=3d'20'><tr><td><p><img=20src=
+=3d"https://bhurecv.taishinbank.com.tw/taishin_ba/images/00000/footer.jpg"=
+=20alt=3d""=20width=3d"800"=20height=3d"36"=20/></p></td></tr></table></td>=
+=0d=0a=09=09=09</tr>=0d=0a=09=09</table>=0d=0a=09</body>=0d=0a</html>=0d=0a=
+<img=20src=3d"http://bhurecv.taishinbank.com.tw/taishin_ba/s.aspx?k=3d2aBwE=
+2V4%2frJ0p9Sso3uif5yucipxtqQ0NDcdt2mRsIXtjm1Naf1OpQ%3d%3d"=20width=3d1=20he=
+ight=3d1=20/>

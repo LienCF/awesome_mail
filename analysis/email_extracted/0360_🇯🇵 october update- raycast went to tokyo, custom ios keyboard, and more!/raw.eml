@@ -1,0 +1,1458 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:d801:b0:4d4:9739:2b92 with SMTP id of1csp1791596mdb;
+        Fri, 7 Nov 2025 01:22:37 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHVyd/X/rIy1V2elnBsc9fBDk2soe8trMYTtLajcslNJtOpMfPUGgVxCZCXran0QyBXQH9L
+X-Received: by 2002:a05:6214:2488:b0:87c:1d24:7b7f with SMTP id 6a1803df08f44-881766f6994mr34813606d6.23.1762507357491;
+        Fri, 07 Nov 2025 01:22:37 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762507357; cv=none;
+        d=google.com; s=arc-20240605;
+        b=hsRcaU+34Sz9bTbHDIzSZH3SvPWBvijZx6XtHDgb6pvZ1i+6WQoRBZCpOZXbytaqKd
+         DE5cizW6aim25LbqAi448BUVS86asmbLnTw4aORT7fmCHN6Ql6JR+HHpgGUfsUKgdlwT
+         BC6mDw/7htOwt+e91Y7HADjj+VAD5vnlH18LChU/jr7nk0N9McxfA1K1Gv2Sv7E9Elsq
+         inCHVUIg3mRonq5tr0ygeez4WUfERpKU06EaS1xvRPBwebXZEbIshGlZQEtlPht6K818
+         VyWh9B7cYZHsl1vY+st1ZZscIZyf+U8vI15MMp/3yLb3iE9ANY2MzrIVKVi/Rul7zDCQ
+         tdVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:mime-version:date:message-id:subject:to:from
+         :list-unsubscribe-post:list-unsubscribe:precedence:dkim-signature
+         :dkim-signature;
+        bh=iOfRXgWNayf6eZp+jdrotInKmvmMJY+rrHsatS6D3JU=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=Ah6ISg4T5A7q8h0bPkWzOena4TmzVP1bUCS5EZJgDO+f5HE/pb/5QmxiArW4jwOt28
+         aw/35obg8fX1yb8TQxNPwDWluGkxRwvFOhLG85HXWqnRVot9GVguNECpI3AbKu2F/Ppl
+         6zH1pZ/t6NSiz5qv3ew2r8Kq8eJFq0wmGoVTI4I5jYbLaaxJyqcXpksmP+JHdqJdnF5l
+         6OZm5u7lwZSS5UAEaaQaoiVVqY6oxGb0tvna0YBYSme4pdL0HAzvTY6RDWNarHYv4HRX
+         24k3JQTD9rklqEyZmqhlmrYpP1CrLvpvHOYd+waEZmcUy+0PkSA+aq3/zv/UwyN4eQVG
+         rApQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@raycast.com header.s=resend header.b=XtRH18We;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=Jeip+jGW;
+       spf=pass (google.com: domain of 0100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000@send.raycast.com designates 54.240.9.8 as permitted sender) smtp.mailfrom=0100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000@send.raycast.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=raycast.com
+Return-Path: <0100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000@send.raycast.com>
+Received: from a9-8.smtp-out.amazonses.com (a9-8.smtp-out.amazonses.com. [54.240.9.8])
+        by mx.google.com with ESMTPS id 6a1803df08f44-88082b5317esi14444156d6.719.2025.11.07.01.22.37
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Nov 2025 01:22:37 -0800 (PST)
+Received-SPF: pass (google.com: domain of 0100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000@send.raycast.com designates 54.240.9.8 as permitted sender) client-ip=54.240.9.8;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@raycast.com header.s=resend header.b=XtRH18We;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=Jeip+jGW;
+       spf=pass (google.com: domain of 0100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000@send.raycast.com designates 54.240.9.8 as permitted sender) smtp.mailfrom=0100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000@send.raycast.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=raycast.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple; s=resend;
+	d=raycast.com; t=1762507357;
+	h=List-Unsubscribe:List-Unsubscribe-Post:From:To:Subject:Message-ID:Date:MIME-Version:Content-Type;
+	bh=+p0uJKV1x00AIs7YrBl5i6jTpdyt6EeEiZtW5CbxXsg=;
+	b=XtRH18WebVd92fdoNpQGqy3oTeIT803vIm0JuTl5dCGJR0Vq+E/pZ9cdLDrfGOSx
+	mYNeQGvIZ+y879JptgiIKx+Z93qbYQBh7hYtBOamq4dT8YgGhL5TptZqSI6BPsir5DL
+	A4zZR77whaeYYlsGiPnMxYe8buvFXqWQKQ8v4vZo=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw; d=amazonses.com; t=1762507357;
+	h=List-Unsubscribe:List-Unsubscribe-Post:From:To:Subject:Message-ID:Date:MIME-Version:Content-Type:Feedback-ID;
+	bh=+p0uJKV1x00AIs7YrBl5i6jTpdyt6EeEiZtW5CbxXsg=;
+	b=Jeip+jGWLkd3uZXTs2DV9t9ZcYCJ5H6oQfnt2fS1otl1pTUVpaI/W+0iejE0McYr
+	G8hH4q4h9Ho6IFu4z5tdVClWXXOCCeUOr4DLQJ3hPLCYeajy/8RSjeQh904d/cLVgqz
+	zWMv5x+bgvlyZkPFKi/E9L6JnTppHP4xbn3NreOM=
+Precedence: bulk
+X-Entity-Ref-ID: 25019a21-2c17-4fef-b57d-2be86e702f1d
+List-Unsubscribe:
+ <https://unsubscribe.resend.com/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb250YWN0SWQiOiI1ZGUzMThlMi1jZDA1LTQ2ZjAtODU2Yy1iZjZmOWYxYTk0YjIiLCJhdWRpZW5jZUlkIjoiOTdjNjc2ZDgtMmY2ZC00NTlmLWJmNWMtNTk5YzI3NGQ3NTA1IiwiYnJvYWRjYXN0SWQiOiI1OGE2Yjk5OS00NmFhLTQwMzUtOTUzMi1kMWJlNWYzNzFiMTciLCJ0ZWFtSWQiOiJhZjgyY2E5MC0zNmU2LTRkNmItODdmMC0wYjA1NWJhOTUxZDYiLCJpYXQiOjE3NjI1MDczMTcsImV4cCI6MTc5NDA0MzMxN30.6rsb8WAGutPwJ6yukf5DN0JW1d8joLr3LQnOMIfKJzY>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+From: Raycast Team <team@raycast.com>
+To: liencf@gmail.com
+Subject: =?UTF-8?Q?=F0=9F=87=AF=F0=9F=87=B5_October_Update?=
+ =?UTF-8?Q?=3A_Raycast_went_to_Tokyo=2C_Custom_iOS_?=
+ =?UTF-8?Q?Keyboard=2C_and_more!?=
+Message-ID: <0100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000@email.amazonses.com>
+Date: Fri, 7 Nov 2025 09:22:37 +0000
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--_NmP-260cadb264773586-Part_1"
+Feedback-ID: ::1.us-east-1.epbACCJLarUaEI78XZoGREJ9LamRjxMH5pM2kZb64rA=:AmazonSES
+X-SES-Outgoing: 2025.11.07-54.240.9.8
+
+----_NmP-260cadb264773586-Part_1
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+
+
+
+
+
+
+----------------------------------------
+
+Hello =F0=9F=91=8B
+
+It=E2=80=99s Pedro http://x.com/peduarte here with another monthly update! =
+As always, team picks at the bottom of the email.
+
+
+
+
+
+RAYCAST =C3=97 TOKYO
+
+We travelled to Tokyo to hang out with our community. Wow. Still trying to=
+ find the right words to express how beautiful it was. Japan is our third =
+largest user base and for a while they've already been hosting some =
+community-driven events. So we decided it was time for us to fly over there=
+ and connect with them in real life.
+
+To make the trip worthwhile, we =
+hosted two events.
+
+ * Hackathon: We partnered with Anthropic https://www.=
+anthropic.com/, Supabase https://supabase.com/, Vercel https://vercel.com/,=
+ and AWS Startup Loft https://aws.amazon.com/startups/lp/aws-startup-loft-t=
+okyo to host a hackathon with amazing prizes and even better vibes. There =
+were over 150 participants, it was crazy. They built Raycast extensions we =
+never would've thought of.
+
+ * Meetup: We also hosted a Raycast community =
+meetup at the Cybozu https://cybozu.co.jp/ office. Around 60 people showed =
+up. It was great. Thomas shared some sneak peeks of Raycast for Windows and=
+ some refreshed UI updates. The community did a few lightning talks, and =
+Thomas, Steph and I held a fireside panel where people could ask us =
+questions.
+
+These events wouldn't have been possible without the help and =
+collaboration of lots of people, so here's my heartfelt thanks to all of =
+them: Our Japan Ambassadors and community members Yano https://twitter.=
+com/@nagauta_jp, Tyki https://twitter.com/@tyykid16, Koyasu https://twitter=
+.com/@ux_kys, Seiji https://x.com/se_eiji, Kaita https://twitter.com/@z63d_=
+, Yogo https://twitter.com/@yogo_escentier, Adake https://x.com/yuichi_yogo=
+, Hirota https://twitter.com/@HiroYuske, Tyler https://x.com/dshukertjr =
+from Supabase for being a spectatucular MC and huge contributor to the =
+hackathon, Jo https://x.com/jozhukennedy from Anthropic, Nicolas and Shohei=
+ https://x.com/jrsyo from Vercel, Kazuhiro https://twitter.com/@0b1tk and =
+Sakito https://twitter.com/@sakito from Cybozu for hosting the meetup, AWS =
+Startup Loft for hosting the hackathon, our Taiwan Amabassadors Yen =
+https://x.com/ridemountainpig and Yiwei https://x.com/1weiho for fying over=
+ to just meet us, and finally Stephanie, our Community Manager for =
+organising all. Thank you all so much!
+
+
+
+
+
+KEYBOARD FOR IOS
+
+Our custom keyboard puts dictation, AI commands, snippets, and quicklinks =
+at your fingertips. This completely changes the Raycast experience on =
+mobile. Building a keyboard was already in our roadmap when we initially =
+announced Raycast for iOS, but it was a challenging feature to get right. =
+Since launching the keyboard, we've received so much praise from our users!
+
+Check out the video https://youtu.be/lta7_MCTzxo to see it in action!
+
+
+
+
+
+IN OTHER NEWS
+
+=F0=9F=93=BA Ever wondered how Shopify's CEO, Tobi =
+L=C3=BCtke, uses Raycast? Wonder no more. Check out his What's in my =
+Raycast https://youtu.be/bRQT_oN51Fw. I had so much fun doing this =
+interview.
+
+=F0=9F=94=A5 Read about https://www.raycast.=
+com/customers/incidentio how incident.=E2=81=A0io responds to incidents =
+faster with Raycast.
+
+=F0=9F=8C=90 OpenAI released ChatGPT Atlas =
+https://chatgpt.com/atlas/, their AI browser, and there's already a Raycast=
+ Extension for it. Check it out https://www.raycast.=
+com/thomas/chatgpt-atlas!
+
+=F0=9F=93=8B Master Clipboard history. Seriously=
+, you won't regret it! Watch our video https://youtu.be/dOzTzVtg5lk to =
+learn all about it.
+
+=F0=9F=9B=A1=EF=B8=8F We=E2=80=99re enterprise ready =
+with our SOC2 Type II certificate. Want to bring it to your company? Let's =
+talk =E2=86=92 enterprise@raycast.com
+
+=F0=9F=A7=98=E2=80=8D=E2=99=82=
+=EF=B8=8F We're slowing down our release cycle for a little while. See =
+Thomas' announcement here https://x.com/thomaspaulmann/status/1976636662705=
+705022.
+
+=F0=9F=AA=9F Remember to sign up for the Windows waitlist.
+
+
+
+
+
+TEAM PICKS
+
+Time for everyone=E2=80=99s favorite part. Team picks!
+
+=F0=9F=91=9C Sandy got this little beauty a couple https://uk.coach.=
+com/products/andrea-small-shoulder-bag-in-smooth-leather-with-tonal-hardwar=
+e/CT757.html of weeks ago. She said that if Raycast were a handbag, this =
+might be it. Never thought of Raycast being a bag before, but here we are!
+
+=F0=9F=97=BA=EF=B8=8F=C2=A0Bruno just found out about Corner https://www.=
+corner.inc/ and is enjoying using it to discover new places.
+
+=F0=9F=A7=A5 Jordan picked up this lovely Universal Works fleece jacket =
+https://universalworks.com/products/universal-works-uniform-jacket-in-rust-=
+wool-fleece. Good choice.
+
+=F0=9F=91=83 Megan's back with her fragrances, =
+this time with the Parisian Musc https://matiere-premiere.=
+com/products/parisian-musc from Matiere Premiere.
+
+=F0=9F=83=8F Michael =
+picked this a few new board games including 7 Wonders Duel =
+https://boardgamegeek.com/boardgame/173346/7-wonders-duel.
+
+=F0=9F=92=A3 If you're into collaborative deduction games, Mathieu =
+recommends Bomb Busters https://boardgamegeek.com/boardgame/413246/bomb-bus=
+ters.
+
+=F0=9F=8E=B4 David recently played Don't Get Got https://bigpotato.=
+co.uk/products/dont-get-got and can't recommend it enough.
+
+=F0=9F=8E=B2 Since we're talking about board games, Tirta loves Scoville =
+https://boardgamegeek.com/boardgame/145659/scoville!
+
+=F0=9F=87=A9=F0=9F=87=AA Danny wans to call out some his favourite German =
+bread: The Sonnenbatzen https://www.schaefers-brot.de/produkte/detail?=
+id=3D458.
+
+=F0=9F=91=96 Thomas bought some new trousers from Tokyo, =
+including this one https://porterclassic.com/products/moleskin-gene-kelly-p=
+ants from Porter Classic.
+
+=F0=9F=91=9F I recently picked up this ALW Slip =
+On https://store.moonstar.co.jp/products/detail/201 from Moonstar from =
+Tokyo.
+
+
+
+
+That's it for this month. For all changes, check out =
+our=C2=A0changelog https://www.raycast.com/changelog.
+
+See you next month!
+
+----------------------------------------
+
+Raycast Technologies Inc.
+2093 Philadelphia Pike #3222, Claymont, DE 19703
+Unsubscribe =
+https://unsubscribe.resend.com/?token=3DeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ=
+9.eyJjb250YWN0SWQiOiI1ZGUzMThlMi1jZDA1LTQ2ZjAtODU2Yy1iZjZmOWYxYTk0YjIiLCJhd=
+WRpZW5jZUlkIjoiOTdjNjc2ZDgtMmY2ZC00NTlmLWJmNWMtNTk5YzI3NGQ3NTA1IiwiYnJvYWRj=
+YXN0SWQiOiI1OGE2Yjk5OS00NmFhLTQwMzUtOTUzMi1kMWJlNWYzNzFiMTciLCJ0ZWFtSWQiOiJ=
+hZjgyY2E5MC0zNmU2LTRkNmItODdmMC0wYjA1NWJhOTUxZDYiLCJpYXQiOjE3NjI1MDczMTcsIm=
+V4cCI6MTc5NDA0MzMxN30.6rsb8WAGutPwJ6yukf5DN0JW1d8joLr3LQnOMIfKJzY
+
+
+
+----_NmP-260cadb264773586-Part_1
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir=3D"ltr" lang=3D"en">
+  <head>
+    <meta content=3D"width=3Ddevice-width" name=3D"viewport" />
+    <link
+      rel=3D"preload"
+      as=3D"image"
+      href=3D"https://resend-attachments.s3.amazonaws.com/2614zFw1iazXHKv" =
+/>
+    <link
+      rel=3D"preload"
+      as=3D"image"
+      href=3D"https://resend-attachments.s3.amazonaws.com/BJOSfsIyZLKpPAu" =
+/>
+    <link
+      rel=3D"preload"
+      as=3D"image"
+      href=3D"https://resend-attachments.s3.amazonaws.com/z8TzWcyJQS21A53" =
+/>
+    <link
+      rel=3D"preload"
+      as=3D"image"
+      href=3D"https://resend-bucket-test.s3.amazonaws.com//XBhqz5mxmDPp3MH"=
+ />
+    <meta content=3D"text/html; charset=3DUTF-8" http-equiv=3D"Content-Type=
+" />
+    <meta name=3D"x-apple-disable-message-reformatting" />
+    <meta content=3D"IE=3Dedge" http-equiv=3D"X-UA-Compatible" />
+    <meta name=3D"x-apple-disable-message-reformatting" />
+    <meta
+      content=3D"telephone=3Dno,address=3Dno,email=3Dno,date=3Dno,url=3Dno"
+      name=3D"format-detection" />
+  </head>
+  <body>
+    <!--$--><!--html--><!--head-->
+    <div
+      style=3D"display:none;overflow:hidden;line-height:1px;opacity:0;max-h=
+eight:0;max-width:0"
+      data-skip-in-text=3D"true">
+      Raycast&#x27;s Tokyo adventure: Hackathon, meetup, and community
+      connections
+      <div>
+        =C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=
+=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=
+=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=
+=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=
+=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=
+=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=
+=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=
+=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=
+=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=
+=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=
+=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=
+=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=
+=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=
+=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=
+=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=
+=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=
+=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=
+=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=
+=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=
+=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=
+=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=
+=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=
+=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=
+=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=
+=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=
+=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=
+=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=
+=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=
+=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=
+=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=
+=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=
+=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=
+=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=
+=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=
+=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=
+=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=
+=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=
+=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=
+=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=
+=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=
+=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=
+=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=
+=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=
+=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=
+=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=
+=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=
+=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=
+=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=
+=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=
+=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=
+=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=
+=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=
+=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=
+=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=
+=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=
+=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=
+=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=
+=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=
+=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=
+=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=
+=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=
+=E2=80=8C=E2=80=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=
+=8B=E2=80=8D=E2=80=8E=E2=80=8F=EF=BB=BF=C2=A0=E2=80=8C=E2=80=8B=E2=80=8D=E2=
+=80=8E=E2=80=8F=EF=BB=BF
+      </div>
+    </div>
+    <!--body-->
+    <table
+      border=3D"0"
+      width=3D"100%"
+      cellpadding=3D"0"
+      cellspacing=3D"0"
+      role=3D"presentation"
+      align=3D"center">
+      <tbody>
+        <tr>
+          <td>
+            <table
+              align=3D"center"
+              width=3D"100%"
+              border=3D"0"
+              cellpadding=3D"0"
+              cellspacing=3D"0"
+              role=3D"presentation"
+              style=3D"font-family:-apple-system, BlinkMacSystemFont, &#x27=
+;Segoe UI&#x27;, &#x27;Roboto&#x27;, &#x27;Oxygen&#x27;, &#x27;Ubuntu&#x27;=
+, &#x27;Cantarell&#x27;, &#x27;Fira Sans&#x27;, &#x27;Droid Sans&#x27;, &#x=
+27;Helvetica Neue&#x27;, sans-serif;font-size:1.1538461538461537em;min-heig=
+ht:100%;line-height:155%">
+              <tbody>
+                <tr>
+                  <td>
+                    <table
+                      align=3D"left"
+                      width=3D"100%"
+                      border=3D"0"
+                      cellpadding=3D"0"
+                      cellspacing=3D"0"
+                      role=3D"presentation"
+                      style=3D"align:left;width:100%;padding-left:0px;paddi=
+ng-right:0px;line-height:155%;max-width:600px;font-family:-apple-system, Bl=
+inkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Roboto&#x27;, &#x27;Oxygen&#x=
+27;, &#x27;Ubuntu&#x27;, &#x27;Cantarell&#x27;, &#x27;Fira Sans&#x27;, &#x2=
+7;Droid Sans&#x27;, &#x27;Helvetica Neue&#x27;, sans-serif">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <br />
+                            </p>
+                            <img
+                              class=3D"node-image"
+                              height=3D"45"
+                              src=3D"https://resend-attachments.s3.amazonaw=
+s.com/2614zFw1iazXHKv"
+                              style=3D"display:block;outline:none;border:no=
+ne;text-decoration:none;max-width:100%;border-radius:8px"
+                              width=3D"45" />
+                            <div class=3D"" style=3D"margin:0;padding:0">
+                              <p
+                                class=3D"node-paragraph"
+                                style=3D"margin:0;padding:0;font-size:1em;p=
+adding-top:0.5em;padding-bottom:0.5em">
+                                <br />
+                              </p>
+                            </div>
+                            <hr
+                              class=3D"node-divider divider"
+                              style=3D"width:100%;border:none;border-top:1p=
+x solid #eaeaea;padding-bottom:1em;border-width:2px" />
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span>Hello =F0=9F=91=8B</span>
+                            </p>
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span>It=E2=80=99s </span
+                              ><span
+                                ><a
+                                  href=3D"http://us-east-1.resend-ct.com/CL=
+0/http:%2F%2Fx.com%2Fpeduarte/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-24=
+61b09898f4-000000/Mk_8OP82ltGZgBCDIGs3fF5BY6KQm7OaiOcmtmqb5Tg=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Pedro</a
+                                ></span
+                              ><span>
+                                here with another monthly update! As always=
+,
+                                team picks at the bottom of the email.</spa=
+n
+                              >
+                            </p>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <br />
+                            </p>
+                            <img
+                              class=3D""
+                              alt=3D"A black and white collage of team phot=
+os showing people in various professional and casual settings, capturing mo=
+ments of collaboration, interaction, and camaraderie"
+                              src=3D"https://resend-attachments.s3.amazonaw=
+s.com/BJOSfsIyZLKpPAu"
+                              style=3D"display:block;outline:none;border:no=
+ne;text-decoration:none;max-width:100%;border-radius:8px"
+                              width=3D"100%" />
+                            <h2
+                              class=3D"node-heading"
+                              style=3D"margin:0;padding:0;font-size:1.8em;l=
+ine-height:1.44em;padding-top:0.389em;font-weight:600">
+                              <span>Raycast =C3=97 Tokyo</span>
+                            </h2>
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span
+                                >We travelled to Tokyo to hang out with our
+                                community. Wow. Still trying to find the ri=
+ght
+                                words to express how beautiful it was. Japa=
+n is
+                                our third largest user base and for a while
+                                they&#x27;ve already been hosting some
+                                community-driven events. So we decided it w=
+as
+                                time for us to fly over there and connect w=
+ith
+                                them in real life.
+                              </span>
+                            </p>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span
+                                >To make the trip worthwhile, we hosted two
+                                events.
+                              </span>
+                            </p>
+                            <ul
+                              class=3D""
+                              style=3D"margin:0;padding:0;padding-left:1.1e=
+m;padding-bottom:1em">
+                              <li
+                                class=3D""
+                                style=3D"margin:0;padding:0;margin-left:1em=
+;margin-bottom:0.3em;margin-top:0.3em">
+                                <p class=3D"" style=3D"margin:0;padding:0">
+                                  <span><strong>Hackathon: </strong></span
+                                  ><span>We partnered with </span
+                                  ><span
+                                    ><a
+                                      href=3D"https://us-east-1.resend-ct.c=
+om/CL0/https:%2F%2Fwww.anthropic.com%2F/1/0100019a5d9ffb87-4fe95c9f-2181-4d=
+9b-aebb-2461b09898f4-000000/9OFuE9eMtCgvPWJDBqJ15QF-GJJyfQoSVhdqOI4fHTE=3D4=
+30"
+                                      rel=3D"noopener noreferrer nofollow"
+                                      style=3D"color:#FF6363;text-decoratio=
+n-line:none;text-decoration:none"
+                                      target=3D"_blank"
+                                      >Anthropic</a
+                                    ></span
+                                  ><span>, </span
+                                  ><span
+                                    ><a
+                                      href=3D"https://us-east-1.resend-ct.c=
+om/CL0/https:%2F%2Fsupabase.com%2F/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-ae=
+bb-2461b09898f4-000000/8HPEUDr9hvNwbrVmyAg5q7HmRYED_OcsYhr--ox4J18=3D430"
+                                      rel=3D"noopener noreferrer nofollow"
+                                      style=3D"color:#FF6363;text-decoratio=
+n-line:none;text-decoration:none"
+                                      target=3D"_blank"
+                                      >Supabase</a
+                                    ></span
+                                  ><span>, </span
+                                  ><span
+                                    ><a
+                                      href=3D"https://us-east-1.resend-ct.c=
+om/CL0/https:%2F%2Fvercel.com%2F/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb=
+-2461b09898f4-000000/-K2QlBSxBBcohSrgmyKMf4vPs68LSyAoIrJ8c8fCjfc=3D430"
+                                      rel=3D"noopener noreferrer nofollow"
+                                      style=3D"color:#FF6363;text-decoratio=
+n-line:none;text-decoration:none"
+                                      target=3D"_blank"
+                                      >Vercel</a
+                                    ></span
+                                  ><span>, and </span
+                                  ><span
+                                    ><a
+                                      href=3D"https://us-east-1.resend-ct.c=
+om/CL0/https:%2F%2Faws.amazon.com%2Fstartups%2Flp%2Faws-startup-loft-tokyo/=
+1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000/3INiNCcNyMw9=
+XmysnLSPSgGqnR7F2YYx3vnJfWeltRY=3D430"
+                                      rel=3D"noopener noreferrer nofollow"
+                                      style=3D"color:#FF6363;text-decoratio=
+n-line:none;text-decoration:none"
+                                      target=3D"_blank"
+                                      >AWS Startup Loft</a
+                                    ></span
+                                  ><span>
+                                    to host a hackathon with amazing prizes=
+ and
+                                    even better vibes. There were over 150
+                                    participants, it was crazy. They built
+                                    Raycast extensions we never would&#x27;=
+ve
+                                    thought of.
+                                  </span>
+                                </p>
+                              </li>
+                              <li
+                                class=3D""
+                                style=3D"margin:0;padding:0;margin-left:1em=
+;margin-bottom:0.3em;margin-top:0.3em">
+                                <p class=3D"" style=3D"margin:0;padding:0">
+                                  <span><strong>Meetup:</strong></span
+                                  ><span>
+                                    We also hosted a Raycast community meet=
+up at
+                                    the </span
+                                  ><span
+                                    ><a
+                                      href=3D"https://us-east-1.resend-ct.c=
+om/CL0/https:%2F%2Fcybozu.co.jp%2F/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-ae=
+bb-2461b09898f4-000000/n44QTcKdOdHqlVOssDCJ3s9LHYt5K9pHUQXevco-pZk=3D430"
+                                      rel=3D"noopener noreferrer nofollow"
+                                      style=3D"color:#FF6363;text-decoratio=
+n-line:none;text-decoration:none"
+                                      target=3D"_blank"
+                                      >Cybozu</a
+                                    ></span
+                                  ><span>
+                                    office. Around 60 people showed up. It =
+was
+                                    great. Thomas shared some sneak peeks o=
+f
+                                    Raycast for Windows and some refreshed =
+UI
+                                    updates. The community did a few lightn=
+ing
+                                    talks, and Thomas, Steph and I held a
+                                    fireside panel where people could ask u=
+s
+                                    questions.
+                                  </span>
+                                </p>
+                              </li>
+                            </ul>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span
+                                >These events wouldn&#x27;t have been possi=
+ble
+                                without the help and collaboration of lots =
+of
+                                people, so here&#x27;s my heartfelt thanks =
+to
+                                all of them: Our Japan Ambassadors and comm=
+unity
+                                members </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Ftwitter.com%2F@nagauta_jp/1/0100019a5d9ffb87-4fe95c9f-2181-4=
+d9b-aebb-2461b09898f4-000000/4GzbDkRjr4XFyp_NDgT0Q9fHPrmKcYe9sHjWAGu5s5g=3D=
+430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Yano</a
+                                ></span
+                              ><span>, </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Ftwitter.com%2F@tyykid16/1/0100019a5d9ffb87-4fe95c9f-2181-4d9=
+b-aebb-2461b09898f4-000000/hzX4XRalB8K8z9WhjT5Jbt5kZDehsrblE6m7-Z4gE8A=3D43=
+0"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Tyki</a
+                                ></span
+                              ><span>, </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Ftwitter.com%2F@ux_kys/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-=
+aebb-2461b09898f4-000000/sfd-pCfO8AYSOA8V5PKrEIZbef6LjlppIuUuWIlrcP4=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Koyasu</a
+                                ></span
+                              ><span>, </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fx.com%2Fse_eiji/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-2=
+461b09898f4-000000/umoow0HhEjv52BdD9yCSEK0IFiIM8VlKsKkl8n4IDns=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Seiji</a
+                                ></span
+                              ><span>, </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Ftwitter.com%2F@z63d_/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-a=
+ebb-2461b09898f4-000000/y_YuHQjtA5elzN3ioqHr906WFpeFfK6ww8O9ks9BWro=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Kaita</a
+                                ></span
+                              ><span>, </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Ftwitter.com%2F@yogo_escentier/1/0100019a5d9ffb87-4fe95c9f-21=
+81-4d9b-aebb-2461b09898f4-000000/n9ez1fw98MlFl8MXecSN_8Ozjf3bM-RuLYy7-ysLO4=
+A=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Yogo</a
+                                ></span
+                              ><span>, </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fx.com%2Fyuichi_yogo/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-ae=
+bb-2461b09898f4-000000/N0zWttpZ95tJYQnuhcXNejzvePCK2FzOmfJrfMoffHo=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Adake</a
+                                ></span
+                              ><span>, </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Ftwitter.com%2F@HiroYuske/1/0100019a5d9ffb87-4fe95c9f-2181-4d=
+9b-aebb-2461b09898f4-000000/SKRLy45H96blGGR5mgDL5Mg10VG5sW7s6AGWwHYuBG4=3D4=
+30"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Hirota</a
+                                ></span
+                              ><span>, </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fx.com%2Fdshukertjr/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-aeb=
+b-2461b09898f4-000000/vodydBbCiTpxrNk880hvT7NDp-YP7BqbfhetddziIRo=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Tyler</a
+                                ></span
+                              ><span>
+                                from Supabase for being a spectatucular MC =
+and
+                                huge contributor to the hackathon, </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fx.com%2Fjozhukennedy/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-a=
+ebb-2461b09898f4-000000/x8IfLNyOqOvCQVb21p4nI5tNfLks0EyWGm_PZzYNoow=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Jo</a
+                                ></span
+                              ><span> from Anthropic, Nicolas and </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fx.com%2Fjrsyo/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-246=
+1b09898f4-000000/OBTvWB8BtAcL3AreB0Pj8SIk4bGqmK5xef4GOviInOo=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Shohei</a
+                                ></span
+                              ><span> from Vercel, </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Ftwitter.com%2F@0b1tk/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-a=
+ebb-2461b09898f4-000000/oYJy_GT8yEuiE48-tIjsKtKU4amNEXOXBYpbM2seN3w=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Kazuhiro</a
+                                ></span
+                              ><span> and </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Ftwitter.com%2F@sakito/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-=
+aebb-2461b09898f4-000000/ElnN1edQ_DqzPIA8M1juqBOWAqofFf9Yw2UGPG93-lE=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Sakito</a
+                                ></span
+                              ><span>
+                                from Cybozu for hosting the meetup, AWS Sta=
+rtup
+                                Loft for hosting the hackathon, our Taiwan
+                                Amabassadors </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fx.com%2Fridemountainpig/1/0100019a5d9ffb87-4fe95c9f-2181-4d9=
+b-aebb-2461b09898f4-000000/tWoCPG5B7uBzCIWPsq7ljj5tF0gklx_2AmMpDqpP3OU=3D43=
+0"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Yen</a
+                                ></span
+                              ><span> and </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fx.com%2F1weiho/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-24=
+61b09898f4-000000/eZeZmk7MwXejgTFTjImXu31i-VIsqaZDUklKvxFPVw0=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Yiwei</a
+                                ></span
+                              ><span>
+                                for fying over to just meet us, and finally
+                                Stephanie, our Community Manager for organi=
+sing
+                                all. Thank you all so much!</span
+                              >
+                            </p>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <br />
+                            </p>
+                            <img
+                              class=3D""
+                              alt=3D'A dark-themed mobile keyboard interfac=
+e with various app icons and features like "Improve Writing" and "Dictation=
+" displayed in a glowing'
+                              src=3D"https://resend-attachments.s3.amazonaw=
+s.com/z8TzWcyJQS21A53"
+                              style=3D"display:block;outline:none;border:no=
+ne;text-decoration:none;max-width:100%;border-radius:8px"
+                              width=3D"100%" />
+                            <h2
+                              class=3D"node-heading"
+                              style=3D"margin:0;padding:0;font-size:1.8em;l=
+ine-height:1.44em;padding-top:0.389em;font-weight:600">
+                              <span>Keyboard for iOS</span>
+                            </h2>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span style=3D"color:rgb(15, 20, 25)"
+                                >Our custom keyboard puts dictation, AI
+                                commands, snippets, and quicklinks at your
+                                fingertips. This completely changes the Ray=
+cast
+                                experience on mobile. Building a keyboard w=
+as
+                                already in our roadmap when we initially
+                                announced Raycast for iOS, but it was a
+                                challenging feature to get right. Since
+                                launching the keyboard, we&#x27;ve received=
+ so
+                                much praise from our users!
+                              </span>
+                            </p>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fyoutu.be%2Flta7_MCTzxo/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b=
+-aebb-2461b09898f4-000000/Pklb6PxpkuI1kdwtI3RJUeY_trxZo2Tmx7lwd9GrceU=3D430=
+"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Check out the video</a
+                                ></span
+                              ><span> to see it in action! </span>
+                            </p>
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <br />
+                            </p>
+                            <h3
+                              class=3D"node-heading"
+                              style=3D"margin:0;padding:0;font-size:1.4em;l=
+ine-height:1.08em;padding-top:0.389em;font-weight:600">
+                              <span>In Other News</span>
+                            </h3>
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span
+                                >=F0=9F=93=BA Ever wondered how Shopify&#x2=
+7;s CEO, Tobi
+                                L=C3=BCtke, uses Raycast? Wonder no more. <=
+/span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fyoutu.be%2FbRQT_oN51Fw/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b=
+-aebb-2461b09898f4-000000/5oTGpnCCEzAXk3enSdbb8g-okWbJP68Mx9rgaNFEn8k=3D430=
+"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Check out his What&#x27;s in my Raycast<=
+/a
+                                ></span
+                              ><span
+                                >. I had so much fun doing this interview.
+                              </span>
+                            </p>
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span>=F0=9F=94=A5 </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fwww.raycast.com%2Fcustomers%2Fincidentio/1/0100019a5d9ffb87-=
+4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000/cacmqQ7is-MvRveCW-r54SjbPmmXKZr=
+RCxbX04tl_NM=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Read about</a
+                                ></span
+                              ><span>
+                                how incident.=E2=81=A0io responds to incide=
+nts faster
+                                with Raycast.</span
+                              >
+                            </p>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span>=F0=9F=8C=90 OpenAI released </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fchatgpt.com%2Fatlas%2F/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b=
+-aebb-2461b09898f4-000000/rjYLvufTouRvBce7ME-3M9L7AryPtelENZJNnedniis=3D430=
+"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >ChatGPT Atlas</a
+                                ></span
+                              ><span
+                                >, their AI browser, and there&#x27;s alrea=
+dy a
+                                Raycast Extension for it. </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fwww.raycast.com%2Fthomas%2Fchatgpt-atlas/1/0100019a5d9ffb87-=
+4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000/TtI-BtwXo_bIgKE0su6N-JE6tyAebkj=
+G_uRX-Pc5EbQ=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Check it out</a
+                                ></span
+                              ><span>!</span>
+                            </p>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span
+                                >=F0=9F=93=8B Master Clipboard history. Ser=
+iously, you
+                                won&#x27;t regret it! </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fyoutu.be%2FdOzTzVtg5lk/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b=
+-aebb-2461b09898f4-000000/whxouq-0J5Ej7ioaG8N2j8x1tWWLURfnavssUJbWAjw=3D430=
+"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Watch our video</a
+                                ></span
+                              ><span> to learn all about it.</span>
+                            </p>
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span
+                                >=F0=9F=9B=A1=EF=B8=8F We=E2=80=99re enterp=
+rise ready with our SOC2 Type II
+                                certificate. Want to bring it to your compa=
+ny?
+                                Let&#x27;s talk =E2=86=92 </span
+                              ><span
+                                ><a
+                                  href=3D"mailto:enterprise@raycast.com"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >enterprise@raycast.com</a
+                                ></span
+                              >
+                            </p>
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span
+                                >=F0=9F=A7=98=E2=80=8D=E2=99=82=EF=B8=8F We=
+&#x27;re slowing down our release cycle
+                                for a little while. See Thomas&#x27; </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fx.com%2Fthomaspaulmann%2Fstatus%2F1976636662705705022/1/0100=
+019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000/FaSy6Wmyox8gwgEZsL=
+IiOo0VZ9wb4rrw4-rlLfRFXdM=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >announcement here</a
+                                ></span
+                              ><span>.</span>
+                            </p>
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span>=F0=9F=AA=9F Remember to sign up for th=
+e </span
+                              ><span
+                                ><a
+                                  href=3D""
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Windows</a
+                                ></span
+                              ><span> waitlist.</span>
+                            </p>
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <br />
+                            </p>
+                            <h3
+                              class=3D"node-heading"
+                              style=3D"margin:0;padding:0;font-size:1.4em;l=
+ine-height:1.08em;padding-top:0.389em;font-weight:600">
+                              <span>Team Picks</span>
+                            </h3>
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span
+                                >Time for everyone=E2=80=99s favorite part.=
+ Team
+                                picks!</span
+                              >
+                            </p>
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span>=F0=9F=91=9C Sandy got this </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fuk.coach.com%2Fproducts%2Fandrea-small-shoulder-bag-in-smoot=
+h-leather-with-tonal-hardware%2FCT757.html/1/0100019a5d9ffb87-4fe95c9f-2181=
+-4d9b-aebb-2461b09898f4-000000/X_DWV6TS4fGOPPCOhWwiV3hHkIe-hh5Ey6TnJTO24X8=
+=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >little beauty a couple</a
+                                ></span
+                              ><span>
+                                of weeks ago. She said that if Raycast were=
+ a
+                                handbag, this might be it. Never thought of
+                                Raycast being a bag before, but here we
+                                are!</span
+                              >
+                            </p>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span>=F0=9F=97=BA=EF=B8=8F=C2=A0Bruno just f=
+ound out about </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fwww.corner.inc%2F/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb=
+-2461b09898f4-000000/b10UMIW10_h36X22E4q7TOYxqKbjdDUZWM7-D04kAmo=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Corner</a
+                                ></span
+                              ><span>
+                                and is enjoying using it to discover new
+                                places.</span
+                              >
+                            </p>
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span>=F0=9F=A7=A5 Jordan picked up this love=
+ly </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Funiversalworks.com%2Fproducts%2Funiversal-works-uniform-jack=
+et-in-rust-wool-fleece/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-2461b0989=
+8f4-000000/wswjPEVVkMxgamwBSC1X3kpt4yGkAfiDRtEfH6xCrJg=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Universal Works fleece jacket</a
+                                ></span
+                              ><span>. Good choice.</span>
+                            </p>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span
+                                >=F0=9F=91=83 Megan&#x27;s back with her fr=
+agrances, this
+                                time with the </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fmatiere-premiere.com%2Fproducts%2Fparisian-musc/1/0100019a5d=
+9ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000/Ci-tQBCgX1PhKwhHNJYM7UkD=
+T-oW8a7G8uY_2iBW9QY=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Parisian Musc</a
+                                ></span
+                              ><span> from Matiere Premiere. </span>
+                            </p>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span
+                                >=F0=9F=83=8F Michael picked this a few new=
+ board games
+                                including </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fboardgamegeek.com%2Fboardgame%2F173346%2F7-wonders-duel/1/01=
+00019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000/4xVneRMfJYpbG2pH=
+1rKLoM8DxTlHPTaTlUee2A8Hgtk=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >7 Wonders Duel</a
+                                ></span
+                              ><span>.</span>
+                            </p>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span
+                                >=F0=9F=92=A3 If you&#x27;re into collabora=
+tive deduction
+                                games, Mathieu recommends </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fboardgamegeek.com%2Fboardgame%2F413246%2Fbomb-busters/1/0100=
+019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000/7nwJlaiM6j7N30Zqf8=
+vZIHcez8jpuJeNCY-88X0Ftxc=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Bomb Busters</a
+                                ></span
+                              ><span>.</span>
+                            </p>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span>=F0=9F=8E=B4 David recently played </sp=
+an
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fbigpotato.co.uk%2Fproducts%2Fdont-get-got/1/0100019a5d9ffb87=
+-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000/mTPvJyZGtX2Qp_Rvbb1OO3tHMAD8Hc=
+IkaZ7e_WrRbAY=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Don&#x27;t Get Got</a
+                                ></span
+                              ><span> and can&#x27;t recommend it enough.</=
+span>
+                            </p>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span
+                                >=F0=9F=8E=B2 Since we&#x27;re talking abou=
+t board games,
+                                Tirta loves </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fboardgamegeek.com%2Fboardgame%2F145659%2Fscoville/1/0100019a=
+5d9ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000/C8JeYPHnJMaXVapx4nrsnT=
+dcRrLA373VtzRD9UpDpGQ=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >Scoville</a
+                                ></span
+                              ><span>! </span>
+                            </p>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span
+                                >=F0=9F=87=A9=F0=9F=87=AA Danny wans to cal=
+l out some his favourite
+                                German bread: </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fwww.schaefers-brot.de%2Fprodukte%2Fdetail%3Fid=3D458/1/01000=
+19a5d9ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000/goQb7mvi_y-699iKdsk=
+67qvDycVm8cbpXZTTU5dby3c=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >The Sonnenbatzen</a
+                                ></span
+                              ><span>.</span>
+                            </p>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span
+                                >=F0=9F=91=96 Thomas bought some new trouse=
+rs from Tokyo,
+                                including </span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fporterclassic.com%2Fproducts%2Fmoleskin-gene-kelly-pants/1/0=
+100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000/T9cLmfaGbk1QVWJ=
+GHosQvmnLzaoo0vMyDTZEq4Eat8U=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >this one</a
+                                ></span
+                              ><span> from Porter Classic.</span>
+                            </p>
+                            <p
+                              class=3D""
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span>=F0=9F=91=9F I recently picked up this =
+</span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fstore.moonstar.co.jp%2Fproducts%2Fdetail%2F201/1/0100019a5d9=
+ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000/6KwndG2ISjyWm8dMV51gK-Dfu=
+Lz1gg6BdgvijLfjm0Y=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >ALW Slip On</a
+                                ></span
+                              ><span> from Moonstar from Tokyo.</span>
+                            </p>
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <br />
+                            </p>
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span
+                                >That&#x27;s it for this month. For all cha=
+nges,
+                                check out our=C2=A0</span
+                              ><span
+                                ><a
+                                  href=3D"https://us-east-1.resend-ct.com/C=
+L0/https:%2F%2Fwww.raycast.com%2Fchangelog/1/0100019a5d9ffb87-4fe95c9f-2181=
+-4d9b-aebb-2461b09898f4-000000/X9VGkAvyWDpt_DN-D9zdG7spc6mMFuLbzosVVQP2WTg=
+=3D430"
+                                  rel=3D"noopener noreferrer nofollow"
+                                  style=3D"color:#FF6363;text-decoration-li=
+ne:none;text-decoration:none"
+                                  target=3D"_blank"
+                                  >changelog</a
+                                ></span
+                              ><span>.</span>
+                            </p>
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <span>See you next month!</span>
+                            </p>
+                            <hr
+                              class=3D"node-divider divider"
+                              style=3D"width:100%;border:none;border-top:1p=
+x solid #eaeaea;padding-bottom:1em;border-width:2px" />
+                            <table
+                              align=3D"center"
+                              width=3D"100%"
+                              border=3D"0"
+                              cellpadding=3D"0"
+                              cellspacing=3D"0"
+                              role=3D"presentation"
+                              class=3D"node-footer footer"
+                              style=3D"font-size:0.8em">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <img
+                                      class=3D"node-image"
+                                      height=3D"49"
+                                      src=3D"https://resend-bucket-test.s3.=
+amazonaws.com//XBhqz5mxmDPp3MH"
+                                      style=3D"display:block;outline:none;b=
+order:none;text-decoration:none;max-width:100%;border-radius:8px;padding-to=
+p:10px;padding-bottom:10px"
+                                      width=3D"185" />
+                                    <p
+                                      class=3D"node-paragraph"
+                                      style=3D"margin:0;padding:0;font-size=
+:1em;padding-top:0.5em;padding-bottom:0.5em;color:#7f7f7f;text-align:center=
+">
+                                      <span style=3D"color:#A8A29E"
+                                        >Raycast Technologies Inc.</span
+                                      ><br /><span style=3D"color:#A8A29E"
+                                        >2093 Philadelphia Pike #3222, Clay=
+mont,
+                                        DE 19703</span
+                                      ><br /><span
+                                        ><u
+                                          ><a
+                                            href=3D"https://us-east-1.resen=
+d-ct.com/CL0/https:%2F%2Funsubscribe.resend.com%2F%3Ftoken=3DeyJhbGciOiJIUz=
+I1NiIsInR5cCI6IkpXVCJ9.eyJjb250YWN0SWQiOiI1ZGUzMThlMi1jZDA1LTQ2ZjAtODU2Yy1i=
+ZjZmOWYxYTk0YjIiLCJhdWRpZW5jZUlkIjoiOTdjNjc2ZDgtMmY2ZC00NTlmLWJmNWMtNTk5YzI=
+3NGQ3NTA1IiwiYnJvYWRjYXN0SWQiOiI1OGE2Yjk5OS00NmFhLTQwMzUtOTUzMi1kMWJlNWYzNz=
+FiMTciLCJ0ZWFtSWQiOiJhZjgyY2E5MC0zNmU2LTRkNmItODdmMC0wYjA1NWJhOTUxZDYiLCJpY=
+XQiOjE3NjI1MDczMTcsImV4cCI6MTc5NDA0MzMxN30.6rsb8WAGutPwJ6yukf5DN0JW1d8joLr3=
+LQnOMIfKJzY/1/0100019a5d9ffb87-4fe95c9f-2181-4d9b-aebb-2461b09898f4-000000/=
+ZL_p3-Yub9zH2Ph5_H4HpI0QlQtpfXiijklVP4_Iy8I=3D430"
+                                            rel=3D"noopener noreferrer nofo=
+llow"
+                                            style=3D"color:#FF6363;text-dec=
+oration-line:none;text-decoration:none"
+                                            target=3D"_blank"
+                                            >Unsubscribe</a
+                                          ></u
+                                        ></span
+                                      >
+                                    </p>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <p
+                              class=3D"node-paragraph"
+                              style=3D"margin:0;padding:0;font-size:1em;pad=
+ding-top:0.5em;padding-bottom:0.5em">
+                              <br />
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--/$-->
+  </body>
+</html>
+
+----_NmP-260cadb264773586-Part_1--

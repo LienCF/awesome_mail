@@ -1,0 +1,498 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:8883:b0:4ec:41ca:fc70 with SMTP id ee3csp2411632mdb;
+        Sat, 15 Nov 2025 10:38:56 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF1Riez3wuihGgZ0lU3uI4W0DWRYCP1RIlT1SqSMw+rv4Gwd/6E0DKrVuv0lPSs098Utdk1
+X-Received: by 2002:a05:6a20:244b:b0:35d:8c8:8ab4 with SMTP id adf61e73a8af0-35d08c88c4emr3836707637.44.1763231935931;
+        Sat, 15 Nov 2025 10:38:55 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1763231935; cv=none;
+        d=google.com; s=arc-20240605;
+        b=gpDXOKKao2Ag4WqJe6shwk90RWirVX/K2DaVGk/tOUmbrMWGzPW+EOpxVDiDo7HJh9
+         bgr4vgLY7thLRRYznHMMeOQY2Ts6SdNOWtWVjaflnmp7pTDeLTYJgKWFBhS4xUnrDxLV
+         jRuKJa+juMiBFnWwytyU0P64L9Mj63rffC1mAFIcs5NR6pcxxkj2UFnl3ywe3KC1L+BX
+         TWu8FbVHSwj6HSJZrLZ4QQM6gv6tPyPf7Mo1Z+vJovWc1UN4qzHw9WGIbowBO7YU/TXY
+         /8DTsvqt73mdMjpIt57K+1txoo0i32FcTZcJkmk+41mfchzohQ2SHK7UBetUhmwz6oRF
+         qd1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:message-id:date:from:subject:mime-version:dkim-signature
+         :dkim-signature;
+        bh=ofpY/icbGfWM9oD6QISvYr4lue64lwB/laSqWKb6Eyk=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=f4kUoD1+wFCRZCKzz9ts28rLLmSjLLQmYv3IwTvoN71eI0AtVgtGsrJfBSloaHEStA
+         DRPxlfkrm5T5Y3dFl6RVk/p7ufxJx+j1C1i+YDhmcTnpghPD8wVo5HaPinIZ7uKTEEEe
+         Bt/+rx7giPBMhHkW10u1WRvBLMCyOicN2vyz/Tv97HjFqdDn9YU9EvkXpu/zHL9o1AWf
+         cVsneQfIEebzN1EBItHg97wtPQsz2avNQYIWnuLdbdVeUjw69J3wYP34NYXYYj7yQjip
+         ZRSML3llF+o+KwT2wBpWqn60D3Y5mz3ReA/wPx3grW0+FbgndtXoLbYOq34OuxaHIjXJ
+         L49A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@getsentry.com header.s=m1 header.b=ffeVbqoi;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=uH7uDCR0;
+       spf=pass (google.com: domain of bounces+2307627-93ed-liencf=gmail.com@md.getsentry.com designates 167.89.84.75 as permitted sender) smtp.mailfrom="bounces+2307627-93ed-liencf=gmail.com@md.getsentry.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=md.getsentry.com
+Return-Path: <bounces+2307627-93ed-liencf=gmail.com@md.getsentry.com>
+Received: from o3.md.getsentry.com (o3.md.getsentry.com. [167.89.84.75])
+        by mx.google.com with ESMTPS id 41be03b00d2f7-bc375830026si4082434a12.505.2025.11.15.10.38.55
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 15 Nov 2025 10:38:55 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+2307627-93ed-liencf=gmail.com@md.getsentry.com designates 167.89.84.75 as permitted sender) client-ip=167.89.84.75;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@getsentry.com header.s=m1 header.b=ffeVbqoi;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=uH7uDCR0;
+       spf=pass (google.com: domain of bounces+2307627-93ed-liencf=gmail.com@md.getsentry.com designates 167.89.84.75 as permitted sender) smtp.mailfrom="bounces+2307627-93ed-liencf=gmail.com@md.getsentry.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=md.getsentry.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=getsentry.com;
+	h=content-type:mime-version:subject:from:date:to:cc:content-type:date:
+	feedback-id:from:subject:to;
+	s=m1; bh=ofpY/icbGfWM9oD6QISvYr4lue64lwB/laSqWKb6Eyk=;
+	b=ffeVbqoiF4NW5R6QDaqZKdN6AwwOXdFN8kAINyKRl3ZV6DYYhvXd/oB6L1+GKccAiWh/
+	rLPbngUuO8V5ejTkY2tRn0+WcfPWqMJCq5jnNxvq3BIxT1zx71NtQWzSa2V4wcdduYSpmC
+	nWvsUgYTFiz4x5gxloWXQEu/3MN9P2cq4=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:mime-version:subject:from:date:to:cc:content-type:date:
+	feedback-id:from:subject:to;
+	s=smtpapi; bh=ofpY/icbGfWM9oD6QISvYr4lue64lwB/laSqWKb6Eyk=;
+	b=uH7uDCR0HBQrpsqfGX6PgQorLdRz+xAGMbnYmqrXQmU1oFa7d+yK2+HhDPpsJgwJJhHV
+	roVAAuXjRmkXIaKItWcEWAd51OfdHcn/bgJHe3OknG5OBMY1bf75IwSRT7uaeknJSF9Ka9
+	Jrdpn1j9OJVtxBfmABiS0GzeFm4y+GeQw=
+Received: by recvd-664f5cd8bb-mtdj4 with SMTP id recvd-664f5cd8bb-mtdj4-1-6918C8BE-A
+	2025-11-15 18:38:54.47361986 +0000 UTC m=+1020814.053193546
+Received: from task-default-worker-756b55f7c5-6x4j6 (unknown)
+	by geopod-ismtpd-11 (SG) with ESMTP id iy9O4P-1ROi9DSSrW-VOpQ
+	for <liencf@gmail.com>; Sat, 15 Nov 2025 18:38:54.389 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3704426074039855042=="
+MIME-Version: 1.0
+Subject: Weekly Report for Xamide: November 8th, 2025 - November 15th, 2025
+From: Sentry <noreply@md.getsentry.com>
+Date: Sat, 15 Nov 2025 18:38:54 +0000 (UTC)
+Message-Id: <20251115183853.608487.19199@md.getsentry.com>
+X-SG-EID: 
+ =?us-ascii?Q?u001=2EsDAWlfbXXGupROvum8uzjYcMZKVuuGbL=2Fank7dazu0rv+KCUrXlIMNCGS?=
+ =?us-ascii?Q?DEZFSq2Cj0upQJwXkoZ4OH517+5ZfENm0ixKZaQ?=
+ =?us-ascii?Q?HgHuw+cnRhOOMN5f=2FHsPXGvsGJAfuwlKSt3zAze?=
+ =?us-ascii?Q?=2FGFHHA4o5nv9eB1NUzGLnmRyZIRHtwumOT12ZoQ?=
+ =?us-ascii?Q?xgH9Wsd3f0l9kGo++S8VzBIHl3KeMYYcHWC2JAO?=
+ =?us-ascii?Q?QxaRGmQwT=2Fh0dfpxE4X+H4=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BhJqhvxwQRRneMX1tlS=2Fn4ASTP4fzXZahrSu8?=
+ =?us-ascii?Q?dzNhNlGSSmFVSHlTCK2auDf5KBwFL72jzF4f=2FRK?=
+ =?us-ascii?Q?eKDChSIkpIU=3D?=
+To: liencf@gmail.com
+X-Entity-ID: u001.qFBnU0fmuUhhSftCrEUw1Q==
+
+--===============3704426074039855042==
+Content-Type: text/html; charset=us-ascii
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html style="font-weight: 400">
+<head style="font-weight: 400">
+  <meta charset="utf-8" style="font-weight: 400">
+  <meta name="viewport" content="width=device-width, initial-scale=1" style="font-weight: 400">
+
+  
+
+<style type="text/css" style="font-weight: 400">
+  @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+</style>
+
+
+  
+
+  
+
+  <style type="text/css" style="font-weight: 400">
+    @media only screen and (max-device-width: 480px) {
+
+      .mobile-full-width > th,
+      .mobile-full-width > td {
+          display: block;
+          width: 100%;
+      }
+
+      h4 {
+        text-align: center !important;
+      }
+
+      .header td {
+        text-align: center !important;
+      }
+
+      .project-breakdown .col-dropped {
+        display: none;
+      }
+
+      #events-by-issue-type .legend {
+        margin-bottom: 20px !important;
+        text-align: center !important;
+      }
+
+      #events-by-issue-type .quantity {
+        display: none;
+      }
+    }
+
+  </style>
+
+
+
+</head>
+<body class="" style='font-weight: 400; background-image: url(https://s1.sentry-cdn.com/_static/9c876e106128890134ed1574a1d14801/sentry/images/email/sentry-pattern.png); width: 100%; font-size: 16px; font-family: "Lato", "Helvetica Neue", helvetica, sans-serif; background-color: #fff; color: #2f2936; -webkit-font-smoothing: antialiased; margin: 0; padding: 0'>
+<div class="preheader" style="font-weight: 400; display: none; font-size: 0; max-height: 0; line-height: 0; mso-hide: all; padding: 0"></div>
+<table class="main" style='font-weight: 400; width: 100%; border-collapse: separate; font-size: 16px; font-family: "Lato", "Helvetica Neue", helvetica, sans-serif; background-color: #fff; color: #2f2936; -webkit-font-smoothing: antialiased; max-width: 700px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border-radius: 4px; border: 1px solid #c7d0d4; border-spacing: 0; margin: 15px auto; padding: 0'>
+  <tr style="font-weight: 400">
+    <td style="font-weight: 400; text-align: left; margin: 0; padding: 0">
+      <div class="header" style="font-weight: 400; font-size: 14px; border-bottom: 1px solid #dee7eb; padding: 23px 0">
+        <div class="container" style="font-weight: 400; max-width: 600px; text-align: left; margin: 0 auto; padding: 18px 20px 10px">
+          
+  <table style="font-weight: 400; margin-bottom: 0; width: 100%; border-collapse: collapse">
+    <tr class="mobile-full-width" style="font-weight: 400">
+      <td width="125px" style="font-weight: 400; text-align: right; font-size: 14px; margin: 0; padding: 0">
+        <h1 style="font-weight: normal; font-size: 38px; line-height: 42px; color: #000; letter-spacing: -1px; margin: 0; padding: 0">
+          <a href="https://sentry.io" style="font-weight: 500; color: #4674ca; text-decoration: none"><img src="https://s1.sentry-cdn.com/_static/9c876e106128890134ed1574a1d14801/sentry/images/email/sentry_logo_full.png" width="125px" height="29px" alt="Sentry" style="font-weight: 400"></a>
+        </h1>
+      </td>
+      <td class="align-right" style="font-weight: 400; text-align: right; font-size: 14px; margin: 0; padding: 0">
+        <strong style="font-weight: bold">Weekly Update for Xamide</strong><br style="font-weight: 400">
+        November 8th, 2025 &#8211; November 15th, 2025
+      </td>
+    </tr>
+  </table>
+
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr style="font-weight: 400">
+    <td style="font-weight: 400; text-align: left; margin: 0; padding: 0">
+      
+
+<div class="container" style="font-weight: 400; max-width: 600px; text-align: left; margin: 0 auto; padding: 18px 20px 10px">
+
+  <div class="project-breakdown" style="font-weight: 400; margin-bottom: 20px">
+    
+    <table class="project-breakdown-graph-deck" style="font-weight: 400; margin-bottom: 20px; width: 100%; border-collapse: collapse; table-layout: fixed; border-spacing: 3px; border-style: hidden"><tbody style="font-weight: 400"><tr style="font-weight: 400">
+
+    <td class="project-breakdown-graph-cell errors" style="font-weight: 400; text-align: left; margin: 0; padding: 0 10px 0 0">
+    <h4 class="total-count-title" style="font-weight: 700; font-size: 18px; margin: 0">Total Project Errors</h4>
+    <h1 style="font-weight: 400; margin: 0" class="total-count">30</h1>
+    
+    
+    <a href="https://xamide.sentry.io/issues/?referrer=weekly_report&amp;notification_uuid=8c42eaf2-5536-4a63-827a-761826890ad9" style="font-weight: 500; color: #4674ca; text-decoration: none; font-size: 12px; margin-bottom: 16px; display: block">View All Errors</a>
+
+    <table class="graph" style="font-weight: 400; width: 100%; border-collapse: collapse; table-layout: fixed; margin: 0">
+      <tr style="font-weight: 400">
+        
+        <td valign="bottom" class="bar" style="font-weight: 400; text-align: left; font-size: 0; border-right: 10px solid #fff; height: 110px; width: 14%; margin: 0; padding: 0">
+            <table class="bar" style="font-weight: 400; margin-bottom: 0; width: 100%; border-collapse: collapse">
+              
+                <tr style="font-weight: 400">
+                  <td height="31" style="font-weight: 400; text-align: left; line-height: 0; font-size: 0; border-right: none; background-color: #422C6E; margin: 0; padding: 0">&#160;</td>
+                </tr>
+              
+            </table>
+          </td>
+        
+        <td valign="bottom" class="bar" style="font-weight: 400; text-align: left; font-size: 0; border-right: 10px solid #fff; height: 110px; width: 14%; margin: 0; padding: 0">
+            <table class="bar" style="font-weight: 400; margin-bottom: 0; width: 100%; border-collapse: collapse">
+              
+                <tr style="font-weight: 400">
+                  <td height="47" style="font-weight: 400; text-align: left; line-height: 0; font-size: 0; border-right: none; background-color: #422C6E; margin: 0; padding: 0">&#160;</td>
+                </tr>
+              
+            </table>
+          </td>
+        
+        <td valign="bottom" class="bar" style="font-weight: 400; text-align: left; font-size: 0; border-right: 10px solid #fff; height: 110px; width: 14%; margin: 0; padding: 0">
+            <table class="bar" style="font-weight: 400; margin-bottom: 0; width: 100%; border-collapse: collapse">
+              
+                <tr style="font-weight: 400">
+                  <td height="63" style="font-weight: 400; text-align: left; line-height: 0; font-size: 0; border-right: none; background-color: #422C6E; margin: 0; padding: 0">&#160;</td>
+                </tr>
+              
+            </table>
+          </td>
+        
+        <td valign="bottom" class="bar" style="font-weight: 400; text-align: left; font-size: 0; border-right: 10px solid #fff; height: 110px; width: 14%; margin: 0; padding: 0">
+            <table class="bar" style="font-weight: 400; margin-bottom: 0; width: 100%; border-collapse: collapse">
+              
+                <tr style="font-weight: 400">
+                  <td height="110" style="font-weight: 400; text-align: left; line-height: 0; font-size: 0; border-right: none; background-color: #422C6E; margin: 0; padding: 0">&#160;</td>
+                </tr>
+              
+            </table>
+          </td>
+        
+        <td valign="bottom" class="bar" style="font-weight: 400; text-align: left; font-size: 0; border-right: 10px solid #fff; height: 110px; width: 14%; margin: 0; padding: 0">
+            <table class="bar" style="font-weight: 400; margin-bottom: 0; width: 100%; border-collapse: collapse">
+              
+                <tr style="font-weight: 400">
+                  <td height="94" style="font-weight: 400; text-align: left; line-height: 0; font-size: 0; border-right: none; background-color: #422C6E; margin: 0; padding: 0">&#160;</td>
+                </tr>
+              
+            </table>
+          </td>
+        
+        <td valign="bottom" class="bar" style="font-weight: 400; text-align: left; font-size: 0; border-right: 10px solid #fff; height: 110px; width: 14%; margin: 0; padding: 0">
+            <table class="bar" style="font-weight: 400; margin-bottom: 0; width: 100%; border-collapse: collapse">
+              
+                <tr style="font-weight: 400">
+                  <td height="63" style="font-weight: 400; text-align: left; line-height: 0; font-size: 0; border-right: none; background-color: #422C6E; margin: 0; padding: 0">&#160;</td>
+                </tr>
+              
+            </table>
+          </td>
+        
+        <td valign="bottom" class="bar" style="font-weight: 400; text-align: left; font-size: 0; border-right: none; height: 110px; width: 14%; margin: 0; padding: 0">
+            <table class="bar" style="font-weight: 400; margin-bottom: 0; width: 100%; border-collapse: collapse">
+              
+                <tr style="font-weight: 400">
+                  <td height="31" style="font-weight: 400; text-align: left; line-height: 0; font-size: 0; border-right: none; background-color: #422C6E; margin: 0; padding: 0">&#160;</td>
+                </tr>
+              
+            </table>
+          </td>
+        
+      </tr>
+      <tr style="font-weight: 400">
+        
+          <td class="label" style="font-weight: 400; text-align: center; font-size: 14px; border-right: 10px solid #fff; color: #848296; width: 14%; margin: 0; padding: 10px 0 0">
+            Sat
+          </td>
+        
+          <td class="label" style="font-weight: 400; text-align: center; font-size: 14px; border-right: 10px solid #fff; color: #848296; width: 14%; margin: 0; padding: 10px 0 0">
+            Sun
+          </td>
+        
+          <td class="label" style="font-weight: 400; text-align: center; font-size: 14px; border-right: 10px solid #fff; color: #848296; width: 14%; margin: 0; padding: 10px 0 0">
+            Mon
+          </td>
+        
+          <td class="label" style="font-weight: 400; text-align: center; font-size: 14px; border-right: 10px solid #fff; color: #848296; width: 14%; margin: 0; padding: 10px 0 0">
+            Tue
+          </td>
+        
+          <td class="label" style="font-weight: 400; text-align: center; font-size: 14px; border-right: 10px solid #fff; color: #848296; width: 14%; margin: 0; padding: 10px 0 0">
+            Wed
+          </td>
+        
+          <td class="label" style="font-weight: 400; text-align: center; font-size: 14px; border-right: 10px solid #fff; color: #848296; width: 14%; margin: 0; padding: 10px 0 0">
+            Thu
+          </td>
+        
+          <td class="label" style="font-weight: 400; text-align: center; font-size: 14px; border-right: none; color: #848296; width: 14%; margin: 0; padding: 10px 0 0">
+            Fri
+          </td>
+        
+      </tr>
+    </table>
+    </td>
+
+
+
+    
+    <td class="project-breakdown-graph-cell transactions " style="font-weight: 400; text-align: left; border: 1px solid #C4C4C4; margin: 0; padding: 0 0 0 10px">
+      <h4 class="total-count-title" style="font-weight: 700; font-size: 18px; margin: 0">Total Project Transactions</h4>
+      <h1 style="font-weight: 400; margin: 0" class="total-count">2</h1>
+      
+      
+      <a href="https://xamide.sentry.io/performance/?referrer=weekly_report_view_all&amp;notification_uuid=8c42eaf2-5536-4a63-827a-761826890ad9" style="font-weight: 500; color: #4674ca; text-decoration: none; font-size: 12px; margin-bottom: 16px; display: block">View All Transactions</a>
+      <table class="graph" style="font-weight: 400; width: 100%; border-collapse: collapse; table-layout: fixed; margin: 0">
+        <tr style="font-weight: 400">
+          
+          <td valign="bottom" class="bar" style="font-weight: 400; text-align: left; font-size: 0; border-right: 10px solid #fff; height: 110px; width: 14%; margin: 0; padding: 0">
+              <table class="bar" style="font-weight: 400; margin-bottom: 0; width: 100%; border-collapse: collapse">
+                
+                  <tr style="font-weight: 400">
+                    <td height="0" style="font-weight: 400; text-align: left; line-height: 0; font-size: 0; border-right: none; background-color: #422C6E; margin: 0; padding: 0">&#160;</td>
+                  </tr>
+                
+              </table>
+            </td>
+          
+          <td valign="bottom" class="bar" style="font-weight: 400; text-align: left; font-size: 0; border-right: 10px solid #fff; height: 110px; width: 14%; margin: 0; padding: 0">
+              <table class="bar" style="font-weight: 400; margin-bottom: 0; width: 100%; border-collapse: collapse">
+                
+                  <tr style="font-weight: 400">
+                    <td height="0" style="font-weight: 400; text-align: left; line-height: 0; font-size: 0; border-right: none; background-color: #422C6E; margin: 0; padding: 0">&#160;</td>
+                  </tr>
+                
+              </table>
+            </td>
+          
+          <td valign="bottom" class="bar" style="font-weight: 400; text-align: left; font-size: 0; border-right: 10px solid #fff; height: 110px; width: 14%; margin: 0; padding: 0">
+              <table class="bar" style="font-weight: 400; margin-bottom: 0; width: 100%; border-collapse: collapse">
+                
+                  <tr style="font-weight: 400">
+                    <td height="0" style="font-weight: 400; text-align: left; line-height: 0; font-size: 0; border-right: none; background-color: #422C6E; margin: 0; padding: 0">&#160;</td>
+                  </tr>
+                
+              </table>
+            </td>
+          
+          <td valign="bottom" class="bar" style="font-weight: 400; text-align: left; font-size: 0; border-right: 10px solid #fff; height: 110px; width: 14%; margin: 0; padding: 0">
+              <table class="bar" style="font-weight: 400; margin-bottom: 0; width: 100%; border-collapse: collapse">
+                
+                  <tr style="font-weight: 400">
+                    <td height="110" style="font-weight: 400; text-align: left; line-height: 0; font-size: 0; border-right: none; background-color: #422C6E; margin: 0; padding: 0">&#160;</td>
+                  </tr>
+                
+              </table>
+            </td>
+          
+          <td valign="bottom" class="bar" style="font-weight: 400; text-align: left; font-size: 0; border-right: 10px solid #fff; height: 110px; width: 14%; margin: 0; padding: 0">
+              <table class="bar" style="font-weight: 400; margin-bottom: 0; width: 100%; border-collapse: collapse">
+                
+                  <tr style="font-weight: 400">
+                    <td height="0" style="font-weight: 400; text-align: left; line-height: 0; font-size: 0; border-right: none; background-color: #422C6E; margin: 0; padding: 0">&#160;</td>
+                  </tr>
+                
+              </table>
+            </td>
+          
+          <td valign="bottom" class="bar" style="font-weight: 400; text-align: left; font-size: 0; border-right: 10px solid #fff; height: 110px; width: 14%; margin: 0; padding: 0">
+              <table class="bar" style="font-weight: 400; margin-bottom: 0; width: 100%; border-collapse: collapse">
+                
+                  <tr style="font-weight: 400">
+                    <td height="0" style="font-weight: 400; text-align: left; line-height: 0; font-size: 0; border-right: none; background-color: #422C6E; margin: 0; padding: 0">&#160;</td>
+                  </tr>
+                
+              </table>
+            </td>
+          
+          <td valign="bottom" class="bar" style="font-weight: 400; text-align: left; font-size: 0; border-right: none; height: 110px; width: 14%; margin: 0; padding: 0">
+              <table class="bar" style="font-weight: 400; margin-bottom: 0; width: 100%; border-collapse: collapse">
+                
+                  <tr style="font-weight: 400">
+                    <td height="0" style="font-weight: 400; text-align: left; line-height: 0; font-size: 0; border-right: none; background-color: #422C6E; margin: 0; padding: 0">&#160;</td>
+                  </tr>
+                
+              </table>
+            </td>
+          
+        </tr>
+        <tr style="font-weight: 400">
+          
+            <td class="label" style="font-weight: 400; text-align: center; font-size: 14px; border-right: 10px solid #fff; color: #848296; width: 14%; margin: 0; padding: 10px 0 0">
+              Sat
+            </td>
+          
+            <td class="label" style="font-weight: 400; text-align: center; font-size: 14px; border-right: 10px solid #fff; color: #848296; width: 14%; margin: 0; padding: 10px 0 0">
+              Sun
+            </td>
+          
+            <td class="label" style="font-weight: 400; text-align: center; font-size: 14px; border-right: 10px solid #fff; color: #848296; width: 14%; margin: 0; padding: 10px 0 0">
+              Mon
+            </td>
+          
+            <td class="label" style="font-weight: 400; text-align: center; font-size: 14px; border-right: 10px solid #fff; color: #848296; width: 14%; margin: 0; padding: 10px 0 0">
+              Tue
+            </td>
+          
+            <td class="label" style="font-weight: 400; text-align: center; font-size: 14px; border-right: 10px solid #fff; color: #848296; width: 14%; margin: 0; padding: 10px 0 0">
+              Wed
+            </td>
+          
+            <td class="label" style="font-weight: 400; text-align: center; font-size: 14px; border-right: 10px solid #fff; color: #848296; width: 14%; margin: 0; padding: 10px 0 0">
+              Thu
+            </td>
+          
+            <td class="label" style="font-weight: 400; text-align: center; font-size: 14px; border-right: none; color: #848296; width: 14%; margin: 0; padding: 10px 0 0">
+              Fri
+            </td>
+          
+        </tr>
+      </table>
+      </td>
+    
+
+    
+
+    </tr></tbody></table>
+
+    <table class="summary" style="font-weight: 400; margin-bottom: 20px; width: 100%; border-collapse: collapse">
+      <thead style="font-weight: 400">
+        <tr style="font-weight: 400; border-bottom: 1px solid #DEE7EB">
+          <th style="font-weight: 500; text-align: left; font-size: 12px; padding-top: 8px; padding-bottom: 8px; text-transform: uppercase; color: #88859a; width: 2em; padding-right: 0.5em"></th>
+          <th style="font-weight: 500; text-align: left; font-size: 12px; padding-top: 8px; padding-bottom: 8px; text-transform: uppercase; color: #88859a">Project</th>
+          <th style="font-weight: 500; text-align: center; font-size: 12px; padding-top: 8px; padding-bottom: 8px; text-transform: uppercase; color: #88859a; width: 5em" class="numeric">Errors</th>
+          <th style="font-weight: 500; text-align: center; padding-right: 2rem; font-size: 12px; padding-top: 8px; padding-bottom: 8px; text-transform: uppercase; color: #88859a; width: 5em" class="numeric col-dropped col-errors-dropped">Dropped</th>
+          <th style="font-weight: 500; text-align: center; font-size: 12px; padding-top: 8px; padding-bottom: 8px; text-transform: uppercase; color: #88859a; width: 7em" class="numeric">Transactions</th>
+          <th style="font-weight: 500; text-align: center; font-size: 12px; padding-top: 8px; padding-bottom: 8px; text-transform: uppercase; color: #88859a; width: 7em" class="numeric col-dropped">Dropped</th>
+        </tr>
+      </thead>
+      <tbody style="font-weight: 400">
+      
+        <tr style="font-weight: 400; border-bottom: 1px solid #DEE7EB">
+          <td style="font-weight: 400; text-align: left; font-size: 14px; margin: 0; padding: 8px 0">
+              <span style="font-weight: 400; background: #422C6E; display: inline-block; height: 1em; width: 1em">&#160;</span>
+          </td>
+          <td style="font-weight: 400; text-align: left; font-size: 14px; margin: 0; padding: 8px 0">
+              <a href="https://xamide.sentry.io/issues/?referrer=weekly_report&amp;notification_uuid=8c42eaf2-5536-4a63-827a-761826890ad9&amp;project=4509630962532352" style="font-weight: 500; color: #4674ca; text-decoration: none">eventkeeper</a>
+          </td>
+          <td class="numeric" style="font-weight: 400; text-align: center; font-size: 14px; margin: 0; padding: 8px 0">30</td>
+          <td class="numeric col-dropped col-errors-dropped" style="font-weight: 400; text-align: center; font-size: 14px; margin: 0; padding: 8px 2rem 8px 0">0</td>
+          <td class="numeric" style="font-weight: 400; text-align: center; font-size: 14px; margin: 0; padding: 8px 0">2</td>
+          <td class="numeric col-dropped" style="font-weight: 400; text-align: center; font-size: 14px; margin: 0; padding: 8px 0">0</td>
+        </tr>
+      
+      </tbody>
+    </table>
+    
+  </div>
+
+  <div id="events-by-issue-type" style="font-weight: 400">
+
+    
+
+    
+
+  </div>
+
+  
+  
+  
+  <div id="key-transactions" style="font-weight: 400">
+    <h4 style="font-weight: 700; font-size: 18px; margin: 20px 0">Most frequent transactions</h4>
+    
+    <div style="font-weight: 400; display: flex; flex-direction: row; margin-bottom: 8px; align-items: flex-start">
+      <div style="font-weight: 400; width: 10%; font-size: 17px">2</div>
+      <div style="font-weight: 400; width: 65%">
+        
+        
+        <a style="font-weight: 500; color: #4674ca; text-decoration: none; display: block; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; font-size: 17px" href="https://xamide.sentry.io/performance/summary/?project=4509630962532352&amp;transaction=widget.timeline.generation&amp;referrer=weekly_report&amp;notification_uuid=8c42eaf2-5536-4a63-827a-761826890ad9">widget.timeline.generation</a>
+        <div style="font-weight: 400; font-size: 12px; color: #80708F">eventkeeper</div>
+      </div>
+      <div style="font-weight: 400; font-size: 14px; margin-left: auto; display: flex">
+        
+        <span style="font-weight: 400">0s</span>
+      </div>
+    </div>
+    
+  </div>
+  
+
+</div>
+
+      <div class="container" style="font-weight: 400; max-width: 600px; text-align: left; margin: 0 auto; padding: 18px 20px 10px">
+        <div class="footer" style="font-weight: 400; border-top: 1px solid #E7EBEE; padding: 35px 0">
+          
+          <a href="https://sentry.io" style="font-weight: 500; color: #687276; text-decoration: none; float: right">Home</a>
+
+          
+          
+          <a href="https://sentry.io/settings/account/notifications/" style="font-weight: 500; color: #687276; text-decoration: none">Notification Settings</a>
+          
+
+          
+          
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+<img src="https://u2307627.ct.sendgrid.net/wf/open?upn=u001.JFvHvRC-2FDCk3N-2B1tZqzlvgfqJEw4VLM-2BRjKn3ppaR7hNZiAA3ZN52bV5v7VHPTBXxg-2BLE01orxr8FLc-2FGNCYLSg4wfffICnWyJDcfxOcQ29CA78KiXyAQYiqww2gGvAX44HH0EtV5iR1gFqH1zuaCzzX8PzEwvXAwZJEROQ3JXJiWZgitv71lk2bZXp4YlLCPvTuWekcaQmdgDqwfVndJbG-2ByQp9Tclm-2Bv-2FdUUBAu7LaKRSNNU4qbY6HBUIB6bN6rmXiUZThW7wyj-2BdMAdz0DQ-3D-3D" alt="" width="1" height="1" border="0" style="height:1px !important;width:1px !important;border-width:0 !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:0 !important;margin-left:0 !important;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;"/></body>
+</html>
+--===============3704426074039855042==--

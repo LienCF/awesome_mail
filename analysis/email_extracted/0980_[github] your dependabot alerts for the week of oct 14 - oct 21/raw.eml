@@ -1,0 +1,1362 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:8da6:b0:4d4:9739:2b92 with SMTP id gr38csp1419283mdb;
+        Mon, 20 Oct 2025 18:29:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHdq28TgspQzh02jpurppcH5Jo/zHjmpkw8B7FJeRQj3o5JB+fc9qUvUfPJbrdNbqOa0wYX
+X-Received: by 2002:a05:620a:1981:b0:84a:5f9d:a30c with SMTP id af79cd13be357-89070604939mr2050103285a.63.1761010194546;
+        Mon, 20 Oct 2025 18:29:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761010194; cv=none;
+        d=google.com; s=arc-20240605;
+        b=QZ9RDsEtnMoJiLa2B/cCexNTUvHNIItsfBFxk4tJcdw42t2K9Ereb0J1LqOfvNOYZE
+         yaQB1OBx3T8EWoIWv2591ZE/xcdgbNiekPmPNDr0fDgbbBV3ew9ZE8/PoZ+RDtuGpNjJ
+         W5OLwws5lC6Y64NSEDgKhj6ctXZAceqi8NGVOLI7h+Zm6Nz4LpzVXTs/3iFaPuqrNBmN
+         Zii7mlXo8U7fRN1JRg3j/T1QPA+O1HKNveAsehKuktYUaRcd6iQ9DpILMMTjGlAlLVLI
+         W2EE6sXmMtrpGhshSVaVIFgOxGBqSPi4lzzRD+AmAxO8GGSrswGCXlBnaJtPse4b3L0a
+         xoVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=list-unsubscribe:list-unsubscribe-post:content-transfer-encoding
+         :mime-version:subject:message-id:to:from:date:dkim-signature;
+        bh=9dbeSBsuvsv+Q3TCRNiE+5voQBR5zuNDfdjw/aRiNEA=;
+        fh=t18Hh7XMeLE2pLeYU9STUjVGtDttHNFUig8dkLm7BmE=;
+        b=kJB6qHknkvI2cmLk/kqJ5tT2oZcvmjedLbK8SkEwQrmC4MQ/hNAcXZYKvoC7Dc4AZW
+         PZw6kcy5CLLYZLw+OTjeHLh4FFeErjZswRlWd/tHYAWAAOJNwQqqCSr/LzLynJYUXEwh
+         mbbexPtVbhpqoYAc+/i/GeY2Ii0fPvwjSfiwql1pRwmxyubIvwCbE5FalHrn509iopgN
+         f9E2CGKp51D5JDrXHerOjqDHmkhRgMxyXXtfuUw6i0EtM7XVD8N8dPXHpNqgs+zxtEGC
+         2HrrjB6NmrM2MLq5UgdVyG5gk4c6I1MXwBXjXl9q0Fi1gM8pDHHqGuAu7kh3/UqwCk7B
+         93kw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@github.com header.s=pf2023 header.b=QqpPabzW;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.209 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Return-Path: <noreply@github.com>
+Received: from out-26.smtp.github.com (out-26.smtp.github.com. [192.30.252.209])
+        by mx.google.com with ESMTPS id af79cd13be357-891ccac0fdesi272235085a.102.2025.10.20.18.29.54
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Oct 2025 18:29:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@github.com designates 192.30.252.209 as permitted sender) client-ip=192.30.252.209;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@github.com header.s=pf2023 header.b=QqpPabzW;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.209 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Received: from github.com (hubbernetes-node-1f2e298.ash1-iad.github.net [10.56.153.42])
+	by smtp.github.com (Postfix) with ESMTPA id 1005C6002C4
+	for <liencf@gmail.com>; Mon, 20 Oct 2025 18:29:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	s=pf2023; t=1761010194;
+	bh=9dbeSBsuvsv+Q3TCRNiE+5voQBR5zuNDfdjw/aRiNEA=;
+	h=Date:From:To:Subject:List-Unsubscribe-Post:List-Unsubscribe:From;
+	b=QqpPabzWdBuV2/gc7ZTaTpqi8+Vh+VFtkEg6K0nt91BCCdByp7yD3Uyl3kunHNpRw
+	 +qG5I1C1UDL8VS//ebDPtEhUxKOkb0iZF33ul6TAKnXddiDYaOVrbyRmOrPmdt5S/W
+	 3LF4GLEoIO2F1kqkQSOcauvH2Sq0yxVkSIqkzpM8=
+Date: Mon, 20 Oct 2025 18:29:54 -0700
+From: GitHub <noreply@github.com>
+To: ChihFeng Lien <liencf@gmail.com>
+Message-ID: <68f6e212c849_e010d8727af@sharedworker-84889f5cf-22x2j.mail>
+Subject: [GitHub] Your Dependabot alerts for the week of Oct 14 - Oct 21
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_68f6e211ec7b5_e010d8726c2";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-GitHub-Recipient: LienCF
+X-GitHub-Recipient-Address: liencf@gmail.com
+X-GitHub-Reason: security_alert
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Unsubscribe: <https://github.com/notifications/unsubscribe/dependabot-alerts/vulnerability-digest/ABG7O2BRL6CTI5FFS4DVH4TK3AKZDANENZQW2ZNNOZ2WY3TFOJQWE2LMNF2HS>
+X-Auto-Response-Suppress: All
+
+
+----==_mimepart_68f6e211ec7b5_e010d8726c2
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Dependabot alerts on GitHub
+
+Dependabot alerts this week Oct 14 - Oct 21
+-------------------
+
+LienCF=E2=80=99s personal account
+---------------------------------------------------
+1. https://github.com/LienCF/talk-with-gemini
+
+  svelte dependency
+  ------------------------------------------------
+  Vulnerable versions: < 4.2.19
+  Upgrade to: 4.2.19
+  Defined in: pnpm-lock.yaml
+  Vulnerabilities:  CVE-2024-45047 (Moderate severity) =
+
+
+
+  micromatch dependency
+  ------------------------------------------------
+  Vulnerable versions: < 4.0.8
+  Upgrade to: 4.0.8
+  Defined in: pnpm-lock.yaml
+  Vulnerabilities:  CVE-2024-4067 (Moderate severity) =
+
+  Suggested update: https://github.com/LienCF/talk-with-gemini/pull/1
+
+
+  next dependency
+  ------------------------------------------------
+  Vulnerable versions: >=3D 14.0.0, < 14.2.10
+  Upgrade to: 14.2.10
+  Defined in: pnpm-lock.yaml
+  Vulnerabilities:  CVE-2025-29927 (Critical severity)  CVE-2024-46982 (H=
+igh severity)  CVE-2024-51479 (High severity) View 7 more: https://github=
+.com/LienCF/talk-with-gemini/security/dependabot/3
+  Suggested update: https://github.com/LienCF/talk-with-gemini/pull/2
+
+
+  nanoid dependency
+  ------------------------------------------------
+  Vulnerable versions: >=3D 4.0.0, < 5.0.9
+  Upgrade to: 5.0.9
+  Defined in: pnpm-lock.yaml
+  Vulnerabilities:  CVE-2024-55565 (Moderate severity)  CVE-2024-55565 (M=
+oderate severity) =
+
+  Suggested update: https://github.com/LienCF/talk-with-gemini/pull/3
+
+
+  katex dependency
+  ------------------------------------------------
+  Vulnerable versions: >=3D 0.12.0, <=3D 0.16.20
+  Upgrade to: 0.16.21
+  Defined in: pnpm-lock.yaml
+  Vulnerabilities:  CVE-2025-23207 (Moderate severity) =
+
+
+
+  solid-js dependency
+  ------------------------------------------------
+  Vulnerable versions: < 1.9.4
+  Upgrade to: 1.9.4
+  Defined in: pnpm-lock.yaml
+  Vulnerabilities:  CVE-2025-27109 (High severity) =
+
+
+
+  @babel/runtime dependency
+  ------------------------------------------------
+  Vulnerable versions: < 7.26.10
+  Upgrade to: 7.26.10
+  Defined in: pnpm-lock.yaml
+  Vulnerabilities:  CVE-2025-27789 (Moderate severity) =
+
+
+
+  brace-expansion dependency
+  ------------------------------------------------
+  Vulnerable versions: >=3D 2.0.0, <=3D 2.0.1
+  Upgrade to: 2.0.2
+  Defined in: pnpm-lock.yaml
+  Vulnerabilities:  CVE-2025-5889 (Low severity) =
+
+
+
+  View all vulnerable dependencies:
+  https://github.com/LienCF/talk-with-gemini/security/dependabot
+
+2. https://github.com/LienCF/oracle_backup
+
+  Werkzeug dependency
+  ------------------------------------------------
+  Vulnerable versions: < 2.2.3
+  Upgrade to: 2.2.3
+  Defined in: requirements.txt
+  Vulnerabilities:  CVE-2023-25577 (High severity)  CVE-2024-34069 (High =
+severity)  CVE-2023-23934 (Low severity) View 1 more: https://github.com/=
+LienCF/oracle_backup/security/dependabot/1
+
+
+  flask dependency
+  ------------------------------------------------
+  Vulnerable versions: < 2.2.5
+  Upgrade to: 2.2.5
+  Defined in: requirements.txt
+  Vulnerabilities:  CVE-2023-30861 (High severity) =
+
+  Suggested update: https://github.com/LienCF/oracle_backup/pull/2
+
+
+  werkzeug dependency
+  ------------------------------------------------
+  Vulnerable versions: < 2.3.8
+  Upgrade to: 2.3.8
+  Defined in: requirements.txt
+  Vulnerabilities:  CVE-2023-46136 (Moderate severity)  CVE-2024-49767 (M=
+oderate severity) =
+
+  Suggested update: https://github.com/LienCF/oracle_backup/pull/5
+
+
+  gunicorn dependency
+  ------------------------------------------------
+  Vulnerable versions: < 22.0.0
+  Upgrade to: 22.0.0
+  Defined in: requirements.txt
+  Vulnerabilities:  CVE-2024-1135 (High severity)  CVE-2024-6827 (High se=
+verity) =
+
+  Suggested update: https://github.com/LienCF/oracle_backup/pull/1
+
+
+  requests dependency
+  ------------------------------------------------
+  Vulnerable versions: < 2.32.0
+  Upgrade to: 2.32.0
+  Defined in: requirements.txt
+  Vulnerabilities:  CVE-2024-35195 (Moderate severity)  CVE-2024-47081 (M=
+oderate severity) =
+
+
+
+  cryptography dependency
+  ------------------------------------------------
+  Vulnerable versions: >=3D 37.0.0, < 43.0.1
+  Upgrade to: 43.0.1
+  Defined in: requirements.txt
+  Vulnerabilities:  CVE-2024-12797 (Low severity)  GHSA-h4gh-qq45-vh27 (M=
+oderate severity) =
+
+  Suggested update: https://github.com/LienCF/oracle_backup/pull/4
+
+
+  @n8n/n8n-nodes-langchain dependency
+  ------------------------------------------------
+  Vulnerable versions: < 1.107.0
+  Upgrade to: 1.107.0
+  Defined in: package.json
+  Vulnerabilities:  CVE-2025-56265 (High severity) =
+
+
+
+  View all vulnerable dependencies:
+  https://github.com/LienCF/oracle_backup/security/dependabot
+
+
+Change how you receive security alert emails in your notification prefere=
+nces: https://github.com/settings/notifications#vulnerability-alerts-head=
+ing
+
+Change your email preferences: https://github.com/settings/emails
+Unsubscribe from this email: https://github.com/email/unsubscribe?token=3D=
+ABG7O2BRL6CTI5FFS4DVH4TK3AKZDANENZQW2ZNNOZ2WY3TFOJQWE2LMNF2HS
+
+GitHub, Inc. 88 Colin P Kelly Jr Street, San Francisco, CA 94107
+
+----==_mimepart_68f6e211ec7b5_e010d8726c2
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+  <title>Dependabot alerts on GitHub</title>
+  
+
+</head>
+
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; height: 100% !important; line-height: 1.5; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; width: 100% !important; background-color: #fff; margin: 0; padding: 0;" bgcolor="#fff">
+
+  <table class="body" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background-color: #fff;" width="100%" bgcolor="#fff">
+    <tr>
+      <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top"></td>
+      <td class="container" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; display: block; max-width: 580px; width: 580px; margin: 0 auto; padding: 24px;" width="580" valign="top">
+        <div class="content" style="box-sizing: border-box; display: block; max-width: 580px; margin: 0 auto;">
+
+          <!--email content-->
+
+          <span class="preheader" style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">Explore this week on GitHub</span>
+<div class="header" style="box-sizing: border-box; width: 100%; padding-top: 16px;">
+</div>
+
+<div style="box-sizing: border-box; color: #0366d6; text-decoration: underline; margin-bottom: 10px; border-width: 0;">
+  <img src="https://github.githubassets.com/assets/dependabot-fc775a2f3a0c.png" width="72" height="72" alt="Dependabot alerts" style="-ms-interpolation-mode: bicubic; max-width: 100%; border-width: 0;">
+</div>
+
+<h1 class="h0" style="color: #323232 !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-weight: 600; line-height: 1.25; font-size: 32px; margin: 10px 0;">
+  <a href="https://github.com" style="box-sizing: border-box; color: #0366d6; text-decoration: underline; margin: 0 2px 0 0; border-width: 0;"><img src="https://github.githubassets.com/assets/wordmark-e46679830b71.png" width="92" height="25" alt="GitHub" style="-ms-interpolation-mode: bicubic; max-width: 100%; border-width: 0;"></a>&#160;security alert digest</h1>
+<p class="lead-mktg" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 21px; font-weight: 300; line-height: 1.25; color: #6A737D; margin: 0 0 15px;">
+  <strong style="color: #24292e;">LienCF&#8217;s</strong> repository security updates from <span style="white-space: nowrap;">the week of <strong style="color: #333;">Oct 14 - Oct 21</strong></span>
+</p>
+
+
+            <table class="explore-items" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom-width: 1px; border-bottom-color: #eaecef; border-bottom-style: solid; padding-bottom: 12px;" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="32" style="box-sizing: border-box; padding-right: 7px; vertical-align: middle; line-height: 0;" valign="middle">
+            <a href="https://github.com/LienCF" class="explore-repo-avatar" style="display: inline-block;">
+              <img alt="" src="https://github.com/LienCF.png" width="28" height="28" style="border-radius: 3px; border-width: 0;">
+            </a>
+        </td>
+      <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px;">
+        <h3 class="explore-repo-title mb0" style="color: #24292e !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-weight: 600; line-height: 1.25; font-size: 18px; margin: 0;">
+          <a style="box-sizing: border-box; color: #24292e; text-decoration: none;" href="https://github.com/LienCF">
+              LienCF&#8217;s personal account
+          </a>
+        </h3>
+      </td>
+    </tr>
+  </table>
+    <table style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+  <tr class="explore-item">
+    <td>
+      <table class="explore-item-container" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margin-top: 6px; margin-bottom: 32px; width: 100%;" width="100%">
+        <tr>
+          <td class="explore-repo" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+            <table style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="30" valign="top" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; padding-right: 6px; font-size: 14px; vertical-align: top; text-align: right; padding-top: 4px;" align="right">
+                  <img src="https://github.githubassets.com/assets/warning-icon-ab434fb06fc1.png" width="16" height="14" alt="Warning!" style="-ms-interpolation-mode: bicubic; border-width: 0;">
+                </td>
+                <td valign="middle" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; padding-bottom: 6px;">
+                  <h3 class="explore-repo-title mb0" style="color: #24292e !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-weight: 600; line-height: 1.25; font-size: 18px; margin: 0;">
+                    <a style="box-sizing: border-box; color: #0366d6; text-decoration: none;" href="https://github.com/LienCF/talk-with-gemini">LienCF / <strong style="font-weight: 700;">talk-with-gemini</strong></a>
+                  </h3>
+                  <p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; font-weight: 700; color: #24292e; margin: 6px 0 12px;">Known security vulnerabilities detected</p>
+
+                  <table style="border-top-width: 1px; border-top-color: #eaecef; border-top-style: solid; box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td valign="middle" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e !important; padding-top: 6px;">
+                          
+<table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom-width: 1px; border-bottom-color: #eaecef; border-bottom-style: solid; margin-bottom: 9px; margin-top: 6px;" width="100%">
+  <tr>
+    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+      <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+        <tr>
+          <td>
+            <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; table-layout: fixed;" width="100%">
+              <tr>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 54%; vertical-align: top;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Dependency</span>
+                  <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 16px; font-weight: 600 !important;">svelte</span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top; padding-right: 6px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Version</span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&lt; 4.2.19
+                        </span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Upgrade to</span>
+                    <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #dcffe4; border-radius: 2px; color: #165c26; padding: 1px 6px;">~&gt; 4.2.19</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Defined in</span>
+                    <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal;">
+                      pnpm-lock.yaml
+                    </span>
+                  </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Vulnerabilities</span>
+                  <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2024-45047
+                          <span style="color: #6A737D; white-space: nowrap;">Moderate severity</span>
+                        </td>
+                      </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+                          
+<table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom-width: 1px; border-bottom-color: #eaecef; border-bottom-style: solid; margin-bottom: 9px; margin-top: 6px;" width="100%">
+  <tr>
+    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+      <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+        <tr>
+          <td>
+            <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; table-layout: fixed;" width="100%">
+              <tr>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 54%; vertical-align: top;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Dependency</span>
+                  <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 16px; font-weight: 600 !important;">micromatch</span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top; padding-right: 6px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Version</span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&lt; 4.0.8
+                        </span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Upgrade to</span>
+                    <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #dcffe4; border-radius: 2px; color: #165c26; padding: 1px 6px;">~&gt; 4.0.8</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Defined in</span>
+                    <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal;">
+                      pnpm-lock.yaml
+                    </span>
+                  </td>
+                    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                      <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Suggested update</span>
+                      <span style="word-break: break-word; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: nowrap !important;">
+                        <a title="Bump micromatch from 4.0.5 to 4.0.8" href="https://github.com/LienCF/talk-with-gemini/pull/1">
+                          #1
+</a>                      </span>
+                    </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Vulnerabilities</span>
+                  <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2024-4067
+                          <span style="color: #6A737D; white-space: nowrap;">Moderate severity</span>
+                        </td>
+                      </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+                          
+<table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom-width: 1px; border-bottom-color: #eaecef; border-bottom-style: solid; margin-bottom: 9px; margin-top: 6px;" width="100%">
+  <tr>
+    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+      <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+        <tr>
+          <td>
+            <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; table-layout: fixed;" width="100%">
+              <tr>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 54%; vertical-align: top;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Dependency</span>
+                  <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 16px; font-weight: 600 !important;">next</span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top; padding-right: 6px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Version</span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&gt;= 14.0.0
+                        </span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&lt; 14.2.10
+                        </span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Upgrade to</span>
+                    <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #dcffe4; border-radius: 2px; color: #165c26; padding: 1px 6px;">~&gt; 14.2.10</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Defined in</span>
+                    <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal;">
+                      pnpm-lock.yaml
+                    </span>
+                  </td>
+                    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                      <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Suggested update</span>
+                      <span style="word-break: break-word; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: nowrap !important;">
+                        <a title="Bump next from 14.2.3 to 14.2.10" href="https://github.com/LienCF/talk-with-gemini/pull/2">
+                          #2
+</a>                      </span>
+                    </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Vulnerabilities</span>
+                  <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2025-29927
+                          <span style="color: #6A737D; white-space: nowrap;">Critical severity</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2024-46982
+                          <span style="color: #6A737D; white-space: nowrap;">High severity</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2024-51479
+                          <span style="color: #6A737D; white-space: nowrap;">High severity</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2025-48068
+                          <span style="color: #6A737D; white-space: nowrap;">Low severity</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2025-32421
+                          <span style="color: #6A737D; white-space: nowrap;">Low severity</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <a style="color: #0366d6; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px;" href="https://github.com/LienCF/talk-with-gemini/security/dependabot/3">View 5 more</a>
+                        </td>
+                      </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+                          
+<table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom-width: 1px; border-bottom-color: #eaecef; border-bottom-style: solid; margin-bottom: 9px; margin-top: 6px;" width="100%">
+  <tr>
+    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+      <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+        <tr>
+          <td>
+            <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; table-layout: fixed;" width="100%">
+              <tr>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 54%; vertical-align: top;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Dependency</span>
+                  <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 16px; font-weight: 600 !important;">nanoid</span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top; padding-right: 6px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Version</span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&gt;= 4.0.0
+                        </span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&lt; 5.0.9
+                        </span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Upgrade to</span>
+                    <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #dcffe4; border-radius: 2px; color: #165c26; padding: 1px 6px;">~&gt; 5.0.9</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Defined in</span>
+                    <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal;">
+                      pnpm-lock.yaml
+                    </span>
+                  </td>
+                    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                      <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Suggested update</span>
+                      <span style="word-break: break-word; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: nowrap !important;">
+                        <a title="Bump nanoid from 5.0.7 to 5.0.9" href="https://github.com/LienCF/talk-with-gemini/pull/3">
+                          #3
+</a>                      </span>
+                    </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Vulnerabilities</span>
+                  <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2024-55565
+                          <span style="color: #6A737D; white-space: nowrap;">Moderate severity</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2024-55565
+                          <span style="color: #6A737D; white-space: nowrap;">Moderate severity</span>
+                        </td>
+                      </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+                          
+<table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom-width: 1px; border-bottom-color: #eaecef; border-bottom-style: solid; margin-bottom: 9px; margin-top: 6px;" width="100%">
+  <tr>
+    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+      <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+        <tr>
+          <td>
+            <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; table-layout: fixed;" width="100%">
+              <tr>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 54%; vertical-align: top;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Dependency</span>
+                  <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 16px; font-weight: 600 !important;">katex</span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top; padding-right: 6px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Version</span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&gt;= 0.12.0
+                        </span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&lt;= 0.16.20
+                        </span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Upgrade to</span>
+                    <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #dcffe4; border-radius: 2px; color: #165c26; padding: 1px 6px;">~&gt; 0.16.21</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Defined in</span>
+                    <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal;">
+                      pnpm-lock.yaml
+                    </span>
+                  </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Vulnerabilities</span>
+                  <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2025-23207
+                          <span style="color: #6A737D; white-space: nowrap;">Moderate severity</span>
+                        </td>
+                      </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+                          
+<table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom-width: 1px; border-bottom-color: #eaecef; border-bottom-style: solid; margin-bottom: 9px; margin-top: 6px;" width="100%">
+  <tr>
+    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+      <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+        <tr>
+          <td>
+            <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; table-layout: fixed;" width="100%">
+              <tr>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 54%; vertical-align: top;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Dependency</span>
+                  <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 16px; font-weight: 600 !important;">solid-js</span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top; padding-right: 6px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Version</span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&lt; 1.9.4
+                        </span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Upgrade to</span>
+                    <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #dcffe4; border-radius: 2px; color: #165c26; padding: 1px 6px;">~&gt; 1.9.4</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Defined in</span>
+                    <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal;">
+                      pnpm-lock.yaml
+                    </span>
+                  </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Vulnerabilities</span>
+                  <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2025-27109
+                          <span style="color: #6A737D; white-space: nowrap;">High severity</span>
+                        </td>
+                      </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+                          
+<table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom-width: 1px; border-bottom-color: #eaecef; border-bottom-style: solid; margin-bottom: 9px; margin-top: 6px;" width="100%">
+  <tr>
+    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+      <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+        <tr>
+          <td>
+            <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; table-layout: fixed;" width="100%">
+              <tr>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 54%; vertical-align: top;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Dependency</span>
+                  <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 16px; font-weight: 600 !important;">@babel/runtime</span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top; padding-right: 6px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Version</span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&lt; 7.26.10
+                        </span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Upgrade to</span>
+                    <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #dcffe4; border-radius: 2px; color: #165c26; padding: 1px 6px;">~&gt; 7.26.10</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Defined in</span>
+                    <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal;">
+                      pnpm-lock.yaml
+                    </span>
+                  </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Vulnerabilities</span>
+                  <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2025-27789
+                          <span style="color: #6A737D; white-space: nowrap;">Moderate severity</span>
+                        </td>
+                      </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+                          
+<table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom-width: 1px; border-bottom-color: #eaecef; border-bottom-style: solid; margin-bottom: 9px; margin-top: 6px;" width="100%">
+  <tr>
+    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+      <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+        <tr>
+          <td>
+            <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; table-layout: fixed;" width="100%">
+              <tr>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 54%; vertical-align: top;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Dependency</span>
+                  <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 16px; font-weight: 600 !important;">brace-expansion</span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top; padding-right: 6px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Version</span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&gt;= 2.0.0
+                        </span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&lt;= 2.0.1
+                        </span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Upgrade to</span>
+                    <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #dcffe4; border-radius: 2px; color: #165c26; padding: 1px 6px;">~&gt; 2.0.2</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Defined in</span>
+                    <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal;">
+                      pnpm-lock.yaml
+                    </span>
+                  </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Vulnerabilities</span>
+                  <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2025-5889
+                          <span style="color: #6A737D; white-space: nowrap;">Low severity</span>
+                        </td>
+                      </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <table style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 330px; margin-bottom: 12px;" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; background-color: #0366d6; border-radius: 5px; text-align: center;" valign="top" bgcolor="#0366d6" align="center">
+                        <a href="https://github.com/LienCF/talk-with-gemini/security/dependabot" style="box-sizing: border-box; text-decoration: none; background-color: #0366d6; border-radius: 5px; color: #ffffff; display: inline-block; font-size: 14px; font-weight: bold; cursor: pointer; margin: 0; padding: 10px 20px; border: 1px solid #0366d6;">Review all vulnerable dependencies</a>
+</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+    <table style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+  <tr class="explore-item">
+    <td>
+      <table class="explore-item-container" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margin-top: 6px; margin-bottom: 32px; width: 100%;" width="100%">
+        <tr>
+          <td class="explore-repo" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+            <table style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="30" valign="top" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; padding-right: 6px; font-size: 14px; vertical-align: top; text-align: right; padding-top: 4px;" align="right">
+                  <img src="https://github.githubassets.com/assets/warning-icon-ab434fb06fc1.png" width="16" height="14" alt="Warning!" style="-ms-interpolation-mode: bicubic; border-width: 0;">
+                </td>
+                <td valign="middle" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; padding-bottom: 6px;">
+                  <h3 class="explore-repo-title mb0" style="color: #24292e !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-weight: 600; line-height: 1.25; font-size: 18px; margin: 0;">
+                    <a style="box-sizing: border-box; color: #0366d6; text-decoration: none;" href="https://github.com/LienCF/oracle_backup">LienCF / <strong style="font-weight: 700;">oracle_backup</strong></a>
+                  </h3>
+                  <p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; font-weight: 700; color: #24292e; margin: 6px 0 12px;">Known security vulnerabilities detected</p>
+
+                  <table style="border-top-width: 1px; border-top-color: #eaecef; border-top-style: solid; box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td valign="middle" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e !important; padding-top: 6px;">
+                          
+<table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom-width: 1px; border-bottom-color: #eaecef; border-bottom-style: solid; margin-bottom: 9px; margin-top: 6px;" width="100%">
+  <tr>
+    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+      <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+        <tr>
+          <td>
+            <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; table-layout: fixed;" width="100%">
+              <tr>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 54%; vertical-align: top;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Dependency</span>
+                  <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 16px; font-weight: 600 !important;">Werkzeug</span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top; padding-right: 6px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Version</span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&lt; 2.2.3
+                        </span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Upgrade to</span>
+                    <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #dcffe4; border-radius: 2px; color: #165c26; padding: 1px 6px;">~&gt; 2.2.3</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Defined in</span>
+                    <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal;">
+                      requirements.txt
+                    </span>
+                  </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Vulnerabilities</span>
+                  <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2023-25577
+                          <span style="color: #6A737D; white-space: nowrap;">High severity</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2024-34069
+                          <span style="color: #6A737D; white-space: nowrap;">High severity</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2023-23934
+                          <span style="color: #6A737D; white-space: nowrap;">Low severity</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2024-49766
+                          <span style="color: #6A737D; white-space: nowrap;">Moderate severity</span>
+                        </td>
+                      </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+                          
+<table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom-width: 1px; border-bottom-color: #eaecef; border-bottom-style: solid; margin-bottom: 9px; margin-top: 6px;" width="100%">
+  <tr>
+    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+      <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+        <tr>
+          <td>
+            <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; table-layout: fixed;" width="100%">
+              <tr>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 54%; vertical-align: top;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Dependency</span>
+                  <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 16px; font-weight: 600 !important;">flask</span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top; padding-right: 6px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Version</span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&lt; 2.2.5
+                        </span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Upgrade to</span>
+                    <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #dcffe4; border-radius: 2px; color: #165c26; padding: 1px 6px;">~&gt; 2.2.5</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Defined in</span>
+                    <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal;">
+                      requirements.txt
+                    </span>
+                  </td>
+                    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                      <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Suggested update</span>
+                      <span style="word-break: break-word; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: nowrap !important;">
+                        <a title="Bump flask from 2.1.2 to 2.2.5 in /docker/hermeslinebot" href="https://github.com/LienCF/oracle_backup/pull/2">
+                          #2
+</a>                      </span>
+                    </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Vulnerabilities</span>
+                  <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2023-30861
+                          <span style="color: #6A737D; white-space: nowrap;">High severity</span>
+                        </td>
+                      </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+                          
+<table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom-width: 1px; border-bottom-color: #eaecef; border-bottom-style: solid; margin-bottom: 9px; margin-top: 6px;" width="100%">
+  <tr>
+    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+      <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+        <tr>
+          <td>
+            <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; table-layout: fixed;" width="100%">
+              <tr>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 54%; vertical-align: top;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Dependency</span>
+                  <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 16px; font-weight: 600 !important;">werkzeug</span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top; padding-right: 6px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Version</span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&lt; 2.3.8
+                        </span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Upgrade to</span>
+                    <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #dcffe4; border-radius: 2px; color: #165c26; padding: 1px 6px;">~&gt; 2.3.8</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Defined in</span>
+                    <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal;">
+                      requirements.txt
+                    </span>
+                  </td>
+                    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                      <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Suggested update</span>
+                      <span style="word-break: break-word; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: nowrap !important;">
+                        <a title="Bump werkzeug from 2.2.2 to 3.0.6 in /docker/hermeslinebot" href="https://github.com/LienCF/oracle_backup/pull/5">
+                          #5
+</a>                      </span>
+                    </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Vulnerabilities</span>
+                  <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2023-46136
+                          <span style="color: #6A737D; white-space: nowrap;">Moderate severity</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2024-49767
+                          <span style="color: #6A737D; white-space: nowrap;">Moderate severity</span>
+                        </td>
+                      </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+                          
+<table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom-width: 1px; border-bottom-color: #eaecef; border-bottom-style: solid; margin-bottom: 9px; margin-top: 6px;" width="100%">
+  <tr>
+    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+      <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+        <tr>
+          <td>
+            <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; table-layout: fixed;" width="100%">
+              <tr>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 54%; vertical-align: top;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Dependency</span>
+                  <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 16px; font-weight: 600 !important;">gunicorn</span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top; padding-right: 6px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Version</span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&lt; 22.0.0
+                        </span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Upgrade to</span>
+                    <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #dcffe4; border-radius: 2px; color: #165c26; padding: 1px 6px;">~&gt; 22.0.0</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Defined in</span>
+                    <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal;">
+                      requirements.txt
+                    </span>
+                  </td>
+                    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                      <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Suggested update</span>
+                      <span style="word-break: break-word; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: nowrap !important;">
+                        <a title="Bump gunicorn from 21.2.0 to 22.0.0 in /docker/warp-clash" href="https://github.com/LienCF/oracle_backup/pull/1">
+                          #1
+</a>                      </span>
+                    </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Vulnerabilities</span>
+                  <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2024-1135
+                          <span style="color: #6A737D; white-space: nowrap;">High severity</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2024-6827
+                          <span style="color: #6A737D; white-space: nowrap;">High severity</span>
+                        </td>
+                      </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+                          
+<table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom-width: 1px; border-bottom-color: #eaecef; border-bottom-style: solid; margin-bottom: 9px; margin-top: 6px;" width="100%">
+  <tr>
+    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+      <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+        <tr>
+          <td>
+            <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; table-layout: fixed;" width="100%">
+              <tr>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 54%; vertical-align: top;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Dependency</span>
+                  <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 16px; font-weight: 600 !important;">requests</span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top; padding-right: 6px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Version</span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&lt; 2.32.0
+                        </span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Upgrade to</span>
+                    <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #dcffe4; border-radius: 2px; color: #165c26; padding: 1px 6px;">~&gt; 2.32.0</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Defined in</span>
+                    <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal;">
+                      requirements.txt
+                    </span>
+                  </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Vulnerabilities</span>
+                  <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2024-35195
+                          <span style="color: #6A737D; white-space: nowrap;">Moderate severity</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2024-47081
+                          <span style="color: #6A737D; white-space: nowrap;">Moderate severity</span>
+                        </td>
+                      </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+                          
+<table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom-width: 1px; border-bottom-color: #eaecef; border-bottom-style: solid; margin-bottom: 9px; margin-top: 6px;" width="100%">
+  <tr>
+    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+      <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+        <tr>
+          <td>
+            <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; table-layout: fixed;" width="100%">
+              <tr>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 54%; vertical-align: top;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Dependency</span>
+                  <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 16px; font-weight: 600 !important;">cryptography</span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top; padding-right: 6px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Version</span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&gt;= 37.0.0
+                        </span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&lt; 43.0.1
+                        </span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Upgrade to</span>
+                    <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #dcffe4; border-radius: 2px; color: #165c26; padding: 1px 6px;">~&gt; 43.0.1</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Defined in</span>
+                    <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal;">
+                      requirements.txt
+                    </span>
+                  </td>
+                    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                      <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Suggested update</span>
+                      <span style="word-break: break-word; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: nowrap !important;">
+                        <a title="Bump cryptography from 42.0.4 to 43.0.1 in /docker/warp-clash" href="https://github.com/LienCF/oracle_backup/pull/4">
+                          #4
+</a>                      </span>
+                    </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Vulnerabilities</span>
+                  <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2024-12797
+                          <span style="color: #6A737D; white-space: nowrap;">Low severity</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          GHSA-h4gh-qq45-vh27
+                          <span style="color: #6A737D; white-space: nowrap;">Moderate severity</span>
+                        </td>
+                      </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+                          
+<table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom-width: 1px; border-bottom-color: #eaecef; border-bottom-style: solid; margin-bottom: 9px; margin-top: 6px;" width="100%">
+  <tr>
+    <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top">
+      <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+        <tr>
+          <td>
+            <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; table-layout: fixed;" width="100%">
+              <tr>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 54%; vertical-align: top;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Dependency</span>
+                  <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 16px; font-weight: 600 !important;">@n8n/n8n-nodes-langchain</span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top; padding-right: 6px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Version</span>
+                        <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #ffeef0; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; color: #86181d; padding: 1px 6px;">&lt; 1.107.0
+                        </span>
+                </td>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; color: #24292e; width: 23%; vertical-align: top;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Upgrade to</span>
+                    <span style="display: inline-block; word-break: break-all; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal !important; background-color: #dcffe4; border-radius: 2px; color: #165c26; padding: 1px 6px;">~&gt; 1.107.0</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                    <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Defined in</span>
+                    <span style="word-break: break-word; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; font-weight: 600 !important; white-space: normal;">
+                      package.json
+                    </span>
+                  </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-bottom: 9px; padding-top: 12px;" valign="top">
+                  <span style="display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D;">Vulnerabilities</span>
+                  <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+                      <tr>
+                        <td style="color: #24292e; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; padding-right: 6px; min-width: 130px; margin-bottom: 6px;" valign="top">
+                          CVE-2025-56265
+                          <span style="color: #6A737D; white-space: nowrap;">High severity</span>
+                        </td>
+                      </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <table style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 330px; margin-bottom: 12px;" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; background-color: #0366d6; border-radius: 5px; text-align: center;" valign="top" bgcolor="#0366d6" align="center">
+                        <a href="https://github.com/LienCF/oracle_backup/security/dependabot" style="box-sizing: border-box; text-decoration: none; background-color: #0366d6; border-radius: 5px; color: #ffffff; display: inline-block; font-size: 14px; font-weight: bold; cursor: pointer; margin: 0; padding: 10px 20px; border: 1px solid #0366d6;">Review all vulnerable dependencies</a>
+</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+
+
+          <p style="padding-top: 6px; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; color: #6A737D; font-style: italic; vertical-align: top;" valign="top">
+            This email shows up to 10 repositories that are affected, but there could be more vulnerabilities across your repositories.
+            Always verify the validity and compatibility of suggestions with your codebase.
+          </p>
+
+          <div class="footer" style="box-sizing: border-box; clear: both; width: 100%;">
+            <hr class="footer-hr" style="height: 0; overflow: visible; margin-top: 24px; border-top-color: #e1e4e8; border-top-style: solid; color: #6A737D; font-size: 12px; line-height: 18px; margin-bottom: 30px; border-width: 1px 0 0;">
+            <div class="footer-links" style="box-sizing: border-box; color: #6A737D; font-size: 12px; line-height: 18px;">
+              <p class="footer-text" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-weight: normal; color: #6A737D; font-size: 12px; line-height: 18px; margin: 0 0 15px;">
+                Change how you receive security alert emails in your
+                <a href="https://github.com/settings/notifications#vulnerability-alerts-heading" style="box-sizing: border-box; font-size: 12px; line-height: 18px; text-decoration: none;">notification preferences</a>.
+              </p>
+              <p class="footer-text" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-weight: normal; color: #6A737D; font-size: 12px; line-height: 18px; margin: 0 0 15px;">
+                <a href="https://github.com/email/unsubscribe?token=ABG7O2BRL6CTI5FFS4DVH4TK3AKZDANENZQW2ZNNOZ2WY3TFOJQWE2LMNF2HS" style="box-sizing: border-box; color: #6A737D; font-size: 12px; line-height: 18px; text-decoration: none;"><unsubscribe style="color: #6A737D; font-size: 12px; line-height: 18px;">Unsubscribe</unsubscribe></a> &#183;
+                <a href="https://github.com/settings/emails" style="box-sizing: border-box; color: #6A737D; font-size: 12px; line-height: 18px; text-decoration: none;">Email preferences</a> &#183;
+                <a href="https://docs.github.com/articles/github-terms-of-service" style="box-sizing: border-box; color: #6A737D; font-size: 12px; line-height: 18px; text-decoration: none;">Terms</a> &#183;
+                <a href="https://docs.github.com/articles/github-privacy-policy" style="box-sizing: border-box; color: #6A737D; font-size: 12px; line-height: 18px; text-decoration: none;">Privacy</a> &#183;
+                <a href="https://github.com/login" style="box-sizing: border-box; color: #6A737D; font-size: 12px; line-height: 18px; text-decoration: none;">Sign into GitHub</a>
+              </p>
+            </div>
+            <p class="footer-text" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-weight: normal; color: #6A737D; font-size: 12px; line-height: 18px; margin: 0 0 15px;">GitHub, Inc.<br style="color: #999999; font-size: 12px; line-height: 18px;"> 88 Colin P Kelly Jr St.<br style="color: #999999; font-size: 12px; line-height: 18px;"> San Francisco, CA 94107</p>
+          </div>
+        </div>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
+
+----==_mimepart_68f6e211ec7b5_e010d8726c2--

@@ -1,0 +1,14 @@
+# 郵件格式分析
+
+- 索引：599
+- 主旨：掌握防詐三「不」曲，解析常見詐騙手法，守護您的帳戶安全！
+- 寄件者："台北富邦銀行" <service@mhu.taipeifubon.com.tw>
+- 收件者：liencf@gmail.com
+- 日期：2025-10-31T06:31:31.000Z
+- Message-ID：<9c6fa155c46948ce@ba638f3ccd4a71f7>
+- Top-Level Content-Type：[object Object]
+- 是否含 text/plain：是
+- 是否含 text/html：是
+- 附件數量：0
+
+> 備註：若原信僅含單一格式，另一格式檔案不會產出。原始郵件內容已另存 raw.eml 以利後續比對。

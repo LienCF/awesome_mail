@@ -1,0 +1,903 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:a80f:b0:4ec:41ca:fc70 with SMTP id cj15csp182348mdb;
+        Tue, 11 Nov 2025 05:45:44 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHe8YQuUelhlHvN7EGATOFA2Rrs/SJ3RXkhQ8qXmlcJ4gvia9QLE1th+6tovxMWiJW+CZbb
+X-Received: by 2002:a05:690c:4d09:b0:786:52df:1be0 with SMTP id 00721157ae682-787d536b613mr122180627b3.19.1762868744380;
+        Tue, 11 Nov 2025 05:45:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762868744; cv=none;
+        d=google.com; s=arc-20240605;
+        b=DybXMaPvL/1txqobjYV/TU1YVfBCNshHA9yeSBkkfmwXsdBE9XwYogfBnrT2UU5Fff
+         3OdT346uqUHAt7Iz4EeOV/4dVMa0IDnA5YwdrG341mzikbbLL7IiYDnWlSktVpHcBwmk
+         ttg2zCw/lTMxpX+ipf3gKNeirv/lKZmO5+yMJF00ZqYnf3NF/YdAYDhzjrRvF2UkDJpf
+         wnDWuStPNYZ4u3tELXaCOTzTNDUaj7XstaH3UabnOsku81qoUtPHTr5Vq34D7FWDDG1J
+         G1/UTT0rPlNTUHyG0yWJNp1JOWHsa/E07wkjHLAxgyUR5Mq7brDMB1G9pA5TYMETUPzW
+         IoYw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=list-id:list-unsubscribe-post:list-unsubscribe:from:mime-version
+         :date:to:message-id:subject:dkim-signature;
+        bh=cM1eZ1UBurNrP0glwfwT5NG8XeEQiWFn10mZTT9nZy4=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=dQUxBjT2c1T8/YWK8glq6hIhmB5Rdz+HcwE3EodFxAJEK1yJ9WqJGY6sAASbugCvCR
+         vSBFvKDEsHLFJhSYEry2CcAguo8Av3GJCTnf6G9F+lN4Q3/6O8LXHR18zsC9Wkv7Bclh
+         oXX/AzaxEPW6LVZ7XT64CU2JMBByrdy6OKQ/FvCXpX3L4lgDpJ2etw06aCKJnFL8UNMs
+         lnaJsUBIyEFzIcmHE8wtM31K6OMvJdaeYWi8ZsN9aQXlFg9OMiPflo/D7qG77jtovOpa
+         m0Ns7uWamOL5pvUy9UaBdMCK4SsW9+WKDjA85lMfqjywxmYGfJwVtNAIW4MAdxOw0THo
+         C6Hg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@notify.cloudflare.com header.s=scph0619 header.b=GEkWWLTm;
+       spf=pass (google.com: domain of msprvs1=20410ang9krnd=bounces-265094@notify.cloudflare.com designates 147.253.211.95 as permitted sender) smtp.mailfrom="msprvs1=20410anG9KrND=bounces-265094@notify.cloudflare.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=notify.cloudflare.com
+Return-Path: <msprvs1=20410anG9KrND=bounces-265094@notify.cloudflare.com>
+Received: from mta-253-211-95.sparkpostmail.com (mta-253-211-95.sparkpostmail.com. [147.253.211.95])
+        by mx.google.com with ESMTPS id 00721157ae682-787d6839dfesi51924887b3.137.2025.11.11.05.45.44
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 11 Nov 2025 05:45:44 -0800 (PST)
+Received-SPF: pass (google.com: domain of msprvs1=20410ang9krnd=bounces-265094@notify.cloudflare.com designates 147.253.211.95 as permitted sender) client-ip=147.253.211.95;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@notify.cloudflare.com header.s=scph0619 header.b=GEkWWLTm;
+       spf=pass (google.com: domain of msprvs1=20410ang9krnd=bounces-265094@notify.cloudflare.com designates 147.253.211.95 as permitted sender) smtp.mailfrom="msprvs1=20410anG9KrND=bounces-265094@notify.cloudflare.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=notify.cloudflare.com
+Return-Path: <msprvs1=20410anG9KrND=bounces-265094@notify.cloudflare.com>
+X-MSFBL: DiMN4woULcCmqJ6A5G5yAvOALFg1pbETqpB7mS6kOuo=|eyJjdXN0b21lcl9pZCI
+	6IjI2NTA5NCIsInIiOiJsaWVuY2ZAZ21haWwuY29tIiwibWVzc2FnZV9pZCI6IjY
+	5MDkwODNlMTM2OTE5MTAzMmI5Iiwic3ViYWNjb3VudF9pZCI6IjAiLCJ0ZW5hbnR
+	faWQiOiJzcGMifQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=notify.cloudflare.com; s=scph0619; t=1762868744;
+	i=@notify.cloudflare.com;
+	bh=cM1eZ1UBurNrP0glwfwT5NG8XeEQiWFn10mZTT9nZy4=;
+	h=Subject:Message-ID:To:Date:Content-Type:From:List-Unsubscribe:
+	 List-Unsubscribe-Post:From:To:Cc:Subject;
+	b=GEkWWLTmIvt01mm4L9rGf4zvO8vn72vPaw4kTH/F1TU9f+aQDyBDrMcTF1tRseQcg
+	 8WEh9wU+O1RfX4jri8RZQS52Iy1TA5aM2ZYWTNTHNbFW5/XXfo6Cz1tbgw5KEpu5dj
+	 A1DololVU8qQ8cfoVXo/I95pPC/YIjontBknb/7k=
+Received: from [10.90.17.192] ([10.90.17.192])
+	by i-059339f02693bdca8.mta1vrest.sd.prd.sparkpost (ecelerity 5.1.0.74659 r(msys-ecelerity:tags/5.1.0.17)) with REST
+	id 9B/2B-52459-80E33196; Tue, 11 Nov 2025 13:45:44 +0000
+Subject: [Alert] Certificate transparency monitoring for lcf.one
+Message-ID: <9B.2B.52459.80E33196@i-059339f02693bdca8.mta1vrest.sd.prd.sparkpost>
+To: liencf@gmail.com
+Date: Tue, 11 Nov 2025 13:45:44 +0000
+Content-Type: multipart/alternative; boundary="_----ddApEphhIaPOJ5gHWvhiPg===_BF/41-14919-608EC096"
+MIME-Version: 1.0
+From: "Cloudflare" <noreply@notify.cloudflare.com>
+List-Unsubscribe: <mailto:unsubscribe@unsub.spmta.com?subject=unsubscribe:BZ08Nnjb2aF1_oAU1zEA_Qfb4uY8gwq0DtIvWV9ZKZ4~|eyAicmNwdF90byI6ICJsaWVuY2ZAZ21haWwuY29tIiwgInRlbmFudF9pZCI6ICJzcGMiLCAiY3VzdG9tZXJfaWQiOiAiMjY1MDk0IiwgIm1lc3NhZ2VfaWQiOiAiNjkwOTA4M2UxMzY5MTkxMDMyYjkiLCAic3ViYWNjb3VudF9pZCI6ICIwIiB9>,<https://unsubscribe.spmta.com/u/3iPdmrYvFd6AiT7otvYYDA~~/AAQLhhA~/_zPY9s0gU1krGkBEaPIaM-YNE-xABh-MUmyvg8qdtDy_VyjwBvGmPsgPq__HOvI9xsVOB9bqSwfxNfd3gNPoxg~~>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Id: <spc.265094.0.sparkpostmail.com>
+
+--_----ddApEphhIaPOJ5gHWvhiPg===_BF/41-14919-608EC096
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+
+lcf.one or one of its subdomains has been issued a new SSL/TLS certificate
+
+Certificate details
+- Log date: 2025-11-11 13:26:57 UTC
+- Issuer: CN=WE1,O=Google Trust Services,C=US
+- Validity: 2025-11-11 12:26:57 UTC - 2026-02-09 13:24:35 UTC
+- DNS Names: lcf.one, *.lcf.one
+
+Why am I receiving this email?
+- This email was requested by one of your Cloudflare account administrators to be notified whenever Cloudflare notices a new SSL/TLS certificate issued for lcf.one. If you would rather not receive these alerts, please go to your Cloudflare dashboard and disable "Certificate Transparency Monitoring": https://dash.cloudflare.com/?to=/:account/:zone/ssl-tls/edge-certificates#ct-alerting-card?utm_source=cfps&utm_medium=email&utm_campaign=ct_alerter_issuance_notification
+ 
+Should I be concerned about this new certificate?
+- Most SSL/TLS certificates are trustworthy. If this is a certificate from Let's Encrypt, Google Trust Services, Sectigo, or SSL.com, this may be a backup certificate that Cloudflare issued for lcf.one. If the data above is surprising to you or incorrect, learn about the actions you can take.
+ 
+Additional resources
+- Edge certificates: https://developers.cloudflare.com/ssl/edge-certificates/
+- Universal SSL certificates: https://developers.cloudflare.com/ssl/edge-certificates/universal-ssl/
+- Backup certificates: https://developers.cloudflare.com/ssl/edge-certificates/backup-certificates/
+--_----ddApEphhIaPOJ5gHWvhiPg===_BF/41-14919-608EC096
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="UTF-8"
+
+<!DOCTYPE html>=0A<html=0A  xmlns=3D"=E2=80=9Chttp://www.w3.org/1999/xhtml=
+=E2=80=9D"=0A  xmlns:v=3D"=E2=80=9Curn:schemas-microsoft-com:vml=E2=80=9D"=
+=0A  xmlns:o=3D"=E2=80=9Curn:schemas-microsoft-com:office:office=E2=80=9D"=
+=0A>=0A  <head>=0A    <meta charset=3D"utf-8" />=0A    <meta http-equiv=3D"=
+X-UA-Compatible" content=3D"IE=3Dedge" />=0A    <!--[if gte mso 9=0A      ]=
+><xml>=0A        <o:OfficeDocumentSettings>=0A          <o:AllowPNG />=0A  =
+        <o:PixelsPerInch>96</o:PixelsPerInch>=0A        </o:OfficeDocumentS=
+ettings>=0A      </xml><!=0A    [endif]-->=0A    <!--Variables-->=0A    <ti=
+tle></title>=0A    <link=0A      href=3D"https://fonts.googleapis.com/css=
+=3Ffamily=3DInter:300,300i,400,400i,600,600i,700,700i,800,800i"=0A      rel=
+=3D"stylesheet"=0A    />=0A    <style>=0A      /* CLIENT-SPECIFIC STYLES */=
+=0A      img {=0A        -ms-interpolation-mode: bicubic;=0A      }=0A     =
+ /* Force IE to smoothly render resized images. */=0A      #outlook a {=0A =
+       padding: 0;=0A      }=0A      /* Force Outlook 2007 and up to provid=
+e a "view in browser" message. */=0A      table {=0A        mso-table-lspac=
+e: 0pt;=0A        mso-table-rspace: 0pt;=0A      }=0A      /* Remove spacin=
+g between tables in Outlook 2007 and up. */=0A      .ReadMsgBody {=0A      =
+  width: 100%;=0A      }=0A      .ExternalClass {=0A        width: 100%;=0A=
+      }=0A      /* Force Outlook.com to display emails at full width. */=0A=
+      p,=0A      a,=0A      li,=0A      td,=0A      blockquote {=0A        =
+mso-line-height-rule: exactly;=0A      }=0A      /* Force Outlook to render=
+ line heights as they're originally set. */=0A      a[href^=3D"tel"],=0A   =
+   a[href^=3D"sms"] {=0A        color: inherit;=0A        cursor: default;=
+=0A        text-decoration: none;=0A      }=0A      /* Force mobile devices=
+ to inherit declared link styles. */=0A      p,=0A      a,=0A      li,=0A  =
+    td,=0A      body,=0A      table,=0A      blockquote {=0A        -ms-tex=
+t-size-adjust: 100%;=0A        -webkit-text-size-adjust: 100%;=0A      }=0A=
+      /* Prevent Windows- and Webkit-based mobile platforms from changing d=
+eclared text sizes. */=0A      .ExternalClass,=0A      .ExternalClass p,=0A=
+      .ExternalClass td,=0A      .ExternalClass div,=0A      .ExternalClass=
+ span,=0A      .ExternalClass font {=0A        line-height: 100%;=0A      }=
+=0A      /* Force Outlook.com to display line heights normally. */=0A      =
+table {=0A        border-collapse: collapse;=0A      }=0A=0A      html {=0A=
+        -webkit-text-size-adjust: none;=0A      }=0A=0A      #gmailModule,=
+=0A      .mobileOnly {=0A        display: none !important;=0A      }=0A    =
+  /*Hide Full-Width Image on Desktop*/=0A=0A      a,=0A      a:hover {=0A  =
+      color: #ff6633 !important;=0A        text-decoration: none !important=
+;=0A      }=0A=0A      .button a,=0A      .button a:hover {=0A        color=
+: #000000 !important;=0A        text-decoration: none !important;=0A      }=
+=0A=0A      .footer a,=0A      .footer a:hover {=0A        color: #8f8f8f !=
+important;=0A        text-decoration: none !important;=0A      }=0A=0A     =
+ a[x-apple-data-detectors] {=0A        color: inherit !important;=0A       =
+ text-decoration: none !important;=0A        font-size: inherit !important;=
+=0A        font-family: inherit !important;=0A        font-weight: inherit =
+!important;=0A        line-height: inherit !important;=0A      }=0A=0A     =
+ @media only screen and (max-width: 650px) {=0A        #bodyTable {=0A     =
+     width: 100% !important;=0A        }=0A        #logo-image {=0A        =
+  max-width: 40% !important;=0A        }=0A=0A        #headline {=0A       =
+   font-size: 20px;=0A          line-height: 24px;=0A        }=0A=0A       =
+ img {=0A          width: auto !important;=0A          max-width: 100% !imp=
+ortant;=0A          height: auto !important;=0A        }=0A        .tableSt=
+ack {=0A          width: 100% !important;=0A        }=0A        table.butto=
+nStack {=0A          margin-top: 10px !important;=0A        }=0A        td.=
+buttonStack {=0A          padding-top: 16px !important;=0A        }=0A=0A  =
+      td.mobImg {=0A          width: 28% !important;=0A          padding-ri=
+ght: 15px !important;=0A        }=0A        td.mobText {=0A          width:=
+ 68% !important;=0A        }=0A=0A        #fullTextContent {=0A          fo=
+nt-size: 13px;=0A          line-height: 17px;=0A        }=0A=0A        #ful=
+lTextContent strong {=0A          font-size: 14px;=0A          line-height:=
+ 18px;=0A        }=0A=0A        table.mobileImageWidth {=0A          width:=
+ 28% !important;=0A        }=0A        table.mobileTextWidth {=0A          =
+width: 68% !important;=0A        }=0A=0A        .stack-img {=0A          pa=
+dding-top: 10px !important;=0A          padding-right: 0% !important;=0A   =
+       padding-bottom: 10px !important;=0A          padding-left: 0% !impor=
+tant;=0A          width: 90% !important;=0A        }=0A=0A        .stack {=
+=0A          padding-top: 4px !important;=0A          padding-right: 5% !im=
+portant;=0A          padding-bottom: 22px !important;=0A          padding-l=
+eft: 5% !important;=0A          width: 90% !important;=0A        }=0A=0A   =
+     .stack2 {=0A          padding-top: 10px !important;=0A          paddin=
+g-right: 0px !important;=0A          padding-bottom: 10px !important;=0A   =
+       padding-left: 5% !important;=0A          width: 90% !important;=0A  =
+      }=0A=0A        td.mobileTopPad {=0A          padding-top: 20px !impor=
+tant;=0A        }=0A        table.mobileTopPad {=0A          margin-top: 20=
+px !important;=0A        }=0A=0A        .desktopPad,=0A        #gmailModule=
+ {=0A          display: none !important;=0A        }=0A        .left img {=
+=0A          margin-left: 0 !important;=0A        }=0A        .center img {=
+=0A          margin-left: auto !important;=0A          margin-right: auto !=
+important;=0A        }=0A        .center table {=0A          margin-right: =
+auto;=0A          margin-left: auto;=0A        }=0A        .left {=0A      =
+    text-align: left !important;=0A        }=0A        .center {=0A        =
+  text-align: center !important;=0A        }=0A        .noPad {=0A         =
+ padding-top: 0px !important;=0A          padding-right: 0px !important;=0A=
+          padding-bottom: 0px !important;=0A          padding-left: 0px !im=
+portant;=0A        }=0A        .noSidePad {=0A          padding-right: 0px =
+!important;=0A          padding-left: 0px !important;=0A        }=0A       =
+ .noBorder {=0A          border: 0px !important;=0A        }=0A        hr {=
+=0A          margin-right: auto !important;=0A          margin-left: auto !=
+important;=0A        }=0A        .mobileOnly {=0A          display: block !=
+important;=0A        }=0A        .mobquote {=0A          font-size: 20px !i=
+mportant;=0A          line-height: 26px !important;=0A          margin: 0px=
+ 15px !important;=0A        }=0A        .padding5p {=0A          padding-ri=
+ght: 5% !important;=0A        }=0A        .mobwidth100 {=0A          max-wi=
+dth: 100px !important;=0A        }=0A      }=0A    </style>=0A    <!--[if g=
+te mso 9]>=0A      <style type=3D"text/css">=0A        td,=0A        p,=0A =
+       ul,=0A        ol,=0A        li {=0A          font-family: Arial, san=
+s-serif !important;=0A        }=0A        ul,=0A        ol {=0A          ma=
+rgin: 0px 0px 0px 26px !important;=0A          padding: 0px !important;=0A =
+         list-style-position: inside !important;=0A        }=0A        tabl=
+e.outlookPadColumn {=0A          width: 34% !important;=0A          padding=
+-right: 2% !important;=0A        }=0A        td.outlookFloat {=0A          =
+margin-left: 40px;=0A          padding-right: 0px !important;=0A        }=
+=0A      </style>=0A    <![endif]-->=0A  </head>=0A  <body=0A    bgcolor=3D=
+"#f6f6f6"=0A    style=3D"=0A      background: #f6f6f6;=0A      margin: 0;=
+=0A      padding: 0;=0A      mso-padding-alt: 0px 0px 0px 0px;=0A    "=0A  =
+>=0A    <div style=3D"display:none;">lcf.one has been issued a new SSL/TLS =
+certificate.</div>=0A    <table=0A      role=3D"presentation"=0A      width=
+=3D"100%"=0A      border=3D"0"=0A      cellspacing=3D"0"=0A      cellpaddin=
+g=3D"0"=0A      style=3D"background: #f6f6f6; mso-padding-alt: 0px 0px 0px =
+0px"=0A    >=0A      <tbody>=0A        <tr>=0A          <td>=0A            =
+<!--Body Table-->=0A            <table=0A              role=3D"presentation=
+"=0A              id=3D"bodyTable"=0A              width=3D"650"=0A        =
+      border=3D"0"=0A              cellspacing=3D"0"=0A              cellpa=
+dding=3D"0"=0A              align=3D"center"=0A              style=3D"margi=
+n-left: auto; margin-right: auto"=0A            >=0A              <!--Prehe=
+ader Container-->=0A              <tbody>=0A                <tr class=3D"de=
+sktopPad">=0A                  <td=0A                    class=3D"footer"=
+=0A                    style=3D"=0A                      white-space: norma=
+l;=0A                      color: #8f8f8f;=0A                      font-fam=
+ily: Inter, Helvetica, Arial, sans-serif;=0A                      font-size=
+: 11px;=0A                      text-align: right;=0A                      =
+padding-top: 7px;=0A                      padding-bottom: 7px;=0A          =
+            text-align: center;=0A                    "=0A                 =
+ >=0A                    <div class=3D"mktoText" id=3D"preheaderText"></div=
+>=0A                  </td>=0A                </tr>=0A                <!--/=
+Preheader Container-->=0A                <tr>=0A                  <td>=0A  =
+                  <table=0A                      role=3D"presentation"=0A  =
+                    id=3D"container"=0A                      class=3D"mktoC=
+ontainer"=0A                      width=3D"100%"=0A                      bo=
+rder=3D"0"=0A                      cellpadding=3D"0"=0A                    =
+  cellspacing=3D"0"=0A                      style=3D"border-collapse: colla=
+pse"=0A                    >=0A                      <tr class=3D"mktoModul=
+e" id=3D"header">=0A                        <td>=0A                        =
+  <table=0A                            role=3D"presentation"=0A            =
+                width=3D"100%"=0A                            border=3D"0"=
+=0A                            cellpadding=3D"0"=0A                        =
+    cellspacing=3D"0"=0A                            style=3D"min-width: 100=
+%"=0A                          >=0A                            <!--[if gte =
+mso 9]>=0A<tr>=0A<td>=0A<table role=3D"presentation" width=3D"650" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"width:650px;">=0A<![end=
+if]-->=0A                            <tbody>=0A                            =
+  <tr=0A                                style=3D"=0A                       =
+           white-space: nowrap;=0A                                  backgro=
+und-color: #ffffff;=0A                                "=0A                 =
+             >=0A                                <td=0A                    =
+              class=3D"stack"=0A                                  style=3D"=
+=0A                                    border-top: 10px solid #f38020;=0A  =
+                                  white-space: normal;=0A                  =
+                  padding-top: 25px;=0A                                    =
+padding-left: 40px;=0A                                    padding-bottom: 2=
+5px;=0A                                    padding-right: 40px;=0A         =
+                           background-color: #ffffff;=0A                   =
+               "=0A                                >=0A                    =
+              <!--Left-->=0A                                  <table=0A    =
+                                class=3D"tableStack"=0A                    =
+                role=3D"presentation"=0A                                   =
+ width=3D"48%"=0A                                    border=3D"0"=0A       =
+                             cellpadding=3D"0"=0A                          =
+          cellspacing=3D"0"=0A                                    align=3D"=
+left"=0A                                  >=0A                             =
+       <tbody>=0A                                      <tr>=0A             =
+                           <td class=3D"stack-img">=0A                     =
+                     <div class=3D"mktoSnippet" id=3D"logo">=0A            =
+                                <table=0A                                  =
+            role=3D"presentation"=0A                                       =
+       width=3D"100%"=0A                                              cellp=
+adding=3D"0"=0A                                              cellspacing=3D=
+"0"=0A                                              border=3D"0"=0A        =
+                                    >=0A                                   =
+           <tbody>=0A                                                <tr>=
+=0A                                                  <td class=3D"left">=0A=
+                                                    <a=0A                  =
+                                    href=3D"https://www.cloudflare.com/"=0A=
+                                                      target=3D"_blank"=0A =
+                                                     ><img=0A              =
+                                          id=3D"logo-image"=0A             =
+                                           src=3D"https://info.cloudflare.c=
+om/rs/713-XSC-918/images/CF_logo_horizontal_blktype_1955x285.png=3Fversion=
+=3D0"=0A                                                        alt=3D"Clou=
+dflare logo"=0A                                                        heig=
+ht=3D"37"=0A                                                        width=
+=3D"260"=0A                                                        constrai=
+n=3D"true"=0A                                                        imagep=
+review=3D"false"=0A                                                    /></=
+a>=0A                                                  </td>=0A            =
+                                    </tr>=0A                               =
+               </tbody>=0A                                            </tab=
+le>=0A                                          </div>=0A                  =
+                      </td>=0A                                      </tr>=
+=0A                                    </tbody>=0A                         =
+         </table>=0A                                  <!--/Left-->=0A      =
+                            <!--Right-->=0A                                =
+  <table=0A                                    class=3D"tableStack"=0A     =
+                               role=3D"presentation"=0A                    =
+                width=3D"48%"=0A                                    border=
+=3D"0"=0A                                    cellpadding=3D"0"=0A          =
+                          cellspacing=3D"0"=0A                             =
+       align=3D"right"=0A                                  >=0A            =
+                        <tbody>=0A                                      <tr=
+>=0A                                        <td=0A                         =
+                 class=3D"center"=0A                                       =
+   style=3D"=0A                                            text-align: righ=
+t;=0A                                            color: #000000;=0A        =
+                                    font-family: Inter, Helvetica, Arial,=
+=0A                                              sans-serif;=0A            =
+                                font-size: 14px;=0A                        =
+                    line-height: 21px;=0A                                  =
+        "=0A                                        >=0A                   =
+                       <div=0A                                            c=
+lass=3D"mktoText"=0A                                            id=3D"heade=
+rHeadline"=0A                                          ></div>=0A          =
+                              </td>=0A                                     =
+ </tr>=0A                                    </tbody>=0A                   =
+               </table>=0A                                  <!--/Right-->=
+=0A                                </td>=0A                              </=
+tr>=0A                              <!--[if gte mso 9]>=0A</table>=0A</td>=
+=0A</tr>=0A<![endif]-->=0A                            </tbody>=0A          =
+                </table>=0A                        </td>=0A                =
+      </tr>=0A                      <tr class=3D"mktoModule desktopPad" id=
+=3D"spacerModule">=0A                        <td>=0A                       =
+   <table=0A                            role=3D"presentation"=0A           =
+                 border=3D"0"=0A                            cellpadding=3D"=
+0"=0A                            cellspacing=3D"0"=0A                      =
+      style=3D"min-width: 100%"=0A                          >=0A           =
+                 <!--[if gte mso 9]>=0A<tr>=0A<td>=0A<table role=3D"present=
+ation" width=3D"650" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"width:650px;">=0A<![endif]-->=0A                            <tbody>=0A =
+                             <tr=0A                                style=3D=
+"=0A                                  white-space: nowrap;=0A              =
+                    background-color: #ffffff;=0A                          =
+      "=0A                              >=0A                               =
+ <td=0A                                  class=3D"desktopPad"=0A           =
+                       height=3D"25"=0A                                  st=
+yle=3D"=0A                                    background-color: #ffffff;=0A=
+                                    line-height: 25px;=0A                  =
+                  font-size: 25px;=0A                                  "=0A=
+                                >=0A                                  &nbsp=
+;=0A                                </td>=0A                              <=
+/tr>=0A                              <!--[if gte mso 9]>=0A</table>=0A</td>=
+=0A</tr>=0A<![endif]-->=0A                            </tbody>=0A          =
+                </table>=0A                        </td>=0A                =
+      </tr>=0A=0A                      <!-- HEADLINE -->=0A=0A             =
+         <tr class=3D"mktoModule" id=3D"headline">=0A                      =
+  <td>=0A                          <!--Title Text-->=0A                    =
+      <table=0A                            role=3D"presentation"=0A        =
+                    width=3D"100%"=0A                            border=3D"=
+0"=0A                            cellpadding=3D"0"=0A                      =
+      cellspacing=3D"0"=0A                            style=3D"min-width: 1=
+00%"=0A                          >=0A                            <!--[if gt=
+e mso 9]>=0A<tr>=0A<td>=0A<table role=3D"presentation" width=3D"650" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"width:650px;">=0A<![end=
+if]-->=0A                            <tbody>=0A                            =
+  <tr=0A                                style=3D"=0A                       =
+           white-space: nowrap;=0A                                  backgro=
+und-color: #ffffff;=0A                                "=0A                 =
+             >=0A                                <td=0A                    =
+              class=3D"stack"=0A                                  style=3D"=
+=0A                                    font-weight: 600;=0A                =
+                    color: #000000;=0A                                    t=
+ext-align: left;=0A                                    white-space: normal;=
+=0A                                    font-family: Inter, Helvetica, Arial=
+,=0A                                      sans-serif;=0A                   =
+                 font-size: 26px;=0A                                    lin=
+e-height: 32px;=0A                                    padding-left: 40px;=
+=0A                                    padding-right: 40px;=0A             =
+                       background-color: #ffffff;=0A                       =
+           "=0A                                >=0A                        =
+          <div class=3D"mktoText" id=3D"headline">=0A                      =
+              lcf.one or one of its subdomains has=0A                      =
+              been issued a new SSL/TLS certificate=0A                     =
+               <br />=0A                                  </div>=0A        =
+                        </td>=0A                              </tr>=0A     =
+                         <!--[if gte mso 9]>=0A</table>=0A</td>=0A</tr>=0A<=
+![endif]-->=0A                            </tbody>=0A                      =
+    </table>=0A                          <!--/Title Text-->=0A             =
+           </td>=0A                      </tr>=0A                      <!--=
+ END HEADLINE -->=0A=0A                      <!-- SPACING -->=0A           =
+           <tr class=3D"mktoModule desktopPad" id=3D"spacerModule">=0A     =
+                   <td>=0A                          <table=0A              =
+              role=3D"presentation"=0A                            border=3D=
+"0"=0A                            cellpadding=3D"0"=0A                     =
+       cellspacing=3D"0"=0A                            style=3D"min-width: =
+100%"=0A                          >=0A                            <!--[if g=
+te mso 9]>=0A<tr>=0A<td>=0A<table role=3D"presentation" width=3D"650" borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"width:650px;">=0A<![en=
+dif]-->=0A                            <tbody>=0A                           =
+   <tr=0A                                style=3D"=0A                      =
+            white-space: nowrap;=0A                                  backgr=
+ound-color: #ffffff;=0A                                "=0A                =
+              >=0A                                <td=0A                   =
+               class=3D"desktopPad"=0A                                  hei=
+ght=3D"25"=0A                                  style=3D"=0A                =
+                    background-color: #ffffff;=0A                          =
+          line-height: 25px;=0A                                    font-siz=
+e: 25px;=0A                                  "=0A                          =
+      >=0A                                  &nbsp;=0A                      =
+          </td>=0A                              </tr>=0A                   =
+           <!--[if gte mso 9]>=0A</table>=0A</td>=0A</tr>=0A<![endif]-->=0A=
+                            </tbody>=0A                          </table>=
+=0A                        </td>=0A                      </tr>=0A          =
+            <!-- END SPACING -->=0A=0A                      <!-- SUBHEADLIN=
+E -->=0A                      <tr class=3D"mktoModule" id=3D"fullText">=0A =
+                       <td>=0A                          <!--Full Text-->=0A=
+                          <table=0A                            role=3D"pres=
+entation"=0A                            width=3D"100%"=0A                  =
+          border=3D"0"=0A                            cellpadding=3D"0"=0A  =
+                          cellspacing=3D"0"=0A                            s=
+tyle=3D"min-width: 100%"=0A                          >=0A                  =
+          <!--[if gte mso 9]>=0A<tr>=0A<td>=0A<table role=3D"presentation" =
+width=3D"650" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"wid=
+th:650px;">=0A<![endif]-->=0A                            <tbody>=0A        =
+                      <tr=0A                                style=3D"=0A   =
+                               white-space: nowrap;=0A                     =
+             background-color: #ffffff;=0A                                "=
+=0A                              >=0A                                <td=0A=
+                                  class=3D"stack"=0A                       =
+           style=3D"=0A                                    color: #000000;=
+=0A                                    text-align: left;=0A                =
+                    white-space: normal;=0A                                =
+    font-family: Inter, Helvetica, Arial,=0A                               =
+       sans-serif;=0A                                    font-size: 14px;=
+=0A                                    line-height: 24px;=0A               =
+                     padding-left: 40px;=0A                                =
+    padding-right: 40px;=0A                                    background-c=
+olor: #ffffff;=0A                                    font-weight: normal;=
+=0A                                  "=0A                                >=
+=0A                                  <div class=3D"mktoText" id=3D"fullText=
+Content">=0A                                    <span style=3D"font-size: 1=
+8px"=0A                                      ><strong=0A                   =
+                     >Certificate details</strong=0A                       =
+               ></span=0A                                    >=0A          =
+                          <br />=0A=0A                                    <=
+ol>=0A                                      <li>Log date: 2025-11-11 13:26:=
+57 UTC</li>=0A                                      <li>Issuer: CN=3DWE1,O=
+=3DGoogle Trust Services,C=3DUS</li>=0A                                    =
+  <li>Validity: 2025-11-11 12:26:57 UTC - 2026-02-09 13:24:35 UTC</li>=0A  =
+                                    <li>DNS Names: lcf.one, *.lcf.one</li>=
+=0A                                    </ol>=0A                            =
+      </div>=0A                                </td>=0A                    =
+          </tr>=0A                              <!--[if gte mso 9]>=0A</tab=
+le>=0A</td>=0A</tr>=0A<![endif]-->=0A                            </tbody>=
+=0A                          </table>=0A                          <!--/Full=
+ Text-->=0A                        </td>=0A                      </tr>=0A  =
+                    <!-- END OF SUBHEADLINE -->=0A=0A                      =
+<!-- SPACING -->=0A                      <tr class=3D"mktoModule desktopPad=
+" id=3D"spacerModule">=0A                        <td>=0A                   =
+       <table=0A                            role=3D"presentation"=0A       =
+                     border=3D"0"=0A                            cellpadding=
+=3D"0"=0A                            cellspacing=3D"0"=0A                  =
+          style=3D"min-width: 100%"=0A                          >=0A       =
+                     <!--[if gte mso 9]>=0A<tr>=0A<td>=0A<table role=3D"pre=
+sentation" width=3D"650" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" s=
+tyle=3D"width:650px;">=0A<![endif]-->=0A                            <tbody>=
+=0A                              <tr=0A                                styl=
+e=3D"=0A                                  white-space: nowrap;=0A          =
+                        background-color: #ffffff;=0A                      =
+          "=0A                              >=0A                           =
+     <td=0A                                  class=3D"desktopPad"=0A       =
+                           height=3D"25"=0A                                =
+  style=3D"=0A                                    background-color: #ffffff=
+;=0A                                    line-height: 25px;=0A              =
+                      font-size: 25px;=0A                                  =
+"=0A                                >=0A                                  &=
+nbsp;=0A                                </td>=0A                           =
+   </tr>=0A                              <!--[if gte mso 9]>=0A</table>=0A<=
+/td>=0A</tr>=0A<![endif]-->=0A                            </tbody>=0A      =
+                    </table>=0A                        </td>=0A            =
+          </tr>=0A                      <!-- END SPACING -->=0A=0A         =
+             <!-- SUBHEADLINE -->=0A                      <tr class=3D"mkto=
+Module" id=3D"fullText">=0A                        <td>=0A                 =
+         <!--Full Text-->=0A                          <table=0A            =
+                role=3D"presentation"=0A                            width=
+=3D"100%"=0A                            border=3D"0"=0A                    =
+        cellpadding=3D"0"=0A                            cellspacing=3D"0"=
+=0A                            style=3D"min-width: 100%"=0A                =
+          >=0A                            <!--[if gte mso 9]>=0A<tr>=0A<td>=
+=0A<table role=3D"presentation" width=3D"650" border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"width:650px;">=0A<![endif]-->=0A              =
+              <tbody>=0A                              <tr=0A               =
+                 style=3D"=0A                                  white-space:=
+ nowrap;=0A                                  background-color: #ffffff;=0A =
+                               "=0A                              >=0A      =
+                          <td=0A                                  class=3D"=
+stack"=0A                                  style=3D"=0A                    =
+                color: #000000;=0A                                    text-=
+align: left;=0A                                    white-space: normal;=0A =
+                                   font-family: Inter, Helvetica, Arial,=0A=
+                                      sans-serif;=0A                       =
+             font-size: 14px;=0A                                    line-he=
+ight: 24px;=0A                                    padding-left: 40px;=0A   =
+                                 padding-right: 40px;=0A                   =
+                 background-color: #ffffff;=0A                             =
+       font-weight: normal;=0A                                  "=0A       =
+                         >=0A                                  <div class=
+=3D"mktoText" id=3D"fullTextContent">=0A                                   =
+ <span style=3D"font-size: 18px"=0A                                      ><=
+strong=0A                                        >Why am I receiving this e=
+mail=3F</strong=0A                                      ></span=0A         =
+                           >=0A                                    <br />=
+=0A                                    This email was requested by one of y=
+our=0A                                    Cloudflare account administrators=
+ to be=0A                                    notified whenever Cloudflare n=
+otices a new=0A                                    SSL/TLS certificate issu=
+ed for=0A                                    lcf.one. If you would rather n=
+ot=0A                                    receive these alerts, please go to=
+=0A                                    <a=0A                               =
+       href=3D"https://dash.cloudflare.com/=3Fto=3D/:account/:zone/ssl-tls/=
+edge-certificates#ct-alerting-card=3Futm_source=3Dcfps&utm_medium=3Demail&u=
+tm_campaign=3Dct_alerter_issuance_notification"=0A                         =
+             >your Cloudflare dashboard</a=0A                              =
+      >=0A                                    and disable "Certificate Tran=
+sparency=0A                                    Monitoring".=0A             =
+                     </div>=0A                                </td>=0A     =
+                         </tr>=0A                              <!--[if gte =
+mso 9]>=0A</table>=0A</td>=0A</tr>=0A<![endif]-->=0A                       =
+     </tbody>=0A                          </table>=0A                      =
+    <!--/Full Text-->=0A                        </td>=0A                   =
+   </tr>=0A                      <!-- END OF SUBHEADLINE -->=0A=0A         =
+             <!-- SPACING -->=0A                      <tr class=3D"mktoModu=
+le desktopPad" id=3D"spacerModule">=0A                        <td>=0A      =
+                    <table=0A                            role=3D"presentati=
+on"=0A                            border=3D"0"=0A                          =
+  cellpadding=3D"0"=0A                            cellspacing=3D"0"=0A     =
+                       style=3D"min-width: 100%"=0A                        =
+  >=0A                            <!--[if gte mso 9]>=0A<tr>=0A<td>=0A<tabl=
+e role=3D"presentation" width=3D"650" border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" style=3D"width:650px;">=0A<![endif]-->=0A                      =
+      <tbody>=0A                              <tr=0A                       =
+         style=3D"=0A                                  white-space: nowrap;=
+=0A                                  background-color: #ffffff;=0A         =
+                       "=0A                              >=0A              =
+                  <td=0A                                  class=3D"desktopP=
+ad"=0A                                  height=3D"25"=0A                   =
+               style=3D"=0A                                    background-c=
+olor: #ffffff;=0A                                    line-height: 25px;=0A =
+                                   font-size: 25px;=0A                     =
+             "=0A                                >=0A                      =
+            &nbsp;=0A                                </td>=0A              =
+                </tr>=0A                              <!--[if gte mso 9]>=
+=0A</table>=0A</td>=0A</tr>=0A<![endif]-->=0A                            </=
+tbody>=0A                          </table>=0A                        </td>=
+=0A                      </tr>=0A                      <!-- END SPACING -->=
+=0A=0A                      <!-- SUBHEADLINE -->=0A                      <t=
+r class=3D"mktoModule" id=3D"fullText">=0A                        <td>=0A  =
+                        <!--Full Text-->=0A                          <table=
+=0A                            role=3D"presentation"=0A                    =
+        width=3D"100%"=0A                            border=3D"0"=0A       =
+                     cellpadding=3D"0"=0A                            cellsp=
+acing=3D"0"=0A                            style=3D"min-width: 100%"=0A     =
+                     >=0A                            <!--[if gte mso 9]>=0A=
+<tr>=0A<td>=0A<table role=3D"presentation" width=3D"650" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0" style=3D"width:650px;">=0A<![endif]-->=0A   =
+                         <tbody>=0A                              <tr=0A    =
+                            style=3D"=0A                                  w=
+hite-space: nowrap;=0A                                  background-color: #=
+ffffff;=0A                                "=0A                             =
+ >=0A                                <td=0A                                =
+  class=3D"stack"=0A                                  style=3D"=0A         =
+                           color: #000000;=0A                              =
+      text-align: left;=0A                                    white-space: =
+normal;=0A                                    font-family: Inter, Helvetica=
+, Arial,=0A                                      sans-serif;=0A            =
+                        font-size: 14px;=0A                                =
+    line-height: 24px;=0A                                    padding-left: =
+40px;=0A                                    padding-right: 40px;=0A        =
+                            background-color: #ffffff;=0A                  =
+                  font-weight: normal;=0A                                  =
+"=0A                                >=0A                                  <=
+div class=3D"mktoText" id=3D"fullTextContent">=0A                          =
+          <span style=3D"font-size: 18px"=0A                               =
+       ><strong=0A                                        >Should I be conc=
+erned about this new=0A                                        certificate=
+=3F</strong=0A                                      ></span=0A             =
+                       >=0A                                    <br />=0A   =
+                                 Most SSL/TLS certificates are trustworthy.=
+=0A                                    If this is a certificate from Let's =
+Encrypt,=0A                                    Google Trust Services, Secti=
+go, or SSL.com,=0A                                    this may be a=0A     =
+                               <a=0A                                      h=
+ref=3D"https://developers.cloudflare.com/ssl/edge-certificates/backup-certi=
+ficates/"=0A                                      >backup certificate</a=0A=
+                                    >=0A                                   =
+ that Cloudflare issued for lcf.one. If=0A                                 =
+   the data above is surprising to you or=0A                               =
+     incorrect,=0A                                    <a=0A                =
+                      href=3D"https://developers.cloudflare.com/ssl/edge-ce=
+rtificates/additional-options/certificate-transparency-monitoring/#emails-t=
+o-be-concerned-about"=0A                                      >learn about =
+the actions you can take</a=0A                                    >.=0A    =
+                              </div>=0A                                </td=
+>=0A                              </tr>=0A                              <!-=
+-[if gte mso 9]>=0A</table>=0A</td>=0A</tr>=0A<![endif]-->=0A              =
+              </tbody>=0A                          </table>=0A             =
+             <!--/Full Text-->=0A                        </td>=0A          =
+            </tr>=0A                      <!-- END OF SUBHEADLINE -->=0A=0A=
+                      <!-- SPACING -->=0A                      <tr class=3D=
+"mktoModule desktopPad" id=3D"spacerModule">=0A                        <td>=
+=0A                          <table=0A                            role=3D"p=
+resentation"=0A                            border=3D"0"=0A                 =
+           cellpadding=3D"0"=0A                            cellspacing=3D"0=
+"=0A                            style=3D"min-width: 100%"=0A               =
+           >=0A                            <!--[if gte mso 9]>=0A<tr>=0A<td=
+>=0A<table role=3D"presentation" width=3D"650" border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" style=3D"width:650px;">=0A<![endif]-->=0A             =
+               <tbody>=0A                              <tr=0A              =
+                  style=3D"=0A                                  white-space=
+: nowrap;=0A                                  background-color: #ffffff;=0A=
+                                "=0A                              >=0A     =
+                           <td=0A                                  class=3D=
+"desktopPad"=0A                                  height=3D"25"=0A          =
+                        style=3D"=0A                                    bac=
+kground-color: #ffffff;=0A                                    line-height: =
+25px;=0A                                    font-size: 25px;=0A            =
+                      "=0A                                >=0A             =
+                     &nbsp;=0A                                </td>=0A     =
+                         </tr>=0A                              <!--[if gte =
+mso 9]>=0A</table>=0A</td>=0A</tr>=0A<![endif]-->=0A                       =
+     </tbody>=0A                          </table>=0A                      =
+  </td>=0A                      </tr>=0A                      <!-- END SPAC=
+ING -->=0A=0A                      <!-- SUBHEADLINE -->=0A                 =
+     <tr class=3D"mktoModule" id=3D"fullText">=0A                        <t=
+d>=0A                          <!--Full Text-->=0A                         =
+ <table=0A                            role=3D"presentation"=0A             =
+               width=3D"100%"=0A                            border=3D"0"=0A=
+                            cellpadding=3D"0"=0A                           =
+ cellspacing=3D"0"=0A                            style=3D"min-width: 100%"=
+=0A                          >=0A                            <!--[if gte ms=
+o 9]>=0A<tr>=0A<td>=0A<table role=3D"presentation" width=3D"650" border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" style=3D"width:650px;">=0A<![endif]-=
+->=0A                            <tbody>=0A                              <t=
+r=0A                                style=3D"=0A                           =
+       white-space: nowrap;=0A                                  background-=
+color: #ffffff;=0A                                "=0A                     =
+         >=0A                                <td=0A                        =
+          class=3D"stack"=0A                                  style=3D"=0A =
+                                   color: #000000;=0A                      =
+              text-align: left;=0A                                    white=
+-space: normal;=0A                                    font-family: Inter, H=
+elvetica, Arial,=0A                                      sans-serif;=0A    =
+                                font-size: 14px;=0A                        =
+            line-height: 24px;=0A                                    paddin=
+g-left: 40px;=0A                                    padding-right: 40px;=0A=
+                                    background-color: #ffffff;=0A          =
+                          font-weight: normal;=0A                          =
+        "=0A                                >=0A                           =
+       <div class=3D"mktoText" id=3D"fullTextContent">=0A                  =
+                  <span style=3D"font-size: 18px"=0A                       =
+               ><strong=0A                                        >Addition=
+al resources</strong=0A                                      ></span=0A    =
+                                >=0A                                    <br=
+ />=0A=0A                                    <ul>=0A                       =
+               <li>=0A                                        <a=0A        =
+                                  href=3D"https://developers.cloudflare.com=
+/ssl/edge-certificates/"=0A                                          >Edge =
+certificates</a=0A                                        >=0A             =
+                         </li>=0A=0A                                      <=
+li>=0A                                        <a=0A                        =
+                  href=3D"https://developers.cloudflare.com/ssl/edge-certif=
+icates/universal-ssl/"=0A                                          >Univers=
+al SSL certificates</a=0A                                        >=0A      =
+                                </li>=0A                                   =
+   <li>=0A                                        <a=0A                    =
+                      href=3D"https://developers.cloudflare.com/ssl/edge-ce=
+rtificates/backup-certificates/."=0A                                       =
+   >Backup certificates</a=0A                                        >=0A  =
+                                    </li>=0A                               =
+     </ul>=0A                                  </div>=0A                   =
+             </td>=0A                              </tr>=0A                =
+              <!--[if gte mso 9]>=0A</table>=0A</td>=0A</tr>=0A<![endif]-->=
+=0A                            </tbody>=0A                          </table=
+>=0A                          <!--/Full Text-->=0A                        <=
+/td>=0A                      </tr>=0A                      <!-- END OF SUBH=
+EADLINE -->=0A=0A                      <!-- FOOTER -->=0A                  =
+    <tr class=3D"mktoModule desktopPad" id=3D"spacerModule">=0A            =
+            <td>=0A                          <table=0A                     =
+       role=3D"presentation"=0A                            border=3D"0"=0A =
+                           cellpadding=3D"0"=0A                            =
+cellspacing=3D"0"=0A                            style=3D"min-width: 100%"=
+=0A                          >=0A                            <!--[if gte ms=
+o 9]>=0A<tr>=0A<td>=0A<table role=3D"presentation" width=3D"650" border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" style=3D"width:650px;">=0A<![endif]-=
+->=0A                            <tbody>=0A                              <t=
+r=0A                                style=3D"=0A                           =
+       white-space: nowrap;=0A                                  background-=
+color: #ffffff;=0A                                "=0A                     =
+         >=0A                                <td=0A                        =
+          class=3D"desktopPad"=0A                                  height=
+=3D"25"=0A                                  style=3D"=0A                   =
+                 background-color: #ffffff;=0A                             =
+       line-height: 25px;=0A                                    font-size: =
+25px;=0A                                  "=0A                             =
+   >=0A                                  &nbsp;=0A                         =
+       </td>=0A                              </tr>=0A                      =
+        <!--[if gte mso 9]>=0A</table>=0A</td>=0A</tr>=0A<![endif]-->=0A   =
+                         </tbody>=0A                          </table>=0A  =
+                      </td>=0A                      </tr>=0A               =
+       <tr class=3D"mktoModule" id=3D"persistentSpacerModule">=0A          =
+              <td>=0A                          <!--Persistent Spacer-->=0A =
+                         <table=0A                            role=3D"prese=
+ntation"=0A                            width=3D"100%"=0A                   =
+         border=3D"0"=0A                            cellpadding=3D"0"=0A   =
+                         cellspacing=3D"0"=0A                            st=
+yle=3D"min-width: 100%"=0A                          >=0A                   =
+         <!--[if gte mso 9]>=0A<tr>=0A<td>=0A<table role=3D"presentation" w=
+idth=3D"650" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"widt=
+h:650px;">=0A<![endif]-->=0A                            <tbody>=0A         =
+                     <tr=0A                                style=3D"=0A    =
+                              white-space: nowrap;=0A                      =
+            background-color: #f6f6f6;=0A                                "=
+=0A                              >=0A                                <td=0A=
+                                  height=3D"25"=0A                         =
+         style=3D"=0A                                    white-space: norma=
+l;=0A                                    background-color: #f6f6f6;=0A     =
+                               line-height: 25px;=0A                       =
+             font-size: 25px;=0A                                  "=0A     =
+                           >=0A                                  &nbsp;=0A =
+                               </td>=0A                              </tr>=
+=0A                              <!--[if gte mso 9]>=0A</table>=0A</td>=0A<=
+/tr>=0A<![endif]-->=0A                            </tbody>=0A              =
+            </table>=0A                          <!--/Persistent Spacer-->=
+=0A                        </td>=0A                      </tr>=0A          =
+            <tr class=3D"mktoModule" id=3D"footerModule">=0A               =
+         <td>=0A                          <!--Footer-->=0A                 =
+         <table=0A                            role=3D"presentation"=0A     =
+                       width=3D"100%"=0A                            border=
+=3D"0"=0A                            cellpadding=3D"0"=0A                  =
+          cellspacing=3D"0"=0A                            style=3D"min-widt=
+h: 100%"=0A                          >=0A                            <!--[i=
+f gte mso 9]>=0A<tr>=0A<td>=0A<table role=3D"presentation" width=3D"650" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"width:650px;">=0A<!=
+[endif]-->=0A                            <tbody>=0A                        =
+      <tr style=3D"white-space: nowrap">=0A                                =
+<td=0A                                  class=3D"stack"=0A                 =
+                 style=3D"=0A                                    white-spac=
+e: normal;=0A                                    padding-left: 40px;=0A    =
+                                padding-right: 40px;=0A                    =
+              "=0A                                >=0A                     =
+             <div class=3D"mktoSnippet" id=3D"footer">=0A                  =
+                  <table=0A                                      role=3D"pr=
+esentation"=0A                                      width=3D"100%"=0A      =
+                                border=3D"0"=0A                            =
+          cellpadding=3D"0"=0A                                      cellspa=
+cing=3D"0"=0A                                    >=0A                      =
+                <tbody>=0A                                        <tr>=0A  =
+                                        <td=0A                             =
+               class=3D"footer"=0A                                         =
+   style=3D"=0A                                              font-family: A=
+rial, Helvetica,=0A                                                sans-ser=
+if;=0A                                              color: #8f8f8f;=0A     =
+                                         font-size: 13px;=0A               =
+                               text-align: center;=0A                      =
+                      "=0A                                          >=0A   =
+                                         Copyright =C2=A9&nbsp;2025 Cloudfl=
+are,=0A                                            Inc.<br />=0A           =
+                                 101 Townsend Street, San Francisco,=0A    =
+                                        CA 94107<br /><br />=0A            =
+                                <a=0A                                      =
+        href=3D"https://www.cloudflare.com/"=0A                            =
+                  style=3D"=0A                                             =
+   color: #8f8f8f;=0A                                                text-d=
+ecoration: none;=0A                                              "=0A      =
+                                        >www.cloudflare.com</a=0A          =
+                                  >=0A                                     =
+       &nbsp;|&nbsp;=0A                                            <a=0A   =
+                                           href=3D"https://community.cloudf=
+lare.com/"=0A                                              style=3D"=0A    =
+                                            color: #8f8f8f;=0A             =
+                                   text-decoration: none;=0A               =
+                               "=0A                                        =
+      target=3D"_blank"=0A                                              >Co=
+mmunity</a=0A                                            >=0A              =
+                            </td>=0A                                       =
+ </tr>=0A                                        <tr>=0A                   =
+                       <td=0A                                            st=
+yle=3D"padding-top: 20px"=0A                                            ali=
+gn=3D"center"=0A                                          >=0A             =
+                               <table=0A                                   =
+           role=3D"presentation"=0A                                        =
+      border=3D"0"=0A                                              cellpadd=
+ing=3D"0"=0A                                              cellspacing=3D"0"=
+=0A                                              stlye=3D"margin-right:auto=
+;margin-left:auto;"=0A                                              align=
+=3D"center"=0A                                            >=0A             =
+                                 <tbody>=0A                                =
+                <tr>=0A                                                  <t=
+d=0A                                                    width=3D"40"=0A    =
+                                                align=3D"center"=0A        =
+                                            style=3D"=0A                   =
+                                   padding-right: 2px;=0A                  =
+                                    padding-left: 2px;=0A                  =
+                                  "=0A                                     =
+             >=0A                                                    <a=0A =
+                                                     href=3D"https://www.fa=
+cebook.com/Cloudflare/"=0A                                                 =
+     title=3D"Facebook"=0A                                                 =
+     ><img=0A                                                        src=3D=
+"https://info.cloudflare.com/rs/713-XSC-918/images/social-icon-fb-email-108=
+px.png"=0A                                                        width=3D"=
+36"=0A                                                        height=3D"36"=
+=0A                                                        alt=3D"Facebook"=
+=0A                                                        style=3D"=0A    =
+                                                      display: block;=0A   =
+                                                       margin-right: auto;=
+=0A                                                          margin-left: a=
+uto;=0A                                                          border-sty=
+le: none;=0A                                                        "=0A   =
+                                                     constrain=3D"true"=0A =
+                                                       imagepreview=3D"fals=
+e"=0A                                                    /></a>=0A         =
+                                         </td>=0A                          =
+                        <td=0A                                             =
+       width=3D"40"=0A                                                    a=
+lign=3D"center"=0A                                                    style=
+=3D"=0A                                                      padding-right:=
+ 2px;=0A                                                      padding-left:=
+ 2px;=0A                                                    "=0A           =
+                                       >=0A                                =
+                    <a=0A                                                  =
+    href=3D"https://X.com/Cloudflare"=0A                                   =
+                   title=3D"X"=0A                                          =
+            ><img=0A                                                       =
+ src=3D"https://info.cloudflare.com/rs/713-XSC-918/images/social-icon-twitt=
+er-email-108px.png"=0A                                                     =
+   width=3D"36"=0A                                                        h=
+eight=3D"36"=0A                                                        alt=
+=3D"X"=0A                                                        style=3D"=
+=0A                                                          display: block=
+;=0A                                                          margin-right:=
+ auto;=0A                                                          margin-l=
+eft: auto;=0A                                                          bord=
+er-style: none;=0A                                                        "=
+=0A                                                        constrain=3D"tru=
+e"=0A                                                        imagepreview=
+=3D"false"=0A                                                    /></a>=0A =
+                                                 </td>=0A                  =
+                                <td=0A                                     =
+               width=3D"40"=0A                                             =
+       align=3D"center"=0A                                                 =
+   style=3D"=0A                                                      paddin=
+g-right: 2px;=0A                                                      paddi=
+ng-left: 2px;=0A                                                    "=0A   =
+                                               >=0A                        =
+                            <a=0A                                          =
+            href=3D"https://www.linkedin.com/company/cloudflare"=0A        =
+                                              title=3D"LinkedIn"=0A        =
+                                              ><img=0A                     =
+                                   src=3D"https://info.cloudflare.com/rs/71=
+3-XSC-918/images/social-icon-linkedin-email-108px.png"=0A                  =
+                                      width=3D"36"=0A                      =
+                                  height=3D"36"=0A                         =
+                               alt=3D"LinkedIn"=0A                         =
+                               style=3D"=0A                                =
+                          display: block;=0A                               =
+                           margin-right: auto;=0A                          =
+                                margin-left: auto;=0A                      =
+                                    border-style: none;=0A                 =
+                                       "=0A                                =
+                        constrain=3D"true"=0A                              =
+                          imagepreview=3D"false"=0A                        =
+                            /></a>=0A                                      =
+            </td>=0A                                                </tr>=
+=0A                                              </tbody>=0A               =
+                             </table>=0A                                   =
+         <br />=0A                                          </td>=0A       =
+                                 </tr>=0A                                  =
+    </tbody>=0A                                    </table>=0A             =
+                     </div>=0A                                </td>=0A     =
+                         </tr>=0A                              <!--[if gte =
+mso 9]>=0A</table>=0A</td>=0A</tr>=0A<![endif]-->=0A                       =
+     </tbody>=0A                          </table>=0A                      =
+    <!--/Footer-->=0A                        </td>=0A                      =
+</tr>=0A                    </table>=0A                  </td>=0A          =
+      </tr>=0A                <!-- END FOOTER -->=0A=0A                <!--=
+/Container-->=0A                <!--Full Width Image for Gmail to render de=
+sktop version on mobile-->=0A                <tr>=0A                  <td>=
+=0A                    <table=0A                      role=3D"presentation"=
+=0A                      class=3D"hide"=0A                      id=3D"gmail=
+Module"=0A                      width=3D"100%"=0A                      bord=
+er=3D"0"=0A                      cellpadding=3D"0"=0A                      =
+cellspacing=3D"0"=0A                      style=3D"min-width: 100%"=0A     =
+               >=0A                      <tbody>=0A                        =
+<tr=0A                          style=3D"white-space: nowrap; background-co=
+lor: #ffffff"=0A                        >=0A                          <td=
+=0A                            height=3D"1"=0A                            c=
+lass=3D"hide"=0A                            style=3D"=0A                   =
+           min-width: 650px;=0A                              opacity: 0;=0A=
+                              font-size: 0px;=0A                           =
+   line-height: 0px;=0A                            "=0A                    =
+      >=0A                            <img=0A                              =
+height=3D"1"=0A                              src=3D"#"=0A                  =
+            style=3D"=0A                                min-width: 650px;=
+=0A                                max-height: 0px;=0A                     =
+           text-decoration: none;=0A                                border:=
+ none;=0A                                -ms-interpolation-mode: bicubic;=
+=0A                              "=0A                            />=0A     =
+                     </td>=0A                        </tr>=0A              =
+        </tbody>=0A                    </table>=0A                  </td>=
+=0A                </tr>=0A                <!--/Full Width Image for Gmail =
+to render desktop version on mobile-->=0A              </tbody>=0A         =
+   </table>=0A            <!--End Body Table-->=0A          </td>=0A       =
+ </tr>=0A      </tbody>=0A    </table>=0A    <script=0A      defer=0A      =
+src=3D"https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c=
+399c6a5babf22c1241717689176015"=0A      integrity=3D"sha512-ZpsOmlRQV6y907T=
+I0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=3D=
+=3D"=0A      data-cf-beacon=3D'{"rayId":"921e05f29d13a948","serverTiming":{=
+"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":tru=
+e}},"version":"2025.1.0","token":"271854501d8743cfb7cc749ee8f2dde0"}'=0A   =
+   crossorigin=3D"anonymous"=0A    ></script>=0A  </body>=0A</html>=0A
+--_----ddApEphhIaPOJ5gHWvhiPg===_BF/41-14919-608EC096--

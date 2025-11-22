@@ -140,11 +140,11 @@ run_flutter_tests() {
     
     # Run unit tests
     print_info "Running Flutter unit tests..."
-    flutter test test/unit/ --coverage --test-randomize-ordering-seed random
+    flutter test test/unit/ --test-randomize-ordering-seed random
     
     # Run widget tests
     print_info "Running Flutter widget tests..."
-    flutter test test/widget/ --coverage --test-randomize-ordering-seed random
+    flutter test test/widget/ --test-randomize-ordering-seed random
     
     # Generate coverage report
     print_info "Generating coverage report..."

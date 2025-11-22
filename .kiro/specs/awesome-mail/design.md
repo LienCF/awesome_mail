@@ -2467,3 +2467,227 @@ class CostMonitor {
 - **淨利潤**: $348,500/月
 
 **Cloudflare Workers 架構在大規模下非常經濟高效！** 透過智能快取策略和資料分層，可以將成本降低 62%，同時保持高效能和可擴展性。
+
+---
+
+## AI 與同步整合設計（2025-11 更新）
+
+本節描述目前最新的 AI 背景處理與郵件同步流程，涵蓋：優先權佇列（含持久化）、依賴偵測（full content 需求）、增量/全量/修復同步的協作關係，以及 UI 與資料一致性策略。
+
+### 1. AI 背景處理（Priority Queue + 持久化）
+
+- 目標與原則
+  - 所有 AI 動作（Title、Summary、Security）走非阻塞背景處理，避免卡住同步或 UI。
+  - 任務具優先權（urgent/high/medium/low）與持久化，App 重啟可續跑。
+  - 依賴偵測：若任務需 full content，缺少時自動先下載再執行。
+  - 去重與升級：相同 emailId+taskType 在 pending/running 存在時不重複排，但允許提升 priority。
+
+- 架構
+  - 服務：`AiTaskQueueService`（lazySingleton）
+    - 佇列資料表：`ai_task_queue`
+      - 欄位：id, email_id, account_id, task_type(title/summary/security), priority(int), status(pending/running/completed/failed), attempts, last_error, scheduled_at, created_at, updated_at
+      - 索引：`(status, priority DESC, scheduled_at ASC)`、`(email_id, task_type)`
+    - 取件策略：priority DESC → scheduled_at ASC → id ASC
+    - 重試：失敗 → 指數退避（2^attempts 秒，封頂 5 分鐘），最多 5 次；超過標記 failed
+    - 依賴偵測：summary/security 在 `hasFullContent=false` 時會先呼叫 `GmailRepository.downloadFullEmailContent(...)`，下載成功後再重新執行任務
+    - 寫回：成功產生後透過 `EmailRepository.saveEmail(...)` 寫回 DB → 更新快取 → 通知 UI
+  - 啟動：App 啟動時由 `BlocManager.initialize()` 啟動背景 worker；同時把前次遺留的 running 改為 pending 以便續跑
+
+- 觸發點與優先權
+  - Metadata 入庫：排 Title（medium）
+  - Full content 完成：排 Title（low）+ Summary/Security（medium）
+  - 點擊郵件（閱讀）：同時排 Title+Summary+Security（urgent）
+  - AIBloc.ensureAllAIFields：改為排入佇列（high/urgent），不再同步執行
+
+- UI：佇列儀表（Queue Dashboard）
+  - 指標：pending / running / failed / completed 計數
+  - 最近錯誤清單（前 N 筆）含 emailId、taskType、attempts、lastError
+  - 位置：`EnhancedSyncStatusWidget` 專區
+
+### 2. 同步流程（Incremental / Full / Reconcile）
+
+- 增量同步（History API）
+  - 來源：`EmailSyncCubit` 週期觸發（預設每分鐘）；`EmailSynchronizer` 管理策略與方向（forward）
+  - 游標：historyId 只由增量路徑寫入與前進
+  - AI：不阻塞同步；收到變更後 EmailRepository 寫入，AI 任務以背景排程處理
+
+- 手動 Refresh
+  - 順序：先 await 一次增量 → 再執行 ALL MAIL 分頁補齊（metadata-only）
+  - 429 防護：ID pageSize = 30、metadata batchSize（full diff/reconcile = 15；一般批次 = 25），遇到 partial failure（取回數 < 預期）保留 pageToken 以便重試
+  - 保護窗口：只有在全量「刪除相位」暫停增量同步，避免快照與新插入資料交錯而誤刪
+  - 遠端總量估算：採用 users.getProfile(messagesTotal) 作為「總量基準」，不再使用 messages.list 的 resultSizeEstimate（估算值易偏差）
+
+- 全量補齊（Full diff）
+  - 僅在 `continueFromToken=null` 時跑 full diff；否則採「續頁」模式
+  - 記錄遠端快照（remote snapshot temp table），結束時執行 stale 刪除
+  - historyId：僅回傳資訊供檢視，不寫入（避免與增量競態）
+
+- 對齊（Reconcile All Mail）
+  - 強制更新現有郵件的 metadata（labels/flags/folder），並執行 stale 刪除
+  - 進度回報：updated/deleted/pagesDone/nextPageToken/inDeletionPhase 供 UI 顯示
+  - partial failure：保留 pageToken、hasMore=true、退避重試
+  - 刪除相位：標記 beginDeletionPhase/endDeletionPhase → 此期間增量暫停
+
+### 3. 修復同步（Repair）
+
+- 目標：當 historyId 發散或遺漏變更時進行安全重建
+- 流程（僅短暫暫停增量，同步其餘時間維持）
+  1) beginCaptureWindow：進入捕捉視窗（暫停增量）
+  2) 清除游標與快取 → 讀取最新 historyId → 寫入 historyId/startHistoryId
+  3) endCaptureWindow：結束捕捉視窗（恢復增量）
+  4) Reconcile：對齊全體郵件，刪除相位期間暫停增量（beginDeletionPhase/endDeletionPhase）
+  5) 進行一次增量同步以補充對齊期間變更
+  6) UI refresh
+
+#### 3.1 修復期間的 hasFullContent 政策
+- 修復期間不修改 hasFullContent（不將 true→false 或 false→true）
+- 若 incoming 為 metadata-only 且本地已有 full content：僅「保留」 htmlBody/body/attachments，不動旗標
+- 非修復期間：
+  - 若本地已有 full content 而 incoming 是 metadata-only → 保留完整內容並維持 hasFullContent=true（避免降級）
+  - 若判定 full content 受損（僅剩 snippet/空值）→ 設 hasFullContent=false，開啟郵件時自動重新下載
+
+### 4. 資料一致性與合併策略
+
+- EmailRepository 儲存策略
+  - 合併 AI 欄位（last-writer-wins 依 metadata 的 updatedAt 欄位）
+  - 變更後觸發：cache upsert / invalidate / badge 更新 / EmailListUpdate 通知
+  - 第一頁資料夾清單優先快取（stale-while-revalidate）；分頁讀 DB
+
+### 5. 失敗/退避/配額策略
+
+- Gmail 429（rate limit）
+  - pageSize=30、metadata batchSize（15/25）；_executeWithRateLimitRetry（含 retry-after 與 jitter）
+  - partial failure：保留 pageToken，hasMore=true，延後重試
+
+- AI 任務
+  - 指數退避至 5 分鐘，最多 5 次；最終標記 failed 供儀表檢視
+  - 依賴缺失（無 full content）會先觸發下載再重試
+
+### 6. 設計抉擇與未來可調整項
+
+- 目前 worker 單執行緒（序列化）以降低裝置壓力；可後續加入並行度控制（同時 N 任務）
+- 儀表目前為快照載入；可加入刷新/輪詢/事件匯流
+- 可加入型別別佇列或加權（例如 security > summary）
+
+### 8. UI 選取系統並發保護
+- 為避免 SelectionArea 巢狀造成 MultiSelectableSelectionContainer 清除選取時的 ConcurrentModificationError：
+  - 引入 `MaybeSelectionArea`，在路由包裝時僅在沒有祖先 SelectionContainer 時才包 SelectionArea
+  - 關鍵 ESC 關閉/清除選取邏輯採用 post-frame（addPostFrameCallback）以避免同步修改 selectables
+
+### 7. 流程序列圖（Mermaid）
+
+#### 7.1 點擊郵件 → 下載 Full Content → 佇列 urgent AI → 寫回 DB → 更新 UI
+
+```mermaid
+sequenceDiagram
+  participant U as User/UI
+  participant MB as MailboxBloc
+  participant GR as GmailRepository
+  participant ER as EmailRepository
+  participant DB as AppDatabase/Cache
+  participant Q as AiTaskQueueService
+  participant W as AI Worker
+  participant AIS as AIService
+
+  U->>MB: 選取郵件(emailId)
+  MB->>ER: getEmailById(emailId)
+  alt hasFullContent == false
+    MB->>GR: downloadFullEmailContent(accountId, emailId)
+    GR->>ER: saveEmail(fullEmail)
+    ER->>DB: insert/update + cache + notify
+  end
+  MB->>Q: enqueueAllHigh(emailId)
+
+  loop 背景處理（依 priority）
+    Q->>DB: fetchNextPending()
+    Q->>ER: getEmailById(task.emailId)
+    alt task == title
+      W->>AIS: generateTitle(email)
+      AIS-->>W: title
+      W->>ER: saveEmail(updatedTitle)
+    else task == summary/security
+      alt 缺少 full content
+        W->>GR: downloadFullEmailContent(...)
+        GR->>ER: saveEmail(fullEmail)
+      end
+      W->>AIS: summarize/analyze
+      AIS-->>W: summary/analysis
+      W->>ER: saveEmail(updated)
+    end
+    ER->>DB: update + cache + UI notify
+  end
+```
+
+#### 7.2 手動 Refresh（先增量 → 再 ALL MAIL 補齊；刪除相位暫停增量）
+
+```mermaid
+sequenceDiagram
+  participant UI as UI/Toolbar
+  participant MB as MailboxBloc
+  participant ESC as EmailSyncCubit
+  participant ES as EmailSynchronizer
+  participant GR as GmailRepository
+  participant ER as EmailRepository
+  participant DB as AppDatabase/Cache
+  participant Q as AiTaskQueueService
+  participant SM as SyncStateManager
+
+  UI->>MB: MailboxRefreshed
+  MB->>ESC: performSync()（增量）
+  ESC->>ES: sync(strategy=incremental)
+  ES->>GR: getHistoryChanges(...)
+  GR-->>ES: changed messageIds
+  ES->>ER: saveEmails(updated)
+  ER->>DB: update + cache + notify
+
+  MB->>MB: _triggerApiSync(forceFullSync=true)
+  MB->>GR: syncAllMailToDatabase(continueFromToken)
+  GR->>GR: fetchAllMessageIds(pageSize=30)
+  GR->>GR: fetchMessagesMetadata(batch=25)
+  GR->>ER: saveEmails(emails)
+  ER->>DB: update + cache
+
+  opt 刪除相位（僅此時暫停增量）
+    MB->>SM: beginDeletionPhase()
+    GR->>ER: findStaleEmailIds + delete
+    MB->>SM: endDeletionPhase()
+  end
+
+  MB-->>UI: 列表/資料夾更新完成
+```
+
+#### 7.3 修復同步（僅在兩個窗口暫停增量：捕捉起始 historyId、刪除相位）
+
+```mermaid
+sequenceDiagram
+  participant UI as UI/Settings
+  participant MB as MailboxBloc
+  participant SM as SyncStateManager
+  participant GR as GmailRepository
+  participant ER as EmailRepository
+  participant ESC as EmailSyncCubit
+
+  UI->>MB: MailboxRepairSyncRequested
+  MB->>SM: beginCaptureWindow()
+  MB->>MB: 清除游標/快取/metadata
+  MB->>GR: getCurrentHistoryId()
+  MB->>MB: 寫入 historyId/startHistoryId
+  MB->>SM: endCaptureWindow()
+
+  MB->>GR: reconcileAllMailToDatabase(onProgress)
+  loop 每頁（ID=30, batch=15）
+    GR->>ER: saveEmails(page)
+    opt partial failure
+      GR-->>MB: hasMore=true，保留 pageToken，退避重試
+    end
+  end
+
+  opt 刪除相位（僅此時暫停增量）
+    MB->>SM: beginDeletionPhase()
+    GR->>ER: delete stale
+    MB->>SM: endDeletionPhase()
+  end
+
+  MB->>ESC: performSync()（增量一次）
+  MB-->>UI: 修復完成
+```

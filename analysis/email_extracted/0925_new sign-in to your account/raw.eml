@@ -1,0 +1,579 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:8da6:b0:4d4:9739:2b92 with SMTP id gr38csp2183134mdb;
+        Wed, 22 Oct 2025 00:31:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFNOsI3LyseTj3rPnIPZjG65lrPuOkobE4d1DyT4m6lxTIiHFEeJG/Io0WXylULvViPlAXl
+X-Received: by 2002:a17:903:2b0f:b0:28e:cbbd:975f with SMTP id d9443c01a7336-2935dff6598mr6187095ad.1.1761118316910;
+        Wed, 22 Oct 2025 00:31:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761118316; cv=none;
+        d=google.com; s=arc-20240605;
+        b=SLGW0HxqomTwkOibSH3QgMx9jQXZccLznesAooZb58F4mfwZBytqS/6MAQNNlBSJBT
+         +6lvovUevIqoXzP8/WV34JZYK5+TsF4ZDV5NZP3yqdKnWNmJGs2TQjxYNMItyXJoIHS4
+         z6sCisyyVVZKcI5mCoTL3xH8wsZOAk4GDdlVcfoX9feNhtDBFRZQoGdx++HrJtr02r/H
+         2YjZwVBX44XuDImFNmWXH4AZ4ttufRjc143/8RfUSulOJXLKxjmNkDfP4CI3fTb3saPU
+         YVmdHEN4gxy8MKP/IfYXJUquLVkqyf8EQa2P6jY1u7wGQ+CHO43f/4dA5ApV7os5EmQU
+         Edog==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:feedback-id:message-id:reply-to
+         :mime-version:list-help:date:subject:to:from:dkim-signature
+         :dkim-signature;
+        bh=vKmQFB/x48s2wnE5sMQy5BOnKAgo3NPXT0XI4cBMpOI=;
+        fh=AuRPPJxWT3oDWns/IAyV12DuHusfebFT2kEqOaRmmSo=;
+        b=hhyin/O1oU220xebFWUX6KgQvNy99k70FtykWXn1mYNf2nCusDSI8Cu4mb56V9rvBQ
+         7VQJilzYhoWX5tDGMkmv7j1E+yRnqnGfV/s0zGb94/lqh/GZQEtmk2xFvXGLp+U8SIpg
+         dMJ7OtSBvLGZ/4DbehhjCeV2jqtSFD7qTXa2ivAOa4MWngtaen9C8bVfU8IZtPoSF6/J
+         fbP26TiAX3+oqmF/gCulSFSUOBdlvL6a6lgoX7FUbDOXCUfClB3vHgeqy+Vx/30l7gd6
+         fRhSzrGNdM7U2mUzXKcank+S9qvZmXyfwfRh+hs+Qp0YAFdycmpLT9GeyafnPAfKWK2x
+         IgKg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@hulumail.com header.s=200608 header.b=qu7UrJqx;
+       dkim=pass header.i=@s4.y.mc.salesforce.com header.s=fbldkim4 header.b=IWT5fuUJ;
+       spf=pass (google.com: domain of bounce-48_html-1010190083-5063827-1064447-7302291@bounce.hulumail.com designates 13.111.11.59 as permitted sender) smtp.mailfrom=bounce-48_HTML-1010190083-5063827-1064447-7302291@bounce.hulumail.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=hulumail.com
+Return-Path: <bounce-48_HTML-1010190083-5063827-1064447-7302291@bounce.hulumail.com>
+Received: from mta3.hulumail.com (mta3.hulumail.com. [13.111.11.59])
+        by mx.google.com with ESMTPS id d9443c01a7336-29246ff69dcsi87385945ad.174.2025.10.22.00.31.55
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 22 Oct 2025 00:31:56 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce-48_html-1010190083-5063827-1064447-7302291@bounce.hulumail.com designates 13.111.11.59 as permitted sender) client-ip=13.111.11.59;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@hulumail.com header.s=200608 header.b=qu7UrJqx;
+       dkim=pass header.i=@s4.y.mc.salesforce.com header.s=fbldkim4 header.b=IWT5fuUJ;
+       spf=pass (google.com: domain of bounce-48_html-1010190083-5063827-1064447-7302291@bounce.hulumail.com designates 13.111.11.59 as permitted sender) smtp.mailfrom=bounce-48_HTML-1010190083-5063827-1064447-7302291@bounce.hulumail.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=hulumail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=200608; d=hulumail.com;
+ h=From:To:Subject:Date:List-Help:MIME-Version:Reply-To:Message-ID:
+ Content-Type:Content-Transfer-Encoding; i=hulu@hulumail.com;
+ bh=vKmQFB/x48s2wnE5sMQy5BOnKAgo3NPXT0XI4cBMpOI=;
+ b=qu7UrJqx7ROiHFTCE+Dk+8ycpjDed4WpwCQfeWapXQHutgr0PO5+ChgrrQqqDpTS6L8n+9e3O5m+
+   Lp4RGPg56d8NCvz1vx33LVgEb37SWHxAmBw5pSsRII5RaqQN3LKg9wy/ggxEjiPMvv0i/w+Ao7aA
+   o3hMnSc338035Iv8ngQ=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=fbldkim4; d=s4.y.mc.salesforce.com;
+ h=From:To:Subject:Date:List-Help:MIME-Version:Reply-To:Message-ID:
+ Content-Type:Content-Transfer-Encoding;
+ bh=vKmQFB/x48s2wnE5sMQy5BOnKAgo3NPXT0XI4cBMpOI=;
+ b=IWT5fuUJNoMrmBBa4ADKI6L1jby3QoK7obWI4d1v3D6AYvYOoTP+zAOlVmq5Trf3RSptnWX/+8DB
+   3ApujZxaY0/9M/PzXCzi9Wg/Jen9TWIzQh3qVh5N2/geQmt2T56u9n9gGXE9CJE4h6t7qLyc1xOC
+   w3g7t0SLW4HTw9UJ9x8m1DjrZ86tM10DVkMtowf14EJXPlYMpllZ+hElXRlBsCAYUwIf3ViPKq7x
+   LufYZhz+SH9QP3N5roSr+MOAk4qgIOXj97H6uNH7yugItCt2ypuWAkFMGxLs3zXLqokx3fn3DecY
+   01b9SClxNT0sCAwOwfGvTO8siWuZAu4kfE1OYw==
+Received: by mta3.hulumail.com id hv246o2fmd44 for <liencf@gmail.com>; Wed, 22 Oct 2025 07:31:54 +0000 (envelope-from <bounce-48_HTML-1010190083-5063827-1064447-7302291@bounce.hulumail.com>)
+From: "Hulu" <hulu@hulumail.com>
+To: <liencf@gmail.com>
+Subject: New Sign-in to Your Account
+Date: Wed, 22 Oct 2025 01:31:54 -0600
+List-Help: <https://click.hulumail.com/subscription_center.aspx?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtaWQiOiIxMDY0NDQ3IiwicyI6IjEwMTAxOTAwODMiLCJsaWQiOiI0OCIsImoiOiI1MDYzODI3IiwiamIiOiI3MzAyMjkxIiwiZCI6IjQwMTUyIn0.l3Kjdr_wara75pzN4HxrR6S19qp4TaxoklF9ypP_j-8>
+MIME-Version: 1.0
+Reply-To: "Hulu" <reply-fe90117073670c7f72-48_HTML-1010190083-1064447-7302291@hulumail.com>
+X-SFMC-Stack: 4
+x-job: 1064447_5063827
+Message-ID: <c0b57738-aa01-48d5-9609-f3fb65f81711@las1s04mta1602.xt.local>
+Feedback-ID: 1064447:5063827:13.111.11.59:sfmktgcld
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+
+
+<!doctype html>
+<html>
+<!-------------------------------- Hulu Ad Hoc Template V1 - initial build - 09222017 - SFMC V2 - added AMPscript block - 12122017 - SFMC v3 - updated fonts to Hulustyle - 01092018 - SFMC v4 - updated font stacks - 03192018 - SFMC ---------------------------------->
+
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta name="viewport" content="width=device-width" />
+ <title>Hulu</title>
+ <!--  --><!-- No Schema --><!-- No Schema -->
+ <!--[if !mso]><!-->
+ <style type="text/css" media="all">
+  @font-face {
+        font-family: 'hulustyle_light';
+        src: url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-light-webfont.eot');
+        src: url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-light-webfont.eot?#iefix') format('embedded-opentype'),
+             url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-light-webfont.woff2') format('woff2'),
+             url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-light-webfont.woff') format('woff'),
+             url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-light-webfont.ttf') format('truetype'),
+             url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-light-webfont.svg#hulustyle_tlight') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    
+    }
+    @font-face {
+        font-family: 'hulustyle_medium';
+        src: url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-medium-webfont.eot');
+        src: url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-medium-webfont.eot?#iefix') format('embedded-opentype'),
+             url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-medium-webfont.woff2') format('woff2'),
+             url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-medium-webfont.woff') format('woff'),
+             url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-medium-webfont.ttf') format('truetype'),
+             url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-medium-webfont.svg#hulustyle_tmedium') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    
+    }
+    @font-face {
+        font-family: 'hulustyle_regular';
+        src: url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-regular-webfont.eot');
+        src: url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-regular-webfont.eot?#iefix') format('embedded-opentype'),
+             url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-regular-webfont.woff2') format('woff2'),
+             url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-regular-webfont.woff') format('woff'),
+             url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-regular-webfont.ttf') format('truetype'),
+             url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-regular-webfont.svg#hulustyle_tregular') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    
+    }
+    @font-face {
+        font-family: 'hulustyle_bold';
+        src: url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-bold-webfont.eot');
+        src: url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-bold-webfont.eot?#iefix') format('embedded-opentype'),
+             url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-bold-webfont.woff2') format('woff2'),
+             url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-bold-webfont.woff') format('woff'),
+             url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-bold-webfont.ttf') format('truetype'),
+             url('https://assetshuluimcom-a.akamaihd.net/FONTS/hulustyle/upright/hulustyle-bold-webfont.svg#hulustyle_tbold') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    
+    }
+    @font-face {
+        font-family: 'Graphik-Light';
+        src:url('https://assetshuluimcom-a.akamaihd.net/FONTS/Graphik-Light-Web.eot') format('embedded-opentype'), url('https://assetshuluimcom-a.akamaihd.net/FONTS/Graphik-Light-Web.woff') format('woff'), url('https://assetshuluimcom-a.akamaihd.net/FONTS/Graphik-Light-Web.woff2') format('woff2'), url('https://assetshuluimcom-a.akamaihd.net/FONTS/Graphik-Light.otf') format('opentype');
+        font-style: normal;
+        font-weight: 200;
+    }
+    @font-face {
+        font-family: 'Graphik-Medium';
+        src:url('https://assetshuluimcom-a.akamaihd.net/FONTS/Graphik-Medium-Web.eot') format('embedded-opentype'), url('https://assetshuluimcom-a.akamaihd.net/FONTS/Graphik-Medium-Web.woff') format('woff'), url('https://assetshuluimcom-a.akamaihd.net/FONTS/Graphik-Medium-Web.woff2') format('woff2'), url('https://assetshuluimcom-a.akamaihd.net/FONTS/Graphik-Medium.otf') format('opentype');
+        font-style: normal;
+        font-weight: 200;
+    }
+    @font-face {
+     font-family: 'Graphik-semibold';
+     src: url('Graphik-Semibold-Web.eot');
+     src: url('Graphik-Semibold-Web.eot?#iefix') format('embedded-opentype'),
+     url('Graphik-Semibold-Web.woff2') format('woff2'),
+     url('Graphik-Semibold-Web.woff') format('woff');
+     font-weight: 600;
+     font-style: normal;
+     font-stretch: normal;
+     }
+    @font-face {
+        font-family: 'Graphik-Regular';
+        src:url('https://assetshuluimcom-a.akamaihd.net/FONTS/Graphik-Regular-Web.eot') format('embedded-opentype'), url('https://assetshuluimcom-a.akamaihd.net/FONTS/Graphik-Regular-Web.woff') format('woff'), url('https://assetshuluimcom-a.akamaihd.net/FONTS/Graphik-Regular-Web.woff2') format('woff2'), url('https://assetshuluimcom-a.akamaihd.net/FONTS/Graphik-Regular.otf') format('opentype');
+        font-style: normal;
+        font-weight: 200;
+    }
+ </style>
+ <!--<![endif]-->
+ <style type="text/css" media="all">
+  * { -webkit-text-size-adjust: none; } /* prevent iOS font upsizing */
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-smoothing: antialiased;
+    }
+    .ExternalClass * { line-height: 100%; } /* force Outlook.com to honor line-height */
+    td { mso-line-height-rule: exactly; } /* force Outlook to honor set line-heights */
+    .applelinksfooter a {color:#adb3bf !important; text-decoration:none !important;}
+    .applelinksdisclaimer a {color:#FFFFFF !important; text-decoration:none !important;}
+    .owaContextualHighlight span { /* Prevent Outlook.com and Office 365 from auto-linking */
+        border:none!important;
+        color:inherit!important;
+    }
+    /* Resolves the issue for iphone creating links from dates */
+    .appleLinks { color: inherit; text-decoration: none; }
+    .appleLinks a { color: inherit !important; text-decoration: none !important; }
+    
+    
+    /*** Responsive CSS ***/
+    
+    @media only screen and (max-width: 480px) {
+    /*** Layout ***/
+    body {
+        width: 100%;
+        min-width: 100%;
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+    }
+    .marginFix {
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+    .full-width-container {
+        width: 100% !important;
+        min-width: 100% !important;
+    }
+    .hide {
+        width: 0px !important;
+        height: 0px !important;
+        display: none !important;
+    }
+    .stackTbl {
+        width: 100% !important;
+        display: table !important;
+    }
+    .stackTblMarginTop20 {
+        width: 100% !important;
+        display: table !important;
+        margin-top: 20px !important; /* Adjust to match spacing between 2 across rows */
+    }
+    .stackTblMarginTop30 {
+        width: 100% !important;
+        display: table !important;
+        margin-top: 30px !important; 
+    }
+    .stackTblMarginTop25 { /** Used in footer content area **/
+        width: 100% !important;
+        display: table !important;
+        margin-top: 25px !important; 
+    }
+    .center {
+        margin: 0px auto !important;
+    }
+    .floatLeft {
+        float: left !important;
+        width: 35% !important;
+    }
+    .floatRight {
+        float: right !important;
+        width: 60% !important;
+    }
+    /*** Padding Styles ***/
+    .mobilePaddingLR {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    .mobilePaddingTB {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    .paddingTop25 {
+        padding-top: 25px !important
+    }
+    .paddingTop50 {
+        padding-top: 50px !important
+    }
+    .paddingLeft10 {
+        padding-left: 10px !important
+    }
+    .paddingLeft25 {
+        padding-left: 25px !important
+    }
+    .paddingright15p {
+        padding-right: 15% !important
+    }
+    .paddingright25p {
+        padding-right: 25% !important
+    }
+    .removeLRPadding {
+        padding-left: 0px !important;
+        padding-right: 0px !important
+    }
+    /*** Text/Divider/Image Styles ***/
+    .imageUpsize {
+        width: auto !important;
+        height: auto !important;
+        max-width: 100% !important
+    }
+    .imageMax {
+        max-width: 100% !important
+    }
+    .fullWidthImg {
+        width: 100% !important;
+        height: auto !important;
+    }
+    .logoResize {
+        width: 60px !important;
+        height: auto !important;
+    }
+    .textAlignCenter {
+        text-align: center !important
+    }
+    .textAlignLeft {
+        text-align: left !important
+    }
+    .fontSize8 {
+     font-size: 8px !important;
+     line-height: 10px !important;
+    }
+    .fontSize16 {
+     font-size: 16px !important;
+     line-height: 20px !important;
+    }
+    .fontSize20 {
+     font-size: 20px !important;
+     line-height: 24px !important;
+    }
+    .fontSize28 {
+     font-size: 28px !important;
+     line-height: 30px !important;
+    }
+    
+    }
+    
+    /*** END Responsive CSS ***/
+ </style>
+</head>
+
+<body style="margin:0px; padding:0px;" bgcolor="#f5f6f7">
+ <!-- CONTAINER -->
+ <table align="center" cellpadding="0" cellspacing="0" border="0" width="100%" class="marginFix" bgcolor="#f5f6f7">
+  <!-- MAIN CONTENT -->
+  <tr>
+   <td width="100%" align="center">
+    <table cellpadding="0" cellspacing="0" border="0" width="600" bgcolor="#ffffff" style="min-width: 600px" class="full-width-container">
+     <!-- VAWP -->
+     <tr class="hide" bgcolor="#f5f6f7">
+      <td align="right" style="color: #757575;font-family: Arial, Helvetica, sans-serif;font-size: 10px; line-height: 12px; padding: 10px 0px 10px 0px"> <a href="https://view.hulumail.com/?qs=fd1f6f241f17eb4a851af140bff005a10fc1e28be3022e89e13ec03bc7d5479b873488be0d8f8db94270d704529270f4884803c8a08d28166c0592d2e34cb86e152a2780edd48318644038acb8269377d5e06247c3810804"  style="text-decoration: underline;color:#757575">View in browser</a>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <!-- Transactional Header -->
+       <table width="600" cellpadding="0" cellspacing="0" border="0" style="width: 600; border-collapse: collapse;" class="full-width-container" bgcolor="#1ce783">
+        <tr>
+         <td align="right" style="padding: 18px 30px 18px 0">
+          <a href="https://click.hulumail.com/?qs=cc9e91af6e7225b2c8cc3a84e98e795ab088e288bc2f4e929af3e76c21c498a6723ebed050a615ceb61bdc92eb8f56442c765e00d3c04f85"  target="_blank">
+           <img src="http://image.hulumail.com/lib/fe9515707360007972/m/7/0084d3bd-b809-49af-a1d1-fda63aba1c90.png" style="border: none; display: block; -ms-interpolation-mode: bicubic; outline: none; width: 75px; height: 25px;" width="75" height="25" alt="Hulu" border="0" />
+          </a>
+         </td>
+        </tr>
+       </table>
+       <table width="600" cellpadding="0" cellspacing="0" border="0" style="width: 600px; border-collapse: collapse;" class="full-width-container">
+        <tr>
+         <td height="80"></td>
+        </tr>
+       </table>
+       <!-- /End Transactional Header -->
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <!-- Tranactional Icon -->
+       <table width="600" cellpadding="0" cellspacing="0" border="0" style="width: 600px; border-collapse: collapse;" class="full-width-container">
+        <tr>
+         <td style="padding: 0 0 0 25px" class="mobilePaddingLR">
+          <img src="http://image.hulumail.com/lib/fe9515707360007972/m/8/072bc507-9400-44aa-a718-59d5cb8e33d9.png" style="border: none; display: block; -ms-interpolation-mode: bicubic; outline: none; width: 80px;" width="80" alt="icon" border="0" />
+         </td>
+        </tr>
+       </table>
+       <!-- /End Tranactional Icon -->
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <!-- Transactional Announcement Copy -->
+       <table width="600" cellpadding="0" cellspacing="0" border="0" style="width: 600px; border-collapse: collapse;" class="full-width-container">
+        <tr>
+         <td style="color: #040405; font-family: 'hulustyle_bold', Helvetica-Bold, Helvetica, Arial Black, Arial, sans-serif; font-size: 32px; line-height: 36px; font-weight: bold; padding: 20px 225px 10px 25px" class="paddingLeft10 paddingright15p">New Device Sign-in On Your Hulu Account</td>
+        </tr>
+       </table>
+       <!-- /End Transactional Announcement Copy -->
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <!-- Transactional Copy -->
+       <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+         <td style="color: #040405;font-family: 'Graphik-regular', Helvetica-Light, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 20px; padding: 10px 75px 10px 75px;" class="mobilePaddingLR">Hi Chih Feng, <br><br>
+       
+       We spotted a new device logged into your account. <br><br>
+       
+       <strong>What?</strong><br>  <font color="#040405">Apple TV</font><br><br>
+ <strong>Where?</strong><br> <font color="#040405">Chicago, IL, US</font> <br><br>
+       <strong>When?</strong><br>  <font color="#040405">10/22/2025 03:31:47 AM (ET)</font><br><br>
+       <strong>Who?</strong><br>  <font color="#040405">You:</font> All good. Nothing more to do here. Happy watching!<br><br><font color="#040405"> Not You:</font>
+Check the list of devices logged into your account, and consider changing your password.<br><br> 
+       
+       <strong>Anything else?</strong> We're here to help. Visit our <a href="https://click.hulumail.com/?qs=632cdc368bea034a44b529655417200d45794cbed70feaf2d732b93e2b4ce2a5bcfe7e9413b6e12570f9d05f856dd3e00deeecbf8adc45b9" target="_blank"  style="text-decoration: underline; color: #1ce783;"><span style="text-decoration: underline; color: #040405;">Help Center</span></a> for more info on how to deactivate devices you don't recognize. </td>
+        </tr>
+       </table>
+       <!-- /End Transaction Copy -->
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <!-- Transactional CTA  -->
+       <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+         <td align="center" valign="top" style="padding:40px 15px 40px 75px;" class="mobilePaddingLR">
+          <table cellpadding="0" cellspacing="0" border="0" align="left" style="min-width: 230px">
+           <tr>
+            <td height="45" bgcolor="#040405" align="center" valign="middle" style="color: #ffffff;font-family: 'Graphik-Medium', Helvetica-Bold, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; letter-spacing: 1px; text-transform: uppercase;padding:0px 20px 0px 20px;">
+             
+             <!-- ADD LINK URL AND ALIAS BELOW -->
+              <a href="https://click.hulumail.com/?qs=f50d2ec011ea921d311fdc397e0b0d393eb82ec4be68d843df874d895d3c20c6338d4e74def7b81d93cab5ad7d5df60b227ade5020a13b329d21f8228a80ee84"  align="center" style="color:#FFFFFF; text-decoration:none;" target="_blank">
+
+         MANAGE DEVICES
+
+         </a>
+            </td>
+           </tr>
+          </table>
+         </td>
+        </tr>
+       </table>
+       <!-- End Transactional CTA  -->
+      </td>
+     </tr>
+     
+     
+     <tr>
+      <td>
+       <!-- Transactional Sign Off / Signature -->
+       <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+         <td style="color: #040405;font-family: 'Graphik-regular', Helvetica-Light, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 20px; padding: 10px 15px 0 75px" class="mobilePaddingLR">The Hulu Team</td>
+        </tr>
+       </table>
+        <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table>
+<tr>
+         <td style="color: #040405;font-family: 'Graphik-semibold', Helvetica-Light, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 600;  letter-spacing: 1px; padding: 70px 15px 70px 25px" class="mobilePaddingLR paddingTop50">QUESTIONS? <a href="https://click.hulumail.com/?qs=e873b4e2e912253b7ea88590cc308b1ca6797c9febd056ac033993e7a75d1c9f4bc3bdd9bd9816f312bb06db7775c661b8292a9bfef9ecde" target="_blank"  style="color: #1ce783;">GET HELP</a>
+         </td>
+        </tr>
+</table>
+</td></tr></table>
+       <!-- /End Transactional Sign Off / Signature -->
+      </td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+  <!-- END MAIN CONTENT -->
+  <!-- FOOTER -->
+  <tr>
+   <td width="100%" align="center">
+    <table cellpadding="0" bgcolor="#ffffff" cellspacing="0" border="0" width="600" class="full-width-container">
+     <tr>
+      <td width="600" align="center" valign="top">
+       <!-- Footer Spacer - Adjust space between social icons and last content module-->
+       <table bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+         <td height="30">&nbsp;</td>
+        </tr>
+       </table>
+       <!-- End Footer Spacer -->
+       <table bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+         <td><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td align="center" style="padding:0px 0px 40px 0px;">
+
+            <!-- Social -->
+            <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td align="center" valign="top" style="padding-bottom: 20px">
+                        <table align="center" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td><a href="https://click.hulumail.com/?qs=2ef05783d9c9a1d90469236cab1d229069b7aa8b7bed1d437e560a944a68c588d1c8edf599c354f2d92bfd6deb5f1a29cad2971eb0e0015f"  target="_blank"><img src="http://image.hulumail.com/lib/fe9515707360007972/m/4/170520_instagram.png" alt="Instagram" width="42" style="display: block; border: 0;"></a></td>
+                                <td width="9"></td>
+                                <td><a href="https://click.hulumail.com/?qs=cdf7d4503dd984e0002ed5f35de73338506d21573b0fd828f1a11ecae7945e87bf3d0381daef7e833dc9693e1dcfbcb6b9c7fd19fcfa345f"  target="_blank"><img src="http://image.hulumail.com/lib/fe9515707360007972/m/4/170520_facebook.png" alt="Facebook" width="42" style="display: block; border: 0;"></a></td>
+                                <td width="9"></td>
+                                <td><a href="https://click.hulumail.com/?qs=40caf9be7d564e83506efdc62a0da75f48061de8c028cbd6c6cabf8bc0a3a51bd6bc1cfa8222a65347d121f28848462b67ad00c01fe90a0f"  target="_blank"><img src="https://image.hulumail.com/lib/fe9515707360007972/m/1/9995851e-c7b2-421a-94e1-5e4952260064.png" alt="X" width="42" style="display: block; border: 0;"></a></td>
+                                        
+                                        <td width="9"></td>
+                                        <td><a href="https://click.hulumail.com/?qs=46f3cf84185370dcdb2d2884939d6fda2644145c31a2fdaa5686e57ee9180de48d51f1472a78372559518df80c046fe45385e63e8af1d932"  target="_blank"><img src="https://image.hulumail.com/lib/fe9515707360007972/m/1/5abe536c-b8a9-4e40-9030-7510031aeafe.png" alt="TikTok" width="42" style="display: block; border: 0;"></a></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="1" bgcolor="#adb3bf" style="line-height: 1px; font-size: 1px">&nbsp;</td>
+                </tr>
+            </table>
+            <!-- End Social -->
+            <!-- Footer -->
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                    <td style="padding:30px 10px 0px 10px">
+
+                        <!--[if gte mso 9]><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td align="left" style="float: left;" valign="top"><![endif]-->
+
+                        <!-- column 1 -->
+                        <table width="175" align="left" class="stackTbl" cellpadding="0" cellspacing="0" border="0" style="display:inline; float: left;">
+                            <tr>
+                                <td align="right" valign="top">
+
+                                    <!-- Logo -->
+                                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                        <tr>
+                                            <td align="left" valign="top" style="padding:5px 0px 0px 10px" class="removeLRPadding">
+                                                <a href="https://click.hulumail.com/?qs=fe3cbf32e9576fd965c23fb1f55d05df8f345a73e677f13fd35a43a5a868ffb1c9aa7b4f8527609197bf2cd87469da615b22b6688fa17563"  target="_blank"><img alt="Hulu" src="http://image.hulumail.com/lib/fe9515707360007972/m/4/170520_hulu.png" width="78" height="25" style="display: block; font-size: 20px; color: #666666;" border="0" class="center"></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- Logo -->
+
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- end column 1 -->
+
+                        <!--[if gte mso 9]></td><td align="left" style="float: left;" valign="top"><![endif]-->
+
+                        <!-- column 2 -->
+                        <table width="405" align="right" class="stackTblMarginTop25" cellpadding="0" cellspacing="0" border="0" style="display:inline; float: right;">
+                            <tr>
+                                <td align="left" valign="top">
+
+                                    <!-- Address - Unsub - Pref -->
+                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                        <tr>
+                                            <td align="left" valign="top" style="font-family: Helvetica, Arial, sans-serif; font-size: 14px; line-height: 18px; color: #adb3bf;padding: 0px 0px 0px 0px" class="textAlignCenter owaContextualHighlight"><span class="applelinksfooter">Hulu, LLC. 2500
+                                                    Broadway,&zwnj;&nbsp;2nd&nbsp;Floor,
+                                                    Santa&nbsp;Monica,&nbsp;CA&zwnj;&nbsp;90404</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="top" style="font-family: Helvetica, Arial, sans-serif; font-size: 14px; line-height: 18px; color: #adb3bf;padding: 10px 0px 0px 0px" class="textAlignCenter">
+                                                <a href="https://click.hulumail.com/?qs=6574bc837539976d37b4de4b5dc0345da7eeffcf98b797ed1aaf8e45f0a67f6242ecdf8ed27921eba87cfe99eb2aee6bbb286263b70076b9" target="_blank" style="text-decoration: none; color: #adb3bf" ><span style="color:#adb3be;">Preferences</span></a>&nbsp;&nbsp;&nbsp;
+                                                | &nbsp;&nbsp;&nbsp;<a href="https://click.hulumail.com/?qs=2c85a450b63b0d9486a0da3f5801f47684a97d3359f7edf8bd09d6f40b49777b74040af1b69e80045b3a44e2a9343131e0e6e86b2daa2a9c" target="_blank" style="text-decoration: none; color: #adb3be" ><span style="color:#adb3bf;">Support</span></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- End Address - Unsub - Pref -->
+
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- end column 2 -->
+
+                        <!--[if gte mso 9]></td></tr></table><![endif]-->
+
+                    </td>
+                </tr>
+            </table>
+            <!-- End Footer -->
+
+        </td>
+    </tr>
+</table></td></tr></table></td>
+        </tr>
+       </table>
+      </td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+  <!-- END FOOTER -->
+ </table>
+ <!-- END CONTAINER -->
+ <img src="https://click.hulumail.com/open.aspx?ffcb10-fe90117073670c7f72-fdef16757d660174731d7174-fe9515707360007972-ff931078-fe0815707464057475147876-fe9713737566067474&d=40152&bmt=0" width="1" height="1" alt="">
+  <img src="https://beacon.krxd.net/1x1_usermatch.gif?partner=LpTo5dZh_1064447_sha256&partner_uid=e1108929f8ad6e0a8e391a40c589c96a436d74b91582c381cfd62494a8646421" width=0 height=0 style="display:none" /> 
+<img src="https://beacon.krxd.net/1x1_usermatch.gif?partner=LpTo5dZh_1064447_subid&partner_uid=1010190083" width=0 height=0 style="display:none" /> 
+<img src="https://beacon.krxd.net/1x1_ad_impression.gif?confid=spkt9jxqy&advertiserid=1064447&campaignid=New_DeviceLogin_Transactional_UPDATED_Nov18" width=0 height=0 style="display:none;" />
+  <img src="https://pixel.inbox.exacttarget.com/pixel.gif?r=299ce47470ca11e030a1943b344b6005f701cd2e" width="1" height="1" />
+   <!-- JM2021 -->
+ </custom>
+  <!-- Sendlog Attribute Script to add to ALL Emails -->
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"></td></tr></table>
+ <!-- END: Sendlog Attribute Script -->
+  </body>
+
+</html>

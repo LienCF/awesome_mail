@@ -1,0 +1,954 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:8da6:b0:4d4:9739:2b92 with SMTP id gr38csp2165268mdb;
+        Tue, 21 Oct 2025 23:46:43 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFhym69sgRD1FtQCTRWH4DjLmBVzjTK9FM4l07B2yFsb3dTbZTND5qO/ei9o2pYHQFEpQZd
+X-Received: by 2002:a05:620a:4594:b0:893:398:4852 with SMTP id af79cd13be357-89303984acbmr1552194385a.60.1761115603436;
+        Tue, 21 Oct 2025 23:46:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761115603; cv=none;
+        d=google.com; s=arc-20240605;
+        b=UW4kCXypOr2rsFZa46CnkoVLBneL0Tbo4t0nZnTw9N+bAO2/XebVPct4PchAXwCSUR
+         bIPxJyPIJjsvR+qDvAFiEY/WUsDYVhRPKhSvM5IjckxSmI486bNx2gYJt8YRliRwvn3G
+         Lyx3SW+zRTB8ygALY/K2EM2QO1rF+biVJw+JS1h/vK9P7OKl91tL+ir0RbDIpzr4aok2
+         RQXEIxvyva59CsG6FvzIkQ2D50O84uGrbY2zGY2eSln3RQad/eCmz0pp2x62m4d/3XpJ
+         Xy/pLCast13RjAioDu8FmMMEMZa9ZOyOoBy3LfVhZOqlLNuWlJSpTAjKwO0h5IV+nJP7
+         708A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:list-unsubscribe-post:precedence:mime-version:subject
+         :message-id:to:reply-to:from:date:list-unsubscribe:dkim-signature
+         :dkim-signature;
+        bh=s6BxiFc17D6HyHPwjlNvmaQm9pGf6nguzDUi56doDzg=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=hwLUk7x2LOJWjME27OKyMo0fQwYLaaEPIOiXVM/2EMXaEb/pL+dsSu1hJVoC0AcNch
+         lLDFX0Vq+8QwasoFZy7JB0m1vGegXbnxZIurlanHsk8tzSaACCiw//MzyRBTQaSyu7zr
+         SyDZJwYdq9ceqXOGu4e3PM65mCsIvNjAb1C+kpsAKp7r+LtuvqlaPpiqMthOo1hH7YLx
+         XT6ruLwBOg9tM9/FntAy3xawF0hqxj4NZgLLZw53XmhVQ/a46txPxb9I/k3dJ0nXAUEh
+         MCGcy4sW1LWlf1cmqc5L/jdUb2VGZDEKOMztl1HyaytL3pHyhWsr+Zuffa+fSGsRuXoa
+         T4ZQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@43994671m.topcoder.com header.s=hs1 header.b=Blc4XS8l;
+       dkim=pass header.i=@topcoder.com header.s=hs2-43994671 header.b=K+d06Wc2;
+       spf=pass (google.com: domain of 1axbx8yhu4vhz2zp5co8nhphinq8jle5n8ehj8-liencf=gmail.com@43994671m.topcoder.com designates 143.244.91.219 as permitted sender) smtp.mailfrom="1axbx8yhu4vhz2zp5co8nhphinq8jle5n8ehj8-liencf=gmail.com@43994671m.topcoder.com";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=topcoder.com
+Return-Path: <1axbx8yhu4vhz2zp5co8nhphinq8jle5n8ehj8-liencf=gmail.com@43994671m.topcoder.com>
+Received: from bd77gp5.43994671m.topcoder.com (bd77gp5.43994671m.topcoder.com. [143.244.91.219])
+        by mx.google.com with ESMTPS id af79cd13be357-891cf39a891si361992285a.597.2025.10.21.23.46.43
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 21 Oct 2025 23:46:43 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 1axbx8yhu4vhz2zp5co8nhphinq8jle5n8ehj8-liencf=gmail.com@43994671m.topcoder.com designates 143.244.91.219 as permitted sender) client-ip=143.244.91.219;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@43994671m.topcoder.com header.s=hs1 header.b=Blc4XS8l;
+       dkim=pass header.i=@topcoder.com header.s=hs2-43994671 header.b=K+d06Wc2;
+       spf=pass (google.com: domain of 1axbx8yhu4vhz2zp5co8nhphinq8jle5n8ehj8-liencf=gmail.com@43994671m.topcoder.com designates 143.244.91.219 as permitted sender) smtp.mailfrom="1axbx8yhu4vhz2zp5co8nhphinq8jle5n8ehj8-liencf=gmail.com@43994671m.topcoder.com";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=topcoder.com
+Received: by 172.16.82.119 with SMTP id a0cij75oyuvslmn4qdlymn93zk6a7qhu8vq322u0j3p;
+        Wed, 22 Oct 2025 06:46:35 GMT
+DKIM-Signature: v=1; s=hs1; d=43994671m.topcoder.com; 
+        i=@43994671m.topcoder.com; 
+        h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id:list-unsubscribe-post; 
+        a=rsa-sha256; c=relaxed/relaxed; 
+        bh=s6BxiFc17D6HyHPwjlNvmaQm9pGf6nguzDUi56doDzg=; 
+        b=Blc4XS8lHIGx/C2J24cvjpamkLkmA4S8iRRCgoKdQoYMwsUszVbEcFK15UBsI8
+         6HDWvccZ1DQ8b8vz/MBk0OJLLtziKoJs3jnqM+N9rlsQhi8hshnYuICa9D+ZFqt
+         oKoJmCzu0D83bSjrzFMfPO0U1s6Et4/9D2wSP+7sXkTki3i61k/V8VSUaBhqtLu
+         bwJE3oxyYSNiItZrQTrlWM1ZNtz/VoAl5/Ika94enNZf/4Sj1XZl2kNPWLJ6qdO
+         +XdvqEJD1fNR/jiaxaJ2u5JDW0PrFy30dc8IZdlyrHm6DMEv4TmjYZS/y2cKmaQ
+         dktkJUFELC0QkuTfH44Mc+9cifSA==; q=dns/txt; t=1761113965; 
+        x=1761376765;
+DKIM-Signature: v=1; s=hs2-43994671; d=topcoder.com; 
+        i=@topcoder.com; 
+        h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id:list-unsubscribe-post; 
+        a=rsa-sha256; c=relaxed/relaxed; 
+        bh=s6BxiFc17D6HyHPwjlNvmaQm9pGf6nguzDUi56doDzg=; 
+        b=K+d06Wc2494zYLNX/5iVb7OZLin1tGGKZxBXB2AsOQ6sSaeYjjiZGMV5R8EH5k
+         t5YK7LqpPaas+YO0+vAp7kTTcaoJZ5UlZONOu+R4C3lmawVjneQcM3/rU0Sk8IC
+         qTTvslAj5+l0DUfwJd1cBuLQPrUW54cMFqWd3xGRAzHPqPbdzgVUds4kUK8Ozb+
+         v5wxX6UMbAxRDwLgb3UM9Qm6Pzd7KBvRq2ogffrueHJDhaVjP3v2HYOlSWATwti
+         ojkJz85N4jW6v/vbzKD6lETUYtNZrCocJObwBhVrCdWwhXWERmVLDCwic42GNJq
+         K3pE0Kr1O5sYLypGhRCu1hVu5asA==; q=dns/txt; t=1761113965; 
+        x=1761376765;
+Return-Path: <1axbx8yhu4vhz2zp5co8nhphinq8jle5n8ehj8-liencf=gmail.com@43994671m.topcoder.com>
+X-HS-Cid: 1axe4wlww7yu0zpnua9h2e5694nv8eb8pn8n6g
+List-Unsubscribe: <mailto:1axczo9xzeoptpuea4fprgrulsumk0rn37hnjc-liencf=gmail.com@43994671m.topcoder.com?subject=unsubscribe>, <https://hi.topcoder.com/hs/subscription-preferences/v2/unsubscribe-all?data=W2nXS-N30h-RNW2TCd-N3LGYrpW2RMQ1l2sSMKqW2KrXCt3jdKy1W49SWc92Rlk22W2Rv-F543xKWJW2THSMX3ZFFjNW3JGJ623b1Cb0W2nYk992-DhjqW4ctQKd3XwtlwW3DKb331ZgByYW3DW82P2PwHtnW4hrkm33gytTCW2w3w4Q3HfC1LW4krVs-2-LytjW3_JlLP1-X9vYW4cwrSq1Ssj7gW34Dt154hvFt8W1_5ywz3z47_KW2RDdVC1VwssYW2PltGY2HXYy9W3bdWl21-YsMSW3BYrkm23gKhKW23hBTR2xXsrqW3NWD6d1V8Hc0W3XKhdk1VhNjyW2xZ9vl2zQVtsW3_pBYw4kKZ0_W2qG4RY1V7tvZW2zLJYl1Nhb0vW3SyTYb4cqRP8W2zYyCm2sCQG9W3Q_pLl4mLsXQW345_Cq3DV0dmW4r8hTJ3GM605W3M3CZK1NnY-5W1Zmb5N2TxsjXW3bd52Z4p9MZPW3X-qkv3NSKq0W43xdsJ3DZvQwW2CTCk532hLGlW2nQCqt3gv_bKW47SLVM2-d2ctW36Fwbb2nHyjWW4fjP_130BsmhW21pDBh3KcFcTW1_tBDq4tDrhcW3SBzkQ3BM3yVW2310Fp2qCFVFW3R2nc31LGlDL0>
+Date: Wed, 22 Oct 2025 02:46:35 -0400
+From: Topcoder <hello@topcoder.com>
+Reply-To: hello@topcoder.com
+To: liencf@gmail.com
+Message-ID: <1761113964889.06a723a6-ca41-499b-adce-4faf1b158ef9@43994671m.topcoder.com>
+Subject: Topcoder Payments Are Moving to Trolley
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_4467275_1224852804.1761113965716"
+Precedence: bulk
+X-Report-Abuse-To: abuse@hubspot.com (see
+ https://policy.hubspot.com/abuse-complaints)
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Feedback-ID: ae0g8sh:aign98kl:aidf:HubSpot
+
+------=_Part_4467275_1224852804.1761113965716
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi liencf,
+
+Today=E2=80=99s the day. We=E2=80=99re officially launching Trolley (https:=
+//hi.topcoder.com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V9rW5J91fJ6pvVQCW95j2m75=
+DYy7mN3fD2Cg3l5QzW5BW0B06lZ3p9W81QD2R6Fs9CRV1FNgZ73BClVW5lpG8L4_7kl-W5wCJjc=
+98_c0HN2-_pVTsqDXLW18T6sR7-1-nRW8D2fVK6fg7kRW9f7R9x67j5XdW142bbL3tZLYcW7QRV=
+YB3pZQdYW5gq7rx6PpZXsW6Pfw4Y8SWWsHW62TChg6SC9krW5G5v3n4kBNVjW1HJQ1S6Y4ZvkW5=
+NrGrN18HmsJW1z_kxY54lKfnN2Zc92mddwmLf82WKvd04 ) as Topcoder=E2=80=99s new g=
+lobal payment platform.
+
+Starting October 22, 2025, all Topcoder payments will now be processed thro=
+ugh Trolley. Payoneer and PayPal are no longer supported for new payouts, b=
+ut you can now receive your earnings via Trolley through Bank transfer (loc=
+al or international). You=E2=80=99ll still have access to your existing fun=
+ds in Payoneer or PayPal - they just won=E2=80=99t receive new payments fro=
+m Topcoder after October 22.
+
+Why Trolley?
+
+We=E2=80=99ve made this change to give you a faster, more reliable, and mor=
+e flexible payment experience. Trolley offers:
+
+-
+
+Lower overall fees (compared to Payoneer)
+
+-
+
+Support for 210+ countries and territories
+
+-
+
+Faster processing and better payout tracking
+
+-
+
+Bank-grade security (SOC 2 certified, GDPR compliant)
+
+-
+
+Easy account setup and tracking
+
+-
+
+Improved reporting and payout history
+
+What you need to do:
+
+Click the link below to securely set up your Trolley payout method in the T=
+opcoder Wallet App: Set Up My Trolley Payment Method. (https://hi.topcoder.=
+com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V9rW5J91fJ6pvVQCW95j2m75DYy7mN3fD2CT3l=
+5QzW6N1vHY6lZ3krW6Q67HP8GpcbRW178x4S1RDpFZW5_2KrJ4ZzGBRMP4XcpBrd_bW8Jnq9d8f=
+WHS0W84TGjF17jXgDVKrQ9-7j3q7-W2j3spG8RVlGVW398ZPH8Z-nPsW1HCXMZ7Gj8MtW3kkg6N=
+8wbvBZW5mxH8647t7NNM79hrdnQtvcW58vZg03P41PDW1VZnp37spzycW560gy-7Hd8GhW8TZGK=
+-7_XyMjW2h27D781bCGxW5-WV6s4kfLlpV4QMsk6qjzp7W3-d3998DqHTrW2BR7p02DVf-Xf8rr=
+3Fj04 )
+
+The setup only takes a few minutes.
+
+Learn More
+
+Read the Trolley Overview article  (https://hi.topcoder.com/e3t/Ctc/W5+113/=
+d59pl704/VVpVCB654V9rW5J91fJ6pvVQCW95j2m75DYy7mN3fD2D83l5QzW7lCdLW6lZ3mfW3K=
+fl2S5ggmqsVwYzgM29Q7hlW7nyVFV3SvYGnW44b7Sf7NWCycW7r61ts8BGfSJW32yBvq86jVK8V=
+jM9Sy8nBKr1W89b3mx1YYRYtW6W4rlr7XGYKrW87QKSy87--RKW7Cc3QL7LLq2QW8yWj0K6t67r=
+vW3pvHHr7DW1NWW80hXL-6XQ1dYV69DtY5lP2cLW7dq6-Z5kR-W8W6YssdB2DXYQ2N39s7pX5F-=
+rTW8-KdZZ3lHLCQN8g90GF1VjgSW32Wvw86JY4pcW3-rRjQ6w4By3W5M_Qrr3Z_j3GN2vqjnlhB=
+yLqf1ZN9ml04 )
+
+Ask questions in the forums (https://hi.topcoder.com/e3t/Ctc/W5+113/d59pl70=
+4/VVpVCB654V9rW5J91fJ6pvVQCW95j2m75DYy7mN3fD2CT3l5QzW6N1vHY6lZ3n9W3wX84k7l3=
+cl3W10-X4_9lQHcbW59Qz3J8mLdpWW3RNm2F6wcVy9W8SGx-F7KB1CPW87CTMr8Y50RQW8yRqP_=
+8cG9QRN5fw1Q-QScjfW5YwHzP63drtFW1QMBYf1RfXs3W73xB3q7zQlZ3VsJZbs1V7_bwW2Fflk=
+x94LtjRW4swDWR8SCvtbW8lwM-17LVS7WN7Zwj_3xZbc_N32xdZGPyZkBW4WJK223CCqrSW94k7=
+5d2JqSDXW4FgnB97t0hyZVJVtsg2f0dQmF17cQHWsXxwdRksbR04 )
+
+Thanks for being part of the Topcoder community! We're excited to bring you=
+ a smoother and better way to get paid.
+
+The Topcoder Team
+
+Topcoder Team
+
+Have a question? Email hello@topcoder.com (mailto:hello@topcoder.com)
+
+twitter (https://hi.topcoder.com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V9rW5J91f=
+J6pvVQCW95j2m75DYy7mN3fD2Cg3l5QzW5BW0B06lZ3lkW7Hv70b6dsSY-N8k5nm2VgSsHW266Y=
+TM4bwDb_W54lXrh8qhnzJW5YWrs-6w-9QTW2CWVN64cC0DGW7r-81d8XWh4HW2cbV2V6xm150W8=
+V_yPL43kJ3GW8MS--p4Qr7N4W5jSFKL1rpRmKW9kSKyW2VGGp0W27Bt9x8nlmJsW9c9Gf-69c1q=
+zN2CXD5sFNpBHW5RL56R6jD7XyVfJ_sw68XJ1hW7z-gkl2KLs5Kf6thSyq04 )
+
+facebook (https://hi.topcoder.com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V9rW5J91=
+fJ6pvVQCW95j2m75DYy7mN3fD2Cz3l5QzW69sMD-6lZ3mjW5rXD6l5ZSgTkW6cWlqj71J_gZW12=
+hP3h2GVNvMW3p49nR3rszP9Vzc0hc4yl3DlW74JF8X91nHTcW3DQhCh5gZWhqW48M4C76bt4NYW=
+8hrKSt4FMq1bW8HHBx_4CV96NVzHp9k4Bj9XrW49LvPL4M-pyGV3mNM74M9zydVM0QlQ5JY0hrW=
+71FdZx60nJd6W36TFWR1DTcRYW3QPbGY7LrfKRW5t1XDk1l43RHN403M_DF7r53W25cL8h4dBM_=
+0f6Y-QPs04 )
+
+linkedin (https://hi.topcoder.com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V9rW5J91=
+fJ6pvVQCW95j2m75DYy7mN3fD2Cz3l5QzW69sMD-6lZ3ncN3PN_c3CPTv4W5C-7y66r_-SjW7vm=
+DVN5trXrmVHBP5M2NmywwW3Nj7rg7y9C7PN5cw2MJ26bfmN4Zgjk0kmryfW8HV_HC52NFt2W4Pg=
+Sfd2HScGgW39sXGT7qHkNYN51w1kBG5LV9W8f4lcp7KPTgsW5dM77k3LLV6SW1B-WrN9fLbR8W2=
+vmnlk6jGCyBW3PryLC7VM9d-W2x1rZk86pJFNW3gJMX35LKrD3W69d4N14vtL09W8jDf_j6fc1t=
+xf6ZyJj404 )
+
+youtube (https://hi.topcoder.com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V9rW5J91f=
+J6pvVQCW95j2m75DYy7mN3fD2Cz3l5QzW69sMD-6lZ3lnN6wj9YcKps-lVvn7DF4yrCxBW1v8gv=
+M8GKsCbN4VDpn-w4PQWW2-3PXs4BK-5wW63HH1v7nC_x9W69fqXc5cfzQHW974LDN5G_ZBLW4nR=
+hVf1kjzzJW13Rnyr8YdxbQN2lc52qZ3_qDW6Gk_Mz8d28S5W4THVS78TR92VW8H8s937lywr9W8=
+2XKC46tDVmrW64cq1z15fRt2W2hHr5m2zCbHzW5q1qkB4547mrW2Bx32069qlNtV3Q3vt5tkTsK=
+f28S5pK04 )
+
+instagram (https://hi.topcoder.com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V9rW5J9=
+1fJ6pvVQCW95j2m75DYy7mN3fD2Cz3l5QzW69sMD-6lZ3lpW4ddB7r7_RmSWW6dRSJh8lq017W6=
+DYScN8B96BVVDjQRx4NRqq7W2_qjC31g3KWnW44bxmx6JWbvTN47PzWhkqsZwW8c4F3M4Cf4j_N=
+7nMhdKPN9lCW7N0jlY26BD_SN5CMqr0SjDlVW34QSHR6g-2HjN3G5XvCXBs_zW99-FB89dD00rW=
+8sm-cK7KSVTRN1Fgc8fGCXMqVY6F7752HnJFN11cBtjvbcVJN3Q63mRrwb-tW8dx86m21H-t-f3=
+pjBlM04 )
+
+discord (https://hi.topcoder.com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V9rW5J91f=
+J6pvVQCW95j2m75DYy7mN3fD2Cz3l5QzW69sMD-6lZ3m2W8swxLv8Nd08ZW57Y1V_9czPZpVX31=
+j8917wTrW5zJP6y1QS642W8VZl9C6-nmCvW8MWxNn1_2r_jW3Sjq9g8WcB5tN4gcLWLcT3PjW3b=
+3s9g8N5g7zW6HYL814Bs93tW5vr3vT1wxmngW4vwhZv9517psW7dD4TP3J1WKFW83PZ5c8fzjN4=
+N9bf_wCwzK78W7gmHmS63r63nW7ZsYX952CT-2W8BQjM35sSvRcV3Sk-c7K293vW8DSn5543yFG=
+6f5V7TpF04 )
+
+Copyright =C2=A9 2024 Topcoder, All rights reserved.
+
+Topcoder, 201 South Capitol Avenue, Indianapolis, Indiana
+
+Want to change how you receive these emails?
+
+You can manage your preferences (https://hi.topcoder.com/hs/preferences-cen=
+ter/en/page?data=3DW2nXS-N30h-M6W2r1WtK41Q1tYW4pyPyJ1Vkv_5W2-8ggb3zjbTwW3W2=
+NwT1ZgxclW3jkLtb4psmqjW2zwCNc253gMlW4rjHHX3g6HZjW3BVY1X2YmMD-W1XxWty2nQ-P1W=
+3bgZn149mmslW2HJQ0W1LxHkwW3Cf5W121jFdmW3P7BwR1Qs843W3z9xYs1Zq53cW218mL-2TrV=
+QqW1X7kjq3__HqnW2xYkkf4fr6v6W4fsK-h2zxX9NW38l1Nl1BtQlPW2xQ_Wf2WtN0QW2HB7GS2=
+szJHLW4fvTNn36Fw9gW2TJ9H-2nJnxBW1XhDSk4cPPfyW4pc3t61BvdNCW1Lj8f63g5TV7W4kb9=
+0L1_qG-7W1N2kjh2PnCcJW3GTn4N4fQSG8W2r6qDN3R6SWLW3K9_WF2q_VrtW3dpsWm38v1x6W3=
+BNLx_1Bds7SW2TkJ7f21bkPGW1Sx0N43V-zdsW216JG13T29dkW4tBnL-2PwcmrW2KThKH25lmt=
+7W25kwQB2Fw96DW2CMk1C2KBQMRW1Y-LZp47Wb3_W4ft-hn367tzjW2547yc1Z4CftW3SZBFZ2q=
+Qq7YW1XfzJr1QlMPpW1Nz-WM32qSY2W258nwh3XXRRtW4kn_yW3gpc-SW49yhfh3HcXNjf1Q9XW=
+k04&_hsenc=3Dp2ANqtz--ilUAEGSjMU7LoIovywR3YZUS7QIu4HUe722PeOqjF084mDllgGl21=
+Ej-gLkOCNNthZ6NeSCGKsxNh7FXyTSR4Ch96YQ&_hsmi=3D386309459 ) or unsubscribe f=
+rom this list (https://hi.topcoder.com/hs/preferences-center/en/direct?data=
+=3DW2nXS-N30h-M6W2r1WtK41Q1tYW4pyPyJ1Vkv_5W2-8ggb3zjbTwW3W2NwT1ZgxclW3jkLtb=
+4psmqjW2zwCNc253gMlW4rjHHX3g6HZjW3BVY1X2YmMD-W1XxWty2nQ-P1W3bgZn149mmslW2HJ=
+Q0W1LxHkwW3Cf5W121jFdmW3P7BwR1Qs843W3z9xYs1Zq53cW218mL-2TrVQqW1X7kjq3__HqnW=
+2xYkkf4fr6v6W4fsK-h2zxX9NW38l1Nl1BtQlPW2xQ_Wf2WtN0QW2HB7GS2szJHLW4fvTNn36Fw=
+9gW2TJ9H-2nJnxBW1XhDSk4cPPfyW4pc3t61BvdNCW1Lj8f63g5TV7W4kb90L1_qG-7W1N2kjh2=
+PnCcJW3GTn4N4fQSG8W2r6qDN3R6SWLW3K9_WF2q_VrtW3dpsWm38v1x6W3BNLx_1Bds7SW2TkJ=
+7f21bkPGW1Sx0N43V-zdsW216JG13T29dkW4tBnL-2PwcmrW2KThKH25lmt7W25kwQB2Fw96DW2=
+CMk1C2KBQMRW1Y-LZp47Wb3_W4ft-hn367tzjW2547yc1Z4CftW3SZBFZ2qQq7YW1XfzJr1QlMP=
+pW1Nz-WM32qSY2W258nwh3XXRRtW4kn_yW3gpc-SW49yhfh3HcXNjf1Q9XWk04&_hsenc=3Dp2A=
+Nqtz--ilUAEGSjMU7LoIovywR3YZUS7QIu4HUe722PeOqjF084mDllgGl21Ej-gLkOCNNthZ6Ne=
+SCGKsxNh7FXyTSR4Ch96YQ&_hsmi=3D386309459 ) .
+------=_Part_4467275_1224852804.1761113965716
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www=
+.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns=3D"http://www.w3=
+.org/1999/xhtml" xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:=
+v=3D"urn:schemas-microsoft-com:vml" lang=3D"en"><head>
+    <title>Topcoder Payments Are Moving to Trolley</title>
+    <meta property=3D"og:title" content=3D"Topcoder Payments Are Moving to =
+Trolley">
+    <meta name=3D"twitter:title" content=3D"Topcoder Payments Are Moving to=
+ Trolley">
+   =20
+   =20
+   =20
+<meta name=3D"x-apple-disable-message-reformatting">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0">
+    <!--[if gte mso 9]>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+    <w:WordDocument xmlns:w=3D"urn:schemas-microsoft-com:office:word">
+      <w:DontUseAdvancedTypographyReadingMail/>
+    </w:WordDocument>
+  </xml>
+ =20
+  <style>
+    ul > li {
+      text-indent: -1em;
+    }
+  </style>
+<![endif]-->
+<!--[if mso]>
+<style type=3D"text/css">
+ body, td {font-family: Arial, Helvetica, sans-serif;}
+ .hse-body-wrapper-table {background-color: #f7f5f1;}
+</style>
+<![endif]-->
+<!--[if mso | IE]>
+  <style type=3D"text/css">
+    .hse-column-container { border: none !important; padding: 0 !important;=
+ }
+  </style>
+<![endif]-->
+   =20
+     =20
+ =20
+ =20
+   =20
+  <meta name=3D"generator" content=3D"HubSpot"><meta property=3D"og:url" co=
+ntent=3D"https://hi.topcoder.com/-temporary-slug-6a7d8d6b-f686-40e9-b701-67=
+91595c2c92"><meta name=3D"robots" content=3D"noindex,follow"><!--[if !((mso=
+)|(IE))]><!-- --><style type=3D"text/css">@media only screen and (max-width=
+:639px){img.stretch-on-mobile,.hs_rss_email_entries_table img,.hs-stretch-c=
+ta .hs-cta-img{height:auto !important;width:100% !important}
+.display_block_on_small_screens{display:block}.hs_padded{padding-left:20px =
+!important;padding-right:20px !important}
+.hs-hm,table.hs-hm{display:none}.hs-hd{display:block !important}table.hs-hd=
+{display:table !important}
+}@media only screen and (max-width:639px){.hse-border-m{border-left:1px sol=
+id #eaf0f6 !important;border-right:1px solid #eaf0f6 !important;box-sizing:=
+border-box}
+.hse-border-bottom-m{border-bottom:1px solid #eaf0f6 !important}.hse-border=
+-top-m{border-top:1px solid #eaf0f6 !important}
+.hse-border-top-hm{border-top:none !important}.hse-border-bottom-hm{border-=
+bottom:none !important}
+}.moz-text-html .hse-column-container{max-width:600px !important;width:600p=
+x !important}
+.moz-text-html .hse-column{display:table-cell;vertical-align:top}.moz-text-=
+html .hse-section .hse-size-12{max-width:600px !important;width:600px !impo=
+rtant}
+@media only screen and (min-width:640px){.hse-column-container{max-width:60=
+0px !important;width:600px !important}
+.hse-column{display:table-cell;vertical-align:top}.hse-section .hse-size-12=
+{max-width:600px !important;width:600px !important}
+}@media only screen and (max-width:639px){.hse-body-wrapper-td{padding-top:=
+20px !important}
+#section-0 .hse-column-container{padding-top:0px !important;padding-bottom:=
+0px !important}
+#section-0 .hse-column-container{background-color:#f7f5f1 !important} }@med=
+ia only screen and (max-width:639px){ #section-1 .hse-column-container{padd=
+ing-top:0px !important;padding-bottom:0px !important}
+#section-1 .hse-column-container{background-color:#f7f5f1 !important} }@med=
+ia only screen and (max-width:639px){ #section-2 .hse-column-container{padd=
+ing-top:24px !important;padding-bottom:0px !important}
+#section-2 .hse-column-container{background-color:#fff !important} }@media =
+only screen and (max-width:639px){ #section-3 .hse-column-container{padding=
+-top:0px !important;padding-bottom:0px !important}
+#section-3 .hse-column-container{background-color:#fff !important} }@media =
+only screen and (max-width:639px){ #section-4 .hse-column-container{padding=
+-top:0px !important;padding-bottom:0px !important}
+#section-4 .hse-column-container{background-color:#f7f5f1 !important} }@med=
+ia only screen and (max-width:639px){ #section-5 .hse-column-container{padd=
+ing-top:0px !important;padding-bottom:0px !important}
+#section-5 .hse-column-container{background-color:#f7f5f1 !important} }@med=
+ia only screen and (max-width:639px){.hse-body-wrapper-td{padding-bottom:20=
+px !important}
+#section-6 .hse-column-container{padding-top:0px !important;padding-bottom:=
+10px !important;background-color:transparent !important}
+#section-6 .hse-column-container{background-color:transparent !important} }=
+</style><!--<![endif]--><style type=3D"text/css">#hs_body #hs_cos_wrapper_m=
+ain a[x-apple-data-detectors]{color:inherit !important;text-decoration:none=
+ !important;font-size:inherit !important;font-family:inherit !important;fon=
+t-weight:inherit !important;line-height:inherit !important}
+a{text-decoration:underline}p{margin:0}body{-ms-text-size-adjust:100%;-webk=
+it-text-size-adjust:100%;-webkit-font-smoothing:antialiased;moz-osx-font-sm=
+oothing:grayscale}
+table{border-spacing:0;mso-table-lspace:0;mso-table-rspace:0}table,td{borde=
+r-collapse:collapse}
+img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rul=
+e:exactly}
+.ShadowHTML p,.sh-modified-inline p{margin:0}</style></head>
+  <body id=3D"hs_body" bgcolor=3D"#f7f5f1" style=3D"margin:0 !important; pa=
+dding:0 !important; font-family:Arial, sans-serif; font-size:15px; color:#2=
+a2a2a; word-break:break-word">
+   =20
+   =20
+<!--[if gte mso 9]>
+<v:background xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"t">
+    <v:fill type=3D"tile" size=3D"100%,100%" color=3D"#ffffff"/>
+</v:background>
+<![endif]-->
+    <div class=3D"hse-body-background" lang=3D"en" style=3D"background-colo=
+r:#f7f5f1" bgcolor=3D"#f7f5f1">
+      <table role=3D"presentation" class=3D"hse-body-wrapper-table" cellpad=
+ding=3D"0" cellspacing=3D"0" style=3D"margin:0; padding:0; width:100% !impo=
+rtant; min-width:320px !important; height:100% !important" width=3D"100%" h=
+eight=3D"100%">
+        <tbody><tr>
+          <td class=3D"hse-body-wrapper-td" valign=3D"top" style=3D"font-fa=
+mily:Arial, sans-serif; font-size:15px; color:#2a2a2a; word-break:break-wor=
+d; padding-top:20px; padding-bottom:20px">
+            <div id=3D"hs_cos_wrapper_main" class=3D"hs_cos_wrapper hs_cos_=
+wrapper_widget hs_cos_wrapper_type_dnd_area" style=3D"color: inherit; font-=
+size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" d=
+ata-hs-cos-type=3D"dnd_area">  <div id=3D"section-0" class=3D"hse-section h=
+se-section-first" style=3D"padding-left:10px; padding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#f7f5f1" bgcolor=3D"#f7f5f1">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#f7f5f1">
+      <tr style=3D"background-color:#f7f5f1;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-0-0" class=3D"hse-column hse-size-12">
+  <div id=3D"hs_cos_wrapper_module-0-0-0" class=3D"hs_cos_wrapper hs_cos_wr=
+apper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; font-size=
+: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-=
+hs-cos-type=3D"module"><table class=3D"hse-image-wrapper" role=3D"presentat=
+ion" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0">
+  <tbody>
+    <tr>
+      <td class=3D"hs_padded" align=3D"center" valign=3D"top" style=3D"font=
+-family:Arial, sans-serif; color:#2a2a2a; word-break:break-word; text-align=
+:center; padding:34px 20px; font-size:0px">
+        <img alt=3D"topcoder-colourful-black-text (1)" src=3D"https://hi.to=
+pcoder.com/hs-fs/hubfs/topcoder-colourful-black-text%20(1).png?width=3D600&=
+amp;upscale=3Dtrue&amp;name=3Dtopcoder-colourful-black-text%20(1).png" styl=
+e=3D"outline:none; text-decoration:none; max-width:100%; font-size:16px" wi=
+dth=3D"300" align=3D"middle">
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section-1" class=3D"hse-section" style=3D"padding-left:10px; p=
+adding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#f7f5f1" bgcolor=3D"#f7f5f1">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#f7f5f1">
+      <tr style=3D"background-color:#f7f5f1;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-1-0" class=3D"hse-column hse-size-12">
+  <div id=3D"hs_cos_wrapper_module-1-0-0" class=3D"hs_cos_wrapper hs_cos_wr=
+apper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; font-size=
+: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-=
+hs-cos-type=3D"module"><div style=3D"background:#ffffff; height: 20px;-webk=
+it-border-top-left-radius: 20px;
+-webkit-border-top-right-radius: 20px;
+-moz-border-radius-topleft: 20px;
+-moz-border-radius-topright: 20px;
+border-top-left-radius: 20px;
+border-top-right-radius: 20px;">
+</div></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section-2" class=3D"hse-section" style=3D"padding-left:10px; p=
+adding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#ffffff; padding-top:24px" bgcolo=
+r=3D"#ffffff">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;padding-top:24px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-2-0" class=3D"hse-column hse-size-12">
+    <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" class=3D"" style=3D""><tbody><tr><td class=3D"hs_padded" style=3D=
+"font-family:Arial, sans-serif; font-size:15px; color:#2a2a2a; word-break:b=
+reak-word; padding:0px 24px"><div id=3D"hs_cos_wrapper_module-2-0-0" class=
+=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=
+=3D"color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-=
+general-type=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_cos_wrapp=
+er_module-2-0-0_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrap=
+per_type_rich_text" style=3D"color: inherit; font-size: inherit; line-heigh=
+t: inherit;" data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"rich_t=
+ext"><p style=3D"line-height:175%">&nbsp;</p>
+<p style=3D"line-height:175%"><span style=3D"color: #0a0a0a;">Hi liencf,</s=
+pan></p>
+<p style=3D"line-height:175%">&nbsp;</p>
+<p data-renderer-start-pos=3D"16970" style=3D"line-height:175%"><span style=
+=3D"color: #000000;">Today=E2=80=99s the day. We=E2=80=99re officially laun=
+ching <a href=3D"https://hi.topcoder.com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V=
+9rW5J91fJ6pvVQCW95j2m75DYy7mN3fD2Cg3lYM-W5BW0B06lZ3prW4D0R_k2BzC77W80SFNg31=
+V2VdW8qgxXr8FqGqMW7Q4jf3541g9WW7tBhpH8v6ZfWVxM87829TCdDW6X-wpV66hs2jW2z7k_p=
+2bth5mW1SJS0F1fxFTxVyDgZG17Mr2nW4hTFF87WCKbVW1r7NxC5730qWW92z9B67M_zgYW523-=
+xr6Q99g2W776k6W4zTf1sW6x69qw5c48BwVFClnT4gYnr5W7jpsGD3vspWLf3YsC4M04" rel=
+=3D"noopener" style=3D"color:#3877ea; text-decoration:none" data-hs-link-id=
+=3D"0" data-hs-link-id-v2=3D"5hO3QdJs" target=3D"_blank"><strong data-rende=
+rer-mark=3D"true">Trolley</strong></a> as Topcoder=E2=80=99s new global pay=
+ment platform.</span></p>
+<p data-renderer-start-pos=3D"16970" style=3D"line-height:175%">&nbsp;</p>
+<p data-renderer-start-pos=3D"17066" style=3D"line-height:175%"><span style=
+=3D"color: #000000;">Starting October 22, 2025, all Topcoder payments will =
+now be processed through Trolley. Payoneer and PayPal are no longer support=
+ed for new payouts, but you can now receive your earnings via Trolley throu=
+gh Bank transfer (local or international).<em data-renderer-mark=3D"true"> =
+</em>You=E2=80=99ll still have access to your existing funds in Payoneer or=
+ PayPal - they just won=E2=80=99t receive new payments from Topcoder after =
+October 22.</span></p>
+<p data-renderer-start-pos=3D"17455" style=3D"line-height:175%">&nbsp;</p>
+<p data-renderer-start-pos=3D"17455" style=3D"line-height:175%"><span style=
+=3D"color: #000000;"><strong data-renderer-mark=3D"true">Why Trolley?</stro=
+ng></span><br><span style=3D"color: #000000;">We=E2=80=99ve made this chang=
+e to give you a faster, more reliable, and more flexible payment experience=
+. Trolley offers:</span></p>
+<ul data-indent-level=3D"1" style=3D"line-height:175%">
+<li>
+<p data-renderer-start-pos=3D"17585" style=3D"line-height:175%"><span style=
+=3D"color: #000000;">Lower overall fees (compared to Payoneer)</span></p>
+</li>
+<li>
+<p data-renderer-start-pos=3D"17630" style=3D"line-height:175%"><span style=
+=3D"color: #000000;">Support for 210+ countries and territories</span></p>
+</li>
+<li>
+<p data-renderer-start-pos=3D"17676" style=3D"line-height:175%"><span style=
+=3D"color: #000000;">Faster processing and better payout tracking</span></p=
+>
+</li>
+<li>
+<p data-renderer-start-pos=3D"17724" style=3D"line-height:175%"><span style=
+=3D"color: #000000;">Bank-grade security (SOC 2 certified, GDPR compliant)<=
+/span></p>
+</li>
+<li>
+<p data-renderer-start-pos=3D"17781" style=3D"line-height:175%"><span style=
+=3D"color: #000000;">Easy account setup and tracking</span></p>
+</li>
+<li>
+<p data-renderer-start-pos=3D"17816" style=3D"line-height:175%"><span style=
+=3D"color: #000000;">Improved reporting and payout history</span></p>
+</li>
+</ul>
+<p data-renderer-start-pos=3D"17857" style=3D"line-height:175%">&nbsp;</p>
+<p data-renderer-start-pos=3D"17857" style=3D"line-height:175%"><span style=
+=3D"color: #000000;"><strong data-renderer-mark=3D"true">What you need to d=
+o:</strong></span><br><span style=3D"color: #000000;">Click the link below =
+to securely set up your Trolley payout method in the Topcoder Wallet App:</=
+span><span style=3D"color: #000000;"><span style=3D"color: #3877ea;"><a hre=
+f=3D"https://hi.topcoder.com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V9rW5J91fJ6pv=
+VQCW95j2m75DYy7mN3fD2CT3lYM-W6N1vHY6lZ3mHW16msbj8Nz097W5CRmnP7FLfxfW4r-s6X5=
+_wtdJW4X1SXl6Xp8sLW8jzx2b8Qnf0tVYnzsx6Jv32bW7L6pTG3BBPTLW89Vkz46kh9lDW7d7_h=
+n5Fz9HXW2X3Ycx3GYQt5W7F14jb20dgwSW9hbbzH33cfT2N4LxHG42hxcBN6-nTVjG3cJRW7BzX=
+7C904VRWW4BsqP673P_hKMS6qphY_dvJVrvd0g4_2C-MW4N3fX_6LlB37W22cQPj3zL7-tW8g82=
+NL3lZ7nqW1vNgWz6WMqyrf8FPXwv04" style=3D"text-decoration:none; color:#3877e=
+a" rel=3D"noopener" data-renderer-mark=3D"true" data-hs-link-id=3D"0" data-=
+hs-link-id-v2=3D"Q5cvq1j3" target=3D"_blank"> Set Up My Trolley Payment Met=
+hod<span style=3D"color: #000000;">.</span></a></span></span></p>
+<p data-renderer-start-pos=3D"18007" style=3D"line-height:175%"><span style=
+=3D"color: #000000;">The setup only takes a few minutes.</span></p>
+<p data-renderer-start-pos=3D"18007" style=3D"line-height:175%">&nbsp;</p>
+<p data-renderer-start-pos=3D"18044" style=3D"line-height:175%"><span style=
+=3D"color: #000000;"><strong data-renderer-mark=3D"true">Learn More</strong=
+></span><br><span style=3D"color: #3877ea;"><a href=3D"https://hi.topcoder.=
+com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V9rW5J91fJ6pvVQCW95j2m75DYy7mN3fD2Ds3l=
+YM-W7Y8-PT6lZ3nPW8fsP5Z75RbL5MnPPZ6DXHljW8jcSC76KkZJ3N1PRnZmqJrB8W6hzB5l5J2=
+bRJN7JvF97DZ6-jW8S4msZ6fVrBJTkjlb3Q6d0xW6XXBTL3jgmTYVJ1Txh5HBgBCW1XD7qK8V8j=
+FqW6JvWZQ164lgqW7TqltK8ntJppM9kDgXp0jNTW3WnHsC2cbLq5W1svg0j3m1fYsW2dY_Xh4S3=
+M84N4y2WF5gJhxJW1nNc5V2PdbVmV8BCMq87QNTYW40Tgt53hfBd1W2XZ5sc81GGJWW2F-L-w8y=
+Z3H3D8hWdbvS6HW86_Hw34yLj1_VwxjjB1Xl6H3f4qGtQ204" style=3D"text-decoration:=
+none; color:#3877ea" rel=3D"noopener" data-hs-link-id=3D"0" data-hs-link-id=
+-v2=3D"Mv0oIWsK" target=3D"_blank">Read the Trolley Overview article </a></=
+span></p>
+<p data-renderer-start-pos=3D"18091" style=3D"line-height:175%"><span style=
+=3D"color: #3877ea;"><a href=3D"https://hi.topcoder.com/e3t/Ctc/W5+113/d59p=
+l704/VVpVCB654V9rW5J91fJ6pvVQCW95j2m75DYy7mN3fD2D83lYM-W7lCdLW6lZ3kXW6LspLJ=
+94nXZwW6fTtCC5lW0X-W6mjr6Y42ZcHwV_tr6H2Sc59FW2yrwn39d_T1VN7kGZKGWw7yZW2c8l3=
+Q12xzgSW2pqmLR4RkFg8W3ZLvWb63Cmc2W9hGjMy2NDHjsW56PP3K1xbjp1W6fv0l118n5w7N3-=
+KYCXVJK7MV218SY34ZZ_zW2BZrVM17h6zBW7C3qzp1hkz3HW96VkRN4j7dw-W3kncXt1GTfwcW7=
+Gq1Y_76qQYFW5xZ97d5bQ68GW5XX-6H3Dl5kFW8fq-v53-hbSSW26kYyQ88wFRfW5nVWrT1cLlf=
+Nf91NGDq04" style=3D"text-decoration:none; color:#3877ea" rel=3D"noopener" =
+data-hs-link-id=3D"0" data-hs-link-id-v2=3D"utt+adSW" target=3D"_blank">Ask=
+ questions in the forums</a></span></p>
+<p data-renderer-start-pos=3D"18091" style=3D"line-height:175%">&nbsp;</p>
+<p data-renderer-start-pos=3D"18120" style=3D"line-height:175%"><span style=
+=3D"color: #000000;">Thanks for being part of the Topcoder community! We're=
+ excited to bring you a smoother and better way to get paid.</span></p>
+<p data-renderer-start-pos=3D"18120" style=3D"line-height:175%">&nbsp;</p>
+<p data-renderer-start-pos=3D"18236" style=3D"line-height:175%"><span style=
+=3D"color: #000000;">The Topcoder Team</span></p></div></div></td></tr></tb=
+ody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section-3" class=3D"hse-section" style=3D"padding-left:10px; p=
+adding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#ffffff" bgcolor=3D"#ffffff">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-3-0" class=3D"hse-column hse-size-12">
+  <div id=3D"hs_cos_wrapper_module-3-0-0" class=3D"hs_cos_wrapper hs_cos_wr=
+apper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; font-size=
+: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-=
+hs-cos-type=3D"module"><div style=3D"background:#ffffff;padding: 10px 20px;=
+">
+<table width=3D"100%" style=3D"width:100%">
+<tbody><tr>
+<td style=3D"font-family:Arial, sans-serif; font-size:15px; color:#2a2a2a; =
+word-break:break-word; width:96px" width=3D"96">
+<img alt=3D"Becky Photo 2X" src=3D"https://hi.topcoder.com/hs-fs/hubfs/sign=
+ature%20logo%20bw.png?upscale=3Dtrue&amp;upscale=3Dtrue&amp;width=3D160&amp=
+;upscale=3Dtrue&amp;name=3Dsignature%20logo%20bw.png" style=3D"outline:none=
+; text-decoration:none; -ms-interpolation-mode:bicubic; max-width:100%; fon=
+t-size:16px" width=3D"80" align=3D"middle">
+</td>
+<td style=3D"font-family:Arial, sans-serif; font-size:15px; color:#2a2a2a; =
+word-break:break-word">
+<div id=3D"hs_cos_wrapper_module-3-1-0_" class=3D"hs_cos_wrapper hs_cos_wra=
+pper_widget hs_cos_wrapper_type_rich_text" style=3D"color: inherit; font-si=
+ze: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" dat=
+a-hs-cos-type=3D"rich_text"><h3 style=3D"margin:0; mso-line-height-rule:exa=
+ctly; font-size:15px; line-height:150%; font-weight:normal">Topcoder Team</=
+h3>
+<p style=3D"mso-line-height-rule:exactly; line-height:150%; font-size:14px"=
+><span style=3D"font-style: italic;">Have a question? Email </span><a href=
+=3D"mailto:hello@topcoder.com" style=3D"mso-line-height-rule:exactly; color=
+:#3877ea; text-decoration:none; font-style:italic" rel=3D"noopener" data-hs=
+-link-id=3D"0" target=3D"_blank" data-hs-link-id-v2=3D"vLFUgvz1">hello@topc=
+oder.com</a></p></div>
+</td>
+</tr>
+</tbody></table>
+</div></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section-4" class=3D"hse-section" style=3D"padding-left:10px; p=
+adding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#f7f5f1" bgcolor=3D"#f7f5f1">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#f7f5f1">
+      <tr style=3D"background-color:#f7f5f1;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-4-0" class=3D"hse-column hse-size-12">
+  <div id=3D"hs_cos_wrapper_module-4-0-0" class=3D"hs_cos_wrapper hs_cos_wr=
+apper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; font-size=
+: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-=
+hs-cos-type=3D"module"><div style=3D"background:#ffffff; height: 20px;-webk=
+it-border-bottom-right-radius: 20px;
+-webkit-border-bottom-left-radius: 20px;
+-moz-border-radius-bottomright: 20px;
+-moz-border-radius-bottomleft: 20px;
+border-bottom-right-radius: 20px;
+border-bottom-left-radius: 20px;">
+</div></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section-5" class=3D"hse-section" style=3D"padding-left:10px; p=
+adding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#f7f5f1" bgcolor=3D"#f7f5f1">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#f7f5f1">
+      <tr style=3D"background-color:#f7f5f1;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-5-0" class=3D"hse-column hse-size-12">
+    <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" class=3D"" style=3D""><tbody><tr><td class=3D"hs_padded" style=3D=
+"font-family:Arial, sans-serif; font-size:15px; color:#2a2a2a; word-break:b=
+reak-word; padding:4px 20px 0px"><div id=3D"hs_cos_wrapper_module-5-0-0" cl=
+ass=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" sty=
+le=3D"color: inherit; font-size: inherit; line-height: inherit;" data-hs-co=
+s-general-type=3D"widget" data-hs-cos-type=3D"module"><div style=3D"text-al=
+ign:center;margin:20px;font-family:Arial, sans-serif !important; background=
+-color:#F7F5F1;">
+<table style=3D"margin: auto; border-spacing: 0; border-collapse: collapse;=
+">
+<tbody><tr>
+<!-- Twitter Icon -->
+<td style=3D"font-family:Arial, sans-serif; font-size:15px; color:#2a2a2a; =
+word-break:break-word; padding:10px">
+<a rel=3D"nofollow noopener noreferrer" target=3D"_blank" href=3D"https://h=
+i.topcoder.com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V9rW5J91fJ6pvVQCW95j2m75DYy=
+7mN3fD2Cz3lYM-W69sMD-6lZ3mhW181R435FR-KrW187mt_21GRDXW1fc7FR14x011W84SL0q4x=
+FGL2W4kglkd5byv3hW8cQwlk3ryM4wW8gqWXv6tbs0hN5d-Hk8WMhHgMq_G9F7r5ZSW19r1xH6k=
+yPklW4Cwrgc4-YFCKW4GRYp6885rL4W6ZbM-X3F-wV6W2hgDGf4l8K93W6_Pnq22ncn-HW9bxdS=
+b1S-TQmW81zL4t20FSsXW8F03j03kL_CqW1PlZhS6JjySRW4GtMTR8bTxKZf2Sj4F-04" style=
+=3D"color:#00a4bd; text-decoration:underline; font-family:Arial, sans-serif=
+ !important" data-hs-link-id=3D"0" data-hs-link-id-v2=3D"Vkt2E5ch">
+<img src=3D"https://hi.topcoder.com/hubfs/icon%20twitter.png" alt=3D"twitte=
+r" style=3D"text-decoration:none; border:0; width:30px; outline:none; font-=
+family:Arial, sans-serif !important" width=3D"30">
+</a>
+</td>
+<!-- Facebook Icon -->
+<td style=3D"font-family:Arial, sans-serif; font-size:15px; color:#2a2a2a; =
+word-break:break-word; padding:10px">
+<a rel=3D"nofollow noopener noreferrer" target=3D"_blank" href=3D"https://h=
+i.topcoder.com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V9rW5J91fJ6pvVQCW95j2m75DYy=
+7mN3fD2Cz3lYM-W69sMD-6lZ3pMW8gpXCY3v7bqPW1tW_0q6z4g6RW2QR22X6LM1NWW8hSBDD9j=
+v-t8W4MHCBc8_2HPrW3fYrhX80rN-ZW1yGHqQ4k-l1CW4Fp7kC76khprW7-N9jV6nFtdsW4dFMC=
+H9h0VzvW10bv2y2fF6PCW7ZFP-23Lc8QZW4GfcD81JkVScW721bjB76JPRFVMjzsx6jzZ4FW477=
+RyV8zxldhW6d10Q78Ly9n-W45WGXf3bz1X1W2T5BsG14f20xW5KvH6D16Nb-RdkZQcb04" styl=
+e=3D"color:#00a4bd; text-decoration:underline; font-family:Arial, sans-seri=
+f !important" data-hs-link-id=3D"0" data-hs-link-id-v2=3D"XdvAKQjq">
+<img src=3D"https://hi.topcoder.com/hubfs/icon%20facebook.png" alt=3D"faceb=
+ook" style=3D"text-decoration:none; border:0; width:30px; outline:none; fon=
+t-family:Arial, sans-serif !important" width=3D"30">
+</a>
+</td>
+<!-- LinkedIn Icon -->
+<td style=3D"font-family:Arial, sans-serif; font-size:15px; color:#2a2a2a; =
+word-break:break-word; padding:10px">
+<a rel=3D"nofollow noopener noreferrer" target=3D"_blank" href=3D"https://h=
+i.topcoder.com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V9rW5J91fJ6pvVQCW95j2m75DYy=
+7mN3fD2CT3lYM-W6N1vHY6lZ3pNW6XtTFz57YrMHW2KLQ0k8ZglPNW2VpntG2XDnlmN897N8jNn=
+0NGW2pb3P45nd5z4W4VLm-t4glrktW7YPvzz8KV9sPW5hcFPx6P6MX0W7zSjmf89x2sKW2ktglM=
+5VdL6JW2Mg1hy59gwDpW146-ck7ML_jdW2WJgcY5slKq4W1SC0yv52PckXW920d486R_h_mW41v=
+2PN6qPryVN3G69FY97GyxW2FXrhW8Y7GBrF8ptBKdHKMtN1fGZGfpkCrtW2wKhTC1WHk2TW97Pf=
+l08r6Dtmf7lMMfF04" style=3D"color:#00a4bd; text-decoration:underline; font-=
+family:Arial, sans-serif !important" data-hs-link-id=3D"0" data-hs-link-id-=
+v2=3D"Hc5pR9p2">
+<img src=3D"https://hi.topcoder.com/hubfs/icon%20linkedin.png" alt=3D"linke=
+din" style=3D"text-decoration:none; border:0; width:30px; outline:none; fon=
+t-family:Arial, sans-serif !important" width=3D"30">
+</a>
+</td>
+<!-- YouTube Icon -->
+<td style=3D"font-family:Arial, sans-serif; font-size:15px; color:#2a2a2a; =
+word-break:break-word; padding:10px">
+<a rel=3D"nofollow noopener noreferrer" target=3D"_blank" href=3D"https://h=
+i.topcoder.com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V9rW5J91fJ6pvVQCW95j2m75DYy=
+7mN3fD2CT3lYM-W6N1vHY6lZ3mmW7X_XCr6gTqGDW4LYBj444rGKSW80NcQB8xrFk_W159lqS8K=
+_4WzW2fvR0N5m7HrXW2Xn_z-1k5J6_W8SC_pr4nVKkjW6mc1mB31-3DLW8WCw254ZwmppW5gGkM=
+L5KCmCKW3X_71q5T7VpqW2Tr8bh6dbGzVW9b_C7_3SmkRFW8r7QKQ70TxLFN7RC4Rg47GQxW7nP=
+Zq95RBpmkW4NxtlD5txBR-W4DwWct1TXcQFW6CrPhM1ZL65SW2l5SNJ1NbtYdW1W2YmF8qrf7-N=
+8PT9wnnH0D_f2p4l7g04" style=3D"color:#00a4bd; text-decoration:underline; fo=
+nt-family:Arial, sans-serif !important" data-hs-link-id=3D"0" data-hs-link-=
+id-v2=3D"Kp+dY0nb">
+<img src=3D"https://hi.topcoder.com/hubfs/icon%20youtube.png" alt=3D"youtub=
+e" style=3D"text-decoration:none; border:0; width:30px; outline:none; font-=
+family:Arial, sans-serif !important" width=3D"30">
+</a>
+</td>
+<!-- Instagram Icon -->
+<td style=3D"font-family:Arial, sans-serif; font-size:15px; color:#2a2a2a; =
+word-break:break-word; padding:10px">
+<a rel=3D"nofollow noopener noreferrer" target=3D"_blank" href=3D"https://h=
+i.topcoder.com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V9rW5J91fJ6pvVQCW95j2m75DYy=
+7mN3fD2Cz3lYM-W69sMD-6lZ3lYW3g9r652Z2zSJW2n5LSn4wvTW_VPxFdR6kgfmMW7s6cRP7jZ=
+g5YW3Xv7Pk82BSZFVfwXDj2f_G78W6njh6w5W-BL9W6C8N8r4Kv6TgW51d1818Qpfv-N8WSYVJh=
+FhBVW6-KDtj5LDbvHW1Zm5FD5dnQZKW5tsBjt39yQQ9N3cY4jtGn2y9VW1GM421cyLNW8hsycx7=
+Q4gwHW41pZxk5gKPq5W3HJzt36q8dX5W7tZQCz8Ss6s5W4DC_wn55Cn0Kf5ByMJb04" style=
+=3D"color:#00a4bd; text-decoration:underline; font-family:Arial, sans-serif=
+ !important" class=3D"yiv2730826172is" data-hs-link-id=3D"0" data-hs-link-i=
+d-v2=3D"XGLdLsIm">
+<img src=3D"https://hi.topcoder.com/hubfs/icon%20instagram.png" alt=3D"inst=
+agram" style=3D"text-decoration:none; border:0; width:30px; outline:none; f=
+ont-family:Arial, sans-serif !important" width=3D"30">
+</a>
+</td>
+<!-- Discord Icon -->
+<td style=3D"font-family:Arial, sans-serif; font-size:15px; color:#2a2a2a; =
+word-break:break-word; padding:10px">
+<a rel=3D"nofollow noopener noreferrer" target=3D"_blank" href=3D"https://h=
+i.topcoder.com/e3t/Ctc/W5+113/d59pl704/VVpVCB654V9rW5J91fJ6pvVQCW95j2m75DYy=
+7mN3fD2Cz3lYM-W69sMD-6lZ3nhW7K4BRk4G3CRwW706sx682cwWGW90PYt27KXpchV3j2qL6Rr=
+FRYW7R03v132w9j_W1RPn8B4kG_kKW2WDMDn5k8k2BW5284v423J1lRW8Jzjlt1N2QD8W2D-1Lb=
+53QVYQW1-Jh7G2x2k6gW5CptQn712dvDW6VWy-95vTj5JW7_Whk37ZYh1JN6MsFhbmfpYLW4Qr0=
+BD5cPTXVW52ZQ7f71WV6VW5bgQv0743FSTW5gJv1w36vZsvN3lYcX6LC-Wmf21SScl04" style=
+=3D"color:#00a4bd; text-decoration:underline; font-family:Arial, sans-serif=
+ !important" class=3D"yiv2730826172dc" data-hs-link-id=3D"0" data-hs-link-i=
+d-v2=3D"Qv/DDsse">
+<img src=3D"https://hi.topcoder.com/hubfs/icon%20discord.png" alt=3D"discor=
+d" style=3D"text-decoration:none; border:0; width:30px; outline:none; font-=
+family:Arial, sans-serif !important" width=3D"30">
+</a>
+</td>
+</tr>
+</tbody></table>
+</div></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section-6" class=3D"hse-section hse-section-last" style=3D"pad=
+ding-left:10px; padding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; padding-bottom:10px">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation">
+      <tr>
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;padding-bottom:10px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-6-0" class=3D"hse-column hse-size-12">
+  <div id=3D"hs_cos_wrapper_module-6-0-0" class=3D"hs_cos_wrapper hs_cos_wr=
+apper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; font-size=
+: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-=
+hs-cos-type=3D"module"><table role=3D"presentation" class=3D"hse-footer hse=
+-secondary" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=3D"fon=
+t-family:Arial, sans-serif; font-size:12px; line-height:135%; color:#23496d=
+; margin-bottom:0; padding:0">
+  <tbody>
+    <tr>
+      <td align=3D"center" valign=3D"top" style=3D"font-family:Arial, sans-=
+serif; font-size:15px; color:#2a2a2a; word-break:break-word; text-align:cen=
+ter; margin-bottom:0; line-height:135%; padding:10px 20px">
+          <p style=3D"font-size: 12px; line-height: 150%;">Copyright =C2=A9=
+ 2024 Topcoder, All rights reserved.&nbsp;</p>
+<p style=3D"font-size: 12px; line-height: 150%;">Topcoder, 201 South Capito=
+l Avenue, Indianapolis, Indiana</p>
+<p style=3D"font-size: 12px; line-height: 125%;">&nbsp;&nbsp;</p>
+<p style=3D"font-size: 12px; line-height: 150%; font-weight: normal;">Want =
+to change how you receive these emails?</p>
+<p style=3D"font-size: 12px; line-height: 150%;">You can <span style=3D"col=
+or: #3877ea;"><a href=3D"https://hi.topcoder.com/hs/preferences-center/en/p=
+age?data=3DW2nXS-N30h-M6W2r1WtK41Q1tYW4pyPyJ1Vkv_5W2-8ggb3zjbTwW3W2NwT1Zgxc=
+lW3jkLtb4psmqjW2zwCNc253gMlW4rjHHX3g6HZjW3BVY1X2YmMD-W1XxWty2nQ-P1W3bgZn149=
+mmslW2HJQ0W1LxHkwW3Cf5W121jFdmW3P7BwR1Qs843W3z9xYs1Zq53cW218mL-2TrVQqW1X7kj=
+q3__HqnW2xYkkf4fr6v6W4fsK-h2zxX9NW38l1Nl1BtQlPW2xQ_Wf2WtN0QW2HB7GS2szJHLW4f=
+vTNn36Fw9gW2TJ9H-2nJnxBW1XhDSk4cPPfyW4pc3t61BvdNCW1Lj8f63g5TV7W4kb90L1_qG-7=
+W1N2kjh2PnCcJW3GTn4N4fQSG8W2r6qDN3R6SWLW3K9_WF2q_VrtW3dpsWm38v1x6W3BNLx_1Bd=
+s7SW2TkJ7f21bkPGW1Sx0N43V-zdsW216JG13T29dkW4tBnL-2PwcmrW2KThKH25lmt7W25kwQB=
+2Fw96DW2CMk1C2KBQMRW1Y-LZp47Wb3_W4ft-hn367tzjW2547yc1Z4CftW3SZBFZ2qQq7YW1Xf=
+zJr1QlMPpW1Nz-WM32qSY2W258nwh3XXRRtW4kn_yW3gpc-SW49yhfh3HcXNjf1Q9XWk04&amp;=
+utm_source=3Dhs_email&amp;utm_medium=3Demail&amp;utm_content=3D386309459&am=
+p;_hsenc=3Dp2ANqtz--POodZMiegC0At58GGdtqw1y3_ItoPSu2y-4XRuuZAADLmcyJsidq42r=
+PVeTA5zspKToSgxBwffiW_vpGLK8rTeAHkZA&amp;_hsmi=3D386309459" style=3D"color:=
+#3877ea; text-decoration:none" rel=3D"noopener" data-unsubscribe=3D"true" d=
+ata-hs-link-id=3D"0" data-hs-link-id-v2=3D"qjPJqCop" target=3D"_blank">mana=
+ge your preferences</a></span> or<span style=3D"color: #3877ea;">&nbsp;<a h=
+ref=3D"https://hi.topcoder.com/hs/preferences-center/en/direct?data=3DW2nXS=
+-N30h-M6W2r1WtK41Q1tYW4pyPyJ1Vkv_5W2-8ggb3zjbTwW3W2NwT1ZgxclW3jkLtb4psmqjW2=
+zwCNc253gMlW4rjHHX3g6HZjW3BVY1X2YmMD-W1XxWty2nQ-P1W3bgZn149mmslW2HJQ0W1LxHk=
+wW3Cf5W121jFdmW3P7BwR1Qs843W3z9xYs1Zq53cW218mL-2TrVQqW1X7kjq3__HqnW2xYkkf4f=
+r6v6W4fsK-h2zxX9NW38l1Nl1BtQlPW2xQ_Wf2WtN0QW2HB7GS2szJHLW4fvTNn36Fw9gW2TJ9H=
+-2nJnxBW1XhDSk4cPPfyW4pc3t61BvdNCW1Lj8f63g5TV7W4kb90L1_qG-7W1N2kjh2PnCcJW3G=
+Tn4N4fQSG8W2r6qDN3R6SWLW3K9_WF2q_VrtW3dpsWm38v1x6W3BNLx_1Bds7SW2TkJ7f21bkPG=
+W1Sx0N43V-zdsW216JG13T29dkW4tBnL-2PwcmrW2KThKH25lmt7W25kwQB2Fw96DW2CMk1C2KB=
+QMRW1Y-LZp47Wb3_W4ft-hn367tzjW2547yc1Z4CftW3SZBFZ2qQq7YW1XfzJr1QlMPpW1Nz-WM=
+32qSY2W258nwh3XXRRtW4kn_yW3gpc-SW49yhfh3HcXNjf1Q9XWk04&amp;utm_source=3Dhs_=
+email&amp;utm_medium=3Demail&amp;utm_content=3D386309459&amp;_hsenc=3Dp2ANq=
+tz--POodZMiegC0At58GGdtqw1y3_ItoPSu2y-4XRuuZAADLmcyJsidq42rPVeTA5zspKToSgxB=
+wffiW_vpGLK8rTeAHkZA&amp;_hsmi=3D386309459" style=3D"text-decoration:none; =
+color:#3877ea" rel=3D"nofollow noopener noreferrer" data-hs-link-id=3D"0" d=
+ata-hs-link-id-v2=3D"SFRZzEXk" target=3D"_blank">unsubscribe from this list=
+</a></span>.</p>
+<p style=3D"font-size: 12px; line-height: 150%;">&nbsp;</p>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div></div>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+ =20
+<img src=3D"https://hi.topcoder.com/e3t/Cto/W5+113/d59pl704/VVpVCB654V9rW5J=
+91fJ6pvVQCW95j2m75DYy7mW3fD2mZ3CKF9B1n2" alt=3D"" width=3D"1" height=3D"1" =
+border=3D"0" style=3D"display:none!important;min-height:1px!important;width=
+:1px!important;border-width:0!important;margin-top:0!important;margin-botto=
+m:0!important;margin-right:0!important;margin-left:0!important;padding-top:=
+0!important;padding-bottom:0!important;padding-right:0!important;padding-le=
+ft:0!important"></body></html>
+------=_Part_4467275_1224852804.1761113965716--

@@ -1,0 +1,451 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:8883:b0:4ec:41ca:fc70 with SMTP id ee3csp1035016mdb;
+        Thu, 13 Nov 2025 10:20:48 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEC54T9yvoMJGMaNEK7S1ZgFbPrlPwsc8SI+jCsyYANR5PyvwIYY1hSF2slXRbogvs8h2Z3
+X-Received: by 2002:a05:6102:50a4:b0:5df:aa69:beab with SMTP id ada2fe7eead31-5dfc5b70429mr394657137.29.1763058048370;
+        Thu, 13 Nov 2025 10:20:48 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1763058048; cv=none;
+        d=google.com; s=arc-20240605;
+        b=RTJXkZ6AmBfhb7WonrOi5XtC5AHb04U1gD2UKUchODFe6HpxEYVEHEHByTuw1+hTXu
+         DiXqPSz1pWdF6vJUjhrvep05H1VuZcL/FFcdoC+MqfR2Xba+1v2LQX9ud3vbu1BTHITM
+         cOTF9f1k8hymKJ3+UewiWGqm+eDUt25hxX/kXdWaiLSXIeA0hvRPaEb6ef+jqxbJsDBb
+         v7m9ti+xskh+LFkY1OH2rsURLSr7+pJaWlAO+8wBYkEP7+vfZ0ToAhyVMg4G+GdiRxf5
+         G1Tcggt1GnM/44avJXkK6sNd6csCFqJpxI1czDCWhL6yTVrS5ncYaKMHOeSMpnvLz6tO
+         8zmw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:mime-version:subject:message-id:to:from:date
+         :dkim-signature;
+        bh=qwI5zo91xhmfpA5JJa5VBlXon01YjPX2gdX7YFViv44=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=YF0EDeTedrfPyhpcX0dqdxZDfSY36WxDiGZ53ixmma8XQHTEx5jUEaMosWBO60SN9y
+         srwGdud4C+73HttQrZzWVKdP/adZI+9TqiCeLqI+3mLvr7fyoqL9EZbrGcxlL3JlmyTR
+         XwIi3CPxXg7RzrUz1fykFMzPS9Lpp68VqCO2ucg4+tdoq16pwcg8ZsyGDG9FKKJH90E+
+         uj7y50oQlDNuD9XrFyse2cAxDmRbmge/M7Z/hzGuheOYu57kL/77IpYhCP4uwxy0XvBf
+         TpcgwlY9tbLMsQdacrECulgtfJtc/VjFHf72kYp5x+oayzOSu/HMuZnISI221bI8Zjlp
+         /b0g==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@insideapple.apple.com header.s=insideapple0517 header.b=OOANlQ0t;
+       spf=pass (google.com: domain of developer_bounces@insideapple.apple.com designates 17.32.227.191 as permitted sender) smtp.mailfrom=developer_bounces@insideapple.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=insideapple.apple.com
+Return-Path: <developer_bounces@insideapple.apple.com>
+Received: from mdn-epsmtap-mkt-lsndr09106.apple.com (mdn-epsmtap-mkt-lsndr09106.apple.com. [17.32.227.191])
+        by mx.google.com with ESMTPS id ada2fe7eead31-5dfb7067ab4si197907137.133.2025.11.13.10.20.48
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 13 Nov 2025 10:20:48 -0800 (PST)
+Received-SPF: pass (google.com: domain of developer_bounces@insideapple.apple.com designates 17.32.227.191 as permitted sender) client-ip=17.32.227.191;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@insideapple.apple.com header.s=insideapple0517 header.b=OOANlQ0t;
+       spf=pass (google.com: domain of developer_bounces@insideapple.apple.com designates 17.32.227.191 as permitted sender) smtp.mailfrom=developer_bounces@insideapple.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=insideapple.apple.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=insideapple.apple.com; s=insideapple0517; t=1763058046;
+	bh=qwI5zo91xhmfpA5JJa5VBlXon01YjPX2gdX7YFViv44=;
+	h=Date:From:To:Message-ID:Subject:Content-Type;
+	b=OOANlQ0t6fSozT+1fH2d8bWq7WR1LNIqY6OTRMdVlZGmivYK9rgQa9K/U4j2RshEV
+	 acaY4v1L3vBotOv7bjtLzV8cu3k2a2xuUF9/z3H+5Ynt7a9eYWOg9U/6Aid/Rhnjak
+	 FPTOsc+Twgc2ECzaS1w77v3Ij7nqLjnHc/Cn7v5kSPpCz+neeUOQnB2B4Kl2cbbudB
+	 pK7dcC9fSOl1Vq6Y/FyYw0ok27QJzAGYa2yHj1kv12XagI7CSLMhOKgLTbPM2GCZju
+	 UwJeeOdWnTkIA7k7XzV7gphfzFO/1gIX3ZjMQ+l11kswaWx69kiwDm0teGUW27oPiR
+	 rggxvBqtKDpVw==
+Date: Thu, 13 Nov 2025 18:20:46 +0000 (GMT)
+From: Apple Developer <developer@insideapple.apple.com>
+To: liencf@gmail.com
+Message-ID: <728019381.35774550.1763058046840@insideapple.apple.com>
+Subject: Updated App Review Guidelines Now Available
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_35774544_654302250.1763058046840"
+X-Attach-Flag: N
+X-Sent-To: liencf@gmail.com,2,8w%2BvXLoOe%2FyPdV0vFeToEVnZveVrR%2BifFiCjD%2Bp9HLNSyGuXP8BO1zMLH0pIfktFfgVOvkxEMzHBzVdO%2Bqy3fP1puQ25tVUuH2%2FQ73uCRow0i50N2ZvTQF%2BChef3eIZi8T7lF4lDoAPJLzFlJVQb%2FU5n6nz1hb7wTRc6bbeNp13NH8UFBTGXw65E8GFYfZj6jjQv4RQ8VlVtbF6hTRhuTuHbS0yr2JpextVwFbjYE%2Fy%2B%2Fxlx%2FsChwbkKIEDOCKj%2FM785f1Fs5B8dUNjvphzuMA%3D%3D
+X-TXN_ID: 142b8d56-2aaf-43a2-92d1-5fe0fdc8a055
+X-DKIM_SIGN_REQUIRED: YES
+x-evs: BYPASS
+X-EmailType-Id: 181667
+X-Business-Group: 8067469
+X-Broadcast-Id: 181667
+Feedback-ID: M00787:c00358:developer@insideapple.apple.com:7967215940
+X-MSG-LINK: 5e769dbf7643a3e0c46e06aeabde22b9
+X-rpcampaign: M00787~c00358~r0001~1045941~5e769dbf7643a3e0c46e06aeabde22b9
+X-mp: d
+
+------=_Part_35774544_654302250.1763058046840
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Disposition: inline
+
+Hello,
+
+The App=C2=A0Review Guidelines have been revised to support updated policie=
+s and to provide clarification. Please review the changes below:
+https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UJR94mniF31x6BQ8mUoKnZV=
+GdhMPez2mA%2FDwb9NtLPnk7QBa5O5wm2K0lwSzzbxwCsMQMkpHcil36SzSYuqO2hfxEMFGsJN3=
+Bc5n6lcGfrVKME4ygiePZyqKMPv%2BEcnZ0ydGvdOE7XgI%2Bqx5W3i3HzF6fFRP%2F46EH6h80=
+D0whi%2BPsfDx1EbPiEkvVnTx0LkqSTj1Xc84qwj8R0Me8C9%2BFRFV1pO%2BT1oD8dpm0833ND=
+z0gMCMz26sbri6DNlIJbHSGg%3D%3D
+
+=E2=80=A2          1.2.1(a): This new guideline specifies that creator apps=
+ must provide a way for users to identify content that exceeds the app=E2=
+=80=99s age rating, and use an age restriction mechanism based on verified =
+or declared age to limit access by underage users.    =20
+
+=E2=80=A2          2.5.10: This language has been deleted ("Apps should not=
+ be submitted with empty ad banners or test advertisements.=E2=80=9D).    =
+=20
+
+=E2=80=A2          3.2.2(ix): Clarified that loan apps may not charge a max=
+imum APR higher than 36%, including costs and fees, and may not require rep=
+ayment in full in 60 days or less.    =20
+
+=E2=80=A2      4.1(c): This new guideline specifies that you cannot use ano=
+ther developer's icon, brand, or product name in your app's icon or name, w=
+ithout approval from the developer.         =20
+
+=E2=80=A2      4.7: Clarifies that HTML5 and JavaScript mini apps and mini =
+games are in scope of the guideline.     =20
+
+=E2=80=A2      4.7.2: Clarifies that apps offering software not embedded in=
+ the binary may not extend or expose native platform APIs or technologies t=
+o the software without prior permission from Apple.     =20
+
+=E2=80=A2      4.7.5: Clarifies that apps offering software not embedded in=
+ the binary must provide a way for users to identify content that exceeds t=
+he app=E2=80=99s age rating, and use an age restriction mechanism based on =
+verified or declared age to limit access by underage users.   =20
+
+=E2=80=A2      5.1.1(ix): Adds crypto exchanges to the list of apps that pr=
+ovide services in highly regulated fields.     =20
+
+=E2=80=A2 5.1.2(i): Clarifies that you must clearly disclose where personal=
+ data will be shared with third parties, including with third-party AI, and=
+ obtain explicit permission before doing so.
+
+
+
+If you have any questions, contact=C2=A0us.=20
+https://developer.apple.com/contact/topic/select
+
+The Apple Developer Relations Team=20
+
+-------------------
+
+Translations of the guidelines will be available on the Apple         Devel=
+oper website within one month.
+
+Copyright =C2=A9 2025 Apple Inc. One Apple Park Way, MS 923-4DEV, Cupertino=
+, CA 95014
+https://developer.apple.com/support/terms/
+
+All Rights Reserved
+https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UJR94mniF31x6BQ8mUoKnZV=
+GdhMPez2mA%2FDwb9NtLPnk7QBa5O5wm2K0lwSzzbxwCsMQMkpHcil36SzSYuqO2hfxEMFGsJN3=
+Bc5n6lcGfrVKME4ygiePZyqKMPv%2BEcnZ0ydGvdOE7XgI%2Bqx5W3i3HzF6fFRP%2F46EH6h80=
+D0whi%2BPsfDx1EbPiEkvVnTx0LkqSTj1Xc84qwj8R0Me8C9%2BFRFV1pO%2BT1oD8dpm0833ND=
+z0oRqxb9kn3z68hfbdvXZasA%3D%3D
+
+Privacy Policy
+https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UJR94mniF31x6BQ8mUoKnZV=
+GdhMPez2mA%2FDwb9NtLPnk7QBa5O5wm2K0lwSzzbxwCsMQMkpHcil36SzSYuqO2hfxEMFGsJN3=
+Bc5n6lcGfrVKME4ygiePZyqKMPv%2BEcnZ0ydGvdOE7XgI%2Bqx5W3i3HzF6fFRP%2F46EH6h80=
+D0whi%2BPsfDx1EbPiEkvVnTx0LkqSTj1Xc84qwj8R0Me8C9%2BFRFV1pO%2BT1oD8dpm0833ND=
+z02URs4tJ84d7v92hCxMil8w%3D%3D
+
+Account
+https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UJR94mniF31x6BQ8mUoKnZV=
+GdhMPez2mA%2FDwb9NtLPnk7QBa5O5wm2K0lwSzzbxwCsMQMkpHcil36SzSYuqO2hfxEMFGsJN3=
+Bc5n6lcGfrVKME4ygiePZyqKMPv%2BEcnZ0ydGvdOE7XgI%2Bqx5W3i3HzF6fFRP%2F46EH6h80=
+D0whi%2BPsfDx1EbPiEkvVnTx0LkqSTj1Xc84qwj8R0Me8C9%2BFRFV1pO%2BT1oD8dpm0833ND=
+z0HkoPv6bXKsqVdCeperovPg%3D%3D
+
+This is a service notification related to your Apple Developer account.
+
+-------------------
+------=_Part_35774544_654302250.1763058046840
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Disposition: inline
+
+<!DOCTYPE html><html><head><title></title><meta content=3D"width=3Ddevice-w=
+idth,initial-scale=3D1" name=3Dviewport><meta content=3D"text/html;charset=
+=3Dutf-8" http-equiv=3Dcontent-type><meta content=3D"date=3Dno" name=3Dform=
+at-detection><meta content=3D"address=3Dno" name=3Dformat-detection><meta c=
+ontent=3D"email=3Dno" name=3Dformat-detection><style type=3Dtext/css>@media=
+ only screen and (max-device-width:2732px){.m23 a[href^=3D"tel:"]{color:inh=
+erit!important}}@media screen and (max-device-width:414px) {u ~ div { min-w=
+idth: 375px;} body,u+div { min-width: 375px;} } </style><style type=3Dtext/=
+css>@media only screen and (max-device-width:568px){.m0{display:none!import=
+ant}.m1{display:block!important;width:100%!important;height:inherit!importa=
+nt;overflow:visible!important}.m18,.m22{padding:0!important}.m22 ul{font-si=
+ze:12px!important;line-height:16px!important;margin-top:9px;margin-bottom:0=
+;margin-left:40px!important;padding-left:0}.m22 ul li{padding-bottom:9px!im=
+portant}.m22 ul li:last-child{padding-bottom:0!important}.m22 table.m23{wid=
+th:100%!important;max-width:414px!important;padding-top:0!important}.m24{pa=
+dding:0 6.25%!important}.m22 table.m25{width:100%!important;max-width:362px=
+!important;padding-top:0!important}.m18 p{font-size:12px!important;line-hei=
+ght:39px!important;padding:0!important}.m18 span.m26{font-size:0;line-heigh=
+t:0;display:block}.m27,.m27 p{line-height:20px!important}.m37 .m38 p a[href=
+^=3D"tel:"],.m23 a[href^=3D"tel:"]{color:inherit!important}.m37 .m23,.m37 .=
+m25,.m37.m20{background-color:#f5f5f7!important}.m37 .m38,.m37 .m38 p,.m37 =
+.m27{text-align:left!important}.m37 .m18{border-top:none!important}.m37 .m1=
+8 span.m26{border-top:1px solid #d2d2d7}.m37 .m18.m39{border-bottom:0!impor=
+tant}.m37 .m38,.m37 .m38 p,.m37 .m27 .m26{color:#6e6e73!important}.m37 .m38=
+ p a,.m37 .m27 p,.m37 .m27 p a{color:#424245!important}}</style><style type=
+=3Dtext/css>.m0,.m1,td{font-size:17px;font-weight:400;line-height:25px;font=
+-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Ne=
+ue",Helvetica,Arial,sans-serif,"SF Pro Icons"}.m1,.m1 div{box-sizing:border=
+-box}.m2{color:#1d1d1f}.m0,.m1,.m3,p,td{font-family:system-ui,-apple-system=
+,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,=
+"SF Pro Icons"}*{-webkit-font-smoothing:antialiased;text-rendering:optimize=
+legibility}.m0,.m1{width:100%!important}table{border-spacing:0}b{font-weigh=
+t:600}.m1{display:none;margin:0 auto;max-width:100%;width:100%}.m1 .m4,td i=
+mg{max-width:100%}.m1 .m4 .m5{max-width:414px;margin:0 auto}.m1 .m6{font-si=
+ze:0;line-height:0;margin:0 auto}.m1 .m7,.m1 .m8{font-size:17px;line-height=
+:25px}.m9,.m10{display:inline-block}.m11,.m4{margin:0 auto}.m12{text-align:=
+center}.m12 img,td.m12 img{margin-left:auto;margin-right:auto}.m13{text-ali=
+gn:left}.m13 img{margin-left:0;margin-right:auto}.m14 a,.m15 a{border:0;out=
+line:0}.m15 .m6{font-size:12px;line-height:16px}.m2{border-color:#fff;backg=
+round-color:#fff}.m2 a,.m2 a:hover,.m2 a:visited{color:#06c}.m2.m14,.m2.m15=
+{color:#86868b;background-color:#f5f5f7}.m2.m14 a,.m2.m15 a{color:#515154}.=
+m16 .m2{color:#6e6e73;background-color:#f5f5f7}.m17 .m18 a,.m16 .m2 a,.m16 =
+.m2 a:hover,.m16 .m2 a:visited{color:#424245}.m2 .m19,.m2 .m19 td,.m2 .m19>=
+div,.m2 td.m19{border-color:#d2d2d7;color:#d2d2d7}.m3 a,.m3 a:link,a,p a,p =
+a:link{cursor:pointer}.m20.m21 .m18,.m20.m21 .m22{padding:0!important}.m20.=
+m21 .m22 ul{font-size:12px!important;line-height:16px!important;margin-top:=
+9px;margin-bottom:0;margin-left:40px!important;padding-left:0}.m20.m21 .m22=
+ ul li{padding-bottom:9px!important}.m20.m21 .m22 ul li:last-child{padding-=
+bottom:0!important}.m20.m21 .m22 table.m23{width:100%!important;max-width:4=
+14px!important;padding-top:0!important}.m20.m21 .m24{padding:0 6.25%!import=
+ant}.m20.m21 .m22 table.m25{width:100%!important;max-width:362px!important;=
+padding-top:0!important}.m20.m21 .m18 p{font-size:12px!important;line-heigh=
+t:39px!important;padding:0!important}.m20.m21 .m18 span.m26{font-size:0;lin=
+e-height:0;display:block}.m20.m21 .m27,.m20.m21 .m27 p{line-height:20px!imp=
+ortant}.m20.m21 .m23 a[href^=3D"tel:"]{color:inherit!important}.m3 a.m28,.m=
+3 a:link.m28,p a.m28,p a:link.m28{border:0;outline:0}.m1 .m8 ul{margin-top:=
+9px;margin-bottom:0;margin-left:40px;padding-left:0}.m1 .m8 p+*,.m1 .m8 ul+=
+*{margin-top:9px!important}a,a:link{text-decoration:none;word-spacing:0!imp=
+ortant}a:focus,a:hover,a:link:focus,a:link:hover{text-decoration:underline!=
+important}a:link[x-apple-data-detectors],a[x-apple-data-detectors]{text-dec=
+oration:none!important}a:link[x-apple-data-detectors]:hover,a[x-apple-data-=
+detectors]:hover{text-decoration:underline!important}a.m28,a:link.m28{text-=
+decoration:none!important}a>span{letter-spacing:inherit}a[x-apple-data-dete=
+ctors],a[x-apple-data-detectors]:hover,a[x-apple-data-detectors]:link{color=
+:inherit;text-decoration:underline}p a,p a:link{text-decoration:underline}t=
+d.m13 img{margin-right:auto;margin-left:0}.m3,p{font-size:17px;font-weight:=
+400;line-height:25px;margin:0}.m3 a.m28,p a.m28{border:0;outline:0}ul{margi=
+n-top:0;margin-bottom:0;margin-left:40px;padding-left:0}.m29{line-height:0;=
+padding-top:24px;padding-bottom:24px}.m30,.m30>p,.m31,.m31>p,.m32>p,.m33>p{=
+font-weight:400}.m34,.m34>p{font-size:0;font-weight:400}.m34 a{font-size:0}=
+.m32,.m33{padding-top:17px;font-weight:400}.m35{padding-right:6.25%;padding=
+-left:6.25%}.m36{padding-bottom:32px}.m40.m40.m40{color:#06c;text-decoratio=
+n:none}.m41.m41.m41{color:#333;margin:0 0 16px;padding:0;line-height:1.6em;=
+font-size:17px;font-family:system,-apple-system,-webkit-system-font,SFNSTex=
+t,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoot=
+hing:antialiased}</style><!--[if gte mso 9]><style type=3D"text/css">table,=
+td,tr,a,span,b,sup{line-height:normal !important; mso-line-height-rule: exa=
+ctly;}sup{font-size:100% !important;}h1,h2,h3,h4,h5,h6 {line-height: inheri=
+t !important; font-family:'Segoe UI SemiBold','Segoe UI', Arial, sans-serif=
+ !important; font-weight: 400 !important; mso-line-height-rule: exactly; ms=
+o-text-raise: 2px;}h1 sup,h2 sup,h3 sup,h4 sup,h5 sup,h6 sup, .outSemiBold =
+sup, .outBold sup{font-size:90% !important;}b,strong {line-height: inherit =
+!important; font-family:'Segoe UI SemiBold','Segoe UI', Arial, sans-serif !=
+important; font-weight: 400 !important; mso-line-height-rule: exactly; }.ou=
+tBold { font-family: 'Segoe UI', Arial, sans-serif !important; font-weight:=
+ 600 !important; }.outSemiBold { font-family:'Segoe UI SemiBold','Segoe UI'=
+, Arial, sans-serif !important; font-weight: 400 !important;line-height: in=
+herit !important;mso-text-raise: 2px; }.outBold {overflow:visible;line-heig=
+ht: inherit !important;mso-line-height-rule: exactly;mso-text-raise: 2px; }=
+.fallback { display: block !important}.animated, .m1, .nthreturn, .return{ =
+display: none !important}li {margin-bottom: 9px;}ol {margin-left: 0 !import=
+ant; }</style><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsPerInch>=
+96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]--><!--[if gt=
+e mso 15]><style type=3D"text/css">   h1,h2,h3,h4,h5,h6 {mso-text-raise: 2p=
+x;}</style><![endif]--><!--[if mso 15]><style type=3D"text/css">   h1 {mso-=
+text-raise: 4px;}</style><![endif]--></head><body style=3Dmargin:0;padding:=
+0><div class=3Dm1 style=3Ddisplay:none;width:0;height:0;overflow:hidden><di=
+v class=3D"m4 m2 m36"><div class=3Dm5><div class=3D"m6 m35"><div class=3Dm7=
+><div class=3D"m11 m13 m29"><img alt=3D" " height=3D25 src=3Dhttps://develo=
+per.apple.com/click/images/mcfly/apple_icon_2x.png width=3D20 class=3Dm10><=
+/div><div class=3D"m8 m30"><p class=3Dm3>Hello,</p></div><div></div><div cl=
+ass=3D"m8 m31"><p class=3Dm3>The <a href=3D"https://c.apple.com/r?v=3D2&a=
+=3Do2CKfLM8dAL7lynfnyn7UJR94mniF31x6BQ8mUoKnZVGdhMPez2mA%2FDwb9NtLPnk7QBa5O=
+5wm2K0lwSzzbxwCpdb%2FlM5YKikdOgSKtzyfQm81psbeb813wy4zYDqQVTVyT5xbsQMwqjuYY%=
+2FurWpP32u%2FR%2BGmZpvo5GAtQM2ybkPJ9qRg83k6VT7Jg%2B7g62wM%2Bb7NAWEaM6xM6VLl=
+NFrQyHs3eKN9gJ91mgumE7zu8P7JpOah2EX7UDMMCcePyHNLkTm%2B%2Fe7Nihd32eittJg3gA%=
+3D%3D" class=3Dm40>App=C2=A0Review Guidelines </a> have been revised to sup=
+port updated policies and to provide clarification. Please review the chang=
+es below:</p></div><div></div><div class=3D"m8 m34"><ul> <li class=3Dm41> 1=
+.2.1(a): This new guideline specifies that creator apps must provide a way =
+for users to identify content that exceeds the app=E2=80=99s age rating, an=
+d use an age restriction mechanism based on verified or declared age to lim=
+it access by underage users. </li> <li class=3Dm41> 2.5.10: This language h=
+as been deleted ("Apps should not be submitted with empty ad banners or tes=
+t advertisements.=E2=80=9D). </li> <li class=3Dm41> 3.2.2(ix): Clarified th=
+at loan apps may not charge a maximum APR higher than 36%, including costs =
+and fees, and may not require repayment in full in 60 days or less. </li> <=
+li class=3Dm41> 4.1(c): This new guideline specifies that you cannot use an=
+other developer's icon, brand, or product name in your app's icon or name, =
+without approval from the developer. </li> <p></p> <p></p><li class=3Dm41> =
+4.7: Clarifies that HTML5 and JavaScript mini apps and mini games are in sc=
+ope of the guideline. </li> <p></p> <p></p><li class=3Dm41> 4.7.2: Clarifie=
+s that apps offering software not embedded in the binary may not extend or =
+expose native platform APIs or technologies to the software without prior p=
+ermission from Apple. </li> <p></p> <p></p><li class=3Dm41> 4.7.5: Clarifie=
+s that apps offering software not embedded in the binary must provide a way=
+ for users to identify content that exceeds the app=E2=80=99s age rating, a=
+nd use an age restriction mechanism based on verified or declared age to li=
+mit access by underage users. </li> <p></p> <p></p><li class=3Dm41> 5.1.1(i=
+x): Adds crypto exchanges to the list of apps that provide services in high=
+ly regulated fields. </li> <p></p> <p></p><li class=3Dm41>5.1.2(i): Clarifi=
+es that you must clearly disclose where personal data will be shared with t=
+hird parties, including with third-party AI, and obtain explicit permission=
+ before doing so.<p></p> </li></ul></div><div></div><div></div><div class=
+=3D"m8 m32"><p class=3Dm3>If you have any questions, <a href=3Dhttps://deve=
+loper.apple.com/contact/topic/select *data-inline-velocity-token*=3DCONTACT=
+_US *data-inline-velocity-token-mobile*=3DCONTACT_US class=3Dm40>contact=C2=
+=A0us</a>. </p></div><div></div><div></div><div class=3D"m8 m33"><p class=
+=3Dm3> The Apple Developer Relations Team </p></div></div></div></div></div=
+></div><table border=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentatio=
+n align=3Dcenter width=3D100%><tr><td><div class=3Dm0><table border=3D0 cel=
+lpadding=3D0 cellspacing=3D0 role=3Dpresentation align=3Dcenter width=3D100=
+%><tr><td style=3Dtext-align:center align=3Dcenter><table border=3D0 cellpa=
+dding=3D0 cellspacing=3D0 role=3Dpresentation align=3Dcenter width=3D100%><=
+tr class=3Dm4><td style=3Dbackground-color:#fff;padding-bottom:32px class=
+=3Dm2 align=3Dcenter><table border=3D0 cellpadding=3D0 cellspacing=3D0 role=
+=3Dpresentation align=3Dcenter width=3D712><tr class=3Dm6><td><table border=
+=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation align=3Dleft width=
+=3D100%><tr><td class=3Dm7 width=3D100%><table border=3D0 cellpadding=3D0 c=
+ellspacing=3D0 role=3Dpresentation width=3D100% class=3Dm7><tr><td style=3D=
+padding-top:24px;padding-bottom:24px;padding-left:24px align=3Dleft><img al=
+t=3D" " height=3D25 src=3Dhttps://developer.apple.com/click/images/mcfly/ap=
+ple_icon_2x.png width=3D20 border=3D0 style=3Ddisplay:block></td></tr><tr><=
+td style=3D"padding:0 0 0 24px" class=3Dm8><p style=3Dfont-weight:400;color=
+:#1d1d1f>Hello,</p></td></tr><tr><td><table border=3D0 cellpadding=3D0 cell=
+spacing=3D0 role=3Dpresentation align=3Dleft width=3D16px><tr><td style=3Dh=
+eight:12px;width:16px;font-size:0;line-height:12px height=3D12 width=3D16>=
+=C2=A0</td></tr></table></td></tr><tr><td style=3D"padding:0 0 0 24px" clas=
+s=3Dm8><p style=3Dfont-weight:400;color:#1d1d1f>The <a href=3D"https://c.ap=
+ple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UJR94mniF31x6BQ8mUoKnZVGdhMPez2mA%2=
+FDwb9NtLPnk7QBa5O5wm2K0lwSzzbxwCpdb%2FlM5YKikdOgSKtzyfQm81psbeb813wy4zYDqQV=
+TVyT5xbsQMwqjuYY%2FurWpP32u%2FR%2BGmZpvo5GAtQM2ybkPJ9qRg83k6VT7Jg%2B7g62wM%=
+2Bb7NAWEaM6xM6VLlNFrQyHs3eKN9gJ91mgumE7zu8P7JpOah2EX7UDMMCcePyHNLNAgn4d1R6j=
+%2Bk5u860sA9KA%3D%3D" style=3Dcolor:#06c;text-decoration:none>App=C2=A0Revi=
+ew Guidelines </a> have been revised to support updated policies and to pro=
+vide clarification. Please review the changes below:</p></td></tr><tr><td><=
+table border=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation align=
+=3Dleft><tr><td style=3Dheight:12px;width:0;font-size:0;line-height:12px he=
+ight=3D12 width=3D0>=C2=A0</td></tr></table></td></tr><tr><td style=3D"padd=
+ing:0 0 0 24px" class=3Dm8><ul style=3Dfont-weight:400;padding:0;margin-top=
+:9px;margin-bottom:0;margin-left:40px> <li style=3D"color:#333;margin:0 0 1=
+6px;padding:0;line-height:1.6em;font-size:17px;font-family:system,-apple-sy=
+stem,-webkit-system-font,SFNSText,'Segoe UI','Helvetica Neue',Helvetica,Ari=
+al,sans-serif;-webkit-font-smoothing:antialiased"> 1.2.1(a): This new guide=
+line specifies that creator apps must provide a way for users to identify c=
+ontent that exceeds the app=E2=80=99s age rating, and use an age restrictio=
+n mechanism based on verified or declared age to limit access by underage u=
+sers. </li> <li style=3D"color:#333;margin:0 0 16px;padding:0;line-height:1=
+.6em;font-size:17px;font-family:system,-apple-system,-webkit-system-font,SF=
+NSText,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-=
+smoothing:antialiased"> 2.5.10: This language has been deleted ("Apps shoul=
+d not be submitted with empty ad banners or test advertisements.=E2=80=9D).=
+ </li> <li style=3D"color:#333;margin:0 0 16px;padding:0;line-height:1.6em;=
+font-size:17px;font-family:system,-apple-system,-webkit-system-font,SFNSTex=
+t,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoot=
+hing:antialiased"> 3.2.2(ix): Clarified that loan apps may not charge a max=
+imum APR higher than 36%, including costs and fees, and may not require rep=
+ayment in full in 60 days or less. </li> <li style=3D"color:#333;margin:0 0=
+ 16px;padding:0;line-height:1.6em;font-size:17px;font-family:system,-apple-=
+system,-webkit-system-font,SFNSText,'Segoe UI','Helvetica Neue',Helvetica,A=
+rial,sans-serif;-webkit-font-smoothing:antialiased"> 4.1(c): This new guide=
+line specifies that you cannot use another developer's icon, brand, or prod=
+uct name in your app's icon or name, without approval from the developer. <=
+/li> <li style=3D"color:#333;margin:0 0 16px;padding:0;line-height:1.6em;fo=
+nt-size:17px;font-family:system,-apple-system,-webkit-system-font,SFNSText,=
+'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothi=
+ng:antialiased"> 4.7: Clarifies that HTML5 and JavaScript mini apps and min=
+i games are in scope of the guideline. </li> <li style=3D"color:#333;margin=
+:0 0 16px;padding:0;line-height:1.6em;font-size:17px;font-family:system,-ap=
+ple-system,-webkit-system-font,SFNSText,'Segoe UI','Helvetica Neue',Helveti=
+ca,Arial,sans-serif;-webkit-font-smoothing:antialiased"> 4.7.2: Clarifies t=
+hat apps offering software not embedded in the binary may not extend or exp=
+ose native platform APIs or technologies to the software without prior perm=
+ission from Apple. </li> <li style=3D"color:#333;margin:0 0 16px;padding:0;=
+line-height:1.6em;font-size:17px;font-family:system,-apple-system,-webkit-s=
+ystem-font,SFNSText,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;=
+-webkit-font-smoothing:antialiased"> 4.7.5: Clarifies that apps offering so=
+ftware not embedded in the binary must provide a way for users to identify =
+content that exceeds the app=E2=80=99s age rating, and use an age restricti=
+on mechanism based on verified or declared age to limit access by underage =
+users. </li> <li style=3D"color:#333;margin:0 0 16px;padding:0;line-height:=
+1.6em;font-size:17px;font-family:system,-apple-system,-webkit-system-font,S=
+FNSText,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font=
+-smoothing:antialiased"> 5.1.1(ix): Adds crypto exchanges to the list of ap=
+ps that provide services in highly regulated fields. </li> <li style=3D"col=
+or:#333;margin:0 0 16px;padding:0;line-height:1.6em;font-size:17px;font-fam=
+ily:system,-apple-system,-webkit-system-font,SFNSText,'Segoe UI','Helvetica=
+ Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased">5.1.2=
+(i): Clarifies that you must clearly disclose where personal data will be s=
+hared with third parties, including with third-party AI, and obtain explici=
+t permission before doing so. </li></ul></td></tr><tr><td><table border=3D0=
+ cellpadding=3D0 cellspacing=3D0 role=3Dpresentation align=3Dleft><tr><td s=
+tyle=3Dheight:12px;width:0;font-size:0;line-height:12px height=3D12 width=
+=3D0>=C2=A0</td></tr></table></td></tr><tr><td><table border=3D0 cellpaddin=
+g=3D0 cellspacing=3D0 role=3Dpresentation align=3Dleft><tr><td style=3Dheig=
+ht:18px;width:0;font-size:0;line-height:18px height=3D18 width=3D0>=C2=A0</=
+td></tr></table></td></tr><tr><td style=3D"padding:0 0 0 24px" class=3Dm8><=
+p style=3Dfont-weight:400;color:#1d1d1f>If you have any questions, <a href=
+=3Dhttps://developer.apple.com/contact/topic/select style=3Dcolor:#06c;text=
+-decoration:none *data-inline-velocity-token*=3DCONTACT_US *data-inline-vel=
+ocity-token-mobile*=3DCONTACT_US>contact=C2=A0us</a>. </p></td></tr><tr><td=
+><table border=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation alig=
+n=3Dleft><tr><td style=3Dheight:12px;width:0;font-size:0;line-height:12px h=
+eight=3D12 width=3D0>=C2=A0</td></tr></table></td></tr><tr><td><table borde=
+r=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation align=3Dleft><tr>=
+<td style=3Dheight:18px;width:0;font-size:0;line-height:18px height=3D18 wi=
+dth=3D0>=C2=A0</td></tr></table></td></tr><tr><td style=3D"padding:0 0 0 24=
+px" class=3Dm8><p style=3Dfont-weight:400;color:#1d1d1f> The Apple Develope=
+r Relations Team </p></td></tr></table></td></tr></table></td></tr></table>=
+</td></tr></table></td></tr></table></div></td></tr><tr><td><table border=
+=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation width=3D100% class=
+=3D"m17 m20 m37" bgcolor=3D#F5F5F7 style=3Dbackground-color:#f5f5f7><tr cla=
+ss=3Dm4><td class=3Dm22><table border=3D0 cellpadding=3D0 cellspacing=3D0 r=
+ole=3Dpresentation align=3Dcenter width=3D736 bgcolor=3D#F5F5F7 class=3Dm23=
+ style=3Dbackground-color:#f5f5f7><tr><td style=3D"padding:0 20px" class=3D=
+m24><table border=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation a=
+lign=3Dcenter width=3D660 bgcolor=3D#F5F5F7 class=3Dm25><tr><td style=3Dfon=
+t-size:12px;line-height:16px;border-top-width:0;border-top-style:none;borde=
+r-top-color:currentcolor class=3D"m18 m39" align=3Dcenter></td></tr><tr><td=
+ style=3D"padding:10px 0 9px;text-align:left" class=3Dm38><p style=3Dfont-s=
+ize:12px;line-height:16px;color:#6e6e73>Translations of the guidelines will=
+ be available on the <a href=3Dhttps://developer.apple.com/support/terms/ s=
+tyle=3D"color:#06c  !important;text-decoration:none" *data-inline-velocity-=
+token*=3DSUPPORT_LINK *data-inline-velocity-token-mobile*=3DSUPPORT_LINK>Ap=
+ple Developer website</a> within one month.<br><br> Copyright =C2=A9 2025 A=
+pple Inc.<br>One Apple Park Way, MS 923-4DEV, Cupertino, CA 95014</p></td><=
+/tr><tr><td style=3D"padding:0 0 9px;font-size:12px;line-height:16px;color:=
+#424245;text-align:left" class=3Dm27><p style=3D"color:#424245;margin:0 aut=
+o;font-size:12px;line-height:16px"><a href=3D"https://c.apple.com/r?v=3D2&a=
+=3Do2CKfLM8dAL7lynfnyn7UJR94mniF31x6BQ8mUoKnZVGdhMPez2mA%2FDwb9NtLPnk7QBa5O=
+5wm2K0lwSzzbxwCpdb%2FlM5YKikdOgSKtzyfQm81psbeb813wy4zYDqQVTVyT5xbsQMwqjuYY%=
+2FurWpP32u%2FR%2BGmZpvo5GAtQM2ybkPJ9qRg83k6VT7Jg%2B7g62wM%2Bb7NAWEaM6xM6VLl=
+NFrQyHs3eKN9gJ91mgumE7zu8P7JpOah2EX7UDMMCcePyHNL646dhc9SAzH%2FnYBj69x7Sg%3D=
+%3D" style=3Dborder:0;outline:0;text-decoration:none;color:#424245>All Righ=
+ts Reserved</a>=C2=A0=C2=A0<span class=3Dm26 style=3Dcolor:#6e6e73>|</span>=
+=C2=A0=C2=A0<a href=3D"https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7=
+UJR94mniF31x6BQ8mUoKnZVGdhMPez2mA%2FDwb9NtLPnk7QBa5O5wm2K0lwSzzbxwCpdb%2FlM=
+5YKikdOgSKtzyfQm81psbeb813wy4zYDqQVTVyT5xbsQMwqjuYY%2FurWpP32u%2FR%2BGmZpvo=
+5GAtQM2ybkPJ9qRg83k6VT7Jg%2B7g62wM%2Bb7NAWEaM6xM6VLlNFrQyHs3eKN9gJ91mgumE7z=
+u8P7JpOah2EX7UDMMCcePyHNLvMJzs91%2BX2KqCOOmp9Lx%2Fw%3D%3D" style=3Dborder:0=
+;outline:0;text-decoration:none;color:#424245>Privacy Policy</a>=C2=A0=C2=
+=A0<span class=3Dm26 style=3Dcolor:#6e6e73>|</span>=C2=A0=C2=A0<a href=3D"h=
+ttps://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UJR94mniF31x6BQ8mUoKnZVG=
+dhMPez2mA%2FDwb9NtLPnk7QBa5O5wm2K0lwSzzbxwCpdb%2FlM5YKikdOgSKtzyfQm81psbeb8=
+13wy4zYDqQVTVyT5xbsQMwqjuYY%2FurWpP32u%2FR%2BGmZpvo5GAtQM2ybkPJ9qRg83k6VT7J=
+g%2B7g62wM%2Bb7NAWEaM6xM6VLlNFrQyHs3eKN9gJ91mgumE7zu8P7JpOah2EX7UDMMCcePyHN=
+Lcl4a5nM7I774Y7L9tcm%2FKQ%3D%3D" style=3Dborder:0;outline:0;text-decoration=
+:none;color:#424245>Account</a> </p></td></tr><tr><td style=3D"padding:0 0 =
+56px;text-align:left" class=3Dm38><p style=3Dfont-size:12px;line-height:16p=
+x;color:#6e6e73>This is a service notification related to your Apple Develo=
+per account.</p></td></tr></table></td></tr></table></td></tr></table></td>=
+</tr></table> </body></html>
+------=_Part_35774544_654302250.1763058046840--

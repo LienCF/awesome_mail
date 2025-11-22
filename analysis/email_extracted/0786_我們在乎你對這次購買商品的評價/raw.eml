@@ -1,0 +1,466 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:d209:b0:4d4:9739:2b92 with SMTP id ji9csp635490mdb;
+        Sat, 25 Oct 2025 21:12:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFP0iwbhZukdRlndGEvf5wtV94QhShFtU7RHChuuABdzIlE0Tgicnx19YHAew90Aa8hWHBz
+X-Received: by 2002:a05:6a00:179f:b0:7a2:81fe:b748 with SMTP id d2e1a72fcca58-7a286605872mr8349128b3a.0.1761451952243;
+        Sat, 25 Oct 2025 21:12:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761451952; cv=none;
+        d=google.com; s=arc-20240605;
+        b=dcfyO/4tYjq1adurS/4hwqkf8CbNr6gEwlFXSxbWssedhJMzNw+NFE2d6UsnYlnwE+
+         LOz2kbQoOCWcyc+ETzO3xbB8mcStqrVE8e6EPFnfVupk2ys14TyvyydnbY7Vij6MmBxh
+         Dvwg0T4qugWd47N9mcbu3L5HXMlp8D1JnP2CE9vStMF/XfbCPV7+glp1xXYbuMlR0TKt
+         3Qxqse8YXE0XdLXSVkkZc9C71Noz8OkxQMr8PTSZVif7xxV+HBoN7cTOsjVhExmfJ3vT
+         mgTsIaXkA/1XjJiz41HS/Dxfusdyr/gMyPc4AXT4pMdgKBjlrM42BTwV4KXQ3WKzJ3mj
+         TxMA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:to:message-id:subject:date:from:dkim-signature;
+        bh=WGEnf0dSGZLybnIIXZXmPQnY/F/r3BPrD8r87+LQhVQ=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=WuXKTA5bxE11T5vbmUzeqPKlTndifjzERg3VyaWam4sjEmF0YAEbigepjY3/Cv+Gqc
+         UqCxSsf4Y2o/jQvrOLOXzok6MkkUj/wZP42Q62TRTBmcGGi97DXjuX0j6+gMccLfj1Eq
+         2zn6nHHcJLzhycVczj4C4WpAe/8P1nu/qKB4+Z0FRRNMvWO7Ch9o6WU5BUxEmvGgkeaT
+         lpvmw25dUA5asc7huPkpVtpNeUQw7idhItZnULBLAbQoeA0zz52VW9KJFlSrqArxfhXS
+         52pF/2wadtqkGN9FnW3TAihGebmiNxCQpHUBQBrVkS3JNZkv7vufU8w3nlcvWDpGGuJj
+         SklA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass (test mode) header.i=@yahoo.com.tw header.s=twoth header.b=sVRXEB4r;
+       spf=pass (google.com: domain of devnull@oath.com designates 106.10.243.198 as permitted sender) smtp.mailfrom=devnull@oath.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com.tw
+Return-Path: <devnull@oath.com>
+Received: from sonic320-8.consmr.mail.sg3.yahoo.com (sonic320-8.consmr.mail.sg3.yahoo.com. [106.10.243.198])
+        by mx.google.com with ESMTPS id d2e1a72fcca58-7a4155f826esi1934687b3a.314.2025.10.25.21.12.31
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 25 Oct 2025 21:12:32 -0700 (PDT)
+Received-SPF: pass (google.com: domain of devnull@oath.com designates 106.10.243.198 as permitted sender) client-ip=106.10.243.198;
+Authentication-Results: mx.google.com;
+       dkim=pass (test mode) header.i=@yahoo.com.tw header.s=twoth header.b=sVRXEB4r;
+       spf=pass (google.com: domain of devnull@oath.com designates 106.10.243.198 as permitted sender) smtp.mailfrom=devnull@oath.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com.tw
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com.tw; s=twoth; t=1761451950; bh=WGEnf0dSGZLybnIIXZXmPQnY/F/r3BPrD8r87+LQhVQ=; h=From:Date:Subject:To:From:Subject:Reply-To; b=sVRXEB4rRTgcl6ds9sjBolTEgTPmJY0o59QDYv/FGj8jWz6fDaO+wAQwKIeCId4joXeJx0WTKEFCJfIw4VQUytPf3gCnVMAa42h0oI9wsdbqxUsjmcQSbMzG7wwNIj647M2L/KChXsQcR6V6cX0AB3Kg9ot9tRQKMuBesXJnyuE=
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1761451950; bh=dA4FsueER2cLYhkdZBZbZo6Fu6RfyDVZ9cexxzxHNoy=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=TgNLDSYHZsQ5NDALmZbj/G5jw8bpn5ZwL36YMzcSivuN4Vb4IiEUDxYU53Bps7tDTzmfrG6CqUp3V3QpAWagHqxxRuO58uF+fJbB/D5/PqzH6eG+3nPONxU05XVVOa5C9cGU/SPDhAt/AEASYI7+wVvM4l9koJtlGS5aT+MLmdhrQnuDyF+uNAHFTvy76m/IqTh1kB9lfodIF7J2vVWVaIZwiuaEDLNWcDPbtvFVGmq2WjwDzwPX0aEhTQhaql1XsTigBAtCb9TLvxj7pIuJlc20qnrj5Lp0T5q0jNxCAC0oruDeQiP3nVG06RktG7era9bYXPfsosb2drb4mHtAuw==
+X-Sonic-MF: devnull@oath.com
+X-Sonic-ID: e904e060-9209-42d2-b5c2-c0dace6fd307
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic320.consmr.mail.sg3.yahoo.com with HTTP; Sun, 26 Oct 2025 04:12:30 +0000
+From: =?utf-8?b?WWFob2/os7zniankuK3lv4M=?= <devnull@yahoo.com.tw>
+Date: Sun, 26 Oct 2025 12:12:28 +0800
+Subject: =?utf-8?b?5oiR5YCR5Zyo5LmO5L2g5bCN6YCZ5qyh6LO86LK35ZWG5ZOB55qE6KmV5YO5?=
+Message-Id: <JWR4LLT4KRU4.8112JWI3WWZJ3@erpbat21>
+To: liencf@gmail.com
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="=-w9kWYXn2GSV9zOOZe1MlqQ=="
+
+--=-w9kWYXn2GSV9zOOZe1MlqQ==
+Content-Type: text/html; charset=utf-8
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=big5" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <style type="text/css">
+      /* CLIENT-SPECIFIC STYLES */
+      body,
+      table,
+      td,
+      a {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+
+      table,
+      td {
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+
+      img {
+        -ms-interpolation-mode: bicubic;
+      }
+
+      /* RESET STYLES */
+      img {
+        border: 0;
+        height: auto;
+        line-height: 100%;
+        outline: none;
+        text-decoration: none;
+      }
+
+      table {
+        border-collapse: collapse !important;
+      }
+
+      body {
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+      }
+
+      /* MOBILE STYLES */
+      @media screen and (max-width: 525px) {
+
+        /* ALLOWS FOR FLUID TABLES */
+        table[class="wrapper"] {
+          width: 100% !important;
+        }
+
+        /* ADJUSTS LAYOUT OF LOGO IMAGE */
+        td[class="logo"] {
+          text-align: left;
+          padding: 20px 0 20px 0 !important;
+        }
+
+        td[class="logo"] img {
+          margin: 0 auto !important;
+        }
+
+        /* USE THESE CLASSES TO HIDE CONTENT ON MOBILE */
+        td[class="mobile-hide"] {
+          display: none;
+        }
+
+        img[class="mobile-hide"] {
+          display: none !important;
+        }
+
+        img[class="img-max"] {
+          max-width: 100% !important;
+          height: auto !important;
+        }
+
+        /* FULL-WIDTH TABLES */
+        table[class="responsive-table"] {
+          width: 100% !important;
+        }
+
+        table[class="responsive-table-1-2"] {
+          width: 50% !important;
+        }
+
+        table[class="responsive-table-1-3"] {
+          width: 33.33% !important;
+        }
+
+        /* UTILITY CLASSES FOR ADJUSTING PADDING ON MOBILE */
+        td[class="padding"] {
+          padding: 10px 5% 15px 5% !important;
+        }
+
+        td[class="padding-copy"] {
+          padding: 10px 5% 10px 5% !important;
+          text-align: center;
+        }
+
+        td[class="padding-meta"] {
+          padding: 30px 5% 0px 5% !important;
+          text-align: center;
+        }
+
+        td[class="no-pad"] {
+          padding: 0 0 20px 0 !important;
+        }
+
+        td[class="no-padding"] {
+          padding: 0 !important;
+        }
+
+        td[class="section-padding"] {
+          padding: 50px 15px 50px 15px !important;
+        }
+
+        td[class="section-padding-bottom-image"] {
+          padding: 50px 15px 0 15px !important;
+        }
+
+        /* ADJUST BUTTONS ON MOBILE */
+        td[class="mobile-wrapper"] {
+          padding: 10px 5% 15px 5% !important;
+        }
+
+        table[class="mobile-button-container"] {
+          margin: 0 auto;
+          width: 100% !important;
+        }
+
+        a[class="mobile-button"] {
+          width: 80% !important;
+          padding: 15px !important;
+          border: 0 !important;
+          font-size: 16px !important;
+        }
+      }
+    </style>
+  </head>
+  <body style="background-color: aliceblue; margin: 0 !important; padding: 60px 0 60px 0 !important;">
+    <!-- HEADER -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation">
+      <tr>
+        <td bgcolor="#ffffff">
+          <div align="center">
+            <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; max-width:650px">
+              <!-- YAHOO LOGO -->
+              <tr>
+                <td style="padding: 0px 0px 0px 0px;">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <a href="https://tw.buy.yahoo.com" target="_blank" rel="noopener">
+                            <img src="https://s.yimg.com/cv/apiv2/rating/head.png" srcset="https://s.yimg.com/cv/apiv2/rating/head.png 2x,https://s.yimg.com/cv/apiv2/rating/head.png 3x" alt="購物中心ThankYouLogo" max-width="650" max-height="" style="width: 100% !important;
+														height: auto !important">
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <!-- Mail Body For UserName & suceess order message -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation">
+      <tr>
+        <td bgcolor="#ffffff">
+          <div align="center">
+            <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-top: 18px;max-width:610px; font-family:PingFangTC-Regular, sans-serif ,Microsoft JhengHei;">
+              <tr>
+                <td style="padding-top: 10px;">
+                  <div align="center" style="font-size: 24px; font-weight: 700;font-style: normal; font-stretch: normal; line-height: 180%; letter-spacing: normal; text-align: center; color: #000;"> 你的想法是我們進步的動力！ <p style="font-size: 16px; font-weight: 400; margin: 0; line-height: 180%;">告訴我們這次購買的商品喜歡甚麼以及哪裡可以做得更好</p>
+                  </div>
+                  <hr>
+                </td>
+              </tr>
+              
+		<tr style="padding-bottom: 10px;">
+			<td style="text-align: center; font-size: 13px; font-weight: 400; line-height: 150%; color: #5B636A;">
+				<div style="padding: 20px; background: #fff; box-sizing: border-box; border-radius: 8px; display: flex;">
+					<div style="padding: 10px 5px; background: #fff; margin: 0 0; box-sizing: border-box; border-radius: 8px;">
+						<img style="border-radius: 4px; border: #F0F3F5;" width="110" height="110" src="https://img.yec.tw/zp/MerchandiseImages/C34B18A410-SP-7102559.jpg" />
+					</div>
+					<div style="padding: 10px 5px">
+						<div style="margin: 15px 8px; text-align: left; word-break: break-word; color: grey">巧益 薄鹽蘇打餅 (252g)</div>
+						<div style="margin: 15px 8px; color: black"> 訂單： <a href="https://tw.buy.yahoo.com/myaccount/orderdetail?ordrgrp_id=247201317" target="_blank" rel="noopener" style="color:#7759FF; text-decoration: none;">RM2510210010936</a> 出貨日： 10/22 07:26</div>
+					</div>
+					<div>
+						<a style="text-decoration: none; display: block;width: 122px; height: 40px; border-radius: 90px; background: #7759FF; font-size: 16px; color: #fff; font-weight: 500; margin: 30px auto 0; line-height: 42px;" href="https://tw.buy.yahoo.com/morder/rating?orderLineId=RM2510210010936" target="_blank" rel="noopener">我要評價</a>
+					</div>
+				</div>
+				<hr>
+			</td>
+		</tr>
+	
+		<tr style="padding-bottom: 10px;">
+			<td style="text-align: center; font-size: 13px; font-weight: 400; line-height: 150%; color: #5B636A;">
+				<div style="padding: 20px; background: #fff; box-sizing: border-box; border-radius: 8px; display: flex;">
+					<div style="padding: 10px 5px; background: #fff; margin: 0 0; box-sizing: border-box; border-radius: 8px;">
+						<img style="border-radius: 4px; border: #F0F3F5;" width="110" height="110" src="https://img.yec.tw/zp/MerchandiseImages/5fe22627e3-Gd-6643657.jpg" />
+					</div>
+					<div style="padding: 10px 5px">
+						<div style="margin: 15px 8px; text-align: left; word-break: break-word; color: grey">每日優果 鮮採綜合果乾(200g)</div>
+						<div style="margin: 15px 8px; color: black"> 訂單： <a href="https://tw.buy.yahoo.com/myaccount/orderdetail?ordrgrp_id=247201317" target="_blank" rel="noopener" style="color:#7759FF; text-decoration: none;">RM2510210010937</a> 出貨日： 10/22 07:26</div>
+					</div>
+					<div>
+						<a style="text-decoration: none; display: block;width: 122px; height: 40px; border-radius: 90px; background: #7759FF; font-size: 16px; color: #fff; font-weight: 500; margin: 30px auto 0; line-height: 42px;" href="https://tw.buy.yahoo.com/morder/rating?orderLineId=RM2510210010937" target="_blank" rel="noopener">我要評價</a>
+					</div>
+				</div>
+				<hr>
+			</td>
+		</tr>
+	
+		<tr style="padding-bottom: 10px;">
+			<td style="text-align: center; font-size: 13px; font-weight: 400; line-height: 150%; color: #5B636A;">
+				<div style="padding: 20px; background: #fff; box-sizing: border-box; border-radius: 8px; display: flex;">
+					<div style="padding: 10px 5px; background: #fff; margin: 0 0; box-sizing: border-box; border-radius: 8px;">
+						<img style="border-radius: 4px; border: #F0F3F5;" width="110" height="110" src="https://img.yec.tw/zp/MerchandiseImages/da6be5d215-Gd-6628078.jpg" />
+					</div>
+					<div style="padding: 10px 5px">
+						<div style="margin: 15px 8px; text-align: left; word-break: break-word; color: grey">每日優果 綜合水果脆片(120g)</div>
+						<div style="margin: 15px 8px; color: black"> 訂單： <a href="https://tw.buy.yahoo.com/myaccount/orderdetail?ordrgrp_id=247201317" target="_blank" rel="noopener" style="color:#7759FF; text-decoration: none;">RM2510210010938</a> 出貨日： 10/22 07:26</div>
+					</div>
+					<div>
+						<a style="text-decoration: none; display: block;width: 122px; height: 40px; border-radius: 90px; background: #7759FF; font-size: 16px; color: #fff; font-weight: 500; margin: 30px auto 0; line-height: 42px;" href="https://tw.buy.yahoo.com/morder/rating?orderLineId=RM2510210010938" target="_blank" rel="noopener">我要評價</a>
+					</div>
+				</div>
+				<hr>
+			</td>
+		</tr>
+	
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <!-- Mail remind & Help -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td bgcolor="#ffffff">
+          <div align="center">
+            <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; max-width:650px">
+              <tr>
+                <td style="padding: 0px 19px 0px 16px;">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td align="center" style="font-family:PingFangSC-Medium, sans-serif ,Microsoft JhengHei;font-size: 24px;font-weight: 500;font-style: normal;font-stretch: normal;line-height: 1.5;letter-spacing: normal;text-align: left;color: #26282a;" width="168px" height="36px">
+                        <p>提醒注意事項！</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" style="font-family:PingFangTC-Regular, sans-serif ,Microsoft JhengHei;font-size: 14px;font-weight: 500;font-style: normal;font-stretch: normal;line-height: 1.71;letter-spacing: normal;text-align: left;color: #26282a;">
+                        <p style="margin-top: -10px"> [防詐騙提醒] 若您接獲任何電話要您依照指示操作ATM，提供帳戶餘額、變更付款方式或更改分期設定等，請不要依電話指示操作，建議您直接與本公司客服中心聯繫確認，謝謝您！ </p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <!-- customer service agent Button -->
+              <tr>
+                <td style="padding: 0px 19px 0px 16px;">
+                  <table border="0" cellspacing="0" cellpadding="0" style="margin:0 auto;">
+                    <tbody>
+                      <tr>
+                        <td align="center" width="351px">
+                          <a href="https://tw.buy.yahoo.com/AICustomerService" target="_blank" rel="noopener" style="font-size: 16px; font-family: PingFangTC-Regular, sans-serif; font-weight: normal;font-style: normal;font-stretch: normal; line-height: 1.5;letter-spacing: normal;text-align: center;color: #7a00a7;  background-color: #ffffff; border-top: 12px solid #ffffff; border-bottom: 12px solid #ffffff; border-left: 122px solid #ffffff; border: solid 1px #7a00a7; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; display: inline-block;width:100% !important ;padding: 11.5px 0px 11.5px 0px!important;text-decoration:none;">聯絡客服</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 0px 19px 0px 16px;">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td colspan="2" align="center" style="font-family:PingFangSC-Medium, sans-serif ,Microsoft JhengHei;font-size: 24px;font-weight: 500;font-style: normal;font-stretch: normal;line-height: 1.5;letter-spacing: normal;text-align: left;color: #26282a;" width="192px" height="36px">
+                        <p>好資訊不可錯過！</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" style="padding: 0px 0px 10px 0px">
+                        <a href="https://tw.promo.yahoo.com/2025/uniopencard/" target="_blank" rel="noopener">
+                          <img src="https://img.yec.tw/zp/BackOffice/mail_material/app_v10.jpg" alt="" width="618" height="228" max-width="650" max-height="226" style="  width: 100% !important;height: auto !important;border-radius: 4px; -webkit-border-radius: 4px; ">
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 0px 0px 10px 0px">
+                        <a href="https://tw.buy.yahoo.com/act/oneec/salescoupon.html" target="_blank" rel="noopener">
+                          <img src="https://img.yec.tw/zp/BackOffice/mail_material/coupon_v1.png" alt="" width="320" height="160" max-width="325" max-height="160" style="  width: 100% !important;height: auto !important;border-radius: 4px; -webkit-border-radius: 4px; ">
+                        </a>
+                      </td>
+                      <td style="padding: 0px 0px 10px 0px">
+                        <a href="https://tw.buy.yahoo.com/act/oneec/creditcard.html" target="_blank" rel="noopener">
+                          <img src="https://img.yec.tw/zp/BackOffice/mail_material/activityoverview_v1.png" alt="" width="320" height="160" max-width="325" max-height="160" style="  width: 100% !important;height: auto !important;border-radius: 4px; -webkit-border-radius: 4px; ">
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <!-- FOOTER -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation">
+      <tr>
+        <td bgcolor="#ffffff" align="center">
+          <table width="100%" height="auto" border="0" cellspacing="0" cellpadding="0" align="center" style=" background-color: #f1f1f5;width: 100%; max-width:650px;max-height:272px;">
+            <tr>
+              <td style="padding: 20px 0px 20px 0px;">
+                <table width="303px" border="0" cellspacing="0" cellpadding="0" align="center">
+                  <tr>
+                    <td style="padding: 0px 0px 10px 0px" align="center">
+                      <a href="https://tw.buy.yahoo.com" target="_blank" rel="noopener">
+                        <img src="https://img.yec.tw/zp/BackOffice/mail_material/shp_email_logo_icon_v3.png" srcset="https://img.yec.tw/zp/BackOffice/mail_material/shp_email_logo_icon2x_v2.png 2x,https://img.yec.tw/zp/BackOffice/mail_material/shp_email_logo_icon3x_v2.png 3x" alt="yahoo購物中心icon" width="62px" height="62px" style="margin:auto; border-radius: 4px; -webkit-border-radius: 4px; ">
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#ffffff" align="center">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style=" background-color: #f1f1f5;width: 100%; max-width:650px">
+            <tr>
+              <td>
+                <table width="139px" border="0" cellspacing="0" cellpadding="0" align="center">
+                  <tr>
+                    <td align="center" valign="middle" style="margin-top: -30px;font-size: 16x; line-height: 2; font-weight: 500; font-family: PingFangTC-Medium, sans-serif; color:#26282a;text-align: left;">
+                      <p style="margin-top: -28px"> 好的生活 真的不貴 </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#ffffff" align="center">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style=" background-color: #f1f1f5;width: 100%; max-width:650px">
+            <tr>
+              <td>
+                <table width="291px" border="0" cellspacing="0" cellpadding="0" align="center">
+                  <tr>
+                    <td align="center">
+                      <a href="https://itunes.apple.com/tw/app/yahoo%E5%A5%87%E6%91%A9%E8%B3%BC%E7%89%A9%E4%B8%AD%E5%BF%83/id1061577845?mt=8" target="_blank" rel="noopener">
+                        <img src="https://img.yec.tw/zp/BackOffice/mail_material/shp_email_ios_icon.png" srcset="https://img.yec.tw/zp/BackOffice/mail_material/shp_email_ios_icon2x.png 2x,https://img.yec.tw/zp/BackOffice/mail_material/shp_email_ios_icon3x.png 3x" alt="appleStoreIcon" width="108px" height="36px" style="display:block;margin:auto;">
+                      </a>
+                    </td>
+                    <td align="center">
+                      <a href="https://play.google.com/store/apps/details?id=com.yahoo.mobile.client.android.ecshopping&hl=zh_TW" target="_blank" rel="noopener">
+                        <img src="https://img.yec.tw/zp/BackOffice/mail_material/shp_email_andriod_icon.png" srcset="https://img.yec.tw/zp/BackOffice/mail_material/shp_email_andriod_icon2x.png 2x,https://img.yec.tw/zp/BackOffice/mail_material/shp_email_andriod_icon3x.png 3x" alt="googlePlayIcon" width="122px" height="36px" style="display:block;margin:auto;">
+                      </a>
+                    </td>
+                    <td align="center">
+                      <a href="https://www.facebook.com/YahooTWEC" target="_blank" rel="noopener">
+                        <img src="https://img.yec.tw/zq/ecimg/shp_email_fb_icon.png" srcset="https://img.yec.tw/zq/ecimg/shp_email_fb_icon@2x.png 2x,https://img.yec.tw/zq/ecimg/shp_email_fb_icon@3x.png 3x" alt="facebookIcon" width="36px" height="36px" style="display:block;margin:auto;">
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#ffffff" align="center">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style=" background-color: #f1f1f5;width: 100%; max-width:650px">
+            <tr>
+              <td>
+                <table width="400px" border="0" cellspacing="0" cellpadding="0" align="center">
+                  <tr>
+                    <td align="center" valign="middle" style="padding:20px 0px 20px 0px;font-size: 12px; line-height: 1.67; font-family: PingFangTC-Regular, sans-serif; color:#26282a;text-align: center">
+                      <a style="color: #26282a; text-decoration: none;" href="https://tw.buy.yahoo.com/ec/atos">購物中心服務條款</a>
+                      <span style="font-family: Arial, sans-serif; font-size: 12px; color: #444444;">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+                      <a href="https://tw.buy.yahoo.com/ec/privacy" style="color: #26282a; text-decoration: none;">私隱權政策</a>
+                      <span style="font-family: Arial, sans-serif; font-size: 12px; color: #444444;">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+                      <a href="https://tw.bid.yahoo.com/help/new_auc/safety/index.html" style="color: #26282a; text-decoratio交易安全</a>
+																				<br>
+																					<span style=" color:#666666;"> Copyright &copy; 2025 Yahoo! Taiwan All Rights Reserved. </span>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+	
+  </body>
+</html>
+--=-w9kWYXn2GSV9zOOZe1MlqQ==--

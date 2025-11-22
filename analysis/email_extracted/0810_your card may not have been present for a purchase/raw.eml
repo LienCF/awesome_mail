@@ -1,0 +1,939 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:d209:b0:4d4:9739:2b92 with SMTP id ji9csp228119mdb;
+        Sat, 25 Oct 2025 01:58:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHa+b254dfdAIQ4x7e881dIAn5/jieitptSe7tYZnOO+w8QwyocqyFBZNpOaBFoZp8HGYKx
+X-Received: by 2002:a05:6a21:e081:b0:340:f36d:6b03 with SMTP id adf61e73a8af0-340f36d7142mr2184043637.9.1761382682497;
+        Sat, 25 Oct 2025 01:58:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761382682; cv=none;
+        d=google.com; s=arc-20240605;
+        b=EF3NyHh+8mrKLKvO72p+QISfjKDsGdwU21RPz2hk364Oxnk9HVQWLg5hBzaxN+N8N0
+         pUxx9NH7I8Xy9eK1XLwYOc0m7PXvpWzcnSzhy4fxrHnqKdHViPmoJgZi0JapYMpJ/ya+
+         RdjK9+2/3FKu6Bkei6l5EPbk+CsVcKWl4NGUSfZf577DzADqtQxx6uQDi78dr21S9IQ2
+         CrX98dt+RJSh6oDdgfVBDcc3ZWRb4paTMViaj3gHcp+v4iprYzzepwe/gu3VA6qPUJ6P
+         WHa6fN2Lp3g9hn2xRkrK0n/iFZL5ovSGO9HkdA90IgYqITlO+9dD88XXBiLHCccX4Kfy
+         liKw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=from:subject:reply-to:mime-version:date:message-id:to
+         :content-transfer-encoding:dkim-signature;
+        bh=5rh0iGEDDd8D8NkD+84B9Rl725KcenAcz1TAxw6nkxs=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=c9QKVISuu7j9pmrdaI4HU5agQG5y+sNmZwzO6eXNxOI+Uwg68/NwgdXU+ms1mRtGhU
+         SxL506iWJieU+scr/uXLWNaAv6ISIHNnvz5/bpbrIc2EWZqbbMO8tKCt0dw6vHrTxcs9
+         yF2pAndH9w3mjf8bBxNVYi/Tv3WK0UtyB/6WChycmGI4dQ/ThIA+pAgVLeC/VVucBiet
+         z/76sOUtqhjHBSH/OAzh9d7yOBLEh3zfs7md2SZmDpDcx6XWiSIrce4/Haj5nLngYvfn
+         dtiJ5i1/lQ/JPINA8Lw0qI32Q6MIEeOgg7+uZdcMGXFdyXQ691CqWfj/UKuHqDWigeXY
+         9IYQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@welcome.americanexpress.com header.s=2000006650524 header.b=Q4CGXYmM;
+       spf=pass (google.com: domain of r_02700000001038979158033020_2_x.americanexpress@welcome.americanexpress.com designates 139.71.11.9 as permitted sender) smtp.mailfrom=r_02700000001038979158033020_2_x.AmericanExpress@welcome.americanexpress.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=americanexpress.com
+Return-Path: <r_02700000001038979158033020_2_x.AmericanExpress@welcome.americanexpress.com>
+Received: from extmta1ipc2.americanexpress.com (extmta1ipc2.americanexpress.com. [139.71.11.9])
+        by mx.google.com with ESMTPS id d2e1a72fcca58-7a41561fe37si736365b3a.523.2025.10.25.01.58.01
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 25 Oct 2025 01:58:02 -0700 (PDT)
+Received-SPF: pass (google.com: domain of r_02700000001038979158033020_2_x.americanexpress@welcome.americanexpress.com designates 139.71.11.9 as permitted sender) client-ip=139.71.11.9;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@welcome.americanexpress.com header.s=2000006650524 header.b=Q4CGXYmM;
+       spf=pass (google.com: domain of r_02700000001038979158033020_2_x.americanexpress@welcome.americanexpress.com designates 139.71.11.9 as permitted sender) smtp.mailfrom=r_02700000001038979158033020_2_x.AmericanExpress@welcome.americanexpress.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=americanexpress.com
+DKIM-Signature: v=1; a=rsa-sha256; d=welcome.americanexpress.com; s=2000006650524; c=relaxed/relaxed;
+	q=dns/txt; i=@welcome.americanexpress.com; t=1761382681;
+	h=From:Reply-To:Subject:Date:Message-ID:To:MIME-Version:Content-Type:Content-Transfer-Encoding;
+	bh=5rh0iGEDDd8D8NkD+84B9Rl725KcenAcz1TAxw6nkxs=;
+	b=Q4CGXYmMDXyrMzdsB8nN5JX60Z7UBIMkCcO2OuqceC8iIioEEkprVobvlbH0Yl2H
+	+uORNPg0MC8fOENUB/aVBA7x7pkkamJuDUXC+8L3/nI1+qSn5D1QQP2nOnqYYsMp
+	18FU+8cQpl720XJKtTbC8bCHbLE35L5ReX/YQzlnEL++lhN/2iAZsNE3MFAXhJzF
+	kqYSmrEtw0lj3nUlb6g1hPBkwG4ieICWCmWKSLxGDtkSaqgIpdKjNMxK3EBC2jEj
+	n5npEQ7ms+KPcfI9ULwVHp0KAp6oIkCWgeXGGwrMCglAx0Fcg/oUvpoHidDD0xdj
+	nRo3RS1f/LvDDm1jDe3L3g==;
+X-MSFBL: Ht1wwqtJcuTbNzHfGKeWbbUl2Jemy0dRGRfnVhZzQbw=|eyJnIjoidHJhbnNhY3R
+	pb25hbCIsInIiOiJsaWVuY2ZAZ21haWwuY29tIiwic25pcHBldF9jb3VudCI6IjA
+	iLCJzdWJhY2NvdW50X2lkIjoiMCIsInRlbXBsYXRlX3ZlcnNpb24iOiIwIiwidGV
+	tcGxhdGVfaWQiOiJ0ZW1wbGF0ZV8xNDc2NTk4NjgzMDg3NTg0MyIsInRlbmFudF9
+	pZCI6ImtleXNwYWNlX2RlZmF1bHQiLCJ1IjoiJXZjdHhfbWVzc3thbWV4X01lc3N
+	hZ2VJRH0iLCJ0cmFuc21pc3Npb25faWQiOiIxNDc2NTk4NjgzMDg3NTg0MyIsImI
+	iOiJ0cmFuc2FjdGlvbmFsXzRYNDgiLCJyY3B0X21ldGEiOnsgImFtZXhfTWVzc2F
+	nZUNsYXNzIjogInRyYW5zYWN0aW9uYWwiLCAiYW1leF9SZXRyeVJ1bGUiOiAiQUV
+	YUCIsICJhbWV4X01lc3NhZ2VJRCI6ICI8cl8wMjcwMDAwMDAwMTAzODk3OTE1ODA
+	zMzAyMF8yX3guU0FNMEZZSTEzMi5BbWVyaWNhbkV4cHJlc3NAd2VsY29tZS5hbWV
+	yaWNhbmV4cHJlc3MuY29tPiIsICJhbWV4X0NvbW11blN1YmpUZXh0IjogIj0/VVR
+	GLTg/Qj9XVzkxY2lCRFlYSmtJRzFoZVNCdWIzUWdhR0YyWlNCaVpXVnVJSEJ5Wlh
+	ObGJuUWdabTl5SUdFZ2NIVnlZMmhoYzJVPT89IiB9LCJ0ZW1wbGF0ZV9jb250ZW5
+	0X3R5cGUiOiJpbmxpbmVfcGFydHNfd2l0aG91dF9zdWJzdGl0dXRpb25zIiwibWV
+	zc2FnZV9pZCI6IjAwMDAxOTkxZmM2OGFkMDExMGRlIiwicmNwdF90YWdzIjpbIF0
+	sImN1c3RvbWVyX2lkIjoiMSJ9
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="UTF-8"
+To: liencf@gmail.com
+Message-ID: <01.ED.00429.9119CF86@hpnplmomiw06>
+Date: Sat, 25 Oct 2025 01:58:01 -0700
+MIME-Version: 1.0
+Reply-To: AmericanExpress@welcome.americanexpress.com
+Subject: Your Card may not have been present for a purchase
+From: "American Express" <AmericanExpress@welcome.americanexpress.com>
+
+<!doctype html><html lang=3D"en" xmlns=3D"http://www.w3.org/1999/xhtml" xml=
+ns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com=
+:office:office"><head><title>Your Card may not have been present for a purc=
+hase</title><!--[if !mso]><!-- --><meta http-equiv=3D"X-UA-Compatible" cont=
+ent=3D"IE=3Dedge"><!--<![endif]--><meta http-equiv=3D"Content-Type" content=
+=3D"text/html; charset=3DUTF-8"><meta name=3D"viewport" content=3D"width=3D=
+device-width,initial-scale=3D1"><style type=3D"text/css">#outlook a {=0A   =
+   padding: 0;=0A    }=0A=0A    body {=0A      margin: 0;=0A      padding: =
+0;=0A      -webkit-text-size-adjust: 100%;=0A      -ms-text-size-adjust: 10=
+0%;=0A    }=0A=0A    table,=0A    td {=0A      border-collapse: collapse;=
+=0A      mso-table-lspace: 0pt;=0A      mso-table-rspace: 0pt;=0A    }=0A=
+=0A    img {=0A      border: 0;=0A      height: auto;=0A      line-height: =
+100%;=0A      outline: none;=0A      text-decoration: none;=0A      -ms-int=
+erpolation-mode: bicubic;=0A    }=0A=0A    p {=0A      display: block;=0A  =
+    margin: 13px 0;=0A    }</style><!--[if mso]>=0A        <xml>=0A        =
+<o:OfficeDocumentSettings>=0A          <o:AllowPNG/>=0A          <o:PixelsP=
+erInch>96</o:PixelsPerInch>=0A        </o:OfficeDocumentSettings>=0A       =
+ </xml>=0A        <![endif]--><!--[if lte mso 11]>=0A        <style type=3D=
+"text/css">=0A          .mj-outlook-group-fix { width:100% !important; }=0A=
+        </style>=0A        <![endif]--><!--[if gte mso 9]>=0A        <style=
+>=0A        li {=0A            text-indent: -1em;=0A        }=0A        </s=
+tyle>=0A        <![endif]--><style type=3D"text/css">@media only screen and=
+ (min-width:480px) {=0A      .mj-column-per-100 {=0A        width: 100% !im=
+portant;=0A        max-width: 100%;=0A      }=0A=0A      .mj-column-per-6 {=
+=0A        width: 6% !important;=0A        max-width: 6%;=0A      }=0A=0A  =
+    .mj-column-per-10 {=0A        width: 10% !important;=0A        max-widt=
+h: 10%;=0A      }=0A=0A      .mj-column-per-78 {=0A        width: 78% !impo=
+rtant;=0A        max-width: 78%;=0A      }=0A=0A      .mj-column-per-50 {=
+=0A        width: 50% !important;=0A        max-width: 50%;=0A      }=0A=0A=
+      .mj-column-px-NaN {=0A        width: NaNauto !important;=0A        ma=
+x-width: NaNauto;=0A      }=0A=0A      .mj-column-per-33-333333333333336 {=
+=0A        width: 33.333333333333336% !important;=0A        max-width: 33.3=
+33333333333336%;=0A      }=0A=0A      .mj-column-per-25 {=0A        width: =
+25% !important;=0A        max-width: 25%;=0A      }=0A=0A      .mj-column-p=
+er-22 {=0A        width: 22% !important;=0A        max-width: 22%;=0A      =
+}=0A=0A      .mj-column-per-26 {=0A        width: 26% !important;=0A       =
+ max-width: 26%;=0A      }=0A=0A      .mj-column-per-27 {=0A        width: =
+27% !important;=0A        max-width: 27%;=0A      }=0A    }</style><style t=
+ype=3D"text/css">@media only screen and (max-width:479px) {=0A      table.m=
+j-full-width-mobile {=0A        width: 100% !important;=0A      }=0A=0A    =
+  td.mj-full-width-mobile {=0A        width: auto !important;=0A      }=0A =
+   }</style><style type=3D"text/css">@media all and (max-width: 480px) {=0A=
+=0A      .mobile-body div:first-child,=0A      .mobile-body div {=0A       =
+ margin: 0 auto !important;=0A        max-width: 310px !important;=0A      =
+}=0A=0A      .body-1,=0A      .body-1 div {=0A        font-size: 12px !impo=
+rtant;=0A        font-weight: 400 !important;=0A        line-height: 17px !=
+important;=0A      }=0A=0A      .body-4,=0A      .body-4 div {=0A        fo=
+nt-size: 22px !important;=0A        font-weight: 400 !important;=0A        =
+line-height: 30px !important;=0A      }=0A=0A      .dls-logo-bluebox-solid-=
+sm,=0A      .dls-logo-bluebox-solid-sm img {=0A        width: 45px !importa=
+nt;=0A        height: 45px !important;=0A      }=0A=0A      .dls-card-xs,=
+=0A      .dls-card-xs img {=0A        width: 70px !important;=0A        hei=
+ght: 44px !important;=0A      }=0A=0A      .text-align-center,=0A      .tex=
+t-align-center div {=0A        text-align: center !important;=0A      }=0A=
+=0A      .text-align-left,=0A      .text-align-left div {=0A        text-al=
+ign: left !important;=0A      }=0A=0A      .btn-align-center,=0A      .btn-=
+align-center table {=0A        text-align: center !important;=0A      }=0A=
+=0A      .btn-align-center table {=0A        margin: 0 auto !important;=0A =
+     }=0A=0A      .dls-tagline-blue-sm td,=0A      .dls-tagline-blue-sm img=
+ {=0A        width: 220px !important;=0A      }=0A=0A      .nav-bar-border-=
+b {=0A        border-bottom: 1px solid #d9d9d6;=0A      }=0A=0A      .in-im=
+g td,=0A      .in-img img {=0A        width: 100% !important;=0A        hei=
+ght: auto !important;=0A      }=0A=0A      .pad-0,=0A      .pad-0-sm div {=
+=0A        padding: 0 !important;=0A      }=0A=0A      .pad-0-t,=0A      .p=
+ad-0-t-sm div {=0A        padding-top: 0 !important;=0A      }=0A=0A      .=
+pad-0-b,=0A      .pad-0-b-sm div {=0A        padding-bottom: 0 !important;=
+=0A      }=0A=0A      .pad-0-l,=0A      .pad-0-l-sm div {=0A        padding=
+-left: 0 !important;=0A      }=0A=0A      .pad-0-r,=0A      .pad-0-r-sm div=
+ {=0A        padding-right: 0 !important;=0A      }=0A=0A      .pad-0-lr,=
+=0A      .pad-0-lr-sm div {=0A        padding-left: 0 !important;=0A       =
+ padding-right: 0 !important;=0A      }=0A=0A      .pad-0-tb,=0A      .pad-=
+0-tb-sm div {=0A        padding-top: 0 !important;=0A        padding-bottom=
+: 0 !important;=0A      }=0A=0A      .pad-1,=0A      .pad-1-sm div {=0A    =
+    padding: 10px !important;=0A      }=0A=0A      .pad-1-t,=0A      .pad-1=
+-t-sm div {=0A        padding-top: 10px !important;=0A      }=0A=0A      .p=
+ad-1-b,=0A      .pad-1-b-sm div {=0A        padding-bottom: 10px !important=
+;=0A      }=0A=0A      .pad-1-l,=0A      .pad-1-l-sm div {=0A        paddin=
+g-left: 10px !important;=0A      }=0A=0A      .pad-1-r,=0A      .pad-1-r-sm=
+ div {=0A        padding-right: 10px !important;=0A      }=0A=0A      .pad-=
+1-lr,=0A      .pad-1-lr-sm div {=0A        padding-left: 10px !important;=
+=0A        padding-right: 10px !important;=0A      }=0A=0A      .pad-1-tb,=
+=0A      .pad-1-tb-sm div {=0A        padding-top: 10px !important;=0A     =
+   padding-bottom: 10px !important;=0A      }=0A=0A      .pad-2,=0A      .p=
+ad-2-sm div {=0A        padding: 20px !important;=0A      }=0A=0A      .pad=
+-2-t,=0A      .pad-2-t-sm div {=0A        padding-top: 20px !important;=0A =
+     }=0A=0A      .pad-2-b,=0A      .pad-2-b-sm div {=0A        padding-bot=
+tom: 20px !important;=0A      }=0A=0A      .pad-2-l,=0A      .pad-2-l-sm di=
+v {=0A        padding-left: 20px !important;=0A      }=0A=0A      .pad-2-r,=
+=0A      .pad-2-r-sm div {=0A        padding-right: 20px !important;=0A    =
+  }=0A=0A      .pad-2-lr,=0A      .pad-2-lr-sm div {=0A        padding-left=
+: 20px !important;=0A        padding-right: 20px !important;=0A      }=0A=
+=0A      .pad-2-tb,=0A      .pad-2-tb-sm div {=0A        padding-top: 20px =
+!important;=0A        padding-bottom: 20px !important;=0A      }=0A=0A     =
+ .pad-3,=0A      .pad-3-sm div {=0A        padding: 30px !important;=0A    =
+  }=0A=0A      .pad-3-t,=0A      .pad-3-t-sm div {=0A        padding-top: 3=
+0px !important;=0A      }=0A=0A      .pad-3-b,=0A      .pad-3-b-sm div {=0A=
+        padding-bottom: 30px !important;=0A      }=0A=0A      .pad-3-l,=0A =
+     .pad-3-l-sm div {=0A        padding-left: 30px !important;=0A      }=
+=0A=0A      .pad-3-r,=0A      .pad-3-r-sm div {=0A        padding-right: 30=
+px !important;=0A      }=0A=0A      .pad-3-lr,=0A      .pad-3-lr-sm div {=
+=0A        padding-left: 30px !important;=0A        padding-right: 30px !im=
+portant;=0A      }=0A=0A      .pad-3-tb,=0A      .pad-3-tb-sm div {=0A     =
+   padding-top: 30px !important;=0A        padding-bottom: 30px !important;=
+=0A      }=0A=0A      .pad-4,=0A      .pad-4-sm div {=0A        padding: 40=
+px !important;=0A      }=0A=0A      .pad-4-t,=0A      .pad-4-t-sm div {=0A =
+       padding-top: 40px !important;=0A      }=0A=0A      .pad-4-b,=0A     =
+ .pad-4-b-sm div {=0A        padding-bottom: 40px !important;=0A      }=0A=
+=0A      .pad-4-l,=0A      .pad-4-l-sm div {=0A        padding-left: 40px !=
+important;=0A      }=0A=0A      .pad-4-r,=0A      .pad-4-r-sm div {=0A     =
+   padding-right: 40px !important;=0A      }=0A=0A      .pad-4-lr,=0A      =
+.pad-4-lr-sm div {=0A        padding-left: 40px !important;=0A        padd=
+ing-right: 40px !important;=0A      }=0A=0A      .pad-4-tb,=0A      .pad-4-=
+tb-sm div {=0A        padding-top: 40px !important;=0A        padding-botto=
+m: 40px !important;=0A      }=0A=0A      .dt,=0A      .dt div {=0A        f=
+ont-weight: bold !important;=0A      }=0A=0A      .dls-gray-06,=0A      .dl=
+s-gray-06 div {=0A        color: #333 !important;=0A      }=0A=0A      .dls=
+-gray-06-bg,=0A      .dls-gray-06-bg div {=0A        background-color: #333=
+ !important;=0A      }=0A=0A      .dls-gray-06-bg-hvr:hover,=0A      .dls-g=
+ray-06-bg-hvr div:hover {=0A        background-color: #333 !important;=0A  =
+    }=0A    }=0A=0A    .body-5 {=0A      font-family: "Helvetica Neue", Hel=
+vetica, sans-serif;=0A      font-weight: 400;=0A      font-size: 26px;=0A  =
+    line-height: 34px;=0A    }=0A=0A    .dls-gray-06 {=0A      color: #333;=
+=0A    }=0A=0A    .dls-gray-06-bg {=0A      background-color: #333;=0A    }=
+=0A=0A    .dls-gray-07 {=0A      color: #d9d9d6;=0A    }=0A=0A    .dls-gray=
+-07-bg {=0A      background-color: #d9d9d6;=0A    }=0A=0A    .dls-gray-07-b=
+g-hvr:hover {=0A      background-color: #d9d9d6;=0A    }=0A=0A    .text-und=
+erline-none {=0A      text-decoration: none;=0A    }=0A=0A    .pad-0-d,=0A =
+   .pad-0-d-sm div {=0A      padding: 0 !important;=0A    }=0A=0A    @media=
+ all and (max-width: 480px) {=0A=0A      /* START: Progress Tracker Mobile =
+CSS */=0A      .step tbody tr {=0A        display: inline-block !important;=
+=0A      }=0A=0A      .divider tbody td p {=0A        border-left-width: 2p=
+x;=0A        border-left-style: solid;=0A        height: 20px;=0A        bo=
+rder-top: 0 !important;=0A      }=0A=0A      .divider tbody td {=0A        =
+padding-top: 0 !important;=0A      }=0A=0A      .divider {=0A        paddin=
+g-left: 22px !important;=0A      }=0A=0A      .blue-border tbody td p {=0A =
+       border-left-color: #006FCF;=0A      }=0A=0A      .grey-border tbody =
+td p {=0A        border-left-color: #97999b;=0A      }=0A=0A      div.ptrac=
+ker-image-section {=0A        display: inline-block;=0A        vertical-ali=
+gn: middle;=0A        width: 20% !important;=0A      }=0A=0A      div.ptrac=
+ker-label-section {=0A        display: inline-block;=0A        vertical-ali=
+gn: middle;=0A        width: 51% !important;=0A      }=0A=0A      div.step-=
+label3,=0A      div.step-label4 {=0A        max-width: 310px !important;=0A=
+        width: 100% !important;=0A      }=0A=0A      td.step-text {=0A     =
+   height: 68px;=0A        vertical-align: middle;=0A        padding: 0 !im=
+portant;=0A      }=0A=0A      .step-text div {=0A        padding: 0 !import=
+ant;=0A        width: 100% !important;=0A        text-align: left !importan=
+t;=0A      }=0A=0A      /* END: Progress Tracker Mobile CSS */=0A      .mj-=
+custom-column-per-20 {=0A        width: 20% !important;=0A      }=0A=0A    =
+  .mj-custom-column-per-80 {=0A        width: 80% !important;=0A      }=0A=
+=0A      /* Image Module CSS for mobile */=0A      .squareImgSize td,=0A   =
+   .squareImgSize img {=0A        width: 230px !important;=0A        height=
+: 230px !important;=0A      }=0A=0A      .portraitImgSize td,=0A      .port=
+raitImgSize img {=0A        width: 230px !important;=0A        height: 460p=
+x !important;=0A      }=0A=0A      .landscapeImgSize td,=0A      .landscape=
+ImgSize img {=0A        width: 230px !important;=0A        height: 96px !im=
+portant;=0A        max-height: 96px !important;=0A      }=0A=0A      .image=
+Content>table>tbody>tr>td {=0A        padding: 0px !important;=0A      }=0A=
+=0A      /* END Image Module CSS for mobile */=0A    }=0A=0A    .margin-neg=
+ative-10 div {=0A      margin: 0 -10px;=0A    }=0A=0A    a[x-apple-data-det=
+ectors] {=0A      color: inherit !important;=0A      text-decoration: none =
+!important;=0A      font-size: inherit !important;=0A      font-family: inh=
+erit !important;=0A      font-weight: inherit !important;=0A      line-heig=
+ht: inherit !important;=0A    }=0A=0A    /* Start Image Module CSS for desk=
+top */=0A    .landscapeImgSize td,=0A    .landscapeImgSize img {=0A      ma=
+x-height: 220px !important;=0A    }=0A=0A    .table-layout-fixed>table tabl=
+e {=0A      table-layout: fixed;=0A    }=0A=0A    .word-break-all {=0A     =
+ width: 100%;=0A      word-break: break-all;=0A      word-wrap: break-word;=
+=0A    }=0A=0A    /* END Image Module CSS for desktop */=0A    /* Partner L=
+ogo CSS */=0A    .horizontalLogo td,=0A    .horizontalLogo img {=0A      ma=
+x-height: 60px;=0A    }=0A=0A    /* END Partner Logo CSS */=0A    /* START:=
+ Progress Tracker Desktop CSS */=0A    .ptracker-l4-section-outlook {=0A   =
+   width: 560px !important;=0A    }=0A=0A    .ptracker-l3-section-outlook {=
+=0A      width: 620px !important;=0A    }=0A=0A    .step-label3-outlook {=
+=0A      padding-left: 30px !important;=0A      padding-right: 30px !import=
+ant;=0A    }=0A=0A    div.step-label4 {=0A      max-width: 22.5%;=0A      w=
+idth: 22.5%;=0A    }=0A=0A    div.step-label3 {=0A      max-width: 33%;=0A =
+     width: 33%;=0A    }=0A=0A    .step-text div {=0A      width: 120px !im=
+portant;=0A    }=0A=0A    /* END: Progress Tracker Desktop CSS */=0A    /* =
+Start ADA Styles */=0A    *:focus {=0A      outline-offset: 4px;=0A      ou=
+tline: #006FCF solid 2px;=0A      border-radius: 1px;=0A    }=0A=0A    /* E=
+nd ADA Styles */</style></head><body style=3D"background-color:#d9d9d6;" ro=
+le=3D"main"><div aria-label=3D"Your Card may not have been present for a pu=
+rchase" aria-roledescription=3D"email" class=3D"mobile-body" style=3D"backg=
+round-color:#d9d9d6;" role=3D"article" lang=3D"en" dir=3D"auto"><!--[if mso=
+ | IE]><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" class=3D"" role=3D"presentation" style=3D"width:620px;" width=3D"620=
+" bgcolor=3D"#ffffff" ><tr><td style=3D"line-height:0px;font-size:0px;mso-l=
+ine-height-rule:exactly;"><![endif]--><div style=3D"background:#ffffff;back=
+ground-color:#ffffff;margin:0px auto;max-width:620px;"><table align=3D"cent=
+er" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" =
+style=3D"background:#ffffff;background-color:#ffffff;width:100%;"><tbody><t=
+r><td style=3D"direction:ltr;font-size:0px;padding:20px 0;padding-bottom:0;=
+padding-left:0;padding-right:0;padding-top:0;text-align:center;"><!--[if ms=
+o | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0"><tr><td class=3D"" width=3D"620px" ><table align=3D"center" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentatio=
+n" style=3D"width:620px;" width=3D"620" ><tr><td style=3D"line-height:0px;f=
+ont-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style=3D"margi=
+n:0px auto;max-width:620px;"><table align=3D"center" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:100%;"><tbo=
+dy><tr><td style=3D"direction:ltr;font-size:0px;padding:20px 0;padding-bott=
+om:0;padding-left:0;padding-right:0;padding-top:0;text-align:center;"><!--[=
+if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0"><tr><td class=3D"" style=3D"vertical-align:top;width:620px;=
+" ><![endif]--><div class=3D"mj-column-per-100 mj-outlook-group-fix" style=
+=3D"font-size:0px;text-align:left;direction:ltr;display:inline-block;vertic=
+al-align:top;width:100%;"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"backgro=
+und-color:#d9d9d6;vertical-align:top;padding-top:0;padding-right:0;padding-=
+bottom:0;padding-left:0;"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td align=3D"center"=
+ style=3D"font-size:0px;padding:10px 25px;word-break:break-word;"><div styl=
+e=3D"font-family:&quot;Helvetica Neue&quot;, Roboto, Helvetica, sans-serif;=
+font-size:13px;font-weight:400;line-height:20px;text-align:center;color:#33=
+3333;"><p style=3D"margin:0 0 0 0px">See the details about this purchase</p=
+></div></td></tr></tbody></table></td></tr></tbody></table></div><!--[if ms=
+o | IE]></td></tr></table><![endif]--></td></tr></tbody></table></div><!--[=
+if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" width=3D"620px"=
+ ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+class=3D"" role=3D"presentation" style=3D"width:620px;" width=3D"620" ><tr>=
+<td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><=
+![endif]--><div style=3D"margin:0px auto;max-width:620px;"><table align=3D"=
+center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentati=
+on" style=3D"width:100%;"><tbody><tr><td style=3D"direction:ltr;font-size:0=
+px;padding:20px 0;padding-bottom:0;padding-left:0;padding-right:0;padding-t=
+op:0;text-align:center;"><!--[if mso | IE]><table role=3D"presentation" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"v=
+ertical-align:top;width:620px;" ><![endif]--><div class=3D"mj-column-per-10=
+0 mj-outlook-group-fix" style=3D"font-size:0px;text-align:left;direction:lt=
+r;display:inline-block;vertical-align:top;width:100%;"><table border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><t=
+body><tr><td style=3D"vertical-align:top;padding-top:0;padding-right:0;padd=
+ing-bottom:0;padding-left:0;"><table border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td align=3D"lef=
+t" class=3D"pad-1" style=3D"font-size:0px;padding:10px 25px;padding-top:20p=
+x;padding-right:20px;padding-bottom:20px;padding-left:20px;word-break:break=
+-word;"><table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D=
+"0" style=3D"color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif=
+;font-size:13px;line-height:1;table-layout:auto;width:100%;border:none;"><t=
+r><td width=3D"15%" valign=3D"top"><img src=3D"https://cdaas.americanexpres=
+s.com/akamai/axp/comms/logos/logo.png" alt=3D"American Express Logo" class=
+=3D"dls-logo-bluebox-solid-sm" width=3D"60" height=3D"60"></td><td style=3D=
+"font-family:&quot;Helvetica Neue&quot;, Roboto, Helvetica, sans-serif;font=
+-size:15px;font-weight:500;color:#333;padding-left:10px;padding-right:10px"=
+ class=3D"pad-1-l pad-1-r" align=3D"right" valign=3D"top"><p style=3D"displ=
+ay:inline-block;line-height:22px;margin:0" class=3D"body-1"><b>CHIHFENG LIE=
+N</b></p><p style=3D"font-weight:normal;line-height:22px;word-break:break-w=
+ord;margin:0" class=3D"body-1">Account Ending: 653003</p></td><td align=3D"=
+right" width=3D"17%" valign=3D"top"><img src=3D"https://www.aexp-static.com=
+/online/myca/shared/summary/cardasset/images/NUS000000299_160x101_STRAIGHT_=
+96.jpg" alt=3D"Card Art" class=3D"dls-card-xs" width=3D"96" height=3D"60"><=
+/td></tr></table></td></tr></tbody></table></td></tr></tbody></table></div>=
+<!--[if mso | IE]></td></tr></table><![endif]--></td></tr></tbody></table><=
+/div><!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" width=
+=3D"620px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" class=3D"" role=3D"presentation" style=3D"width:620px;" width=3D"=
+620" bgcolor=3D"#006fcf" ><tr><td style=3D"line-height:0px;font-size:0px;ms=
+o-line-height-rule:exactly;"><![endif]--><div style=3D"background:#006fcf;b=
+ackground-color:#006fcf;margin:0px auto;max-width:620px;"><table align=3D"c=
+enter" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentatio=
+n" style=3D"background:#006fcf;background-color:#006fcf;width:100%;"><tbody=
+><tr><td style=3D"direction:ltr;font-size:0px;padding:20px 0;padding-bottom=
+:0;padding-left:0;padding-right:0;padding-top:0;text-align:center;"><!--[if=
+ mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0"><tr><td class=3D"" style=3D"" ><table align=3D"center" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation"=
+ style=3D"width:620px;" width=3D"620" ><tr><td style=3D"line-height:0px;fon=
+t-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style=3D"margin:=
+0px auto;max-width:620px;"><table align=3D"center" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:100%;"><tbody=
+><tr><td style=3D"direction:ltr;font-size:0px;padding:20px 0;padding-bottom=
+:0;padding-left:0;padding-right:0;padding-top:0;text-align:center;"><!--[if=
+ mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0"><tr><td class=3D"" width=3D"620px" ><table align=3D"center" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presenta=
+tion" style=3D"width:620px;" width=3D"620" bgcolor=3D"#006fcf" ><tr><td sty=
+le=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><v:rect =
+style=3D"width:620px;" xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"tr=
+ue" stroke=3D"false"><v:fill origin=3D"0.5, 0" position=3D"0.5, 0" src=3D"h=
+ttps://cdaas.americanexpress.com/akamai/axp/comms/icons/hl-pattern-50pc.png=
+" color=3D"#006fcf" type=3D"tile" /><v:textbox style=3D"mso-fit-shape-to-te=
+xt:true" inset=3D"0,0,0,0"><![endif]--><div style=3D"background:#006fcf url=
+('https://cdaas.americanexpress.com/akamai/axp/comms/icons/hl-pattern-50pc.=
+png') center top / auto repeat;background-position:center top;background-re=
+peat:repeat;background-size:auto;margin:0px auto;max-width:620px;"><div sty=
+le=3D"line-height:0;font-size:0;"><table align=3D"center" background=3D"htt=
+ps://cdaas.americanexpress.com/akamai/axp/comms/icons/hl-pattern-50pc.png" =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" styl=
+e=3D"background:#006fcf url('https://cdaas.americanexpress.com/akamai/axp/c=
+omms/icons/hl-pattern-50pc.png') center top / auto repeat;background-positi=
+on:center top;background-repeat:repeat;background-size:auto;width:100%;"><t=
+body><tr><td style=3D"direction:ltr;font-size:0px;padding:20px 0;padding-bo=
+ttom:40px;padding-top:40px;text-align:center;"><!--[if mso | IE]><table rol=
+e=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td=
+ class=3D"" style=3D"" ><table align=3D"center" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"width:620px=
+;" width=3D"620" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-h=
+eight-rule:exactly;"><![endif]--><div style=3D"margin:0px auto;max-width:62=
+0px;"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"width:100%;"><tbody><tr><td style=3D"dir=
+ection:ltr;font-size:0px;padding:20px 0;padding-bottom:0;padding-left:0;pad=
+ding-right:0;padding-top:0;text-align:center;"><!--[if mso | IE]><table rol=
+e=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td=
+ class=3D"" width=3D"620px" ><table align=3D"center" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"width:=
+620px;" width=3D"620" ><tr><td style=3D"line-height:0px;font-size:0px;mso-l=
+ine-height-rule:exactly;"><![endif]--><div style=3D"margin:0px auto;max-wid=
+th:620px;"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" role=3D"presentation" style=3D"width:100%;"><tbody><tr><td style=
+=3D"direction:ltr;font-size:0px;padding:20px 0;padding-bottom:0;padding-lef=
+t:0;padding-right:0;padding-top:0;text-align:center;"><!--[if mso | IE]><ta=
+ble role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">=
+<tr><td class=3D"" style=3D"vertical-align:middle;width:37.2px;" ><![endif]=
+--><div class=3D"mj-column-per-6 mj-outlook-group-fix" style=3D"font-size:0=
+px;text-align:left;direction:ltr;display:inline-block;vertical-align:middle=
+;width:100%;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" style=3D"vertical-align:middle;" width=3D"100%"><tbody></=
+tbody></table></div><!--[if mso | IE]></td><td class=3D"text-align-center-o=
+utlook" style=3D"vertical-align:middle;width:62px;" ><![endif]--><div class=
+=3D"mj-column-per-10 mj-outlook-group-fix text-align-center" style=3D"font-=
+size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:=
+middle;width:100%;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"vertical-alig=
+n:middle;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;"><t=
+able border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"=
+ width=3D"100%"><tbody><tr><td align=3D"center" class=3D"pad-3-b" style=3D"=
+font-size:0px;padding:10px 25px;padding-top:0;padding-right:0;padding-botto=
+m:0;padding-left:0;word-break:break-word;"><table border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"border-collapse:col=
+lapse;border-spacing:0px;"><tbody><tr><td style=3D"width:60px;"><img alt sr=
+c=3D"https://cdaas.americanexpress.com/akamai/axp/comms/icons/eds-library/b=
+lue-box/white-headline-icons-60px/card-white.png" style=3D"border:0;display=
+:block;outline:none;text-decoration:none;height:60px;width:100%;font-size:1=
+3px;" width=3D"60" height=3D"60"></td></tr></tbody></table></td></tr></tbod=
+y></table></td></tr></tbody></table></div><!--[if mso | IE]></td><td class=
+=3D"" style=3D"vertical-align:middle;width:483.6px;" ><![endif]--><div clas=
+s=3D"mj-column-per-78 mj-outlook-group-fix" style=3D"font-size:0px;text-ali=
+gn:left;direction:ltr;display:inline-block;vertical-align:middle;width:100%=
+;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presenta=
+tion" width=3D"100%"><tbody><tr><td style=3D"vertical-align:middle;padding-=
+top:0;padding-right:0;padding-bottom:0;padding-left:0;"><table border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><=
+tbody><tr><td align=3D"left" class=3D"pad-0 pad-4-lr body-4 text-align-cent=
+er" style=3D"font-size:0px;padding:10px 25px;padding-top:0;padding-right:0;=
+padding-bottom:0;padding-left:20px;word-break:break-word;"><div style=3D"fo=
+nt-family:&quot;Helvetica Neue&quot;, Helvetica, sans-serif;font-size:26px;=
+font-weight:400;line-height:34px;text-align:left;color:#ffffff;"><p style=
+=3D"margin:0 0 0 0px" role=3D"heading" aria-level=3D"1">A purchase was made=
+, but it appears your Card wasn=E2=80=99t present</p></div></td></tr></tbod=
+y></table></td></tr></tbody></table></div><!--[if mso | IE]></td><td class=
+=3D"" style=3D"vertical-align:middle;width:37.2px;" ><![endif]--><div class=
+=3D"mj-column-per-6 mj-outlook-group-fix" style=3D"font-size:0px;text-align=
+:left;direction:ltr;display:inline-block;vertical-align:middle;width:100%;"=
+><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentati=
+on" style=3D"vertical-align:middle;" width=3D"100%"><tbody></tbody></table>=
+</div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr></tbody></t=
+able></div><!--[if mso | IE]></td></tr></table></td></tr></table><![endif]-=
+-></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table></td>=
+</tr></table><![endif]--></td></tr></tbody></table></div></div><!--[if mso =
+| IE]></v:textbox></v:rect></td></tr></table></td></tr></table><![endif]-->=
+</td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table></td></=
+tr></table><![endif]--></td></tr></tbody></table></div><!--[if mso | IE]></=
+td></tr></table></td></tr><tr><td class=3D"" width=3D"620px" ><table align=
+=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" rol=
+e=3D"presentation" style=3D"width:620px;" width=3D"620" ><tr><td style=3D"l=
+ine-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><di=
+v style=3D"margin:0px auto;max-width:620px;"><table align=3D"center" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"w=
+idth:100%;"><tbody><tr><td style=3D"direction:ltr;font-size:0px;padding:20p=
+x 0;padding-bottom:0;padding-left:40px;padding-right:40px;padding-top:40px;=
+text-align:center;"><!--[if mso | IE]><table role=3D"presentation" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"text-align-left=
+-outlook" style=3D"vertical-align:top;width:540px;" ><![endif]--><div class=
+=3D"mj-column-per-100 mj-outlook-group-fix text-align-left" style=3D"font-s=
+ize:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:t=
+op;width:100%;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" rol=
+e=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"vertical-align:to=
+p;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;"><table bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=
+=3D"100%"><tbody><tr><td align=3D"left" style=3D"font-size:0px;padding:10px=
+ 25px;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;word-br=
+eak:break-word;"><div style=3D"font-family:&quot;Helvetica Neue&quot;, Robo=
+to, Helvetica, sans-serif;font-size:15px;font-weight:400;line-height:22px;t=
+ext-align:left;color:#333333;"><p style=3D"margin:0 0 0 0px"><strong>Here=
+=E2=80=99s a purchase where your Card may not have been present</strong></p=
+></div></td></tr></tbody></table></td></tr></tbody></table></div><!--[if ms=
+o | IE]></td></tr></table><![endif]--></td></tr></tbody></table></div><!--[=
+if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" width=3D"620px"=
+ ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+class=3D"" role=3D"presentation" style=3D"width:620px;" width=3D"620" bgcol=
+or=3D"#f7f8f9" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-hei=
+ght-rule:exactly;"><![endif]--><div style=3D"background:#f7f8f9;background-=
+color:#f7f8f9;margin:0px auto;max-width:620px;"><table align=3D"center" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=
+=3D"background:#f7f8f9;background-color:#f7f8f9;width:100%;"><tbody><tr><td=
+ style=3D"direction:ltr;font-size:0px;padding:20px 0;padding-bottom:40px;pa=
+dding-left:40px;padding-right:40px;padding-top:40px;text-align:center;"><!-=
+-[if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0"><tr><td class=3D"pad-0-outlook" style=3D"vertical-align:t=
+op;width:540px;" ><![endif]--><div class=3D"mj-column-per-100 mj-outlook-gr=
+oup-fix pad-0" style=3D"font-size:0px;text-align:left;direction:ltr;display=
+:inline-block;vertical-align:top;width:100%;"><table border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr>=
+<td style=3D"vertical-align:top;padding-top:0;padding-right:0;padding-botto=
+m:0;padding-left:0;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" width=3D"100%"><tbody><tr><td align=3D"left" class=
+=3D"pad-0" style=3D"font-size:0px;padding:10px 25px;padding-top:0;padding-r=
+ight:0;padding-bottom:0;padding-left:0;word-break:break-word;"><div style=
+=3D"font-family:&quot;Helvetica Neue&quot;, Roboto, Helvetica, sans-serif;f=
+ont-size:16px;font-weight:bold;line-height:24px;text-align:left;color:#3333=
+33;"><p style=3D"margin:0 0 0 0px" role=3D"heading" aria-level=3D"3"><stron=
+g>You asked us to let you know when your Card may not have been present at =
+the time of purchase.</strong></p></div></td></tr></tbody></table></td></tr=
+></tbody></table></div><!--[if mso | IE]></td></tr></table><![endif]--></td=
+></tr></tbody></table></div><!--[if mso | IE]></td></tr></table></td></tr><=
+tr><td class=3D"" width=3D"620px" ><table align=3D"center" border=3D"0" cel=
+lpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"=
+width:620px;" width=3D"620" ><tr><td style=3D"line-height:0px;font-size:0px=
+;mso-line-height-rule:exactly;"><![endif]--><div style=3D"margin:0px auto;m=
+ax-width:620px;"><table align=3D"center" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" role=3D"presentation" style=3D"width:100%;"><tbody><tr><td s=
+tyle=3D"direction:ltr;font-size:0px;padding:20px 0;padding-bottom:20px;padd=
+ing-left:40px;padding-right:40px;padding-top:0;text-align:center;"><!--[if =
+mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0"><tr><td class=3D"pad-0-outlook text-align-center-outlook" styl=
+e=3D"" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" class=3D"pad-0-outlook text-align-center-outlook" role=3D"presentati=
+on" style=3D"width:540px;" width=3D"540" ><tr><td style=3D"line-height:0px;=
+font-size:0px;mso-line-height-rule:exactly;"><![endif]--><div class=3D"pad-=
+0 text-align-center" style=3D"margin:0px auto;max-width:540px;"><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"prese=
+ntation" style=3D"width:100%;"><tbody><tr><td style=3D"direction:ltr;font-s=
+ize:0px;padding:20px 0;padding-bottom:0;padding-left:0;padding-right:0;padd=
+ing-top:0;text-align:center;"><!--[if mso | IE]><table role=3D"presentation=
+" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" width=
+=3D"540px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" class=3D"" role=3D"presentation" style=3D"width:540px;" width=3D"=
+540" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:e=
+xactly;"><![endif]--><div style=3D"margin:0px auto;max-width:540px;"><table=
+ align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"=
+presentation" style=3D"width:100%;"><tbody><tr><td style=3D"direction:ltr;f=
+ont-size:0px;padding:20px 0;padding-bottom:20px;padding-left:0;padding-righ=
+t:0;padding-top:20px;text-align:center;"><!--[if mso | IE]><table role=3D"p=
+resentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td class=
+=3D"" style=3D"" ><table align=3D"center" border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" class=3D"" role=3D"presentation" style=3D"width:540px;" wid=
+th=3D"540" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-=
+rule:exactly;"><![endif]--><div style=3D"margin:0px auto;max-width:540px;">=
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation" style=3D"width:100%;"><tbody><tr><td style=3D"direction=
+:ltr;font-size:0px;padding:20px 0;padding-bottom:0;padding-left:0;padding-r=
+ight:0;padding-top:0;text-align:center;"><!--[if mso | IE]><table role=3D"p=
+resentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td class=
+=3D"" width=3D"540px" ><table align=3D"center" border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"width:540px;=
+" width=3D"540" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-he=
+ight-rule:exactly;"><![endif]--><div style=3D"margin:0px auto;max-width:540=
+px;"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" role=3D"presentation" style=3D"width:100%;"><tbody><tr><td style=3D"bord=
+er-bottom:1px solid #c8c9c7;border-top:1px solid #c8c9c7;direction:ltr;font=
+-size:0px;padding:20px 0;padding-bottom:0;padding-left:0;padding-right:0;pa=
+dding-top:0;text-align:center;"><!--[if mso | IE]><table role=3D"presentati=
+on" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" sty=
+le=3D"vertical-align:top;width:270px;" ><![endif]--><div class=3D"mj-column=
+-per-50 mj-outlook-group-fix" style=3D"font-size:0px;text-align:left;direct=
+ion:ltr;display:inline-block;vertical-align:top;width:100%;"><table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"1=
+00%"><tbody><tr><td style=3D"vertical-align:top;padding-top:0;padding-right=
+:0;padding-bottom:0;padding-left:0;"><table border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td align=
+=3D"left" class=3D"pad-0 text-align-center pad-2-t" style=3D"font-size:0px;=
+padding:10px 25px;padding-top:20px;padding-right:40px;padding-bottom:20px;p=
+adding-left:60px;word-break:break-word;"><div style=3D"font-family:&quot;He=
+lvetica Neue&quot;, Roboto, Helvetica, sans-serif;font-size:15px;font-weigh=
+t:bold;line-height:22px;text-align:left;color:#006fcf;"><p style=3D"margin:=
+0 0 0 0px">UBER EATS</p></div></td></tr></tbody></table></td></tr></tbody><=
+/table></div><!--[if mso | IE]></td><td class=3D"" style=3D"vertical-align:=
+top;width:270px;" ><![endif]--><div class=3D"mj-column-per-50 mj-outlook-gr=
+oup-fix" style=3D"font-size:0px;text-align:left;direction:ltr;display:inlin=
+e-block;vertical-align:top;width:100%;"><table border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td st=
+yle=3D"vertical-align:top;padding-top:0;padding-right:0;padding-bottom:0;pa=
+dding-left:0;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" width=3D"100%"><tbody><tr><td align=3D"left" class=3D"pad=
+-0 text-align-center" style=3D"font-size:0px;padding:10px 25px;padding-top:=
+10px;padding-right:60px;padding-bottom:10px;padding-left:40px;word-break:br=
+eak-word;"><div style=3D"font-family:&quot;Helvetica Neue&quot;, Roboto, He=
+lvetica, sans-serif;font-size:15px;font-weight:bold;line-height:22px;text-a=
+lign:left;color:#333333;"><p style=3D"margin:0 0 0 0px">NT$358*</p></div></=
+td></tr><tr><td align=3D"left" class=3D"pad-0 pad-2-b text-align-center" st=
+yle=3D"font-size:0px;padding:10px 25px;padding-top:0;padding-right:60px;pad=
+ding-bottom:10px;padding-left:40px;word-break:break-word;"><div style=3D"fo=
+nt-family:&quot;Helvetica Neue&quot;, Roboto, Helvetica, sans-serif;font-si=
+ze:13px;font-weight:400;line-height:20px;text-align:left;color:#53565a;"><p=
+ style=3D"margin:0 0 0 0px">Sat, Oct 25, 2025</p></div></td></tr></tbody></=
+table></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table><=
+![endif]--></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></ta=
+ble></td></tr></table><![endif]--></td></tr></tbody></table></div><!--[if m=
+so | IE]></td></tr></table></td></tr></table><![endif]--></td></tr></tbody>=
+</table></div><!--[if mso | IE]></td></tr></table></td></tr><tr><td class=
+=3D"" width=3D"540px" ><table align=3D"center" border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"width:540px;=
+" width=3D"540" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-he=
+ight-rule:exactly;"><![endif]--><div style=3D"margin:0px auto;max-width:540=
+px;"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" role=3D"presentation" style=3D"width:100%;"><tbody><tr><td style=3D"dire=
+ction:ltr;font-size:0px;padding:20px 0;padding-bottom:0;padding-left:0;padd=
+ing-right:0;padding-top:0;text-align:center;"><!--[if mso | IE]><table role=
+=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td =
+class=3D"" style=3D"vertical-align:top;width:540px;" ><![endif]--><div clas=
+s=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-size:0px;text-al=
+ign:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;"=
+><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentati=
+on" width=3D"100%"><tbody><tr><td style=3D"vertical-align:top;padding-top:0=
+;padding-right:0;padding-bottom:0;padding-left:0;"><table border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody=
+><tr><td align=3D"left" class=3D"text-align-left" style=3D"font-size:0px;pa=
+dding:10px 25px;padding-top:0;padding-right:0;padding-bottom:0;padding-left=
+:0;word-break:break-word;"><div style=3D"font-family:&quot;Helvetica Neue&q=
+uot;, Roboto, Helvetica, sans-serif;font-size:13px;font-weight:400;line-hei=
+ght:20px;text-align:left;color:#53565a;"><p style=3D"margin:0 0 0 0px">*The=
+ amount above may not reflect the final amount as some merchants issue a pr=
+e-authorization charge</p></div></td></tr></tbody></table></td></tr></tbody=
+></table></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr></=
+tbody></table></div><!--[if mso | IE]></td></tr></table></td></tr></table><=
+![endif]--></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></ta=
+ble></td></tr></table><![endif]--></td></tr></tbody></table></div><!--[if m=
+so | IE]></td></tr></table></td></tr><tr><td class=3D"" width=3D"620px" ><t=
+able align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"" role=3D"presentation" style=3D"width:620px;" width=3D"620" ><tr><td =
+style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![en=
+dif]--><div style=3D"margin:0px auto;max-width:620px;"><table align=3D"cent=
+er" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" =
+style=3D"width:100%;"><tbody><tr><td style=3D"direction:ltr;font-size:0px;p=
+adding:20px 0;padding-bottom:20px;padding-left:40px;padding-right:40px;padd=
+ing-top:10px;text-align:center;"><!--[if mso | IE]><table role=3D"presentat=
+ion" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" st=
+yle=3D"vertical-align:top;width:540px;" ><![endif]--><div class=3D"mj-colum=
+n-per-100 mj-outlook-group-fix" style=3D"font-size:0px;text-align:left;dire=
+ction:ltr;display:inline-block;vertical-align:top;width:100%;"><table borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"=
+100%"><tbody><tr><td style=3D"vertical-align:top;padding-top:0;padding-righ=
+t:0;padding-bottom:0;padding-left:0;"><table border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td alig=
+n=3D"center" class=3D"pad-0 pad-0-d btn-align-center" style=3D"font-size:0p=
+x;padding:10px 25px;padding-top:13px;padding-right:0;padding-bottom:0;paddi=
+ng-left:0;word-break:break-word;"><table border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" role=3D"presentation" style=3D"border-collapse:separate;widt=
+h:230px;line-height:100%;"><tbody><tr><td align=3D"center" bgcolor=3D"#0017=
+5a" role=3D"presentation" style=3D"border:1px solid #00175a;border-radius:5=
+px;cursor:auto;mso-padding-alt:8px 25px;background:#00175a;" valign=3D"midd=
+le"><a href=3D"https://m.amex/XKrXzs" style=3D"display:inline-block;width:1=
+78px;background:#00175a;color:#ffffff;font-family:Helvetica, Arial, Roboto,=
+ sans-serif;font-size:15px;font-weight:400;line-height:22px;margin:0;text-d=
+ecoration:none;text-transform:none;padding:8px 25px;mso-padding-alt:0px;bor=
+der-radius:5px;" target=3D"_blank">View your account</a></td></tr></tbody><=
+/table></td></tr></tbody></table></td></tr></tbody></table></div><!--[if ms=
+o | IE]></td></tr></table><![endif]--></td></tr></tbody></table></div><!--[=
+if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" width=3D"620px"=
+ ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+class=3D"" role=3D"presentation" style=3D"width:620px;" width=3D"620" ><tr>=
+<td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><=
+![endif]--><div style=3D"margin:0px auto;max-width:620px;"><table align=3D"=
+center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentati=
+on" style=3D"width:100%;"><tbody><tr><td style=3D"direction:ltr;font-size:0=
+px;padding:20px 0;padding-bottom:30px;padding-left:40px;padding-right:40px;=
+padding-top:30px;text-align:center;"><!--[if mso | IE]><table role=3D"prese=
+ntation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"=
+text-align-left-outlook" style=3D"vertical-align:top;width:540px;" ><![endi=
+f]--><div class=3D"mj-column-per-100 mj-outlook-group-fix text-align-left" =
+style=3D"font-size:0px;text-align:left;direction:ltr;display:inline-block;v=
+ertical-align:top;width:100%;"><table border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"ve=
+rtical-align:top;padding-top:0;padding-right:0;padding-bottom:0;padding-lef=
+t:0;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"prese=
+ntation" width=3D"100%"><tbody><tr><td align=3D"left" style=3D"font-size:0p=
+x;padding:10px 25px;padding-top:0;padding-right:0;padding-bottom:0;padding-=
+left:0;word-break:break-word;"><div style=3D"font-family:&quot;Helvetica Ne=
+ue&quot;, Roboto, Helvetica, sans-serif;font-size:15px;font-weight:400;line=
+-height:22px;text-align:left;color:#333333;"><p style=3D"margin:0 0 0 0px">=
+Still have questions about this purchase=3F You can also reach out to the m=
+erchant directly or <a href style=3D"color:#006fcf;font-weight:bold">visit =
+their site</a> for help.</p></div></td></tr></tbody></table></td></tr></tbo=
+dy></table></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr>=
+</tbody></table></div><!--[if mso | IE]></td></tr></table></td></tr><tr><td=
+ class=3D"" width=3D"620px" ><table align=3D"center" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"width:=
+620px;" width=3D"620" bgcolor=3D"#006fcf" ><tr><td style=3D"line-height:0px=
+;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style=3D"bac=
+kground:#006fcf;background-color:#006fcf;margin:0px auto;max-width:620px;">=
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation" style=3D"background:#006fcf;background-color:#006fcf;wi=
+dth:100%;"><tbody><tr><td style=3D"direction:ltr;font-size:0px;padding:20px=
+ 0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align=
+:center;"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0"><tr><td class=3D"text-align-center-outlook" =
+style=3D"vertical-align:middle;width:NaNpx;" ><![endif]--><div class=3D"mj-=
+column-px-NaN mj-outlook-group-fix text-align-center" style=3D"font-size:0p=
+x;text-align:left;direction:ltr;display:inline-block;vertical-align:middle;=
+width:100%;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"vertical-align:mid=
+dle;padding-top:20px;padding-right:0;padding-bottom:20px;padding-left:0;"><=
+table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation=
+" width=3D"100%"><tbody><tr><td align=3D"center" style=3D"font-size:0px;pad=
+ding:10px 25px;padding-top:0;padding-right:0;padding-bottom:0;padding-left:=
+0;word-break:break-word;"><div style=3D"font-family:&quot;Helvetica Neue&qu=
+ot;, Roboto, Helvetica, sans-serif;font-size:16px;font-weight:bold;line-hei=
+ght:24px;text-align:center;color:#ffffff;"><p style=3D"margin:0 0 0 0px" ro=
+le=3D"heading" aria-level=3D"3">Helpful Links</p></div></td></tr></tbody></=
+table></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table><=
+![endif]--></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></ta=
+ble></td></tr><tr><td class=3D"ada-list-outlook" width=3D"620px" ><table al=
+ign=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"ad=
+a-list-outlook" role=3D"presentation" style=3D"width:620px;" width=3D"620" =
+><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactl=
+y;"><![endif]--><div class=3D"ada-list" style=3D"margin:0px auto;max-width:=
+620px;"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" style=3D"width:100%;"><tbody><tr><td style=3D"=
+direction:ltr;font-size:0px;padding:20px 0;padding-bottom:40px;padding-left=
+:30px;padding-right:30px;padding-top:40px;text-align:center;" role=3D"list"=
+><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0"><tr><td class=3D"pad-0-outlook pad-4-b-outlook" style=
+=3D"vertical-align:top;width:186.66666666666669px;" ><![endif]--><div class=
+=3D"mj-column-per-33-333333333333336 mj-outlook-group-fix pad-0 pad-4-b" st=
+yle=3D"font-size:0px;text-align:left;direction:ltr;display:inline-block;ver=
+tical-align:top;width:100%;" role=3D"listitem"><table border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr=
+><td style=3D"vertical-align:top;padding-top:0;padding-right:10px;padding-b=
+ottom:0;padding-left:10px;"><table border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td align=3D"cente=
+r" style=3D"font-size:0px;padding:10px 25px;padding-top:0;padding-right:0;p=
+adding-bottom:0;padding-left:0;word-break:break-word;"><table border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"border-c=
+ollapse:collapse;border-spacing:0px;"><tbody><tr><td style=3D"width:48px;">=
+<a href=3D"http://go.amex/security" target=3D"_blank"><img alt=3D"About you=
+r online security" src=3D"https://cdaas.americanexpress.com/akamai/axp/comm=
+s/icons/lm-lock-icon.png" style=3D"border:0;display:block;outline:none;text=
+-decoration:none;height:48px;width:100%;font-size:13px;" width=3D"48" heigh=
+t=3D"48"></a></td></tr></tbody></table></td></tr><tr><td align=3D"center" c=
+lass=3D"pad-4-lr" style=3D"font-size:0px;padding:10px 25px;padding-top:15px=
+;padding-right:0;padding-bottom:0;padding-left:0;word-break:break-word;"><d=
+iv style=3D"font-family:Helvetica, Arial, Roboto, sans-serif;font-size:15px=
+;font-weight:400;line-height:22px;text-align:center;color:#006fcf;"><a href=
+=3D"http://go.amex/security" style=3D"text-decoration:none;color:#006fcf;pa=
+dding-top:20px;padding-bottom:20px">About your online security</a></div></t=
+d></tr></tbody></table></td></tr></tbody></table></div><!--[if mso | IE]></=
+td><td class=3D"pad-0-outlook pad-4-b-outlook" style=3D"vertical-align:top;=
+width:186.66666666666669px;" ><![endif]--><div class=3D"mj-column-per-33-33=
+3333333333336 mj-outlook-group-fix pad-0 pad-4-b" style=3D"font-size:0px;te=
+xt-align:left;direction:ltr;display:inline-block;vertical-align:top;width:1=
+00%;" role=3D"listitem"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"vertica=
+l-align:top;padding-top:0;padding-right:10px;padding-bottom:0;padding-left:=
+10px;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"pres=
+entation" width=3D"100%"><tbody><tr><td align=3D"center" style=3D"font-size=
+:0px;padding:10px 25px;padding-top:0;padding-right:0;padding-bottom:0;paddi=
+ng-left:0;word-break:break-word;"><table border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" role=3D"presentation" style=3D"border-collapse:collapse;bord=
+er-spacing:0px;"><tbody><tr><td style=3D"width:48px;"><a href=3D"http://m.a=
+mex/alertnotifications" target=3D"_blank"><img alt=3D"Manage your alerts" s=
+rc=3D"https://cdaas.americanexpress.com/akamai/axp/comms/icons/sl-manage-ic=
+on.png" style=3D"border:0;display:block;outline:none;text-decoration:none;h=
+eight:48px;width:100%;font-size:13px;" width=3D"48" height=3D"48"></a></td>=
+</tr></tbody></table></td></tr><tr><td align=3D"center" class=3D"pad-4-lr" =
+style=3D"font-size:0px;padding:10px 25px;padding-top:15px;padding-right:0;p=
+adding-bottom:0;padding-left:0;word-break:break-word;"><div style=3D"font-f=
+amily:Helvetica, Arial, Roboto, sans-serif;font-size:15px;font-weight:400;l=
+ine-height:22px;text-align:center;color:#006fcf;"><a href=3D"http://m.amex/=
+alertnotifications" style=3D"text-decoration:none;color:#006fcf;padding-top=
+:20px;padding-bottom:20px">Manage your alerts</a></div></td></tr></tbody></=
+table></td></tr></tbody></table></div><!--[if mso | IE]></td><td class=3D"p=
+ad-0-outlook" style=3D"vertical-align:top;width:186.66666666666669px;" ><![=
+endif]--><div class=3D"mj-column-per-33-333333333333336 mj-outlook-group-fi=
+x pad-0" style=3D"font-size:0px;text-align:left;direction:ltr;display:inlin=
+e-block;vertical-align:top;width:100%;" role=3D"listitem"><table border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"=
+><tbody><tr><td style=3D"vertical-align:top;padding-top:0;padding-right:10p=
+x;padding-bottom:0;padding-left:10px;"><table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td ali=
+gn=3D"center" style=3D"font-size:0px;padding:10px 25px;padding-top:0;paddin=
+g-right:0;padding-bottom:0;padding-left:0;word-break:break-word;"><table bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=
+=3D"border-collapse:collapse;border-spacing:0px;"><tbody><tr><td style=3D"w=
+idth:48px;"><a href=3D"http://m.amex/alertoverview" target=3D"_blank"><img =
+alt=3D"View your account online" src=3D"https://cdaas.americanexpress.com/a=
+kamai/axp/comms/icons/desktop-blue.png" style=3D"border:0;display:block;out=
+line:none;text-decoration:none;height:48px;width:100%;font-size:13px;" widt=
+h=3D"48" height=3D"48"></a></td></tr></tbody></table></td></tr><tr><td alig=
+n=3D"center" class=3D"pad-4-lr" style=3D"font-size:0px;padding:10px 25px;pa=
+dding-top:15px;padding-right:0;padding-bottom:0;padding-left:0;word-break:b=
+reak-word;"><div style=3D"font-family:Helvetica, Arial, Roboto, sans-serif;=
+font-size:15px;font-weight:400;line-height:22px;text-align:center;color:#00=
+6fcf;"><a href=3D"http://m.amex/alertoverview" style=3D"text-decoration:non=
+e;color:#006fcf;padding-top:20px;padding-bottom:20px">View your account onl=
+ine</a></div></td></tr></tbody></table></td></tr></tbody></table></div><!--=
+[if mso | IE]></td></tr></table><![endif]--></td></tr></tbody></table></div=
+><!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" width=3D"=
+620px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" class=3D"" role=3D"presentation" style=3D"width:620px;" width=3D"620=
+" bgcolor=3D"#00175a" ><tr><td style=3D"line-height:0px;font-size:0px;mso-l=
+ine-height-rule:exactly;"><![endif]--><div style=3D"background:#00175a;back=
+ground-color:#00175a;margin:0px auto;max-width:620px;"><table align=3D"cent=
+er" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" =
+style=3D"background:#00175a;background-color:#00175a;width:100%;"><tbody><t=
+r><td style=3D"direction:ltr;font-size:0px;padding:20px 0;padding-bottom:20=
+px;padding-left:0;padding-right:0;padding-top:20px;text-align:center;"><!--=
+[if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-align:top;width:620px=
+;" ><![endif]--><div class=3D"mj-column-per-100 mj-outlook-group-fix" style=
+=3D"font-size:0px;text-align:left;direction:ltr;display:inline-block;vertic=
+al-align:top;width:100%;"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"vertica=
+l-align:top;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;"=
+><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentati=
+on" width=3D"100%"><tbody><tr><td align=3D"center" class=3D"image-alt-text-=
+white dls-tagline-blue-sm" style=3D"font-size:0px;padding:10px 25px;padding=
+-top:0;padding-right:0;padding-bottom:0;padding-left:0;word-break:break-wor=
+d;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"present=
+ation" style=3D"border-collapse:collapse;border-spacing:0px;"><tbody><tr><t=
+d style=3D"width:240px;"><img alt=3D"Don&#x27;t live life without it" src=
+=3D"https://cdaas.americanexpress.com/akamai/axp/comms/taglines/consumer-ta=
+gline-english.png" style=3D"color: #fff; border: 0; display: block; outline=
+: none; text-decoration: none; height: auto; width: 100%; font-size: 13px;"=
+ width=3D"240" height=3D"auto"></td></tr></tbody></table></td></tr></tbody>=
+</table></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table=
+><![endif]--></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></=
+table></td></tr><tr><td class=3D"ada-list-outlook -outlook" width=3D"620px"=
+ ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+class=3D"ada-list-outlook -outlook" role=3D"presentation" style=3D"width:62=
+0px;" width=3D"620" ><tr><td style=3D"line-height:0px;font-size:0px;mso-lin=
+e-height-rule:exactly;"><![endif]--><div class=3D"ada-list" style=3D"margin=
+:0px auto;max-width:620px;"><table align=3D"center" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:100%;"><tbod=
+y><tr><td style=3D"direction:ltr;font-size:0px;padding:20px 0;padding-botto=
+m:0;padding-left:0;padding-right:0;padding-top:0;text-align:center;" role=
+=3D"list"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0"><tr><td class=3D"text-align-center-outlook n=
+av-bar-border-b-outlook" style=3D"vertical-align:middle;width:155px;" ><![e=
+ndif]--><div class=3D"mj-column-per-25 mj-outlook-group-fix text-align-cent=
+er nav-bar-border-b" style=3D"font-size:0px;text-align:left;direction:ltr;d=
+isplay:inline-block;vertical-align:middle;width:100%;" role=3D"listitem"><t=
+able border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"=
+ width=3D"100%"><tbody><tr><td style=3D"vertical-align:middle;padding-top:0=
+;padding-right:0;padding-bottom:0;padding-left:0;"><table border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody=
+><tr><td align=3D"center" class=3D"pad-4-lr pad-2-tb text-align-center" sty=
+le=3D"font-size:0px;padding:10px 25px;padding-top:20px;padding-right:20px;p=
+adding-bottom:20px;padding-left:40px;word-break:break-word;"><div style=3D"=
+font-family:Helvetica, Arial, Roboto, sans-serif;font-size:15px;font-weight=
+:400;line-height:22px;text-align:center;color:#000000;"><a href=3D"http://g=
+o.amex/privacy" style=3D"padding-top:20px;padding-bottom:20px;padding-left:=
+0;padding-right:0;color:#006fcf;align:center;text-decoration:none">Privacy =
+statement</a></div></td></tr></tbody></table></td></tr></tbody></table></di=
+v><!--[if mso | IE]></td><td class=3D"text-align-center-outlook nav-bar-bor=
+der-b-outlook" style=3D"vertical-align:middle;width:136.4px;" ><![endif]-->=
+<div class=3D"mj-column-per-22 mj-outlook-group-fix text-align-center nav-b=
+ar-border-b" style=3D"font-size:0px;text-align:left;direction:ltr;display:i=
+nline-block;vertical-align:middle;width:100%;" role=3D"listitem"><table bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=
+=3D"100%"><tbody><tr><td style=3D"vertical-align:middle;padding-top:0;paddi=
+ng-right:0;padding-bottom:0;padding-left:0;"><table border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><=
+td align=3D"center" class=3D"pad-4-lr pad-2-tb text-align-center" style=3D"=
+font-size:0px;padding:10px 25px;padding-top:20px;padding-right:20px;padding=
+-bottom:20px;padding-left:20px;word-break:break-word;"><div style=3D"font-f=
+amily:Helvetica, Arial, Roboto, sans-serif;font-size:15px;font-weight:400;l=
+ine-height:22px;text-align:center;color:#000000;"><a href=3D"http://m.amex/=
+alerthelp" style=3D"padding-top:20px;padding-bottom:20px;padding-left:0;pad=
+ding-right:0;color:#006fcf;align:center;text-decoration:none">Contact us</a=
+></div></td></tr></tbody></table></td></tr></tbody></table></div><!--[if ms=
+o | IE]></td><td class=3D"text-align-center-outlook nav-bar-border-b-outloo=
+k" style=3D"vertical-align:middle;width:161.2px;" ><![endif]--><div class=
+=3D"mj-column-per-26 mj-outlook-group-fix text-align-center nav-bar-border-=
+b" style=3D"font-size:0px;text-align:left;direction:ltr;display:inline-bloc=
+k;vertical-align:middle;width:100%;" role=3D"listitem"><table border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><t=
+body><tr><td style=3D"vertical-align:middle;padding-top:0;padding-right:0;p=
+adding-bottom:0;padding-left:0;"><table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td align=3D"=
+center" class=3D"pad-4-lr pad-2-tb text-align-center" style=3D"font-size:0p=
+x;padding:10px 25px;padding-top:20px;padding-right:20px;padding-bottom:20px=
+;padding-left:20px;word-break:break-word;"><div style=3D"font-family:Helvet=
+ica, Arial, Roboto, sans-serif;font-size:15px;font-weight:400;line-height:2=
+2px;text-align:center;color:#000000;"><a href=3D"https://m.amex/alertprofil=
+e" style=3D"padding-top:20px;padding-bottom:20px;padding-left:0;padding-rig=
+ht:0;color:#006fcf;align:center;text-decoration:none">Update your email add=
+ress</a></div></td></tr></tbody></table></td></tr></tbody></table></div><!-=
+-[if mso | IE]></td><td class=3D"text-align-center-outlook nav-bar-border-b=
+-outlook" style=3D"vertical-align:middle;width:167.4px;" ><![endif]--><div =
+class=3D"mj-column-per-27 mj-outlook-group-fix text-align-center nav-bar-bo=
+rder-b" style=3D"font-size:0px;text-align:left;direction:ltr;display:inline=
+-block;vertical-align:middle;width:100%;" role=3D"listitem"><table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"1=
+00%"><tbody><tr><td style=3D"vertical-align:middle;padding-top:0;padding-ri=
+ght:0;padding-bottom:0;padding-left:0;"><table border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td al=
+ign=3D"center" class=3D"pad-4-lr pad-2-tb text-align-center" style=3D"font-=
+size:0px;padding:10px 25px;padding-top:20px;padding-right:40px;padding-bott=
+om:20px;padding-left:20px;word-break:break-word;"><div style=3D"font-family=
+:Helvetica, Arial, Roboto, sans-serif;font-size:15px;font-weight:400;line-h=
+eight:22px;text-align:center;color:#000000;"><a href=3D"http://m.amex/alert=
+notifications" style=3D"padding-top:20px;padding-bottom:20px;padding-left:0=
+;padding-right:0;color:#006fcf;align:center;text-decoration:none">Stop rece=
+iving this alert</a></div></td></tr></tbody></table></td></tr></tbody></tab=
+le></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr></tbody>=
+</table></div><!--[if mso | IE]></td></tr></table></td></tr><tr><td class=
+=3D"" width=3D"620px" ><table align=3D"center" border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"width:620px;=
+" width=3D"620" bgcolor=3D"#d9d9d6" ><tr><td style=3D"line-height:0px;font-=
+size:0px;mso-line-height-rule:exactly;"><![endif]--><div style=3D"backgroun=
+d:#d9d9d6;background-color:#d9d9d6;margin:0px auto;max-width:620px;"><table=
+ align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"=
+presentation" style=3D"background:#d9d9d6;background-color:#d9d9d6;width:10=
+0%;"><tbody><tr><td style=3D"direction:ltr;font-size:0px;padding:20px 0;pad=
+ding-bottom:10px;padding-left:0;padding-right:0;padding-top:10px;text-align=
+:center;"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-align:t=
+op;width:620px;" ><![endif]--><div class=3D"mj-column-per-100 mj-outlook-gr=
+oup-fix" style=3D"font-size:0px;text-align:left;direction:ltr;display:inlin=
+e-block;vertical-align:top;width:100%;"><table border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td st=
+yle=3D"vertical-align:top;padding-top:0;padding-right:0;padding-bottom:0;pa=
+dding-left:0;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" width=3D"100%"><tbody><tr><td align=3D"left" style=3D"fon=
+t-size:0px;padding:10px 25px;padding-top:0;padding-right:0;padding-bottom:1=
+0px;padding-left:0;word-break:break-word;"><div style=3D"font-family:&quot;=
+Helvetica Neue&quot;, Roboto, Helvetica, sans-serif;font-size:13px;font-wei=
+ght:400;line-height:20px;text-align:left;color:#53565a;"><p style=3D"margin=
+:0 0 0 0px">Your account information is included above to help you recogniz=
+e this as a customer care email from American Express. To learn more about =
+email security or report a suspicious email, please visit us at <u><a href=
+=3D"http://go.amex/phishing" style=3D"color:#53565a;font-family:&quot;Helve=
+tica Neue&quot;, Roboto, Helvetica, sans-serif;font-size:13px;font-weight:4=
+00;line-height:20px;text-decoration:underline">americanexpress.com/phishing=
+</a></u>. We kindly ask you not to reply to this email but instead contact =
+us via <a href=3D"http://m.amex/alerthelp" style=3D"color:#53565a;font-fami=
+ly:&quot;Helvetica Neue&quot;, Roboto, Helvetica, sans-serif;font-size:13px=
+;font-weight:400;line-height:20px;text-decoration:underline"><u>Customer Ca=
+re</u>.</a></p></div></td></tr><tr><td align=3D"left" style=3D"font-size:0p=
+x;padding:10px 25px;padding-top:0;padding-right:0;padding-bottom:0;padding-=
+left:0;word-break:break-word;"><div style=3D"font-family:&quot;Helvetica Ne=
+ue&quot;, Roboto, Helvetica, sans-serif;font-size:13px;font-weight:400;line=
+-height:20px;text-align:left;color:#53565a;"><p style=3D"margin:0 0 0 0px">=
+=C2=A9 2025 American Express. All rights reserved.</p></div></td></tr><tr><=
+td align=3D"left" style=3D"font-size:0px;padding:10px 25px;padding-top:10px=
+;padding-right:0;padding-bottom:0;padding-left:0;word-break:break-word;"><d=
+iv style=3D"font-family:&quot;Helvetica Neue&quot;, Roboto, Helvetica, sans=
+-serif;font-size:13px;font-weight:400;line-height:20px;text-align:left;colo=
+r:#53565a;"><p style=3D"margin:0 0 0 0px">SAM0FYI132</p></div></td></tr><tr=
+><td align=3D"left" style=3D"font-size:0px;padding:10px 25px;padding-top:0;=
+padding-right:0;padding-bottom:0;padding-left:0;word-break:break-word;"><!-=
+-[if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0"><tr><td height=3D"1px" style=3D"vertical-align:top;height=
+:1px;"><![endif]--><div style=3D"font-family:Ubuntu, Helvetica, Arial, sans=
+-serif;font-size:13px;line-height:1;text-align:left;color:#000000;height:1p=
+x;"><img height=3D"1" width=3D"1" role=3D"none" alt style=3D"height:1px;wid=
+th:1px" src=3D"https://m.amex/opentrack=3Fcomm_track_id=3Dr_027000000010389=
+79158033020_2_x"></div><!--[if mso | IE]></td></tr></table><![endif]--></td=
+></tr></tbody></table></td></tr></tbody></table></div><!--[if mso | IE]></t=
+d></tr></table><![endif]--></td></tr></tbody></table></div><!--[if mso | IE=
+]></td></tr></table></td></tr></table><![endif]--></td></tr></tbody></table=
+></div><!--[if mso | IE]></td></tr></table><![endif]--></div></body></html>

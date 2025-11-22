@@ -1,0 +1,134 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:8da6:b0:4d4:9739:2b92 with SMTP id gr38csp1717326mdb;
+        Tue, 21 Oct 2025 07:10:27 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCXRT979FC/jysuuZs4GbNh7qP4ThG/0dCMs+kDGrm/vec4Xhfkk5CQdn2/Wkbf2ODzDVpUE44k=@gmail.com
+X-Google-Smtp-Source: AGHT+IE/VnnthjOcwr32JLnYLlUl8CZT5aFd6LWDaqh5js8IyrQDDAvLWCwepUDCBMe1sPg6VDYp
+X-Received: by 2002:a05:622a:289:b0:4b6:342f:f80f with SMTP id d75a77b69052e-4eb72dedbf3mr490961cf.12.1761055827382;
+        Tue, 21 Oct 2025 07:10:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761055827; cv=none;
+        d=google.com; s=arc-20240605;
+        b=HjOQQVf9VoaYqdJDAckT7Muqe1oIt4d1oV9ZdG599vrZSaKby5CHZlnqo/7QzQJOf5
+         RCRWQEpfcNyPGIH0qvuTx9Uh3K73HwYWh6cznejx7CR4h9CjqL8ua/56N2Qg6dKmE+kr
+         pxx93rip791EY+gPbmLS6WV2WSE9W1LqkF6EKYRc7zszGHawEOa4vapd5XbE23QeBvc9
+         aQTg/xhLQkUhqRkYoQj6Chm1ytmJ1VEe4G6NRSC77pBn9qCiUp6LY/QSsrYv/nZugTTO
+         UjOmrvsdOV77QWbLJNIRP+C1TsO+pmapUKRlN0ef56sb51+2sr04vQKEZnw5D9TFGKd7
+         myFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=destinations:list-unsubscribe-post:list-unsubscribe:list-post
+         :list-archive:list-id:precedence:content-transfer-encoding
+         :mime-version:subject:message-id:cc:to:reply-to:from:date
+         :dkim-signature;
+        bh=WIJSseN1T8Nm8Dbvuj5CU3p1UNQF5ZTT/aLnJTZcUr0=;
+        fh=ljy3i9mhSDQ5r6ChRzavyv6u7Ovd2oEiXhRhY3i5iQI=;
+        b=lNzAdy0ZUbGJg7kBdrAbvou4E0R3hrJYcL5jcqbq15gGVT2xhMzEOCrXgbiUNzksMX
+         WNJz5RyS1Li8nwCJMRVWOr6ve9e2P2WSYLUsm0kg4Vv1hFLqRwUk7Tqgb1qr6hq4jhM+
+         flSkEGluJU5h5ivqa1XvyXrXzLRhvMh8qUaoV9tlipeEISHav+1HnVps7+tF1YB3lbv7
+         tWQUFnzbafAe/A9Iz4U9ikutrK2QNYNyFUMzSmkU62LomEGrDvrCVMKVWd23S43YRrLM
+         5ararkS044qdw6eyIJAec2KQ5AWml4d+qjtUHYqSi/TKwiYVnSbmkyFTjuSKninJ3VjE
+         Lskg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@github.com header.s=pf2023 header.b=jIrpFNwp;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.204 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Return-Path: <noreply@github.com>
+Received: from out-21.smtp.github.com (out-21.smtp.github.com. [192.30.252.204])
+        by mx.google.com with ESMTPS id d75a77b69052e-4e8ab0fa1e5si33518501cf.1408.2025.10.21.07.10.27
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Oct 2025 07:10:27 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@github.com designates 192.30.252.204 as permitted sender) client-ip=192.30.252.204;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@github.com header.s=pf2023 header.b=jIrpFNwp;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.204 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Received: from github.com (hubbernetes-node-2e18547.ac4-iad.github.net [10.52.174.57])
+	by smtp.github.com (Postfix) with ESMTPA id 0FEC740145D
+	for <liencf@gmail.com>; Tue, 21 Oct 2025 07:10:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	s=pf2023; t=1761055827;
+	bh=WIJSseN1T8Nm8Dbvuj5CU3p1UNQF5ZTT/aLnJTZcUr0=;
+	h=Date:From:Reply-To:To:Cc:Subject:List-ID:List-Archive:List-Post:
+	 List-Unsubscribe:List-Unsubscribe-Post:From;
+	b=jIrpFNwpnwHIjrhjsKSgTWPw6eTH/cutYwKzgY1jrSvXValbC4W0LbU2OV9jwhV9I
+	 pFzbAkAESoZ5AdW4TjBw3xxZBHRnkcMeu0eVnw+2ViYbhzBfHX3hy6hMf8lbu9Y7vt
+	 vaDpw0dlEgMv7mWy3Nbn7KfKGgXcWPwg4i9YmB7c=
+Date: Tue, 21 Oct 2025 07:10:26 -0700
+From: hyzoma929 <notifications@github.com>
+Reply-To: LienCF/surge_modules <reply+ABG7O2G6CUO7TEZXPSMJMP3JODPFFEVBNHHNFTUWKY@reply.github.com>
+To: LienCF/surge_modules <surge_modules@noreply.github.com>
+Cc: Subscribed <subscribed@noreply.github.com>
+Message-ID: <LienCF/surge_modules/issues/1@github.com>
+Subject: [LienCF/surge_modules] Can you help me to make SToken valid for
+ Shopee Farm Indonesia? (Issue #1)
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_68f79452eda36_2a82f10d8296ef";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Precedence: list
+X-GitHub-Sender: hyzoma929
+X-GitHub-Recipient: LienCF
+X-GitHub-Reason: subscribed
+List-ID: LienCF/surge_modules <surge_modules.LienCF.github.com>
+List-Archive: https://github.com/LienCF/surge_modules
+List-Post: <mailto:reply+ABG7O2G6CUO7TEZXPSMJMP3JODPFFEVBNHHNFTUWKY@reply.github.com>
+List-Unsubscribe: <mailto:unsub+ABG7O2G6CUO7TEZXPSMJMP3JODPFFEVBNHHNFTUWKY@reply.github.com>,
+ <https://github.com/notifications/unsubscribe/one-click/ABG7O2ALNTAXQCGHJDZYAZ33YY5FFANCNFSM6AAAAACJZI2UOA>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-GitHub-Notify-Platform: newsies
+X-GitHub-Labels: 
+X-GitHub-Assignees: 
+X-GitHub-IssueState: open
+X-Auto-Response-Suppress: All
+destinations: liencf@gmail.com
+X-GitHub-Recipient-Address: liencf@gmail.com
+
+
+----==_mimepart_68f79452eda36_2a82f10d8296ef
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+hyzoma929 created an issue (LienCF/surge_modules#1)
+
+[encrypt_cli.js](https://github.com/user-attachments/files/23022616/encrypt_cli.js)
+<img width="989" height="732" alt="Image" src="https://github.com/user-attachments/assets/9977db9c-2614-4c50-8320-06772a6d2a5e" />
+
+-- 
+Reply to this email directly or view it on GitHub:
+https://github.com/LienCF/surge_modules/issues/1
+You are receiving this because you are subscribed to this thread.
+
+Message ID: <LienCF/surge_modules/issues/1@github.com>
+----==_mimepart_68f79452eda36_2a82f10d8296ef
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<div style="display: flex; flex-wrap: wrap; white-space: pre-wrap; align-items: center; "><img height="20" width="20" style="border-radius:50%; margin-right: 4px;" decoding="async" src="https://avatars.githubusercontent.com/u/49223966?s=20&amp;v=4" /><strong>hyzoma929</strong> created an issue <a href="https://github.com/LienCF/surge_modules/issues/1">(LienCF/surge_modules#1)</a></div>
+<p dir="auto"><a href="https://github.com/user-attachments/files/23022616/encrypt_cli.js">encrypt_cli.js</a><br>
+<a href="https://github.com/user-attachments/assets/9977db9c-2614-4c50-8320-06772a6d2a5e">image.png (view on web)</a></p>
+
+<p style="font-size:small;-webkit-text-size-adjust:none;color:#666;">&mdash;<br />Reply to this email directly, <a href="https://github.com/LienCF/surge_modules/issues/1">view it on GitHub</a>, or <a href="https://github.com/notifications/unsubscribe-auth/ABG7O2CGWX6AN4ZWUOTNJ733YY5FFAVCNFSM6AAAAACJZI2UOCVHI2DSMVQWIX3LMV43ASLTON2WKOZTGUZTMNZVGQZDMMQ">unsubscribe</a>.<br />You are receiving this because you are subscribed to this thread.<img src="https://github.com/notifications/beacon/ABG7O2EMIYE2QLQJB2UZULT3YY5FFA5CNFSM6AAAAACJZI2UOCWGG33NNVSW45C7OR4XAZNFJFZXG5LFVJRW63LNMVXHIX3JMTHNFTUWKY.gif" height="1" width="1" alt="" /><span style="color: transparent; font-size: 0; display: none; visibility: hidden; overflow: hidden; opacity: 0; width: 0; height: 0; max-width: 0; max-height: 0; mso-hide: all">Message ID: <span>&lt;LienCF/surge_modules/issues/1</span><span>@</span><span>github</span><span>.</span><span>com&gt;</span></span></p>
+
+<script type="application/ld+json">[
+{
+"@context": "http://schema.org",
+"@type": "EmailMessage",
+"potentialAction": {
+"@type": "ViewAction",
+"target": "https://github.com/LienCF/surge_modules/issues/1",
+"url": "https://github.com/LienCF/surge_modules/issues/1",
+"name": "View Issue"
+},
+"description": "View this Issue on GitHub",
+"publisher": {
+"@type": "Organization",
+"name": "GitHub",
+"url": "https://github.com"
+}
+}
+]</script>
+
+----==_mimepart_68f79452eda36_2a82f10d8296ef--

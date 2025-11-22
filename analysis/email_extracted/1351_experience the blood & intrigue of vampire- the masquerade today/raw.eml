@@ -1,0 +1,610 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:df93:b0:4ca:2b22:f54c with SMTP id ok19csp1201141mdb;
+        Wed, 8 Oct 2025 14:27:16 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGMzPtuXOiCgqri7psIKZFdZw2XaGl3pRSwV6968NEJxK2aCSPpW8f409qIVI1FmwWMb0k5
+X-Received: by 2002:a05:6a00:2444:b0:781:1cc0:d0ce with SMTP id d2e1a72fcca58-7938705204dmr5817762b3a.16.1759958835829;
+        Wed, 08 Oct 2025 14:27:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1759958835; cv=none;
+        d=google.com; s=arc-20240605;
+        b=lZL5ap6CeuQjfeaRFHBmsL0I8+lNGiZ6jHVis7qCVailBIHeyLYZfsXpCtj4B5rbIN
+         aBAflEPoc1xWfu8jEHvDyr0K2BGxZKmwaI8WGCa68CDBAOd4d+JkqfoBERvDKmRUYFNx
+         mDpdQrE3oBAs7SkgJO39pcVJ13Af+tLoTUMObGdZw0DnaSl6u9xz2QFygfIDOTkGld6p
+         TZjo5sgSxUAXQ25CIgFgGxUt49VXAWlCc5QoST13p487H+57nMsvaDaVjLFIL3jhW2CN
+         HhylYX5NnLXSVhGSgwCCr5JGyDNRJ9QJ0K4hWBjlPQb0VEuK2qIo5qWrf+34gIxlF7n3
+         3CsA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:message-id:reply-to:bimi-selector:to:from
+         :subject:mime-version:date:sender:list-unsubscribe
+         :list-unsubscribe-post:dkim-signature:dkim-signature;
+        bh=9jh7/op8YA/QDXsBaQuzk028GkNhWwb7BwK80r5XTgs=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=AD6QKyMkDXYj1D+UYCEOdIkYUkIQdB6oYzg2efmzJ9CDAfU+R1DiKdKldwgGNqAV1F
+         9kxZ0/Fn8XzD05CZ32ZJlX1MbAPv4cSTLVrsv8xsSbcFF57qqmKYbiPjm1Kv7JFqp3pN
+         VWxSscejus0uYa4/YR+ZD2A2SGq1gT5jsxQ6lwnPT+m6agxCkh/thwdfDGlWjU6na9KW
+         xTCjY8l/dNslXxmlby/LV6xxzM0LWOL6MGgkgq1whUrLkQQgCq9SdUblGLOkzpP5zxC1
+         9eM4VIyFU/5hg83yGR99W7rOyhWLiHdMOVffVAzWlWFGbJzO6kP5+FUQB0sNfzfMb7I3
+         Db1g==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@mailer.humblebundle.com header.s=crdl01 header.b=PmvTVqw6;
+       dkim=pass header.i=@mailgun.org header.s=mg header.b=gLihiPRX;
+       spf=pass (google.com: domain of bounce+e250bd.460f1c-liencf=gmail.com@mailer.humblebundle.com designates 192.112.153.148 as permitted sender) smtp.mailfrom="bounce+e250bd.460f1c-liencf=gmail.com@mailer.humblebundle.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=humblebundle.com
+Return-Path: <bounce+e250bd.460f1c-liencf=gmail.com@mailer.humblebundle.com>
+Received: from d148.c153.cordialmail.net (d148.c153.cordialmail.net. [192.112.153.148])
+        by mx.google.com with UTF8SMTPS id d2e1a72fcca58-794d685d7a4si487468b3a.319.2025.10.08.14.27.15
+        for <liencf@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 08 Oct 2025 14:27:15 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce+e250bd.460f1c-liencf=gmail.com@mailer.humblebundle.com designates 192.112.153.148 as permitted sender) client-ip=192.112.153.148;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@mailer.humblebundle.com header.s=crdl01 header.b=PmvTVqw6;
+       dkim=pass header.i=@mailgun.org header.s=mg header.b=gLihiPRX;
+       spf=pass (google.com: domain of bounce+e250bd.460f1c-liencf=gmail.com@mailer.humblebundle.com designates 192.112.153.148 as permitted sender) smtp.mailfrom="bounce+e250bd.460f1c-liencf=gmail.com@mailer.humblebundle.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=humblebundle.com
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mailer.humblebundle.com; q=dns/txt; s=crdl01; t=1759958835; x=1759966035;
+ h=Content-Transfer-Encoding: Content-Type: Message-Id: X-Feedback-ID: Reply-To: To: To: From: From: Subject: Subject: Mime-Version: Date: Sender: Sender: X-Feedback-Id: List-Unsubscribe: List-Unsubscribe-Post;
+ bh=9jh7/op8YA/QDXsBaQuzk028GkNhWwb7BwK80r5XTgs=;
+ b=PmvTVqw6iprs4sbIKZYZrthRg4zLYqejIGMoCaVrO8S/zH9AgsQaaQJx/1OLJUCPkW6ov1k76+8sxfEjmhe6efGRWIa80g/8KL/7X8e3XMIdT8HsbjYLeduZexssafd3D+NbSFWL7pMeSLU7eGXrD7eNoDhTIGrApqALE8K8xSYFKZzsGAmbxvQYr8isimi3SzXYaIQmkUo+9RrApt/SbNnu7jdkk1X0nqR7sI7vnr1VI1DLvUDlSVgF71l6icNEf2Ulnl46KUVRxNkW+buP8FlrlEiABfuLz1FhxLajmLQOixI2j2vEMHBSwnh5kfOZKjllcNnuOxQEel5P50xe4w==
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mailgun.org; q=dns/txt; s=mg; t=1759958835; x=1759966035;
+ h=Content-Transfer-Encoding: Content-Type: Message-Id: X-Feedback-ID: Reply-To: To: To: From: From: Subject: Subject: Mime-Version: Date: Sender: Sender: X-Feedback-Id: List-Unsubscribe: List-Unsubscribe-Post;
+ bh=9jh7/op8YA/QDXsBaQuzk028GkNhWwb7BwK80r5XTgs=;
+ b=gLihiPRXU2oXkMy7ID4RlWR+d8BRy3tFSDWLD9DUl1Rjagg2cwUD3hCDsiqocRiOsKW0O7GnLBSUvjnyuVF2KCGPnjz+yZQ5G5ne0rzZdEUszwWjZeojc60DrTdSUrp8LNmIL5WUQE+Hl/pSFCbvP1Cmgcp8NQoMx5UtS/mZFK0=
+X-Mailgun-Sid: WyI5MzA1MiIsImxpZW5jZkBnbWFpbC5jb20iLCI0NjBmMWMiXQ==
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Unsubscribe: <https://mg.mailer.humblebundle.com/u/eJwczTGO7CAMgOHTQBkZAzYuKCK9V-wxAMNOJJKsomTOv9qpf-n_2qXz__HOP9epT7u387CaA8Fwzb4yDVVmlSCp9tGSlxiQhIjZOQG2W0bA6AASOmQXFwGAJJ6Hb1UxsQmwl232a3k9e529PofOvrRzt3v7-pcdoPErpU6NVIcnpFCKCEThTzpv49c4CgJzYQ-KcQBjHRW7N3519spz60cbJsD3n_WZ39ngat8ZfwMAAP__vx9AUQ>
+X-Feedback-Id: contact@mailer.humblebundle.com:msID:102:68e6c6ddf36264aa99059702:ot:66f4b28391616c98ca622260:mailgun
+Received: by e0bee19f3d1bbe3933e5ad5bfa6ce847c1f603b9655dc1c7c5456dbaa9c14fcd with HTTP
+ id 68e6d733f23ee290ea095121; Wed, 08 Oct 2025 21:27:15 GMT
+X-Mailgun-Sending-Ip-Pool-Name: hb-d
+X-Mailgun-Sending-Ip-Pool: 66f46832e4fa9b2444147fb3
+X-Mailgun-Sending-Ip: 192.112.153.148
+Sender: contact@mailer.humblebundle.com
+Date: Wed, 08 Oct 2025 21:27:15 +0000
+Mime-Version: 1.0
+Subject: Experience the blood & intrigue of Vampire: The Masquerade today
+From: Humble Bundle <contact@mailer.humblebundle.com>
+To: liencf@gmail.com
+X-Mailgun-Tag: msID:102:68e6c6ddf36264aa99059702:ot
+X-Mailgun-Track-Opens: true
+BIMI-Selector: v=BIMI1; s=default;
+X-Crdl-Mc: 102:68e6c6ddf36264aa99059702:ot:5fa2077a730d25f072bfb2e3:1
+Reply-To: contact@humblebundle.com
+X-Feedback-ID: 102:102_68e6c6ddf36264aa99059702_ot:5fa2077a730d25f072bfb2e3:cordial
+X-Mailgun-Variables: {"crdlEnv": "production", "mcID":
+ "102:68e6c6ddf36264aa99059702:ot:5fa2077a730d25f072bfb2e3:1"}
+Message-Id: <20251008212715.90008937f3cbd287@mailer.humblebundle.com>
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html><html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:=
+schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:offi=
+ce">
+<head>
+<!--[if gte mso 9]><xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml><![endif]-->
+<title>Humble</title>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0 ">
+<meta name=3D"format-detection" content=3D"telephone=3Dno">
+<!--[if !mso]><!-->
+<link href=3D"https://fonts.googleapis.com/css2?family=3DOpen+Sans:wght@300=
+;400;600;700;800&amp;display=3Dswap" rel=3D"stylesheet">
+<!--<![endif]-->
+
+<style type=3D"text/css">
+body { margin: 0; padding: 0; -webkit-text-size-adjust: 100% !important; -m=
+s-text-size-adjust: 100% !important; -webkit-font-smoothing: antialiased !i=
+mportant; }
+img { border: 0 !important; outline: none !important; }
+p { Margin: 0px !important; Padding: 0px !important; }
+table { border-collapse: collapse; mso-table-lspace: 0px; mso-table-rspace:=
+ 0px; }
+td, a, span { border-collapse: collapse; mso-line-height-rule: exactly; }
+=2EExternalClass * { line-height: 100%; }
+=2Eem_defaultlink a { color: inherit; text-decoration: none; }
+=2Eem_defaultlink_u a { color: inherit; text-decoration: underline; }
+=2Eem_g_img + div { display: none; }
+a[x-apple-data-detectors], u + .em_body a, #MessageViewBody a { color: inhe=
+rit; text-decoration: none; font-size: inherit; font-family: inherit; font-=
+weight: inherit; line-height: inherit; }
+table { table-layout: fixed; }=20
+ @media only screen and (max-width:599px) {
+  .em_main_table { width: 100% !important; }
+  .em_wrapper { width: 100% !important; }
+  .em_hide, .hide { display: none !important; }
+  .em_full_img img { width: 100% !important; height: auto !important; }
+  .em_full_img { width: 100% !important; height: auto !important; }
+  .em_full_img1 img { width: 100% !important; height: auto !important; max-=
+width: none !important; }
+  .em_full_img1 { width: 100% !important; height: auto !important; max-widt=
+h: none !important; }
+  .em_side20 { width: 20px !important; }
+  .em_aside20 { padding: 0px 20px !important; }
+  .em_ptop { padding-top: 20px !important; }
+  u + .em_body .em_full_wrap { width: 100% !important; width: 100vw !import=
+ant; }
+  .em_prbl { padding: 0px 20px 20px !important;}
+  .show { display: block !important; width:auto !important; overflow:visibl=
+e !important; float: none !important; max-height: inherit !important; line-=
+height: inherit !important;}
+  .paddingsides_block {width: 20px !important;}
+  .height_20 {height: 20px !important;}
+  .width_20 {width: 20px !important;}
+  .align_left {text-align:left !important;}
+  .align_right {text-align:right !important;}
+  .align_center {text-align:center !important;}
+}
+@media screen and (max-width: 374px) {
+  .em_font1 { font-size: 11px !important; }
+}
+</style>
+
+</head>
+
+<body><div style=3D"display:none;font-size:1px;color:#333333;line-height:1p=
+x;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">Plus, pay what y=
+ou want for powerful photo edging tools</div>
+
+<!--https://d.mailer.humblebundle.com/optout/index.php?mcID=3D102:68e6c6ddf=
+36264aa99059702:ot:5fa2077a730d25f072bfb2e3:1-->
+
+
+
+
+
+
+
+<!-- =3D=3D EDITABLE AREA =3D=3D -->
+<div><div><!-- =3D=3D Hero Image Container Section =3D=3D -->
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" clas=
+s=3D"em_full_wrap" style=3D"table-layout:fixed;background-color:#272930;" b=
+gcolor=3D"#272930">
+  <tr>
+    <td align=3D"center" valign=3D"top"><table align=3D"center" width=3D"60=
+0" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"em_main_table"=
+>
+        <tr>
+          <td valign=3D"top" align=3D"center" style=3D"padding-bottom:0px;"=
+><table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+              <tr>
+                <td valign=3D"top" align=3D"center" class=3D"em_full_img"><=
+a data-crdl-variant=3D"" target=3D"_blank" style=3D"text-decoration:none;" =
+href=3D"https://e.mailer.humblebundle.com/c2/102:68e6c6ddf36264aa99059702:o=
+t:5fa2077a730d25f072bfb2e3:1/f5677f78?jwtH=3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUz=
+I1NiJ9&amp;jwtP=3DeyJpYXQiOjE3NTk5NTg4MzUsImNkIjoiLm1haWxlci5odW1ibGVidW5kb=
+GUuY29tIiwiY2UiOjg2NDAwLCJ0ayI6Imh1bWJsZWJ1bmRsZWxpdmUiLCJtdGxJRCI6IjY4ZTZj=
+YTA3MzQ2ODk2OGI2MzA3ZjM5NSIsImxpbmtVcmwiOiJodHRwczpcL1wvd3d3Lmh1bWJsZWJ1bmR=
+sZS5jb21cLz9tY0lEPTEwMjo2OGU2YzZkZGYzNjI2NGFhOTkwNTk3MDI6b3Q6NWZhMjA3N2E3Mz=
+BkMjVmMDcyYmZiMmUzOjEmbGlua0lEPXskbGlua0lEfSZ1dG1fc291cmNlPUh1bWJsZStCdW5kb=
+GUrTmV3c2xldHRlciZ1dG1fY29udGVudD1jdGFfYnV0dG9uJnV0bV9tZWRpdW09ZW1haWwmdXRt=
+X2NhbXBhaWduPTIwMjUxMDA4X3dvcmxkb2ZkYXJrbmVzc2RpZ2l0YWxfbmVvbmFuZG5vaXJfcmV=
+taW5kZXIifQ&amp;jwtS=3DD86GoM6TBPRbZ20bUfccz9QLMCks_MI0HsGgihZXq4o"><img sr=
+c=3D"https://images.cordial.com/102/1200x140/WelcomeDS_header.jpg" width=3D=
+"600" alt=3D"Humble Bundle" border=3D"0" style=3D"display:block;max-width:6=
+00px;"></a></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table></div><div><!-- =3D=3D Hero Image Container Section =3D=3D -->
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" clas=
+s=3D"em_full_wrap" style=3D"table-layout:fixed;background-color:#272930;" b=
+gcolor=3D"#272930">
+  <tr>
+    <td align=3D"center" valign=3D"top"><table align=3D"center" width=3D"60=
+0" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"em_main_table"=
+>
+        <tr>
+          <td valign=3D"top" align=3D"center" style=3D"padding-bottom:0px;"=
+><table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+              <tr>
+                <td valign=3D"top" align=3D"center" class=3D"em_full_img"><=
+a data-crdl-variant=3D"" target=3D"_blank" style=3D"text-decoration:none;" =
+href=3D"https://e.mailer.humblebundle.com/c2/102:68e6c6ddf36264aa99059702:o=
+t:5fa2077a730d25f072bfb2e3:1/31d89a24?jwtH=3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUz=
+I1NiJ9&amp;jwtP=3DeyJpYXQiOjE3NTk5NTg4MzUsImNkIjoiLm1haWxlci5odW1ibGVidW5kb=
+GUuY29tIiwiY2UiOjg2NDAwLCJ0ayI6Imh1bWJsZWJ1bmRsZWxpdmUiLCJtdGxJRCI6IjY4ZTZj=
+YTA3MzQ2ODk2OGI2MzA3ZjM5NiIsImxpbmtVcmwiOiJodHRwczpcL1wvd3d3Lmh1bWJsZWJ1bmR=
+sZS5jb21cL2Jvb2tzXC93b3JsZC1kYXJrbmVzcy1tb250aC1kYXJrbmVzcy0yMDI1LWRpZ2l0YW=
+wtYnVuZGxlLXJlbmVnYWRlLWdhbWUtc3R1ZGlvcy1ib29rcz9tY0lEPTEwMjo2OGU2YzZkZGYzN=
+jI2NGFhOTkwNTk3MDI6b3Q6NWZhMjA3N2E3MzBkMjVmMDcyYmZiMmUzOjEmbGlua0lEPXskbGlu=
+a0lEfSZ1dG1fc291cmNlPUh1bWJsZStCdW5kbGUrTmV3c2xldHRlciZ1dG1fY29udGVudD1jdGF=
+fYnV0dG9uJnV0bV9tZWRpdW09ZW1haWwmdXRtX2NhbXBhaWduPTIwMjUxMDA4X3dvcmxkb2ZkYX=
+JrbmVzc2RpZ2l0YWxfbmVvbmFuZG5vaXJfcmVtaW5kZXIifQ&amp;jwtS=3DhvuWKI7BqA7Xixz=
+mKkTqJyd2YL9Y3YvUf8Ykbml3xgg"><img src=3D"https://images.cordial.com/102/60=
+0x550/worlddarknessmonthdarkness2025digitalbundlerenegadegamestudios_bundle=
+-newsletter_grid_1.jpg" width=3D"600" alt=3D"Host the hottest Vampire: The =
+Masquerade game nights with the Month of Darkness 2025 Digital Bundle! This=
+ digital version of Fifth Edition marks a triumphant return to Vampire: The=
+ Masquerade=E2=80=99s original vision=E2=80=94boldly modernized for the 21s=
+t century with streamlined gameplay and quality-of-life updates." border=3D=
+"0" style=3D"display:block;max-width:600px;"></a></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table></div><div><!-- =3D=3D Hero Image Container Section =3D=3D -->
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" clas=
+s=3D"em_full_wrap" style=3D"table-layout:fixed;background-color:#272930;" b=
+gcolor=3D"#272930">
+  <tr>
+    <td align=3D"center" valign=3D"top"><table align=3D"center" width=3D"60=
+0" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"em_main_table"=
+>
+        <tr>
+          <td valign=3D"top" align=3D"center" style=3D"padding-bottom:0px;"=
+><table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+              <tr>
+                <td valign=3D"top" align=3D"center" class=3D"em_full_img"><=
+a data-crdl-variant=3D"" target=3D"_blank" style=3D"text-decoration:none;" =
+href=3D"https://e.mailer.humblebundle.com/c2/102:68e6c6ddf36264aa99059702:o=
+t:5fa2077a730d25f072bfb2e3:1/690a17ed?jwtH=3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUz=
+I1NiJ9&amp;jwtP=3DeyJpYXQiOjE3NTk5NTg4MzUsImNkIjoiLm1haWxlci5odW1ibGVidW5kb=
+GUuY29tIiwiY2UiOjg2NDAwLCJ0ayI6Imh1bWJsZWJ1bmRsZWxpdmUiLCJtdGxJRCI6IjY4ZTZj=
+YTA3MzQ2ODk2OGI2MzA3ZjM5NyIsImxpbmtVcmwiOiJodHRwczpcL1wvd3d3Lmh1bWJsZWJ1bmR=
+sZS5jb21cL2Jvb2tzXC93b3JsZC1kYXJrbmVzcy1tb250aC1kYXJrbmVzcy0yMDI1LWRpZ2l0YW=
+wtYnVuZGxlLXJlbmVnYWRlLWdhbWUtc3R1ZGlvcy1ib29rcz9tY0lEPTEwMjo2OGU2YzZkZGYzN=
+jI2NGFhOTkwNTk3MDI6b3Q6NWZhMjA3N2E3MzBkMjVmMDcyYmZiMmUzOjEmbGlua0lEPXskbGlu=
+a0lEfSZ1dG1fc291cmNlPUh1bWJsZStCdW5kbGUrTmV3c2xldHRlciZ1dG1fY29udGVudD1jdGF=
+fYnV0dG9uJnV0bV9tZWRpdW09ZW1haWwmdXRtX2NhbXBhaWduPTIwMjUxMDA4X3dvcmxkb2ZkYX=
+JrbmVzc2RpZ2l0YWxfbmVvbmFuZG5vaXJfcmVtaW5kZXIifQ&amp;jwtS=3D_zs2Y8e5sfnOioJ=
+AH60tRvr-tuolZrmEd4NlXcrBaso"><img src=3D"https://images.cordial.com/102/60=
+0x394/WorldOfDarkenss_Digi_Email_Copy.png" width=3D"600" alt=3D"Bring the d=
+rama, blood, and fun to game night and help support the charity of your cho=
+ice!" border=3D"0" style=3D"display:block;max-width:600px;"></a></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table></div><div><!-- =3D=3D Hero Image Container Section =3D=3D -->
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" clas=
+s=3D"em_full_wrap" style=3D"table-layout:fixed;background-color:#272930;" b=
+gcolor=3D"#272930">
+  <tr>
+    <td align=3D"center" valign=3D"top"><table align=3D"center" width=3D"60=
+0" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"em_main_table"=
+>
+        <tr>
+          <td valign=3D"top" align=3D"center" style=3D"padding-bottom:0px;"=
+><table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+              <tr>
+                <td valign=3D"top" align=3D"center" class=3D"em_full_img"><=
+a data-crdl-variant=3D"" target=3D"_blank" style=3D"text-decoration:none;" =
+href=3D"https://e.mailer.humblebundle.com/c2/102:68e6c6ddf36264aa99059702:o=
+t:5fa2077a730d25f072bfb2e3:1/636cea44?jwtH=3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUz=
+I1NiJ9&amp;jwtP=3DeyJpYXQiOjE3NTk5NTg4MzUsImNkIjoiLm1haWxlci5odW1ibGVidW5kb=
+GUuY29tIiwiY2UiOjg2NDAwLCJ0ayI6Imh1bWJsZWJ1bmRsZWxpdmUiLCJtdGxJRCI6IjY4ZTZj=
+YTA3MzQ2ODk2OGI2MzA3ZjM5OCIsImxpbmtVcmwiOiJodHRwczpcL1wvd3d3Lmh1bWJsZWJ1bmR=
+sZS5jb21cL3NvZnR3YXJlXC9uZW9uLW5vaXItZWxpdGUtcGhvdG9zLXdpdGgtbHVtaW5hci1uZW=
+8tc29mdHdhcmU_bWNJRD0xMDI6NjhlNmM2ZGRmMzYyNjRhYTk5MDU5NzAyOm90OjVmYTIwNzdhN=
+zMwZDI1ZjA3MmJmYjJlMzoxJmxpbmtJRD17JGxpbmtJRH0mdXRtX3NvdXJjZT1IdW1ibGUrQnVu=
+ZGxlK05ld3NsZXR0ZXImdXRtX2NvbnRlbnQ9Y3RhX2J1dHRvbiZ1dG1fbWVkaXVtPWVtYWlsJnV=
+0bV9jYW1wYWlnbj0yMDI1MTAwOF93b3JsZG9mZGFya25lc3NkaWdpdGFsX25lb25hbmRub2lyX3=
+JlbWluZGVyIn0&amp;jwtS=3DPf9zvvHZ2VVo8IzXVlO0d3r_WVjDnSoNNwpAe_d8wCQ"><img =
+src=3D"https://images.cordial.com/102/1200x675/neon-noir-elite-photos-with-=
+luminar-neo-software_Social16x9-Branded.png" width=3D"600" alt=3D"Take your=
+ photos to the next level=E2=80=94introducing the Neon &amp; Noir: Elite Ph=
+otos with Luminar Neo Bundle. " border=3D"0" style=3D"display:block;max-wid=
+th:600px;"></a></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table></div><div><!-- =3D=3D Hero Image Container Section =3D=3D -->
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" clas=
+s=3D"em_full_wrap" style=3D"table-layout:fixed;background-color:#272930;" b=
+gcolor=3D"#272930">
+  <tr>
+    <td align=3D"center" valign=3D"top"><table align=3D"center" width=3D"60=
+0" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"em_main_table"=
+>
+        <tr>
+          <td valign=3D"top" align=3D"center" style=3D"padding-bottom:0px;"=
+><table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+              <tr>
+                <td valign=3D"top" align=3D"center" class=3D"em_full_img"><=
+a data-crdl-variant=3D"" target=3D"_blank" style=3D"text-decoration:none;" =
+href=3D"https://e.mailer.humblebundle.com/c2/102:68e6c6ddf36264aa99059702:o=
+t:5fa2077a730d25f072bfb2e3:1/1eadf0d1?jwtH=3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUz=
+I1NiJ9&amp;jwtP=3DeyJpYXQiOjE3NTk5NTg4MzUsImNkIjoiLm1haWxlci5odW1ibGVidW5kb=
+GUuY29tIiwiY2UiOjg2NDAwLCJ0ayI6Imh1bWJsZWJ1bmRsZWxpdmUiLCJtdGxJRCI6IjY4ZTZj=
+YTA3MzQ2ODk2OGI2MzA3ZjM5OSIsImxpbmtVcmwiOiJodHRwczpcL1wvd3d3Lmh1bWJsZWJ1bmR=
+sZS5jb21cL3NvZnR3YXJlXC9uZW9uLW5vaXItZWxpdGUtcGhvdG9zLXdpdGgtbHVtaW5hci1uZW=
+8tc29mdHdhcmU_bWNJRD0xMDI6NjhlNmM2ZGRmMzYyNjRhYTk5MDU5NzAyOm90OjVmYTIwNzdhN=
+zMwZDI1ZjA3MmJmYjJlMzoxJmxpbmtJRD17JGxpbmtJRH0mdXRtX3NvdXJjZT1IdW1ibGUrQnVu=
+ZGxlK05ld3NsZXR0ZXImdXRtX2NvbnRlbnQ9Y3RhX2J1dHRvbiZ1dG1fbWVkaXVtPWVtYWlsJnV=
+0bV9jYW1wYWlnbj0yMDI1MTAwOF93b3JsZG9mZGFya25lc3NkaWdpdGFsX25lb25hbmRub2lyX3=
+JlbWluZGVyIn0&amp;jwtS=3Do8WgiS2XiMhZRWWrOHa9qunQRSXKHLc7eOirIactmew"><img =
+src=3D"https://images.cordial.com/102/600x366/Neon_And_Noir_Email_Copy.png"=
+ width=3D"600" alt=3D"Within this exceptional bundle, you=E2=80=99ll get th=
+e base software, expressive presets, dynamic overlays, and more! Add profes=
+sional-quality edits to your photos and help support Code.org with your pur=
+chase." border=3D"0" style=3D"display:block;max-width:600px;"></a></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table></div></div>
+<!-- =3D=3D //EDITABLE AREA =3D=3D -->
+
+<!-- =3D=3D Spacer1 Section =3D=3D -->
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" clas=
+s=3D"em_full_wrap" style=3D"table-layout:fixed;background-color:#272930;" b=
+gcolor=3D"#272930">
+  <tr>
+    <td align=3D"center" valign=3D"top"><table align=3D"center" width=3D"60=
+0" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"em_main_table"=
+ style=3D"width:600px;">
+        <tr>
+          <td valign=3D"top" align=3D"center"><table width=3D"100%" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+
+
+
+<!-- =3D=3D Footer Section =3D=3D -->
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" clas=
+s=3D"em_full_wrap" style=3D"table-layout:fixed;background-color:#272930;" b=
+gcolor=3D"#272930">
+  <tr>
+    <td align=3D"center" valign=3D"top"><table align=3D"center" width=3D"60=
+0" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"em_main_table"=
+ style=3D"width:600px;">
+        <tr>
+          <td valign=3D"top" align=3D"center"><table width=3D"100%" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+              <tr>
+                <td valign=3D"top" align=3D"center" background=3D"https://i=
+mages.cordial.com/102/600x230/humble_bg1.jpg" height=3D"230" style=3D"heigh=
+t:230px;background-size:cover;background-repeat:no-repeat;background-positi=
+on:center;"><!--[if gte mso 9]>
+  <v:image xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"true" stroke=
+=3D"false" style=3D" border: 0;display: inline-block; width: 600px; height:=
+ 230px;" src=3D"images/humble_bg1.jpg" />
+  <v:rect xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"true" stroke=3D=
+"false" style=3D" border: 0;display: inline-block;position: absolute; width=
+: 600px; height:230px;">
+    <v:fill  opacity=3D"0%" color=3D"#000000"  />
+    <v:textbox inset=3D"0,0,0,0">
+      <![endif]-->
+      <!--https://d.mailer.humblebundle.com/optout/index.php?mcID=3D102:68e=
+6c6ddf36264aa99059702:ot:5fa2077a730d25f072bfb2e3:1-->
+                 =20
+                 =20
+                  <table width=3D"100%" border=3D"0" cellspacing=3D"0" cell=
+padding=3D"0">
+                    <tr>
+                      <td width=3D"25" style=3D"width:25px;" class=3D"em_si=
+de20">=C2=A0</td>
+                      <td valign=3D"top" align=3D"center"><table width=3D"1=
+00%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+                          <tr>
+                            <td height=3D"10" style=3D"height:10px;font-siz=
+e:0px;line-height:0px;"><img src=3D"https://images.cordial.com/102/1x1/spac=
+er.gif" width=3D"1" height=3D"1" alt border=3D"0" style=3D"display:block;">=
+</td>
+                          </tr>
+                          <tr>
+                            <td valign=3D"top" align=3D"center"><table alig=
+n=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+                                <tr>
+                                  <td valign=3D"top" align=3D"center"><a da=
+ta-crdl-variant=3D"" target=3D"_blank" style=3D"text-decoration:none;" href=
+=3D"https://e.mailer.humblebundle.com/c2/102:68e6c6ddf36264aa99059702:ot:5f=
+a2077a730d25f072bfb2e3:1/e21198d3?jwtH=3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni=
+J9&amp;jwtP=3DeyJpYXQiOjE3NTk5NTg4MzUsImNkIjoiLm1haWxlci5odW1ibGVidW5kbGUuY=
+29tIiwiY2UiOjg2NDAwLCJ0ayI6Imh1bWJsZWJ1bmRsZWxpdmUiLCJtdGxJRCI6IjY4ZTZjYTA3=
+MzQ2ODk2OGI2MzA3ZjM5YSIsImxpbmtVcmwiOiJodHRwczpcL1wvd3d3LmZhY2Vib29rLmNvbVw=
+vaHVtYmxlYnVuZGxlXC8_bWNJRD0xMDI6NjhlNmM2ZGRmMzYyNjRhYTk5MDU5NzAyOm90OjVmYT=
+IwNzdhNzMwZDI1ZjA3MmJmYjJlMzoxJmxpbmtJRD17JGxpbmtJRH0mdXRtX3NvdXJjZT1IdW1ib=
+GUrQnVuZGxlK05ld3NsZXR0ZXImdXRtX2NvbnRlbnQ9Y3RhX2J1dHRvbiZ1dG1fbWVkaXVtPWVt=
+YWlsJnV0bV9jYW1wYWlnbj0yMDI1MTAwOF93b3JsZG9mZGFya25lc3NkaWdpdGFsX25lb25hbmR=
+ub2lyX3JlbWluZGVyIn0&amp;jwtS=3DFVwniEIMFxZiDdaKCTbRezDUcTMpnQvsgrPJfgvS1Gg=
+"><img src=3D"https://images.cordial.com/102/86x85/humble_icon1.png" width=
+=3D"43" alt=3D"FB" border=3D"0" style=3D"display:block;max-width:43px;font-=
+family:Arial, sans-serif;font-size:14px;line-height:16px;color:#ffffff;"></=
+a></td>
+                                  <td width=3D"30" style=3D"width:30px;">=
+=C2=A0</td>
+                                  <td valign=3D"top" align=3D"center"><a da=
+ta-crdl-variant=3D"" target=3D"_blank" style=3D"text-decoration:none;" href=
+=3D"https://e.mailer.humblebundle.com/c2/102:68e6c6ddf36264aa99059702:ot:5f=
+a2077a730d25f072bfb2e3:1/e2beb413?jwtH=3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni=
+J9&amp;jwtP=3DeyJpYXQiOjE3NTk5NTg4MzUsImNkIjoiLm1haWxlci5odW1ibGVidW5kbGUuY=
+29tIiwiY2UiOjg2NDAwLCJ0ayI6Imh1bWJsZWJ1bmRsZWxpdmUiLCJtdGxJRCI6IjY4ZTZjYTA3=
+MzQ2ODk2OGI2MzA3ZjM5YiIsImxpbmtVcmwiOiJodHRwczpcL1wvdHdpdHRlci5jb21cL2h1bWJ=
+sZT9tY0lEPTEwMjo2OGU2YzZkZGYzNjI2NGFhOTkwNTk3MDI6b3Q6NWZhMjA3N2E3MzBkMjVmMD=
+cyYmZiMmUzOjEmbGlua0lEPXskbGlua0lEfSZ1dG1fc291cmNlPUh1bWJsZStCdW5kbGUrTmV3c=
+2xldHRlciZ1dG1fY29udGVudD1jdGFfYnV0dG9uJnV0bV9tZWRpdW09ZW1haWwmdXRtX2NhbXBh=
+aWduPTIwMjUxMDA4X3dvcmxkb2ZkYXJrbmVzc2RpZ2l0YWxfbmVvbmFuZG5vaXJfcmVtaW5kZXI=
+ifQ&amp;jwtS=3DxAiBGbt1X9wbTRG_S6he9f49aWImFgCdkO6t5WT0kKo"><img src=3D"htt=
+ps://images.cordial.com/102/86x86/humble_icon2.png" width=3D"43" alt=3D"TW"=
+ border=3D"0" style=3D"display:block;max-width:43px;font-family:Arial, sans=
+-serif;font-size:14px;line-height:16px;color:#ffffff;"></a></td>
+                                  <td width=3D"30" style=3D"width:30px;">=
+=C2=A0</td>
+                                  <td valign=3D"top" align=3D"center"><a da=
+ta-crdl-variant=3D"" target=3D"_blank" style=3D"text-decoration:none;" href=
+=3D"https://e.mailer.humblebundle.com/c2/102:68e6c6ddf36264aa99059702:ot:5f=
+a2077a730d25f072bfb2e3:1/9dd3fcf2?jwtH=3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni=
+J9&amp;jwtP=3DeyJpYXQiOjE3NTk5NTg4MzUsImNkIjoiLm1haWxlci5odW1ibGVidW5kbGUuY=
+29tIiwiY2UiOjg2NDAwLCJ0ayI6Imh1bWJsZWJ1bmRsZWxpdmUiLCJtdGxJRCI6IjY4ZTZjYTA3=
+MzQ2ODk2OGI2MzA3ZjM5YyIsImxpbmtVcmwiOiJodHRwczpcL1wvd3d3Lmluc3RhZ3JhbS5jb21=
+cL2h1bWJsZWJ1bmRsZT9tY0lEPTEwMjo2OGU2YzZkZGYzNjI2NGFhOTkwNTk3MDI6b3Q6NWZhMj=
+A3N2E3MzBkMjVmMDcyYmZiMmUzOjEmbGlua0lEPXskbGlua0lEfSZ1dG1fc291cmNlPUh1bWJsZ=
+StCdW5kbGUrTmV3c2xldHRlciZ1dG1fY29udGVudD1jdGFfYnV0dG9uJnV0bV9tZWRpdW09ZW1h=
+aWwmdXRtX2NhbXBhaWduPTIwMjUxMDA4X3dvcmxkb2ZkYXJrbmVzc2RpZ2l0YWxfbmVvbmFuZG5=
+vaXJfcmVtaW5kZXIifQ&amp;jwtS=3D00u7ezgLwRYfyxHZDHQpqnLLZ4VeE3lpqmkqJc7p4u8"=
+><img src=3D"https://images.cordial.com/102/86x85/humble_icon3.png" width=
+=3D"43" alt=3D"INSTA" border=3D"0" style=3D"display:block;max-width:43px;fo=
+nt-family:Arial, sans-serif;font-size:14px;line-height:16px;color:#ffffff;"=
+></a></td>
+                                  <td width=3D"30" style=3D"width:30px;">=
+=C2=A0</td>
+                                  <td valign=3D"top" align=3D"center"><a da=
+ta-crdl-variant=3D"" target=3D"_blank" style=3D"text-decoration:none;" href=
+=3D"https://e.mailer.humblebundle.com/c2/102:68e6c6ddf36264aa99059702:ot:5f=
+a2077a730d25f072bfb2e3:1/f3135bea?jwtH=3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni=
+J9&amp;jwtP=3DeyJpYXQiOjE3NTk5NTg4MzUsImNkIjoiLm1haWxlci5odW1ibGVidW5kbGUuY=
+29tIiwiY2UiOjg2NDAwLCJ0ayI6Imh1bWJsZWJ1bmRsZWxpdmUiLCJtdGxJRCI6IjY4ZTZjYTA3=
+MzQ2ODk2OGI2MzA3ZjM5ZCIsImxpbmtVcmwiOiJodHRwczpcL1wvd3d3LnR3aXRjaC50dlwvaHV=
+tYmxlP21jSUQ9MTAyOjY4ZTZjNmRkZjM2MjY0YWE5OTA1OTcwMjpvdDo1ZmEyMDc3YTczMGQyNW=
+YwNzJiZmIyZTM6MSZsaW5rSUQ9eyRsaW5rSUR9JnV0bV9zb3VyY2U9SHVtYmxlK0J1bmRsZStOZ=
+XdzbGV0dGVyJnV0bV9jb250ZW50PWN0YV9idXR0b24mdXRtX21lZGl1bT1lbWFpbCZ1dG1fY2Ft=
+cGFpZ249MjAyNTEwMDhfd29ybGRvZmRhcmtuZXNzZGlnaXRhbF9uZW9uYW5kbm9pcl9yZW1pbmR=
+lciJ9&amp;jwtS=3DaK3VpBXpNyDggwIoXivczCwmVMq9LjMcV0v1pejNTeU"><img src=3D"h=
+ttps://images.cordial.com/102/86x85/humble_icon4.png" width=3D"43" alt=3D"T=
+WITCH" border=3D"0" style=3D"display:block;max-width:43px;font-family:Arial=
+, sans-serif;font-size:14px;line-height:16px;color:#ffffff;"></a></td>
+                                  <td width=3D"30" style=3D"width:30px;">=
+=C2=A0</td>
+                                  <td valign=3D"top" align=3D"center"><a da=
+ta-crdl-variant=3D"" target=3D"_blank" style=3D"text-decoration:none;" href=
+=3D"https://e.mailer.humblebundle.com/c2/102:68e6c6ddf36264aa99059702:ot:5f=
+a2077a730d25f072bfb2e3:1/4bf4227a?jwtH=3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni=
+J9&amp;jwtP=3DeyJpYXQiOjE3NTk5NTg4MzUsImNkIjoiLm1haWxlci5odW1ibGVidW5kbGUuY=
+29tIiwiY2UiOjg2NDAwLCJ0ayI6Imh1bWJsZWJ1bmRsZWxpdmUiLCJtdGxJRCI6IjY4ZTZjYTA3=
+MzQ2ODk2OGI2MzA3ZjM5ZSIsImxpbmtVcmwiOiJodHRwczpcL1wvYmxvZy5odW1ibGVidW5kbGU=
+uY29tXC9lbj9tY0lEPTEwMjo2OGU2YzZkZGYzNjI2NGFhOTkwNTk3MDI6b3Q6NWZhMjA3N2E3Mz=
+BkMjVmMDcyYmZiMmUzOjEmbGlua0lEPXskbGlua0lEfSZ1dG1fc291cmNlPUh1bWJsZStCdW5kb=
+GUrTmV3c2xldHRlciZ1dG1fY29udGVudD1jdGFfYnV0dG9uJnV0bV9tZWRpdW09ZW1haWwmdXRt=
+X2NhbXBhaWduPTIwMjUxMDA4X3dvcmxkb2ZkYXJrbmVzc2RpZ2l0YWxfbmVvbmFuZG5vaXJfcmV=
+taW5kZXIifQ&amp;jwtS=3D1t03TtdgRbIlv5q2TbD98rz6gICCymafmSQ7K5Vd49k"><img sr=
+c=3D"https://images.cordial.com/102/86x85/humble_icon5.png" width=3D"43" al=
+t=3D"BLOG" border=3D"0" style=3D"display:block;max-width:43px;font-family:A=
+rial, sans-serif;font-size:14px;line-height:16px;color:#ffffff;"></a></td>
+                                </tr>
+                              </table></td>
+                          </tr>
+                        =20
+                        =20
+                        =20
+                        =20
+                        =20
+                          <tr>
+                            <td height=3D"50" style=3D"height:50px;">=C2=A0=
+</td>
+                          </tr>
+                          <tr>
+                          =20
+                                                       <td valign=3D"top" a=
+lign=3D"center" class=3D"em_defaultlink em_font1" style=3D"font-family:'Ope=
+n Sans', Arial, sans-serif;font-size:12px;line-height:16px; color:#C2CDEE;"=
+>This email was sent to <a data-crdl-variant=3D"" style=3D"text-decoration:=
+none;color:#169FE3;font-weight:bold;" href=3D"https://e.mailer.humblebundle=
+=2Ecom/c2/102:68e6c6ddf36264aa99059702:=
+ot:5fa2077a730d25f072bfb2e3:1/edfde789=
+?jwtH=3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&amp;jwtP=3DeyJpYXQiOjE3NTk5NTg=
+4MzUsImNkIjoiLm1haWxlci5odW1ibGVidW5kbGUuY29tIiwiY2UiOjg2NDAwLCJ0ayI6Imh1bW=
+JsZWJ1bmRsZWxpdmUiLCJtdGxJRCI6IjY4ZTZjYTA3MzQ2ODk2OGI2MzA3ZjM5ZiIsImxpbmtVc=
+mwiOiJtYWlsdG86bGllbmNmQGdtYWlsLmNvbSJ9&amp;jwtS=3DiL9uQ3qJXPAPQ8kvmpBMxN0O=
+qCWt6UvFDNljDduUVA4">liencf@gmail.com</a></td>
+                          </tr>
+                          <tr>
+                            <td height=3D"18" style=3D"height:18px;font-siz=
+e:0px;line-height:0px;"><img src=3D"images/spacer.gif" width=3D"1" height=
+=3D"1" alt border=3D"0" style=3D"display:block;"></td>
+                          </tr>
+                          <tr>
+                            <td valign=3D"top" align=3D"center" class=3D"em=
+_defaultlink_u em_font1" style=3D"font-family:'Open Sans', Arial, sans-seri=
+f;font-size:12px;line-height:16px; color:#C2CDEE;"><a data-crdl-variant=3D"=
+" target=3D"_blank" style=3D"text-decoration:underline;color:#C2CDEE;" href=
+=3D"https://e.mailer.humblebundle.com/c2/102:68e6c6ddf36264aa99059702:ot:5f=
+a2077a730d25f072bfb2e3:1/6257c126?jwtH=3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni=
+J9&amp;jwtP=3DeyJpYXQiOjE3NTk5NTg4MzUsImNkIjoiLm1haWxlci5odW1ibGVidW5kbGUuY=
+29tIiwiY2UiOjg2NDAwLCJ0ayI6Imh1bWJsZWJ1bmRsZWxpdmUiLCJtdGxJRCI6IjY4ZTZjYTA3=
+MzQ2ODk2OGI2MzA3ZjNhMCIsImxpbmtVcmwiOiJodHRwczpcL1wvd3d3Lmh1bWJsZWJ1bmRsZS5=
+jb21cL25ld3NsZXR0ZXItdXBkYXRlP2lkPTVmYTIwNzdhNzMwZDI1ZjA3MmJmYjJlMyZ1bnN1Yj=
+0xJm1jSUQ9MTAyOjY4ZTZjNmRkZjM2MjY0YWE5OTA1OTcwMjpvdDo1ZmEyMDc3YTczMGQyNWYwN=
+zJiZmIyZTM6MSZsaW5rSUQ9eyRsaW5rSUR9JnV0bV9zb3VyY2U9SHVtYmxlK0J1bmRsZStOZXdz=
+bGV0dGVyJnV0bV9jb250ZW50PWN0YV9idXR0b24mdXRtX21lZGl1bT1lbWFpbCZ1dG1fY2FtcGF=
+pZ249MjAyNTEwMDhfd29ybGRvZmRhcmtuZXNzZGlnaXRhbF9uZW9uYW5kbm9pcl9yZW1pbmRlci=
+J9&amp;jwtS=3DCcGzZ2a3RdjxL2WIf9mp7rfRr6sw8dixhXqpNbSw3pY">Unsubscribe</a> =
+| <a data-crdl-variant=3D"" target=3D"_blank" style=3D"text-decoration:unde=
+rline;color:#C2CDEE;" href=3D"https://e.mailer.humblebundle.com/c2/102:68e6=
+c6ddf36264aa99059702:ot:5fa2077a730d25f072bfb2e3:1/7bbb0b1e?jwtH=3DeyJ0eXAi=
+OiJKV1QiLCJhbGciOiJIUzI1NiJ9&amp;jwtP=3DeyJpYXQiOjE3NTk5NTg4MzUsImNkIjoiLm1=
+haWxlci5odW1ibGVidW5kbGUuY29tIiwiY2UiOjg2NDAwLCJ0ayI6Imh1bWJsZWJ1bmRsZWxpdm=
+UiLCJtdGxJRCI6IjY4ZTZjYTA3MzQ2ODk2OGI2MzA3ZjNhMSIsImxpbmtVcmwiOiJodHRwczpcL=
+1wvd3d3Lmh1bWJsZWJ1bmRsZS5jb21cL25ld3NsZXR0ZXItdXBkYXRlP2lkPTVmYTIwNzdhNzMw=
+ZDI1ZjA3MmJmYjJlMyZtY0lEPTEwMjo2OGU2YzZkZGYzNjI2NGFhOTkwNTk3MDI6b3Q6NWZhMjA=
+3N2E3MzBkMjVmMDcyYmZiMmUzOjEmbGlua0lEPXskbGlua0lEfSZ1dG1fc291cmNlPUh1bWJsZS=
+tCdW5kbGUrTmV3c2xldHRlciZ1dG1fY29udGVudD1jdGFfYnV0dG9uJnV0bV9tZWRpdW09ZW1ha=
+WwmdXRtX2NhbXBhaWduPTIwMjUxMDA4X3dvcmxkb2ZkYXJrbmVzc2RpZ2l0YWxfbmVvbmFuZG5v=
+aXJfcmVtaW5kZXIifQ&amp;jwtS=3D9bKPbUE-k1sikJSFkxii_aDExahpBFnLk1aY4zIOAps">=
+Email Preferences</a> | <a data-crdl-variant=3D"" target=3D"_blank" style=
+=3D"text-decoration:underline;color:#C2CDEE;" href=3D"https://e.mailer.humb=
+lebundle.com/c2/102:68e6c6ddf36264aa99059702:ot:5fa2077a730d25f072bfb2e3:1/=
+0e5e49fc?jwtH=3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&amp;jwtP=3DeyJpYXQiOjE=
+3NTk5NTg4MzUsImNkIjoiLm1haWxlci5odW1ibGVidW5kbGUuY29tIiwiY2UiOjg2NDAwLCJ0ay=
+I6Imh1bWJsZWJ1bmRsZWxpdmUiLCJtdGxJRCI6IjY4ZTZjYTA3MzQ2ODk2OGI2MzA3ZjNhMiIsI=
+mxpbmtVcmwiOiJodHRwczpcL1wvc3VwcG9ydC5odW1ibGVidW5kbGUuY29tXC9oY1wvZW4tdXNc=
+L3JlcXVlc3RzXC9uZXc_bWNJRD0xMDI6NjhlNmM2ZGRmMzYyNjRhYTk5MDU5NzAyOm90OjVmYTI=
+wNzdhNzMwZDI1ZjA3MmJmYjJlMzoxJmxpbmtJRD17JGxpbmtJRH0mdXRtX3NvdXJjZT1IdW1ibG=
+UrQnVuZGxlK05ld3NsZXR0ZXImdXRtX2NvbnRlbnQ9Y3RhX2J1dHRvbiZ1dG1fbWVkaXVtPWVtY=
+WlsJnV0bV9jYW1wYWlnbj0yMDI1MTAwOF93b3JsZG9mZGFya25lc3NkaWdpdGFsX25lb25hbmRu=
+b2lyX3JlbWluZGVyIn0&amp;jwtS=3DvLvRDj704Bgo7i4hgncfZaf5Val8qp-orjhkDmWRO8c"=
+>Contact Support</a></td>
+                          </tr>
+                          <tr>
+                            <td height=3D"18" style=3D"height:18px;font-siz=
+e:0px;line-height:0px;"><img src=3D"images/spacer.gif" width=3D"1" height=
+=3D"1" alt border=3D"0" style=3D"display:block;"></td>
+                          </tr>
+                          <tr>
+                            <td valign=3D"top" align=3D"center" class=3D"em=
+_defaultlink em_font1" style=3D"font-family:'Open Sans', Arial, sans-serif;=
+font-size:12px;line-height:16px; color:#C2CDEE;">=C2=A9 2025 Humble Bundle =
+Inc.<br>
+                              2231 S. Barrington Avenue Los Angeles, CA 900=
+64</td>
+                          </tr>
+                        </table></td>
+                      <td width=3D"25" style=3D"width:25px;" class=3D"em_si=
+de20">=C2=A0</td>
+                    </tr>
+                  </table>
+                 =20
+                  <!--[if gte mso 9]>
+    </v:textbox>
+    </v:fill>
+  </v:rect>
+  </v:image>
+  <![endif]--></td></tr></table></td>
+              </tr>
+            </table></td>
+        </tr>
+        <tr>
+          <td class=3D"em_hide" style=3D"line-height:1px;min-width:600px;ba=
+ckground-color:#272930;"><img alt src=3D"images/spacer.gif" height=3D"1" wi=
+dth=3D"600" style=3D"max-height:1px; min-height:1px; display:block; width:6=
+00px; min-width:600px;" border=3D"0"></td>
+        </tr>
+      </table>
+ =20
+<img src=3D"https://e.mailer.humblebundle.com/o/p/102:68e6c6ddf36264aa99059=
+702:ot:5fa2077a730d25f072bfb2e3:1/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJp=
+YXQiOjE3NTk5NTg4MzV9.k58gHA8JU8vs1iOtljBTnf-O5aB-vq9RPfF7M1ddkeg" height=3D=
+1 width=3D1 /><img width=3D"1" height=3D"1" alt=3D"" src=3D"https://mg.mail=
+er.humblebundle.com/o/eJyEzU2OgzAMQOHTkGXl2Di2F1kgdRY9RsjPFInAiIGef9ReYNZPe=
+l8-yvq1veLPsZcrn8u-uRLHAM1nV6MXNmNVYveMliwHVg8swaSyEZOqjkmRi6m4JSIgewBFj-L5=
+ZgCgRtIozwVVhhF6WtZ63J5Xn9c6X1tZ6y3v3fX8uEcPONAUtIYcSmkUMIwpmQGbfNJ-DjRxSwg=
+iSQgKcgPBuc1YaaDJuyOuS91yG0b4fluf-Rn77-P-7v8D7hXxLwAA__8d-Uz_"></body></htm=
+l>

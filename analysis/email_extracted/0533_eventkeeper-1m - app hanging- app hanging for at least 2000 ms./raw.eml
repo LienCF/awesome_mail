@@ -1,0 +1,588 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7011:2011:b0:4d4:9739:2b92 with SMTP id sc17csp1021097mdb;
+        Sun, 2 Nov 2025 08:19:48 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEXWKPnWiYzRI+dTjUTdP9WL6RHeLqfvj9zufAB8VjKq364igOSOjctCrVtdqaJnzWNyh8B
+X-Received: by 2002:a05:6e02:1c01:b0:433:312e:e33c with SMTP id e9e14a558f8ab-433312ee500mr1428655ab.1.1762100387816;
+        Sun, 02 Nov 2025 08:19:47 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762100387; cv=none;
+        d=google.com; s=arc-20240605;
+        b=DAcyYaCm53ny7vfnJ+AYvi3Jq4s5Hlnbz/y+z+qJojOV1VL9j47j5SY/niGadInMa7
+         3rTCyI89vsDYSty6RsLzUtOGvP7DUfKngg1yhbgM5ExhPXPvxt2GlLFjoV2oaP4Yuje/
+         5DYxHMhEE+vNGCYATp8ETnzpVgWamdfZJuFH/mhr1xCd5FcSFAWy87NmHhJJ19gY/52x
+         bK8qH8wyJeT8nf0mJRIz3F6+KGFJtdSCiVmVrEaTEpUleIJcbQbD+0AtH+n/2BDXgQJ7
+         tgS+MAsjaAcu4EpWm3gG64ASTDSyKx6rLIHcmMe6syi89XXIkQOdT/P6yLK/UkGbnr77
+         Yc6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:reply-to:message-id:list-id:date:from:subject:mime-version
+         :dkim-signature:dkim-signature;
+        bh=Jd0Ldzm0b83Ad4oCXtZg6WTaHUXTmjX6Q3SKSEST6jI=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=iYdtHILiTvPHQpNA/u8sYtUhjgNRvHUZJhGij409K5i6s3TjJh9Ci14JSZ7bBJOqRb
+         w75//p9RIVyI8l1G3V40aNlgAwf9xwpEXGHUgvAjj/ysNtgOTkS4h41SseJHVri6T6q8
+         h9caE1/2uC0YqKVBvaGmYTurkuO8k0U4BkQGrKLe0tQYWimM8O5lpyVRIIWBA3TgGiRu
+         I8JV9p9EOfEeqU/cfir8CbeGpMGNCpsvpAlxYCxB0ZGLtpOwtCiJOqIzFCSNkc/3jdKO
+         vILQCeeVl5yoSurHqjhGj99SMYl7VxhZObtBXlvxrCTBiauyyi+whXhav0D4PXDVsggn
+         uR9A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@getsentry.com header.s=m1 header.b=kfLVBW5U;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b="iE/AqCbw";
+       spf=pass (google.com: domain of bounces+2307627-93ed-liencf=gmail.com@md.getsentry.com designates 167.89.86.73 as permitted sender) smtp.mailfrom="bounces+2307627-93ed-liencf=gmail.com@md.getsentry.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=md.getsentry.com
+Return-Path: <bounces+2307627-93ed-liencf=gmail.com@md.getsentry.com>
+Received: from o2.md.getsentry.com (o2.md.getsentry.com. [167.89.86.73])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-43324c8724asi28292545ab.52.2025.11.02.08.19.47
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 02 Nov 2025 08:19:47 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+2307627-93ed-liencf=gmail.com@md.getsentry.com designates 167.89.86.73 as permitted sender) client-ip=167.89.86.73;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@getsentry.com header.s=m1 header.b=kfLVBW5U;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b="iE/AqCbw";
+       spf=pass (google.com: domain of bounces+2307627-93ed-liencf=gmail.com@md.getsentry.com designates 167.89.86.73 as permitted sender) smtp.mailfrom="bounces+2307627-93ed-liencf=gmail.com@md.getsentry.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=md.getsentry.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=getsentry.com;
+	h=content-type:mime-version:subject:from:date:list-id:reply-to:to:cc:
+	content-type:date:feedback-id:from:subject:to;
+	s=m1; bh=Jd0Ldzm0b83Ad4oCXtZg6WTaHUXTmjX6Q3SKSEST6jI=;
+	b=kfLVBW5UHi9EEVgJVseQlnC6GZoimBpn4pcQ+7Z26YUA17ja+YF6fk/d2cWBK/ZajhDP
+	s23CUnhZTgay4U/OdOQL5jFW8vUgeBJvff9begGtNqXaT0fKVyoyf9nJTEkN7H+pQs02Ik
+	wrnJgT/OgwQHIVs/QCkVPyF4qVoWrVlgU=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:mime-version:subject:from:date:list-id:reply-to:to:cc:
+	content-type:date:feedback-id:from:subject:to;
+	s=smtpapi; bh=Jd0Ldzm0b83Ad4oCXtZg6WTaHUXTmjX6Q3SKSEST6jI=;
+	b=iE/AqCbw3Ei4lumAsHBmr7++RSoToIx148ss/s9K4gH+G8CfWLMzxfvj4fe0klMfr4mR
+	xYWpXUPe65ZkJHOAC9ebitPDdp6g3asX1oebqU6y4jNEaVKEMtoVG75WFvBU9QqScvLsYO
+	slJJrQgGGjNo+Br5pMMSJ89N1rCA1s9CU=
+Received: by recvd-555fbdc5b7-67khh with SMTP id recvd-555fbdc5b7-67khh-1-690784A3-D
+	2025-11-02 16:19:47.168352054 +0000 UTC m=+13044918.728964482
+Received: from task-default-worker-598ff56c99-cvdd4 (unknown)
+	by geopod-ismtpd-13 (SG) with ESMTP id 1elzwWcXSae930EvEEfdcg
+	for <liencf@gmail.com>; Sun, 02 Nov 2025 16:19:47.060 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3997557911136853804=="
+MIME-Version: 1.0
+Subject: EVENTKEEPER-1M - App Hanging: App hanging for at least 2000 ms.
+From: Sentry <noreply@md.getsentry.com>
+Date: Sun, 02 Nov 2025 16:19:47 +0000 (UTC)
+X-Sentry-Project: eventkeeper
+X-Sentry-Logger: 
+X-Sentry-Logger-Level: error
+X-Sentry-Reply-To: 
+ 6991781307.4509614492876800+_qw9q3ukiyvlsfxc_xf-1dgzu8q@reply.getsentry.com
+List-Id: <eventkeeper.xamide.getsentry.com>
+Message-Id: <20251102161945.3670375.91727@md.getsentry.com>
+Reply-To:
+	6991781307.4509614492876800+_qw9q3ukiyvlsfxc_xf-1dgzu8q@reply.getsentry.com
+X-SG-EID: 
+ =?us-ascii?Q?u001=2EsDAWlfbXXGupROvum8uzjYcMZKVuuGbL=2Fank7dazu0rv+KCUrXlIMNCGS?=
+ =?us-ascii?Q?DEZFSq2Cj0upQJwXkoZ4OH517+5ZRh7T6bb2OFY?=
+ =?us-ascii?Q?cFWRqsdWTTCDc1FnWADYlicD8iu7q6cx9WaJbuc?=
+ =?us-ascii?Q?rSo44BeWKJnr=2FR7B3unhqj0MH+oZsUiE34OT4g2?=
+ =?us-ascii?Q?RoGMN0G2l9FDT7mbXj09mdutlMX66xEAvENAEAS?=
+ =?us-ascii?Q?z2wc08HOUGM9SRirJeDlWI=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BmCpXSGYWFVyHF8CS5oYH=2FUwZe8Hw1ioxL=2FBM?=
+ =?us-ascii?Q?g7qoaDKK8qm9hQEh9zgSv=2FCRRMNaw=3D=3D?=
+To: liencf@gmail.com
+X-Entity-ID: u001.qFBnU0fmuUhhSftCrEUw1Q==
+
+--===============3997557911136853804==
+Content-Type: text/plain; charset=us-ascii
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+Details
+-------
+
+https://xamide.sentry.io/issues/6991781307/?referrer=alert_email&alert_type=email&alert_timestamp=1762100385797&alert_rule_id=16120712&notification_uuid=fdc55a35-4cd0-4755-a3e1-b8ca51e750ee&environment=production
+
+
+
+Tags
+----
+
+* app.device = a3b3f0ff7a7c1ebc1dd7fe3c6b5077d30f34ed60
+* device = iPhone17,2
+* device.class = 3
+* device.family = iOS
+* environment = production
+* level = error
+* mechanism = AppHang
+* os = iOS 26.1
+* os.build = 23B82
+* os.name = iOS
+* os.rooted = no
+* platform = ios_widget_extension
+* sentry:dist = 26
+* sentry:release = 1.0.2+26
+* sentry:user = id:4B265A7B-BDC7-4010-947E-396D420F2FD2
+* widget_family = ios_widget
+* widget_type = countdown
+
+
+Exception
+-----------
+
+App Hanging: App hanging for at least 2000 ms.
+  ?, in __strlcpy_chk
+  ?, in BOMStorageOpenWithSys
+  ?, in -[CUICommonAssetStorage initWithPath:forWriting:]
+  ?, in -[CUIStructuredThemeStore initWithPath:]
+  ?, in __RunTimeThemeRefForBundleIdentifierAndName_block_invoke
+...
+(95 additional frame(s) were not displayed)
+
+
+User
+-----------
+
+
+
+
+
+
+Unsubscribe:
+
+--===============3997557911136853804==
+Content-Type: text/html; charset=us-ascii
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html style="font-weight: 400">
+<head style="font-weight: 400">
+  <meta charset="utf-8" style="font-weight: 400">
+  <meta name="viewport" content="width=device-width, initial-scale=1" style="font-weight: 400">
+
+  
+
+<style type="text/css" style="font-weight: 400">
+  @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+</style>
+
+
+  
+  
+  <style type="text/css" style="font-weight: 400">
+    @media only screen and (max-device-width: 480px) {
+      /* Hide CTA in header on mobile */
+      .header-buttons .integration-link {
+        display: none !important;
+      }
+      .banner {
+        display: none !important;
+      }
+    }
+    @media only screen and (max-device-width: 768px) {
+      .text-desktop-only {
+        display: none !important;
+      }
+    }
+  </style>
+
+
+</head>
+<body class="" style='font-weight: 400; background-image: url(https://s1.sentry-cdn.com/_static/584c6e92aae8dd52cc69bf2ef5c95755/sentry/images/email/sentry-pattern.png); width: 100%; font-size: 16px; font-family: "Lato", "Helvetica Neue", helvetica, sans-serif; background-color: #fff; color: #2f2936; -webkit-font-smoothing: antialiased; margin: 0; padding: 0'>
+<div class="preheader" style="font-weight: 400; display: none; font-size: 0; max-height: 0; line-height: 0; mso-hide: all; padding: 0">
+  New issue from eventkeeper.
+</div>
+<table class="main" style='font-weight: 400; width: 100%; border-collapse: separate; font-size: 16px; font-family: "Lato", "Helvetica Neue", helvetica, sans-serif; background-color: #fff; color: #2f2936; -webkit-font-smoothing: antialiased; max-width: 700px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border-radius: 4px; border: 1px solid #c7d0d4; border-spacing: 0; margin: 15px auto; padding: 0'>
+  <tr style="font-weight: 400">
+    <td style="font-weight: 400; text-align: center; margin: 0; padding: 0">
+      <div class="header" style="font-weight: 400; font-size: 14px; border-bottom: 1px solid #dee7eb; padding: 23px 0">
+        <div class="container" style="font-weight: 400; max-width: 600px; text-align: left; margin: 0 auto; padding: 0 20px">
+          
+  <div class="header-with-buttons" style="font-weight: 400; display: inline-block; width: 100%; align-items: center">
+    
+          <h1 style="font-weight: normal; float: left; font-size: 38px; line-height: 42px; color: #000; letter-spacing: -1px; margin: 0; padding: 0">
+            <a href="https://sentry.io" style="font-weight: 500; color: #4674ca; text-decoration: none"><img src="https://s1.sentry-cdn.com/_static/584c6e92aae8dd52cc69bf2ef5c95755/sentry/images/email/sentry_logo_full.png" width="125px" height="29px" alt="Sentry" style="font-weight: 400"></a>
+          </h1>
+          
+    <div class="header-buttons" style="font-weight: 400; display: flex; height: fit-content; float: right">
+      
+        <a href="https://xamide.sentry.io/settings/integrations/slack/?referrer=alert_email&amp;notification_uuid=fdc55a35-4cd0-4755-a3e1-b8ca51e750ee" class="btn btn-default integration-link" style="font-weight: 600; color: #493e54; text-decoration: none; background-color: #fdfcfd; border: 1px solid #c1b8ca; box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05); line-height: 18px; border-radius: 4px; display: flex; font-size: 16px; align-items: center; float: right; margin: 3px 0; padding: 8px 15px">
+          <img src="https://s1.sentry-cdn.com/_static/584c6e92aae8dd52cc69bf2ef5c95755/sentry/images/email/slack-logo.png" class="logo-small" style="font-weight: 400; width: 16px; height: 16px; margin: auto 8px auto 0">
+          Set up in Slack
+        </a>
+      
+      <a href="https://xamide.sentry.io/issues/6991781307/?referrer=alert_email&amp;alert_type=email&amp;alert_timestamp=1762100385797&amp;alert_rule_id=16120712&amp;notification_uuid=fdc55a35-4cd0-4755-a3e1-b8ca51e750ee&amp;environment=production" class="btn view-on-sentry" style="font-weight: 600; color: #fff; text-decoration: none; background-color: #6C5FC7; border: 1px solid #413496; box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08); line-height: 18px; border-radius: 4px; display: inline-block; font-size: 16px; float: right; margin: 3px 0 3px 8px; padding: 8px 15px">View on Sentry</a>
+    </div>
+  </div>
+
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr style="font-weight: 400">
+    <td style="font-weight: 400; text-align: center; margin: 0; padding: 0">
+      
+
+
+<div class="container" style="font-weight: 400; max-width: 600px; text-align: left; margin: 0 auto; padding: 0 20px">
+  <div class="inner" style="font-weight: 400; background-color: #fff; padding: 30px 0 20px">
+    <h2 style="font-weight: 700; font-size: 22px; margin: 0 0 4px">
+        
+        New issue
+        
+    </h2>
+    
+      <div class="event-notification-reason" style="font-weight: 400; color: #80708F; font-size: 14px; margin-bottom: 15px">
+        We notified recently active members in the eventkeeper project of this issue
+      </div>
+    
+
+    
+      <table class="event-list" style="font-weight: 400; width: 100%; border-collapse: collapse; text-align: left; margin: 0 0 15px">
+        <tr style="font-weight: 400">
+            <th colspan="2" style="font-weight: bold; text-align: left; min-width: 60px; color: #9CA3AD; text-transform: uppercase; font-size: 12px; border-bottom: 2px solid #E7EBEE; margin: 0 0 5px; padding: 2px 0 10px">Issue</th>
+        </tr>
+        <tr style="font-weight: 400">
+          <td class="event-detail" style="font-weight: 400; text-align: left; border-top: 1px solid #E7EBEE; line-height: 22px; width: 400px; margin: 0; padding: 10px 0">
+            <div class="issue" style="font-weight: 400; line-height: 22px">
+              
+                
+                  <div class="event-type error" style="font-weight: 400">
+                    <h3 style="font-weight: 700; font-size: 18px; line-height: 22px; margin: 0">
+                      
+                        <a href="https://xamide.sentry.io/issues/6991781307/?referrer=alert_email&amp;alert_type=email&amp;alert_timestamp=1762100385797&amp;alert_rule_id=16120712&amp;notification_uuid=fdc55a35-4cd0-4755-a3e1-b8ca51e750ee&amp;environment=production" style="font-weight: 600; color: #4674ca; text-decoration: none; font-size: 16px; margin-right: 10px">App Hanging</a>
+                        
+                        <br style="font-weight: 400">
+                        
+                          <small style="font-weight: 400; font-size: 14px; color: #968ba0">App hanging for at least 2000 ms.</small>
+                        
+                      
+                    </h3>
+                  </div>
+                
+              
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      
+        <div class="event" style="font-weight: 400; margin-bottom: 30px">
+          <div class="event-id" style="font-weight: 400; color: #889092; float: right">ID: 69a5c6790b694b54aec7b89363c5210c</div>
+            
+                <div class="event-date" style="font-weight: 400; color: #889092">Nov. 3, 2025, 12:14:31 a.m. CST</div>
+            
+        </div>
+      
+
+      
+      <div class="interface" style="font-weight: 400; margin-bottom: 30px">
+        <table style="font-weight: 400; width: 100%; border-collapse: separate; border-spacing: 5px; margin: 0 -5px">
+          <colgroup style="font-weight: 400">
+            <col style="font-weight: 400; width: 130px">
+          </colgroup>
+          <tbody style="font-weight: 400">
+            <tr style="font-weight: 400">
+              <th style="font-weight: 500; text-align: left; min-width: 60px; color: #968ba0; padding: 2px 0 0">Project</th>
+              <td style="font-weight: 400; text-align: left; background-color: #f4f5f6; border-radius: 3px; margin: 0 0 5px; padding: 5px 10px"><a href="https://xamide.sentry.io/issues/?project=4509630962532352" style="font-weight: 500; color: #4674ca; text-decoration: none">eventkeeper</a></td>
+            </tr>
+            
+              <tr style="font-weight: 400">
+                <th style="font-weight: 500; text-align: left; min-width: 60px; color: #968ba0; padding: 2px 0 0">environment</th>
+                <td style="font-weight: 400; text-align: left; background-color: #f4f5f6; border-radius: 3px; margin: 0 0 5px; padding: 5px 10px">production</td>
+              </tr>
+            
+            
+              <tr style="font-weight: 400">
+                <th style="font-weight: 500; text-align: left; min-width: 60px; color: #968ba0; padding: 2px 0 0">Level</th>
+                <td style="font-weight: 400; text-align: left; background-color: #f4f5f6; border-radius: 3px; margin: 0 0 5px; padding: 5px 10px">error</td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </div>
+
+
+      
+
+
+
+      
+
+      
+
+
+      
+    
+    <div class="interface" style="font-weight: 400; margin-bottom: 30px">
+      <h3 class="title" style="font-weight: 700; font-size: 18px; margin: 0 0 15px">Exception</h3>
+      <pre style='font-weight: normal; font-family: Menlo, Monaco, "Courier New", monospace; font-size: 14px; white-space: pre-wrap; background-color: #F4F5F6; color: #3D4649; border-radius: 4px; overflow-wrap: break-word; word-wrap: break-word; margin: 0 0 15px; padding: 15px'>App Hanging: App hanging for at least 2000 ms.
+  ?, in __strlcpy_chk
+  ?, in BOMStorageOpenWithSys
+  ?, in -[CUICommonAssetStorage initWithPath:forWriting:]
+  ?, in -[CUIStructuredThemeStore initWithPath:]
+  ?, in __RunTimeThemeRefForBundleIdentifierAndName_block_invoke
+...
+(95 additional frame(s) were not displayed)</pre>
+    </div>
+    
+    <div class="interface" style="font-weight: 400; margin-bottom: 30px">
+      <h3 class="title" style="font-weight: 700; font-size: 18px; margin: 0 0 15px">User</h3>
+      
+
+
+<table class="reset" style="font-weight: 400; width: 100%; border-collapse: collapse; border-spacing: 0; margin: 0 -5px">
+  <tr style="font-weight: 400">
+    <td style="font-weight: 400; text-align: left; background-color: #fff; border-radius: 3px; margin: 0 0 5px; padding: 0">
+      <table style="font-weight: 400; width: 100%; border-collapse: separate; border-spacing: 5px; margin: 0">
+        <colgroup style="font-weight: 400">
+          <col style="font-weight: 400; width: 130px">
+        </colgroup>
+        <tbody style="font-weight: 400">
+          
+            <tr style="font-weight: 400">
+              <th style="font-weight: 500; text-align: left; min-width: 60px; color: #968ba0; padding: 2px 0 0">ID:</th>
+              <td class="code" style="font-weight: 400; text-align: left; background-color: #f4f5f6; border-radius: 3px; margin: 0 0 5px; padding: 5px 10px">4B265A7B-BDC7-4010-947E-396D420F2FD2</td>
+            </tr>
+            
+          
+            <tr style="font-weight: 400">
+              <th style="font-weight: 500; text-align: left; min-width: 60px; color: #968ba0; padding: 2px 0 0">IP Address:</th>
+              <td class="code" style="font-weight: 400; text-align: left; background-color: #f4f5f6; border-radius: 3px; margin: 0 0 5px; padding: 5px 10px">133.106.37.136</td>
+            </tr>
+          
+          
+          
+          
+        </tbody>
+      </table>
+    </td>
+    
+  </tr>
+</table>
+
+    </div>
+    
+
+
+      
+        <h3 style="font-weight: 700; font-size: 18px; margin: 0 0 20px">Tags</h3>
+
+        <ul class="tag-list" style="font-weight: 400; list-style: none; margin: 0 0 20px; padding: 0">
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">app.device</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=app.device%3A%22a3b3f0ff7a7c1ebc1dd7fe3c6b5077d30f34ed60%22" style="font-weight: 500; color: #4674ca; text-decoration: none">a3b3f0ff7a7c1ebc1dd7fe3c6b5077d30f34ed60</a> 
+              
+              </span>
+          </li>
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">device</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=device%3A%22iPhone17%2C2%22" style="font-weight: 500; color: #4674ca; text-decoration: none">iPhone17,2</a> 
+              
+              </span>
+          </li>
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">device.class</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=device.class%3A%223%22" style="font-weight: 500; color: #4674ca; text-decoration: none">3</a> 
+              
+              </span>
+          </li>
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">device.family</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=device.family%3A%22iOS%22" style="font-weight: 500; color: #4674ca; text-decoration: none">iOS</a> 
+              
+              </span>
+          </li>
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">environment</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=environment%3A%22production%22" style="font-weight: 500; color: #4674ca; text-decoration: none">production</a> 
+              
+              </span>
+          </li>
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">level</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=level%3A%22error%22" style="font-weight: 500; color: #4674ca; text-decoration: none">error</a> 
+              
+              </span>
+          </li>
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">mechanism</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=mechanism%3A%22AppHang%22" style="font-weight: 500; color: #4674ca; text-decoration: none">AppHang</a> 
+              
+              </span>
+          </li>
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">os</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=os%3A%22iOS%2026.1%22" style="font-weight: 500; color: #4674ca; text-decoration: none">iOS 26.1</a> 
+              
+              </span>
+          </li>
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">os.build</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=os.build%3A%2223B82%22" style="font-weight: 500; color: #4674ca; text-decoration: none">23B82</a> 
+              
+              </span>
+          </li>
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">os.name</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=os.name%3A%22iOS%22" style="font-weight: 500; color: #4674ca; text-decoration: none">iOS</a> 
+              
+              </span>
+          </li>
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">os.rooted</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=os.rooted%3A%22no%22" style="font-weight: 500; color: #4674ca; text-decoration: none">no</a> 
+              
+              </span>
+          </li>
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">platform</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=platform%3A%22ios_widget_extension%22" style="font-weight: 500; color: #4674ca; text-decoration: none">ios_widget_extension</a> 
+              
+              </span>
+          </li>
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">dist</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=dist%3A%2226%22" style="font-weight: 500; color: #4674ca; text-decoration: none">26</a> 
+              
+              </span>
+          </li>
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">release</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=release%3A%221.0.2%2B26%22" style="font-weight: 500; color: #4674ca; text-decoration: none">1.0.2+26</a> 
+              
+              </span>
+          </li>
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">user</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=user%3A%22id%3A4B265A7B-BDC7-4010-947E-396D420F2FD2%22" style="font-weight: 500; color: #4674ca; text-decoration: none">id:4B265A7B-BDC7-4010-947E-396D420F2FD2</a> 
+              
+              </span>
+          </li>
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">widget_family</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=widget_family%3A%22ios_widget%22" style="font-weight: 500; color: #4674ca; text-decoration: none">ios_widget</a> 
+              
+              </span>
+          </li>
+        
+          <li style="font-weight: 400; display: inline-block; margin-right: 5px; margin-bottom: 10px; border-radius: 3px; background-color: #F4F5F6; padding: 5px 10px 6px">
+              <strong style="font-weight: 200">widget_type</strong>
+              <em style="font-weight: 400">=</em>
+              <span style="font-weight: 400">
+              
+                <a href="https://sentry.io/organizations/xamide/issues/?project=4509630962532352&amp;query=widget_type%3A%22countdown%22" style="font-weight: 500; color: #4674ca; text-decoration: none">countdown</a> 
+              
+              </span>
+          </li>
+        
+        </ul>
+      
+    
+
+    <p class="info-box" style="font-weight: 400; background-color: #f8fbff; border: 1px solid #cce3f3; border-radius: 3px; text-align: left; font-size: 16px; line-height: 24px; margin: 0 0 15px; padding: 15px">
+      
+         <a class="mute" href="https://sentry.io/organizations/xamide/alerts/rules/eventkeeper/16120712/details/?referrer=issue_alert-email&amp;notification_uuid=fdc55a35-4cd0-4755-a3e1-b8ca51e750ee&amp;mute=1" style="font-weight: 700; color: #4674ca; text-decoration: none; float: right">Mute this alert</a>
+      
+      This email was triggered by
+      
+          <a href="https://sentry.io/organizations/xamide/alerts/rules/eventkeeper/16120712/?referrer=issue_alert-email&amp;notification_uuid=fdc55a35-4cd0-4755-a3e1-b8ca51e750ee?referrer=issue_alert-email&amp;notification_uuid=fdc55a35-4cd0-4755-a3e1-b8ca51e750ee" style="font-weight: 500; color: #493e54; text-decoration: underline">Send a notification for high priority issues</a>
+      
+  </p>
+
+    
+
+    
+    <div itemscope itemtype="http://schema.org/EmailMessage" style="font-weight: 400">
+      <meta itemprop="description" content="View Issue Details in Sentry" style="font-weight: 400">
+      <div itemprop="action" itemscope itemtype="http://schema.org/ViewAction" style="font-weight: 400">
+        <link itemprop="url" href="https://xamide.sentry.io/issues/6991781307/?referrer=alert_email&amp;alert_type=email&amp;alert_timestamp=1762100385797&amp;alert_rule_id=16120712&amp;notification_uuid=fdc55a35-4cd0-4755-a3e1-b8ca51e750ee&amp;environment=production" style="font-weight: 400">
+        <meta itemprop="name" content="View in Sentry" style="font-weight: 400">
+      </div>
+      <div itemprop="publisher" itemscope itemtype="http://schema.org/Organization" style="font-weight: 400">
+        <meta itemprop="name" content="Sentry.io" style="font-weight: 400">
+        <link itemprop="url" href="https://sentry.io/" style="font-weight: 400">
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div class="container" style="font-weight: 400; max-width: 600px; text-align: left; margin: 0 auto; padding: 0 20px">
+        <div class="footer" style="font-weight: 400; border-top: 1px solid #E7EBEE; padding: 35px 0">
+          
+          <a href="https://sentry.io" style="font-weight: 500; color: #687276; text-decoration: none; float: right">Home</a>
+
+          
+          <a href="https://sentry.io/settings/account/notifications/alerts/?referrer=issue_alert-email&amp;notification_uuid=fdc55a35-4cd0-4755-a3e1-b8ca51e750ee" style="font-weight: 500; color: #687276; text-decoration: none">Notification Settings</a>
+          
+
+          
+          
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+<img src="https://u2307627.ct.sendgrid.net/wf/open?upn=u001.JFvHvRC-2FDCk3N-2B1tZqzlvgfqJEw4VLM-2BRjKn3ppaR7gxYEDAGVzGV8OyyXd61D5O7Wpojlig12Hof1zNCEY3655lRlTMkQbc9i2eA-2BEN-2B00Fwvaf3kpkHr6vnC-2F0qIA7oF4NHQSFaBil9eED39XKB2LjFKU7Nu9wFz-2FYjBXGAbEMNluYsUKQC-2FXnD44cjUxe-2FBnEbA4erTcjQnwFeVy9DtUHwYehfrdM-2ByDYy9AGFcwpo8-2FkraetKqI9tMKPOiSs" alt="" width="1" height="1" border="0" style="height:1px !important;width:1px !important;border-width:0 !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:0 !important;margin-left:0 !important;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;"/></body>
+</html>
+--===============3997557911136853804==--

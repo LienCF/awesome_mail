@@ -1,0 +1,760 @@
+Delivered-To: liencf@gmail.com
+Received: by 2002:a05:7010:d209:b0:4d4:9739:2b92 with SMTP id ji9csp2308859mdb;
+        Tue, 28 Oct 2025 17:12:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGk2G3Qr6UtWgtKRm/cmmb53rGw1v3c4Tunsbgw3W/D59ixJ8E5H3t/H8Eewedrqibf11ue
+X-Received: by 2002:a05:622a:1ccb:b0:4e8:a664:2ccb with SMTP id d75a77b69052e-4ed15c2f715mr14739151cf.63.1761696733404;
+        Tue, 28 Oct 2025 17:12:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761696733; cv=none;
+        d=google.com; s=arc-20240605;
+        b=iCXQ77x296sW6xzu+t2ow3pbpolGeUraiKN1l6gJZWds9tyHAcP/Z49ypsqOj1zJJM
+         ImvQmJlZI9NYtTX35UL3CJCiSfD/JK5EZdj07bZM4a3x2Vb/vrSzcGtcjAw315/FD9hB
+         ytwQxDp+56MJuuydVpuSdlaEJIEEbJyxRenfM9vEvJ7tvhkhQJF88jrwnb7duzTAMDR7
+         fhuiJ1pqsRC1A2aJ1S6ewgy2boet5qajET99qdxiJckYIRclIMdUTWTIUSGZvyikUwGV
+         qyN7l3+X6xZ+YDqU1NfzpzNFZR7l/G80zCavUyjaU7PeXo/j2fgvDtT0SQ1ToUAsFgqS
+         /zWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:mime-version:feedback-id:to:reply-to
+         :message-id:subject:date:from:dkim-signature:dkim-signature;
+        bh=p02zT4aH0UVSWuhyOjDGVPnCH9U+AcqNbvJzUl/H5x4=;
+        fh=hnWLqYXx/enUl3blN9H38oqkLIXAr0tyRzvlFpRYzeI=;
+        b=GTcEVjjqgow5bdVlDs4P1o5vsHDSkB9Ds6nUpft8mW7+nK9g0blMrXd8h2Vf8VMQRC
+         qzLt5PUG92AsjT7qoLp0mx/n493urQejsKX0+Ck0hsrhl6CDT5lMr81eHgl4v/OMhhnG
+         MQzslLOi8MH44TSgtPwwrqhqKNOMXPlehTWkZbE5W7DIwzt8ya6jawg0fYgwKRLlFha9
+         zjaFYIULHU8MxdcpVtls3r3/m8NQdE9TmHDW6x+UKmI0CS1hUWxOFH33HDvQKQ9NLsbn
+         fuE8uY+argoQC8es6VaZMStuPuX3ajbd/T3idc3uCkTKrorCTs1fxKZUFFtwE0KOABRz
+         yAzQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@ab.mtasv.net header.s=ab20250324 header.b=TPS77vma;
+       dkim=pass header.i=@paddle.com header.s=20160525114544pm header.b=TLcWRZut;
+       spf=pass (google.com: domain of pm_bounces@pm-bounces.paddle.com designates 50.31.205.26 as permitted sender) smtp.mailfrom=pm_bounces@pm-bounces.paddle.com;
+       dmarc=pass (p=REJECT sp=QUARANTINE dis=NONE) header.from=paddle.com
+Return-Path: <pm_bounces@pm-bounces.paddle.com>
+Received: from mta26-ab1.mtasv.net (mta26-ab1.mtasv.net. [50.31.205.26])
+        by mx.google.com with ESMTPS id d75a77b69052e-4eba51e79a6si35650171cf.413.2025.10.28.17.12.13
+        for <liencf@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Oct 2025 17:12:13 -0700 (PDT)
+Received-SPF: pass (google.com: domain of pm_bounces@pm-bounces.paddle.com designates 50.31.205.26 as permitted sender) client-ip=50.31.205.26;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@ab.mtasv.net header.s=ab20250324 header.b=TPS77vma;
+       dkim=pass header.i=@paddle.com header.s=20160525114544pm header.b=TLcWRZut;
+       spf=pass (google.com: domain of pm_bounces@pm-bounces.paddle.com designates 50.31.205.26 as permitted sender) smtp.mailfrom=pm_bounces@pm-bounces.paddle.com;
+       dmarc=pass (p=REJECT sp=QUARANTINE dis=NONE) header.from=paddle.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=ab20250324; d=ab.mtasv.net;
+ h=From:Date:Subject:Message-Id:Reply-To:To:Feedback-ID:MIME-Version:
+ Content-Type:Content-Transfer-Encoding:Date:From:Message-ID:Reply-To:Sender:
+ Subject:To:CC; t=1761696733; x=1761783133;
+ bh=p02zT4aH0UVSWuhyOjDGVPnCH9U+AcqNbvJzUl/H5x4=;
+ b=TPS77vmabpegM8naZGPLbZtYbFEzxXTglTIruXr3NC3K1rTs2W9C+/htDyy80aB3VYuQpHe7kHVq
+   oASSxKtvt3jM+2PDEwygfK6M+hGOyqLRqgJSUNP5G/TZqHxhnefW1KJPghPLR/b59xbbKMdItAXX
+   C1O5fG0G153PIN2I/RAPA+9GiWpp+qy2phZ/8C/9zdcNH7V3eBID0YwGniaU4DgGK5cvby6xL/BD
+   vPow50SiMQXOxt6pBwgaw7cfPxmDjj/0ppr8NVg89w5w1iTfe1qrYUNMtwUHv61Hy5GlJO4B9kp3
+   9B3w/0KgjWKMOracuRL01UcvYvqGs4WI6+B0Pg==
+Received: by mta26-ab1.mtasv.net id h05dtq3b84ke for <liencf@gmail.com>; Tue, 28 Oct 2025 20:12:12 -0400 (envelope-from <pm_bounces@pm-bounces.paddle.com>)
+X-PM-IP: 50.31.205.26
+X-IADB-IP: 50.31.205.26
+X-IADB-IP-REVERSE: 26.205.31.50
+DKIM-Signature: v=1; a=rsa-sha256; d=paddle.com; s=20160525114544pm;
+	c=relaxed/relaxed; i=help@paddle.com; t=1761696732; x=1761869532;
+	h=date:date:from:from:message-id:reply-to:reply-to:sender:subject:subject:to:
+	to:cc:feedback-id:mime-version:content-type:content-transfer-encoding;
+	bh=p02zT4aH0UVSWuhyOjDGVPnCH9U+AcqNbvJzUl/H5x4=;
+	b=TLcWRZutK4Rzv+DRzvdodATMuU5MD+/o4CQVt3qS7rnO4lcT70pr9sExwQAYJNRCrfTYYIm0tLL
+	cQgFFX2qLBbMk7plm5dG6taJ9sanwqufihUYTSR2gzCPwrd8aDlUFZaSCYvuz8r2op303SgnlYbYo
+	sOfpsILzMbIWCTgQujg=
+From: "ScrapeOwl (via Paddle.com)" <help@paddle.com>
+Date: Wed, 29 Oct 2025 00:10:57 +0000
+Subject: Your Startup Subscription will renew soon
+Message-Id: <26855005-1054-4e18-8863-e01edc275992@mtasv.net>
+Reply-To: help@paddle.com
+To: liencf@gmail.com
+X-PM-TrackOpens: true
+X-Mailgun-Track-Opens: yes
+X-Mailgun-Tag: prebilling_notification
+Feedback-ID: s50413-cHJlYmlsbGluZ19ub3RpZmljYXRpb24=:s50413:a27307:postmark
+X-Complaints-To: abuse@postmarkapp.com
+X-PM-Message-Id: 26855005-1054-4e18-8863-e01edc275992
+X-PM-Tag: prebilling_notification
+X-PM-RCPT: |bTB8MjczMDd8NTA0MTN8bGllbmNmQGdtYWlsLmNvbQ==|
+X-PM-Message-Options: v1;1.sYh8lgAzdFfuPL8N0PrN5Q.4uIzoQLwaRapCzWy13fH5kBEbh12qEhTdq9rK1Z4Qn6YBDGqTIZ5pKmFI2vOhXY6cH3CVXXXL5uLKU018udGx4sTBCPUe8EZzK_pN1_i33-9kknFBVbaaTTmbBZOEqseA4S9X6boWUVt0wN17H7xGUCVYrV9r5H935JRcprtP7qSmgpKrTjIpPqt2Bos3kvb
+MIME-Version: 1.0
+X-PM-MTA-Pool: paddle-com
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head>
+        <meta charset=3D"utf-8"><meta name=3D"color-scheme" content=3D"ligh=
+t dark">
+        <meta name=3D"supported-color-schemes" content=3D"light dark">
+ =20
+        <style data-styled=3D"true" data-styled-version=3D"6.1.12">
+@media (max-width:630px) {
+  .gROo {
+    width: 100%!important;
+  }
+}
+@media (max-width:630px) {
+  .eCjnOB {
+    padding: 30px 10px!important;
+  }
+}
+@media (max-width:630px) {
+  .geBdYz {
+    padding: 0px!important;
+  }
+}
+@media (max-width:630px) {
+  .fnUKoX {
+    height: 0px!important;
+  }
+}
+@media (max-width:630px) {
+  .gYBfTg {
+    height: 24px!important;
+  }
+}
+@media (max-width:630px) {
+  .eUOHZo {
+    height: 40px!important;
+  }
+}
+@media (max-width:630px) {
+  .jnCTyk {
+    height: 28px!important;
+  }
+}
+@media (max-width:630px) {
+  .ejpTNE {
+    height: 10px!important;
+  }
+}
+@media (max-width:630px) {
+  .dTVHoQ {
+    display: none!important;
+  }
+}
+@media (max-width:630px) {
+  .bwfxVg {
+    display: inline-block!important;
+  }
+}
+data-styled.g28[id=3D"link__Link-sc-j8xvlc-0"] {
+  content: "inWIrk,";
+}
+</style>
+       =20
+       =20
+        <style type=3D"text/css">
+@media (max-width: 630px) {
+  body,
+.footerContainer {
+    background-color: #FFFFFF !important;
+  }
+}
+@media (prefers-color-scheme: dark ) {
+  body,
+.footerContainer,
+.licenceKeyContainer {
+    background-color: #323232 !important;
+  }
+
+  .textPrimary {
+    color: #E2E2E2 !important;
+  }
+
+  .textSecondary {
+    color: #8A8A8A !important;
+  }
+
+  .textFooter {
+    color: #BBBBBB !important;
+  }
+
+  .pbTextPrimary {
+    color: #FFFFFF !important;
+  }
+
+  .pbTextSecondary {
+    color: #262626 !important;
+  }
+
+  .pbTextBillingPeriod {
+    color: #FFFFFF !important;
+  }
+
+  .pbTextPriceName {
+    color: #FFFFFF !important;
+  }
+
+  .pbPaymentText {
+    color: #2F2F2F !important;
+  }
+
+  .pbNegativeLineItemBackground,
+.pbReceiptDataBackground {
+    border: 1px solid #FFFFFF !important;
+    background-color: #F5F5F5 !important;
+  }
+
+  .pbHeaderNotificationBackground {
+    border: 1px solid #FFFFFF !important;
+    background-color: #F5F5F5 !important;
+  }
+
+  .pbNegativeLineItemBackground .pbTextPrimary,
+.pbReceiptDataBackground .pbTextPrimary {
+    color: #262626 !important;
+  }
+
+  .pbHeaderNotificationBackground .pbTextPrimary {
+    color: #2F2F2F !important;
+  }
+
+  .pbSummaryOfNextPaymentWrapper .pbTextPrimary {
+    color: #2F2F2F !important;
+  }
+
+  .pbTextChargeNotice {
+    background-color: #FFFFFF;
+    color: #2F2F2F !important;
+  }
+
+  .textReseller {
+    color: #C4C4C4 !important;
+  }
+
+  .emailContainer {
+    background-color: #1E1E1E !important;
+  }
+
+  .lightModeDefault,
+.lightModeImage {
+    display: none !important;
+  }
+
+  .darkModeImageWrapper,
+.darkModeImage {
+    display: block !important;
+  }
+
+  .itemsListContainer {
+    background-color: #2F2F2F !important;
+  }
+
+  .itemsListedText,
+.discountPriceModifierText {
+    color: #FFFFFF !important;
+  }
+
+  @media (max-width: 630px) {
+    body,
+.footerContainer {
+      background-color: #1E1E1E !important;
+    }
+
+    @media (prefers-color-scheme: light) {
+      body,
+.footerContainer,
+.licenceKeyContainer,
+.itemsListContainer {
+        background-color: #F5F5F8 !important;
+      }
+
+      .textPrimary {
+        color: #45567C !important;
+      }
+
+      .textSecondary,
+.discountPriceModifierText {
+        color: #73809C !important;
+      }
+
+      .statementDescriptorText {
+        color: #2F2F2F !important;
+      }
+
+      .emailContainer {
+        background-color: #FFFFFF !important;
+      }
+
+      .pbTextPrimary {
+        color: #2F2F2F !important;
+      }
+
+      .pbTextSecondary {
+        color: #007632 !important;
+      }
+
+      .pbTextBillingPeriod {
+        color: #262626 !important;
+      }
+
+      .pbTextPriceName {
+        color: #36476C !important;
+      }
+
+      .pbPaymentText {
+        color: #2F2F2F !important;
+      }
+
+      .pbNegativeLineItemBackground {
+        border: 1px solid #9DE5CA !important;
+        background-color: #F5FFFB !important;
+      }
+
+      .pbReceiptDataBackground {
+        border: 1px solid #7FC9FF !important;
+        background-color: #F1FAFF !important;
+      }
+
+      .pbHeaderNotificationBackground {
+        border: 1px solid #7FC9FF !important;
+        background-color: #F1FAFF !important;
+      }
+
+      .pbTextChargeNotice {
+        background-color: #F5F5F5;
+        color: #2F2F2F !important;
+      }
+
+      .textReseller {
+        color: #555555 !important;
+      }
+
+      .lightModeDefault,
+.darkModeImage {
+        display: none !important;
+      }
+
+      .lightModeImageWrapper,
+.lightModeImage {
+        display: block !important;
+      }
+
+      .itemsListedText {
+        color: #36476C !important;
+      }
+
+      @media (max-width: 630px) {
+        body,
+.footerContainer {
+          background-color: #FFFFFF !important;
+        }
+
+      }
+
+    }
+
+  }
+}
+</style>
+     =20
+      <style>
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Lato Light'), local('Lato-Light'), url(https://fonts.gstatic.=
+com/s/lato/v16/S6u9w4BMUTPHh7USSwaPGQ3q5d0N7w.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+2=
+0AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  mso-font-alt: 'Arial';}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Lato Light'), local('Lato-Light'), url(https://fonts.gstatic.=
+com/s/lato/v16/S6u9w4BMUTPHh7USSwiPGQ3q5d0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+0=
+2DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U=
++2215, U+FEFF, U+FFFD;
+  mso-font-alt: 'Arial';}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gsta=
+tic.com/s/lato/v16/S6uyw4BMUTPHjxAwXiWtFCfQ7A.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+2=
+0AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  mso-font-alt: 'Arial';}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gsta=
+tic.com/s/lato/v16/S6uyw4BMUTPHjx4wXiWtFCc.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+0=
+2DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U=
++2215, U+FEFF, U+FFFD;
+  mso-font-alt: 'Arial';}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.co=
+m/s/lato/v16/S6u9w4BMUTPHh6UVSwaPGQ3q5d0N7w.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+2=
+0AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  mso-font-alt: 'Arial';}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.co=
+m/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+0=
+2DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U=
++2215, U+FEFF, U+FFFD;
+  mso-font-alt: 'Arial';}
+</style></head>
+     =20
+      <body style=3D"color-scheme: light dark; supported-color-schemes: lig=
+ht dark; mso-generic-font-family: swiss; letter-spacing: 0; background-colo=
+r: #F5F5F8; margin: 0; padding: 0; font-family: Lato, Helvetica, Roboto, sa=
+ns-serif;"><center style=3D"margin:0">
+    <table cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" class=3D"tabl=
+e__Table-sc-1bwyqlr-0 wrapper__StyledTable-sc-p6jxu3-1 jjjLr dxDtf" style=3D=
+"max-width: 600px; font-family: 'Lato','Helvetica','Roboto',sans-serif;">
+        <tr>
+            <td height=3D"100%" width=3D"100%" class=3D"wrapper__StyledWrap=
+perCell-sc-p6jxu3-0 cPGgFF" style=3D"padding: 0;">
+                <table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" c=
+lass=3D"spacer__StyledTableWrapper-sc-1kwd3po-0 hMbjtJ" style=3D"margin-top=
+: 0;">
+                    <tr>
+                        <td class=3D"spacer__StyledWrapperCell-sc-1kwd3po-1=
+ fnUKoX" style=3D"height: 30px;" height=3D"30"></td>
+                    </tr>
+                </table>
+                <center style=3D"margin:0">
+                    <table cellspacing=3D"0" cellpadding=3D"0" width=3D"100=
+%" class=3D"table__Table-sc-1bwyqlr-0 wrapper__StyledTable-sc-p6jxu3-1 jjjL=
+r dxDtf" style=3D"max-width: 600px; font-family: 'Lato','Helvetica','Roboto=
+',sans-serif;">
+                        <tr>
+                            <td height=3D"100%" width=3D"100%" class=3D"wra=
+pper__StyledWrapperCell-sc-p6jxu3-0 cPGgFF" style=3D"padding: 0;">
+                                <table class=3D"container__StyledWrapperTab=
+le-sc-1uq83ic-0 gQThDT emailContainer" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" style=3D"margin: 0; border-top: 0; border-radius: 0; backgro=
+und-color: #FFFFFF;" bgcolor=3D"#FFFFFF">
+                                    <tr>
+                                        <td align=3D"center" valign=3D"top"=
+>
+                                            <table cellspacing=3D"0" cellpa=
+dding=3D"0" width=3D"100%" class=3D"table__Table-sc-1bwyqlr-0 jjjLr" style=3D=
+"font-family: 'Lato','Helvetica','Roboto',sans-serif;">
+                                                <tr>
+                                                    <td style=3D"padding: 5=
+0px;" class=3D"container__StyledWrapperCell-sc-1uq83ic-1 eCjnOB">
+                                                        <table style=3D"max=
+-width: none; font-family: 'Lato','Helvetica','Roboto',sans-serif;" cellspa=
+cing=3D"0" cellpadding=3D"0" width=3D"100%" class=3D"table__Table-sc-1bwyql=
+r-0 jjjLr">
+                                                            <tr>
+                                                                <td align=3D=
+"center" style=3D"text-align:left"><img height=3D"70" src=3D"https://static=
+.paddle.com/assets/images/checkout/default_product_icon.png" class=3D"heade=
+r__ProductImage-sc-1eg74kq-0 behHhS" style=3D"display: block; margin: auto;=
+ margin-bottom: 28px;">
+                                                                    <div><!=
+--[if mso]>
+              <table border=3D"0" cellPadding=3D"0" cellSpacing=3D"0" width=
+=3D"100%">
+              <tr>
+                <td style=3D"height: 28px;"></td>
+              </tr>
+            </table>
+          <![endif]--></div>
+                                                                    <h3 cla=
+ss=3D"textPrimary" style=3D"line-height: 32px; font-weight: 900; font-size:=
+ 24px; margin-bottom: 16px; text-align: center; color: #45567C; font-family=
+: Lato, Helvetica, Roboto, sans-serif;">Your Startup Subscription will rene=
+w soon</h3>
+                                                                        <ta=
+ble class=3D"container__StyledWrapperTable-sc-1uq83ic-0 gQThDT emailContain=
+er" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"margin: 0; =
+border-top: 0; border-radius: 0; background-color: #FFFFFF;" bgcolor=3D"#FF=
+FFFF">
+                                                                           =
+ <tr>
+                                                                           =
+     <td align=3D"center" valign=3D"top">
+                                                                           =
+         <table cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" class=3D=
+"table__Table-sc-1bwyqlr-0 jjjLr" style=3D"font-family: 'Lato','Helvetica',=
+'Roboto',sans-serif;">
+                                                                           =
+             <tr>
+                                                                           =
+                 <td style=3D"padding: 0px;" class=3D"container__StyledWrap=
+perCell-sc-1uq83ic-1 geBdYz">
+                                                                           =
+                     <table style=3D"max-width: none; font-family: 'Lato','=
+Helvetica','Roboto',sans-serif;" cellspacing=3D"0" cellpadding=3D"0" width=3D=
+"100%" class=3D"table__Table-sc-1bwyqlr-0 jjjLr">
+                                                                           =
+                         <tr>
+                                                                           =
+                             <td align=3D"center">
+                                                                           =
+                                 <table role=3D"presentation">
+                                                                           =
+                                     <tbody>
+                                                                           =
+                                         <tr>
+                                                                           =
+                                             <td style=3D"vertical-align:mi=
+ddle;align:center;margin-right:8px"><img height=3D"28" src=3D"https://cdn.p=
+addle.com/email-templates/images/icon-jcb.png" alt=3D"jcb" style=3D"display=
+:block;margin-right:8px" class=3D"lightModeDefault"></td>
+                                                                           =
+                                             <td style=3D"vertical-align:mi=
+ddle;align:center;mso-hide:all"><img height=3D"28" alt=3D"jcb" src=3D"https=
+://cdn.paddle.com/email-templates/images/icon-jcb.png" style=3D"display:non=
+e;margin-right:8px" class=3D"lightModeImage"></td>
+                                                                           =
+                                             <td style=3D"vertical-align:mi=
+ddle;align:center;mso-hide:all"><img height=3D"28" alt=3D"jcb" src=3D"https=
+://cdn.paddle.com/email-templates/images/icon-jcb-dark-mode.png" style=3D"d=
+isplay:none;margin-right:8px" class=3D"darkModeImage"></td>
+                                                                           =
+                                             <td style=3D"vertical-align:mi=
+ddle;align:center">
+                                                                           =
+                                                 <p style=3D"font-size: 14p=
+x; font-weight: 500; line-height: 24px; margin-top: 0; margin-right: 0; mar=
+gin-bottom: 0; margin-left: 0; text-align: left; color: #45567C; font-famil=
+y: Lato, Helvetica, Roboto, sans-serif;" class=3D"textPrimary">ending in 00=
+66</p>
+                                                                           =
+                                             </td>
+                                                                           =
+                                         </tr>
+                                                                           =
+                                     </tbody>
+                                                                           =
+                                 </table>
+                                                                           =
+                                 <table cellpadding=3D"0" cellspacing=3D"0"=
+ width=3D"100%" class=3D"spacer__StyledTableWrapper-sc-1kwd3po-0 hMbjtJ" st=
+yle=3D"margin-top: 0;">
+                                                                           =
+                                     <tr>
+                                                                           =
+                                         <td class=3D"spacer__StyledWrapper=
+Cell-sc-1kwd3po-1 gYBfTg" style=3D"height: 24px;" height=3D"24"></td>
+                                                                           =
+                                     </tr>
+                                                                           =
+                                 </table>
+                                                                           =
+                             </td>
+                                                                           =
+                         </tr>
+                                                                           =
+                     </table>
+                                                                           =
+                 </td>
+                                                                           =
+             </tr>
+                                                                           =
+         </table>
+                                                                           =
+     </td>
+                                                                           =
+ </tr>
+                                                                        </t=
+able>
+                                                                           =
+ <p style=3D"font-size: 16px; font-weight: 500; line-height: 24px; margin-t=
+op: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; text-align: left;=
+ color: #45567C; font-family: Lato, Helvetica, Roboto, sans-serif;" class=3D=
+"textPrimary">We will charge you $30.45 automatically on 31st October 2025 =
+to renew your subscription. If your payment information has changed, please=
+ update it now.</p>
+                                                                        <ta=
+ble cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" class=3D"spacer__Sty=
+ledTableWrapper-sc-1kwd3po-0 hMbjtJ" style=3D"margin-top: 0;">
+                                                                           =
+ <tr>
+                                                                           =
+     <td class=3D"spacer__StyledWrapperCell-sc-1kwd3po-1 gYBfTg" style=3D"h=
+eight: 24px;" height=3D"24"></td>
+                                                                           =
+ </tr>
+                                                                        </t=
+able>                                                                      =
+      <p style=3D"font-size: 16px; font-weight: 500; line-height: 24px; mar=
+gin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; text-align: =
+left; color: #45567C; font-family: Lato, Helvetica, Roboto, sans-serif;" cl=
+ass=3D"textPrimary"><a href=3D"https://subscription-management.paddle.com/s=
+ubscription/18281155/hash/92c711bab05d7518006cc0f04f6313e4e207b7ef66657db1c=
+12cd4f6ea7a06e0/update" class=3D"link__Link-sc-j8xvlc-0 inWIrk" style=3D"cu=
+rsor: pointer; -webkit-text-decoration: none; text-decoration: none; color:=
+ #0074C7;">Visit to update payment information</a></p>
+                                                                        <ta=
+ble cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" class=3D"spacer__Sty=
+ledTableWrapper-sc-1kwd3po-0 hMbjtJ" style=3D"margin-top: 0;">
+                                                                           =
+ <tr>
+                                                                           =
+     <td class=3D"spacer__StyledWrapperCell-sc-1kwd3po-1 eUOHZo" style=3D"h=
+eight: 40px;" height=3D"40"></td>
+                                                                           =
+ </tr>
+                                                                        </t=
+able>
+                                                                    <hr sty=
+le=3D"margin: 40px 0; border: none; border-bottom: 1px solid #A2ABBD; margi=
+n-top: 0; margin-bottom: 10px; border-bottom-color: #D2D4DE;" class=3D"sepa=
+rator__StyledSeparator-sc-1i7alk4-0 jpbzrI">
+                                                                    <p styl=
+e=3D"font-size: 14px; font-weight: 500; line-height: 24px; margin-top: 0; m=
+argin-right: 0; margin-bottom: 10px; margin-left: 0; color: #45567C; font-f=
+amily: Lato, Helvetica, Roboto, sans-serif;" class=3D"textPrimary">If you n=
+eed help with your ScrapeOwl subscription, please contact us on <a href=3D"=
+https://paddle.net?h=3Df9308adc0b8a0bb16344ee211676ba3af09683857d9d465f6895=
+e867d31357eb3d9dffe67a87e0d02ed96349741a" target=3D"_blank" class=3D"link__=
+Link-sc-j8xvlc-0 inWIrk" style=3D"cursor: pointer; -webkit-text-decoration:=
+ none; text-decoration: none; color: #0074C7;">paddle.net</a> or reply to t=
+his <a href=3D"mailto:help@paddle.com?subject=3DRe: Your Startup Subscripti=
+on will renew soon" class=3D"link__Link-sc-j8xvlc-0 inWIrk" style=3D"cursor=
+: pointer; -webkit-text-decoration: none; text-decoration: none; color: #00=
+74C7;">email</a>.</p>
+                                                                    <hr sty=
+le=3D"margin: 40px 0; border: none; border-bottom: 1px solid #A2ABBD; margi=
+n-top: 2px; margin-bottom: 28px; border-bottom-color: #D2D4DE;" class=3D"se=
+parator__StyledSeparator-sc-1i7alk4-0 jpbzrI">
+                                                                    <p styl=
+e=3D"font-size: 14px; font-weight: 500; line-height: 24px; margin-top: 0; m=
+argin-right: 0; margin-bottom: 0; margin-left: 0; color: #45567C; font-fami=
+ly: Lato, Helvetica, Roboto, sans-serif;" class=3D"textPrimary">Thanks,</p>
+                                                                    <p styl=
+e=3D"font-size: 14px; font-weight: 500; line-height: 24px; margin-top: 0; m=
+argin-right: 0; margin-bottom: 0; margin-left: 0; color: #45567C; font-fami=
+ly: Lato, Helvetica, Roboto, sans-serif;" class=3D"textPrimary">ScrapeOwl</=
+p>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </center>
+                <table class=3D"container__StyledWrapperTable-sc-1uq83ic-0 =
+gQThDT footerContainer" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" =
+style=3D"margin: 0; border-top: 0; border-radius: 0; background-color: #F5F=
+5F8;" bgcolor=3D"#F5F5F8">
+                    <tr>
+                        <td align=3D"center" valign=3D"top">
+                            <table cellspacing=3D"0" cellpadding=3D"0" widt=
+h=3D"100%" class=3D"table__Table-sc-1bwyqlr-0 jjjLr" style=3D"font-family: =
+'Lato','Helvetica','Roboto',sans-serif;">
+                                <tr>
+                                    <td style=3D"padding: 35px;" class=3D"c=
+ontainer__StyledWrapperCell-sc-1uq83ic-1 eCjnOB">
+                                        <table style=3D"max-width: none; fo=
+nt-family: 'Lato','Helvetica','Roboto',sans-serif;" cellspacing=3D"0" cellp=
+adding=3D"0" width=3D"100%" class=3D"table__Table-sc-1bwyqlr-0 jjjLr">
+                                            <tr>
+                                                <td align=3D"center"><img w=
+idth=3D"95" height=3D"30" src=3D"https://cdn.paddle.com/email-templates/ima=
+ges/paddle-logo-light.png" alt=3D"logo" style=3D"margin-bottom:10px" class=3D=
+"lightModeDefault">
+                                                    <div class=3D"lightMode=
+ImageWrapper" style=3D"display:none;mso-hide:all"><img width=3D"95" height=3D=
+"30" src=3D"https://cdn.paddle.com/email-templates/images/paddle-logo-light=
+.png" alt=3D"logo" style=3D"display:none;margin-bottom:10px" class=3D"light=
+ModeImage"></div>
+                                                    <div class=3D"darkModeI=
+mageWrapper" style=3D"display:none;mso-hide:all"><img width=3D"95" height=3D=
+"30" src=3D"https://cdn.paddle.com/email-templates/images/paddle-logo-dark.=
+png" alt=3D"logo" style=3D"display:none;margin-bottom:10px" class=3D"darkMo=
+deImage"></div>
+                                                    <div class=3D"footer-wi=
+th-logo__DisplayOnMobileOnly-sc-7odnqs-1 bwfxVg" style=3D"display: none;">
+                                                        <p style=3D"font-si=
+ze: 12px; font-weight: 500; line-height: 20px; margin-top: 0; margin-right:=
+ 0; margin-bottom: 0; margin-left: 0; color: #A2ABBD; font-family: Lato, He=
+lvetica, Roboto, sans-serif;" class=3D"textFooter">Paddle.com Market Ltd, J=
+udd House, 18-29 Mora Street, London EC1V 8BT. =C2=A9 2025 Paddle. All righ=
+ts reserved.</p>
+                                                    </div>
+                                                    <div class=3D"footer-wi=
+th-logo__DisplayOnDesktopOnly-sc-7odnqs-0 dTVHoQ" style=3D"display: block;"=
+>
+                                                        <p style=3D"font-si=
+ze: 12px; font-weight: 500; line-height: 20px; margin-top: 0; margin-right:=
+ 0; margin-bottom: 0; margin-left: 0; color: #A2ABBD; font-family: Lato, He=
+lvetica, Roboto, sans-serif;" class=3D"textFooter">Paddle.com Market Ltd, J=
+udd House, 18-29 Mora Street, London EC1V 8BT </p>
+                                                        <p style=3D"font-si=
+ze: 12px; font-weight: 500; line-height: 20px; margin-top: 0; margin-right:=
+ 0; margin-bottom: 0; margin-left: 0; color: #A2ABBD; font-family: Lato, He=
+lvetica, Roboto, sans-serif;" class=3D"textFooter">=C2=A9 2025 Paddle. All =
+rights reserved.</p>
+                                                    </div>
+                                                        <table cellpadding=3D=
+"0" cellspacing=3D"0" width=3D"100%" class=3D"spacer__StyledTableWrapper-sc=
+-1kwd3po-0 hMbjtJ" style=3D"margin-top: 0;">
+                                                            <tr>
+                                                                <td class=3D=
+"spacer__StyledWrapperCell-sc-1kwd3po-1 ejpTNE" style=3D"height: 10px;" hei=
+ght=3D"10"></td>
+                                                            </tr>
+                                                        </table>
+                                                        <p id=3D"order-id" =
+style=3D"font-size: 12px; font-weight: 500; line-height: 20px; margin-top: =
+0; margin-right: 0; margin-bottom: 0; margin-left: 0; color: #A2ABBD; font-=
+family: Lato, Helvetica, Roboto, sans-serif;" class=3D"textFooter">45344900=
+-147099897</p>
+                                                    <div style=3D"display:n=
+one"><paddle-subject>Your Startup Subscription will renew soon</paddle-subj=
+ect>
+                                                        <div id=3D"paddle-l=
+ang">en</div>
+                                                        <div id=3D"paddle-t=
+ype">pre-billing</div>
+                                                        <div id=3D"paddle-s=
+ub-type"></div>
+                                                        <div id=3D"paddle-h=
+ash">f9308adc0b8a0bb16344ee211676ba3af09683857d9d465f6895e867d31357eb3d9dff=
+e67a87e0d02ed96349741a</div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</center><img src=3D"https://ea.pstmrk.it/open?m=3Dv3_1.gokqNPmMK7mEc5lMksu=
+--Q.nHjGLhOCl3s5OtapNJAS5JZhqpUu1Zcq203Q608xW4l-v8G_3VPIzutCV3hOoOKGffto-1g=
+pRKF8TTvdhCj8P0pPUqNVRPCcriNFiqIW5OZytSonf4kdc6THQKB_8vE4Vp_XctLAxzivHcc2St=
+5G6kEBq9yVOnLUphlbNcd9RPhwoEWBVIHB3K3knnYp5dqOrm8E3Ai9u28Lm0yJPmzvmtzdmMFAF=
+sfO8nP1fMZleBk2UNf-NEhNxuDkeSYh6NDN3GoiZ5yQQYsh-61p9gAhDQf1QF-XXSQqcqNrPLh2=
+RvyqfIlBCe7wiXw107QEQM87E0zLAhkmu94rw1spuAV6GjaWxAUzWwZnvqBG9a9HxUeD809uDnt=
+bE8qAvKxMcLt64g5pWjUCsw6aYULlI-Bc6YUst8_sOIMr3JS3bN1oSOIiwiVwgwBk77v2BGBkBA=
+TyQJGPRxVr-WU2C_IVvf0-nZfCo-gUmrW6oofLzTrjE0vG2L0CucvWvRhJSwu2H9zgiAw7Vcc_y=
+FmPLIW7XUcZphfvL9p8_0ZYcUtgyLt01zE" width=3D"1" height=3D"1" border=3D"0" a=
+lt=3D"" /></body></html>

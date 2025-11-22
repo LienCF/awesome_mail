@@ -1,0 +1,14 @@
+# 郵件格式分析
+
+- 索引：866
+- 主旨：Surge 5 5.100.0 (3596) for tvOS is now available to test.
+- 寄件者："TestFlight" <no_reply@email.apple.com>
+- 收件者：liencf@gmail.com
+- 日期：2025-10-23T15:30:06.000Z
+- Message-ID：<1207113469.218076227.1761233406761@email.apple.com>
+- Top-Level Content-Type：[object Object]
+- 是否含 text/plain：否
+- 是否含 text/html：是
+- 附件數量：0
+
+> 備註：若原信僅含單一格式，另一格式檔案不會產出。原始郵件內容已另存 raw.eml 以利後續比對。
