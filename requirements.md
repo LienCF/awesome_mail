@@ -19,8 +19,9 @@
 *   **撰寫**: Rich Text (Quill)，附件，AI 輔助 **[已實現]**.
 *   **信件快取 (Cache)**: 
     *   磁碟持久化快取 (Disk Persistence) **[已實現 (EmailCacheService)]**.
-    *   離線操作隊列 (Offline Queue) **[已實現]**.
+    *   離線操作隊列 (Offline Queue) **[已實現 (OfflineQueueService)]**.
     *   Folder-level Caching **[已實現]**.
+    *   **Sync State Manager**: 統一的同步狀態與併發控制 (SSOT) **[已實現 (SyncStateManager)]**.
 
 ### 1.2 搜尋 (Search)
 *   **FTS5 全文檢索**: 毫秒級本地搜尋 (Subject, Body, Sender) **[已實現]**.
@@ -38,6 +39,7 @@
     *   **HTML 淨化 & 追蹤像素阻擋** **[已實現 (PrivacyProtector)]**.
 *   **標題生成**: 自動生成簡潔標題 **[已實現]**.
 *   **AI 診斷 (Diagnostics)**: 視覺化 AI 事件流與生命週期監控 **[已實現 (AIDiagnosticsPage)]**.
+*   **寫作工具 (Writing Tools)**: Apple Intelligence 系統級整合 **[已實現 (WritingToolsService)]**.
 
 ### 1.4 自動化與生產力
 *   **規則引擎 (Rule Engine)**:
@@ -54,6 +56,7 @@
     *   多來源行事曆整合 (Google/Microsoft) **[已實現 (ProductivityService)]**.
     *   跨平台待辦整合 (Todoist/Google Tasks) **[已實現 (ProductivityService)]**.
     *   行程衝突偵測 **[已實現]**.
+*   **App Intents**: iOS/macOS 捷徑整合 (Summarize, Risk Report) **[已實現 (AppIntentService)]**.
 
 ### 1.5 設定與商業化
 *   **Adaptive UI**: macOS 緊湊風格 vs Mobile 原生風格 **[macOS 風格已實現]**.
