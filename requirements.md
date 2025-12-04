@@ -3,7 +3,10 @@
 ## 1. 功能需求 (Functional Requirements)
 
 ### 1.1 郵件管理 (Core Email)
-*   **多帳號**: Gmail (OAuth) **[已實現]**, Outlook/Yahoo (規劃中).
+*   **多帳號**: 
+    *   Gmail (OAuth) **[已實現]**.
+    *   帳號連結 (Link/Unlink Providers) **[後端 API 已實現]**.
+    *   Outlook/Yahoo (規劃中).
 *   **列表體驗**: 
     *   **無限捲動**: DB 分頁 + API 增量載入 **[已實現]**.
     *   **拖放 (Drag & Drop)**: 支援拖曳歸檔/移動 (基礎建設已完成).
@@ -18,12 +21,14 @@
 *   **建議**: 歷史紀錄與聯絡人建議 **[已實現]**.
 
 ### 1.3 AI 智慧功能 (Apple Intelligence)
+*   **後端 API (Hono)**: `/classify`, `/summarize`, `/generate-reply`, `/extract-entities`, `/analyze-security` **[已實現]**.
 *   **摘要 (Summarize)**: 重點/待辦提取，支援長郵件壓縮 **[已實現 (AI Drawer)]**.
 *   **回覆 (Reply)**: 上下文感知建議 **[已實現 (AI Drawer & Composer)]**.
 *   **安全分析 (Security)**: 
-    *   釣魚/惡意軟體偵測 **[已實現 (MessageBanner)]**.
+    *   釣魚/惡意軟體偵測 **[已實現 (MessageBanner & SecurityService)]**.
     *   **Punycode 域名** 識別 **[已實現]**.
     *   **緊急語言 (Urgency)** 詐騙特徵識別 **[已實現]**.
+    *   **HTML 淨化 & 追蹤像素阻擋** **[已實現 (PrivacyProtector)]**.
 *   **標題生成**: 自動生成簡潔標題 **[已實現]**.
 
 ### 1.4 自動化與生產力
@@ -35,6 +40,7 @@
 ### 1.5 設定與商業化
 *   **Adaptive UI**: macOS 緊湊風格 vs Mobile 原生風格 **[macOS 風格已實現]**.
 *   **IAP**: 訂閱制 (Mock 實作中)，解鎖 AI/無限帳號 **[前端 UI 與後端 API (Mock) 已實現]**.
+*   **幫助中心 (Help System)**: 包含 Getting Started, Features, Shortcuts, FAQ **[已實現 (AwesomeHelpSystem)]**.
 
 ## 2. 非功能需求 (Non-Functional Requirements)
 

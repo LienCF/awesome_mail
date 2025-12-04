@@ -64,3 +64,7 @@
 - [x] **JMAP**: Handler & Client 實作.
 - [x] **Settings (macOS)**: `MacOSSettingsWidgets` 實作.
 - [x] **Backend Subscription**: Subscriptions API, Plans, Mock Stripe Integration.
+- [x] **Backend AI**: Endpoints for Classify, Summarize, Reply, Entity, Security.
+- [x] **Backend Auth**: OAuth Link/Unlink, Refresh Tokens, User Devices.
+- [x] **Security**: `SecurityService` (Anti-phishing, Link Scanning, Privacy Protection).
+- [x] **Help System**: `AwesomeHelpSystem` (Getting Started, Shortcuts, FAQ).
