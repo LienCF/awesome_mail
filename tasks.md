@@ -72,3 +72,4 @@
 - [x] **Settings Backup**: Export/Import JSON, Versioning.
 - [x] **Metrics**: Frontend Service & Backend Durable Object Proxy.
 - [x] **Productivity Tools**: Command Palette, Attachment Viewer, Drag & Drop Controller.
+- [x] **Infrastructure**: Biometric Auth (`BiometricService`), Network Info, Theme Manager.

@@ -44,6 +44,7 @@
 *   **IAP**: 訂閱制 (Mock 實作中)，解鎖 AI/無限帳號 **[前端 UI 與後端 API (Mock) 已實現]**.
 *   **設定備份 (Backup)**: JSON 匯出/匯入, 版本控制 **[已實現 (SettingsBackupService)]**.
 *   **幫助中心 (Help System)**: 包含 Getting Started, Features, Shortcuts, FAQ **[已實現 (AwesomeHelpSystem)]**.
+*   **主題管理 (Theme)**: Light/Dark 模式切換 **[已實現 (ThemeManager)]**.
 
 ## 2. 非功能需求 (Non-Functional Requirements)
 
@@ -60,12 +61,14 @@
 *   **Token**: Vault 架構 (Opaque ID)，System Keychain 儲存 **[已實現]**.
 *   **API**: TLS 1.3，Rate Limit Backoff.
 *   **隱私**: AI 本地推論 (部分)，無數據上雲 (架構支援).
+*   **生物辨識 (Biometric)**: FaceID / TouchID 登入保護 **[已實現 (BiometricService)]**.
 
 ### 2.3 可靠性 (Reliability)
 *   **Sync Drift**: < 5% (Healthy).
 *   **Crash Rate**: < 0.1%.
 *   **Recovery**: 自動修復機制 (Auto-repair) 需在 10 分鐘內解決 Drift **[基礎建設已實現]**.
 *   **Metrics**: 使用量追蹤與效能監控 **[已實現 (MetricsService & Durable Objects)]**.
+*   **Offline Support**: 網路狀態偵測 **[已實現 (NetworkInfo)]**.
 
 ## 3. 限制條件 (Constraints)
 *   **Flutter**: >= 3.35.2
