@@ -13,6 +13,7 @@
     *   **拖放 (Drag & Drop)**: 支援拖曳歸檔/移動 **[已實現 (DragDropController)]**.
     *   **批次操作**: 封存/刪除/標記 **[已實現]**，支援 **Undo History (復原堆疊)** **[已實現 (DragDropController)]**.
     *   **Smart Suggestions**: 根據模式自動建議批次動作 (e.g., "Move newsletters") **[部分實現 (AI Drawer)]**.
+    *   **Badge Counts**: 即時未讀數更新與 Stream 通知 **[已實現 (BadgeNotifier)]**.
 *   **閱讀**: HTML/Text 渲染，圖片阻擋 (隱私) **[已實現]**.
 *   **撰寫**: Rich Text (Quill)，附件，AI 輔助 **[已實現]**.
 *   **信件快取 (Cache)**: 
@@ -47,6 +48,10 @@
     *   CRUD 管理與分類 **[已實現 (TemplateService, TemplatesPage)]**.
     *   變數自動填充 (Auto-fill Variables) **[已實現]**.
     *   AI 範本建議 (Context-aware Suggestions) **[已實現]**.
+*   **生產力整合 (Productivity)**:
+    *   多來源行事曆整合 (Google/Microsoft) **[已實現 (ProductivityService)]**.
+    *   跨平台待辦整合 (Todoist/Google Tasks) **[已實現 (ProductivityService)]**.
+    *   行程衝突偵測 **[已實現]**.
 
 ### 1.5 設定與商業化
 *   **Adaptive UI**: macOS 緊湊風格 vs Mobile 原生風格 **[macOS 風格已實現]**.
@@ -55,6 +60,8 @@
 *   **幫助中心 (Help System)**: 包含 Getting Started, Features, Shortcuts, FAQ **[已實現 (AwesomeHelpSystem)]**.
 *   **主題管理 (Theme)**: Light/Dark 模式切換 **[已實現 (ThemeManager)]**.
 *   **啟動畫面 (Splash)**: 動畫與狀態檢查 **[已實現 (SplashPage)]**.
+*   **遠端配置 (Remote Config)**: Feature Flags, Experimentation (A/B Testing) **[已實現 (RemoteConfigService)]**.
+*   **應用更新 (App Update)**: 版本檢查與強制更新流程 **[已實現 (UpdateService)]**.
 
 ## 2. 非功能需求 (Non-Functional Requirements)
 
@@ -72,6 +79,7 @@
 *   **API**: TLS 1.3，Rate Limit Backoff.
 *   **隱私**: AI 本地推論 (部分)，無數據上雲 (架構支援).
 *   **生物辨識 (Biometric)**: FaceID / TouchID 登入保護 **[已實現 (BiometricService)]**.
+*   **使用量限制 (Usage Tracking)**: 本地與遠端額度監控 **[已實現 (UsageTrackingService)]**.
 
 ### 2.3 可靠性 (Reliability)
 *   **Sync Drift**: < 5% (Healthy).
@@ -79,6 +87,7 @@
 *   **Recovery**: 自動修復機制 (Auto-repair) 需在 10 分鐘內解決 Drift **[基礎建設已實現]**.
 *   **Metrics**: 使用量追蹤與效能監控 **[已實現 (MetricsService & Durable Objects)]**.
 *   **Offline Support**: 網路狀態偵測 **[已實現 (NetworkInfo)]**.
+*   **Error Logging**: Client-side OAuth 錯誤上報 **[後端 API 已實現 (logs.ts)]**.
 
 ## 3. 限制條件 (Constraints)
 *   **Flutter**: >= 3.35.2
