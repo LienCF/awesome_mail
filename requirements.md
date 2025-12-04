@@ -7,6 +7,7 @@
     *   Gmail (OAuth) **[已實現]**.
     *   帳號連結 (Link/Unlink Providers) **[後端 API 已實現]**.
     *   Outlook/Yahoo (規劃中).
+    *   **OAuth Onboarding**: 安全登入引導流程 **[已實現 (OAuthOnboardingWidget)]**.
 *   **列表體驗**: 
     *   **無限捲動**: DB 分頁 + API 增量載入 **[已實現]**.
     *   **拖放 (Drag & Drop)**: 支援拖曳歸檔/移動 **[已實現 (DragDropController)]**.
@@ -14,6 +15,10 @@
     *   **Smart Suggestions**: 根據模式自動建議批次動作 (e.g., "Move newsletters") **[部分實現 (AI Drawer)]**.
 *   **閱讀**: HTML/Text 渲染，圖片阻擋 (隱私) **[已實現]**.
 *   **撰寫**: Rich Text (Quill)，附件，AI 輔助 **[已實現]**.
+*   **信件快取 (Cache)**: 
+    *   磁碟持久化快取 (Disk Persistence) **[已實現 (EmailCacheService)]**.
+    *   離線操作隊列 (Offline Queue) **[已實現]**.
+    *   Folder-level Caching **[已實現]**.
 
 ### 1.2 搜尋 (Search)
 *   **FTS5 全文檢索**: 毫秒級本地搜尋 (Subject, Body, Sender) **[已實現]**.
@@ -38,6 +43,10 @@
     *   UI: 視覺化編輯器, 範本匯入 **[已實現 (AutomationPage)]**.
 *   **待辦事項**: 郵件轉任務 (To-Do) **[已實現 (AwesomeTodoList)]**.
 *   **指令面板 (Command Palette)**: Cmd+K 介面，支援導航與操作 **[已實現 (AwesomeCommandPalette)]**.
+*   **郵件範本 (Templates)**:
+    *   CRUD 管理與分類 **[已實現 (TemplateService, TemplatesPage)]**.
+    *   變數自動填充 (Auto-fill Variables) **[已實現]**.
+    *   AI 範本建議 (Context-aware Suggestions) **[已實現]**.
 
 ### 1.5 設定與商業化
 *   **Adaptive UI**: macOS 緊湊風格 vs Mobile 原生風格 **[macOS 風格已實現]**.
@@ -45,6 +54,7 @@
 *   **設定備份 (Backup)**: JSON 匯出/匯入, 版本控制 **[已實現 (SettingsBackupService)]**.
 *   **幫助中心 (Help System)**: 包含 Getting Started, Features, Shortcuts, FAQ **[已實現 (AwesomeHelpSystem)]**.
 *   **主題管理 (Theme)**: Light/Dark 模式切換 **[已實現 (ThemeManager)]**.
+*   **啟動畫面 (Splash)**: 動畫與狀態檢查 **[已實現 (SplashPage)]**.
 
 ## 2. 非功能需求 (Non-Functional Requirements)
 

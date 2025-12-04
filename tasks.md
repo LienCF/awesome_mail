@@ -44,6 +44,7 @@
 - [x] **Command Palette**: Cmd+K 介面已實作 (`AwesomeCommandPalette`)，支援搜尋與鍵盤導航。
 - [x] **Attachment Viewer**: `AttachmentPreview` 已實作，支援圖片與文字預覽。
 - [x] **Rule Editor**: 自動化規則編輯 UI (UI & Logic Implemented)。
+- [x] **Template Manager**: 郵件範本管理與變數自動填充 (`TemplateService`)。
 
 ### 2.3 技術債與優化
 - [ ] **Drafts Table Indexing**: 添加 `account_updated` 索引 (參見設計文件)。
@@ -72,4 +73,4 @@
 - [x] **Settings Backup**: Export/Import JSON, Versioning.
 - [x] **Metrics**: Frontend Service & Backend Durable Object Proxy.
 - [x] **Productivity Tools**: Command Palette, Attachment Viewer, Drag & Drop Controller.
-- [x] **Infrastructure**: Biometric Auth (`BiometricService`), Network Info, Theme Manager.
+- [x] **Infrastructure**: Biometric Auth, Network Info, Theme Manager, Email Cache, Splash Screen.
