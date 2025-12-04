@@ -77,7 +77,8 @@
 - [x] **Enterprise**: Productivity Service (Calendar/Tasks), Remote Config, App Update Service, Backend Logging.
 - [x] **Diagnostics**: AI Diagnostics Page (Plugin/Client lifecycle events).
 - [x] **Accessibility**: `AccessibilityService` (Semantic announcements, screen reader integration).
-- [x] **Platform Integration**: Writing Tools (Apple Intelligence), App Intents (Shortcuts).
-- [x] **Sync State**: SyncStateManager (SSOT), Offline Queue.
+- [x] **Platform Integration**: Writing Tools (Apple Intelligence), App Intents (Shortcuts), Menu Service (macOS Native).
+- [x] **Sync State**: SyncStateManager (SSOT), Offline Queue, Background Sync Service.
+- [x] **Extensions**: Plugin Registry, Shortcut Actions, Localization (l10n).
 - [x] **Diagnostics**: AI Diagnostics Page (Plugin/Client lifecycle events).
 - [x] **Accessibility**: `AccessibilityService` (Semantic announcements, screen reader integration).

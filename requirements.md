@@ -3,13 +3,13 @@
 ## 1. 功能需求 (Functional Requirements)
 
 ### 1.1 郵件管理 (Core Email)
-*   **多帳號**: 
+*   **多帳號**:
     *   Gmail (OAuth) **[已實現]**.
     *   帳號連結 (Link/Unlink Providers) **[後端 API 已實現]**.
     *   Outlook/Yahoo (規劃中).
     *   **OAuth Onboarding**: 安全登入引導流程 **[已實現 (OAuthOnboardingWidget)]**.
     *   **帳號新增流程 (Account Setup)**: 完整的多步驟精靈 (AccountSetupPage) **[已實現]**.
-*   **列表體驗**: 
+*   **列表體驗**:
     *   **無限捲動**: DB 分頁 + API 增量載入 **[已實現]**.
     *   **拖放 (Drag & Drop)**: 支援拖曳歸檔/移動 **[已實現 (DragDropController)]**.
     *   **批次操作**: 封存/刪除/標記 **[已實現]**，支援 **Undo History (復原堆疊)** **[已實現 (DragDropController)]**.
@@ -17,11 +17,12 @@
     *   **Badge Counts**: 即時未讀數更新與 Stream 通知 **[已實現 (BadgeNotifier)]**.
 *   **閱讀**: HTML/Text 渲染，圖片阻擋 (隱私) **[已實現]**.
 *   **撰寫**: Rich Text (Quill)，附件，AI 輔助 **[已實現]**.
-*   **信件快取 (Cache)**: 
+*   **信件快取 (Cache)**:
     *   磁碟持久化快取 (Disk Persistence) **[已實現 (EmailCacheService)]**.
     *   離線操作隊列 (Offline Queue) **[已實現 (OfflineQueueService)]**.
     *   Folder-level Caching **[已實現]**.
     *   **Sync State Manager**: 統一的同步狀態與併發控制 (SSOT) **[已實現 (SyncStateManager)]**.
+    *   **Background Sync Service**: 背景同步與排程 **[已實現 (BackgroundSyncService)]**.
 
 ### 1.2 搜尋 (Search)
 *   **FTS5 全文檢索**: 毫秒級本地搜尋 (Subject, Body, Sender) **[已實現]**.
@@ -32,7 +33,7 @@
 *   **後端 API (Hono)**: `/classify`, `/summarize`, `/generate-reply`, `/extract-entities`, `/analyze-security` **[已實現]**.
 *   **摘要 (Summarize)**: 重點/待辦提取，支援長郵件壓縮 **[已實現 (AI Drawer)]**.
 *   **回覆 (Reply)**: 上下文感知建議 **[已實現 (AI Drawer & Composer)]**.
-*   **安全分析 (Security)**: 
+*   **安全分析 (Security)**:
     *   釣魚/惡意軟體偵測 **[已實現 (MessageBanner & SecurityService)]**.
     *   **Punycode 域名** 識別 **[已實現]**.
     *   **緊急語言 (Urgency)** 詐騙特徵識別 **[已實現]**.
@@ -57,6 +58,7 @@
     *   跨平台待辦整合 (Todoist/Google Tasks) **[已實現 (ProductivityService)]**.
     *   行程衝突偵測 **[已實現]**.
 *   **App Intents**: iOS/macOS 捷徑整合 (Summarize, Risk Report) **[已實現 (AppIntentService)]**.
+*   **快捷操作 (Shortcut Actions)**: 鍵盤與手勢指令處理 **[已實現 (ShortcutActionHandler)]**.
 
 ### 1.5 設定與商業化
 *   **Adaptive UI**: macOS 緊湊風格 vs Mobile 原生風格 **[macOS 風格已實現]**.
@@ -67,6 +69,9 @@
 *   **啟動畫面 (Splash)**: 動畫與狀態檢查 **[已實現 (SplashPage)]**.
 *   **遠端配置 (Remote Config)**: Feature Flags, Experimentation (A/B Testing) **[已實現 (RemoteConfigService)]**.
 *   **應用更新 (App Update)**: 版本檢查與強制更新流程 **[已實現 (UpdateService)]**.
+*   **本地化 (Localization)**: 多語言支援 (en, zh, ja) **[已實現 (AppLocalizations)]**.
+*   **原生選單 (Menu Service)**: macOS 系統選單整合 **[已實現 (MenuService)]**.
+*   **外掛系統 (Plugin Registry)**: 擴充功能管理 **[已實現 (PluginRegistry)]**.
 
 ## 2. 非功能需求 (Non-Functional Requirements)
 
@@ -102,3 +107,4 @@
 *   **Flutter**: >= 3.35.2
 *   **Dart**: >= 3.9.0
 *   **AI 需求**: iOS 18.1+, macOS 15.1+ (Foundation Models).
+
