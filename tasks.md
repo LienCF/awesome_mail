@@ -81,6 +81,8 @@
 - [x] **Sync State**: SyncStateManager (SSOT), Offline Queue, Background Sync Service.
 - [x] **Extensions**: Plugin Registry, Shortcut Actions, Localization (l10n).
 - [x] **AI Framework**: Foundation Models Framework, AI Init Coordinator, AI Dashboard.
-- [x] **Developer Tools**: Complex Email Test Page, Layout Debugging.
+- [x] **Developer Tools**: Complex Email Test Page, Layout Debugging (OverflowDebugger).
+- [x] **Smart Prefetch**: FullContentDownloadService (Background Content Prefetch).
+- [x] **Sync Telemetry**: SyncMetricsCollector (Detailed Sync Metrics).
 - [x] **Diagnostics**: AI Diagnostics Page (Plugin/Client lifecycle events).
 - [x] **Accessibility**: `AccessibilityService` (Semantic announcements, screen reader integration).

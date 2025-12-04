@@ -23,6 +23,7 @@
     *   Folder-level Caching **[已實現]**.
     *   **Sync State Manager**: 統一的同步狀態與併發控制 (SSOT) **[已實現 (SyncStateManager)]**.
     *   **Background Sync Service**: 背景同步與排程 **[已實現 (BackgroundSyncService)]**.
+    *   **Smart Prefetch**: 完整內容背景下載與優先級排程 **[已實現 (FullContentDownloadService)]**.
 
 ### 1.2 搜尋 (Search)
 *   **FTS5 全文檢索**: 毫秒級本地搜尋 (Subject, Body, Sender) **[已實現]**.
@@ -75,7 +76,9 @@
 *   **本地化 (Localization)**: 多語言支援 (en, zh, ja) **[已實現 (AppLocalizations)]**.
 *   **原生選單 (Menu Service)**: macOS 系統選單整合 **[已實現 (MenuService)]**.
 *   **外掛系統 (Plugin Registry)**: 擴充功能管理 **[已實現 (PluginRegistry)]**.
-*   **開發者工具 (Developer Tools)**: 複雜郵件渲染測試、WebView 測試、佈局調試 **[已實現 (Debug Pages)]**.
+*   **開發者工具 (Developer Tools)**: 
+    *   複雜郵件渲染測試、WebView 測試 **[已實現]**.
+    *   佈局溢出偵測與視覺化調試 **[已實現 (OverflowDebugger)]**.
 
 ## 2. 非功能需求 (Non-Functional Requirements)
 
@@ -99,7 +102,9 @@
 *   **Sync Drift**: < 5% (Healthy).
 *   **Crash Rate**: < 0.1%.
 *   **Recovery**: 自動修復機制 (Auto-repair) 需在 10 分鐘內解決 Drift **[基礎建設已實現]**.
-*   **Metrics**: 使用量追蹤與效能監控 **[已實現 (MetricsService & Durable Objects)]**.
+*   **Metrics**: 
+    *   使用量追蹤與效能監控 **[已實現 (MetricsService & Durable Objects)]**.
+    *   詳細同步遙測 (Duration, Success Rate, Quota) **[已實現 (SyncMetricsCollector)]**.
 *   **Offline Support**: 網路狀態偵測 **[已實現 (NetworkInfo)]**.
 *   **Error Logging**: Client-side OAuth 錯誤上報 **[後端 API 已實現 (logs.ts)]**.
 
