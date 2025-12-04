@@ -8,6 +8,7 @@
     *   帳號連結 (Link/Unlink Providers) **[後端 API 已實現]**.
     *   Outlook/Yahoo (規劃中).
     *   **OAuth Onboarding**: 安全登入引導流程 **[已實現 (OAuthOnboardingWidget)]**.
+    *   **帳號新增流程 (Account Setup)**: 完整的多步驟精靈 (AccountSetupPage) **[已實現]**.
 *   **列表體驗**: 
     *   **無限捲動**: DB 分頁 + API 增量載入 **[已實現]**.
     *   **拖放 (Drag & Drop)**: 支援拖曳歸檔/移動 **[已實現 (DragDropController)]**.
@@ -36,6 +37,7 @@
     *   **緊急語言 (Urgency)** 詐騙特徵識別 **[已實現]**.
     *   **HTML 淨化 & 追蹤像素阻擋** **[已實現 (PrivacyProtector)]**.
 *   **標題生成**: 自動生成簡潔標題 **[已實現]**.
+*   **AI 診斷 (Diagnostics)**: 視覺化 AI 事件流與生命週期監控 **[已實現 (AIDiagnosticsPage)]**.
 
 ### 1.4 自動化與生產力
 *   **規則引擎 (Rule Engine)**:
@@ -88,6 +90,10 @@
 *   **Metrics**: 使用量追蹤與效能監控 **[已實現 (MetricsService & Durable Objects)]**.
 *   **Offline Support**: 網路狀態偵測 **[已實現 (NetworkInfo)]**.
 *   **Error Logging**: Client-side OAuth 錯誤上報 **[後端 API 已實現 (logs.ts)]**.
+
+### 2.4 無障礙 (Accessibility)
+*   **Semantic Announcements**: 語音報讀 (新郵件、搜尋結果、載入狀態) **[已實現 (AccessibilityService)]**.
+*   **Screen Reader Support**: 完整語義標籤與提示 **[已實現]**.
 
 ## 3. 限制條件 (Constraints)
 *   **Flutter**: >= 3.35.2

@@ -75,3 +75,5 @@
 - [x] **Productivity Tools**: Command Palette, Attachment Viewer, Drag & Drop Controller.
 - [x] **Infrastructure**: Biometric Auth, Network Info, Theme Manager, Email Cache, Splash Screen.
 - [x] **Enterprise**: Productivity Service (Calendar/Tasks), Remote Config, App Update Service, Backend Logging.
+- [x] **Diagnostics**: AI Diagnostics Page (Plugin/Client lifecycle events).
+- [x] **Accessibility**: `AccessibilityService` (Semantic announcements, screen reader integration).
