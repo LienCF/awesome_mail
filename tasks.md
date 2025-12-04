@@ -25,9 +25,11 @@
 
 ### 1.4 IAP UI 整合
 *   **目標**: 顯示訂閱畫面與功能限制。
-*   **Status**: UI Implemented (`SubscriptionPageImpl`, `FeatureGate`).
+*   **Status**: 
+    - UI Implemented: `SubscriptionPageImpl`, `PlanComparison`.
+    - Backend Ready: `subscriptions.ts` (Status, Upgrade, Mock Stripe).
 *   **Action Items**:
-    - [ ] 確認 `FeatureGate` 與實際業務邏輯的攔截點。
+    - [ ] 確認 `FeatureGate` 與實際業務邏輯的攔截點 (Connect frontend to backend).
     - [ ] 實作 Upgrade Prompt (Feature Gate 攔截)。
 
 ## 2. 待辦任務 (Backlog)
@@ -36,11 +38,12 @@
 - [ ] **拖放整合**: 將 `DragDropController` 與 Sidebar 實際對接 (Drop to Move)。
 - [ ] **Batch Undo UI**: 顯示 "已刪除/復原" Snackbar。
 - [x] **Smart Suggestions UI**: `AIDrawer` 與 `AIReplySuggestionsWidget` 已整合。
+- [x] **Batch Toolbar**: `HomeToolbar` 已整合批次操作 (Select All, Archive, Delete, etc.)。
 
 ### 2.2 進階工具
 - [ ] **Command Palette**: Cmd+K 介面。
 - [ ] **Attachment Viewer**: 圖片燈箱/PDF 預覽。
-- [ ] **Rule Editor**: 自動化規則編輯 UI。
+- [ ] **Rule Editor**: 自動化規則編輯 UI (後端 DB 已支援)。
 
 ### 2.3 技術債與優化
 - [ ] **Drafts Table Indexing**: 添加 `account_updated` 索引 (參見設計文件)。
@@ -57,6 +60,7 @@
 - [x] **同步核心**: ALL MAIL Strategy, Incremental Sync, Reconciliation, Auto-repair.
 - [x] **AI 核心**: FoundationAIProvider, Dynamic Routing, Task Queue (Priority/Retry).
 - [x] **UI 基礎**: Awesome Design System (macOS), 3-pane Layout.
-- [x] **UI 進階**: AI Drawer, Message Banner, Composer, To-Do List.
+- [x] **UI 進階**: AI Drawer, Message Banner (Security), Composer (Rich Text), To-Do List.
 - [x] **JMAP**: Handler & Client 實作.
 - [x] **Settings (macOS)**: `MacOSSettingsWidgets` 實作.
+- [x] **Backend Subscription**: Subscriptions API, Plans, Mock Stripe Integration.
