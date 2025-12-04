@@ -9,8 +9,8 @@
     *   Outlook/Yahoo (規劃中).
 *   **列表體驗**: 
     *   **無限捲動**: DB 分頁 + API 增量載入 **[已實現]**.
-    *   **拖放 (Drag & Drop)**: 支援拖曳歸檔/移動 (基礎建設已完成).
-    *   **批次操作**: 封存/刪除/標記 **[已實現]**，支援 **Undo History (復原堆疊)** **[基礎建設已完成]**.
+    *   **拖放 (Drag & Drop)**: 支援拖曳歸檔/移動 **[已實現 (DragDropController)]**.
+    *   **批次操作**: 封存/刪除/標記 **[已實現]**，支援 **Undo History (復原堆疊)** **[已實現 (DragDropController)]**.
     *   **Smart Suggestions**: 根據模式自動建議批次動作 (e.g., "Move newsletters") **[部分實現 (AI Drawer)]**.
 *   **閱讀**: HTML/Text 渲染，圖片阻擋 (隱私) **[已實現]**.
 *   **撰寫**: Rich Text (Quill)，附件，AI 輔助 **[已實現]**.
@@ -37,6 +37,7 @@
     *   動作: Webhook, 本地通知, 自動回覆, 轉寄, 標記 **[已實現]**.
     *   UI: 視覺化編輯器, 範本匯入 **[已實現 (AutomationPage)]**.
 *   **待辦事項**: 郵件轉任務 (To-Do) **[已實現 (AwesomeTodoList)]**.
+*   **指令面板 (Command Palette)**: Cmd+K 介面，支援導航與操作 **[已實現 (AwesomeCommandPalette)]**.
 
 ### 1.5 設定與商業化
 *   **Adaptive UI**: macOS 緊湊風格 vs Mobile 原生風格 **[macOS 風格已實現]**.

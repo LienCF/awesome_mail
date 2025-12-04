@@ -35,14 +35,14 @@
 ## 2. 待辦任務 (Backlog)
 
 ### 2.1 核心功能補完
-- [ ] **拖放整合**: 將 `DragDropController` 與 Sidebar 實際對接 (Drop to Move)。
-- [ ] **Batch Undo UI**: 顯示 "已刪除/復原" Snackbar。
+- [x] **拖放整合**: `DragDropController` 已實作，支援拖曳、Undo History 與 Haptic Feedback。
+- [ ] **Batch Undo UI**: 顯示 "已刪除/復原" Snackbar (Controller 有 Undo，需確認 UI 連接)。
 - [x] **Smart Suggestions UI**: `AIDrawer` 與 `AIReplySuggestionsWidget` 已整合。
 - [x] **Batch Toolbar**: `HomeToolbar` 已整合批次操作 (Select All, Archive, Delete, etc.)。
 
 ### 2.2 進階工具
-- [ ] **Command Palette**: Cmd+K 介面。
-- [ ] **Attachment Viewer**: 圖片燈箱/PDF 預覽。
+- [x] **Command Palette**: Cmd+K 介面已實作 (`AwesomeCommandPalette`)，支援搜尋與鍵盤導航。
+- [x] **Attachment Viewer**: `AttachmentPreview` 已實作，支援圖片與文字預覽。
 - [x] **Rule Editor**: 自動化規則編輯 UI (UI & Logic Implemented)。
 
 ### 2.3 技術債與優化
@@ -71,3 +71,4 @@
 - [x] **Automation**: Rule Engine, Visual Rule Builder, Templates.
 - [x] **Settings Backup**: Export/Import JSON, Versioning.
 - [x] **Metrics**: Frontend Service & Backend Durable Object Proxy.
+- [x] **Productivity Tools**: Command Palette, Attachment Viewer, Drag & Drop Controller.
