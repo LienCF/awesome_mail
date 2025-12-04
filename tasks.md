@@ -80,5 +80,7 @@
 - [x] **Platform Integration**: Writing Tools (Apple Intelligence), App Intents (Shortcuts), Menu Service (macOS Native).
 - [x] **Sync State**: SyncStateManager (SSOT), Offline Queue, Background Sync Service.
 - [x] **Extensions**: Plugin Registry, Shortcut Actions, Localization (l10n).
+- [x] **AI Framework**: Foundation Models Framework, AI Init Coordinator, AI Dashboard.
+- [x] **Developer Tools**: Complex Email Test Page, Layout Debugging.
 - [x] **Diagnostics**: AI Diagnostics Page (Plugin/Client lifecycle events).
 - [x] **Accessibility**: `AccessibilityService` (Semantic announcements, screen reader integration).

@@ -3,13 +3,13 @@
 ## 1. 功能需求 (Functional Requirements)
 
 ### 1.1 郵件管理 (Core Email)
-*   **多帳號**:
+*   **多帳號**: 
     *   Gmail (OAuth) **[已實現]**.
     *   帳號連結 (Link/Unlink Providers) **[後端 API 已實現]**.
     *   Outlook/Yahoo (規劃中).
     *   **OAuth Onboarding**: 安全登入引導流程 **[已實現 (OAuthOnboardingWidget)]**.
     *   **帳號新增流程 (Account Setup)**: 完整的多步驟精靈 (AccountSetupPage) **[已實現]**.
-*   **列表體驗**:
+*   **列表體驗**: 
     *   **無限捲動**: DB 分頁 + API 增量載入 **[已實現]**.
     *   **拖放 (Drag & Drop)**: 支援拖曳歸檔/移動 **[已實現 (DragDropController)]**.
     *   **批次操作**: 封存/刪除/標記 **[已實現]**，支援 **Undo History (復原堆疊)** **[已實現 (DragDropController)]**.
@@ -17,7 +17,7 @@
     *   **Badge Counts**: 即時未讀數更新與 Stream 通知 **[已實現 (BadgeNotifier)]**.
 *   **閱讀**: HTML/Text 渲染，圖片阻擋 (隱私) **[已實現]**.
 *   **撰寫**: Rich Text (Quill)，附件，AI 輔助 **[已實現]**.
-*   **信件快取 (Cache)**:
+*   **信件快取 (Cache)**: 
     *   磁碟持久化快取 (Disk Persistence) **[已實現 (EmailCacheService)]**.
     *   離線操作隊列 (Offline Queue) **[已實現 (OfflineQueueService)]**.
     *   Folder-level Caching **[已實現]**.
@@ -33,14 +33,17 @@
 *   **後端 API (Hono)**: `/classify`, `/summarize`, `/generate-reply`, `/extract-entities`, `/analyze-security` **[已實現]**.
 *   **摘要 (Summarize)**: 重點/待辦提取，支援長郵件壓縮 **[已實現 (AI Drawer)]**.
 *   **回覆 (Reply)**: 上下文感知建議 **[已實現 (AI Drawer & Composer)]**.
-*   **安全分析 (Security)**:
+*   **安全分析 (Security)**: 
     *   釣魚/惡意軟體偵測 **[已實現 (MessageBanner & SecurityService)]**.
     *   **Punycode 域名** 識別 **[已實現]**.
     *   **緊急語言 (Urgency)** 詐騙特徵識別 **[已實現]**.
     *   **HTML 淨化 & 追蹤像素阻擋** **[已實現 (PrivacyProtector)]**.
 *   **標題生成**: 自動生成簡潔標題 **[已實現]**.
 *   **AI 診斷 (Diagnostics)**: 視覺化 AI 事件流與生命週期監控 **[已實現 (AIDiagnosticsPage)]**.
+*   **AI 分類儀表板 (Dashboard)**: 分類統計、信心值分佈與待處理佇列監控 **[已實現 (AIClassificationPage)]**.
 *   **寫作工具 (Writing Tools)**: Apple Intelligence 系統級整合 **[已實現 (WritingToolsService)]**.
+*   **Foundation Models Framework**: 模組化本地模型整合架構 **[已實現 (foundation_models_framework package)]**.
+*   **AI Init Coordinator**: 模型預熱與就緒狀態協調 **[已實現 (AIInitCoordinator)]**.
 
 ### 1.4 自動化與生產力
 *   **規則引擎 (Rule Engine)**:
@@ -72,6 +75,7 @@
 *   **本地化 (Localization)**: 多語言支援 (en, zh, ja) **[已實現 (AppLocalizations)]**.
 *   **原生選單 (Menu Service)**: macOS 系統選單整合 **[已實現 (MenuService)]**.
 *   **外掛系統 (Plugin Registry)**: 擴充功能管理 **[已實現 (PluginRegistry)]**.
+*   **開發者工具 (Developer Tools)**: 複雜郵件渲染測試、WebView 測試、佈局調試 **[已實現 (Debug Pages)]**.
 
 ## 2. 非功能需求 (Non-Functional Requirements)
 
@@ -107,4 +111,3 @@
 *   **Flutter**: >= 3.35.2
 *   **Dart**: >= 3.9.0
 *   **AI 需求**: iOS 18.1+, macOS 15.1+ (Foundation Models).
-
