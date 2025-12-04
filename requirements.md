@@ -33,13 +33,15 @@
 
 ### 1.4 自動化與生產力
 *   **規則引擎 (Rule Engine)**:
-    *   條件: Regex, 數值比較, 邏輯組合 (AND/OR) **[後端 Schema 支援]**.
-    *   動作: Webhook, 本地通知, 自動回覆, 轉寄, 標記.
+    *   條件: Regex, 數值比較, 邏輯組合 (AND/OR) **[已實現 (EmailRuleEngine)]**.
+    *   動作: Webhook, 本地通知, 自動回覆, 轉寄, 標記 **[已實現]**.
+    *   UI: 視覺化編輯器, 範本匯入 **[已實現 (AutomationPage)]**.
 *   **待辦事項**: 郵件轉任務 (To-Do) **[已實現 (AwesomeTodoList)]**.
 
 ### 1.5 設定與商業化
 *   **Adaptive UI**: macOS 緊湊風格 vs Mobile 原生風格 **[macOS 風格已實現]**.
 *   **IAP**: 訂閱制 (Mock 實作中)，解鎖 AI/無限帳號 **[前端 UI 與後端 API (Mock) 已實現]**.
+*   **設定備份 (Backup)**: JSON 匯出/匯入, 版本控制 **[已實現 (SettingsBackupService)]**.
 *   **幫助中心 (Help System)**: 包含 Getting Started, Features, Shortcuts, FAQ **[已實現 (AwesomeHelpSystem)]**.
 
 ## 2. 非功能需求 (Non-Functional Requirements)
@@ -62,6 +64,7 @@
 *   **Sync Drift**: < 5% (Healthy).
 *   **Crash Rate**: < 0.1%.
 *   **Recovery**: 自動修復機制 (Auto-repair) 需在 10 分鐘內解決 Drift **[基礎建設已實現]**.
+*   **Metrics**: 使用量追蹤與效能監控 **[已實現 (MetricsService & Durable Objects)]**.
 
 ## 3. 限制條件 (Constraints)
 *   **Flutter**: >= 3.35.2

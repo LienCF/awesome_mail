@@ -43,7 +43,7 @@
 ### 2.2 進階工具
 - [ ] **Command Palette**: Cmd+K 介面。
 - [ ] **Attachment Viewer**: 圖片燈箱/PDF 預覽。
-- [ ] **Rule Editor**: 自動化規則編輯 UI (後端 DB 已支援)。
+- [x] **Rule Editor**: 自動化規則編輯 UI (UI & Logic Implemented)。
 
 ### 2.3 技術債與優化
 - [ ] **Drafts Table Indexing**: 添加 `account_updated` 索引 (參見設計文件)。
@@ -68,3 +68,6 @@
 - [x] **Backend Auth**: OAuth Link/Unlink, Refresh Tokens, User Devices.
 - [x] **Security**: `SecurityService` (Anti-phishing, Link Scanning, Privacy Protection).
 - [x] **Help System**: `AwesomeHelpSystem` (Getting Started, Shortcuts, FAQ).
+- [x] **Automation**: Rule Engine, Visual Rule Builder, Templates.
+- [x] **Settings Backup**: Export/Import JSON, Versioning.
+- [x] **Metrics**: Frontend Service & Backend Durable Object Proxy.
