@@ -103,17 +103,17 @@
 - [x] **Error Handling**: Global Error Handler (Main.dart), Overflow Debugger, Isolate Error Reporting.
 - [x] **AI Infrastructure**: Token Estimator (CJK/Non-CJK), Foundation Models Framework, AI Init Coordinator.
 - [x] **UI 進階**: AI Drawer (Classification/Summary/Chat), Message Banner (Security), Composer (Rich Text), To-Do List.
-- [x] **JMAP**: Handler & Client 實作.
+- [x] **Reading Experience**: AwesomeReadingPane (Conversation/Single), EmailSummaryPanel, MessageBanner.
 - [x] **Settings (macOS)**: `MacOSSettingsWidgets` 實作.
 - [x] **Backend Subscription**: Subscriptions API, Plans, Mock Stripe Service, Webhook Endpoint.
 - [x] **Backend Auth**: OAuth Link/Unlink, Refresh Tokens, User Devices.
-- [x] **Security**: `SecurityService`, `SimpleSecurityAnalyzer` (Local Heuristics), Anti-phishing, Link Scanning, `BiometricService`.
+- [x] **Security**: `SecurityService`, `SimpleSecurityAnalyzer` (Local Heuristics), Anti-phishing (Spoofing/Urgency), Sender Auth (SPF/DKIM/DMARC), `BiometricService`.
 - [x] **Help System**: `AwesomeHelpSystem` (Getting Started, Shortcuts, FAQ).
 - [x] **Automation**: Rule Engine (RegEx, Webhook, Notifications), Visual Rule Builder, Templates.
 - [x] **Settings Backup**: Export/Import JSON, Versioning, `file_picker` & `share_plus` integration.
 - [x] **Metrics**: Frontend Service & Backend Durable Object Proxy, `UsageTrackingService` (Quota).
 - [x] **Productivity Tools**: Command Palette (Fuzzy Search, Categories, Shortcuts), Attachment Viewer, Drag & Drop Controller.
-- [x] **Infrastructure**: Biometric Auth, Network Info, Theme Manager, Email Cache (Multi-layer), Splash Screen.
+- [x] **Infrastructure**: Biometric Auth, Network Info, Theme Manager, Email Cache (Multi-layer), Splash Screen, Unread Count Manager.
 - [x] **Enterprise**: Productivity Service (Calendar/Tasks), Remote Config, App Update Service, Backend Logging.
 - [x] **Diagnostics**: AI Diagnostics Page (Plugin/Client lifecycle events), Overflow Debugger, `AIModelStatusChip`.
 - [x] **Accessibility**: `AccessibilityService` (Semantic announcements, screen reader integration).
@@ -129,8 +129,9 @@
 - [x] **AI Framework**: Foundation Models Framework, AI Init Coordinator (Event-driven Retry), AI Dashboard, Guided Engines (Summary/Reply).
 - [x] **Google Productivity**: Calendar (Recurring Events, Reminders) & Tasks providers implemented.
 - [x] **Apple Integration**: Apple Reminders (CalDAV), Writing Tools, App Intents.
-- [x] **UI Enhancements**: Conversation View (Threading, Shortcuts), Command Palette, Memory Monitor.
+- [x] **UI Enhancements**: Conversation View (Threading, Shortcuts), Command Palette, Memory Monitor, Adaptive Feedback.
 - [x] **Database Indexes**: Implemented optimized composite indexes (`idx_emails_account_unread_received`, `idx_emails_has_full_content` etc.) for high-performance queries.
+- [x] **Network Monitor**: Bandwidth calculation, connectivity history, and optimization suggestions.
 - [x] **FTS5 Triggers**: Implemented auto-sync triggers for FTS tables (`emails_fts`, `drafts_fts`).
 - [x] **Biometric Strength**: Implemented `BiometricService` with strength check and preference management.
 - [x] **Developer Tools**: Complex Email Test Page, Layout Debugging (OverflowDebugger), WebView Test, `DebugStorage`.

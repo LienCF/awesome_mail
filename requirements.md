@@ -157,6 +157,7 @@
 *   **Adaptive UI**: macOS 緊湊風格 vs Mobile 原生風格 (Theme/Density/Layout) **[已實現 (AppearanceSettingsPage)]**.
     *   **Resizable Layout**: 支援拖曳調整欄位寬度的雙欄 (`ResizableTwoColumnLayout`) 與三欄佈局，並自動持久化寬度設定 **[已實現]**.
     *   **Awesome Option Picker**: 平台適應性選單 (macOS Popup Surface vs iOS Action Sheet) **[已實現]**.
+    *   **Adaptive Feedback**: 平台適應性回饋機制，自動切換 SnackBar (Mobile) 與 CupertinoDialog (Desktop) **[已實現 (AdaptiveFeedback)]**.
     *   **Accessibility**: `SemanticAnnouncer` 封裝 `SemanticsService`，支援優先級 (Polite/Assertive) 語音播報 **[已實現]**.
     *   **Theme System**: 完整的主題擴充機制，支援自定義顏色與響應式佈局 (2/3欄) **[已實現 (AwesomeTheme)]**.
     *   **AppButton**: 統一且可客製化的按鈕元件 (Primary/Secondary/Text/Icon) **[已實現]**.
@@ -196,6 +197,7 @@
     *   **WebView 測試 (Webview Test)** **[已實現]**.
     *   **佈局溢出偵測 (Resizable Layout Test)** **[已實現]**.
     *   **全域溢出偵錯 (Overflow Debugger)**: 攔截 Flutter 錯誤，分析 `RenderFlex overflowed` 異常，提供 UI 樹上下文與修復建議 **[已實現 (OverflowDebugger)]**.
+    *   **Debounce Controller**: 通用防抖動控制器，支援自定義延遲與異步回調，優化搜尋與即時輸入體驗 **[已實現 (DebounceController)]**.
 *   **測試策略 (Testing)**:
     *   **Unit Tests**: 核心邏輯覆蓋 (`test/unit/`) **[已實現]**.
     *   **Widget Tests**: UI 元件互動測試 (`test/widget/`) **[已實現]**.
