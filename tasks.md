@@ -84,7 +84,7 @@
 - [x] **Performance Monitor**: Startup/Transition/API tracking with scoring & suggestions (`PerformanceMonitor`).
 - [x] **Backend Jobs**: `JobManager` with Cleanup, UsageReset, HealthCheck jobs.
 - [x] **Email Rule Engine**: `EmailRuleEngine` 完整實作 (Conditions, Actions, Evaluation).
-- [x] **Batch Operations**: Smart Suggestions & Undo History 實作完成 (`BatchOperationService`).
+- [x] **Batch Operations**: Smart Suggestions & Undo History 實作完成 (`BatchOperationService`), Batch Operations UI.
 - [x] **Templates**: Variable Auto-fill & AI Suggestions 實作完成 (`TemplateService`).
 - [x] **Platform OAuth Code**: Windows (System Browser) & Web (GIS) OAuth 服務程式碼已實作 (`WindowsOAuthService`, `WebOAuthService`)，待啟用。
 - [x] **Microsoft Productivity**: `MicrosoftCalendarProvider` (Core CRUD) 與 `MicrosoftTodoProvider` 實作完成。

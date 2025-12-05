@@ -128,7 +128,10 @@
 *   **規則引擎 (Rule Engine)**:
     *   條件: Regex, 數值比較, 邏輯組合 (AND/OR), Subject/Sender/Body/Date/Size/Folder matching **[已實現 (EmailRuleEngine)]**.
     *   動作: Webhook, 本地通知 (Notification/Sound), 自動回覆, 轉寄, 標記 (Read/Star/Label/Important/Spam), 移動/複製/刪除 **[已實現]**.
-    *   UI: 視覺化編輯器, 範本匯入 **[已實現 (AutomationPage)]**.
+    *   **UI**: 
+        *   **Rule Editor**: 視覺化規則編輯器，支援多條件組合 (AND/OR) 與動態動作表單 **[已實現 (RuleEditorWidget)]**.
+        *   **Template Manager**: 範本管理介面，支援分類瀏覽 (Business/Personal/etc.)、預覽 (Preview) 與變數提示 **[已實現 (TemplateManagerWidget)]**.
+        *   **Batch Operations UI**: 批次操作歷史紀錄與復原 (Undo) 介面 **[已實現 (BatchOperationsWidget)]**.
 *   **待辦事項**: 郵件轉任務 (To-Do) **[已實現 (AwesomeTodoList)]**.
 *   **指令面板 (Command Palette)**: 
     *   Cmd+K 介面，支援導航與操作 **[已實現 (AwesomeCommandPalette)]**.
@@ -165,6 +168,7 @@
     *   **Awesome Option Picker**: 平台適應性選單 (macOS Popup Surface vs iOS Action Sheet) **[已實現]**.
     *   **Adaptive Feedback**: 平台適應性回饋機制，自動切換 SnackBar (Mobile) 與 CupertinoDialog (Desktop) **[已實現 (AdaptiveFeedback)]**.
     *   **Accessibility**: `SemanticAnnouncer` 封裝 `SemanticsService`，支援優先級 (Polite/Assertive) 語音播報 **[已實現]**.
+    *   **Focus Management**: `AwesomeFocusManager` 實現 WCAG 2.1 AA+ 標準的鍵盤導航 (Tab/Arrow)，支援 Focus Trapping 與 Grid Navigation **[已實現]**.
     *   **Theme System**: 完整的主題擴充機制，支援自定義顏色與響應式佈局 (2/3欄) **[已實現 (AwesomeTheme)]**.
     *   **AppButton**: 統一且可客製化的按鈕元件 (Primary/Secondary/Text/Icon) **[已實現]**.
     *   **Email List Item**: 支援滑動手勢 (Swipe Actions) 與拖曳 (Drag & Drop) **[已實現 (EmailListItem)]**.
