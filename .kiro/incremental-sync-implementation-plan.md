@@ -5,6 +5,7 @@
 > **目標:** 支援無限捲動載入郵件 & 確保本地與 Server 狀態一致
 > **預估時間:** 13-19 工作天
 > **建立日期:** 2025-10-11
+> **最後更新:** 2025-12-03
 
 ---
 
@@ -838,43 +839,43 @@ class SyncMetrics {
 ## 九、實作 Checklist
 
 ### Phase 1-2: 狀態管理 (2-3 天)
-- [ ] Phase 1.1: MailboxState 測試
-- [ ] Phase 1.2: MailboxState 實作
-- [ ] Phase 2.1: SyncResult 類別
-- [ ] Phase 2.2: GmailRepository 修改
-- [ ] Phase 2.3: 向後相容性驗證
+- [x] Phase 1.1: MailboxState 測試
+- [x] Phase 1.2: MailboxState 實作
+- [x] Phase 2.1: SyncResult 類別
+- [x] Phase 2.2: GmailRepository 修改
+- [x] Phase 2.3: 向後相容性驗證
 
 ### Phase 3-4: 健康監控 (2-3 天)
-- [ ] Phase 3.1: SyncMetadata Schema
-- [ ] Phase 3.2: SyncMetadataRepository
-- [ ] Phase 3.3: 持久化測試
-- [ ] Phase 4.1: SyncHealthChecker 介面
-- [ ] Phase 4.2: checkFolderHealth 實作
-- [ ] Phase 4.3: 健康檢查測試
+- [x] Phase 3.1: SyncMetadata Schema
+- [x] Phase 3.2: SyncMetadataRepository
+- [x] Phase 3.3: 持久化測試
+- [x] Phase 4.1: SyncHealthChecker 介面
+- [x] Phase 4.2: checkFolderHealth 實作
+- [x] Phase 4.3: 健康檢查測試
 
 ### Phase 5-6: 同步邏輯 (3-4 天)
-- [ ] Phase 5.1: _shouldTriggerApiSync
-- [ ] Phase 5.2: _triggerApiSync
-- [ ] Phase 5.3: 整合到 _onLoadByLabel
-- [ ] Phase 6.1: History API 強化
-- [ ] Phase 6.2: 降級機制
-- [ ] Phase 6.3: 增量同步測試
+- [x] Phase 5.1: _shouldTriggerApiSync
+- [x] Phase 5.2: _triggerApiSync
+- [x] Phase 5.3: 整合到 _onLoadByLabel
+- [x] Phase 6.1: History API 強化
+- [x] Phase 6.2: 降級機制
+- [x] Phase 6.3: 增量同步測試
 
 ### Phase 7-8: 自動修復 (2-3 天)
-- [ ] Phase 7.1: 不一致偵測
-- [ ] Phase 7.2: 自動修復機制
-- [ ] Phase 7.3: 修復測試
-- [ ] Phase 8.1: 週期性檢查
-- [ ] Phase 8.2: 生命週期整合
-- [ ] Phase 8.3: 防重複機制
+- [x] Phase 7.1: 不一致偵測
+- [x] Phase 7.2: 自動修復機制
+- [x] Phase 7.3: 修復測試
+- [x] Phase 8.1: 週期性檢查
+- [x] Phase 8.2: 生命週期整合
+- [x] Phase 8.3: 防重複機制
 
 ### Phase 9-10: UI & 監控 (1-2 天)
-- [ ] Phase 9.1: _calculateHasMore
-- [ ] Phase 9.2: EmailListWidget 更新
-- [ ] Phase 9.3: SyncStatusIndicator
-- [ ] Phase 9.4: UI 整合
-- [ ] Phase 10.1: 日誌記錄
-- [ ] Phase 10.2: 效能指標
+- [x] Phase 9.1: _calculateHasMore
+- [x] Phase 9.2: EmailListWidget 更新
+- [x] Phase 9.3: SyncStatusIndicator
+- [x] Phase 9.4: UI 整合
+- [x] Phase 10.1: 日誌記錄
+- [x] Phase 10.2: 效能指標
 
 ### Phase 11-13: 測試 (2-3 天)
 - [ ] Phase 11.1: E2E - 載入 200+ 封
@@ -892,22 +893,25 @@ class SyncMetrics {
 
 ---
 
-## 十、參考資料
+## 十、已實作進階規格 (隱藏版)
 
-### Gmail API 文檔
-- History API: https://developers.google.com/gmail/api/guides/sync
-- Messages API: https://developers.google.com/gmail/api/reference/rest/v1/users.messages
+以下功能在程式碼中已實作，但原計畫未詳細記載：
 
-### 相關 Issue
-- 無法載入超過 200 封郵件
-- 本地與 Server 狀態不一致
+### 1. 進階 AI 任務佇列 (AiTaskQueueService)
+- **優先級系統**: Urgent/High/Medium/Low，支援使用者操作插隊 (force=true)。
+- **智慧重試**: 失敗任務採指數退避 (Exponential Backoff)，最多 5 次。
+- **內容啟發 (Heuristics)**: 自動偵測 "Click to view" 等 HTML 佔位符，改用 HTML 內容摘要。
 
-### 設計決策
-- 選擇 Database-First 的原因: 快速 UI 響應
-- 選擇 200 封限制的原因: 避免 API 超時
-- 選擇 5 分鐘健康檢查的原因: 平衡即時性與資源消耗
+### 2. 雙重同步模式 (GmailRepository)
+- **Reconciliation (對帳模式)**: 抓取所有 Metadata 以更新已讀/標籤狀態，解決本地漂移。
+- **抗 429 機制**: 自動縮小 Batch Size (50 -> 30 -> 15) 並暫停分頁，確保不漏信。
+
+### 3. CAS-Lite 快取一致性 (EmailCacheCoordinator)
+- **並發保護**: 寫入快取前重新讀取最新 Snapshot 並合併，防止並發寫入覆蓋。
+
+### 4. 拖放基礎建設 (DragDropController)
+- **基礎設施**: `EmailListWidget` 已整合拖放控制器，支援觸覺回饋與復原 (Undo) 歷史。
 
 ---
 
-**最後更新:** 2025-10-11
-**狀態:** 規劃完成,準備開始實作
+**狀態:** 核心功能與 UI 實作完成，待整合測試。

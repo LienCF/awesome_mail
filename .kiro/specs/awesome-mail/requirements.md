@@ -1,288 +1,151 @@
-# Requirements Document
-
-## Introduction
-
-本文件定義了 Awesome Mail 的需求，這是一個跨平台 email client，使用 Flutter 開發，支援 macOS、iOS、Android、Windows 平台，並提供 web 版本用於開發測試。該應用程式將整合 AI 功能，支援多種郵件協議（POP3、IMAP），並提供加密和非加密連線選項，特別針對 Microsoft 和 Gmail 服務進行優化。
-
-### 開發方法論
-
-本專案採用 **Test-Driven Development (TDD)** 方法開發，遵循以下核心原則：
-
-#### 核心理念
-- **漸進式開發勝過大爆炸式** - 小幅變更，確保編譯通過和測試成功
-- **從現有程式碼學習** - 研究和規劃後再實作
-- **實用主義勝過教條主義** - 適應專案現實
-- **清晰意圖勝過聰明程式碼** - 選擇無聊且明顯的解決方案
-
-#### TDD 流程
-1. **Red** - 先寫一個失敗的測試
-2. **Green** - 寫最少的程式碼讓測試通過
-3. **Refactor** - 重構程式碼，保持測試通過
-
-#### 測試驗證策略
-所有需求都將通過以下方式驗證：
-
-- **單元測試** - 驗證個別功能組件
-- **整合測試** - 驗證系統間的互動
-- **端到端測試** - 驗證完整使用者流程
-- **驗收測試** - 驗證需求的 EARS 標準
-
-#### 品質標準
-- **單元測試覆蓋率** > 90%
-- **整合測試覆蓋率** > 80%
-- **關鍵路徑覆蓋率** = 100%
-- **每次提交必須通過所有測試**
-
-#### 困難處理原則
-- **最多 3 次嘗試** - 每個問題最多嘗試 3 次後停止重新評估
-- **記錄失敗** - 記錄嘗試內容、錯誤訊息、失敗原因
-- **研究替代方案** - 找到 2-3 個類似實作和不同方法
-- **質疑基本假設** - 檢查抽象層級、問題分解、更簡單方法
-
-每個驗收標準都將對應具體的自動化測試案例，確保需求的完整實現和持續驗證。
-
-## Requirements
-
-### Requirement 1
-
-**User Story:** 作為使用者，我希望能在多個平台上使用同一個 email client，以便在不同設備間保持一致的使用體驗
-
-#### Acceptance Criteria
-
-1. WHEN 使用者在 macOS 上安裝應用程式 THEN 系統 SHALL 提供完整的桌面功能體驗
-2. WHEN 使用者在 iOS 設備上安裝應用程式 THEN 系統 SHALL 提供適合觸控操作的介面
-3. WHEN 使用者在 Android 設備上安裝應用程式 THEN 系統 SHALL 提供符合 Material Design 的介面
-4. WHEN 使用者在 Windows 上安裝應用程式 THEN 系統 SHALL 提供符合 Windows 設計語言的介面
-5. WHEN 開發者需要測試功能 THEN 系統 SHALL 提供 web 版本用於快速測試
-
-### Requirement 2
-
-**User Story:** 作為使用者，我希望能連接到不同的郵件服務提供商，以便管理我的多個郵件帳戶
-
-#### Acceptance Criteria
-
-1. WHEN 使用者設定 Gmail 帳戶 THEN 系統 SHALL 支援 OAuth2 認證並自動配置 IMAP/SMTP 設定
-2. WHEN 使用者設定 Microsoft 帳戶（Outlook/Hotmail/Exchange） THEN 系統 SHALL 支援 OAuth2 認證並自動配置 Exchange/IMAP 設定
-3. WHEN 使用者設定 Yahoo Mail 帳戶 THEN 系統 SHALL 支援 OAuth2 認證並自動配置 IMAP/SMTP 設定
-4. WHEN 使用者設定 Apple iCloud Mail 帳戶 THEN 系統 SHALL 支援應用程式專用密碼並自動配置 IMAP/SMTP 設定
-5. WHEN 使用者設定 ProtonMail 帳戶 THEN 系統 SHALL 支援多種連接方式：自動偵測並整合現有 Bridge、內建 Bridge 功能、內建解密引擎、或 Web API 整合
-6. WHEN 使用者設定企業郵件（如 Zoho, FastMail, 自架 Exchange） THEN 系統 SHALL 支援自動探索和手動配置
-7. WHEN 使用者設定支援 JMAP 的服務（如 FastMail） THEN 系統 SHALL 支援 JMAP 協議進行高效同步
-8. WHEN 使用者需要聯絡人同步 THEN 系統 SHALL 支援 CardDAV 協議整合聯絡人管理
-9. WHEN 使用者使用企業 Outlook 環境 THEN 系統 SHALL 支援 MAPI 和 ActiveSync 協議
-10. WHEN 使用者設定一般 IMAP 帳戶 THEN 系統 SHALL 允許手動配置伺服器設定
-11. WHEN 使用者設定 POP3 帳戶 THEN 系統 SHALL 支援 POP3 協議配置
-12. WHEN 使用者有多個帳戶 THEN 系統 SHALL 允許同時管理多個郵件帳戶
-
-### Requirement 3
-
-**User Story:** 作為注重安全的使用者，我希望我的郵件連線是安全的，以便保護我的隱私和資料
-
-#### Acceptance Criteria
-
-1. WHEN 使用者連接到支援 SSL/TLS 的伺服器 THEN 系統 SHALL 預設使用加密連線
-2. WHEN 使用者連接到不支援加密的伺服器 THEN 系統 SHALL 警告使用者並允許選擇是否繼續
-3. WHEN 系統建立 IMAP 連線 THEN 系統 SHALL 支援 IMAPS（993 port）和 STARTTLS
-4. WHEN 系統建立 POP3 連線 THEN 系統 SHALL 支援 POP3S（995 port）和 STARTTLS
-5. WHEN 系統建立 SMTP 連線 THEN 系統 SHALL 支援 SMTPS（465 port）和 STARTTLS（587 port）
-
-### Requirement 4
-
-**User Story:** 作為使用者，我希望有 AI 功能協助我處理郵件，以便提高工作效率
-
-#### Acceptance Criteria
-
-1. WHEN 使用者收到新郵件 THEN 系統 SHALL 提供 AI 自動分類功能
-2. WHEN 使用者撰寫郵件 THEN 系統 SHALL 提供 AI 寫作建議和語法檢查
-3. WHEN 使用者查看長篇郵件 THEN 系統 SHALL 提供 AI 摘要功能
-4. WHEN 使用者需要回覆郵件 THEN 系統 SHALL 提供 AI 智能回覆建議
-5. WHEN 使用者搜尋郵件 THEN 系統 SHALL 提供 AI 增強的語意搜尋功能
-6. WHEN 郵件內容包含日期、時間、會議資訊 THEN 系統 SHALL 自動識別並建議建立行事曆事件
-7. WHEN 郵件內容包含任務、待辦事項 THEN 系統 SHALL 自動識別並建議建立 TODO 項目
-8. WHEN 郵件附件包含 PDF 票券（如航班、火車、活動票券） THEN 系統 SHALL 自動解析並建議建立行事曆事件
-9. WHEN 郵件附件包含 ICS 行事曆檔案 THEN 系統 SHALL 自動解析並建議匯入行事曆事件
-10. WHEN 郵件附件包含結構化文件（如發票、收據、合約） THEN 系統 SHALL 自動解析重要日期並建議建立提醒
-11. WHEN 使用者確認 AI 建議 THEN 系統 SHALL 自動建立對應的行事曆事件或 TODO 項目
-
-### Requirement 5
-
-**User Story:** 作為使用者，我希望能有完整的郵件管理功能，以便有效組織和處理我的郵件
-
-#### Acceptance Criteria
-
-1. WHEN 使用者查看收件匣 THEN 系統 SHALL 顯示郵件列表並支援排序和篩選
-2. WHEN 使用者撰寫新郵件 THEN 系統 SHALL 提供富文本編輯器和附件功能
-3. WHEN 使用者回覆或轉寄郵件 THEN 系統 SHALL 保持原始郵件的格式和附件
-4. WHEN 使用者管理資料夾 THEN 系統 SHALL 支援建立、刪除、重新命名資料夾
-5. WHEN 使用者搜尋郵件 THEN 系統 SHALL 支援全文搜尋和進階篩選條件
-6. WHEN 使用者離線時 THEN 系統 SHALL 支援離線閱讀已同步的郵件
-
-### Requirement 6
-
-**User Story:** 作為使用者，我希望郵件能與我的生產力工具整合，以便更有效地管理我的工作和時間
-
-#### Acceptance Criteria
-
-1. WHEN 系統識別到會議邀請或時間相關內容 THEN 系統 SHALL 提供一鍵加入行事曆功能
-2. WHEN 系統識別到任務或待辦事項 THEN 系統 SHALL 提供一鍵建立 TODO 功能
-3. WHEN 系統解析航班、火車、活動票券附件 THEN 系統 SHALL 自動提取出發時間、地點、座位等資訊並建議建立行程
-4. WHEN 系統解析發票或合約附件 THEN 系統 SHALL 自動提取付款期限、到期日等重要日期並建議建立提醒
-5. WHEN 系統處理 ICS 檔案 THEN 系統 SHALL 解析所有事件並批量匯入行事曆
-6. WHEN 使用者連接 Google Calendar THEN 系統 SHALL 支援雙向同步行事曆事件
-7. WHEN 使用者連接 Apple Calendar THEN 系統 SHALL 支援雙向同步行事曆事件
-8. WHEN 使用者連接 Microsoft Outlook Calendar THEN 系統 SHALL 支援雙向同步行事曆事件
-9. WHEN 使用者連接其他 CalDAV 行事曆服務 THEN 系統 SHALL 支援標準 CalDAV 協議同步
-10. WHEN 使用者連接 Google Tasks THEN 系統 SHALL 支援雙向同步 TODO 項目
-11. WHEN 使用者連接 Apple Reminders THEN 系統 SHALL 支援雙向同步 TODO 項目
-12. WHEN 使用者連接 Microsoft To Do THEN 系統 SHALL 支援雙向同步 TODO 項目
-13. WHEN 使用者連接 Todoist THEN 系統 SHALL 支援 API 整合和雙向同步
-14. WHEN 使用者連接 Any.do THEN 系統 SHALL 支援 API 整合和雙向同步
-15. WHEN 使用者連接 Notion THEN 系統 SHALL 支援資料庫整合和任務同步
-16. WHEN 使用者在多個行事曆平台有衝突事件 THEN 系統 SHALL 顯示衝突警告並建議解決方案
-17. WHEN 使用者查看 TODO 項目 THEN 系統 SHALL 顯示相關的原始郵件和附件連結
-18. WHEN 使用者查看行事曆事件 THEN 系統 SHALL 顯示相關的原始郵件和附件連結
-19. WHEN 使用者完成 TODO 項目 THEN 系統 SHALL 自動更新狀態並可選擇回覆原始郵件
-20. WHEN 使用者有即將到期的 TODO 或行事曆事件 THEN 系統 SHALL 提供提醒通知
-
-### Requirement 7
-
-**User Story:** 作為使用多個生產力平台的使用者，我希望能在一個地方統一管理所有行事曆和 TODO，以便避免行程衝突並提高效率
-
-#### Acceptance Criteria
-
-1. WHEN 使用者設定多個行事曆帳戶 THEN 系統 SHALL 在統一介面中顯示所有行事曆事件
-2. WHEN 使用者設定多個 TODO 平台帳戶 THEN 系統 SHALL 在統一介面中顯示所有 TODO 項目
-3. WHEN 使用者建立新事件 THEN 系統 SHALL 允許選擇要同步到哪個行事曆平台
-4. WHEN 使用者建立新 TODO THEN 系統 SHALL 允許選擇要同步到哪個 TODO 平台
-5. WHEN 使用者修改事件或 TODO THEN 系統 SHALL 自動同步變更到對應的平台
-6. WHEN 系統偵測到行程衝突 THEN 系統 SHALL 顯示衝突詳情並建議調整時間
-7. WHEN 使用者離線時 THEN 系統 SHALL 快取所有資料並在連線後同步變更
-8. WHEN 使用者查看統一儀表板 THEN 系統 SHALL 以不同顏色和圖示區分不同平台的項目
-9. WHEN 使用者搜尋項目 THEN 系統 SHALL 跨所有連接的平台搜尋
-10. WHEN 使用者完成 TODO THEN 系統 SHALL 同步狀態到原始平台並更新統計
-
-### Requirement 8
-
-**User Story:** 作為注重隱私和安全的使用者，我希望有進階的安全功能保護我的郵件和資料
-
-#### Acceptance Criteria
-
-1. WHEN 使用者收到可疑郵件 THEN 系統 SHALL 使用 AI 偵測釣魚郵件並顯示警告
-2. WHEN 使用者收到含有惡意連結的郵件 THEN 系統 SHALL 掃描並標記危險連結
-3. WHEN 使用者需要發送機密郵件 THEN 系統 SHALL 支援端到端加密（PGP/S/MIME）
-4. WHEN 使用者使用 ProtonMail 且無法安裝 Bridge THEN 系統 SHALL 提供內建 Bridge 功能或 OpenPGP 解密引擎作為替代方案
-5. WHEN 系統偵測到現有 ProtonMail Bridge THEN 系統 SHALL 自動連接並整合現有 Bridge 服務
-6. WHEN 使用者需要 ProtonMail Web 整合 THEN 系統 SHALL 支援透過 ProtonMail Web API 進行有限功能存取
-6. WHEN 使用者設定敏感關鍵字 THEN 系統 SHALL 自動標記包含這些關鍵字的郵件
-7. WHEN 使用者啟用隱私模式 THEN 系統 SHALL 阻止郵件中的追蹤像素和外部圖片
-8. WHEN 使用者需要臨時郵件地址 THEN 系統 SHALL 整合臨時郵件服務
-9. WHEN 使用者需要驗證寄件者身份 THEN 系統 SHALL 顯示 DKIM、SPF、DMARC 驗證狀態
-
-### Requirement 9
-
-**User Story:** 作為團隊協作的使用者，我希望能與同事共享和協作處理郵件
-
-#### Acceptance Criteria
-
-1. WHEN 使用者需要與團隊共享郵件 THEN 系統 SHALL 支援安全的郵件共享功能
-2. WHEN 使用者需要委派郵件處理 THEN 系統 SHALL 支援郵件轉派和狀態追蹤
-3. WHEN 使用者需要團隊收件匣 THEN 系統 SHALL 支援共享收件匣管理
-4. WHEN 使用者需要協作回覆 THEN 系統 SHALL 支援草稿共享和協作編輯
-5. WHEN 使用者需要追蹤團隊績效 THEN 系統 SHALL 提供郵件處理統計和分析
-
-### Requirement 10
-
-**User Story:** 作為重視效率的使用者，我希望有智能自動化功能減少重複性工作
-
-#### Acceptance Criteria
-
-1. WHEN 使用者設定規則 THEN 系統 SHALL 支援複雜的郵件自動化規則（類似 Zapier）
-2. WHEN 使用者收到特定類型郵件 THEN 系統 SHALL 自動執行預設動作（分類、回覆、轉寄）
-3. WHEN 使用者需要批量操作 THEN 系統 SHALL 支援智能批量處理和撤銷功能
-4. WHEN 使用者需要模板回覆 THEN 系統 SHALL 提供智能模板系統和變數替換
-5. WHEN 使用者需要追蹤郵件 THEN 系統 SHALL 提供讀取回條和追蹤功能
-6. WHEN 使用者需要延遲發送 THEN 系統 SHALL 支援排程發送和撤回功能
-
-### Requirement 11
-
-**User Story:** 作為使用者，我希望有豐富的個人化和擴展功能
-
-#### Acceptance Criteria
-
-1. WHEN 使用者需要自訂介面 THEN 系統 SHALL 支援主題、佈局、字體自訂
-2. WHEN 使用者需要快捷操作 THEN 系統 SHALL 支援自訂快捷鍵和手勢
-3. WHEN 使用者需要擴展功能 THEN 系統 SHALL 支援插件系統和第三方整合
-4. WHEN 使用者需要多語言支援 THEN 系統 SHALL 支援國際化和在地化
-5. WHEN 使用者需要無障礙功能 THEN 系統 SHALL 支援螢幕閱讀器和鍵盤導航
-6. WHEN 使用者需要備份資料 THEN 系統 SHALL 支援雲端備份和資料匯出
-
-### Requirement 12
-
-**User Story:** 作為使用者，我希望應用程式有良好的效能和使用者體驗，以便順暢地處理大量郵件
-
-#### Acceptance Criteria
-
-1. WHEN 使用者開啟應用程式 THEN 系統 SHALL 在 3 秒內載入完成
-2. WHEN 使用者滾動郵件列表 THEN 系統 SHALL 實現虛擬滾動以處理大量郵件
-3. WHEN 使用者切換資料夾 THEN 系統 SHALL 在 1 秒內完成切換
-4. WHEN 使用者同步郵件 THEN 系統 SHALL 顯示同步進度並支援背景同步
-5. WHEN 使用者在不同設備間切換 THEN 系統 SHALL 保持郵件狀態同步
-
-### Requirement 12.1（2025-11 更新：AI 背景處理與同步整合）
-
-**User Story:** 作為使用者，我希望 AI 功能在背景穩定運作且不影響同步與操作，並在需要時能優先處理我正在閱讀的郵件。
-
-#### Acceptance Criteria
-
-1. WHEN 系統處理 AI 相關任務（Title/Summary/Security）THEN 系統 SHALL 以背景優先權佇列執行，且任務資訊 SHALL 持久化以支援重啟續跑
-2. WHEN 使用者點擊某封郵件以閱讀 THEN 系統 SHALL 以最高優先權處理該郵件的 Title/Summary/Security 任務
-3. WHEN 任務需要 full content 而尚未具備 THEN 系統 SHALL 自動下載 full content 後再執行任務
-4. WHEN 使用者檢視同步狀態頁 THEN 系統 SHALL 顯示 AI 佇列儀表（pending/running/failed/completed 與最近錯誤）
-5. WHEN 修復同步進行中 THEN 系統 SHALL 僅在「捕捉起始 historyId」與「刪除相位」暫停增量同步，其餘時間增量同步 SHOULD 持續進行
-6. WHEN 手動 Refresh THEN 系統 SHALL 先執行增量同步，再執行 ALL MAIL 補齊；且僅在刪除相位暫停增量同步
-7. WHEN 發生 Gmail 429 THEN 系統 SHALL 使用降低 pageSize/batchSize 與退避機制，並在 partial failure 時保留 pageToken 以利重試
-
-### Requirement 12.2（2025-11 更新：修復同步與內容保護）
-
-1. WHEN 進行修復同步 THEN 系統 SHALL 不修改 hasFullContent 旗標（不做升降級），但在 metadata-only 更新時 SHALL 保留現有 htmlBody/body/attachments
-2. WHEN 非修復期間偵測到 full content 受損（僅剩 snippet/空值）THEN 系統 SHALL 將 hasFullContent 設為 false 以觸發開啟郵件時重新下載
-3. WHEN 手動開啟郵件且內容缺失 THEN 系統 SHALL 立即下載 full content 並更新 UI
-4. WHEN 估算遠端 ALL MAIL 總量 THEN 系統 SHALL 使用 users.getProfile(messagesTotal) 作為基準來源（不使用 messages.list 的 resultSizeEstimate）
-
-### Requirement 13
-
-**User Story:** 作為多設備使用者，我希望我的設定、偏好和資料能在所有設備間同步，以便獲得一致的使用體驗
-
-#### Acceptance Criteria
-
-1. WHEN 使用者在任一設備修改介面設定 THEN 系統 SHALL 同步主題、佈局、字體設定到所有設備
-2. WHEN 使用者新增或修改郵件帳號 THEN 系統 SHALL 提供安全的帳號同步選項到其他已授權設備
-3. WHEN 使用者在新設備登入 THEN 系統 SHALL 提供帳號快速設定功能 (QR Code 或加密雲端同步)
-4. WHEN 使用者設定郵件規則和篩選器 THEN 系統 SHALL 同步自動化規則到所有設備
-5. WHEN 使用者建立或修改郵件簽名檔 THEN 系統 SHALL 同步簽名檔設定到所有設備
-6. WHEN 使用者自訂快捷鍵或手勢 THEN 系統 SHALL 同步個人化操作設定到所有設備
-7. WHEN 使用者調整 AI 功能偏好 THEN 系統 SHALL 同步 AI 設定和學習資料到所有設備
-8. WHEN 使用者連接新的生產力工具 THEN 系統 SHALL 同步整合設定到所有設備
-9. WHEN 使用者建立郵件模板或快速回覆 THEN 系統 SHALL 同步模板資料到所有設備
-10. WHEN 使用者修改通知和同步偏好 THEN 系統 SHALL 同步行為設定到所有設備
-11. WHEN 使用者需要在新設備快速設定帳號 THEN 系統 SHALL 提供 QR Code 掃描功能進行安全的帳號資訊傳輸
-12. WHEN 使用者選擇雲端帳號同步 THEN 系統 SHALL 使用端到端加密保護帳號憑證並要求額外驗證
-13. WHEN 使用者在離線狀態修改設定 THEN 系統 SHALL 在連線後自動同步變更
-14. WHEN 設定同步發生衝突 THEN 系統 SHALL 提供衝突解決選項並保留使用者選擇
-
-### Requirement 14
-
-**User Story:** 作為產品提供者，我希望有清晰的付費方案架構，以便為不同用戶群體提供合適的功能和價值
-
-#### Acceptance Criteria
-
-1. WHEN 使用者使用基本版 THEN 系統 SHALL 提供最多 3 個郵件帳戶和基本功能
-2. WHEN 基本版使用者達到 AI 功能使用限制 THEN 系統 SHALL 顯示升級提示
-3. WHEN 使用者訂閱進階版 THEN 系統 SHALL 解鎖無限帳戶和完整 AI 功能
-4. WHEN 使用者訂閱企業版 THEN 系統 SHALL 提供團隊協作和企業級安全功能
-5. WHEN 使用者需要升級 THEN 系統 SHALL 提供清晰的方案比較和升級流程
-6. WHEN 企業用戶需要本地部署 THEN 系統 SHALL 支援企業版的本地安裝選項
-7. WHEN 使用者訂閱狀態變更 THEN 系統 SHALL 即時調整可用功能
-8. WHEN 免費試用期結束 THEN 系統 SHALL 自動降級到對應的免費功能
-9. WHEN 使用者取消訂閱 THEN 系統 SHALL 保留資料並提供重新訂閱選項
-10. WHEN 企業管理員管理團隊 THEN 系統 SHALL 提供集中化的用戶和權限管理
+# 🚀 Awesome Mail Flutter - 需求規格 (Requirements)
+
+## 1. 功能需求 (Functional Requirements)
+
+### 1.1 郵件管理 (Core Email)
+*   **多帳號**: 
+    *   **Gmail**: OAuth 登入與 REST API 同步 **[已實現]**.
+    *   **Outlook**: OAuth 登入流程 **[已實現]**，基本郵件同步 (REST API) **[已實現]**，進階增量同步 **[待實作]**.
+    *   **Standard IMAP**: 完整支援 SSL/StartTLS, LOGIN, LIST, SELECT, SEARCH, FETCH, STORE, EXPUNGE, MOVE 指令 **[已實現 (IMAPHandler)]**.
+    *   **Yahoo**: 規劃中 (Provider 結構已建立).
+    *   **Apple Sign-In**: 支援 Apple ID 登入 (Email/Name scopes) **[已實現]**.
+    *   **Unified OAuth**: 統一的 OAuth 服務介面，支援跨平台切換 (`UnifiedOAuthService`) **[已實現]**.
+    *   **Platform OAuth**: 
+        *   **Windows**: 支援 System Browser 與 Protocol Handler (`WindowsOAuthService`) **[已實現]**.
+        *   **Web**: 支援 Google Identity Services (GIS) 與 `dart:js_interop` (`WebOAuthService`) **[已實現]**.
+    *   **OAuth Error Reporting**: 專門的錯誤回報機制 (`OAuthErrorReporter`)，將認證失敗傳送至後端 `/api/v1/logs/oauth-error` **[已實現]**.
+    *   **帳號連結 (Link/Unlink Providers)**: 後端 API 已支援，前端 UI 整合中 **[部分實現]**.
+    *   **OAuth Onboarding**: 安全登入引導流程 (Feature Discovery UI) **[已實現 (OAuthOnboardingWidget)]**.
+    *   **帳號新增流程 (Account Setup)**: 完整的多步驟精靈 (AccountSetupPage) **[已實現]**.
+    *   **安全帳號轉移 (Secure Transfer)**: 透過 QR Code 將已登入帳號安全轉移至新裝置 **[已實現 (QR Code)]**.
+    *   **Auto-Config**: 支援透過 XML Autoconfig 協定自動探索郵件伺服器設定 **[已實現 (AccountConfigService)]**.
+*   **列表體驗**: 
+    *   **無限捲動**: DB 分頁 (Default 50 items/page) + API 增量載入 **[已實現]**.
+    *   **拖放 (Drag & Drop)**: 支援拖曳歸檔/移動 **[已實現 (DragDropController)]**.
+    *   **批次操作**: 
+        *   封存/刪除/標記 (Read/Star/Important) **[已實現]**.
+        *   移動/複製到資料夾 **[已實現]**.
+        *   套用/移除標籤 **[已實現]**.
+        *   自動回覆與轉寄設定 (Batch Parameters) **[已實現 (BatchOperationsPage)]**.
+        *   復原堆疊 (Undo History): 支援復原操作 (`BatchOperationService`) **[已實現]**.
+    *   **Smart Suggestions**: 根據寄件者/主旨模式自動建議批次動作 (e.g., "Move newsletters") **[已實現 (BatchOperationService)]**.
+    *   **Badge Counts**: 即時未讀數更新與 Stream 通知 **[已實現 (BadgeNotifier)]**.
+*   **閱讀**: HTML/Text 渲染，圖片阻擋 (隱私) **[已實現]**.
+    *   **連結處理**: 攔截 Webview 連結點擊，使用 `url_launcher` 開啟外部瀏覽器 **[已實現 (EmailMinimalWebView)]**.
+*   **撰寫**:
+    *   Rich Text Editor (Quill): 支援富文本編輯 **[已實現 (RichTextEditor)]**.
+    *   附件處理: 支援圖片 (jpg, png, gif, webp) 與文件 (pdf, doc, docx, txt)，上限 **25MB** **[已實現 (AttachmentPanel)]**.
+    *   AI 寫作輔助: 語氣調整、風格分析、智慧建議 **[已實現 (AIWritingAssistant)]**.
+    *   **語音輸入 (Voice-to-Text)**: 支援語音轉文字輸入 (需 Microphone 權限) **[已實現]**.
+*   **信件快取 (Cache)**: 
+    *   磁碟持久化快取 (Disk Persistence) **[已實現 (EmailCacheService)]**.
+    *   離線操作隊列 (Offline Queue): 支援無網路操作 (Read/Archive/Delete)，連線後自動重試 **[已實現 (OfflineQueueService)]**.
+    *   Folder-level Caching **[已實現]**.
+    *   **Sync State Manager**: 統一的同步狀態與併發控制 (SSOT) **[已實現 (SyncStateManager)]**.
+    *   **Background Sync Service**: 基於 Isolate 的背景同步排程 (Interval: 15-30 mins)，支援衝突檢測與重試 **[已實現 (BackgroundSyncService)]**.
+    *   **Smart Prefetch**: 完整內容背景下載與優先級排程 (優先下載未讀/星標郵件) **[已實現 (FullContentDownloadService)]**.
+    *   **Visual Progress**: 專用的下載進度 UI 狀態管理 (`DownloadProgressCubit`)，支援暫停/恢復與進度追蹤 **[已實現]**.
+    *   **Contacts**: (Auto-complete) 雖然未發現獨立的 ContactRepository，但 `ComposeBloc` 的設計暗示未來會透過 `EmailService` 或原生插件整合。
+*   **草稿管理 (Drafts)**:
+    *   自動儲存 (Auto-save): 背景定時 (30s) 儲存至快取與資料庫 **[已實現 (DraftService)]**.
+    *   格式轉換: 支援 Reply/ReplyAll/Forward 格式轉換，自動引用原文與處理 HTML/Text 內容 **[已實現]**.
+    *   附件保留: 轉寄時保留原附件 **[已實現]**.
+
+### 1.2 搜尋 (Search)
+*   **FTS5 全文檢索**: 針對 SQLite FTS5 優化的全文檢索，涵蓋郵件 (Subject, Body, Sender) 與草稿 **[已實現 (AppDatabase)]**.
+*   **運算子**: `from:`, `to:`, `is:unread`, `has:attachment`, `older_than:` **[已實現]**.
+*   **搜尋快取 (Search Cache)**: 查詢結果快取 (5分鐘)，列表結果快取 (10分鐘) **[已實現 (EmailSearchService)]**.
+*   **進階篩選 (Flags)**: 支援 `isRead`, `isStarred` 等狀態過濾 **[已實現]**.
+*   **建議**: 歷史紀錄與聯絡人建議，支援最近搜尋清除 **[已實現 (SearchPage)]**.
+
+### 1.3 AI 智慧功能 (Apple Intelligence)
+*   **後端 API (Hono)**: `/classify`, `/summarize`, `/generate-reply`, `/extract-entities`, `/analyze-security` **[已實現]**.
+    *   **Provider Factory**: 後端支援動態切換 OpenAI, Anthropic, OpenRouter **[已實現]**.
+*   **混合執行策略 (Hybrid AI)**: `AIChannelPolicy` 自動決策使用本地 Apple Intelligence 或雲端 Cloudflare Workers AI **[已實現]**.
+*   **併發控制 (Concurrency)**: `AiSessionSemaphore` 管理本地模型資源，防止過載 **[已實現]**.
+*   **限制控制**: 本地端實作 AI 請求速率限制 (100 requests/hour) **[已實現]**.
+*   **摘要 (Summarize)**:
+    *   **遞迴摘要 (Recursive Summarization)**: 針對長郵件自動分段摘要後合併，支援 Token 預算控制 **[已實現]**.
+    *   **電子報優化 (Newsletter Digest)**: 專用的 `NewsletterCleaner` 與 `DigestPayload`，針對行銷郵件保留關鍵優惠與連結 **[已實現]**.
+*   **回覆 (Reply)**: 上下文感知建議，支援不同語氣 (Tone) 與引導式生成 (Guided Session) **[已實現 (AIReplySuggestionsPage)]**.
+*   **安全分析 (Security)**: 
+    *   **本地啟發式引擎 (Local Heuristics)**: `SimpleSecurityAnalyzer` 檢測寄件者欺騙、連結異常 (Punycode, IP, Credential-in-URL)、品牌偽冒、急迫性字詞 **[已實現]**.
+    *   **後端啟發式分析 (Backend Heuristics)**: 後端 `/analyze-security` 採用規則基礎 (Rule-based) 邏輯以優化成本與速度 **[已實現]**.
+    *   **釣魚/惡意軟體偵測**: 整合 `MessageBanner` 顯示釣魚警告、DMARC/SPF 失敗、追蹤像素封鎖等警示 **[已實現]**.
+    *   **HTML 淨化 & 追蹤像素阻擋** **[已實現 (PrivacyProtector)]**.
+*   **標題生成**: 自動生成簡潔標題，支援 Head/Tail 取樣壓縮以適應 Context Window **[已實現]**.
+*   **AI 診斷 (Diagnostics)**: 視覺化 AI 事件流與生命週期監控，包含 `AIModelStatusChip` 顯示模型狀態 (Prewarming/Streaming) **[已實現]**.
+*   **AI 分類儀表板 (Dashboard)**: `EmailClassificationWidget` 顯示信心值 (Confidence)、情感 (Sentiment) 與優先級 (Priority) **[已實現]**.
+*   **AI 對話助理 (Assistant)**: `AwesomeAIDrawer` 整合 `AIConversation`，提供自然語言查詢 (e.g. "Summarize this", "Create todo") **[已實現]**.
+*   **寫作工具 (Writing Tools)**: Apple Intelligence 系統級整合 (`MethodChannel: awesome_mail/writing_tools`) **[已實現]**.
+*   **Foundation Models Framework**: 模組化本地模型整合架構，支援 Tool Invocation 與 Stream 響應 **[已實現 (foundation_models_framework package)]**.
+*   **AI Init Coordinator**: 模型預熱與就緒狀態協調 **[已實現 (AIInitCoordinator)]**.
+*   **Token 估算 (Token Estimator)**: 針對 Apple Intelligence 優化的 CJK/Non-CJK 混合 Token 計算演算法 (CJK: 0.8, Non-CJK: 0.35) **[已實現 (TokenEstimator)]**.
+*   **持久化任務佇列 (AI Task Queue)**: 資料庫驅動的 AI 任務排程，支援優先級 (Priority)、重試 (Exponential Backoff) 與狀態追蹤 **[已實現 (AiTaskQueueService)]**.
+
+### 1.4 自動化與生產力
+*   **規則引擎 (Rule Engine)**:
+    *   條件: Regex, 數值比較, 邏輯組合 (AND/OR), Subject/Sender/Body/Date/Size/Folder matching **[已實現 (EmailRuleEngine)]**.
+    *   動作: Webhook, 本地通知 (Notification/Sound), 自動回覆, 轉寄, 標記 (Read/Star/Label/Important/Spam), 移動/複製/刪除 **[已實現]**.
+    *   UI: 視覺化編輯器, 範本匯入 **[已實現 (AutomationPage)]**.
+*   **待辦事項**: 郵件轉任務 (To-Do) **[已實現 (AwesomeTodoList)]**.
+*   **指令面板 (Command Palette)**: 
+    *   Cmd+K 介面，支援導航與操作 **[已實現 (AwesomeCommandPalette)]**.
+    *   支援模糊搜尋 (Fuzzy Search) 與分類 (Email, Navigation, Application) **[已實現]**.
+*   **郵件範本 (Templates)**:
+    *   CRUD 管理與分類 **[已實現 (TemplateService, TemplatesPage)]**.
+    *   **變數自動填充 (Auto-fill)**: 支援 `{{variable}}` 替換與 AI 內容提取 (Sender Name, Date, Context) **[已實現]**.
+    *   **AI 範本建議 (Context-aware)**: 基於郵件內容標籤與分類自動推薦相關範本 **[已實現]**.
+    *   使用統計 (Usage Stats): 追蹤範本使用頻率與歷史 **[已實現]**.
+*   **生產力整合 (Productivity)**:
+    *   **多來源行事曆 (Calendar Aggregation)**: 
+        *   **Google Calendar**: 支援讀取/建立事件 **[已實現]**.
+        *   **Microsoft Calendar**: 支援 OAuth 認證, CRUD (Create, Read, Update, Delete) 事件, 同步 **[已實現 (MicrosoftCalendarProvider)]**.
+        *   **CalDAV**: 支援標準 CalDAV 協定同步行事曆 (Protocol Client Implemented) **[已實現 (CalDavClient)]**.
+    *   **跨平台待辦 (Task Aggregation)**: 
+        *   **Google Tasks**: 支援列表與任務管理 **[已實現]**.
+        *   **Microsoft To Do**: 支援 OAuth 認證, 列表管理, 任務 CRUD, 優先級與狀態映射 **[已實現 (MicrosoftTodoProvider)]**.
+    *   **聯絡人同步 (CardDAV)**: 支援標準 CardDAV 協定同步通訊錄 (Protocol Client Implemented) **[已實現 (CardDavClient)]**.
+    *   **行程衝突偵測**: 自動識別時間重疊並標示嚴重程度 **[已實現]**.
+    *   **Backend Integrations**: 後端整合服務 (Notion, Todoist 等) **[尚未實作]**.
+*   **App Intents**: iOS/macOS 捷徑整合 (Summarize, Risk Report) **[已實現 (AppIntentService)]**.
+*   **快捷操作 (Shortcut Actions)**: 鍵盤與手勢指令處理 **[已實現 (ShortcutActionHandler)]**.
+*   **鍵盤快捷鍵 (Keyboard Shortcuts)**: Gmail 風格快捷鍵 (j/k 導航, c 撰寫, e 封存, # 刪除) 與批次操作 **[已實現 (AwesomeKeyboardShortcuts)]**.
+
+### 1.5 設定與商業化
+*   **Adaptive UI**: macOS 緊湊風格 vs Mobile 原生風格 (Theme/Density/Layout) **[已實現 (AppearanceSettingsPage)]**.
+    *   **Awesome Option Picker**: 平台適應性選單 (macOS Popup Surface vs iOS Action Sheet) **[已實現]**.
+    *   **Theme System**: 完整的主題擴充機制，支援自定義顏色與響應式佈局 (2/3欄) **[已實現 (AwesomeTheme)]**.
+    *   **AppButton**: 統一且可客製化的按鈕元件 (Primary/Secondary/Text/Icon) **[已實現]**.
+    *   **Email List Item**: 支援滑動手勢 (Swipe Actions) 與拖曳 (Drag & Drop) **[已實現 (EmailListItem)]**.
+*   **IAP**: 訂閱制 (UI Implemented, Backend Mocked)，解鎖 AI/無限帳號 **[已實現]**.
+    *   **Subscription Service**: 管理訂閱狀態、計劃限制與升級/取消邏輯 **[已實現 (SubscriptionService)]**.
+    *   **Usage Tracking**: 追蹤功能使用量 (AI requests, storage) 並執行 Plan Limits **[已實現 (UsageTrackingService)]**.
+*   **Payments**:
+    *   **Payment Service**: 統一支付介面，支援多種 Provider **[已實現 (PaymentService)]**.
+    *   **Stripe**: 整合 `flutter_stripe` 處理信用卡支付，後端目前為 **Mock Service** (Webhook endpoint exists) **[已實現]**.
+    *   **Platform Pay**: 支援 Apple Pay / Google Pay (Mock/Simulated for now) **[已實現 (ApplePayProvider, GooglePayProvider)]**.
+*   **設定備份 (Backup)**: 
+    *   JSON 匯出/匯入, 版本控制 **[已實現 (SettingsBackupService)]**.
+    *   **檔案選擇**: 支援 `file_picker` 匯入備份檔 **[已實現]**.
+    *   **分享匯出**: 支援 `share_plus` 分享匯出的備份檔 **[已實現]**.
+*   **幫助中心 (Help System)**: 包含 Getting Started, Features, Shortcuts, FAQ **[已實現 (AwesomeHelpSystem)]**.
+*   **主題管理 (Theme)**: Light/Dark 模式切換 **[已實現 (ThemeManager)]**.
+*   **啟動畫面 (Splash)**: 動畫與狀態檢查 **[已實現 (SplashPage)]**.
+*   **遠端配置 (Remote Config)**: 
+    *   **Feature Flags**: 控制功能開關 (Toggle) `enableAIFeatures`, `enableOfflineMode` **[已實現 (RemoteConfigService)]**.
+    *   **Experiments**: 支援 A/B Testing (Hash-based assignment) **[已實現]**.
+    *   **Maintenance Mode**: 支援遠端維護模式 **[已實現]**.
+    *   **Environment Config**: 支援 Dev/Staging/Prod 環境切換 **[已實現 (EnvironmentConfig)]**.
+*   **應用更新 (Update)**:
+    *   **Update Service**: 跨平台更新檢查 (Sparkle/Store) 與強制更新邏輯 **[已實現 (UpdateService)]**.
+*   **本地化 (Localization)**: 多語言支援 (`en`, `zh`, `zh_TW`, `ja`, `ko`, `es`, `fr`, `de`) **[已實現 (AppLocalizations)]**.
+*   **原生選單 (Menu Service)**: macOS 系統選單整合 (`MethodChannel: awesome_mail/menu`) **[已實現 (MenuService)]**.
+*   **外掛系統 (Plugin Architecture)**: 
+    *   **Plugin Registry**: 支援外掛註冊、啟用、禁用與權限驗證 **[已實現 (PluginRegistry)]**.
+    *   **Plugin Interface**: 定義了 Email, UI, AI, Automation 等多種外掛類型介面 **[已實現 (PluginInterface)]**.
+*   **開發者工具 (Developer Tools)**: 
+    *   **複雜郵件渲染測試 (Complex Email Test)** **[已實現]**.
+    *   **WebView 測試 (Webview Test)** **[已實現]**.
+    *   **佈局溢出偵測 (Resizable Layout Test)** **[已實現]**.
+    *   **Debug Storage**: 內存儲存實現，用於測試環境繞過 Keychain **[已實現 (DebugStorage)]**.
