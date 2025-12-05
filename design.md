@@ -62,6 +62,7 @@
 *   **App Button**: `AppButton` 提供統一的按鈕樣式封裝。
 *   **Contacts Integration**: `ComposeBloc` 具備處理收件人 (To/Cc/Bcc) 變更的邏輯，預留了與 `ContactRepository` (未來實作) 整合的介面。
 *   **Feature Discovery**: `OAuthFeatureDiscoveryWidget` 提供新功能引導動畫。
+*   **Migration UI**: `OAuthMigrationWidget` 提供分步驟的帳號遷移介面，包含進度指示器與錯誤處理。
 *   **Platform Integrations**:
     *   **URL Launcher**: `EmailMinimalWebView` 使用 `url_launcher` 攔截並開啟外部連結。
     *   **File Picker**: `BackupSettingsPage` 使用 `file_picker` 匯入設定檔。

@@ -24,6 +24,7 @@
     *   **OAuth Onboarding**: 安全登入引導流程 (Feature Discovery UI) **[已實現 (OAuthOnboardingWidget)]**.
     *   **帳號新增流程 (Account Setup)**: 完整的多步驟精靈 (AccountSetupPage) **[已實現]**.
     *   **安全帳號轉移 (Secure Transfer)**: 透過 QR Code 將已登入帳號安全轉移至新裝置 **[已實現 (QR Code)]**.
+    *   **OAuth Migration**: 提供舊版帳號升級至 OAuth 的遷移精靈 (`OAuthMigrationWidget`)，支援 Link Account, Verify Connection, Test Sign-in 流程 **[已實現]**.
     *   **Auto-Config**: 支援透過 XML Autoconfig 協定自動探索郵件伺服器設定 **[已實現 (AccountConfigService)]**.
 *   **列表體驗**: 
     *   **無限捲動**: DB 分頁 (Default 50 items/page) + API 增量載入 **[已實現]**.
@@ -34,6 +35,7 @@
         *   套用/移除標籤 **[已實現]**.
         *   自動回覆與轉寄設定 (Batch Parameters) **[已實現 (BatchOperationsPage)]**.
         *   復原堆疊 (Undo History): 支援復原操作 (`BatchOperationService`) **[已實現]**.
+        *   **Flags Service**: `EmailFlagsService` 負責統一管理 Read/Star 狀態變更，自動無效化相關 Cache (Folder/Virtual) 並觸發 Badge 更新 **[已實現]**.
     *   **Smart Suggestions**: 根據寄件者/主旨模式自動建議批次動作 (e.g., "Move newsletters") **[已實現 (BatchOperationService)]**.
     *   **Badge Counts**: 即時未讀數更新與 Stream 通知 **[已實現 (BadgeNotifier)]**.
 *   **閱讀**: HTML/Text 渲染，圖片阻擋 (隱私) **[已實現]**.
@@ -99,6 +101,8 @@
     *   **URL 信譽檢測 (Reputation)**: `UrlReputationTool` 整合 Foundation Models Framework，提供 URL 安全性評分與證據 **[已實現]**.
     *   **後端啟發式分析 (Backend Heuristics)**: 後端 `/analyze-security` 採用規則基礎 (Rule-based) 邏輯以優化成本與速度 **[已實現]**.
     *   **釣魚/惡意軟體偵測**: 整合 `MessageBanner` 顯示釣魚警告、DMARC/SPF 失敗、追蹤像素封鎖等警示 **[已實現]**.
+    *   **隱私保護 (Privacy Protector)**: 阻擋追蹤像素 (1x1, hidden)、外部圖片與危險 HTML 標籤 (script, iframe) **[已實現 (PrivacyProtector)]**.
+    *   **連結掃描 (Link Scanner)**: 偵測 URL Shorteners, Typosquatting, IP Hostname 與可疑路徑 **[已實現 (LinkScanner)]**.
     *   **HTML 淨化 & 追蹤像素阻擋** **[已實現 (PrivacyProtector)]**.
     *   **文字淨化 (Text Sanitizer)**: 處理 UTF-16 異常代理對 (Surrogate Pairs)，防止 LLM 輸入或 UI 渲染崩潰 **[已實現 (TextSanitizer)]**.
 *   **標題生成**: 自動生成簡潔標題，支援 Head/Tail 取樣壓縮以適應 Context Window **[已實現]**.

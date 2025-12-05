@@ -107,7 +107,8 @@
 - [x] **Settings (macOS)**: `MacOSSettingsWidgets` 實作.
 - [x] **Backend Subscription**: Subscriptions API, Plans, Mock Stripe Service, Webhook Endpoint.
 - [x] **Backend Auth**: OAuth Link/Unlink, Refresh Tokens, User Devices.
-- [x] **Security**: `SecurityService`, `SimpleSecurityAnalyzer` (Local Heuristics), Anti-phishing (Spoofing/Urgency), Sender Auth (SPF/DKIM/DMARC), `BiometricService`.
+- [x] **Security**: `SecurityService`, `SimpleSecurityAnalyzer` (Local Heuristics), Anti-phishing (Spoofing/Urgency), Sender Auth (SPF/DKIM/DMARC), `BiometricService`, Privacy Protector, Link Scanner.
+- [x] **Account Management**: OAuth Migration (Wizard UI), Account Setup (Auto-Config XML), Secure Transfer.
 - [x] **Help System**: `AwesomeHelpSystem` (Getting Started, Shortcuts, FAQ).
 - [x] **Automation**: Rule Engine (RegEx, Webhook, Notifications), Visual Rule Builder, Templates.
 - [x] **Settings Backup**: Export/Import JSON, Versioning, `file_picker` & `share_plus` integration.
