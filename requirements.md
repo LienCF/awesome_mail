@@ -49,6 +49,8 @@
     *   **Attachment Preview**: 支援圖片 (Image.memory) 與純文字 (UTF-8 decode) 的即時預覽，不支援格式提供 Fallback UI **[已實現 (AttachmentPreview)]**.
     *   **Attachment Preview**: 支援圖片 (Image.memory) 與純文字 (UTF-8 decode) 的即時預覽，不支援格式提供 Fallback UI **[已實現 (AttachmentPreview)]**.
     *   **Attachment Preview**: 支援圖片 (Image.memory) 與純文字 (UTF-8 decode) 的即時預覽，不支援格式提供 Fallback UI **[已實現 (AttachmentPreview)]**.
+    *   **Attachment Preview**: 支援圖片 (Image.memory) 與純文字 (UTF-8 decode) 的即時預覽，不支援格式提供 Fallback UI **[已實現 (AttachmentPreview)]**.
+    *   **Attachment Preview**: 支援圖片 (Image.memory) 與純文字 (UTF-8 decode) 的即時預覽，不支援格式提供 Fallback UI **[已實現 (AttachmentPreview)]**.
     *   **AI 寫作輔助**: 語氣調整、風格分析、智慧建議 **[已實現 (AIWritingAssistant)]**.
     *   **語音輸入 (Voice-to-Text)**: 支援語音轉文字輸入 (需 Microphone 權限) **[已實現]**.
 *   **同步核心**:
