@@ -96,6 +96,7 @@
 *   **摘要 (Summarize)**:
     *   **遞迴摘要 (Recursive Summarization)**: 針對長郵件自動分段摘要後合併，支援 Token 預算控制 **[已實現]**.
     *   **Engine Logic**: `SummaryEngine` 實作了串流聚合 (Streaming Aggregation) 與鎖定機制 (Locking) 防止競態條件 **[已實現]**.
+    *   **Entity Engine**: `EntityEngine` 負責從郵件內容提取實體 (人名, 日期, 地點) 並結構化輸出 **[已實現]**.
     *   **Guided Session**: 所有 AI 引擎皆基於 `GuidedSession` 執行，支援結構化 JSON 輸出與錯誤重試 **[已實現]**.
     *   **Reply Engine**: `ReplyEngine` 支援產生建議列表並轉換為領域模型，具備自動冷卻 (Cooldown) 機制 **[已實現]**.
 *   **回覆 (Reply)**: 上下文感知建議，支援不同語氣 (Tone) 與引導式生成 (Guided Session) **[已實現 (AIReplySuggestionsPage)]**.
