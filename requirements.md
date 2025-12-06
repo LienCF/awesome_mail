@@ -111,9 +111,9 @@
 *   **AI 診斷 (Diagnostics)**: 視覺化 AI 事件流與生命週期監控，包含 `AIModelStatusChip` 顯示模型狀態 (Prewarming/Streaming) **[已實現]**.
 *   **效能監控 (Performance Monitor)**: `PerformanceMonitor` 追蹤啟動時間、畫面切換、API 回應時間，提供 0-100 效能評分與優化建議 **[已實現]**.
 *   **記憶體監控 (Memory Monitor)**: `MemoryMonitor` 追蹤記憶體使用量，偵測洩漏 (Leaks)、尖峰 (Spikes) 與高頻分配物件，支援 GC 建議 **[已實現]**.
-*   **AI 分類儀表板 (Dashboard)**: `EmailClassificationWidget` 顯示信心值 (Confidence)、情感 (Sentiment) 與優先級 (Priority) **[已實現]**.
-*   **AI 對話助理 (Assistant)**: `AwesomeAIDrawer` 整合 `AIConversation`，提供自然語言查詢 (e.g. "Summarize this", "Create todo") **[已實現]**.
-*   **寫作工具 (Writing Tools)**: Apple Intelligence 系統級整合 (`MethodChannel: awesome_mail/writing_tools`) **[已實現]**.
+    *   **AI 分類儀表板 (Dashboard)**: `EmailClassificationWidget` 顯示信心值 (Confidence)、情感 (Sentiment) 與優先級 (Priority) **[已實現]**.
+    *   **實體提取 (Entity Extraction)**: `EntityExtractionWidget` 視覺化顯示提取出的實體與建議動作 (如建立行事曆事件)，支援點擊互動 **[已實現]**.
+    *   **AI 對話助理 (Assistant)**: `AwesomeAIDrawer` 整合 `AIConversation`，提供自然語言查詢 (e.g. "Summarize this", "Create todo") **[已實現]**.*   **寫作工具 (Writing Tools)**: Apple Intelligence 系統級整合 (`MethodChannel: awesome_mail/writing_tools`) **[已實現]**.
 *   **Foundation Models Framework**: 模組化本地模型整合架構，支援 Tool Invocation 與 Stream 響應 **[已實現 (foundation_models_framework package)]**.
 *   **AI Init Coordinator**: 模型預熱與就緒狀態協調 **[已實現 (AIInitCoordinator)]**.
 *   **Token 估算 (Token Estimator)**: 針對 Apple Intelligence 優化的 CJK/Non-CJK 混合 Token 計算演算法 (CJK: 0.8, Non-CJK: 0.35) **[已實現 (TokenEstimator)]**.
