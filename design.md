@@ -42,6 +42,7 @@
 *   **動畫**: `AwesomeAnimation` (Fast: 150ms, Normal: 250ms)，`AwesomeTransitionBuilder` 支援頁面轉場。
 *   **擴充 (Theme Extension)**: `AwesomeThemeExtension` 提供特定語義顏色 (Sidebar, Chip, Security)，支援 `AwesomeThemeBuilder` 統一建構。
 *   **Responsive Extensions**: `AwesomeResponsiveExtensions` 提供 `awesomeSidebarWidth`, `awesomeAIDrawerWidth` 等動態尺寸計算，支援 1/2/3 欄佈局自動切換。
+*   **Responsive Utils**: `ResponsiveLayout`, `ResponsiveHelper`, `ResponsiveGrid` 提供統一的斷點管理與佈局策略。
 *   **Adaptive Design System**: `AdaptiveDesignSystem` 類別統一管理跨平台的 Colors, Typography, Spacing 與 Dimensions，自動適配 Desktop/Mobile。
 
 ### 2.2 關鍵組件

@@ -127,8 +127,8 @@
 - [x] **AI Framework**: Foundation Models Framework, AI Init Coordinator (Event-driven Retry), AI Dashboard, Guided Engines (Summary/Reply).
 - [x] **Google Productivity**: Calendar (Recurring Events, Reminders) & Tasks providers implemented.
 - [x] **Apple Integration**: Apple Reminders (CalDAV), Writing Tools, App Intents.
-- [x] **UI Enhancements**: Conversation View (Threading, Shortcuts), Command Palette, Memory Monitor, Adaptive Feedback, UI Update Notifiers.
-- [x] **Performance Tools**: Debounce Controller, Lazy Loading Controller, Image Cache.
+- [x] **UI Enhancements**: Conversation View (Threading, Shortcuts), Command Palette, Memory Monitor, Adaptive Feedback, UI Update Notifiers, RTL Support, Responsive Grid.
+- [x] **Performance Tools**: Debounce Controller, Lazy Loading Controller, Image Cache, Download Progress Logic.
 - [x] **Database Indexes**: Implemented optimized composite indexes (`idx_emails_account_unread_received`, `idx_emails_has_full_content` etc.) for high-performance queries.
 - [x] **Network Monitor**: Bandwidth calculation, connectivity history, and optimization suggestions.
 - [x] **FTS5 Triggers**: Implemented auto-sync triggers for FTS tables (`emails_fts`, `drafts_fts`).

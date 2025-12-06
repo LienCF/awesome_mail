@@ -40,6 +40,7 @@
     *   **Badge Counts**: 即時未讀數更新與 Stream 通知 **[已實現 (BadgeNotifier)]**.
 *   **閱讀**: HTML/Text 渲染，圖片阻擋 (隱私) **[已實現]**.
     *   **Conversation View**: 支援郵件對話串檢視 (`ConversationView`)，具備展開/摺疊、鍵盤導航 (↑↓, Space) 與快速跳轉功能 **[已實現]**.
+    *   **Text Selection**: `MaybeSelectionArea` 支援條件式文字選取，避免與上層選取容器衝突 **[已實現]**.
     *   **Minimal WebView**: `EmailMinimalWebView` 採用 `flutter_inappwebview` 與自定義 HTML 模板。
     *   **JS Bridge**: 實作 `webviewClick` 與 `openLink` JS Handler，由 Flutter 層統一接管互動與外部連結開啟，提供原生級體驗 **[已實現]**.
     *   **macOS Scrolling**: 注入 JS 實現平滑滾動 **[已實現]**.
@@ -70,6 +71,7 @@
     *   **Quota Tool**: `QuotaTool` 提供即時配額查詢 (Usage, Limit, Remaining)，支援多維度 (AI, Storage) 檢查 **[已實現]**.
     *   **Health Auto-Repair**: `SyncHealthChecker` 支援自動修復機制，當偵測到嚴重偏差 (>10%) 時觸發增量同步 **[已實現]**.
     *   **Telemetry**: `SyncMetricsCollector` 收集詳細同步指標 (Success Rate, Latency, API Count)，支援即時監控與 Quota Throttling **[已實現]**.
+    *   **Visual Progress**: 專用的下載進度 UI 狀態管理 (`DownloadProgressCubit`)，支援暫停/恢復、錯誤清除與細粒度進度追蹤 (Total/Completed) **[已實現]**.
     *   **Contacts**: (Auto-complete) 雖然未發現獨立的 ContactRepository，但 `ComposeBloc` 的設計暗示未來會透過 `EmailService` 或原生插件整合。
 *   **草稿管理 (Drafts)**:
     *   自動儲存 (Auto-save): 背景定時 (30s) 儲存至快取與資料庫 **[已實現 (DraftService)]**.
