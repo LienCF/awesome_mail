@@ -12,8 +12,8 @@
 *   **目標**: 完善搜尋體驗與篩選 UI。
 *   **Status**: Core logic & UI implemented (`SearchPage`, `SearchBloc`).
 *   **Action Items**:
-    - [ ] 驗證 Filter Chips 的交互細節。
-    - [ ] 確認搜尋歷史記錄的持久化體驗。
+    - [x] 驗證 Filter Chips 的交互細節 (Implemented in `_buildActiveFilters`).
+    - [x] 確認搜尋歷史記錄的持久化體驗 (Implemented in `SearchBloc`).
 
 ### 1.3 IAP 支付整合 (Real Backend)
 *   **目標**: 將 Mock Stripe 替換為真實支付流程。
@@ -55,32 +55,44 @@
 
 ### 2.4 技術債與優化
 - [ ] **Activate Platform OAuth**: 在 `PlatformOAuthService` 中啟用 `WindowsOAuthService` 與 `WebOAuthService` (目前程式碼存在但被禁用，使用 Fallback Stub)。
-- [ ] **Singleton Fixes**: 確認所有全域 Bloc (`MailboxBloc` 等) 註冊為 `@singleton`。
+- [ ] **Encryption Upgrade**: 將 `EncryptionService` 目前的 XOR 示範演算法替換為真實的 AES-256-GCM 實作 (`encrypt` package)。
+- [x] **Data Unit Tests**: Database (Tables/Queries), Cache (Disk/Memory), Models (JSON/Validation), Services (Sync/Flags).
+- [x] **Domain Entities**: Email (Freezed), AI Models (Payloads/Results), Attachment, Repository Interfaces.
+- [x] **Protocol & Provider Unit Tests**: IMAP/SMTP (Commands/Error Handling), Outlook/Apple/Notion Providers (CRUD/Auth), TokenRepository (Secure Storage).
+- [x] **Repository Unit Tests**: Email/Account/Gmail/Metadata repositories tested with mocks and in-memory DB.
+- [x] **Shared UI Tests**: Themes (Platform-aware), VirtualizedList (Performance), AnimationController, Localization (zh/ja/en/ar).
+- [ ] **Integration Tests**: Core suite (`auth`, `database`, `security`, `ai`).
+- [x] **Backend Source**: Routes (Auth/AI/Sync/OAuth/Subscription), Services (AI/Usage/Vault), Middleware (RateLimit with Cache), Durable Objects (Metrics).
 
 ### 2.5 安全功能補完
 - [ ] **PGP 真實實作**: 將 `PGPKeyManager` 目前的 Mock (Base64) 邏輯替換為真實 OpenPGP 實作 (`openpgp_dart` 或 native bridge)。
 
 ### 2.6 生產力功能補完
+- [ ] **Apple Calendar Recurring**: 實作 `AppleCalendarProvider` 的 `getRecurringInstances` (CalDAV expansion)。
+- [ ] **Apple Calendar Attendees**: 實作 `AppleCalendarProvider` 的參與者管理 (Add/Remove attendees)。
 - [ ] **Recurring Events**: 實作 `MicrosoftCalendarProvider` 的重複事件支援。
 - [ ] **Attendee Management**: 實作 `MicrosoftCalendarProvider` 的參與者管理 (Add/Remove attendees)。
 
 ### 2.7 測試擴充
 - [ ] **E2E**: 撰寫 Login -> Sync -> AI Summary 完整流程測試。
-- [ ] **Perf**: 執行 `scripts/run_desktop_tests.sh` 並建立基準線。
+- [x] **Core Unit Tests**: Accessibility (Announcer), AI (Config/Policy), Background Sync (Task/Manager), Monitoring (Memory/Network).
+- [x] **Network & Security Unit Tests**: ApiClient (Auth/Retry), HttpClient (Dio/Error), PluginManager (Lifecycle), RemoteConfig (Fetch/Cache), CredentialManager (MasterKey/Encryption).
 - [ ] **A11y**: 驗證 VoiceOver 導航順序。
 
 ## 3. 已完成里程碑 (Completed)
-- [x] **Outlook 基礎整合**: `OutlookProvider` 實作完成 (OAuth, Fetch, Send, Folder Ops) via Microsoft Graph API.
+- [x] **Outlook 基礎整合**: `OutlookProvider` 實作完成 (OAuth, Graph API fetch/send, Folder mapping).
 - [x] **Protocol Suite**: 
-    - `IMAPHandler`: SSL/TLS, Commands, Parsing.
+    - `IMAPHandler`: SSL/StartTLS Upgrade, Server-side Search, Tagged Commands.
     - `POP3Handler`: USER/PASS, Pagination, Local Search.
     - `SMTPHandler`: AUTH LOGIN, STARTTLS, MIME Composition.
     - `JMAPClient`: Session, Batching, Events, Blobs.
     - `EWSClient`: SOAP, Calendar, Contacts, OOF.
+    - `CalDAVClient`: Basic CRUD & Sync.
 - [x] **Providers**:
     - `YahooProvider`: OAuth + IMAP/SMTP.
     - `ICloudProvider`: App Password + IMAP/SMTP.
-    - `ProtonMailProvider`: Bridge Detection, PGP/Web Fallback (Stub).
+    - `ProtonMailProvider`: Multi-mode (Bridge/PGP/Web) logic.
+    - `NotionProvider`: Database/Task CRUD with Schema Mapping.
 - [x] **Performance Monitor**: Startup/Transition/API tracking with scoring & suggestions (`PerformanceMonitor`).
 - [x] **Backend Jobs**: `JobManager` with Cleanup, UsageReset, HealthCheck jobs.
 - [x] **Email Rule Engine**: `EmailRuleEngine` 完整實作 (Conditions, Actions, Evaluation).
@@ -92,7 +104,9 @@
 - [x] **Account Setup**: `AccountSetupPage` 與 Google/Outlook OAuth 流程 (Specific OAuth scopes configured).
 - [x] **Secure Account Transfer**: QR Code 裝置轉移功能 (`qr_flutter` integration).
 - [x] **核心架構**: Clean Arch, BLoC, DI (Injectable), Global Error Handling (Main.dart), `AppRouter` (Protected Routes).
-- [x] **資料庫**: Drift, FTS5 (Emails & Drafts), Indexes, `ai_task_queue` persistence.
+- [x] **資料庫**: Drift, FTS5 (Emails & Drafts) with Triggers, Optimized Indexes, `ai_task_queue` schema.
+- [x] **快取系統**: `CacheManager` (Memory/Disk), `EmailCacheService` (JSON Persistence), `EmailCacheCoordinator` (Coordination).
+- [x] **Backend Sync**: `sync.ts` implemented with Zero-Knowledge Account Sync (Encrypted Blob + Master Key Hash) & QR Code Transfer.
 - [x] **同步核心**: ALL MAIL Strategy, Incremental Sync (Gmail REST API), Reconciliation, Auto-repair.
 - [x] **背景同步**: `BackgroundSyncService` (Isolates), `OfflineQueueService` (Retry logic), Conflict Resolution.
 - [x] **AI 核心**: FoundationAIProvider, Dynamic Routing, Task Queue (Persistent), Token Estimator, AI Channel Policy, Session Semaphore.
@@ -111,7 +125,13 @@
 - [x] **Settings Backup**: Export/Import JSON, Versioning, `file_picker` & `share_plus` integration.
 - [x] **Metrics**: Frontend Service & Backend Durable Object Proxy, `UsageTrackingService` (Quota).
 - [x] **Productivity Tools**: Command Palette (Fuzzy Search, Categories, Shortcuts), Attachment Viewer, Drag & Drop Controller.
-- [x] **Infrastructure**: Biometric Auth, Network Info, Theme Manager, Email Cache (Multi-layer), Splash Screen, Unread Count Manager.
+- [x] **Infrastructure**: 
+    - Biometric Auth (`BiometricService`).
+    - Secure Storage (`CredentialManager` with Master Key Encryption).
+    - Theme Manager (`ThemeManager`).
+    - Email Cache (Multi-layer).
+    - Splash Screen.
+    - Unread Count Manager.
 - [x] **Enterprise**: Productivity Service (Calendar/Tasks), Remote Config, App Update Service, Backend Logging.
 - [x] **Diagnostics**: AI Diagnostics Page (Plugin/Client lifecycle events), Overflow Debugger, `AIModelStatusChip`.
 - [x] **Accessibility**: `AccessibilityService` (Semantic announcements, screen reader integration).
@@ -122,7 +142,7 @@
 - [x] **AI Tools**: SecuritySignalsTool, QuotaTool, UrlReputationTool.
 - [x] **Sync State**: SyncStateManager (SSOT, Concurrency Locking), Offline Queue, Background Sync Service.
 - [x] **Extensions**: Plugin Registry, Shortcut Actions, Localization (en, zh, ja via .arb).
-- [x] **Dev Ops**: Scripts for testing, deployment, and keychain fixes.
+- [x] **Dev Ops**: Scripts for testing (`test-runner.sh` with coverage), deployment, and keychain fixes.
 - [x] **Search**: FTS5, SearchCache, SearchQueryParser (Advanced Syntax).
 - [x] **AI Framework**: Foundation Models Framework, AI Init Coordinator (Event-driven Retry), AI Dashboard, Guided Engines (Summary/Reply).
 - [x] **Google Productivity**: Calendar (Recurring Events, Reminders) & Tasks providers implemented.
@@ -137,11 +157,11 @@
 - [x] **Smart Prefetch**: FullContentDownloadService (Background Content Prefetch).
 - [x] **Sync Telemetry**: SyncMetricsCollector (Detailed Sync Metrics).
 - [x] **Shortcuts**: Keyboard Shortcuts (Gmail-style, Batch Actions) implemented (`AwesomeKeyboardShortcuts`).
-- [x] **Monitoring**: Performance, Memory, and Network monitors (`MemoryMonitor`, `NetworkMonitor` w/ Native Channels).
+- [x] **Monitoring**: Performance (Startup/Transition), Memory (Leaks/Spikes via Native Channel), and Network monitors.
 - [x] **Productivity**: Calendar/Task aggregation (`ProductivityService`, `GoogleCalendarProvider`, `GoogleTasksProvider`, `EWSClient`, `CalDavClient`, `CardDavClient`) and Conflict Detection.
 - [x] **Templates**: CRUD, Variable Auto-fill (AI-powered), Context Suggestions (`TemplateService`).
 - [x] **Drafts**: Auto-save (30s), Reply/Forward format conversion, Cache integration (`DraftService`).
-- [x] **Plugins**: `PluginRegistry` and `PluginInterface` architecture implemented.
+- [x] **Plugins**: `PluginRegistry` and `PluginManager` implemented with hooks for Email, UI, AI, and Automation extension points.
 - [x] **Remote Config**: Feature Flags, Experiments, Maintenance Mode, API Endpoints (`RemoteConfigService`).
 - [x] **Updates**: Cross-platform update check logic (`UpdateService`).
 - [x] **Editor**: Rich Text Editor (Quill) with AI integration (`RichTextEditor`), Attachment handling (25MB limit), `AIWritingAssistant`.
@@ -154,6 +174,7 @@
 - [x] **Error Handling**: `AwesomeMailException` hierarchy & `HttpClient` interceptors.
 - [x] **Visual Progress**: `DownloadProgressCubit` for full content download tracking.
 - [x] **Unified OAuth**: `UnifiedOAuthService` & `OAuthErrorReporter`.
+- [x] **Services**: AI (Hybrid), Sync (Cross-device/QR), Update (Check/Skip), Email (API Wrapper).
 - [x] **Integration Tests**: Core suite (`auth`, `database`, `security`, `ai`).
 - [x] **Webview Integration**: `url_launcher` for external links in `EmailMinimalWebView`.
 - [x] **CI/CD**: GitHub Actions Workflows (Build, Test, Coverage).

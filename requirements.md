@@ -5,14 +5,14 @@
 ### 1.1 郵件管理 (Core Email)
 *   **多帳號**: 
     *   **Gmail**: OAuth 登入與 REST API 同步 **[已實現]**.
-    *   **Outlook**: OAuth 登入流程 **[已實現]**，基本郵件同步 (REST API) **[已實現]**，進階增量同步 **[待實作 (目前為 Basic Polling)]**.
-    *   **Standard IMAP**: 完整支援 SSL/StartTLS, LOGIN, LIST, SELECT, SEARCH, FETCH, STORE, EXPUNGE, MOVE 指令 **[已實現 (IMAPHandler)]**.
+    *   **Outlook**: OAuth 登入流程 **[已實現]**，使用 **Microsoft Graph API** 進行郵件同步與發送 **[已實現]**，Delta Query 增量同步 **[待實作]**.
+    *   **Standard IMAP**: 完整支援 SSL/StartTLS (自動升級), LOGIN, LIST, SELECT, SEARCH (Server-side), FETCH, STORE, EXPUNGE, MOVE 指令 **[已實現 (IMAPHandler)]**.
     *   **Standard POP3**: 支援 USER/PASS, LIST, RETR, DELE, TOP 指令，客戶端分頁與本地搜尋 **[已實現 (POP3Handler)]**.
     *   **Standard SMTP**: 支援 AUTH LOGIN, STARTTLS, Multipart/Alternative MIME 建構 **[已實現 (SMTPHandler)]**.
     *   **Exchange EWS**: 支援 Exchange 2016+ SOAP 協定，包含 Folder/Item CRUD, Calendar, Contacts, Out-of-Office, Push Notification **[已實現 (EWSClient)]**.
     *   **Yahoo**: 基於 OAuth 與 IMAP/SMTP 協定實作 **[已實現 (YahooProvider)]**.
     *   **iCloud**: 基於 App-Specific Password 與 IMAP/SMTP 協定實作 **[已實現 (ICloudProvider)]**.
-    *   **ProtonMail**: 支援 Bridge (IMAP/SMTP), 內建 PGP (Stub), Web API (Stub) 三種模式，具備 Bridge 自動偵測功能 **[已實現 (ProtonMailProvider)]**.
+    *   **ProtonMail**: 支援 **Bridge** (優先), **Built-in PGP** (Stub), **Web API** (Stub) 三種連線模式，具備自動切換邏輯 **[已實現 (ProtonMailProvider)]**.
     *   **Enterprise Auto-Config**: 自動偵測企業網域 (Zoho, Fastmail) 並套用預設 IMAP/JMAP 設定 **[已實現 (ProtonMailProvider/AccountConfigService)]**.
     *   **Apple Sign-In**: 支援 Apple ID 登入 (Email/Name scopes) **[已實現]**.
     *   **Unified OAuth**: 統一的 OAuth 服務介面，支援跨平台切換 (`UnifiedOAuthService`) **[已實現]**.
@@ -28,6 +28,7 @@
     *   **Auto-Config**: 支援透過 XML Autoconfig 協定自動探索郵件伺服器設定 **[已實現 (AccountConfigService)]**.
 *   **列表體驗**: 
     *   **無限捲動**: DB 分頁 (Default 50 items/page) + API 增量載入 **[已實現]**.
+    *   **高效虛擬化**: 實作 `VirtualizedList`，支援定高項目的視窗渲染優化，適用於數千封郵件的快速滾動 **[已實現]**.
     *   **拖放 (Drag & Drop)**: 支援拖曳歸檔/移動 **[已實現 (DragDropController)]**.
     *   **批次操作**: 
         *   封存/刪除/標記 (Read/Star/Important) **[已實現]**.
@@ -57,6 +58,7 @@
 *   **同步核心**:
     *   **Frontend-Driven**: 前端直接對接 Email Provider (Gmail/Outlook) 進行郵件同步，後端僅負責設定與加密帳號列表的同步 **[已確認]**.
     *   **Backend Sync**: `sync.ts` 實作了 `user_settings_sync` (SQLite) 與帳號列表同步 (KV Encrypted Blob)，以及 QR Code 轉移機制 **[已實現]**.
+    *   **Conflict Resolution**: 客戶端偵測版本衝突並提示解決 **[已實現 (SyncService)]**.
     *   **信件快取 (Cache)**: 
         *   **雙層快取 (Multi-layer)**: 記憶體 (LRU, 1000 items) + 磁碟 (JSON file-based, 10000 items) **[已實現 (CacheManager)]**.
         *   **策略 (Strategy)**: 支援過期時間 (Expiration)、過期標記 (Stale-while-revalidate) 與快取統計 (Hit/Miss rate) **[已實現]**.
@@ -70,6 +72,7 @@
     *   **Cache-First Strategy**: `EmailRepositoryImpl` 針對首頁載入 (Unread/Starred) 實作了快取優先策略，加速冷啟動體驗 **[已實現]**.
     *   **Quota Tool**: `QuotaTool` 提供即時配額查詢 (Usage, Limit, Remaining)，支援多維度 (AI, Storage) 檢查 **[已實現]**.
     *   **Health Auto-Repair**: `SyncHealthChecker` 支援自動修復機制，當偵測到嚴重偏差 (>10%) 時觸發增量同步 **[已實現]**.
+    *   **Manual Repair Mode**: 支援手動觸發修復同步 (`MailboxRepairSyncRequested`)，執行 Clear -> Capture -> Reconcile -> Incremental 完整流程 **[已實現]**.
     *   **Telemetry**: `SyncMetricsCollector` 收集詳細同步指標 (Success Rate, Latency, API Count)，支援即時監控與 Quota Throttling **[已實現]**.
     *   **Visual Progress**: 專用的下載進度 UI 狀態管理 (`DownloadProgressCubit`)，支援暫停/恢復、錯誤清除與細粒度進度追蹤 (Total/Completed) **[已實現]**.
     *   **Contacts**: (Auto-complete) 雖然未發現獨立的 ContactRepository，但 `ComposeBloc` 的設計暗示未來會透過 `EmailService` 或原生插件整合。
@@ -89,7 +92,8 @@
 
 ### 1.3 AI 智慧功能 (Apple Intelligence)
 *   **後端 API (Hono)**: `/classify`, `/summarize`, `/generate-reply`, `/extract-entities`, `/analyze-security` **[已實現]**.
-    *   **Provider Factory**: 後端支援動態切換 OpenAI, Anthropic, OpenRouter **[已實現]**.
+    *   **Provider Factory**: 後端支援動態切換 OpenAI, Anthropic, OpenRouter，並具備 Fallback 機制 **[已實現]**.
+    *   **Usage Tracking**: 整合 KV/D1 記錄詳細 Token 用量與成本 **[已實現]**.
 *   **混合執行策略 (Hybrid AI)**: `AIChannelPolicy` 自動決策使用本地 Apple Intelligence 或雲端 Cloudflare Workers AI **[已實現]**.
 *   **併發控制 (Concurrency)**: `AiSessionSemaphore` 管理本地模型資源，防止過載 **[已實現]**.
 *   **限制控制**: 本地端實作 AI 請求速率限制 (100 requests/hour) **[已實現]**.
@@ -101,22 +105,24 @@
     *   **Reply Engine**: `ReplyEngine` 支援產生建議列表並轉換為領域模型，具備自動冷卻 (Cooldown) 機制 **[已實現]**.
 *   **回覆 (Reply)**: 上下文感知建議，支援不同語氣 (Tone) 與引導式生成 (Guided Session) **[已實現 (AIReplySuggestionsPage)]**.
 *   **網路層 (Network Layer)**:
-    *   **HTTP Client**: 封裝 Dio，實作統一的 Interceptor (Default Headers, Error Handling) 與 Exponential Backoff Retry (3次重試) **[已實現 (HttpClient)]**.
+    *   **HTTP Client**: 封裝 Dio，實作統一的 Interceptor (Default Headers, Error Handling) 與 Exponential Backoff Retry (3次重試, 1s delay) **[已實現 (HttpClient)]**.
     *   **API Client**: 高階 API 封裝，支援 `x-refresh-retry` 自動重試與 Rate Limit 處理 **[已實現 (ApiClient)]**.
 *   **安全分析 (Security)**: 
     *   **本地啟發式引擎 (Local Heuristics)**: `SimpleSecurityAnalyzer` 檢測寄件者欺騙、連結異常 (Punycode, IP, Credential-in-URL)、品牌偽冒、急迫性字詞 **[已實現]**.
     *   **URL 信譽檢測 (Reputation)**: `UrlReputationTool` 整合 Foundation Models Framework，提供 URL 安全性評分與證據 **[已實現]**.
-    *   **後端啟發式分析 (Backend Heuristics)**: 後端 `/analyze-security` 採用規則基礎 (Rule-based) 邏輯以優化成本與速度 **[已實現]**.
+    *   **後端啟發式分析 (Backend Heuristics)**: 後端 `/analyze-security` 採用規則基礎 (Rule-based) 邏輯 (`computeRuleBasedSecurity`)，確保隱私（不通過 LLM）並優化成本與速度 **[已實現]**.
     *   **釣魚/惡意軟體偵測**: 整合 `MessageBanner` 顯示釣魚警告、DMARC/SPF 失敗、追蹤像素封鎖等警示 **[已實現]**.
     *   **隱私保護 (Privacy Protector)**: 阻擋追蹤像素 (1x1, hidden)、外部圖片與危險 HTML 標籤 (script, iframe) **[已實現 (PrivacyProtector)]**.
     *   **連結掃描 (Link Scanner)**: 偵測 URL Shorteners, Typosquatting, IP Hostname 與可疑路徑 **[已實現 (LinkScanner)]**.
     *   **HTML 淨化 & 追蹤像素阻擋** **[已實現 (PrivacyProtector)]**.
     *   **文字淨化 (Text Sanitizer)**: 處理 UTF-16 異常代理對 (Surrogate Pairs)，防止 LLM 輸入或 UI 渲染崩潰 **[已實現 (TextSanitizer)]**.
-*   **標題生成**: 自動生成簡潔標題，支援 Head/Tail 取樣壓縮以適應 Context Window **[已實現]**.
+*   **Domain Entities**:
+    *   **Email**: 支援 AI 欄位 (`aiTitle`, `aiSummary`), 安全分析 (`SecurityAnalysis`), 旗標 (`EmailFlags`), 完整內容標記 (`hasFullContent`) **[已實現]**.
+    *   **AI Models**: 包含 `EmailClassification`, `EmailSummary` (Guided JSON), `SecurityReport` 等結構化模型 **[已實現]**.
 *   **AI 診斷 (Diagnostics)**: 視覺化 AI 事件流與生命週期監控，包含 `AIModelStatusChip` 顯示模型狀態 (Prewarming/Streaming) **[已實現]**.
-*   **效能監控 (Performance Monitor)**: `PerformanceMonitor` 追蹤啟動時間、畫面切換、API 回應時間，提供 0-100 效能評分與優化建議 **[已實現]**.
-*   **記憶體監控 (Memory Monitor)**: `MemoryMonitor` 追蹤記憶體使用量，偵測洩漏 (Leaks)、尖峰 (Spikes) 與高頻分配物件，支援 GC 建議 **[已實現]**.
-    *   **AI 分類儀表板 (Dashboard)**: `EmailClassificationWidget` 顯示信心值 (Confidence)、情感 (Sentiment) 與優先級 (Priority) **[已實現]**.
+*   **效能監控 (Performance Monitor)**: `PerformanceMonitor` 追蹤啟動時間、畫面切換、API 回應時間，提供 0-100 效能評分、異常偵測 (Issues) 與優化建議 (Suggestions) **[已實現]**.
+*   **記憶體監控 (Memory Monitor)**: `MemoryMonitor` 透過 Native Channel 追蹤記憶體使用量，偵測洩漏 (Leaks)、尖峰 (Spikes) 與高頻分配物件，支援 GC 建議 **[已實現]**.
+    *   **安全分析面板**: 提供 Overview/Phishing/Links/Privacy 多頁籤報告，視覺化呈現 SPF/DKIM/DMARC 狀態與安全評分 **[已實現 (SecurityAnalysisPanel)]**.
     *   **實體提取 (Entity Extraction)**: `EntityExtractionWidget` 視覺化顯示提取出的實體與建議動作 (如建立行事曆事件)，支援點擊互動 **[已實現]**.
     *   **AI 對話助理 (Assistant)**: `AwesomeAIDrawer` 整合 `AIConversation`，提供自然語言查詢 (e.g. "Summarize this", "Create todo") **[已實現]**.*   **寫作工具 (Writing Tools)**: Apple Intelligence 系統級整合 (`MethodChannel: awesome_mail/writing_tools`) **[已實現]**.
 *   **Foundation Models Framework**: 模組化本地模型整合架構，支援 Tool Invocation 與 Stream 響應 **[已實現 (foundation_models_framework package)]**.
@@ -124,14 +130,14 @@
 *   **Token 估算 (Token Estimator)**: 針對 Apple Intelligence 優化的 CJK/Non-CJK 混合 Token 計算演算法 (CJK: 0.8, Non-CJK: 0.35) **[已實現 (TokenEstimator)]**.
     *   **算法**: 分離計算 CJK/Non-CJK 字元，並針對 JSON 結構符號與換行符號進行加權，預留 20% 安全邊界 **[已實現]**.
 *   **持久化任務佇列 (AI Task Queue)**: 資料庫驅動的 AI 任務排程，支援優先級 (Priority)、重試 (Exponential Backoff) 與狀態追蹤。
-    *   **Schema**: 包含 `ai_task_queue` 表與 `idx_ai_queue_status_priority` 等索引，確保高效調度 **[已實現 (AppDatabase)]**.
+    *   **Schema**: `ai_task_queue` 表 (SQLite) 支援 `pending`, `running`, `completed`, `failed` 狀態管理 **[已實現]**.
     *   **Retry Logic**: 指數退避策略 (2^n seconds)，上限 5 分鐘 **[已實現]**.
     *   **Missing Fields Query**: 支援快速查詢最近缺少 AI 欄位的郵件，用於背景補全 **[已實現]**.
     *   **Newsletter Detection** (關鍵字偵測) 與 **HTML Fallback** (佔位符偵測) 啟發式策略以優化摘要品質 **[已實現 (AiTaskQueueService)]**.
 
 ### 1.4 自動化與生產力
 *   **規則引擎 (Rule Engine)**:
-    *   條件: Regex, 數值比較, 邏輯組合 (AND/OR), Subject/Sender/Body/Date/Size/Folder matching **[已實現 (EmailRuleEngine)]**.
+    *   條件: Regex, 數值比較, 邏輯組合 (AND/OR), Subject/Sender/Body/Date/Size/Folder/Flags matching **[已實現 (EmailRuleEngine)]**.
     *   動作: Webhook, 本地通知 (Notification/Sound), 自動回覆, 轉寄, 標記 (Read/Star/Label/Important/Spam), 移動/複製/刪除 **[已實現]**.
     *   **UI**: 
         *   **Rule Editor**: 視覺化規則編輯器，支援多條件組合 (AND/OR) 與動態動作表單 **[已實現 (RuleEditorWidget)]**.
@@ -148,9 +154,7 @@
     *   **AI 範本建議 (Context-aware)**: 基於郵件內容標籤與分類自動推薦相關範本，具備相關性評分演算法 **[已實現 (TemplateService)]**.
     *   使用統計 (Usage Stats): 追蹤範本使用頻率與歷史 **[已實現]**.
 *   **生產力整合 (Productivity)**:
-    *   **多來源行事曆 (Calendar Aggregation)**: 
-            *   **Google Calendar**: 
-                *   支援讀取/建立事件 **[已實現]**.
+    *   **UI**: 支援 Day/Week/Month 視圖切換 (`CalendarViewWidget`)，以顏色區分來源 (Google/Microsoft/Apple) **[已實現]**.
                 *   **Recurring Events**: 支援重複事件實例展開 (`getRecurringInstances`) **[已實現 (GoogleCalendarProvider)]**.
                 *   **Reminders**: 支援 Email, SMS, Popup 提醒設定 **[已實現]**.
             *   **Microsoft Calendar**: 支援 OAuth 認證, CRUD (Create, Read, Update, Delete) 事件, 同步 **[已實現 (MicrosoftCalendarProvider)]**.        *   **CalDAV**: 支援標準 CalDAV 協定同步行事曆 (Protocol Client Implemented) **[已實現 (CalDavClient)]**.
@@ -160,7 +164,7 @@
     *   **聯絡人同步 (CardDAV)**: 支援標準 CardDAV 協定同步通訊錄 (Protocol Client Implemented) **[已實現 (CardDavClient)]**.
     *   **行程衝突偵測**: 自動識別時間重疊並標示嚴重程度 **[已實現]**.
     *   **Backend Integrations**: 
-        *   **Notion**: 支援 Database/Page CRUD, Status/Priority Mapping, Rich Text Block 生成 **[已實現 (NotionProvider)]**.
+        *   **Notion**: 支援 Database/Page CRUD, 完整 Status/Priority 屬性映射, Due Date 同步 **[已實現 (NotionProvider)]**.
         *   **Todoist**: 支援 Project/Task CRUD, Priority/Label Mapping, Due Date 處理 **[已實現 (TodoistProvider)]**.
     *   **Scheduled Jobs**: 後端排程任務系統 (`JobManager`)，包含 `CleanupJob` (清理), `UsageResetJob` (配額重置), `HealthCheckJob` **[已實現]**.
 *   **App Intents**: iOS/macOS 捷徑整合 (Summarize, Risk Report) **[已實現 (AppIntentService)]**.
@@ -172,7 +176,7 @@
     *   **Resizable Layout**: 支援拖曳調整欄位寬度的雙欄 (`ResizableTwoColumnLayout`) 與三欄佈局，並自動持久化寬度設定 **[已實現]**.
     *   **Awesome Option Picker**: 平台適應性選單 (macOS Popup Surface vs iOS Action Sheet) **[已實現]**.
     *   **Adaptive Feedback**: 平台適應性回饋機制，自動切換 SnackBar (Mobile) 與 CupertinoDialog (Desktop) **[已實現 (AdaptiveFeedback)]**.
-    *   **Accessibility**: `SemanticAnnouncer` 封裝 `SemanticsService`，支援優先級 (Polite/Assertive) 語音播報 **[已實現]**.
+    *   **Accessibility**: `SemanticAnnouncer` 與 `AccessibilityService` 提供統一的語音播報介面，支援優先級 (Polite/Assertive) 與事件 (Email Received, Navigation) 通报 **[已實現]**.
     *   **Focus Management**: `AwesomeFocusManager` 實現 WCAG 2.1 AA+ 標準的鍵盤導航 (Tab/Arrow)，支援 Focus Trapping 與 Grid Navigation **[已實現]**.
     *   **Focus Management**: `AwesomeFocusManager` 實現 WCAG 2.1 AA+ 標準的鍵盤導航 (Tab/Arrow)，支援 Focus Trapping 與 Grid Navigation **[已實現]**.
     *   **Theme System**: 完整的主題擴充機制，支援自定義顏色與響應式佈局 (2/3欄) **[已實現 (AwesomeTheme)]**.
@@ -196,10 +200,9 @@
 *   **啟動畫面 (Splash)**: 動畫與狀態檢查 **[已實現 (SplashPage)]**.
 *   **遠端配置 (Remote Config)**: 
     *   **Feature Flags**: 控制功能開關 (Toggle) `enableAIFeatures`, `enableOfflineMode` **[已實現 (RemoteConfigService)]**.
-    *   **API Endpoints**: 動態配置 API 網址 (`https://api.awesomemail.com/v1/config`)，支援 ETag 快取 (1小時) 與 `304 Not Modified` **[已實現 (RemoteConfigService)]**.
-    *   **AI Config**: 集中管理摘要長度 (350字)、標題長度 (100字) 與操作策略 (Ensure vs Regenerate) **[已實現 (AISummaryConfig)]**.
-    *   **Experiments**: 支援 A/B Testing (Hash-based assignment) **[已實現]**.
-    *   **Maintenance Mode**: 支援遠端維護模式 **[已實現]**.
+    *   **API Endpoints**: 動態配置 API 網址，支援 ETag 快取 (1小時) 與 `304 Not Modified` **[已實現 (RemoteConfigService)]**.
+    *   **Experiments**: 支援基於 User ID Hash 的 A/B Testing 實驗分組 **[已實現]**.
+    *   **Maintenance Mode**: 支援遠端維護模式 (StartTime/EndTime) **[已實現]**.
     *   **Environment Config**: 支援 Dev/Staging/Prod 環境切換 **[已實現 (EnvironmentConfig)]**.
 *   **應用更新 (Update)**:
     *   **Update Service**: 跨平台更新檢查 (Sparkle/Store) 與強制更新邏輯 **[已實現 (UpdateService)]**.
