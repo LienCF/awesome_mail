@@ -171,6 +171,7 @@
     *   **Adaptive Feedback**: 平台適應性回饋機制，自動切換 SnackBar (Mobile) 與 CupertinoDialog (Desktop) **[已實現 (AdaptiveFeedback)]**.
     *   **Accessibility**: `SemanticAnnouncer` 封裝 `SemanticsService`，支援優先級 (Polite/Assertive) 語音播報 **[已實現]**.
     *   **Focus Management**: `AwesomeFocusManager` 實現 WCAG 2.1 AA+ 標準的鍵盤導航 (Tab/Arrow)，支援 Focus Trapping 與 Grid Navigation **[已實現]**.
+    *   **Focus Management**: `AwesomeFocusManager` 實現 WCAG 2.1 AA+ 標準的鍵盤導航 (Tab/Arrow)，支援 Focus Trapping 與 Grid Navigation **[已實現]**.
     *   **Theme System**: 完整的主題擴充機制，支援自定義顏色與響應式佈局 (2/3欄) **[已實現 (AwesomeTheme)]**.
     *   **AppButton**: 統一且可客製化的按鈕元件 (Primary/Secondary/Text/Icon) **[已實現]**.
     *   **Email List Item**: 支援滑動手勢 (Swipe Actions) 與拖曳 (Drag & Drop) **[已實現 (EmailListItem)]**.

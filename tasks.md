@@ -104,10 +104,7 @@
 - [x] **AI Infrastructure**: Token Estimator (CJK/Non-CJK), Foundation Models Framework, AI Init Coordinator.
 - [x] **UI 進階**: AI Drawer (Classification/Summary/Chat), Message Banner (Security), Composer (Rich Text), To-Do List.
 - [x] **Reading Experience**: AwesomeReadingPane (Conversation/Single), EmailSummaryPanel, MessageBanner.
-- [x] **Settings (macOS)**: `MacOSSettingsWidgets` 實作.
-- [x] **Backend Subscription**: Subscriptions API, Plans, Mock Stripe Service, Webhook Endpoint.
-- [x] **Backend Auth**: OAuth Link/Unlink, Refresh Tokens, User Devices.
-- [x] **Security**: `SecurityService`, `SimpleSecurityAnalyzer` (Local Heuristics), Anti-phishing (Spoofing/Urgency), Sender Auth (SPF/DKIM/DMARC), `BiometricService`, Privacy Protector, Link Scanner.
+- [x] **Security**: `SecurityService`, `SimpleSecurityAnalyzer` (Local Heuristics), Anti-phishing (Spoofing/Urgency), Sender Auth (SPF/DKIM/DMARC), `BiometricService`.
 - [x] **Account Management**: OAuth Migration (Wizard UI), Account Setup (Auto-Config XML), Secure Transfer.
 - [x] **Help System**: `AwesomeHelpSystem` (Getting Started, Shortcuts, FAQ).
 - [x] **Automation**: Rule Engine (RegEx, Webhook, Notifications), Visual Rule Builder, Templates.
