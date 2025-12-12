@@ -51,6 +51,7 @@
 - [x] **Smart Search**:
     - [x] **Local Vector Search**: Implemented `LocalVectorService` (mocked model), `VectorSearchService`, and hybrid `EmailSearchService`.
     - [x] **RAG**: Integrated embedding generation into `AiTaskQueueService`.
+    - [x] **Advanced Search**: Server-side vector search for semantic queries.
 - [x] **Web Support**: Polished DB connection for Web compatibility (Wasm/Native split).
 - [x] **Voice Assistant**: Integrate voice input into UI components (Search, Compose).
 - [x] **Calendar Integration**: Add UI action to create calendar event from email.
@@ -58,11 +59,8 @@
     - [x] Profiled `EmailListWidget` scrolling.
     - [x] Optimized DB queries with composite indexes.
     - [x] Implemented `compute` isolate for heavy DB mapping.
+- [x] **Offline Mode**: Robust offline handling and optimistic UI updates.
 
 ## 🟡 In Progress / Refinement
 
-- [ ] **Advanced Search**: Server-side vector search for semantic queries.
-
 ## 🔴 Pending / Future
-
-- [ ] **Offline Mode**: Robust offline handling and optimistic UI updates.
