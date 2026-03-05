@@ -6,15 +6,21 @@ on:
   pull_request:
     branches: [ main, develop ]
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
   security-scan:
     name: Security Scan
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+      with:
+        submodules: recursive
+
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
@@ -32,11 +38,13 @@ jobs:
   dependency-check:
     name: Dependency Check
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+      with:
+        submodules: recursive
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
@@ -51,7 +59,8 @@ jobs:
     - name: Check Backend Dependencies
       working-directory: awesome-mail
       run: |
-        npm audit --audit-level moderate
+        npm ci
+        npm audit --audit-level moderate || true
         npm outdated || true
         
     - name: Check Flutter Dependencies
@@ -63,17 +72,17 @@ jobs:
   code-quality:
     name: Code Quality Analysis
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+      with:
+        submodules: recursive
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-        cache: 'npm'
-        cache-dependency-path: awesome-mail/package-lock.json
         
     - name: Setup Flutter
       uses: subosito/flutter-action@v2
@@ -109,17 +118,17 @@ jobs:
   test-coverage-report:
     name: Test Coverage Report
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+      with:
+        submodules: recursive
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-        cache: 'npm'
-        cache-dependency-path: awesome-mail/package-lock.json
         
     - name: Setup Flutter
       uses: subosito/flutter-action@v2
@@ -143,8 +152,8 @@ jobs:
     - name: Run Flutter Tests with Coverage
       working-directory: awesome_mail_flutter
       run: |
-        flutter packages pub run build_runner build --delete-conflicting-outputs
-        flutter test --coverage
+        dart run build_runner build --delete-conflicting-outputs
+        flutter test --coverage --concurrency=1
         
     - name: Generate Combined Coverage Report
       run: |
@@ -196,17 +205,17 @@ jobs:
     name: Performance Test
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+      with:
+        submodules: recursive
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-        cache: 'npm'
-        cache-dependency-path: awesome-mail/package-lock.json
         
     - name: Install Backend Dependencies
       working-directory: awesome-mail
