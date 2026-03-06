@@ -153,17 +153,19 @@ jobs:
         echo "" >> coverage-report.md
         echo "## Backend Coverage" >> coverage-report.md
 
-        if [ -f "awesome-mail/coverage/coverage-final.json" ]; then
+        if [ -f "awesome-mail/coverage/coverage-summary.json" ]; then
           BACKEND_COVERAGE=$(node -e "
             const fs = require('fs');
-            const coverage = JSON.parse(fs.readFileSync('awesome-mail/coverage/coverage-final.json', 'utf8'));
-            const total = coverage.total;
+            const summary = JSON.parse(fs.readFileSync('awesome-mail/coverage/coverage-summary.json', 'utf8'));
+            const total = summary.total;
             console.log('Lines: ' + total.lines.pct + '%');
             console.log('Functions: ' + total.functions.pct + '%');
             console.log('Branches: ' + total.branches.pct + '%');
             console.log('Statements: ' + total.statements.pct + '%');
           ")
           echo "$BACKEND_COVERAGE" >> coverage-report.md
+        else
+          echo "Coverage summary not available." >> coverage-report.md
         fi
 
         echo "" >> coverage-report.md
