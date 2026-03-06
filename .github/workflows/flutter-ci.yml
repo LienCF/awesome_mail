@@ -12,11 +12,15 @@ on:
       - 'awesome_mail_flutter/**'
       - '.github/workflows/flutter-ci.yml'
 
+permissions:
+  contents: read
+
 jobs:
   test:
     name: Test Flutter App
     runs-on: ubuntu-latest
-    
+    timeout-minutes: 15
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -38,7 +42,7 @@ jobs:
       
     - name: Run code generation
       working-directory: awesome_mail_flutter
-      run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      run: dart run build_runner build --delete-conflicting-outputs
       
     - name: Analyze code
       working-directory: awesome_mail_flutter
@@ -50,7 +54,7 @@ jobs:
       
     - name: Run unit tests
       working-directory: awesome_mail_flutter
-      run: flutter test --coverage --test-randomize-ordering-seed random
+      run: flutter test --test-randomize-ordering-seed random
       
     - name: Check test coverage
       working-directory: awesome_mail_flutter
@@ -79,11 +83,13 @@ jobs:
         file: awesome_mail_flutter/coverage/lcov.info
         flags: flutter
         name: flutter-coverage
+        token: ${{ secrets.CODECOV_TOKEN }}
 
   widget-test:
     name: Widget Tests
     runs-on: ubuntu-latest
-    
+    timeout-minutes: 15
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -101,20 +107,17 @@ jobs:
       
     - name: Run code generation
       working-directory: awesome_mail_flutter
-      run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      run: dart run build_runner build --delete-conflicting-outputs
       
     - name: Run widget tests
       working-directory: awesome_mail_flutter
-      run: flutter test test/widget/ --coverage
-      
-    - name: Generate golden files (if needed)
-      working-directory: awesome_mail_flutter
-      run: flutter test --update-goldens test/widget/
+      run: flutter test test/widget/
 
   integration-test:
     name: Integration Tests
     runs-on: ubuntu-latest
-    
+    timeout-minutes: 30
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -132,7 +135,7 @@ jobs:
       
     - name: Run code generation
       working-directory: awesome_mail_flutter
-      run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      run: dart run build_runner build --delete-conflicting-outputs
       
     - name: Run integration tests
       working-directory: awesome_mail_flutter
@@ -141,8 +144,9 @@ jobs:
   build-android:
     name: Build Android
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     needs: [test, widget-test]
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -166,7 +170,7 @@ jobs:
       
     - name: Run code generation
       working-directory: awesome_mail_flutter
-      run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      run: dart run build_runner build --delete-conflicting-outputs
       
     - name: Build Android APK
       working-directory: awesome_mail_flutter
@@ -191,8 +195,9 @@ jobs:
   build-ios:
     name: Build iOS
     runs-on: macos-latest
+    timeout-minutes: 20
     needs: [test, widget-test]
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -210,7 +215,7 @@ jobs:
       
     - name: Run code generation
       working-directory: awesome_mail_flutter
-      run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      run: dart run build_runner build --delete-conflicting-outputs
       
     - name: Build iOS (no codesign)
       working-directory: awesome_mail_flutter
@@ -225,8 +230,9 @@ jobs:
   build-web:
     name: Build Web
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     needs: [test, widget-test]
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -244,7 +250,7 @@ jobs:
       
     - name: Run code generation
       working-directory: awesome_mail_flutter
-      run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      run: dart run build_runner build --delete-conflicting-outputs
       
     - name: Build Web
       working-directory: awesome_mail_flutter
@@ -269,8 +275,9 @@ jobs:
           - os: macos-latest
             platform: macos
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
     needs: [test, widget-test]
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -295,7 +302,7 @@ jobs:
       
     - name: Run code generation
       working-directory: awesome_mail_flutter
-      run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      run: dart run build_runner build --delete-conflicting-outputs
       
     - name: Build Desktop App
       working-directory: awesome_mail_flutter

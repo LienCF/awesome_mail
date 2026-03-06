@@ -12,11 +12,15 @@ on:
       - 'awesome-mail/**'
       - '.github/workflows/backend-ci.yml'
 
+permissions:
+  contents: read
+
 jobs:
   test:
     name: Test Backend
     runs-on: ubuntu-latest
-    
+    timeout-minutes: 15
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -40,10 +44,6 @@ jobs:
       working-directory: awesome-mail
       run: npm run build
       
-    - name: Run unit tests
-      working-directory: awesome-mail
-      run: npm run test:mock-only
-      
     - name: Run tests with coverage
       working-directory: awesome-mail
       run: npm run test:coverage
@@ -54,6 +54,7 @@ jobs:
         file: awesome-mail/coverage/coverage-final.json
         flags: backend
         name: backend-coverage
+        token: ${{ secrets.CODECOV_TOKEN }}
         
     - name: Check coverage threshold
       working-directory: awesome-mail
@@ -80,9 +81,10 @@ jobs:
   ai-integration-test:
     name: AI Integration Test
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: test
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -109,9 +111,10 @@ jobs:
   deploy:
     name: Deploy to Cloudflare Workers
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: [test, ai-integration-test]
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4

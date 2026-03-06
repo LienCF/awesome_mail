@@ -15,6 +15,7 @@ jobs:
   security-scan:
     name: Security Scan
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
     - name: Checkout code
@@ -24,7 +25,7 @@ jobs:
         token: ${{ secrets.SUBMODULE_PAT }}
 
     - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@master
+      uses: aquasecurity/trivy-action@0.28.0
       with:
         scan-type: 'fs'
         scan-ref: '.'
@@ -40,6 +41,7 @@ jobs:
   dependency-check:
     name: Dependency Check
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
     - name: Checkout code
@@ -75,6 +77,7 @@ jobs:
   code-quality:
     name: Code Quality Analysis
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
     - name: Checkout code
@@ -122,6 +125,7 @@ jobs:
   test-coverage-report:
     name: Test Coverage Report
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
     - name: Checkout code
@@ -191,6 +195,7 @@ jobs:
   performance-test:
     name: Performance Test
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     steps:
