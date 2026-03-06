@@ -3,7 +3,7 @@
 # Test Runner Script for Awesome Mail
 # This script runs comprehensive tests following TDD principles
 
-set -e
+set -euo pipefail
 
 # Colors for output
 RED='\033[0;31m'
@@ -17,6 +17,10 @@ BACKEND_DIR="awesome-mail"
 FLUTTER_DIR="awesome_mail_flutter"
 COVERAGE_THRESHOLD=90
 PARALLEL_JOBS=4
+BACKEND_ONLY="${BACKEND_ONLY:-false}"
+FLUTTER_ONLY="${FLUTTER_ONLY:-false}"
+INTEGRATION_ONLY="${INTEGRATION_ONLY:-false}"
+RUN_AI_TESTS="${RUN_AI_TESTS:-false}"
 
 # Functions
 print_header() {
@@ -128,7 +132,7 @@ run_flutter_tests() {
     
     # Run code generation
     print_info "Running code generation..."
-    flutter packages pub run build_runner build --delete-conflicting-outputs
+    dart run build_runner build --delete-conflicting-outputs
     
     # Run analysis
     print_info "Running Flutter analysis..."
