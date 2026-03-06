@@ -30,19 +30,19 @@ print_header() {
 }
 
 print_success() {
-    echo -e "${GREEN}✅ $1${NC}"
+    echo -e "${GREEN}[OK] $1${NC}"
 }
 
 print_error() {
-    echo -e "${RED}❌ $1${NC}"
+    echo -e "${RED}[ERROR] $1${NC}"
 }
 
 print_warning() {
-    echo -e "${YELLOW}⚠️  $1${NC}"
+    echo -e "${YELLOW}[WARN] $1${NC}"
 }
 
 print_info() {
-    echo -e "${BLUE}ℹ️  $1${NC}"
+    echo -e "${BLUE}[INFO] $1${NC}"
 }
 
 # Check if required tools are installed
@@ -211,21 +211,21 @@ Generated on: $(date)
 
 ## Backend Tests
 - **Coverage**: $COVERAGE%
-- **Status**: $([ "$COVERAGE" -ge "$COVERAGE_THRESHOLD" ] && echo "✅ PASSED" || echo "❌ FAILED")
+- **Status**: $([ "$COVERAGE" -ge "$COVERAGE_THRESHOLD" ] && echo "PASSED" || echo "FAILED")
 
 ## Flutter Tests
 - **Coverage**: $FLUTTER_COVERAGE%
-- **Status**: $([ "${FLUTTER_COVERAGE%.*}" -ge "$COVERAGE_THRESHOLD" ] && echo "✅ PASSED" || echo "❌ FAILED")
+- **Status**: $([ "${FLUTTER_COVERAGE%.*}" -ge "$COVERAGE_THRESHOLD" ] && echo "PASSED" || echo "FAILED")
 
 ## Test Files
 - Backend coverage report: \`awesome-mail/coverage/index.html\`
 - Flutter coverage report: \`awesome_mail_flutter/coverage/html/index.html\`
 
 ## TDD Compliance
-- ✅ Red-Green-Refactor cycle followed
-- ✅ Tests written before implementation
-- ✅ Coverage thresholds met
-- ✅ All tests passing
+- Red-Green-Refactor cycle followed
+- Tests written before implementation
+- Coverage thresholds met
+- All tests passing
 
 EOF
 
