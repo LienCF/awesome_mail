@@ -9,23 +9,25 @@ on:
 
 permissions:
   contents: read
-  security-events: write
 
 jobs:
   security-scan:
     name: Security Scan
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
+      security-events: write
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       with:
         submodules: recursive
         token: ${{ secrets.SUBMODULE_PAT }}
 
     - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@0.28.0
+      uses: aquasecurity/trivy-action@76071ef0d7ec797419534e8a2bcbfb9a76541260 # 0.28.0
       with:
         scan-type: 'fs'
         scan-ref: '.'
@@ -33,7 +35,7 @@ jobs:
         output: 'trivy-results.sarif'
         
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v3
+      uses: github/codeql-action/upload-sarif@ce28f5bb42b7a9f2c824e633a3f6ee835bab0761 # v3
       if: always()
       with:
         sarif_file: 'trivy-results.sarif'
@@ -45,18 +47,18 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       with:
         submodules: recursive
         token: ${{ secrets.SUBMODULE_PAT }}
 
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
         node-version: '20'
         
     - name: Setup Flutter
-      uses: subosito/flutter-action@v2
+      uses: subosito/flutter-action@44ac965b96f18d999802d4b807e3256d5a3f9fa1 # v2
       with:
         flutter-version: '3.41.4'
         channel: 'stable'
@@ -81,18 +83,18 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       with:
         submodules: recursive
         token: ${{ secrets.SUBMODULE_PAT }}
 
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
         node-version: '20'
         
     - name: Setup Flutter
-      uses: subosito/flutter-action@v2
+      uses: subosito/flutter-action@44ac965b96f18d999802d4b807e3256d5a3f9fa1 # v2
       with:
         flutter-version: '3.41.4'
         channel: 'stable'
@@ -129,13 +131,13 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       with:
         submodules: recursive
         token: ${{ secrets.SUBMODULE_PAT }}
 
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
         node-version: '20'
         
@@ -178,7 +180,7 @@ jobs:
         
     - name: Comment Coverage Report on PR
       if: github.event_name == 'pull_request'
-      uses: actions/github-script@v7
+      uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
       with:
         script: |
           const fs = require('fs');
@@ -200,13 +202,13 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       with:
         submodules: recursive
         token: ${{ secrets.SUBMODULE_PAT }}
 
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
         node-version: '20'
         
@@ -217,11 +219,12 @@ jobs:
     - name: Run Performance Tests
       working-directory: awesome-mail
       run: |
-        # Add performance test script here
+        # TODO: 實作效能測試腳本，目前為佔位步驟
+        # 預計整合 npm run test:performance
         echo "Running performance tests..."
-        # npm run test:performance
-        
+
     - name: Generate Performance Report
       run: |
+        # TODO: 實作效能報告產生邏輯，目前為佔位步驟
+        # 預計產生並上傳效能指標
         echo "Performance test results would be generated here"
-        # Generate and upload performance metrics
