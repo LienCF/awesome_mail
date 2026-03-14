@@ -1,7 +1,7 @@
 # TDD Compliance Audit Report - 全平台完整版
 
 審計日期：2026-03-07
-範圍：全平台 — Backend TypeScript (`awesome-mail/src/`) + Flutter (`awesome_mail_flutter/lib/`) + CI Workflows
+範圍：全平台 - Backend TypeScript (`awesome-mail/src/`) + Flutter (`awesome_mail_flutter/lib/`) + CI Workflows
 方法：全面靜態分析（flutter analyze、eslint、tsc）+ 測試執行驗證
 
 ---
@@ -67,7 +67,7 @@
 
 ---
 
-## 已知剩餘事項（P2 — Detroit School TDD）
+## 已知剩餘事項（P2 - Detroit School TDD）
 
 以下為 Detroit School TDD 違規，因需要大規模重構，列為後續改善項目：
 

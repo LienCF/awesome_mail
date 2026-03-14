@@ -1,4 +1,4 @@
-# 🎨 Awesome Mail Flutter - 設計規範 (Design)
+# Awesome Mail Flutter - 設計規範 (Design)
 
 ## 1. 系統架構與原則
 
@@ -8,7 +8,7 @@
 *   **平台適應 (Adaptive)**:
     *   **桌面端 (macOS)**: Native Look & Feel (Cupertino)，高密度排版，滑鼠/鍵盤優化。
     *   **行動端 (iOS/Android)**: 觸控優先，符合 iOS Human Interface & Material Design 3。
-    *   **策略**: **智慧元件層 (Smart Component Layer)** — 邏輯共用，視圖分流。
+    *   **策略**: **智慧元件層 (Smart Component Layer)** -邏輯共用，視圖分流。
     *   **實作**: `AdaptiveWidgets` 與 `AwesomeOptionPicker` 自動適配 Popup Surface (macOS) 與 Action Sheet (iOS)。
     *   **反饋**: `AdaptiveFeedback` 根據平台選擇 SnackBar (Mobile) 或 CupertinoDialog (Desktop)。
     *   **導航 (Routing)**: `AppRouter` 整合 BLoC 權限控管，並根據平台自動切換首頁 (`MacOSHomePage` vs `HomePage`)。
