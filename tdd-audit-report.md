@@ -46,13 +46,13 @@
 
 | # | 檔案 | 修復 |
 |---|------|------|
-| 14 | `lib/data/database/app_database.dart` | 移除 4 處 migration log 中的 ✅ |
-| 15 | `lib/data/services/security/security_service.dart` | 移除 ⚠️，改為 WARNING: 文字前綴 |
-| 16 | `lib/data/services/sync_metrics_collector.dart` | 移除所有 emoji（✅⚠️⚡🐌📊❌ℹ️） |
-| 17 | `lib/data/services/full_content_download_service.dart` | 移除 4 處 log 中的 ✅ |
-| 18 | `lib/data/repositories/gmail_repository.dart` | 移除 2 處 ⚡ |
-| 19 | `lib/data/services/email_sync_service.dart` | 移除 1 處 ⚡ |
-| 20 | `.github/workflows/gemini-scheduled-triage.yml` | 移除 echo 中的 ✅🎯 |
+| 14 | `lib/data/database/app_database.dart` | 移除 4 處 migration log 中的 checkmark emoji |
+| 15 | `lib/data/services/security/security_service.dart` | 移除 warning emoji，改為 WARNING: 文字前綴 |
+| 16 | `lib/data/services/sync_metrics_collector.dart` | 移除所有 emoji (checkmark, warning, lightning, snail, chart, cross, info) |
+| 17 | `lib/data/services/full_content_download_service.dart` | 移除 4 處 log 中的 checkmark emoji |
+| 18 | `lib/data/repositories/gmail_repository.dart` | 移除 2 處 lightning emoji |
+| 19 | `lib/data/services/email_sync_service.dart` | 移除 1 處 lightning emoji |
+| 20 | `.github/workflows/gemini-scheduled-triage.yml` | 移除 echo 中的 checkmark + target emoji |
 
 ### 批次 4：後端 P1-P2 修復（前次審計遺留）
 

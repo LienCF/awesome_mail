@@ -1119,7 +1119,7 @@ group('A/B Testing: Dynamic Routing', () {
 
 ```dart
 group('Phase 1 Acceptance Tests', () {
-  test('✓ Prompt templates within token budget', () async {
+  test('Prompt templates within token budget', () async {
     expect(tokenEstimator.estimate(templates.securityAnalysisCompact),
       lessThanOrEqualTo(1200));
     expect(tokenEstimator.estimate(templates.securityAnalysisDetailed),
@@ -1130,7 +1130,7 @@ group('Phase 1 Acceptance Tests', () {
       lessThanOrEqualTo(1200));
   });
 
-  test('✓ Content budget increased >=50%', () async {
+  test('Content budget increased >=50%', () async {
     final longEmail = loadTestEmail('test_long_email.json');
 
     String? capturedPrompt;
@@ -1146,11 +1146,11 @@ group('Phase 1 Acceptance Tests', () {
     expect(tokens, greaterThanOrEqualTo(1500)); // Previously ~1000
   });
 
-  test('✓ Phishing detection accuracy >=85%', () async {
+  test('Phishing detection accuracy >=85%', () async {
     // (Already covered in accuracy tests)
   });
 
-  test('✓ All unit tests pass with >=90% coverage', () async {
+  test('All unit tests pass with >=90% coverage', () async {
     // Run via CI
   });
 });
@@ -1170,7 +1170,7 @@ group('Phase 1 Acceptance Tests', () {
 
 ```dart
 group('Final System Acceptance', () {
-  test('✓ All success metrics met', () async {
+  test('All success metrics met', () async {
     final metrics = await collectSystemMetrics();
 
     // Performance
@@ -1186,12 +1186,12 @@ group('Final System Acceptance', () {
     expect(metrics.urlExtractionAccuracy, greaterThanOrEqualTo(0.98));
   });
 
-  test('✓ No regression in existing features', () async {
+  test('No regression in existing features', () async {
     // Run full test suite
     // Compare with baseline metrics
   });
 
-  test('✓ System stable under load', () async {
+  test('System stable under load', () async {
     // Process 100 emails
     // Check no memory leaks
     // Check no errors
@@ -1215,25 +1215,25 @@ Commit: abc123
 Branch: feat/ai-optimization
 
 ## Unit Tests
-✓ Passed: 147 / 150
-✗ Failed: 3
+Passed: 147 / 150
+Failed: 3
 Coverage: 92.3%
 
 ## Integration Tests
-✓ Passed: 28 / 30
-✗ Failed: 2
+Passed: 28 / 30
+Failed: 2
 
 ## Performance Tests
-- Fast Path p95: 1.2s (target: <1.5s) ✓
-- Standard Path p95: 3.8s (target: <4s) ✓
-- Complex Path p95: 7.5s (target: <8s) ✓
+- Fast Path p95: 1.2s (target: <1.5s) PASS
+- Standard Path p95: 3.8s (target: <4s) PASS
+- Complex Path p95: 7.5s (target: <8s) PASS
 
 ## Accuracy Tests
-- Phishing Detection: 87.3% (target: ≥85%) ✓
-- False Positive Rate: 10.2% (target: ≤12%) ✓
-- F1 Score: 88.1% (target: ≥86%) ✓
+- Phishing Detection: 87.3% (target: >=85%) PASS
+- False Positive Rate: 10.2% (target: <=12%) PASS
+- F1 Score: 88.1% (target: >=86%) PASS
 
-## Overall: PASS ✓
+## Overall: PASS
 ```
 
 ---

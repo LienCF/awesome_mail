@@ -22,32 +22,32 @@
 **遵循 Kent Beck TDD 循環**：
 
 ```
-🔴 RED: 寫一個失敗的測試
+RED: 寫一個失敗的測試
     ↓
-🟢 GREEN: 寫最少的代碼使測試通過
+GREEN: 寫最少的代碼使測試通過
     ↓
-🔵 REFACTOR: 重構代碼，保持測試通過
+REFACTOR: 重構代碼，保持測試通過
     ↓
 (重複)
 ```
 
 **核心規則**：
-1. ✅ **先寫測試，再寫代碼**
-2. ✅ **一次只寫一個測試**
-3. ✅ **寫最少的代碼使測試通過**
-4. ✅ **測試必須能執行並失敗**（驗證測試有效）
-5. ✅ **重構前確保所有測試通過**
-6. ✅ **每個功能獨立提交**（小型、頻繁提交）
+1. **先寫測試，再寫代碼**
+2. **一次只寫一個測試**
+3. **寫最少的代碼使測試通過**
+4. **測試必須能執行並失敗**（驗證測試有效）
+5. **重構前確保所有測試通過**
+6. **每個功能獨立提交**（小型、頻繁提交）
 
 ### 1.2 任務標記說明
 
 | 標記 | 含義 | 說明 |
 |------|------|------|
-| 🔴 | RED | 寫失敗的測試 |
-| 🟢 | GREEN | 實作代碼使測試通過 |
-| 🔵 | REFACTOR | 重構（可選，視需要） |
-| ✅ | DONE | 任務完成 |
-| 📝 | COMMIT | 建議提交點 |
+| [RED] | RED | 寫失敗的測試 |
+| [GREEN] | GREEN | 實作代碼使測試通過 |
+| [REFACTOR] | REFACTOR | 重構（可選，視需要） |
+| [完成] | DONE | 任務完成 |
+| [提交] | COMMIT | 建議提交點 |
 
 ### 1.3 測試檔案組織
 
@@ -81,7 +81,7 @@ test/
 
 #### Task 1.1: 創建 PromptTemplateLibrary 類別
 
-**🔴 RED: 寫測試**
+**RED: 寫測試**
 
 ```dart
 // test/unit/data/providers/foundation/prompt_template_library_test.dart
@@ -152,7 +152,7 @@ void main() {
 flutter test test/unit/data/providers/foundation/prompt_template_library_test.dart
 ```
 
-**🟢 GREEN: 實作代碼**
+**GREEN: 實作代碼**
 
 ```dart
 // lib/data/providers/foundation/prompt_template_library.dart
@@ -297,13 +297,13 @@ Instructions:
 flutter test test/unit/data/providers/foundation/prompt_template_library_test.dart
 ```
 
-**📝 COMMIT**: `feat(ai): add PromptTemplateLibrary with compact templates`
+**COMMIT**: `feat(ai): add PromptTemplateLibrary with compact templates`
 
 ---
 
 #### Task 1.2: Token 估算驗證
 
-**🔴 RED: 寫測試**
+**RED: 寫測試**
 
 ```dart
 // test/unit/data/providers/foundation/prompt_template_library_test.dart
@@ -362,11 +362,11 @@ void main() {
 flutter test test/unit/data/providers/foundation/prompt_template_library_test.dart
 ```
 
-**🟢 GREEN**: 如果測試失敗，調整 template 內容直到符合 token 限制
+**GREEN**: 如果測試失敗，調整 template 內容直到符合 token 限制
 
-**🔵 REFACTOR**: 提取共用的片段，減少重複
+**REFACTOR**: 提取共用的片段，減少重複
 
-**📝 COMMIT**: `test(ai): validate prompt template token budgets`
+**COMMIT**: `test(ai): validate prompt template token budgets`
 
 ---
 
@@ -374,7 +374,7 @@ flutter test test/unit/data/providers/foundation/prompt_template_library_test.da
 
 #### Task 1.3: 建立 OptimizedPromptBuilder 基本結構
 
-**🔴 RED: 寫測試**
+**RED: 寫測試**
 
 ```dart
 // test/unit/data/providers/foundation/optimized_prompt_builder_test.dart
@@ -538,7 +538,7 @@ void main() {
 flutter test test/unit/data/providers/foundation/optimized_prompt_builder_test.dart
 ```
 
-**🟢 GREEN: 實作 OptimizedPromptBuilder**
+**GREEN: 實作 OptimizedPromptBuilder**
 
 ```dart
 // lib/data/providers/foundation/optimized_prompt_builder.dart
@@ -684,13 +684,13 @@ ${email.to.map((e) => e.email).join(', ')}
 flutter test test/unit/data/providers/foundation/optimized_prompt_builder_test.dart
 ```
 
-**📝 COMMIT**: `feat(ai): implement OptimizedPromptBuilder`
+**COMMIT**: `feat(ai): implement OptimizedPromptBuilder`
 
 ---
 
 #### Task 1.4: 整合到 FoundationAIProvider
 
-**🔴 RED: 寫測試**
+**RED: 寫測試**
 
 ```dart
 // test/unit/data/providers/foundation/foundation_ai_provider_test.dart
@@ -741,7 +741,7 @@ group('FoundationAIProvider with Optimized Prompts', () {
 });
 ```
 
-**🟢 GREEN: 修改 FoundationAIProvider 使用新的 PromptBuilder**
+**GREEN: 修改 FoundationAIProvider 使用新的 PromptBuilder**
 
 ```dart
 // lib/data/providers/foundation/foundation_ai_provider.dart
@@ -750,7 +750,7 @@ class FoundationAIProvider implements AIProvider {
   final FoundationModelClient _client;
   final SimpleSecurityAnalyzer _ruleAnalyzer;
 
-  // 🆕 新增
+  // [新增] 新增
   late final PromptTemplateLibrary _templates;
   late final OptimizedPromptBuilder _promptBuilder;
 
@@ -778,7 +778,7 @@ class FoundationAIProvider implements AIProvider {
     // 3. 提取關鍵元素（暫時使用空對象，Phase 4 會實作）
     final extracted = ExtractedElements.empty();
 
-    // 4. 🆕 使用優化的 Prompt Builder
+    // 4. [新增] 使用優化的 Prompt Builder
     final prompt = _promptBuilder.buildCompactSecurityPrompt(
       email: email,
       ruleHints: ruleHints,
@@ -799,7 +799,7 @@ class FoundationAIProvider implements AIProvider {
 flutter test test/unit/data/providers/foundation/foundation_ai_provider_test.dart
 ```
 
-**📝 COMMIT**: `refactor(ai): integrate OptimizedPromptBuilder into FoundationAIProvider`
+**COMMIT**: `refactor(ai): integrate OptimizedPromptBuilder into FoundationAIProvider`
 
 ---
 
@@ -807,7 +807,7 @@ flutter test test/unit/data/providers/foundation/foundation_ai_provider_test.dar
 
 #### Task 1.5: 建立準確率測試框架
 
-**🔴 RED: 寫測試**
+**RED: 寫測試**
 
 ```dart
 // test/integration/ai_prompt_optimization_test.dart
@@ -869,7 +869,7 @@ void main() {
 }
 ```
 
-**📝 COMMIT**: `test(ai): add accuracy validation framework for prompt optimization`
+**COMMIT**: `test(ai): add accuracy validation framework for prompt optimization`
 
 ---
 
@@ -877,20 +877,20 @@ void main() {
 
 執行以下檢查以確保 Phase 1 完成：
 
-- [ ] ✅ PromptTemplateLibrary 實作完成
-- [ ] ✅ 所有 template token 數符合預算：
+- [ ] PromptTemplateLibrary 實作完成
+- [ ] 所有 template token 數符合預算：
   - [ ] Compact security ≤1200 tokens
   - [ ] Detailed security ≤1500 tokens
   - [ ] Compact summary ≤1000 tokens
   - [ ] Standard summary ≤1200 tokens
-- [ ] ✅ OptimizedPromptBuilder 實作完成
-- [ ] ✅ 整合到 FoundationAIProvider
-- [ ] ✅ 所有單元測試通過（覆蓋率 ≥90%）
-- [ ] ✅ Linting 無錯誤
+- [ ] OptimizedPromptBuilder 實作完成
+- [ ] 整合到 FoundationAIProvider
+- [ ] 所有單元測試通過（覆蓋率 ≥90%）
+- [ ] Linting 無錯誤
 - [ ] ⏳ 準確率測試 ≥85%（需真實 AI 測試）
 - [ ] ⏳ 誤報率 ≤12%（需真實 AI 測試）
 
-**📝 FINAL COMMIT**: `feat(ai): complete Phase 1 - Prompt Template Optimization`
+**FINAL COMMIT**: `feat(ai): complete Phase 1 - Prompt Template Optimization`
 
 ---
 
@@ -904,7 +904,7 @@ void main() {
 
 #### Task 2.1: 實作基本路由邏輯
 
-**🔴 RED: 寫測試**
+**RED: 寫測試**
 
 ```dart
 // test/unit/data/providers/foundation/content_router_test.dart
@@ -1002,7 +1002,7 @@ void main() {
 }
 ```
 
-**🟢 GREEN: 實作 ContentRouter**
+**GREEN: 實作 ContentRouter**
 
 ```dart
 // lib/data/providers/foundation/content_router.dart
@@ -1109,13 +1109,13 @@ class ContentRouter {
 }
 ```
 
-**📝 COMMIT**: `feat(ai): implement ContentRouter for dynamic path selection`
+**COMMIT**: `feat(ai): implement ContentRouter for dynamic path selection`
 
 ---
 
 #### Task 2.2: 實作 FastPathProcessor
 
-**🔴 RED: 寫測試**
+**RED: 寫測試**
 
 ```dart
 // test/unit/data/providers/foundation/fast_path_processor_test.dart
@@ -1209,7 +1209,7 @@ void main() {
 }
 ```
 
-**🟢 GREEN: 實作 FastPathProcessor**
+**GREEN: 實作 FastPathProcessor**
 
 ```dart
 // lib/data/providers/foundation/fast_path_processor.dart
@@ -1309,13 +1309,13 @@ class FastPathProcessor {
 }
 ```
 
-**📝 COMMIT**: `feat(ai): implement FastPathProcessor with rule+AI merging`
+**COMMIT**: `feat(ai): implement FastPathProcessor with rule+AI merging`
 
 ---
 
 #### Task 2.3: 整合路由到 FoundationAIProvider
 
-**🔴 RED: 寫整合測試**
+**RED: 寫整合測試**
 
 ```dart
 // test/integration/dynamic_routing_integration_test.dart
@@ -1367,7 +1367,7 @@ void main() {
 }
 ```
 
-**🟢 GREEN: 整合到 FoundationAIProvider**
+**GREEN: 整合到 FoundationAIProvider**
 
 ```dart
 // lib/data/providers/foundation/foundation_ai_provider.dart
@@ -1418,23 +1418,23 @@ class FoundationAIProvider implements AIProvider {
 }
 ```
 
-**📝 COMMIT**: `feat(ai): integrate dynamic routing into FoundationAIProvider`
+**COMMIT**: `feat(ai): integrate dynamic routing into FoundationAIProvider`
 
 ---
 
 ### 3.2 Phase 2 驗收檢查清單
 
-- [ ] ✅ ContentRouter 實作完成
-- [ ] ✅ FastPathProcessor 實作完成
-- [ ] ✅ 整合到 FoundationAIProvider
-- [ ] ✅ 路由決策正確（短→Fast, 中→Standard, 長→Complex）
-- [ ] ✅ Fast Path 延遲 <1.5s (p95)
-- [ ] ✅ Standard Path 延遲 <4s (p95)
-- [ ] ✅ Fallback 機制正常運作
-- [ ] ✅ 所有測試通過（覆蓋率 ≥90%）
-- [ ] ✅ Linting 無錯誤
+- [ ] ContentRouter 實作完成
+- [ ] FastPathProcessor 實作完成
+- [ ] 整合到 FoundationAIProvider
+- [ ] 路由決策正確（短→Fast, 中→Standard, 長→Complex）
+- [ ] Fast Path 延遲 <1.5s (p95)
+- [ ] Standard Path 延遲 <4s (p95)
+- [ ] Fallback 機制正常運作
+- [ ] 所有測試通過（覆蓋率 ≥90%）
+- [ ] Linting 無錯誤
 
-**📝 FINAL COMMIT**: `feat(ai): complete Phase 2 - Dynamic Routing`
+**FINAL COMMIT**: `feat(ai): complete Phase 2 - Dynamic Routing`
 
 ---
 
@@ -1448,7 +1448,7 @@ class FoundationAIProvider implements AIProvider {
 
 #### Task 3.1: 表格轉換
 
-**🔴 RED: 寫測試**
+**RED: 寫測試**
 
 ```dart
 // test/unit/data/providers/foundation/html_to_markdown_converter_test.dart
@@ -1602,15 +1602,15 @@ void main() {
 }
 ```
 
-**🟢 GREEN**: 實作 HtmlToMarkdownConverter（參考 design.md 2.4 節）
+**GREEN**: 實作 HtmlToMarkdownConverter（參考 design.md 2.4 節）
 
-**📝 COMMIT**: `feat(ai): implement HtmlToMarkdownConverter`
+**COMMIT**: `feat(ai): implement HtmlToMarkdownConverter`
 
 ---
 
 #### Task 3.2: 整合到 ContentPreprocessor
 
-**🔴 RED: 寫測試**
+**RED: 寫測試**
 
 ```dart
 // test/unit/data/providers/foundation/enhanced_content_preprocessor_test.dart
@@ -1682,24 +1682,24 @@ void main() {
 }
 ```
 
-**🟢 GREEN**: 實作 EnhancedContentPreprocessor（參考 design.md 2.3 節）
+**GREEN**: 實作 EnhancedContentPreprocessor（參考 design.md 2.3 節）
 
-**📝 COMMIT**: `feat(ai): implement EnhancedContentPreprocessor with HTML conversion`
+**COMMIT**: `feat(ai): implement EnhancedContentPreprocessor with HTML conversion`
 
 ---
 
 ### 4.2 Phase 3 驗收檢查清單
 
-- [ ] ✅ HtmlToMarkdownConverter 實作完成
-- [ ] ✅ 表格轉換準確率 >95%
-- [ ] ✅ 列表層次保留（支援巢狀 3 層）
-- [ ] ✅ 連結轉換為 Markdown 格式
-- [ ] ✅ EnhancedContentPreprocessor 整合
-- [ ] ✅ Fallback 機制正常運作
-- [ ] ✅ 所有測試通過
-- [ ] ✅ Token 增加 <20%（vs 純文字）
+- [ ] HtmlToMarkdownConverter 實作完成
+- [ ] 表格轉換準確率 >95%
+- [ ] 列表層次保留（支援巢狀 3 層）
+- [ ] 連結轉換為 Markdown 格式
+- [ ] EnhancedContentPreprocessor 整合
+- [ ] Fallback 機制正常運作
+- [ ] 所有測試通過
+- [ ] Token 增加 <20%（vs 純文字）
 
-**📝 FINAL COMMIT**: `feat(ai): complete Phase 3 - HTML Enhancement`
+**FINAL COMMIT**: `feat(ai): complete Phase 3 - HTML Enhancement`
 
 ---
 
@@ -1713,35 +1713,35 @@ void main() {
 
 #### Task 4.1: URL 與域名抽取
 
-**🔴 RED**: 參考 design.md 2.5 節編寫測試
+**RED**: 參考 design.md 2.5 節編寫測試
 
-**🟢 GREEN**: 實作 ContentExtractor
+**GREEN**: 實作 ContentExtractor
 
-**📝 COMMIT**: `feat(ai): implement ContentExtractor`
+**COMMIT**: `feat(ai): implement ContentExtractor`
 
 ---
 
 #### Task 4.2: 整合到 PromptBuilder
 
-**🔴 RED**: 驗證 hints 包含抽取的資訊
+**RED**: 驗證 hints 包含抽取的資訊
 
-**🟢 GREEN**: 修改 PromptBuilder 使用抽取的元素
+**GREEN**: 修改 PromptBuilder 使用抽取的元素
 
-**📝 COMMIT**: `refactor(ai): integrate ContentExtractor into PromptBuilder`
+**COMMIT**: `refactor(ai): integrate ContentExtractor into PromptBuilder`
 
 ---
 
 ### 5.2 Phase 4 驗收檢查清單
 
-- [ ] ✅ ContentExtractor 實作完成
-- [ ] ✅ URL 抽取準確率 >98%
-- [ ] ✅ Punycode 檢測 100%
-- [ ] ✅ Homoglyph 檢測 >95%
-- [ ] ✅ 日期/金額識別準確
-- [ ] ✅ 安全分析準確率提升 ≥5%
-- [ ] ✅ 所有測試通過
+- [ ] ContentExtractor 實作完成
+- [ ] URL 抽取準確率 >98%
+- [ ] Punycode 檢測 100%
+- [ ] Homoglyph 檢測 >95%
+- [ ] 日期/金額識別準確
+- [ ] 安全分析準確率提升 ≥5%
+- [ ] 所有測試通過
 
-**📝 FINAL COMMIT**: `feat(ai): complete Phase 4 - Content Extraction`
+**FINAL COMMIT**: `feat(ai): complete Phase 4 - Content Extraction`
 
 ---
 
@@ -1770,13 +1770,13 @@ flutter test test/performance/
 
 ### 6.3 最終驗收清單
 
-- [ ] ✅ 所有 4 個 Phase 完成
-- [ ] ✅ 所有 P0 需求實作完成
-- [ ] ✅ ≥80% P1 需求實作完成
-- [ ] ✅ 測試覆蓋率 ≥90%
-- [ ] ✅ 所有成功指標達標
-- [ ] ✅ Linting 無錯誤
-- [ ] ✅ 文件更新完成
+- [ ] 所有 4 個 Phase 完成
+- [ ] 所有 P0 需求實作完成
+- [ ] ≥80% P1 需求實作完成
+- [ ] 測試覆蓋率 ≥90%
+- [ ] 所有成功指標達標
+- [ ] Linting 無錯誤
+- [ ] 文件更新完成
 
 ---
 

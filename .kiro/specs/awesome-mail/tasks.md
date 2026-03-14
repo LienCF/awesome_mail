@@ -1,4 +1,4 @@
-# 📋 Awesome Mail Flutter - 任務追蹤 (Tasks)
+# Awesome Mail Flutter - 任務追蹤 (Tasks)
 
 ## 1. 進行中任務 (In Progress)
 

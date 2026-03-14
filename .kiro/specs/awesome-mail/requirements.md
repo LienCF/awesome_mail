@@ -1,4 +1,4 @@
-# 🚀 Awesome Mail Flutter - 需求規格 (Requirements)
+# Awesome Mail Flutter - 需求規格 (Requirements)
 
 ## 1. 功能需求 (Functional Requirements)
 

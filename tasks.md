@@ -1,6 +1,6 @@
 # Tasks & Roadmap
 
-## 🟢 Completed
+## [完成] Completed
 
 - [x] **Core Architecture**: Clean Architecture layers (Presentation, Domain, Data, Core) setup.
 - [x] **Dependency Injection**: `get_it` + `injectable` configuration.
@@ -61,6 +61,6 @@
     - [x] Implemented `compute` isolate for heavy DB mapping.
 - [x] **Offline Mode**: Robust offline handling and optimistic UI updates.
 
-## 🟡 In Progress / Refinement
+## [進行中] In Progress / Refinement
 
-## 🔴 Pending / Future
+## [待辦] Pending / Future

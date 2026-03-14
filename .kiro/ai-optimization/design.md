@@ -48,7 +48,7 @@
                │
                ▼
     ┌────────────────────────────────────────────────────────┐
-    │           🆕 ContentRouter (新增)                       │
+    │           [新增] ContentRouter (新增)                       │
     │  根據郵件長度選擇處理策略                                │
     │  - Fast Path    (短郵件, <6k chars)                     │
     │  - Standard Path (中郵件, 6-24k chars)                  │
@@ -65,7 +65,7 @@
                            │
                            ▼
             ┌────────────────────────────────────────┐
-            │  🆕 EnhancedContentPreprocessor (新增) │
+            │  [新增] EnhancedContentPreprocessor (新增) │
             │  - HTML → Markdown 轉換                │
             │  - 智能內容抽取                        │
             │  - Token 估算與預算管理                │
@@ -73,7 +73,7 @@
                             │
                             ▼
             ┌────────────────────────────────────────┐
-            │  🆕 OptimizedPromptBuilder (新增)      │
+            │  [新增] OptimizedPromptBuilder (新增)      │
             │  - 精簡 Prompt Template (1500 tokens)  │
             │  - @Generable 結構化輸出               │
             │  - 動態 hints 注入                     │
@@ -92,15 +92,15 @@
 AIService
   └─> HybridAIProvider
        ├─> FoundationAIProvider (本地)
-       │    ├─> ContentRouter 🆕
-       │    │    ├─> FastPathProcessor 🆕
+       │    ├─> ContentRouter [新增]
+       │    │    ├─> FastPathProcessor [新增]
        │    │    └─> RecursiveSummarizer (已存在，優化)
-       │    ├─> EnhancedContentPreprocessor 🆕
-       │    │    ├─> HtmlToMarkdownConverter 🆕
-       │    │    ├─> ContentExtractor 🆕
+       │    ├─> EnhancedContentPreprocessor [新增]
+       │    │    ├─> HtmlToMarkdownConverter [新增]
+       │    │    ├─> ContentExtractor [新增]
        │    │    └─> TokenEstimator (已存在，優化)
-       │    └─> OptimizedPromptBuilder 🆕
-       │         └─> PromptTemplateLibrary 🆕
+       │    └─> OptimizedPromptBuilder [新增]
+       │         └─> PromptTemplateLibrary [新增]
        │
        └─> RemoteAIProvider (遠端)
             └─> (無變更)
@@ -110,15 +110,15 @@ AIService
 
 | 組件 | 責任 | 輸入 | 輸出 | 狀態 |
 |------|------|------|------|------|
-| **ContentRouter** | 根據郵件長度選擇處理路徑 | Email | ProcessingPath | 🆕 新增 |
-| **FastPathProcessor** | 短郵件單次處理 | Email, CompactPrompt | AIResponse | 🆕 新增 |
-| **RecursiveSummarizer** | 長郵件遞迴摘要 | Email, StandardPrompt | EmailSummary | ✏️ 優化 |
-| **EnhancedContentPreprocessor** | 內容預處理與清理 | Email | ProcessedContent | 🆕 新增 |
-| **HtmlToMarkdownConverter** | HTML 轉 Markdown | HTML String | Markdown String | 🆕 新增 |
-| **ContentExtractor** | 抽取關鍵元素 | Email Body | ExtractedElements | 🆕 新增 |
-| **OptimizedPromptBuilder** | 精簡 Prompt 構建 | Operation, Content, Hints | Prompt | 🆕 新增 |
-| **PromptTemplateLibrary** | Prompt 模板管理 | OperationType | Template String | 🆕 新增 |
-| **TokenEstimator** | Token 估算 | String | int (tokens) | ✅ 已存在 |
+| **ContentRouter** | 根據郵件長度選擇處理路徑 | Email | ProcessingPath | [新增] 新增 |
+| **FastPathProcessor** | 短郵件單次處理 | Email, CompactPrompt | AIResponse | [新增] 新增 |
+| **RecursiveSummarizer** | 長郵件遞迴摘要 | Email, StandardPrompt | EmailSummary | [修改] 優化 |
+| **EnhancedContentPreprocessor** | 內容預處理與清理 | Email | ProcessedContent | [新增] 新增 |
+| **HtmlToMarkdownConverter** | HTML 轉 Markdown | HTML String | Markdown String | [新增] 新增 |
+| **ContentExtractor** | 抽取關鍵元素 | Email Body | ExtractedElements | [新增] 新增 |
+| **OptimizedPromptBuilder** | 精簡 Prompt 構建 | Operation, Content, Hints | Prompt | [新增] 新增 |
+| **PromptTemplateLibrary** | Prompt 模板管理 | OperationType | Template String | [新增] 新增 |
+| **TokenEstimator** | Token 估算 | String | int (tokens) | [完成] 已存在 |
 
 ---
 
