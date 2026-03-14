@@ -148,4 +148,4 @@
     *   **複雜郵件渲染測試 (Complex Email Test)** **[已實現]**.
     *   **WebView 測試 (Webview Test)** **[已實現]**.
     *   **佈局溢出偵測 (Resizable Layout Test)** **[已實現]**.
-    *   **Debug Storage**: 內存儲存實現，用於測試環境繞過 Keychain **[已實現 (DebugStorage)]**.
+    *   **Debug Storage**: 記憶體儲存實作，用於測試環境繞過 Keychain **[已實現 (DebugStorage)]**.

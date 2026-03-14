@@ -19,13 +19,13 @@ awesome_mail/
 
 ## 開發設置
 
-### 克隆專案（包含 submodules）
+### 複製專案（包含 submodules）
 
 ```bash
 git clone --recursive https://github.com/LienCF/awesome_mail.git
 ```
 
-如果已經克隆了專案但沒有 submodules：
+如果已經複製了專案但沒有 submodules：
 
 ```bash
 git submodule update --init --recursive
