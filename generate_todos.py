@@ -1,7 +1,10 @@
-import sys
+#!/usr/bin/env python3
 import json
 
-files = """
+
+def generate_todos() -> list[dict[str, str]]:
+    """從檔案清單產生批次分析的待辦項目。"""
+    files: str = """
 awesome_mail_flutter/lib/generated/l10n/app_localizations.dart
 awesome_mail_flutter/lib/generated/l10n/app_localizations_zh.dart
 awesome_mail_flutter/lib/generated/l10n/app_localizations_ja.dart
@@ -620,12 +623,20 @@ awesome-mail/src/services/subscription-service.ts
 awesome-mail/src/services/ai-service.ts
 """
 
-file_list = [f.strip() for f in files.strip().split('\n') if f.strip()]
-batches = [file_list[i:i + 5] for i in range(0, len(file_list), 5)]
+    file_list: list[str] = [
+        f.strip() for f in files.strip().split('\n') if f.strip()
+    ]
+    batches: list[list[str]] = [
+        file_list[i:i + 5] for i in range(0, len(file_list), 5)
+    ]
 
-todos = []
-for i, batch in enumerate(batches):
-    description = f"Batch {i+1}: Analyze " + ", ".join(batch)
-    todos.append({"description": description, "status": "pending"})
+    todos: list[dict[str, str]] = []
+    for i, batch in enumerate(batches):
+        description: str = f"Batch {i+1}: Analyze " + ", ".join(batch)
+        todos.append({"description": description, "status": "pending"})
 
-print(json.dumps(todos))
+    return todos
+
+
+if __name__ == '__main__':
+    print(json.dumps(generate_todos()))

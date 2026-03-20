@@ -23,10 +23,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
         node-version: '20'
         cache: 'npm'
@@ -49,7 +49,7 @@ jobs:
       run: npm run test:coverage
       
     - name: Upload coverage reports
-      uses: codecov/codecov-action@v4
+      uses: codecov/codecov-action@18283e04ce6e62d37312384ff67231eb8fd56d24 # v4
       with:
         file: awesome-mail/coverage/coverage-final.json
         flags: backend
@@ -61,8 +61,8 @@ jobs:
       run: |
         COVERAGE=$(node -e "
           const fs = require('fs');
-          const coverage = JSON.parse(fs.readFileSync('coverage/coverage-final.json', 'utf8'));
-          const total = coverage.total;
+          const summary = JSON.parse(fs.readFileSync('coverage/coverage-summary.json', 'utf8'));
+          const total = summary.total;
           const lines = total.lines.pct;
           const functions = total.functions.pct;
           const branches = total.branches.pct;
@@ -72,10 +72,10 @@ jobs:
         ")
         echo "Coverage: $COVERAGE%"
         if (( $(echo "$COVERAGE < 90" | bc -l) )); then
-          echo "❌ Coverage $COVERAGE% is below 90% threshold"
+          echo "Coverage $COVERAGE% is below 90% threshold"
           exit 1
         else
-          echo "✅ Coverage $COVERAGE% meets 90% threshold"
+          echo "Coverage $COVERAGE% meets 90% threshold"
         fi
 
   ai-integration-test:
@@ -87,10 +87,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
         node-version: '20'
         cache: 'npm'
@@ -117,10 +117,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
         node-version: '20'
         cache: 'npm'
