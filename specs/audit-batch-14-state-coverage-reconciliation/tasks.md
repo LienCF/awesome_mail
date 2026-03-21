@@ -32,4 +32,4 @@
 ## Phase 5: Polish & Cross-Cutting Concerns
 
 - [x] T005 更新 batch 14 `tasks.md` 狀態
-- [ ] T006 執行 targeted tests、`flutter analyze --fatal-infos` 與全量 `flutter test`
+- [x] T006 執行 targeted tests、`flutter analyze --fatal-infos` 與全量 `flutter test`

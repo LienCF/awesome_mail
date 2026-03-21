@@ -48,4 +48,4 @@
 ## Phase 6: Polish & Cross-Cutting Concerns
 
 - [x] T014 更新 `tdd-audit-report.md` 與剩餘 `while` 類清單
-- [ ] T015 執行 backend 品質檢查、Flutter analyze、變更相關測試與全量回歸
+- [x] T015 執行 backend 品質檢查、Flutter analyze、變更相關測試與全量回歸

@@ -47,4 +47,4 @@
 
 ## Phase 6: Polish & Cross-Cutting Concerns
 
-- [ ] T014 執行 backend 品質檢查、Flutter analyze、變更相關測試與 Flutter 全量測試
+- [x] T014 執行 backend 品質檢查、Flutter analyze、變更相關測試與 Flutter 全量測試

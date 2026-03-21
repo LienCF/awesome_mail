@@ -36,4 +36,4 @@
 ## Phase 5: Polish & Cross-Cutting Concerns
 
 - [x] T009 更新 `tdd-audit-report.md`，記錄 batch 13 的 mock 去除範圍
-- [ ] T010 執行 `flutter analyze --fatal-infos`、batch 13 相關測試與全量 `flutter test`
+- [x] T010 執行 `flutter analyze --fatal-infos`、batch 13 相關測試與全量 `flutter test`
