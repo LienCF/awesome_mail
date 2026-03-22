@@ -1,0 +1,7 @@
+- [x] T001 更新審計報告與批次規格於 `/Users/liencf/Projects/awesome_mail/tdd-audit-report.md`、`/Users/liencf/Projects/awesome_mail/specs/audit-batch-1-native-platform-testability/spec.md`、`/Users/liencf/Projects/awesome_mail/specs/audit-batch-1-native-platform-testability/plan.md`
+- [x] T002 [US1] 先在 `/Users/liencf/Projects/awesome_mail/awesome_mail_flutter/ios/RunnerTests/RunnerTests.swift` 與 `/Users/liencf/Projects/awesome_mail/awesome_mail_flutter/macos/RunnerTests/RunnerTests.swift` 補上會失敗的原生邏輯測試
+- [x] T003 [US1] 在 `/Users/liencf/Projects/awesome_mail/awesome_mail_flutter/ios/RunnerTests/GenerablePayloadTests.swift` 移除 skipped 測試路徑，改為可直接執行的可用性宣告
+- [x] T004 [US1] 在 `/Users/liencf/Projects/awesome_mail/awesome_mail_flutter/ios/Runner/AppDelegate.swift` 與 `/Users/liencf/Projects/awesome_mail/awesome_mail_flutter/macos/Runner/AppDelegate.swift` 抽出可測的 Writing Tools 純邏輯並讓測試轉綠
+- [x] T005 [US2] 先在 `/Users/liencf/Projects/awesome_mail/awesome_mail_flutter/android/app/src/test/kotlin/com/xamide/awesomemail/` 補上 Android OAuth handler 紅燈測試
+- [x] T006 [US2] 在 `/Users/liencf/Projects/awesome_mail/awesome_mail_flutter/android/app/src/main/kotlin/com/xamide/awesomemail/` 收斂 OAuth channel 實作並刪除 `/Users/liencf/Projects/awesome_mail/awesome_mail_flutter/android/app/src/main/kotlin/com/awesomemail/app/OAuthHelper.kt`
+- [x] T007 執行 `/Users/liencf/Projects/awesome_mail/awesome_mail_flutter/android/gradlew testProductionDebugUnitTest`、iOS/macOS 原生測試、`flutter analyze --fatal-infos`、`flutter test`、`npm run quality:check`、`python -m pytest python_tests -q`

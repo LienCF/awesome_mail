@@ -1,0 +1,7 @@
+- [x] T001 更新批次規格與審計報告於 `/Users/liencf/Projects/awesome_mail/specs/audit-batch-2-residual-test-double-cleanup/` 與 `/Users/liencf/Projects/awesome_mail/tdd-audit-report.md`
+- [x] T002 [US1] 將 `/Users/liencf/Projects/awesome_mail/awesome_mail_flutter/test/support/mocks/` 的 home page 測試替身改到 `support/fakes`，並更新 `test_app_shell.dart` 與 `macos_home_page_ai_test.dart`
+- [x] T003 [US1] 刪除 `/Users/liencf/Projects/awesome_mail/awesome_mail_flutter/test/support/fakes/http_client_mocktail_shim.dart` 並清理局部 `Mock*` 測試替身命名
+- [x] T004 [US2] 更新 `/Users/liencf/Projects/awesome_mail/awesome_mail_flutter/test/README.md`、`/Users/liencf/Projects/awesome_mail/awesome_mail_flutter/test/TEST_DOCUMENTATION.md`、`/Users/liencf/Projects/awesome_mail/awesome_mail_flutter/test/TESTING_OVERVIEW.md`
+- [x] T005 執行相關 Flutter 測試、`flutter analyze --fatal-infos`、`flutter test`、`npm run quality:check`
+- [x] T006 [US1] 清理 `/Users/liencf/Projects/awesome_mail/awesome_mail_flutter/lib` 與 `/Users/liencf/Projects/awesome_mail/awesome_mail_flutter/test` 殘留的 `mock` 識別字、示範字串與註解用語
+- [x] T007 驗證 `rg -n "mock" awesome_mail_flutter/lib awesome_mail_flutter/test` 無結果，且 Flutter 全量 `8119` 個測試全過

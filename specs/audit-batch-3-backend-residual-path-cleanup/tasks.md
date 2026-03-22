@@ -1,0 +1,5 @@
+- [x] T001 更新 backend AI provider、OAuth helper、D1 helper 與整合測試的檔名與匯入路徑
+- [x] T002 調整 D1 helper、OAuth 模擬服務與相關測試的區域命名，移除殘留 `mock*` API 語意
+- [x] T003 執行 `rg --files awesome-mail/src awesome-mail/tests | rg "mock|Mock"` 與 backend `npm run quality:check`
+- [x] T004 清理 `/Users/liencf/Projects/awesome_mail/awesome-mail/src` 與 `/Users/liencf/Projects/awesome_mail/awesome-mail/tests` 殘留的 `mock` provider 類型、測試字串與註解用語
+- [x] T005 驗證 `rg -n "mock" awesome-mail/src awesome-mail/tests` 無結果，且 backend `91` 個測試檔、`1292` 個測試全過
